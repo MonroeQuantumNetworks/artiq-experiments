@@ -5,52 +5,67 @@ from artiq.coredevice.exceptions import RTIOOverflow
 import serial
 import serial.tools.list_ports
 
-# old positions
+# for optimizer
+import optimizer
 
 class fiber_optimizer(EnvExperiment):
 
     def build(self):
         self.setattr_device("core")
         self.setattr_device("ttl0")
-        self.motors = motor_helper()
-        self.motors.open_motors()
 
     @kernel
-    def run(self):
+    def prep_kernel(self):
         self.core.reset()
         self.ttl0.input()
 
-        for i in range(10):
-            self.core.break_realtime()
+    def run(self):
+        self.prep_kernel()
 
-            # print motor position
-            self.motors.get_positions()
+        # setup motors
 
-            # wait
-            delay (100*ms)
+        self.motor_helper = motor_helper()
+        self.motors = self.motor_helper.open_motors()
 
-            # print detector counts
+        variable_names = ['lens_focus']
+        initial_values = [self.motors[name].get_position() for name in variable_names]
+        variable_min =   np.maximum(np.array([self.motors[name].get_minimum()  for name in variable_names]), initial_values-1.0)
+        variable_max =   np.minimum(np.array([self.motors[name].get_maximum()  for name in variable_names]), initial_values+1.0)
+
+        self.optimizer = optimizer.Optimizer('simplex', self.count, self.set_position, variable_names, initial_values, variable_min, variable_max)
+        self.optimizer.simplex()
+
+        self.motor_helper.close()
+
+    @kernel
+    def count(self):
+
+        self.core.break_realtime()
+
+        # get detector counts
+        error = True
+        while error:
             try:
-                gate_end_mu = self.ttl0.gate_rising(1*ms)
+                gate_end_mu = self.ttl0.gate_rising(100*ms)
                 num_rising_edges = self.ttl0.count(gate_end_mu)
             except RTIOOverflow:
-                print("RTIO input overflow")
-
+                print("RTIO input overflow, attenuate signal!")
                 # drain counters
                 num_rising_edges = 1
                 while num_rising_edges != 0:
                     try:
                         num_rising_edges = self.ttl0.count(now_mu())
                     except RTIOOverflow:
-                        print("RTIO input overflow while draining")
-                    else:
-                        print('draining counts:', num_rising_edges)
+                        pass
+                        print("RTIO input overflow, attenuate signal!")
             else:
+                error = False
                 print('counts', num_rising_edges)
+                return num_rising_edges
 
-            print()
-
-        self.motors.close()
+    @rpc(flags={"async"})
+    def set_position(self, name, value):
+        self.motors.set_position(name, value)
 
 
 class motor_helper():
@@ -103,6 +118,8 @@ class motor_helper():
                     self.motors[name] = motor(name, port.serial_number, port.device, read_ID)
                 print()
 
+        return self.motors
+
     def close(self):
         for m in self.motors.values():
             m.close()
@@ -125,6 +142,7 @@ class motor_helper():
 class motor():
 
     def __init__(self, name, serial_number, device, ID):
+
         self.name = name
         self.serial_number = serial_number
         self.device = device
@@ -178,6 +196,12 @@ class motor():
 
     def get_position(self):
         return float(self.command('1PA?'))
+
+    def get_minimum(self):
+        return float(self.command('1SL?'))
+
+    def get_maximum(self):
+        return float(self.command('1SR?'))
 
     def get_all_motor_settings(name):
         print(self.name, 'config:')

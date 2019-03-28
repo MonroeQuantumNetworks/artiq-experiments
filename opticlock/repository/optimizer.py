@@ -1,7 +1,10 @@
-# DeformableMirror.py created 2017-10-23 18:01:02.220436
+# multi-dimension optimizer code
+# M. Lichtman 2019-03-22
+# based on prior code by M. Lichtman
 
 import numpy as np
 from math import isnan
+import time
 
 # for creating graphs of the optimizer progress
 # import matplotlib as mpl
@@ -9,169 +12,141 @@ from math import isnan
 # import matplotlib.pyplot as plt
 # from matplotlib.backends.backend_pdf import PdfPages
 
-import time
-
-setScan('Deformable_Mirror_Scan')
-setEvaluation('Dm_detection')
-setAnalysis('blank')
-
 
 class Optimization():
-    # yi is the current cost
-    xlist = []  # a history of the settings (shape=(iterations,axes))
-    ylist = []  # a history of the costs (shape=(iterations))
-    best_xi = None
-    best_yi = np.inf
 
-    def __init__(self, method, use_zernikes=True, pause=False, delay=1, relax_every_update=False):
-        methods = {'genetic': self.genetic, 'gradient_descent': self.gradient_descent, 'simplex': self.simplex,
+    def __init__(self, method, cost_function, set_function, variable_names, initial_values, variable_min, variable_max):
+        # cost_function is a handle to a method that returns the numerical value to be minimized
+        # set_function is a handle to a method set_function(name, value) for setting one variable where name is a string from variable_names
+        # set_all_function is a handle to a function set_all_function(valuelist) for setting all variables, where valuelist is of the same length as variable_names
+        # setting_function is a function handle that takes a list of values to be set for all variables
+        # variable_names, initial_values, variable_min, variable_max must be lists or arrays of the same size
+        # variable_names must be a list of strings
+        # initial_values, variable_min, variable_max must be numerical arrays or lists
+
+        self.methods = {'genetic': self.genetic, 'gradient_descent': self.gradient_descent, 'simplex': self.simplex,
                    'weighted_simplex': self.weighted_simplex, 'breadth_first': self.breadth_first,
                    'depth_first': self.depth_first}
-        self.optimization_method = methods[method]
-        self.num = 0  # iteration number
-        self.pause = pause  # if True, the scan will be paused during settings updates.
-        self.delay = delay  # the delay, in seconds, between when the pulse program is unpaused and when the data is acquired in self.measure()
-        self.relax_every_update = relax_every_update  # if True, the mirror will go through the relaxation process after every update
 
-        # Below, define variables used in optimization. For each variable, there should be a minimum allowed value, a maximum allowed value, and a unit (or for no unit, '').
-        # Variables can be added to the current arrays, as long as all other information is added as well.
-        if use_zernikes:  # Optimize using Zerinkes, except use tiptilt1-tiptilt3 instead of amp and angle
-            self.optimization_variables = ['dm_z{}'.format(actuator) for actuator in range(4, 16)] + ['dm_tiptilt1',
-                                                                                                      'dm_tiptilt2',
-                                                                                                      'dm_tiptilt3']
-            self.variable_min = np.full(len(self.optimization_variables), -1.0)
-            self.variable_min[12:15]
-            self.variable_max = np.full(len(self.optimization_variables), 1.0)
-            self.variable_max[12:15] = 200
-            self.variable_units = 12 * [''] + 3 * ['V']
-        else:  # use actuators
-            self.optimization_variables = ['dm_a' + str(n + 1) for n in range(40)] + ['dm_tiptilt1', 'dm_tiptilt2',
-                                                                                      'dm_tiptilt3']
-            self.variable_min = np.zeros(len(self.optimization_variables))
-            self.variable_max = np.full(len(self.optimization_variables), 200.0)
-            self.variable_units = len(self.optimization_variables) * ['V']
+        self.optimize = methods[method]
+        self.measure = cost_function
+        self.set_function = set_function
+        self.optimization_variables = variable_names
+        self.variable_min = np.array(variable_min, dtype=np.float64)
+        self.variable_max = np.array(variable_max, dtype=np.float64)
+        self.num = 0  # iteration number
 
         # scale the step size to the range for each variable
-        self.initial_step = (self.variable_max - self.variable_min) / 100.0
+        self.initial_step = (self.variable_max - self.variable_min) / 1000.0
         # create an array to store the separate initial steps for each variable
         self.n_axes = len(self.optimization_variables)
-        self.axes = range(self.n_axes)  # the number of axes
+        self.axes = range(self.n_axes)  # a generator for the axes numbers
         # set the end tolerances relative to the initial step
-        self.end_tolerances = self.initial_step / 100.0
+        self.end_tolerances = self.initial_step / 1000.0
 
         self.is_done = False
         self.firstrun = True  # so we can record the initial cost
 
+        # yi is the current cost
+        self.tested_xlist = []  # a history of all tested settings, shape=(iterations,axes)
+        self.tested_ylist = []  # a history of costs for all tested settings, shape=(iterations)
+        self.best_xlist   = []  # a history of the best points, shape=(?, axes)
+        self.best_ylist   = []  # a history of the best costs, shape=(?)
+        self.best_xi = None
+        self.best_yi = np.inf
+
+
         # get the current settings to use as the starting point
-        self.xi = np.empty(self.n_axes)
-        for i, z in enumerate(self.optimization_variables):
-            self.xi[i] = getGlobal(z).magnitude
+        self.xi = np.array(initial_values, dtype=np.float64)
         print(self.xi)
 
         # measure the cost at the initial settings
-        # startScan(wait = False)
-        if self.pause:
-            pauseScan()  # scan will be paused most of the time
         self.yi = self.measure()
+        self.update(force_best=True)
 
-    def update(self, step_size=None):
+    def update(self, step_size=None, force_best=False):
+
+        # if the cost function did not return a number, then assume the cost is infinite
         if isnan(self.yi):
             self.yi = np.inf
 
-        self.xlist.append(self.xi)
-        self.ylist.append(self.yi)
+        self.tested_xlist.append(self.xi)
+        self.tested_ylist.append(self.yi)
 
-        if self.yi < self.best_yi:
+        # if this point is the best
+        if ((self.yi < self.best_yi) or force_best):
+            dy = self.best_yi - self.yi
             self.best_xi = self.xi
             self.best_yi = self.yi
+            self.best_xi_list.append(self.xi)
+            self.best_yi_list.append(self.yi)
+
+            # for adaptive step sizes, go 10% of the way from the current step size
             if step_size is not None:
                 self.initial_step = (self.initial_step + .1 * np.abs(step_size)) / 1.1
 
             # print the best result
-            print('iteration = {}, cost = {}'.format(self.num, -self.yi))
+            print('iteration={} dy={} cost={} keeping setting: {}".format(i, dy, self.yi, self.xi))
 
         self.num += 1
 
     def set_variables(self, x):
-        # set all the variables
+        # enforce the variable range
+        x = np.maximum(np.minimum(self.variable_max, x), self.variable_min)
         for i in self.axes:
-            self.set_variable(i, x[i])
+            self.set_function(self.optimization_variables[i], x[i])
 
-    def set_variable(self, i, xi):
+        # wait until motors have hopefully finished moving
+        # TODO: replace this with a status check
+        time.sleep(1)
+
+    def set_variable(self, i, x):
+        # enforce the variable range
+        x = np.maximum(np.minimum(self.variable_max[i], x), self.variable_min[i])
+
         # set just one variable
-        # enforce the variable min and max range
-        if xi > self.variable_max[i]:
-            xi = self.variable_max[i]
-        elif xi < self.variable_min[i]:
-            xi = self.variable_min[i]
-        # update the global variables to actuate the changes
-        setGlobal(self.optimization_variables[i], xi, self.variable_units[i])
+        self.set_function(self.optimization_variables[i], x)
 
-    def measure(self):
-        if self.relax_every_update:
-            self.relax()
-        # unpause
-        if self.pause:
-            pauseScan()
-        # delay to make sure the deformable mirror has updated.  time.sleep takes in seconds, self.delay is specified in milliseconds
-        time.sleep(self.delay / 1000)
-        # wait for a new point and read the data
-        ion_counts = 0
-        ion_counts_threshold = getGlobal('ion_counts_threshold').magnitude
-        while (ion_counts < ion_counts_threshold):
-            # time.sleep takes in delay as seconds.  self.delay is specified in milliseconds
-            result = getData()
-            ion_counts = result['ion_counts'][1]
-        # re-pause
-        if self.pause:
-            pauseScan()
-        return -result['dm_eval'][1]
+        # wait until motors have hopefully finished moving
+        # TODO: replace this with a status check
+        time.sleep(1)
 
-    def relax(self):
-        # relax the mirrors.  Math modulo 2 prevents the dummy variables from getting really big
-        setGlobal('RelaxMirror', (getGlobal('RelaxMirror').magnitude + 1) % 2, '')
-        setGlobal('RelaxTilt', (getGlobal('RelaxTilt').magnitude + 1) % 2, '')
-        # setGlobal('RelaxMirror1',(getGlobal('RelaxMirror1').magnitude+1)%2,'')
-        # setGlobal('RelaxTilt1', (getGlobal('RelaxTilt1').magnitude+1)%2,'')
 
     def genetic(self):
-
-        x0 = self.xi
+        # Make random moves.  Keep them if they are better, otherwise discard them.
+        # Possible extensions include "evolutionary" algorithm that keeps several branches in competition.
 
         while not self.is_done:
             # re-evaluate the previously best spot every time, to account for drift
-            self.set_variables(x0)
-            y0 = self.measure()
+            self.xi = self.best_yi
+
+            self.set_variables(self.xi)
+            self.yi = self.measure()
+            self.update(force_best=True)
 
             # take random step on each axis, gaussian distribution with mean = 0, and deviation = step size
             step_size = np.random.normal(0, self.initial_step, self.xi.shape)
-            self.xi = x0 + step_size
+            self.xi = self.best_xi + step_size
+
             self.set_variables(self.xi)
             self.yi = self.measure()
+            self.update()
 
-            if self.yi < y0:
-                x0 = self.xi
-                y0 = self.yi
-                # self.update()  # if you want adapative step sizes use: step_size)
-
-            # reset the global variables to the best value when the script is stopped, and end the scan gracefully
-            if scriptIsStopped():
-                self.set_variables(self.xi)
-                # stopScan()
-                self.is_done = True
+        # reset the variables to the best value when the optimizer is stopped
+        self.set_variables(x0)
 
     def breadth_first(self):
         # cycle through each variable, adjusting it a little bit, then move on to the next one
-        x0 = self.xi
+
         while not self.is_done:
 
             for i in self.axes:
                 # re-evaluate the previously best spot every time, to account for drift
-                self.set_variables(x0)
-                y0 = self.measure()
+                self.xi = self.best_yi
 
-                # start from the known best position
-                self.xi = x0.copy()
+                self.set_variables(self.xi)
+                self.yi = self.measure()
+                self.update(force_best=True)
 
                 # pick a direction
                 if np.random.randint(2):
@@ -180,26 +155,18 @@ class Optimization():
                 else:
                     self.xi[i] -= self.initial_step[i]
                     print("axis {} step -{}".format(i, self.initial_step[i]))
+
                 # set just this one axis and then measure
-                self.set_variables(self.xi)
+                self.set_variable(i, self.xi[i])
                 self.yi = self.measure()
+                self.update()
 
-                if self.yi < y0:
-                    # this setting is better, keep it.  Otherwise the next pass will reset to x0 again
-                    print("axis {} keeping setting {}, dy {}".format(i, self.xi[i], self.yi - y0))
-                    x0 = self.xi
-                    y0 = self.yi
-
-            # reset the global variables to the best value when the script is stopped, and end the scan gracefully
-            if scriptIsStopped():
-                self.set_variables(self.x0)
-                # stopScan()
-                self.is_done = True
+        # reset the variables to the best value when the optimizer is stopped
+        self.set_variables(self.best_xi)
 
     def depth_first(self):
         # cycle through each variable, adjusting it a little bit, then move on to the next one
         # if the results are better continue in that direction, but never undo a bad move
-        y0 = self.yi
 
         while not self.is_done:
 
@@ -213,12 +180,15 @@ class Optimization():
 
                 n = 0
                 y0 = self.yi
+                x0 = self.xi[i]
                 # change one variable
                 self.xi[i] += dx
                 print("axis {} trial {} step {}".format(i, n, dx))
                 # set just this one axis and then measure
+
                 self.set_variable(i, self.xi[i])
                 self.yi = self.measure()
+                self.update()
 
                 if self.yi > y0:
                     # we went the wrong way.  invert dx
@@ -230,70 +200,45 @@ class Optimization():
                     # save the previous cost
                     y0 = self.yi
                     # change one variable
-                    self.xi[i] += dx
+                    self.xi[i] = x0 + n*dx
                     print("axis {} trial {} step {}".format(i, n, dx))
                     # set just this one axis and then measure
                     self.set_variable(i, self.xi[i])
                     self.yi = self.measure()
+                    self.update()
 
-            # reset the global variables to the best value when the script is stopped, and end the scan gracefully
-            if scriptIsStopped():
-                self.is_done = True
+        # reset the variables to the best value when the optimizer is stopped
+        self.set_variables(self.best_xi)
 
     def gradient_descent(self):
         """An optimization algorithm that finds the local gradient, then moves in the direction of fastest descent.
         A line search is done along that direction, then the process repeats."""
 
-        # start the iteration at the current settings
-        x0 = self.xi
-
         while not self.is_done:
-            # re-measure y0
-            self.set_variables(x0)
-            y0 = self.measure()
+
+            # re-measure the best point
+            self.set_variables(self.best_xi)
+            self.yi = self.measure()
+            self.update(force_best=True)
 
             # find gradient at the current point by making a small move on each axis
             dx = self.initial_step
             dy = np.zeros(self.n_axes)
-            y_last = y0
-            x_test = x0.copy()
+            x0 = self.best_xi
+            y0 = self.yi
+
             for i in self.axes:
-                print('testing gradient on axis' + str(i))
-                # use a smaller step for gradient evaluation
-                # dx[i] = self.initial_step[i]
+                print('testing gradient on axis {}'.format(i))
+                self.xi = x0.copy()
+                self.xi[i] += dx[i]
 
-                # x_test = x0.copy()
-
-                x_test[i] += dx[i]
-                # if x_test[i] > self.variable_max[i]:
-                #    x_test[i] = self.variable_max[i]
-
-                # if the range limits are hit, try going the other way
-                # upper_margin = self.variable_max[i] - x_test[i]
-                # lower_margin = x_test[i] - self.variable_min[i]
-                # if upper_margin < dx[i]:
-                #    if lower_margin < dx[i]:
-                #        if upper_margin > lower_margin:
-                #            x_test[i] = self.variable_max[i]
-                #        else:
-                #            x_test[i] = self.variable_min[i]
-                #    else:
-                #        x_test[i] -= dx[i]
-                # else:
-                #    x_test[i] += dx[i]
-
-                # keep track of how big the actual dx was after the range was enforced
-                # dx[i] = x_test[i]-x0[i]
-
-                # update just the single axis
-                print("global: {}, {}".format(i, x_test[i]))
-                # setGlobal(self.optimization_variables[i], x_test[i], self.variable_units[i])
-                # self.set_variables(x_test)
-                self.set_variable(i, x_test[i])
-
+                # test the change along this axis
+                self.set_variables(self.xi)
                 self.yi = self.measure()
-                dy[i] = self.yi - y_last
-                y_last = self.yi
+                self.update()
+
+                # record the change
+                dy[i] = self.yi - y0
 
             gradient = dy / dx
             gradient[
@@ -635,8 +580,3 @@ class Optimization():
             if scriptIsStopped():
                 break
 
-
-detect_time = getGlobal('detect_DM_time_global').magnitude
-dm_optimization = Optimization(method='simplex', use_zernikes=True, pause=False, delay=detect_time,
-                               relax_every_update=True)
-dm_optimization.optimization_method()

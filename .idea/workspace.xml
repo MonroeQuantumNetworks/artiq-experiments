@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bd47eb4-9335-4388-a6e0-ee3c8c652bf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/opticlock/device_db_opticlock.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opticlock/repository/DMA_test1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opticlock/repository/counter_test2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opticlock/repository/edge_counter_test1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artiq-experiments.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artiq-experiments.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opticlock/repository/optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/repository/optimizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/opticlock/build-artiq.bash">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
-              <caret line="28" column="97" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="97" />
+              <caret line="28" column="97" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -67,13 +67,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+            <state relative-caret-position="960">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/opticlock/repository/optimizer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1361">
+              <caret line="244" selection-start-line="244" selection-end-line="244" />
+              <folding>
+                <element signature="e#96#114#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,24 +99,6 @@
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/led_test1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/DMA_test1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -131,6 +125,9 @@
     <findStrings>
       <find>clk_sel</find>
       <find>set_att</find>
+      <find>yield</find>
+      <find>set_variable</find>
+      <find>update(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,13 +151,14 @@
         <option value="$PROJECT_DIR$/opticlock/repository/counter_test1.py" />
         <option value="$PROJECT_DIR$/opticlock/build-artiq.bash" />
         <option value="$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py" />
+        <option value="$PROJECT_DIR$/opticlock/repository/optimizer.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="821" />
     <option name="y" value="28" />
-    <option name="width" value="981" />
+    <option name="width" value="1409" />
     <option name="height" value="2082" />
   </component>
   <component name="ProjectView">
@@ -195,6 +193,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/artiq-dev/artiq" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -232,10 +231,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="821" y="28" width="944" height="2082" extended-state="0" />
+    <frame x="821" y="28" width="1409" height="2082" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2844734" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1890332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -329,16 +328,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/kasli_tester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/opticlock/device_db_opticlock.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-450">
@@ -383,7 +372,7 @@
     <entry file="file://$PROJECT_DIR$/opticlock/build-artiq.bash">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="28" column="97" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="97" />
+          <caret line="28" column="97" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="97" />
         </state>
       </provider>
     </entry>
@@ -394,12 +383,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///run/user/1000/gvfs/smb-share:server=128.8.195.52,share=trunktower/Labs/IonPhoton/data/Sandia_IonControl_projects/IonControlProjects/IonPhotonProjectJARVIS1/config/Scripts/optimization_Marty_edit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="422" lean-forward="true" selection-end-line="634" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opticlock/kasli_tester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="960">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opticlock/repository/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1361">
+          <caret line="244" selection-start-line="244" selection-end-line="244" />
+          <folding>
+            <element signature="e#96#114#0" expanded="true" />
           </folding>
         </state>
       </provider>
