@@ -1,0 +1,109 @@
+conda list
+# packages in environment at /home/monroe/miniconda3/envs/artiq-dev:
+#
+# Name                    Version                   Build  Channel
+aiohttp                   3.4.2            py35h7b6447c_0  
+alabaster                 0.7.11                   py35_0  
+artiq                     4.0                       dev_0    <develop>
+artiq-dev                 5.0.dev         490+git51c123ba    m-labs/label/dev
+async-timeout             3.0.0                    py35_0  
+asyncserial               0.1             py_13+git340e430    m-labs/label/main
+attrs                     19.1.0                     py_0  
+babel                     2.7.0                      py_0  
+binutils-or1k-linux       2.30                          7    m-labs/label/main
+blas                      1.0                         mkl  
+bscan-spi-bitstreams      0.10.0                        2    m-labs/label/main
+ca-certificates           2019.5.15                     0  
+certifi                   2018.8.24                py35_1  
+cffi                      1.11.5           py35he75722e_1  
+chardet                   3.0.4                    py35_1  
+colorama                  0.3.9            py35h81e2b6c_0  
+coverage                  4.5.1            py35h14c3975_0  
+cython                    0.28.5           py35hf484d3e_0  
+dbus                      1.13.6               h746ee38_0  
+docutils                  0.14             py35hd11081d_0  
+expat                     2.2.6                he6710b0_0  
+fontconfig                2.13.0               h9420a91_0  
+freetype                  2.9.1                h8a8886c_1  
+glib                      2.56.2               hd408876_0  
+gst-plugins-base          1.14.0               hbbd80ab_1  
+gstreamer                 1.14.0               hb453b48_1  
+h5py                      2.8.0            py35h989c5e5_3  
+hdf5                      1.10.2               hba1933b_1  
+icu                       58.2                 h9c2bf20_1  
+idna                      2.7                      py35_0  
+idna_ssl                  1.1.0                    py35_0  
+imagesize                 1.1.0                    py35_0  
+intel-openmp              2019.4                      243  
+jesd204b                  0.10                       py_1    m-labs/label/main
+jinja2                    2.10                     py35_0  
+jpeg                      9b                   h024ee3a_2  
+levenshtein               0.12.0                   py35_1    m-labs/label/main
+libcurl                   7.61.1               heec0ca6_0  
+libedit                   3.1.20181209         hc058e9b_0  
+libffi                    3.2.1                hd88cf55_4  
+libgcc-ng                 9.1.0                hdf63c60_0  
+libgfortran-ng            7.3.0                hdf63c60_0  
+libgit2                   0.24.1                        7    m-labs/label/main
+libiconv                  1.15                 h63c8f33_5  
+libpng                    1.6.37               hbc83047_0  
+libssh2                   1.8.0                h9cfc8f7_4  
+libstdcxx-ng              9.1.0                hdf63c60_0  
+libusb                    1.0.20                        0    m-labs/label/main
+libuuid                   1.0.3                h1bed415_2  
+libxcb                    1.13                 h1bed415_1  
+libxml2                   2.9.9                he19cac6_0  
+lit                       0.4.1                      py_9    m-labs/label/main
+llvm-or1k                 6.0.0                        25    m-labs/label/main
+llvmlite-artiq            0.23.0.dev               py35_5    m-labs/label/main
+markupsafe                1.0              py35h14c3975_1  
+microscope                1.3                        py_1    m-labs/label/main
+migen                     0.8             py35_63+gitafe4405    m-labs/label/dev
+misoc                     0.12            py35_11+git8e033c2c    m-labs/label/dev
+mkl                       2018.0.3                      1  
+mkl_fft                   1.0.6            py35h7dd41cf_0  
+mkl_random                1.0.1            py35h4414c95_1  
+msgpack-python            0.5.6            py35h6bb024c_1  
+multidict                 4.4.0            py35h7b6447c_0  
+ncurses                   6.1                  he6710b0_1  
+numpy                     1.15.2           py35h1d66e8a_0  
+numpy-base                1.15.2           py35h81de0dd_0  
+openocd                   0.10.0                        6    m-labs/label/main
+openssl                   1.0.2s               h7b6447c_0  
+outputcheck               0.4.2                      py_7    m-labs/label/main
+pcre                      8.43                 he6710b0_0  
+pip                       10.0.1                   py35_0  
+prettytable               0.7.2                      py_2    conda-forge/label/main
+pycparser                 2.19                     py35_0  
+pygit2                    0.24.0                   py35_4    m-labs/label/main
+pygments                  2.4.2                      py_0  
+pyqt                      5.9.2            py35h05f1152_2  
+pyqtgraph                 0.10.0           py35h28b3542_3  
+pyserial                  3.4              py35h84edd1e_0  
+python                    3.5.6                hc3d631a_0  
+python-dateutil           2.7.3                    py35_0  
+pythonparser              1.1                        py_8    m-labs/label/main
+pytz                      2019.1                     py_0  
+qt                        5.9.6                h8703b6f_2  
+quamash                   0.5.5                      py_4    m-labs/label/main
+readline                  7.0                  h7b6447c_5  
+regex                     2015.11.22               py35_1    m-labs/label/main
+rust-core-or1k            1.28.0                       21    m-labs/label/main
+rustc                     1.28.0                       21    m-labs/label/main
+scipy                     1.1.0            py35hfa4b5c9_1  
+setuptools                33.1.1                   py35_0    conda-forge/label/main
+sip                       4.19.8           py35hf484d3e_0  
+six                       1.11.0                   py35_1  
+snowballstemmer           1.2.1            py35h5435977_0  
+sphinx                    1.4.8                    pypi_0    pypi
+sphinx-argparse           0.1.13                     py_4    m-labs/label/main
+sphinx_rtd_theme          0.4.3                      py_0  
+sphinxcontrib-wavedrom    1.1.0                    pypi_0    pypi
+sqlite                    3.28.0               h7b6447c_0  
+system                    5.8                           2  
+tk                        8.6.8                hbc83047_0  
+wheel                     0.31.1                   py35_0  
+xz                        5.2.4                h14c3975_4  
+yarl                      1.2.6            py35h14c3975_0  
+zlib                      1.2.11               h7b6447c_3  
+

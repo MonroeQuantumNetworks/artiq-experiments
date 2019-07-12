@@ -16,6 +16,7 @@ class idle_kernel(EnvExperiment):
         dash = 3*dot
         space = 7*dot
         while True:
+
             # I
             self.led0.pulse(dot)
             delay(dot)

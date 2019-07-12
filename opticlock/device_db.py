@@ -8,7 +8,7 @@ device_db = {
         "type": "local",
         "module": "artiq.coredevice.core",
         "class": "Core",
-        "arguments": {"host": core_addr, "ref_period": .8e-9}
+        "arguments": {"host": core_addr, "ref_period":     0.8e-9}
     },
     "core_log": {
         "type": "controller",
@@ -68,25 +68,25 @@ device_db = {
     "ttl4": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
-        "class": "TTLOut",
+        "class": "TTLInOut",
         "arguments": {"channel": 4},
     },
     "ttl5": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
-        "class": "TTLOut",
+        "class": "TTLInOut",
         "arguments": {"channel": 5},
     },
     "ttl6": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
-        "class": "TTLOut",
+        "class": "TTLInOut",
         "arguments": {"channel": 6},
     },
     "ttl7": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
-        "class": "TTLOut",
+        "class": "TTLInOut",
         "arguments": {"channel": 7},
     },
     "ttl8": {
@@ -230,17 +230,215 @@ device_db = {
         }
     },
 
+    "spi_urukul1": {
+        "type": "local",
+        "module": "artiq.coredevice.spi2",
+        "class": "SPIMaster",
+        "arguments": {"channel": 22}
+    },
+    "ttl_urukul1_sync": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLClockGen",
+        "arguments": {"channel": 23, "acc_width": 4}
+    },
+    "ttl_urukul1_io_update": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 24}
+    },
+    "ttl_urukul1_sw0": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 25}
+    },
+    "ttl_urukul1_sw1": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 26}
+    },
+    "ttl_urukul1_sw2": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 27}
+    },
+    "ttl_urukul1_sw3": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 28}
+    },
+    "urukul1_cpld": {
+        "type": "local",
+        "module": "artiq.coredevice.urukul",
+        "class": "CPLD",
+        "arguments": {
+            "spi_device": "spi_urukul1",
+            "sync_device": "ttl_urukul1_sync",
+            "io_update_device": "ttl_urukul1_io_update",
+            "refclk": 125e6,
+            "clk_sel": 1
+        }
+    },
+    "urukul1_ch0": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 4,
+            "cpld_device": "urukul1_cpld",
+            "sw_device": "ttl_urukul1_sw0"
+        }
+    },
+    "urukul1_ch1": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 5,
+            "cpld_device": "urukul1_cpld",
+            "sw_device": "ttl_urukul1_sw1"
+        }
+    },
+    "urukul1_ch2": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 6,
+            "cpld_device": "urukul1_cpld",
+            "sw_device": "ttl_urukul1_sw2"
+        }
+    },
+    "urukul1_ch3": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 7,
+            "cpld_device": "urukul1_cpld",
+            "sw_device": "ttl_urukul1_sw3"
+        }
+    },
+
+    "spi_urukul2": {
+        "type": "local",
+        "module": "artiq.coredevice.spi2",
+        "class": "SPIMaster",
+        "arguments": {"channel": 29}
+    },
+    "ttl_urukul2_sync": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLClockGen",
+        "arguments": {"channel": 30, "acc_width": 4}
+    },
+    "ttl_urukul2_io_update": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 31}
+    },
+    "ttl_urukul2_sw0": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 32}
+    },
+    "ttl_urukul2_sw1": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 33}
+    },
+    "ttl_urukul2_sw2": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 34}
+    },
+    "ttl_urukul2_sw3": {
+        "type": "local",
+        "module": "artiq.coredevice.ttl",
+        "class": "TTLOut",
+        "arguments": {"channel": 35}
+    },
+    "urukul2_cpld": {
+        "type": "local",
+        "module": "artiq.coredevice.urukul",
+        "class": "CPLD",
+        "arguments": {
+            "spi_device": "spi_urukul1",
+            "sync_device": "ttl_urukul1_sync",
+            "io_update_device": "ttl_urukul1_io_update",
+            "refclk": 125e6,
+            "clk_sel": 1
+        }
+    },
+    "urukul2_ch0": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 4,
+            "cpld_device": "urukul2_cpld",
+            "sw_device": "ttl_urukul2_sw0"
+        }
+    },
+    "urukul2_ch1": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 5,
+            "cpld_device": "urukul2_cpld",
+            "sw_device": "ttl_urukul2_sw1"
+        }
+    },
+    "urukul2_ch2": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 6,
+            "cpld_device": "urukul2_cpld",
+            "sw_device": "ttl_urukul2_sw2"
+        }
+    },
+    "urukul2_ch3": {
+        "type": "local",
+        "module": "artiq.coredevice.ad9910",
+        "class": "AD9910",
+        "arguments": {
+            "pll_n": 32,
+            "chip_select": 7,
+            "cpld_device": "urukul2_cpld",
+            "sw_device": "ttl_urukul2_sw3"
+        }
+    },
+
     "led0": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
         "class": "TTLOut",
-        "arguments": {"channel": 22}
+        "arguments": {"channel": 36}
     },
     "led1": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
         "class": "TTLOut",
-        "arguments": {"channel": 23}
+        "arguments": {"channel": 37}
     }
 
 }

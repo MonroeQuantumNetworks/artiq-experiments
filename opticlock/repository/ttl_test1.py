@@ -18,12 +18,13 @@ class ttl_test1(EnvExperiment):
             pass
         self.core.reset()
         delay(1*s)
-        #for i in range(100):
-        while True:
+        for i in range(10):
             self.core.break_realtime()
             #delay(100*ns)
             #self.core.break_realtime()
-            self.ttl8.pulse(6*ns)
+            self.ttl8.pulse(10*ms)
+            rtio_log("ttl8", "i", i)
+            delay(10*ms)
             #self.ttl9.pulse(8*ns)
             #self.ttl8.pulse(8*ns)
             #self.ttl10.pulse(8*ns)

@@ -5,6 +5,10 @@
 import numpy as np
 from math import isnan
 import time
+import scipy.optimize
+import h5py
+import datetime
+import os
 
 # for creating graphs of the optimizer progress
 # import matplotlib as mpl
@@ -15,7 +19,7 @@ import time
 
 class Optimization():
 
-    def __init__(self, method, cost_function, set_function, variable_names, initial_values, variable_min, variable_max):
+    def __init__(self, cost_function, set_function, variable_names, initial_values, variable_min, variable_max):
         # cost_function is a handle to a method that returns the numerical value to be minimized
         # set_function is a handle to a method set_function(name, value) for setting one variable where name is a string from variable_names
         # set_all_function is a handle to a function set_all_function(valuelist) for setting all variables, where valuelist is of the same length as variable_names
@@ -24,11 +28,6 @@ class Optimization():
         # variable_names must be a list of strings
         # initial_values, variable_min, variable_max must be numerical arrays or lists
 
-        self.methods = {'genetic': self.genetic, 'gradient_descent': self.gradient_descent, 'simplex': self.simplex,
-                   'weighted_simplex': self.weighted_simplex, 'breadth_first': self.breadth_first,
-                   'depth_first': self.depth_first}
-
-        self.optimize = methods[method]
         self.measure = cost_function
         self.set_function = set_function
         self.optimization_variables = variable_names
@@ -37,7 +36,7 @@ class Optimization():
         self.num = 0  # iteration number
 
         # scale the step size to the range for each variable
-        self.initial_step = (self.variable_max - self.variable_min) / 1000.0
+        self.initial_step = (self.variable_max - self.variable_min) / 200.0
         # create an array to store the separate initial steps for each variable
         self.n_axes = len(self.optimization_variables)
         self.axes = range(self.n_axes)  # a generator for the axes numbers
@@ -48,10 +47,10 @@ class Optimization():
         self.firstrun = True  # so we can record the initial cost
 
         # yi is the current cost
-        self.tested_xlist = []  # a history of all tested settings, shape=(iterations,axes)
-        self.tested_ylist = []  # a history of costs for all tested settings, shape=(iterations)
-        self.best_xlist   = []  # a history of the best points, shape=(?, axes)
-        self.best_ylist   = []  # a history of the best costs, shape=(?)
+        self.tested_xi_list = []  # a history of all tested settings, shape=(iterations,axes)
+        self.tested_yi_list = []  # a history of costs for all tested settings, shape=(iterations)
+        self.best_xi_list   = []  # a history of the best points, shape=(?, axes)
+        self.best_yi_list   = []  # a history of the best costs, shape=(?)
         self.best_xi = None
         self.best_yi = np.inf
 
@@ -59,78 +58,152 @@ class Optimization():
         # get the current settings to use as the starting point
         self.xi = np.array(initial_values, dtype=np.float64)
         print(self.xi)
+        self.current_x = self.xi
 
         # measure the cost at the initial settings
         self.yi = self.measure()
-        self.update(force_best=True)
+        self.update(self.xi, self.yi, force_best=True)
 
-    def update(self, step_size=None, force_best=False):
+    def write_hdf5(self):
+
+        # write an hdf5 file for recording optimizer track
+        directory = '/home/monroe/Documents/fiber_optimization_data'
+        filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S_optimizer_data.hdf5')
+        path = os.path.join(directory, filename)
+        h5file = h5py.File(filename, 'w')
+
+        h5file.create_dataset('variable_names', data=self.optimzation_variables)
+        h5file.create_dataset('variable_min', data=self.variable_min)
+        h5file.create_dataset('variable_max', data=self.variable_max)
+        h5file.create_dataset('end_tolerances', data=self.end_tolerances)
+        h5file.create_dataset('iterations', data=self.num)
+        h5file.create_dataset('tested_x_list', data=self.tested_xi_list)
+        h5file.create_dataset('tested_y_list', data=self.tested_yi_list)
+        h5file.create_dataset('best_x_list', data=self.best_xi_list)
+        h5file.create_dataset('best_y_list', data=self.best_y_list)
+        h5file.close()
+
+    def update(self, x, y, step_size=None, force_best=False):
 
         # if the cost function did not return a number, then assume the cost is infinite
-        if isnan(self.yi):
-            self.yi = np.inf
+        if isnan(y):
+            y = np.inf
 
-        self.tested_xlist.append(self.xi)
-        self.tested_ylist.append(self.yi)
+        self.tested_xi_list.append(x)
+        self.tested_yi_list.append(y)
 
         # if this point is the best
-        if ((self.yi < self.best_yi) or force_best):
-            dy = self.best_yi - self.yi
-            self.best_xi = self.xi
-            self.best_yi = self.yi
-            self.best_xi_list.append(self.xi)
-            self.best_yi_list.append(self.yi)
+        if ((y < self.best_yi) or force_best):
+            dy = self.best_yi - y
+            self.best_xi = x
+            self.best_yi = y
+            self.best_xi_list.append(x)
+            self.best_yi_list.append(y)
 
             # for adaptive step sizes, go 10% of the way from the current step size
             if step_size is not None:
                 self.initial_step = (self.initial_step + .1 * np.abs(step_size)) / 1.1
 
             # print the best result
-            print('iteration={} dy={} cost={} keeping setting: {}".format(i, dy, self.yi, self.xi))
+            print('trial={} dy={} cost={} keeping setting: {}'.format(self.num, dy, y, x))
+        else:
+            print('trial={}'.format(self.num))
 
         self.num += 1
 
-    def set_variables(self, x):
-        # enforce the variable range
-        x = np.maximum(np.minimum(self.variable_max, x), self.variable_min)
+    def set_variables(self, x, force=False):
+        # set the position twice, once -100um on each axis, and again at the correct position
+
         for i in self.axes:
-            self.set_function(self.optimization_variables[i], x[i])
+            if ((self.current_x[i] != x[i]) or force):
+                self.set_variable(i, x[i]-0.100)
 
         # wait until motors have hopefully finished moving
         # TODO: replace this with a status check
         time.sleep(1)
 
+        for i in self.axes:
+            if ((self.current_x[i] != x[i]) or force):
+                self.set_variable(i, x[i])
+
+        # wait until motors have hopefully finished moving
+        # TODO: replace this with a status check
+        time.sleep(1)
+
+        self.current_x = x
+
     def set_variable(self, i, x):
         # enforce the variable range
-        x = np.maximum(np.minimum(self.variable_max[i], x), self.variable_min[i])
+        if self.variable_max[i] < x:
+            print("Bounds enforced: {} attempted to set above maximum.".format(self.optimization_variables[i]))
+            x = self.variable_max[i]
+        elif self.variable_min[i] > x:
+            print("Bounds enforced: {} attempted to set below minimum.".format(self.optimization_variables[i]))
+            x = self.variable_min[i]
 
         # set just one variable
         self.set_function(self.optimization_variables[i], x)
 
-        # wait until motors have hopefully finished moving
-        # TODO: replace this with a status check
-        time.sleep(1)
 
+    def scipy_fun(self, x):
+        # objective function for scipy_optimize
+        # this sets the position and then tests
+
+        self.set_variables(x)
+        try:
+            y = self.measure()
+        except:
+            print("Exception in self.measure() for x: ", x)
+            y = np.inf
+        if isnan(y):
+            y = np.inf
+
+        self.update(x, cost)
+
+        self.measure()
+        return cost
+
+    def scipy_optimize(self):
+        x0 = self.xi.copy()
+        bounds = [(self.variable_min[i], self.variable_max[i]) for i in self.axes]
+        options = {'disp':True}
+        res = scipy.optimize.minimize(scipy_fun, x0, method='Nelder-Mead', bounds=bounds, options=options)
+
+        print("Result solution:\n", res.x)
+        print("Result success:", res.success)
+        print("Result message:", res.message)
+
+        print("Setting position to optimizer solution.")
+        cost = scipy_fun(res.x)
+        print("Final measured cost:", cost)
+
+        self.write_hdf5()
 
     def genetic(self):
         # Make random moves.  Keep them if they are better, otherwise discard them.
         # Possible extensions include "evolutionary" algorithm that keeps several branches in competition.
+        print("starting genetic optimizer")
 
         while not self.is_done:
             # re-evaluate the previously best spot every time, to account for drift
-            self.xi = self.best_yi
+            self.xi = self.best_xi
 
             self.set_variables(self.xi)
             self.yi = self.measure()
-            self.update(force_best=True)
+            self.update(self.xi, self.yi, force_best=True)
 
             # take random step on each axis, gaussian distribution with mean = 0, and deviation = step size
-            step_size = np.random.normal(0, self.initial_step, self.xi.shape)
-            self.xi = self.best_xi + step_size
+            print('self.xi:', self.xi)
+            print('self.initial_step', self.initial_step)
+            print('self.xi.shape', len(self.xi))
+            self.xi = np.random.normal(self.best_xi, self.initial_step, len(self.xi))
+
+            # enforce the variable range
+            self.xi = np.maximum(np.minimum(self.variable_max, self.xi), self.variable_min)
 
             self.set_variables(self.xi)
             self.yi = self.measure()
-            self.update()
+            self.update(self.xi, self.yi)
 
         # reset the variables to the best value when the optimizer is stopped
         self.set_variables(x0)
@@ -157,7 +230,10 @@ class Optimization():
                     print("axis {} step -{}".format(i, self.initial_step[i]))
 
                 # set just this one axis and then measure
+                self.set_variable(i, self.xi[i]-0.100)
+                time.sleep(1)
                 self.set_variable(i, self.xi[i])
+                time.sleep(1)
                 self.yi = self.measure()
                 self.update()
 
@@ -186,7 +262,10 @@ class Optimization():
                 print("axis {} trial {} step {}".format(i, n, dx))
                 # set just this one axis and then measure
 
+                self.set_variable(i, self.xi[i]-0.100)
+                time.sleep(1)
                 self.set_variable(i, self.xi[i])
+                time.sleep(1)
                 self.yi = self.measure()
                 self.update()
 
@@ -203,7 +282,10 @@ class Optimization():
                     self.xi[i] = x0 + n*dx
                     print("axis {} trial {} step {}".format(i, n, dx))
                     # set just this one axis and then measure
+                    self.set_variable(i, self.xi[i]-0.100)
+                    time.sleep(1)
                     self.set_variable(i, self.xi[i])
+                    time.sleep(1)
                     self.yi = self.measure()
                     self.update()
 
@@ -310,20 +392,18 @@ class Optimization():
                     # keep the last point and use that as a starting point
                     x0 = self.xi
                     y0 = self.yi
-            if scriptIsStopped():
-                self.is_done = True
-                break
 
     def simplex(self):
         """Perform the simplex algorithm.  x is 2D array of settings.  y is a 1D array of costs at each of those settings.
         When comparisons are made, lower is better."""
+        print("starting simplex optimizer")
 
         # x0 is assigned when this generator is created, but nothing else is done until the first time next() is called
 
         n = self.n_axes + 1
         x = np.zeros((n, self.n_axes))
         y = np.zeros(n)
-        x0 = self.xi
+        x0 = self.xi  # label the initial state
         x[0] = x0
         y[0] = self.yi
 
@@ -334,20 +414,22 @@ class Optimization():
             xi = x0.copy()
             # add the initial step size as the first offset
             xi[i] += self.initial_step[i]
-            x_test = xi
-            self.set_variable(i, x_test[i])
-            self.yi = self.measure()
-            self.set_variable(i, x0[i])
-            self.update()
+            self.set_variables(xi)  # deviate one axis
+            yi = self.measure()
+            self.update(xi, yi)
+            self.set_variables(x0)  # return that axis to where it started
             x[i + 1] = xi
-            y[i + 1] = self.yi
+            y[i + 1] = yi
 
         print('Finished simplex exploration.')
 
-        # loop until the simplex is smaller than the end tolerances on each axis
+        simplex_iteration = 0
+
+        # loop until the simplex is smaller than the end tolerances on every axis
         while np.any((np.amax(x, axis=0) - np.amin(x, axis=0)) > self.end_tolerances):
 
-            print('Starting new round of simplex algorithm.')
+            simplex_iteration += 1
+            print('\nsimplex iteration = ', simplex_iteration)
 
             # order the values
             order = np.argsort(y)
@@ -364,8 +446,8 @@ class Optimization():
             xr = x0 + a * (x0 - x[-1])
             # yield so we can take a datapoint
             self.set_variables(xr)
-            self.yi = self.measure()
-            yr = self.yi
+            yr = self.measure()
+            self.update(xr, yr)
 
             if y[0] <= yr < y[-2]:
                 # if the new point is no longer the worst, but not the best, use it to replace the worst point
@@ -381,8 +463,8 @@ class Optimization():
                 xe = x0 + b * (x0 - x[-1])
                 # yield so we can take a datapoint
                 self.set_variables(xe)
-                self.yi = self.measure()
-                ye = self.yi
+                ye = self.measure()
+                self.update(xe, ye)
                 if ye < yr:
                     # if this expanded point is even better than the initial reflection, keep it
                     print('simplex: keeping expansion')
@@ -403,8 +485,8 @@ class Optimization():
                 xc = x0 + c * (x0 - x[-1])
                 # yield so we can take a datapoint
                 self.set_variables(xc)
-                self.yi = self.measure()
-                yc = self.yi
+                yc = self.measure()
+                self.update(xc, yc)
                 if yc < y[-1]:
                     # if the contracted point is better than the original worst point, keep it
                     print('simplex: keeping contraction')
@@ -424,10 +506,8 @@ class Optimization():
                         x[i] = x[0] + d * (x[i] - x[0])
                         # yield so we can take a datapoint
                         self.set_variables(x[i])
-                        self.yi = self.measure()
-                        y[i] = self.yi
-            if scriptIsStopped():
-                break
+                        y[i] = self.measure()
+                        self.update(x[i], y[i])
 
     def weighted_simplex(self, x0):
         """Perform the simplex algorithm.

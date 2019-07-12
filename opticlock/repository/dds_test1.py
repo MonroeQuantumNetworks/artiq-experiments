@@ -2,70 +2,66 @@ from artiq.experiment import *
 
 
 class dds_test1(EnvExperiment):
+
     def build(self):
+
+        self.setattr_argument("ch0_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch1_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch2_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch3_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch0_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
+        self.setattr_argument("ch1_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
+        self.setattr_argument("ch2_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
+        self.setattr_argument("ch3_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
+
         self.setattr_device("core")
-        self.setattr_device("led0")
-        self.setattr_device("led1")
-        self.setattr_device("ttl8")
-        self.setattr_device("ttl9")
-        self.setattr_device("ttl10")
-        self.setattr_device("ttl11")
         self.setattr_device("urukul0_cpld")
         self.setattr_device("urukul0_ch0")
         self.setattr_device("urukul0_ch1")
         self.setattr_device("urukul0_ch2")
         self.setattr_device("urukul0_ch3")
-    
+
     @kernel
-    def rf_switch_wave(self, channels):
-        while True:
-            self.core.break_realtime()
-            # do not fill the FIFOs too much to avoid long response times
-            t = now_mu() - self.core.seconds_to_mu(0.2)
-            while self.core.get_rtio_counter_mu() < t:
-                pass
-            for channel in channels:
-                channel.pulse(100*ms)
-                delay(100*ms)
-    
-    @kernel
-    def init_urukul(self, cpld):
-        self.core.break_realtime()
-        cpld.init()
-    
-    @kernel
-    def setup_urukul(self, channel, frequency):
+    def setup_urukul(self, channel, frequency=100.0, attenuation=31.5):
+        """Setup one DDS channel.
+
+        :param channel: The DDS channel, i.e. "self.urukul0_ch0"
+        :param frequency: The frequency in MHz.
+        :param attenuation: The attenuation in dB, 0 maximum attenuation (31.5 dB), max output power ~10 dBm so 0 att = 10 dBm and -31.5 att = -21.5 dB.  More attenuation = less power.
+        """
+
         self.core.break_realtime()
         channel.init()
-        channel.set(frequency*MHz)
+        channel.set(frequency*MHz)  # set freq in MHz
         channel.sw.on()
-        channel.set_att(14.)
-    
-    # We assume that RTIO channels for switches are grouped by card.
-    @kernel
-    def test_urukuls(self):
-        self.init_urukul(self.urukul0_cpld)
-        #print("urukul0 initialized")
-        
-        self.setup_urukul(self.urukul0_ch0, 100)  # 1 MHz
-        #print("urukul 0 channel 0 setup")
+        channel.set_att(attenuation)  # set attenuation in dB 0 to 31.5, base level is +10 dBm.
 
-        #self.rf_switch_wave([self.urukul0_ch0.sw])
+    @kernel
+    def ch_off(self, channel):
+        """Setup one DDS channel.
+
+        :param channel: The DDS channel, i.e. "self.urukul0_ch0"
+        :param frequency: The frequency in MHz.
+        :param attenuation: The attenuation in dB, 0 maximum attenuation (31.5 dB), max output power ~10 dBm so 0 att = 10 dBm and -31.5 att = -21.5 dB.  More attenuation = less power.
+        """
+
+        self.core.break_realtime()
+        channel.init()
+        channel.set(1*Hz)  # set freq in MHz
+        channel.sw.off()
+        channel.set_att(31.5)
 
     @kernel
     def run(self):
-        start_time = now_mu() + self.core.seconds_to_mu(500*ms)
-        while self.core.get_rtio_counter_mu() < start_time:
-            pass
+        self.core.reset()
         self.core.break_realtime()
 
-        self.ttl8.pulse(20*ns)
+        self.urukul0_cpld.init()
 
-        self.test_urukuls()
+        #self.ch_off(self.urukul0_ch0)
+        self.setup_urukul(self.urukul0_ch0, self.ch0_freq, self.ch0_amp)
+        self.setup_urukul(self.urukul0_ch1, self.ch1_freq, self.ch1_amp)
+        self.setup_urukul(self.urukul0_ch2, self.ch2_freq, self.ch2_amp)
+        self.setup_urukul(self.urukul0_ch3, self.ch3_freq, self.ch3_amp)
 
         self.core.break_realtime()
-
-        self.ttl9.pulse(20*ns)
-        #self.ttl10.pulse(20*ns)
-        #self.ttl11.pulse(20*ns)
-        
