@@ -5,10 +5,10 @@ class dds_test1(EnvExperiment):
 
     def build(self):
 
-        self.setattr_argument("ch0_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
-        self.setattr_argument("ch1_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
-        self.setattr_argument("ch2_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
-        self.setattr_argument("ch3_freq", NumberValue(100.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch0_freq", NumberValue(1.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch1_freq", NumberValue(1.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch2_freq", NumberValue(1.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
+        self.setattr_argument("ch3_freq", NumberValue(1.0, ndecimals=1, min=0.0, max=500.0, step=1.0))
         self.setattr_argument("ch0_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
         self.setattr_argument("ch1_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))
         self.setattr_argument("ch2_amp", NumberValue(10.0, ndecimals=1, min=0.0, max=31.5, step=0.5))

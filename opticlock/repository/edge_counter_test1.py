@@ -1,6 +1,7 @@
 # This file only works with ARTIQ >= 5.0
 # It is a test of the new edge_counter class, which counts without saving timestamps of individual clicks.
 # MTL 2010-06-28
+
 """
 from artiq.experiment import *
 from artiq.coredevice.edge_counter import CounterOverflow

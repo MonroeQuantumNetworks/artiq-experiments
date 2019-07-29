@@ -1,1 +1,22 @@
-{}
+{
+    "globals.DDS.493.pi.attenuation": 10.0,
+    "globals.DDS.493.pi.frequency": 100000000.0,
+    "globals.DDS.493.pi.switch": true,
+    "globals.DDS.493.sigma_minus.attenuation": 10.0,
+    "globals.DDS.493.sigma_minus.frequency": 100000000.0,
+    "globals.DDS.493.sigma_minus.switch": true,
+    "globals.DDS.493.sigma_plus.attenuation": 10.0,
+    "globals.DDS.493.sigma_plus.frequency": 100000000.0,
+    "globals.DDS.493.sigma_plus.switch": true,
+    "globals.TTL_output.tll9": false,
+    "globals.TTL_output.ttl10": false,
+    "globals.TTL_output.ttl11": false,
+    "globals.TTL_output.ttl12": false,
+    "globals.TTL_output.ttl13": false,
+    "globals.TTL_output.ttl14": false,
+    "globals.TTL_output.ttl15": false,
+    "globals.TTL_output.ttl8": false,
+    "globals.cooling.cooling_time": 9.999999999999999e-06,
+    "globals.detection.detection_time": 9.999999999999999e-06,
+    "globals.pumping.pumping_time": 9.999999999999999e-06
+}
