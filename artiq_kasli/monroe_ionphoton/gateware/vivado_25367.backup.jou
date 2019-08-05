@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Fri Aug  2 04:47:16 2019
+# Process ID: 25367
+# Current directory: /home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/gateware
+# Command line: vivado -mode batch -source top.tcl
+# Log file: /home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/gateware/vivado.log
+# Journal file: /home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/gateware/vivado.jou
+#-----------------------------------------------------------
+source top.tcl

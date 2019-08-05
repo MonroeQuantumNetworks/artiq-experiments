@@ -18,10 +18,11 @@ has_tmpu
 has_uart
 has_uart_phy
 clock_frequency="113281250"
+ext_ref_frequency="100.0"
 has_rtio_log
 has_si5324
 i2c_bus_count="1"
-identifier_str="4.0+0.gbf50dcf7.dirty;monroe_ionphoton"
+identifier_str="5.6912.74412e77.beta;monroe_ionphoton"
 l2_size="131072"
 rtio_frequency="125.0"
 rtio_log_channel="36"

@@ -1,0 +1,54 @@
+# This file created by conda-build 3.12.1
+# meta.yaml template originally from:
+# /var/lib/buildbot/slaves/debian-stretch-amd64-1/artiq/build/conda/artiq-dev, last modified Tue Nov 20 17:16:06 2018
+# ------------------------------------------------
+
+package:
+    name: artiq-dev
+    version: '4.0'
+source:
+    git_url: /var/lib/buildbot/slaves/debian-stretch-amd64-1/artiq/build
+build:
+    noarch: python
+    number: '0'
+    string: 0+gitbf50dcf7
+requirements:
+    run:
+        - aiohttp
+        - asyncserial
+        - binutils-or1k-linux >=2.27
+        - coverage
+        - h5py 2.8.*
+        - jesd204b 0.10.*
+        - levenshtein
+        - lit
+        - llvm-or1k 6.0.0.*
+        - llvmlite-artiq 0.23.0.dev py35_4
+        - microscope
+        - migen 0.8 py35_0+git2d62c0c
+        - misoc 0.12 py35_0+git714ea689
+        - numpy
+        - openocd 0.10.0 6
+        - outputcheck
+        - prettytable
+        - pygit2
+        - pyqt >=5.5
+        - pyqtgraph 0.10.0.*
+        - python >=3.5.3,<3.6
+        - python-dateutil
+        - pythonparser >=1.1
+        - quamash
+        - rust-core-or1k 1.28.0 21
+        - scipy
+        - setuptools 33.1.1.*
+        - sphinx 1.4.8.*
+        - sphinx-argparse
+        - sphinx_rtd_theme
+        - sphinxcontrib-wavedrom
+about:
+    home: https://m-labs.hk/artiq
+    license: LGPL
+    summary: ARTIQ development metapackage
+extra:
+    copy_test_source_files: true
+    final: true

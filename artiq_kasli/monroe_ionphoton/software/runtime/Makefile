@@ -1,1 +1,1 @@
-/home/monroe/artiq-dev/artiq/artiq/firmware/runtime/Makefile
+/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/artiq/firmware/runtime/Makefile

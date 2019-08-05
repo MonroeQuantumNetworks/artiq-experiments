@@ -1,18 +1,14 @@
 """
-This program contains all the settings for an Ion-Photon experiment.
-
-This should be run once at the beginning of operations to set up the appropriate DDS frequencies and TTL states.
-It should be used as the startup kernel (untested).
+This program brings in all the settings for the IonPhoton experiment.  It never needs to be run directly.
+Use settings.py for initialization and changing settings.
 
 Every other experiment should:
 1. Be a subclass of this.
-2. Should overwrite build(), but should not call super().build(), and should call at the beginning:
-        super().load_globals_from_dataset()
-        super().build_common()
-3. Should overwrite run(), and NOT call super().run().
+2. Should call super().build() if build is overwritten.  This ensures that globals are loaded from the datasets.
+3. Should overwrite run().
 4. Should call super.prepare() if prepare is overwritten.  This ensures that globals are written to the datasets.
 
-M. Lichtman 2019-07-15
+M. Lichtman updated 2019-08-02
 """
 
 import traceback
@@ -61,7 +57,6 @@ class base_experiment(EnvExperiment):
     def build(self):
 
         self.load_globals_from_dataset()
-        self.build_globals_arguments()
         self.build_common()
 
     def load_globals_from_dataset(self):
@@ -83,7 +78,9 @@ class base_experiment(EnvExperiment):
                     i += 1
 
         except Exception as e:
-            print("Could not load globals!!!  Error in key:", key)
+            print("Could not load globals!!!")
+            if key is not None:
+                print("Error in key:", key)
             traceback.print_exc()
 
         print("Loaded {} globals.".format(i))
@@ -141,9 +138,10 @@ class base_experiment(EnvExperiment):
 
         # timing variables #
 
-        self.number_argument('globals__cooling__cooling_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
-        self.number_argument('globals__pumping__pumping_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
-        self.number_argument('globals__detection__detection_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
+        self.number_argument('globals__timing__cooling_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
+        self.number_argument('globals__timing__pumping_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
+        self.number_argument('globals__timing__excitation_pulse_time', 10*ns, unit='ns', ndecimals=9, min=0.0, step=1.0)
+        self.number_argument('globals__timing__detection_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
 
         # TTL output #
 
@@ -210,73 +208,3 @@ class base_experiment(EnvExperiment):
 
     def prepare(self):
         self.write_globals_to_datasets()
-
-    @kernel
-    def DDS_setup(self, i):
-        """
-        Sets up one DDS channel based on passed in info
-        :param i:  The index for the matching lists of DDS info created during build().
-        :return:
-        """
-
-        # name = self.DDS_name_list[i]
-        channel = self.DDS_device_list[i]
-        freq = self.DDS_freq_list[i]
-        att = self.DDS_att_list[i]
-        sw = self.DDS_sw_list[i]
-
-        # setup the channel
-        channel.init()
-
-        if not sw:
-            channel.sw.off()
-
-        delay(10*us)
-        channel.set_att(att)
-        delay(10*us)
-        channel.set(freq)
-        delay(10*us)
-
-        if sw:
-            channel.sw.on()
-
-    def run(self):
-        """This run method is used as the startup kernel.  It should be run whenever settings are changed. Otherwise,
-        all other experiments overwrite it without calling super(). and so these commands are not repeated every
-        experiment."""
-
-        # self.set_dataset('counter_channels', self.counter_channel_names, persist=True, broadcast=True)
-
-        # To make it easy to run through all the DDS and turn them on, create a list of the default parameters
-
-        self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]
-        self.DDS_att_list = [getattr(self, 'globals__DDS__' + name + '__attenuation') for name in self.DDS_name_list]
-        self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]
-
-        self.kernel_run()
-
-
-    @kernel
-    def kernel_run(self):
-
-        self.core.reset()
-
-        # TTL inputs #
-
-        for channel in self.counter_channels:
-            channel.input()
-
-        # TTL outputs #
-
-        # DDS channels #
-
-        self.urukul0_cpld.init()
-        self.urukul1_cpld.init()
-        self.urukul2_cpld.init()
-
-        for i in range(len(self.DDS_device_list)):
-            self.DDS_setup(i)
-
-        self.ttl8.pulse(10*us)
-        delay(10*us)
-        self.ttl8.pulse(10*us)

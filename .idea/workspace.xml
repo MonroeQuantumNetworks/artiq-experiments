@@ -2,111 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bd47eb4-9335-4388-a6e0-ee3c8c652bf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/opticlock/device_db_old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/install_artiq5/artiq5dev-shell.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/fast_pulse.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nix/my-artiq-env.nix" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_1.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_1.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_2.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_2.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_3.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_3.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_4.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_4.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_5.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_5.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_6.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_6.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_7.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/en_replaces_rom_7.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/latency_compensation.init" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/latency_compensation.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.bit" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.bit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.v" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.v" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top.xpr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/vivado.log" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/gateware/vivado.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f21958859fc4c2e1/lib-board_misoc-f21958859fc4c2e1" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f21958859fc4c2e1/lib-board_misoc-f21958859fc4c2e1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f21958859fc4c2e1/lib-board_misoc-f21958859fc4c2e1.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f21958859fc4c2e1/lib-board_misoc-f21958859fc4c2e1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-6962f1f153f6f0bf/lib-bootloader-6962f1f153f6f0bf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-6962f1f153f6f0bf/lib-bootloader-6962f1f153f6f0bf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-6962f1f153f6f0bf/lib-bootloader-6962f1f153f6f0bf.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-6962f1f153f6f0bf/lib-bootloader-6962f1f153f6f0bf.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-e666990ac905d396/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-e666990ac905d396/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-e666990ac905d396/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/.fingerprint/bootloader-e666990ac905d396/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/board_misoc-15b2bd404fcc5a27/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/board_misoc-15b2bd404fcc5a27/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/bootloader-e666990ac905d396/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/bootloader-e666990ac905d396/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/deps/libboard_misoc-f21958859fc4c2e1.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/deps/libboard_misoc-f21958859fc4c2e1.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/deps/libbootloader-6962f1f153f6f0bf.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/deps/libbootloader-6962f1f153f6f0bf.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-46eebd2f385d6b29/lib-board_artiq-46eebd2f385d6b29" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-46eebd2f385d6b29/lib-board_artiq-46eebd2f385d6b29" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-46eebd2f385d6b29/lib-board_artiq-46eebd2f385d6b29.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-46eebd2f385d6b29/lib-board_artiq-46eebd2f385d6b29.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-993435aa82061dcb/lib-board_misoc-993435aa82061dcb" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-993435aa82061dcb/lib-board_misoc-993435aa82061dcb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-993435aa82061dcb/lib-board_misoc-993435aa82061dcb.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-993435aa82061dcb/lib-board_misoc-993435aa82061dcb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f388101b26355ef9/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f388101b26355ef9/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f388101b26355ef9/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-f388101b26355ef9/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-00942d684bc8fc3f/lib-ksupport-00942d684bc8fc3f" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-00942d684bc8fc3f/lib-ksupport-00942d684bc8fc3f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-00942d684bc8fc3f/lib-ksupport-00942d684bc8fc3f.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-00942d684bc8fc3f/lib-ksupport-00942d684bc8fc3f.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-ab899874649ad82f/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-ab899874649ad82f/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-ab899874649ad82f/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/.fingerprint/ksupport-ab899874649ad82f/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/board_artiq-c9abe716dde5c07a/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/board_artiq-c9abe716dde5c07a/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-f388101b26355ef9/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-f388101b26355ef9/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/ksupport-ab899874649ad82f/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/build/ksupport-ab899874649ad82f/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libboard_artiq-46eebd2f385d6b29.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libboard_artiq-46eebd2f385d6b29.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libboard_misoc-993435aa82061dcb.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libboard_misoc-993435aa82061dcb.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libksupport-00942d684bc8fc3f.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/deps/libksupport-00942d684bc8fc3f.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-7e2624a2ff2f203b/lib-board_artiq-7e2624a2ff2f203b" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-7e2624a2ff2f203b/lib-board_artiq-7e2624a2ff2f203b" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-7e2624a2ff2f203b/lib-board_artiq-7e2624a2ff2f203b.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-7e2624a2ff2f203b/lib-board_artiq-7e2624a2ff2f203b.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_artiq-c9abe716dde5c07a/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-15b2bd404fcc5a27/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-5ca7ccc23da7733e/lib-board_misoc-5ca7ccc23da7733e" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-5ca7ccc23da7733e/lib-board_misoc-5ca7ccc23da7733e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-5ca7ccc23da7733e/lib-board_misoc-5ca7ccc23da7733e.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/board_misoc-5ca7ccc23da7733e/lib-board_misoc-5ca7ccc23da7733e.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/logger_artiq-653cebe39da08524/lib-logger_artiq-653cebe39da08524" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/logger_artiq-653cebe39da08524/lib-logger_artiq-653cebe39da08524" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/logger_artiq-653cebe39da08524/lib-logger_artiq-653cebe39da08524.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/logger_artiq-653cebe39da08524/lib-logger_artiq-653cebe39da08524.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-6c54976085c5b1f1/build" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-6c54976085c5b1f1/build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-6c54976085c5b1f1/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-6c54976085c5b1f1/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-957f2470dd2c5beb/lib-runtime-957f2470dd2c5beb" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-957f2470dd2c5beb/lib-runtime-957f2470dd2c5beb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-957f2470dd2c5beb/lib-runtime-957f2470dd2c5beb.json" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/.fingerprint/runtime-957f2470dd2c5beb/lib-runtime-957f2470dd2c5beb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/board_artiq-c9abe716dde5c07a/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/board_artiq-c9abe716dde5c07a/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/board_misoc-15b2bd404fcc5a27/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/board_misoc-15b2bd404fcc5a27/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/runtime-6c54976085c5b1f1/output" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/build/runtime-6c54976085c5b1f1/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libboard_artiq-7e2624a2ff2f203b.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libboard_artiq-7e2624a2ff2f203b.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libboard_misoc-5ca7ccc23da7733e.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libboard_misoc-5ca7ccc23da7733e.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/liblogger_artiq-653cebe39da08524.rlib" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/liblogger_artiq-653cebe39da08524.rlib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libruntime-957f2470dd2c5beb.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/deps/libruntime-957f2470dd2c5beb.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/build-artiq1.bash" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/build-artiq1.bash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/build-artiq2.bash" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/build-artiq2.bash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/dataset_db.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/dataset_db.pyon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/device_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/device_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/flash_storage.img" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/flash_storage.img" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/kasli_umd_ionphoton.time" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/kasli_umd_ionphoton.time" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/last_rid.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/last_rid.pyon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/repository/base_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/repository/base_experiment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opticlock/repository/idle_kernel.elf" beforeDir="false" afterPath="$PROJECT_DIR$/opticlock/repository/idle_kernel.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/.Xil/top_propImpl.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/.Xil/top_propImpl.xdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/build_top.sh" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/build_top.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/mem_5.init" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/mem_5.init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.bit" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.bit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.hw/top.lpr" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.hw/top.lpr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.v" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.v" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xpr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.log" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_10604.backup.jou" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_10604.backup.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_22222.backup.jou" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_22222.backup.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_29173.backup.jou" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_29173.backup.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/.rustc_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/variables.mak" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/variables.mak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/.rustc_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libm/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libm/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libprintf/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libprintf/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libunwind/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libunwind/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/.rustc_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-artiq1.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/build-artiq1.bash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-artiq2.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/build-artiq2.bash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conda_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/conda_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_db.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_db.pyon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flash_storage.img" beforeDir="false" afterPath="$PROJECT_DIR$/flash_storage.img" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasli_umd_ionphoton.time" beforeDir="false" afterPath="$PROJECT_DIR$/kasli_umd_ionphoton.time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/last_rid.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/last_rid.pyon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/base_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/base_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/idle_kernel.elf" beforeDir="false" afterPath="$PROJECT_DIR$/repository/idle_kernel.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup_artiq.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/setup_artiq.bash" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,120 +82,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/idle_counters.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-              <folding>
-                <element signature="e#94#124#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/idle_kernel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/Ba_detection.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding>
-                <element signature="e#94#161#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/device_db.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5490">
-              <caret line="366" selection-start-line="366" selection-end-line="366" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/repository/base_experiment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="274" column="32" selection-start-line="274" selection-start-column="32" selection-end-line="274" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/opticlock/build-artiq2.bash">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/build-artiq1.bash">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opticlock/device_db_old.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="768">
-              <caret line="444" selection-start-line="444" selection-end-line="444" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>clk_sel</find>
-      <find>set_att</find>
-      <find>yield</find>
-      <find>update(</find>
-      <find>set_variable</find>
-      <find>time</find>
-      <find>sleep</find>
-      <find>set_variable(</find>
-      <find>AxisItem</find>
-      <find>datetime</find>
-      <find>timedelta</find>
-      <find>break</find>
-      <find>mktime</find>
-      <find>numpy</find>
-      <find>PyQt5</find>
-      <find>time.</find>
-      <find>timestamp</find>
-      <find>getattr</find>
-      <find>here</find>
-      <find>counter_channels</find>
-      <find>name.split</find>
-      <find>DDS_list</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -237,95 +97,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/opticlock/dds_test1.py" />
-        <option value="$PROJECT_DIR$/../sinara-testing/kasli_opticlock/tools/build-artiq.bash" />
-        <option value="$PROJECT_DIR$/opticlock/repository/kasli_tester.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/led_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/DMA_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/build-artiq.bash" />
-        <option value="$PROJECT_DIR$/opticlock/repository/CONEX_TRB.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/optimizer.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/motor_scanner.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/counter_test2.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/motor_checkout.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/ttl_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dataset_test.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dataset_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/applets/plot_multi_xy.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/counter_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/applets/plot_separate_xy.py" />
-        <option value="$PROJECT_DIR$/opticlock/applets/datetimeaxis.py" />
-        <option value="$PROJECT_DIR$/opticlock/applets/dateaxisitem.py" />
-        <option value="$PROJECT_DIR$/opticlock/applets/plot_separate_scrolling_xy.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/argument_test.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dataset_test2.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dataset_test3.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/edge_counter_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/attribute_test.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/idle_kernel.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/idle_counters.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dds_test1.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/Ba_detection.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/dataset_test4.py" />
-        <option value="$PROJECT_DIR$/opticlock/setup_artiq.bash" />
-        <option value="$PROJECT_DIR$/opticlock/device_db_old.py" />
-        <option value="$PROJECT_DIR$/opticlock/device_db.py" />
-        <option value="$PROJECT_DIR$/opticlock/repository/base_experiment.py" />
-        <option value="$PROJECT_DIR$/opticlock/build-artiq1.bash" />
-        <option value="$PROJECT_DIR$/opticlock/build-artiq2.bash" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1953" />
-    <option name="y" value="27" />
-    <option name="width" value="1882" />
-    <option name="height" value="979" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="artiq-experiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="artiq-experiments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="artiq-experiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="artiq-experiments" type="462c0819:PsiDirectoryNode" />
-              <item name="opticlock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="artiq-experiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="artiq-experiments" type="462c0819:PsiDirectoryNode" />
-              <item name="opticlock" type="462c0819:PsiDirectoryNode" />
-              <item name="applets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="artiq-experiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="artiq-experiments" type="462c0819:PsiDirectoryNode" />
-              <item name="opticlock" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1Onr5BvPl6CyVO2CAQ4JXwsV0Sd" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/artiq-dev/artiq" />
-    <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../artiq-fork/artiq" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -336,14 +113,16 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/install_artiq4" />
+      <recent name="$PROJECT_DIR$/conda" />
+      <recent name="$PROJECT_DIR$/opticlock" />
+      <recent name="$PROJECT_DIR$/opticlock/repository" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/opticlock/applets" />
       <recent name="$PROJECT_DIR$/opticlock/repository" />
       <recent name="$PROJECT_DIR$/opticlock" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/opticlock" />
-      <recent name="$PROJECT_DIR$/opticlock/repository" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -388,356 +167,24 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1953" y="27" width="1882" height="979" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49529412" visible="true" weight="0.14093599" />
-      <window_info id="Structure" order="1" sideWeight="0.5047059" side_tool="true" weight="0.14093599" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3288835" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49529412" visible="true" weight="0.14093599" />
-      <window_info id="Structure" order="1" sideWeight="0.5047059" side_tool="true" weight="0.14093599" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3288835" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.bash" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Scrolling counters now plot multiple TTL input channels simultaneously." />
     <option name="LAST_COMMIT_MESSAGE" value="Scrolling counters now plot multiple TTL input channels simultaneously." />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/miniconda3/envs/artiq/lib/python3.5/site-packages/artiq/coredevice/urukul.py" />
-    <entry file="file://$PROJECT_DIR$/../sinara-testing/kasli_opticlock/tools/build-artiq.bash" />
-    <entry file="file://$PROJECT_DIR$/opticlock/ttl_test1.py" />
-    <entry file="file://$PROJECT_DIR$/opticlock/dds_test1.py" />
-    <entry file="file://$PROJECT_DIR$/../sinara-testing/kasli_opticlock/tools/load_kernels.bash" />
-    <entry file="file://$PROJECT_DIR$/opticlock/dataset_db.pyon">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/device_db_opticlock.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///run/user/1000/gvfs/smb-share:server=128.8.195.52,share=trunktower/Labs/IonPhoton/data/Sandia_IonControl_projects/IonControlProjects/IonPhotonProjectJARVIS1/config/Scripts/optimization_Marty_edit.py" />
-    <entry file="file://$USER_HOME$/artiq-dev/artiq/artiq/coredevice/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2625">
-          <caret line="192" column="8" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/kasli_tester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2351">
-          <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/DMA_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="168" column="31" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
-          <folding>
-            <element signature="e#96#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/motor_checkout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/motor_scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="11" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/CONEX_TRB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/fiber_optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/led_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="11" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/applets/plot_multi_xy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding>
-            <element signature="e#24#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/applets/plot_separate_xy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="e#24#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/applets/datetimeaxis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="42" lean-forward="true" selection-end-line="166" />
-          <folding>
-            <element signature="e#91#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/applets/dateaxisitem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="166" selection-start-line="166" selection-end-line="166" />
-          <folding>
-            <element signature="e#91#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/applets/plot_separate_scrolling_xy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-353">
-          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
-          <folding>
-            <element signature="e#121#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/counter_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/counter_test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/edge_counter_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/attribute_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/setup_artiq-4.0.bash">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/ttl_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/dds_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/dataset_test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/dataset_test3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/dataset_test4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/dataset_test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="46" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/setup_artiq.bash">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/idle_counters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-          <folding>
-            <element signature="e#94#124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/idle_kernel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/Ba_detection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#94#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/device_db_old.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="444" selection-start-line="444" selection-end-line="444" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/device_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5490">
-          <caret line="366" selection-start-line="366" selection-end-line="366" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/repository/base_experiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="274" column="32" selection-start-line="274" selection-start-column="32" selection-end-line="274" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/build-artiq1.bash">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opticlock/build-artiq2.bash">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

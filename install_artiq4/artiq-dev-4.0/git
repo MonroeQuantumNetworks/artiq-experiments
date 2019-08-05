@@ -1,0 +1,12 @@
+==> git log -n1 <==
+commit bf50dcf76d9afa4d4943aa237767c129cb1ca2d1
+Author: Sebastien Bourdeauducq <sb@m-labs.hk>
+Date:   Tue Nov 20 17:15:53 2018 +0800
+
+    conda: use misoc release
+==> git describe --tags --dirty <==
+4.0
+==> git status <==
+On branch _conda_cache_origin_head
+Your branch is up-to-date with 'origin/_conda_cache_origin_head'.
+nothing to commit, working tree clean
