@@ -1,7 +1,7 @@
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
 |       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
-| monroe_ionphoton_rtio_crg_rtio_clk |monroe_ionphoton_rtio_crg_rtio_clk |                                                                       spimaster2_interface_mosi_reg_reg/D|
-| monroe_ionphoton_rtio_crg_rtio_clk |monroe_ionphoton_rtio_crg_rtio_clk |                                                                       spimaster0_interface_mosi_reg_reg/D|
-| monroe_ionphoton_rtio_crg_rtio_clk |monroe_ionphoton_rtio_crg_rtio_clk |                                                                       spimaster1_interface_mosi_reg_reg/D|
+| main_monroe_ionphoton_rtio_crg_rtio_clk |main_monroe_ionphoton_rtio_crg_rtio_clk |                                                                  main_spimaster0_interface_mosi_reg_reg/D|
+| main_monroe_ionphoton_clk_rx_unbuf |main_monroe_ionphoton_clk_rx_unbuf |                                             main_monroe_ionphoton_rx_converter_converter_source_eop_reg/D|
+| main_monroe_ionphoton_rtio_crg_rtio_clk |main_monroe_ionphoton_rtio_crg_rtio_clk |                                                                  main_spimaster2_interface_mosi_reg_reg/D|
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

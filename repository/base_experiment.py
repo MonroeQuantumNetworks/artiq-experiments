@@ -208,3 +208,6 @@ class base_experiment(EnvExperiment):
 
     def prepare(self):
         self.write_globals_to_datasets()
+
+    def run(self):
+        pass

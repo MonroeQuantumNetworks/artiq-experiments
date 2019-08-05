@@ -1,6 +1,6 @@
 {
     "globals.DDS.493.pi.attenuation": 10.0,
-    "globals.DDS.493.pi.frequency": 23000000.0,
+    "globals.DDS.493.pi.frequency": 20000000.0,
     "globals.DDS.493.pi.switch": true,
     "globals.DDS.493.sigma_minus.attenuation": 10.0,
     "globals.DDS.493.sigma_minus.frequency": 10000000.0,

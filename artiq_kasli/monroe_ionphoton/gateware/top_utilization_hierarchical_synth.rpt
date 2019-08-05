@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Mon Aug  5 05:27:26 2019
+| Date         : Mon Aug  5 18:18:46 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_utilization -hierarchical -file top_utilization_hierarchical_synth.rpt
 | Design       : top
@@ -21,12 +21,12 @@ Table of Contents
 +------------------------------------------------------------------+--------------------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
 |                             Instance                             |                      Module                      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP48 Blocks |
 +------------------------------------------------------------------+--------------------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
-| top                                                              |                                            (top) |      20514 |      20070 |     356 |   88 | 14398 |     69 |     28 |            6 |
-|   (top)                                                          |                                            (top) |      13798 |      13578 |     132 |   88 | 11354 |     63 |     20 |            0 |
-|   mor1kx                                                         |                                           mor1kx |       2921 |       2809 |     112 |    0 |  1541 |      3 |      4 |            3 |
-|     mor1kx_cpu                                                   |                                       mor1kx_cpu |       2921 |       2809 |     112 |    0 |  1541 |      3 |      4 |            3 |
+| top                                                              |                                            (top) |      19981 |      19537 |     356 |   88 | 14332 |     69 |     28 |            6 |
+|   (top)                                                          |                                            (top) |      13440 |      13220 |     132 |   88 | 11288 |     63 |     20 |            0 |
+|   mor1kx                                                         |                                           mor1kx |       2926 |       2814 |     112 |    0 |  1541 |      3 |      4 |            3 |
+|     mor1kx_cpu                                                   |                                       mor1kx_cpu |       2926 |       2814 |     112 |    0 |  1541 |      3 |      4 |            3 |
 |       (mor1kx_cpu)                                               |                                       mor1kx_cpu |          1 |          1 |       0 |    0 |     0 |      0 |      0 |            0 |
-|       cappuccino.mor1kx_cpu                                      |                            mor1kx_cpu_cappuccino |       2920 |       2808 |     112 |    0 |  1541 |      3 |      4 |            3 |
+|       cappuccino.mor1kx_cpu                                      |                            mor1kx_cpu_cappuccino |       2925 |       2813 |     112 |    0 |  1541 |      3 |      4 |            3 |
 |         mor1kx_branch_prediction                                 |                       mor1kx_branch_prediction_1 |          2 |          2 |       0 |    0 |     0 |      0 |      0 |            0 |
 |           branch_predictor_simple.mor1kx_branch_predictor_simple |                mor1kx_branch_predictor_simple_17 |          2 |          2 |       0 |    0 |     0 |      0 |      0 |            0 |
 |         mor1kx_ctrl_cappuccino                                   |                           mor1kx_ctrl_cappuccino |        163 |        163 |       0 |    0 |   244 |      0 |      0 |            0 |
@@ -35,29 +35,29 @@ Table of Contents
 |         mor1kx_decode_execute_cappuccino                         |                 mor1kx_decode_execute_cappuccino |        394 |        394 |       0 |    0 |   173 |      0 |      0 |            0 |
 |         mor1kx_execute_alu                                       |                             mor1kx_execute_alu_2 |        131 |        131 |       0 |    0 |   156 |      0 |      0 |            3 |
 |         mor1kx_execute_ctrl_cappuccino                           |                   mor1kx_execute_ctrl_cappuccino |        385 |        385 |       0 |    0 |   158 |      0 |      0 |            0 |
-|         mor1kx_fetch_cappuccino                                  |                          mor1kx_fetch_cappuccino |        331 |        331 |       0 |    0 |   212 |      1 |      1 |            0 |
-|           (mor1kx_fetch_cappuccino)                              |                          mor1kx_fetch_cappuccino |        170 |        170 |       0 |    0 |   170 |      0 |      0 |            0 |
-|           icache_gen.mor1kx_icache                               |                                 mor1kx_icache_13 |        161 |        161 |       0 |    0 |    42 |      1 |      1 |            0 |
+|         mor1kx_fetch_cappuccino                                  |                          mor1kx_fetch_cappuccino |        349 |        349 |       0 |    0 |   212 |      1 |      1 |            0 |
+|           (mor1kx_fetch_cappuccino)                              |                          mor1kx_fetch_cappuccino |        185 |        185 |       0 |    0 |   170 |      0 |      0 |            0 |
+|           icache_gen.mor1kx_icache                               |                                 mor1kx_icache_13 |        164 |        164 |       0 |    0 |    42 |      1 |      1 |            0 |
 |             (icache_gen.mor1kx_icache)                           |                                 mor1kx_icache_13 |         49 |         49 |       0 |    0 |    42 |      0 |      0 |            0 |
 |             tag_ram                                              |      mor1kx_simple_dpram_sclk__parameterized0_14 |         52 |         52 |       0 |    0 |     0 |      0 |      1 |            0 |
-|             way_memories[0].way_data_ram                         |                      mor1kx_simple_dpram_sclk_15 |         60 |         60 |       0 |    0 |     0 |      1 |      0 |            0 |
-|         mor1kx_lsu_cappuccino                                    |                          mor1kx_lsu_cappuccino_3 |       1098 |        986 |     112 |    0 |   331 |      2 |      1 |            0 |
-|           (mor1kx_lsu_cappuccino)                                |                          mor1kx_lsu_cappuccino_3 |        365 |        365 |       0 |    0 |   117 |      0 |      0 |            0 |
+|             way_memories[0].way_data_ram                         |                      mor1kx_simple_dpram_sclk_15 |         63 |         63 |       0 |    0 |     0 |      1 |      0 |            0 |
+|         mor1kx_lsu_cappuccino                                    |                          mor1kx_lsu_cappuccino_3 |       1085 |        973 |     112 |    0 |   331 |      2 |      1 |            0 |
+|           (mor1kx_lsu_cappuccino)                                |                          mor1kx_lsu_cappuccino_3 |        353 |        353 |       0 |    0 |   117 |      0 |      0 |            0 |
 |           dcache_gen.mor1kx_dcache                               |                                  mor1kx_dcache_8 |        544 |        432 |     112 |    0 |    96 |      1 |      0 |            0 |
-|             (dcache_gen.mor1kx_dcache)                           |                                  mor1kx_dcache_8 |         26 |         26 |       0 |    0 |    43 |      0 |      0 |            0 |
+|             (dcache_gen.mor1kx_dcache)                           |                                  mor1kx_dcache_8 |         24 |         24 |       0 |    0 |    43 |      0 |      0 |            0 |
 |             tag_ram                                              |      mor1kx_simple_dpram_sclk__parameterized3_11 |        205 |         93 |     112 |    0 |    20 |      0 |      0 |            0 |
-|             way_memories[0].way_data_ram                         |      mor1kx_simple_dpram_sclk__parameterized2_12 |        313 |        313 |       0 |    0 |    33 |      1 |      0 |            0 |
-|           store_buffer_gen.mor1kx_store_buffer                   |                            mor1kx_store_buffer_9 |        189 |        189 |       0 |    0 |   118 |      1 |      1 |            0 |
-|             (store_buffer_gen.mor1kx_store_buffer)               |                            mor1kx_store_buffer_9 |         29 |         29 |       0 |    0 |    18 |      0 |      0 |            0 |
-|             fifo_ram                                             |      mor1kx_simple_dpram_sclk__parameterized1_10 |        160 |        160 |       0 |    0 |   100 |      1 |      1 |            0 |
+|             way_memories[0].way_data_ram                         |      mor1kx_simple_dpram_sclk__parameterized2_12 |        315 |        315 |       0 |    0 |    33 |      1 |      0 |            0 |
+|           store_buffer_gen.mor1kx_store_buffer                   |                            mor1kx_store_buffer_9 |        188 |        188 |       0 |    0 |   118 |      1 |      1 |            0 |
+|             (store_buffer_gen.mor1kx_store_buffer)               |                            mor1kx_store_buffer_9 |         25 |         25 |       0 |    0 |    18 |      0 |      0 |            0 |
+|             fifo_ram                                             |      mor1kx_simple_dpram_sclk__parameterized1_10 |        163 |        163 |       0 |    0 |   100 |      1 |      1 |            0 |
 |         mor1kx_rf_cappuccino                                     |                           mor1kx_rf_cappuccino_4 |        368 |        368 |       0 |    0 |   235 |      0 |      2 |            0 |
 |           (mor1kx_rf_cappuccino)                                 |                           mor1kx_rf_cappuccino_4 |        304 |        304 |       0 |    0 |   235 |      0 |      0 |            0 |
 |           rfa                                                    |       mor1kx_simple_dpram_sclk__parameterized4_6 |         32 |         32 |       0 |    0 |     0 |      0 |      1 |            0 |
 |           rfb                                                    |       mor1kx_simple_dpram_sclk__parameterized4_7 |         32 |         32 |       0 |    0 |     0 |      0 |      1 |            0 |
 |         mor1kx_wb_mux_cappuccino                                 |                       mor1kx_wb_mux_cappuccino_5 |         48 |         48 |       0 |    0 |    32 |      0 |      0 |            0 |
-|   mor1kx_1                                                       |                           mor1kx__parameterized0 |       3795 |       3683 |     112 |    0 |  1503 |      3 |      4 |            3 |
-|     mor1kx_cpu                                                   |                       mor1kx_cpu__parameterized0 |       3795 |       3683 |     112 |    0 |  1503 |      3 |      4 |            3 |
-|       cappuccino.mor1kx_cpu                                      |            mor1kx_cpu_cappuccino__parameterized0 |       3795 |       3683 |     112 |    0 |  1503 |      3 |      4 |            3 |
+|   mor1kx_1                                                       |                           mor1kx__parameterized0 |       3615 |       3503 |     112 |    0 |  1503 |      3 |      4 |            3 |
+|     mor1kx_cpu                                                   |                       mor1kx_cpu__parameterized0 |       3615 |       3503 |     112 |    0 |  1503 |      3 |      4 |            3 |
+|       cappuccino.mor1kx_cpu                                      |            mor1kx_cpu_cappuccino__parameterized0 |       3615 |       3503 |     112 |    0 |  1503 |      3 |      4 |            3 |
 |         mor1kx_branch_prediction                                 |                         mor1kx_branch_prediction |          2 |          2 |       0 |    0 |     0 |      0 |      0 |            0 |
 |           branch_predictor_simple.mor1kx_branch_predictor_simple |                   mor1kx_branch_predictor_simple |          2 |          2 |       0 |    0 |     0 |      0 |      0 |            0 |
 |         mor1kx_ctrl_cappuccino                                   |           mor1kx_ctrl_cappuccino__parameterized0 |        149 |        149 |       0 |    0 |   242 |      0 |      0 |            0 |
@@ -72,8 +72,8 @@ Table of Contents
 |             (icache_gen.mor1kx_icache)                           |                                    mor1kx_icache |         26 |         26 |       0 |    0 |    42 |      0 |      0 |            0 |
 |             tag_ram                                              |         mor1kx_simple_dpram_sclk__parameterized0 |         69 |         69 |       0 |    0 |     0 |      0 |      1 |            0 |
 |             way_memories[0].way_data_ram                         |                         mor1kx_simple_dpram_sclk |        187 |        187 |       0 |    0 |     0 |      1 |      0 |            0 |
-|         mor1kx_lsu_cappuccino                                    |                            mor1kx_lsu_cappuccino |       1817 |       1705 |     112 |    0 |   296 |      2 |      1 |            0 |
-|           (mor1kx_lsu_cappuccino)                                |                            mor1kx_lsu_cappuccino |       1378 |       1378 |       0 |    0 |   114 |      0 |      0 |            0 |
+|         mor1kx_lsu_cappuccino                                    |                            mor1kx_lsu_cappuccino |       1637 |       1525 |     112 |    0 |   296 |      2 |      1 |            0 |
+|           (mor1kx_lsu_cappuccino)                                |                            mor1kx_lsu_cappuccino |       1198 |       1198 |       0 |    0 |   114 |      0 |      0 |            0 |
 |           dcache_gen.mor1kx_dcache                               |                                    mor1kx_dcache |        305 |        193 |     112 |    0 |    96 |      1 |      0 |            0 |
 |             (dcache_gen.mor1kx_dcache)                           |                                    mor1kx_dcache |         42 |         42 |       0 |    0 |    43 |      0 |      0 |            0 |
 |             tag_ram                                              |         mor1kx_simple_dpram_sclk__parameterized3 |        181 |         69 |     112 |    0 |    20 |      0 |      0 |            0 |

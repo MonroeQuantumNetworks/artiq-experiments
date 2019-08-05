@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Mon Aug  5 05:27:26 2019
+| Date         : Mon Aug  5 18:18:47 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt
 | Design       : top
@@ -30,16 +30,16 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 20514 |     0 |     63400 | 32.36 |
-|   LUT as Logic             | 20070 |     0 |     63400 | 31.66 |
+| Slice LUTs*                | 19981 |     0 |     63400 | 31.52 |
+|   LUT as Logic             | 19537 |     0 |     63400 | 30.82 |
 |   LUT as Memory            |   444 |     0 |     19000 |  2.34 |
 |     LUT as Distributed RAM |   356 |     0 |           |       |
 |     LUT as Shift Register  |    88 |     0 |           |       |
-| Slice Registers            | 14398 |     0 |    126800 | 11.35 |
-|   Register as Flip Flop    | 14398 |     0 |    126800 | 11.35 |
+| Slice Registers            | 14332 |     0 |    126800 | 11.30 |
+|   Register as Flip Flop    | 14332 |     0 |    126800 | 11.30 |
 |   Register as Latch        |     0 |     0 |    126800 |  0.00 |
-| F7 Muxes                   |   209 |     0 |     31700 |  0.66 |
-| F8 Muxes                   |    27 |     0 |     15850 |  0.17 |
+| F7 Muxes                   |   254 |     0 |     31700 |  0.80 |
+| F8 Muxes                   |    51 |     0 |     15850 |  0.32 |
 +----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -59,7 +59,7 @@ Table of Contents
 | 14    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 151   |          Yes |         Set |            - |
-| 14233 |          Yes |       Reset |            - |
+| 14167 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -159,16 +159,16 @@ Table of Contents
 +--------------------------+-------+---------------------+
 |         Ref Name         |  Used | Functional Category |
 +--------------------------+-------+---------------------+
-| FDRE                     | 14233 |        Flop & Latch |
-| LUT6                     | 10285 |                 LUT |
-| LUT5                     |  5853 |                 LUT |
-| LUT3                     |  3536 |                 LUT |
-| LUT4                     |  2387 |                 LUT |
-| LUT2                     |  1386 |                 LUT |
+| FDRE                     | 14167 |        Flop & Latch |
+| LUT6                     |  9826 |                 LUT |
+| LUT5                     |  5341 |                 LUT |
+| LUT3                     |  3739 |                 LUT |
+| LUT4                     |  2359 |                 LUT |
+| LUT2                     |  1832 |                 LUT |
 | CARRY4                   |   582 |          CarryLogic |
-| LUT1                     |   357 |                 LUT |
+| LUT1                     |   361 |                 LUT |
+| MUXF7                    |   254 |               MuxFx |
 | RAMD64E                  |   224 |  Distributed Memory |
-| MUXF7                    |   209 |               MuxFx |
 | RAMD32                   |   198 |  Distributed Memory |
 | FDSE                     |   151 |        Flop & Latch |
 | SRL16E                   |    88 |  Distributed Memory |
@@ -177,10 +177,10 @@ Table of Contents
 | RAMS32                   |    66 |  Distributed Memory |
 | IBUFDS_INTERMDISABLE_INT |    62 |                  IO |
 | OBUFTDS                  |    53 |                  IO |
+| MUXF8                    |    51 |               MuxFx |
 | OBUF                     |    37 |                  IO |
 | RAMB18E1                 |    28 |        Block Memory |
 | IBUF                     |    28 |                  IO |
-| MUXF8                    |    27 |               MuxFx |
 | OBUFT                    |    20 |                  IO |
 | ISERDESE2                |    20 |                  IO |
 | IDELAYE2                 |    16 |                  IO |
