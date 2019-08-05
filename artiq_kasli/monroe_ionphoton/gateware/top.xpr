@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="40" Path="/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/gateware/top.xpr">
+<Project Version="7" Minor="40" Path="/home/monroe/Documents/github/artiq_kasli/monroe_ionphoton/gateware/top.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="1b6a9fae275e4b3c9f4a869d78e2c732"/>
+    <Option Name="Id" Val="ccb3e956ca724be0ad67e8b81b28f8c4"/>
     <Option Name="Part" Val="xc7a100tfgg484-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -61,7 +61,7 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -69,7 +69,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -77,7 +77,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -85,7 +85,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -93,7 +93,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -101,7 +101,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -109,7 +109,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -117,7 +117,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -125,7 +125,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -133,10 +133,59 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -148,7 +197,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh">
+        <FileInfo>
+          <Attr Name="Library" Val="work"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -156,7 +212,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -164,7 +220,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -172,7 +228,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -180,7 +236,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -188,7 +244,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -196,7 +252,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -204,7 +260,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -212,7 +268,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -220,7 +276,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -228,7 +284,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -236,7 +292,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -244,7 +300,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -252,7 +308,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -260,7 +316,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -268,7 +324,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -276,7 +332,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -284,7 +340,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -292,7 +348,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -300,7 +356,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -308,7 +364,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -316,7 +372,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -324,7 +380,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -332,7 +388,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -340,7 +396,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -348,7 +404,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -356,7 +412,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -364,7 +420,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -372,7 +428,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -380,7 +436,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -388,7 +444,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -396,63 +452,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v">
-        <FileInfo>
-          <Attr Name="Library" Val="work"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../../../../../../../../nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v">
+      <File Path="$PPRDIR/../../../../../../../nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v">
         <FileInfo>
           <Attr Name="Library" Val="work"/>
           <Attr Name="UsedIn" Val="synthesis"/>

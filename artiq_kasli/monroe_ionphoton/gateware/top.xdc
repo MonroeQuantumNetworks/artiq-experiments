@@ -650,19 +650,19 @@ create_clock -name sys_clk -period 8.827586206896552 [get_nets sys_clk]
 
 create_clock -name clk125_gtp_p -period 8.0 [get_nets clk125_gtp_p]
 
-create_clock -name monroe_ionphoton_monroe_ionphoton_txoutclk -period 16.0 [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]
+create_clock -name main_monroe_ionphoton_txoutclk -period 16.0 [get_nets main_monroe_ionphoton_txoutclk]
 
-create_clock -name monroe_ionphoton_monroe_ionphoton_rxoutclk -period 16.0 [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]
+create_clock -name main_monroe_ionphoton_rxoutclk -period 16.0 [get_nets main_monroe_ionphoton_rxoutclk]
 
 create_clock -name si5324_clkout_fabric_p -period 8.0 [get_nets si5324_clkout_fabric_p]
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets main_monroe_ionphoton_txoutclk]] -asynchronous
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets main_monroe_ionphoton_rxoutclk]] -asynchronous
 
 set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets rtio_clk]] -asynchronous
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets main_monroe_ionphoton_txoutclk]] -group [get_clocks -include_generated_clocks -of [get_nets main_monroe_ionphoton_rxoutclk]] -asynchronous
 
 set_false_path -quiet -to [get_nets -filter {mr_ff == TRUE}]
 

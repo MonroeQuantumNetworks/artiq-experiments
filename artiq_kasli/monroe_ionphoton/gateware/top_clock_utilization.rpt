@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Mon Aug  5 05:28:45 2019
+| Date         : Mon Aug  5 18:20:13 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_clock_utilization -file top_clock_utilization.rpt
 | Design       : top
@@ -61,23 +61,23 @@ Table of Contents
 2. Global Clock Resources
 -------------------------
 
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------------------+------------+-----------------------------------------------------+
-| Global Id | Source Id | Driver Type/Pin | Constraint | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock                                                             | Driver Pin | Net                                                 |
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------------------+------------+-----------------------------------------------------+
-| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y0  | n/a          |                 8 |        9326 |               0 |        8.828 | sys_clk                                                           | BUFG/O     | sys_clk                                             |
-| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y1  | n/a          |                 5 |        5097 |               0 |        8.000 | monroe_ionphoton_rtio_crg_rtio_clk                                | BUFG_8/O   | rtio_clk                                            |
-| g2        | src2      | BUFH/O          | None       | BUFHCE_X0Y37   | X0Y3         |                 1 |         206 |               0 |        8.000 | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    | BUFH_2/O   | eth_tx_clk                                          |
-| g3        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y8  | n/a          |                 5 |         204 |               0 |        8.000 | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    | BUFG_7/O   | eth_rx_clk                                          |
-| g4        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y3  | n/a          |                 1 |          75 |               0 |        2.207 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | BUFG_1/O   | sys4x_clk                                           |
-| g5        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y4  | n/a          |                 4 |          39 |               0 |        2.000 | monroe_ionphoton_rtio_crg_rtiox4_clk                              | BUFG_9/O   | rtiox4_clk                                          |
-| g6        | src2      | BUFH/O          | None       | BUFHCE_X1Y36   | X1Y3         |                 1 |          22 |               0 |       16.000 | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               | BUFH_1/O   | eth_tx_half_clk                                     |
-| g7        | src4      | BUFG/O          | None       | BUFGCTRL_X0Y5  | n/a          |                 1 |           8 |               0 |        5.000 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     | BUFG_3/O   | clk200_clk                                          |
-| g8        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y7  | n/a          |                 1 |           3 |               0 |       16.000 | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               | BUFG_6/O   | eth_rx_half_clk                                     |
-| g9        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y6  | n/a          |                 1 |           2 |               0 |        2.207 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | BUFG_2/O   | sys4x_dqs_clk                                       |
-| g10       | src5      | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |                 1 |           1 |               0 |       16.000 | monroe_ionphoton_monroe_ionphoton_rxoutclk                        | BUFG_5/O   | monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer |
-| g11       | src5      | BUFH/O          | None       | BUFHCE_X0Y36   | X0Y3         |                 1 |           1 |               0 |       16.000 | monroe_ionphoton_monroe_ionphoton_txoutclk                        | BUFH/O     | monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer |
-| g12       | src6      | BUFG/O          | None       | BUFGCTRL_X0Y2  | n/a          |                 7 |           0 |            2899 |          n/a | n/a                                                               | BUFG_4/O   | sys_rst                                             |
-+-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------------------+------------+-----------------------------------------------------+
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------+------------+-----------------------------------------+
+| Global Id | Source Id | Driver Type/Pin | Constraint | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock                                                 | Driver Pin | Net                                     |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------+------------+-----------------------------------------+
+| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y0  | n/a          |                 7 |        9260 |               0 |        8.828 | sys_clk                                               | BUFG/O     | sys_clk                                 |
+| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y1  | n/a          |                 6 |        5109 |               0 |        8.000 | main_monroe_ionphoton_rtio_crg_rtio_clk               | BUFG_8/O   | rtio_clk                                |
+| g2        | src2      | BUFH/O          | None       | BUFHCE_X0Y37   | X0Y3         |                 1 |         206 |               0 |        8.000 | main_monroe_ionphoton_clk_tx_unbuf                    | BUFH_2/O   | eth_tx_clk                              |
+| g3        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y8  | n/a          |                 3 |         204 |               0 |        8.000 | main_monroe_ionphoton_clk_rx_unbuf                    | BUFG_7/O   | eth_rx_clk                              |
+| g4        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y3  | n/a          |                 1 |          75 |               0 |        2.207 | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | BUFG_1/O   | sys4x_clk                               |
+| g5        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y4  | n/a          |                 4 |          39 |               0 |        2.000 | main_monroe_ionphoton_rtio_crg_rtiox4_clk             | BUFG_9/O   | rtiox4_clk                              |
+| g6        | src2      | BUFH/O          | None       | BUFHCE_X1Y36   | X1Y3         |                 1 |          22 |               0 |       16.000 | main_monroe_ionphoton_clk_tx_half_unbuf               | BUFH_1/O   | eth_tx_half_clk                         |
+| g7        | src4      | BUFG/O          | None       | BUFGCTRL_X0Y5  | n/a          |                 1 |           8 |               0 |        5.000 | main_monroe_ionphoton_monroe_ionphoton_pll_clk200     | BUFG_3/O   | clk200_clk                              |
+| g8        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y7  | n/a          |                 1 |           3 |               0 |       16.000 | main_monroe_ionphoton_clk_rx_half_unbuf               | BUFG_6/O   | eth_rx_half_clk                         |
+| g9        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y6  | n/a          |                 1 |           2 |               0 |        2.207 | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | BUFG_2/O   | sys4x_dqs_clk                           |
+| g10       | src5      | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |                 1 |           1 |               0 |       16.000 | main_monroe_ionphoton_rxoutclk                        | BUFG_5/O   | main_monroe_ionphoton_rxoutclk_rebuffer |
+| g11       | src5      | BUFH/O          | None       | BUFHCE_X0Y36   | X0Y3         |                 1 |           1 |               0 |       16.000 | main_monroe_ionphoton_txoutclk                        | BUFH/O     | main_monroe_ionphoton_txoutclk_rebuffer |
+| g12       | src6      | BUFG/O          | None       | BUFGCTRL_X0Y2  | n/a          |                 6 |           0 |            2778 |          n/a | n/a                                                   | BUFG_4/O   | sys_rst                                 |
++-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+-------------------------------------------------------+------------+-----------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 
@@ -85,23 +85,23 @@ Table of Contents
 3. Global Clock Source Details
 ------------------------------
 
-+-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------------------+------------------------+-----------------------------------------------------------------------------------------+
-| Source Id | Global Id | Driver Type/Pin        | Constraint         | Site               | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock                                                      | Driver Pin             | Net                                                                                     |
-+-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------------------+------------------------+-----------------------------------------------------------------------------------------+
-| src0      | g0        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               8.828 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys       | MMCME2_BASE/CLKOUT0    | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys                             |
-| src0      | g4        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               2.207 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | MMCME2_BASE/CLKOUT1    | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x                           |
-| src0      | g9        | MMCME2_ADV/CLKOUT2     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               2.207 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | MMCME2_BASE/CLKOUT2    | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs                       |
-| src1      | g1        | PLLE2_ADV/CLKOUT1      | None               | PLLE2_ADV_X0Y1     | X0Y1         |           1 |               0 |               8.000 | monroe_ionphoton_rtio_crg_rtio_clk                                | PLLE2_ADV/CLKOUT1      | monroe_ionphoton_rtio_crg_rtio_clk                                                      |
-| src1      | g5        | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y1     | X0Y1         |           1 |               0 |               2.000 | monroe_ionphoton_rtio_crg_rtiox4_clk                              | PLLE2_ADV/CLKOUT0      | monroe_ionphoton_rtio_crg_rtiox4_clk                                                    |
-| src2      | g6        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y3    | X0Y3         |           1 |               0 |              16.000 | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               | MMCME2_BASE_1/CLKOUT0  | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf                                     |
-| src2      | g2        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y3    | X0Y3         |           1 |               0 |               8.000 | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    | MMCME2_BASE_1/CLKOUT1  | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                                          |
-| src3      | g8        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y0    | X0Y0         |           1 |               0 |              16.000 | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               | MMCME2_BASE_2/CLKOUT0  | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf                                     |
-| src3      | g3        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y0    | X0Y0         |           1 |               0 |               8.000 | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    | MMCME2_BASE_2/CLKOUT1  | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                                          |
-| src4      | g7        | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           1 |               0 |               5.000 | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     | PLLE2_BASE/CLKOUT0     | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200                           |
-| src5      | g10       | GTPE2_CHANNEL/RXOUTCLK | GTPE2_CHANNEL_X0Y4 | GTPE2_CHANNEL_X0Y4 | X1Y3         |           1 |               0 |              16.000 | monroe_ionphoton_monroe_ionphoton_rxoutclk                        | GTPE2_CHANNEL/RXOUTCLK | monroe_ionphoton_monroe_ionphoton_rxoutclk                                              |
-| src5      | g11       | GTPE2_CHANNEL/TXOUTCLK | GTPE2_CHANNEL_X0Y4 | GTPE2_CHANNEL_X0Y4 | X1Y3         |           1 |               0 |              16.000 | monroe_ionphoton_monroe_ionphoton_txoutclk                        | GTPE2_CHANNEL/TXOUTCLK | monroe_ionphoton_monroe_ionphoton_txoutclk                                              |
-| src6      | g12       | FDPE/Q                 | None               | SLICE_X14Y68       | X0Y1         |           1 |              49 |                     |                                                                   | FDPE_1/Q               | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_asyncresetsynchronizerbufg_rst_unbuf |
-+-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------------------+------------------------+-----------------------------------------------------------------------------------------+
++-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------+------------------------+-----------------------------------------------------------------------------+
+| Source Id | Global Id | Driver Type/Pin        | Constraint         | Site               | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock                                          | Driver Pin             | Net                                                                         |
++-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------+------------------------+-----------------------------------------------------------------------------+
+| src0      | g0        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               8.828 | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys       | MMCME2_BASE/CLKOUT0    | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys                             |
+| src0      | g4        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               2.207 | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | MMCME2_BASE/CLKOUT1    | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x                           |
+| src0      | g9        | MMCME2_ADV/CLKOUT2     | None               | MMCME2_ADV_X0Y1    | X0Y1         |           1 |               0 |               2.207 | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | MMCME2_BASE/CLKOUT2    | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs                       |
+| src1      | g1        | PLLE2_ADV/CLKOUT1      | None               | PLLE2_ADV_X0Y1     | X0Y1         |           1 |               0 |               8.000 | main_monroe_ionphoton_rtio_crg_rtio_clk               | PLLE2_ADV/CLKOUT1      | main_monroe_ionphoton_rtio_crg_rtio_clk                                     |
+| src1      | g5        | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y1     | X0Y1         |           1 |               0 |               2.000 | main_monroe_ionphoton_rtio_crg_rtiox4_clk             | PLLE2_ADV/CLKOUT0      | main_monroe_ionphoton_rtio_crg_rtiox4_clk                                   |
+| src2      | g6        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y3    | X0Y3         |           1 |               0 |              16.000 | main_monroe_ionphoton_clk_tx_half_unbuf               | MMCME2_BASE_1/CLKOUT0  | main_monroe_ionphoton_clk_tx_half_unbuf                                     |
+| src2      | g2        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y3    | X0Y3         |           1 |               0 |               8.000 | main_monroe_ionphoton_clk_tx_unbuf                    | MMCME2_BASE_1/CLKOUT1  | main_monroe_ionphoton_clk_tx_unbuf                                          |
+| src3      | g8        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X0Y0    | X0Y0         |           1 |               0 |              16.000 | main_monroe_ionphoton_clk_rx_half_unbuf               | MMCME2_BASE_2/CLKOUT0  | main_monroe_ionphoton_clk_rx_half_unbuf                                     |
+| src3      | g3        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X0Y0    | X0Y0         |           1 |               0 |               8.000 | main_monroe_ionphoton_clk_rx_unbuf                    | MMCME2_BASE_2/CLKOUT1  | main_monroe_ionphoton_clk_rx_unbuf                                          |
+| src4      | g7        | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           1 |               0 |               5.000 | main_monroe_ionphoton_monroe_ionphoton_pll_clk200     | PLLE2_BASE/CLKOUT0     | main_monroe_ionphoton_monroe_ionphoton_pll_clk200                           |
+| src5      | g10       | GTPE2_CHANNEL/RXOUTCLK | GTPE2_CHANNEL_X0Y4 | GTPE2_CHANNEL_X0Y4 | X1Y3         |           1 |               0 |              16.000 | main_monroe_ionphoton_rxoutclk                        | GTPE2_CHANNEL/RXOUTCLK | main_monroe_ionphoton_rxoutclk                                              |
+| src5      | g11       | GTPE2_CHANNEL/TXOUTCLK | GTPE2_CHANNEL_X0Y4 | GTPE2_CHANNEL_X0Y4 | X1Y3         |           1 |               0 |              16.000 | main_monroe_ionphoton_txoutclk                        | GTPE2_CHANNEL/TXOUTCLK | main_monroe_ionphoton_txoutclk                                              |
+| src6      | g12       | FDPE/Q                 | None               | SLICE_X11Y94       | X0Y1         |           1 |              47 |                     |                                                       | FDPE_1/Q               | main_monroe_ionphoton_monroe_ionphoton_asyncresetsynchronizerbufg_rst_unbuf |
++-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+-------------------------------------------------------+------------------------+-----------------------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 
@@ -109,11 +109,11 @@ Table of Contents
 4. Local Clock Details
 ----------------------
 
-+----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------------------+
-| Local Id | Driver Type/Pin         | Constraint | Site/BEL                       | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin              | Net                                                         |
-+----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------------------||
-| 0        | GTPE2_COMMON/PLL0OUTCLK | None       | GTPE2_COMMON_X0Y1/GTPE2_COMMON | X1Y3         |           1 |               0 |              |       | GTPE2_COMMON/PLL0OUTCLK | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_qpll_clk - Static -
-+----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------------------||
++----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------+
+| Local Id | Driver Type/Pin         | Constraint | Site/BEL                       | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin              | Net                                             |
++----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------||
+| 0        | GTPE2_COMMON/PLL0OUTCLK | None       | GTPE2_COMMON_X0Y1/GTPE2_COMMON | X1Y3         |           1 |               0 |              |       | GTPE2_COMMON/PLL0OUTCLK | main_monroe_ionphoton_monroe_ionphoton_qpll_clk - Static -
++----------+-------------------------+------------+--------------------------------+--------------+-------------+-----------------+--------------+-------+-------------------------+-------------------------------------------------||
 * Local Clocks in this context represents only clocks driven by non-global buffers
 ** Clock Loads column represents the clock pin loads (pin count)
 *** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -127,14 +127,14 @@ Table of Contents
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
-| X0Y0              |    3 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  405 |  2600 |  111 |   600 |    9 |    20 |    0 |    10 |    3 |    20 |
-| X1Y0              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |  851 |  1500 |  286 |   550 |    3 |    40 |    4 |    20 |    0 |    40 |
-| X0Y1              |    5 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    1 |    50 | 4353 |  2000 | 1292 |   600 |    0 |    20 |    9 |    10 |    3 |    20 |
-| X1Y1              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    4 |    50 |   17 |    50 | 4347 |  1900 | 1408 |   650 |    2 |    60 |   27 |    30 |    0 |    40 |
-| X0Y2              |    5 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    9 |    50 | 1593 |  2000 |  432 |   600 |    0 |    20 |    1 |    10 |    0 |    20 |
-| X1Y2              |    7 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |   16 |    50 |   45 |    50 | 2384 |  1900 |  862 |   650 |    0 |    60 |   27 |    30 |    0 |    40 |
-| X0Y3              |    7 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    4 |    50 |  314 |  2600 |   84 |   600 |    0 |    20 |    1 |    10 |    0 |    20 |
-| X1Y3              |    5 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    1 |     4 |    0 |     1 |    0 |     0 |    0 |     0 |  153 |  1350 |   60 |   500 |    0 |    30 |    0 |    15 |    0 |    40 |
+| X0Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2600 |    0 |   600 |    0 |    20 |    0 |    10 |    0 |    20 |
+| X1Y0              |    2 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |   80 |  1500 |    0 |   550 |    0 |    40 |   11 |    20 |    0 |    40 |
+| X0Y1              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    1 |    50 | 1260 |  2000 |  417 |   600 |    5 |    20 |    0 |    10 |    0 |    20 |
+| X1Y1              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    4 |    50 |   17 |    50 | 4072 |  1900 | 1444 |   650 |    3 |    60 |   10 |    30 |    0 |    40 |
+| X0Y2              |    5 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    9 |    50 | 2780 |  2000 |  877 |   600 |    2 |    20 |    8 |    10 |    3 |    20 |
+| X1Y2              |    6 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |   16 |    50 |   45 |    50 | 4547 |  1900 | 1452 |   650 |    4 |    60 |   24 |    30 |    3 |    40 |
+| X0Y3              |    7 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    4 |    50 | 1240 |  2600 |  256 |   600 |    0 |    20 |    6 |    10 |    0 |    20 |
+| X1Y3              |    5 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    1 |     4 |    0 |     1 |    0 |     0 |    0 |     0 |  367 |  1350 |  124 |   500 |    0 |    30 |   10 |    15 |    0 |    40 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * Global Clock column represents track count; while other columns represents cell counts
 
@@ -147,9 +147,9 @@ All Modules
 |    | X0 | X1 |
 +----+----+----+
 | Y3 |  7 |  5 |
-| Y2 |  5 |  7 |
-| Y1 |  5 |  4 |
-| Y0 |  3 |  1 |
+| Y2 |  5 |  6 |
+| Y1 |  4 |  4 |
+| Y0 |  1 |  2 |
 +----+----+----+
 
 
@@ -159,7 +159,7 @@ All Modules
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+---------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock   | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net     |
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+---------+
-| g0        | BUFG/O          | n/a               | sys_clk |       8.828 | {0.000 4.414} |        9149 |       61 |              0 |        1 | sys_clk |
+| g0        | BUFG/O          | n/a               | sys_clk |       8.828 | {0.000 4.414} |        9083 |       61 |              0 |        1 | sys_clk |
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+---------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -170,21 +170,21 @@ All Modules
 +----+-------+-------+
 |    | X0    | X1    |
 +----+-------+-------+
-| Y3 |   102 |    76 |
-| Y2 |  1229 |  2382 |
-| Y1 |  1943 |  2192 |
-| Y0 |   426 |   861 |
+| Y3 |   934 |   336 |
+| Y2 |  2512 |  4604 |
+| Y1 |    44 |   704 |
+| Y0 |     0 |    11 |
 +----+-------+-------+
 
 
 8. Device Cell Placement Summary for Global Clock g1
 ----------------------------------------------------
 
-+-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                              | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net      |
-+-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
-| g1        | BUFG/O          | n/a               | monroe_ionphoton_rtio_crg_rtio_clk |       8.000 | {0.000 4.000} |        5044 |       35 |              0 |        0 | rtio_clk |
-+-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                   | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net      |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
+| g1        | BUFG/O          | n/a               | main_monroe_ionphoton_rtio_crg_rtio_clk |       8.000 | {0.000 4.000} |        5056 |       35 |              0 |        0 | rtio_clk |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+----------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -194,21 +194,21 @@ All Modules
 +----+-------+-------+
 |    | X0    | X1    |
 +----+-------+-------+
-| Y3 |     4 |     0 |
-| Y2 |   370 |    86 |
-| Y1 |  2376 |  2243 |
-| Y0 |     0 |     0 |
+| Y3 |    17 |     0 |
+| Y2 |   206 |    49 |
+| Y1 |  1290 |  3438 |
+| Y0 |     0 |    91 |
 +----+-------+-------+
 
 
 9. Device Cell Placement Summary for Global Clock g2
 ----------------------------------------------------
 
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                          | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| g2        | BUFH/O          | X0Y3              | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf |       8.000 | {0.000 4.000} |         206 |        0 |              0 |        0 | eth_tx_clk |
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                              | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| g2        | BUFH/O          | X0Y3              | main_monroe_ionphoton_clk_tx_unbuf |       8.000 | {0.000 4.000} |         206 |        0 |              0 |        0 | eth_tx_clk |
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -228,35 +228,35 @@ All Modules
 10. Device Cell Placement Summary for Global Clock g3
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                          | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| g3        | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf |       8.000 | {0.000 4.000} |         202 |        0 |              0 |        0 | eth_rx_clk |
-+-----------+-----------------+-------------------+------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                              | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| g3        | BUFG/O          | n/a               | main_monroe_ionphoton_clk_rx_unbuf |       8.000 | {0.000 4.000} |         202 |        0 |              0 |        0 | eth_rx_clk |
++-----------+-----------------+-------------------+------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
 **** GT Loads column represents load cell count of GT types
 
 
-+----+------+-----+
-|    | X0   | X1  |
-+----+------+-----+
-| Y3 |    8 |  57 |
-| Y2 |    4 |  13 |
-| Y1 |  120 |   0 |
-| Y0 |    0 |   0 |
-+----+------+-----+
++----+-----+-----+
+|    | X0  | X1  |
++----+-----+-----+
+| Y3 |  94 |  21 |
+| Y2 |  87 |   0 |
+| Y1 |   0 |   0 |
+| Y0 |   0 |   0 |
++----+-----+-----+
 
 
 11. Device Cell Placement Summary for Global Clock g4
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                                         | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net       |
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
-| g4        | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x |       2.207 | {0.000 1.103} |           0 |       59 |              0 |        0 | sys4x_clk |
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                             | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net       |
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
+| g4        | BUFG/O          | n/a               | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x |       2.207 | {0.000 1.103} |           0 |       59 |              0 |        0 | sys4x_clk |
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -276,11 +276,11 @@ All Modules
 12. Device Cell Placement Summary for Global Clock g5
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+--------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
-+-----------+-----------------+-------------------+--------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| g5        | BUFG/O          | n/a               | monroe_ionphoton_rtio_crg_rtiox4_clk |       2.000 | {0.000 1.000} |           0 |       35 |              0 |        0 | rtiox4_clk |
-+-----------+-----------------+-------------------+--------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
++-----------+-----------------+-------------------+-------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                     | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
++-----------+-----------------+-------------------+-------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| g5        | BUFG/O          | n/a               | main_monroe_ionphoton_rtio_crg_rtiox4_clk |       2.000 | {0.000 1.000} |           0 |       35 |              0 |        0 | rtiox4_clk |
++-----------+-----------------+-------------------+-------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -300,11 +300,11 @@ All Modules
 13. Device Cell Placement Summary for Global Clock g6
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                               | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net             |
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
-| g6        | BUFH/O          | X1Y3              | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf |      16.000 | {0.000 8.000} |          20 |        0 |              0 |        1 | eth_tx_half_clk |
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                   | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net             |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
+| g6        | BUFH/O          | X1Y3              | main_monroe_ionphoton_clk_tx_half_unbuf |      16.000 | {0.000 8.000} |          20 |        0 |              0 |        1 | eth_tx_half_clk |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -324,11 +324,11 @@ All Modules
 14. Device Cell Placement Summary for Global Clock g7
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                                         | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
-| g7        | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 |       5.000 | {0.000 2.500} |           8 |        0 |              0 |        0 | clk200_clk |
-+-----------+-----------------+-------------------+---------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                             | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net        |
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
+| g7        | BUFG/O          | n/a               | main_monroe_ionphoton_monroe_ionphoton_pll_clk200 |       5.000 | {0.000 2.500} |           8 |        0 |              0 |        0 | clk200_clk |
++-----------+-----------------+-------------------+---------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -348,11 +348,11 @@ All Modules
 15. Device Cell Placement Summary for Global Clock g8
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                               | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net             |
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
-| g8        | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf |      16.000 | {0.000 8.000} |           1 |        0 |              0 |        1 | eth_rx_half_clk |
-+-----------+-----------------+-------------------+-----------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                   | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net             |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
+| g8        | BUFG/O          | n/a               | main_monroe_ionphoton_clk_rx_half_unbuf |      16.000 | {0.000 8.000} |           1 |        0 |              0 |        1 | eth_rx_half_clk |
++-----------+-----------------+-------------------+-----------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -372,11 +372,11 @@ All Modules
 16. Device Cell Placement Summary for Global Clock g9
 -----------------------------------------------------
 
-+-----------+-----------------+-------------------+-------------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                                             | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net           |
-+-----------+-----------------+-------------------+-------------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
-| g9        | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs |       2.207 | {0.552 1.655} |           0 |        2 |              0 |        0 | sys4x_dqs_clk |
-+-----------+-----------------+-------------------+-------------------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
++-----------+-----------------+-------------------+-------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                                 | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net           |
++-----------+-----------------+-------------------+-------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
+| g9        | BUFG/O          | n/a               | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs |       2.207 | {0.552 1.655} |           0 |        2 |              0 |        0 | sys4x_dqs_clk |
++-----------+-----------------+-------------------+-------------------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+---------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -396,11 +396,11 @@ All Modules
 17. Device Cell Placement Summary for Global Clock g10
 ------------------------------------------------------
 
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                      | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                 |
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
-| g10       | BUFG/O          | n/a               | monroe_ionphoton_monroe_ionphoton_rxoutclk |      16.000 | {0.000 8.000} |           0 |        0 |              1 |        0 | monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer |
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                          | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                     |
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| g10       | BUFG/O          | n/a               | main_monroe_ionphoton_rxoutclk |      16.000 | {0.000 8.000} |           0 |        0 |              1 |        0 | main_monroe_ionphoton_rxoutclk_rebuffer |
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -420,11 +420,11 @@ All Modules
 18. Device Cell Placement Summary for Global Clock g11
 ------------------------------------------------------
 
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
-| Global Id | Driver Type/Pin | Driver Region (D) | Clock                                      | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                 |
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
-| g11       | BUFH/O          | X0Y3              | monroe_ionphoton_monroe_ionphoton_txoutclk |      16.000 | {0.000 8.000} |           0 |        0 |              1 |        0 | monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer |
-+-----------+-----------------+-------------------+--------------------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------------------+
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| Global Id | Driver Type/Pin | Driver Region (D) | Clock                          | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                     |
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
+| g11       | BUFH/O          | X0Y3              | main_monroe_ionphoton_txoutclk |      16.000 | {0.000 8.000} |           0 |        0 |              1 |        0 | main_monroe_ionphoton_txoutclk_rebuffer |
++-----------+-----------------+-------------------+--------------------------------+-------------+---------------+-------------+----------+----------------+----------+-----------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
 *** Clocking Loads column represents load cell count that are clock resources (global clock buffer, MMCM, PLL, etc)
@@ -447,7 +447,7 @@ All Modules
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net     |
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------+
-| g12       | BUFG/O          | n/a               |       |             |               |        2854 |       45 |              0 |        0 | sys_rst |
+| g12       | BUFG/O          | n/a               |       |             |               |        2733 |       45 |              0 |        0 | sys_rst |
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -455,26 +455,24 @@ All Modules
 **** GT Loads column represents load cell count of GT types
 
 
-+----+------+------+
-|    | X0   | X1   |
-+----+------+------+
-| Y3 |    1 |   34 |
-| Y2 |  398 |  914 |
-| Y1 |  895 |  650 |
-| Y0 |    7 |    0 |
-+----+------+------+
++----+------+-------+
+|    | X0   | X1    |
++----+------+-------+
+| Y3 |  211 |    36 |
+| Y2 |  580 |  1901 |
+| Y1 |   10 |    40 |
+| Y0 |    0 |     0 |
++----+------+-------+
 
 
 20. Clock Region Cell Placement per Global Clock: Region X0Y0
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                 |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |         426 |               0 | 405 |      0 |    9 |   3 |  0 |    0 |   0 |       0 | sys_clk                                             |
-| g10       | n/a   | BUFG/O          | None       |           1 |               0 |   0 |      0 |    0 |   0 |  0 |    1 |   0 |       0 | monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer |
-| g12       | n/a   | BUFG/O          | None       |           0 |               7 |   7 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst                                             |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                     |
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
+| g10       | n/a   | BUFG/O          | None       |           1 |               0 |  0 |      0 |    0 |   0 |  0 |    1 |   0 |       0 | main_monroe_ionphoton_rxoutclk_rebuffer |
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -483,11 +481,12 @@ All Modules
 21. Clock Region Cell Placement per Global Clock: Region X1Y0
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+---------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net     |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+---------+
-| g0        | n/a   | BUFG/O          | None       |         861 |               0 | 851 |      0 |    7 |   0 |  0 |    0 |   0 |       0 | sys_clk |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+---------+
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+----------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net      |
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+----------+
+| g0        | n/a   | BUFG/O          | None       |          11 |               0 |  0 |      0 |   11 |   0 |  0 |    0 |   0 |       0 | sys_clk  |
+| g1        | n/a   | BUFG/O          | None       |          91 |               0 | 80 |      0 |   11 |   0 |  0 |    0 |   0 |       0 | rtio_clk |
++-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+----------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -499,11 +498,10 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net        |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
-| g0        | n/a   | BUFG/O          | None       |        1943 |               0 | 1930 |      0 |    9 |   3 |  0 |    0 |   0 |       0 | sys_clk    |
-| g1        | n/a   | BUFG/O          | None       |        2376 |               0 | 2304 |     64 |    7 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
-| g3        | n/a   | BUFG/O          | None       |         120 |               0 |  119 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk |
+| g0        | n/a   | BUFG/O          | None       |          44 |               0 |   35 |      0 |    5 |   0 |  0 |    0 |   0 |       0 | sys_clk    |
+| g1        | n/a   | BUFG/O          | None       |        1290 |               0 | 1225 |     64 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
 | g5        | n/a   | BUFG/O          | None       |           1 |               0 |    0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtiox4_clk |
-| g12       | n/a   | BUFG/O          | None       |           0 |             895 |  878 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
+| g12       | n/a   | BUFG/O          | None       |           0 |              10 |   10 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -516,10 +514,10 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net        |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
-| g0        | n/a   | BUFG/O          | None       |        2192 |               0 | 2162 |      0 |   29 |   0 |  0 |    0 |   0 |       0 | sys_clk    |
-| g1        | n/a   | BUFG/O          | None       |        2243 |               0 | 2185 |     24 |   13 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
+| g0        | n/a   | BUFG/O          | None       |         704 |               0 |  688 |      0 |   13 |   0 |  0 |    0 |   0 |       0 | sys_clk    |
+| g1        | n/a   | BUFG/O          | None       |        3438 |               0 | 3384 |     24 |    9 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
 | g5        | n/a   | BUFG/O          | None       |          21 |               0 |    0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtiox4_clk |
-| g12       | n/a   | BUFG/O          | None       |           0 |             650 |  631 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
+| g12       | n/a   | BUFG/O          | None       |           0 |              40 |   40 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -532,11 +530,11 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net        |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
-| g0        | n/a   | BUFG/O          | None       |        1229 |               0 | 1228 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | sys_clk    |
-| g1        | n/a   | BUFG/O          | None       |         370 |               0 |  361 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
-| g3        | n/a   | BUFG/O          | None       |           4 |               0 |    4 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk |
+| g0        | n/a   | BUFG/O          | None       |        2512 |               0 | 2497 |      0 |   10 |   3 |  0 |    0 |   0 |       0 | sys_clk    |
+| g1        | n/a   | BUFG/O          | None       |         206 |               0 |  197 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk   |
+| g3        | n/a   | BUFG/O          | None       |          87 |               0 |   86 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk |
 | g5        | n/a   | BUFG/O          | None       |           9 |               0 |    0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtiox4_clk |
-| g12       | n/a   | BUFG/O          | None       |           0 |             398 |  385 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
+| g12       | n/a   | BUFG/O          | None       |           0 |             580 |  563 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst    |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -549,13 +547,12 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+---------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net           |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+---------------+
-| g0        | n/a   | BUFG/O          | None       |        2382 |               0 | 2278 |      0 |   27 |   0 |  0 |    0 |   0 |       0 | sys_clk       |
-| g1        | n/a   | BUFG/O          | None       |          86 |               0 |   86 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk      |
-| g3        | n/a   | BUFG/O          | None       |          13 |               0 |   13 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk    |
+| g0        | n/a   | BUFG/O          | None       |        4604 |               0 | 4491 |      0 |   28 |   3 |  0 |    0 |   0 |       0 | sys_clk       |
+| g1        | n/a   | BUFG/O          | None       |          49 |               0 |   49 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk      |
 | g4        | n/a   | BUFG/O          | None       |          59 |               0 |    0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys4x_clk     |
 | g7        | n/a   | BUFG/O          | None       |           8 |               0 |    7 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | clk200_clk    |
 | g9        | n/a   | BUFG/O          | None       |           2 |               0 |    0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys4x_dqs_clk |
-| g12       | n/a   | BUFG/O          | None       |           0 |             914 |  790 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst       |
+| g12       | n/a   | BUFG/O          | None       |           0 |            1901 | 1835 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst       |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+---------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -565,17 +562,17 @@ All Modules
 26. Clock Region Cell Placement per Global Clock: Region X0Y3
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                 |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |         102 |               0 | 101 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | sys_clk                                             |
-| g1        | n/a   | BUFG/O          | None       |           4 |               0 |   0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk                                            |
-| g2        | n/a   | BUFH/O          | None       |         206 |               0 | 205 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | eth_tx_clk                                          |
-| g3        | n/a   | BUFG/O          | None       |           8 |               0 |   8 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk                                          |
-| g5        | n/a   | BUFG/O          | None       |           4 |               0 |   0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtiox4_clk                                          |
-| g11       | n/a   | BUFH/O          | None       |           1 |               0 |   0 |      0 |    0 |   0 |  0 |    1 |   0 |       0 | monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer |
-| g12       | n/a   | BUFG/O          | None       |           0 |               1 |   1 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst                                             |
-+-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                     |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |         934 |               0 | 928 |      0 |    6 |   0 |  0 |    0 |   0 |       0 | sys_clk                                 |
+| g1        | n/a   | BUFG/O          | None       |          17 |               0 |  13 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtio_clk                                |
+| g2        | n/a   | BUFH/O          | None       |         206 |               0 | 205 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | eth_tx_clk                              |
+| g3        | n/a   | BUFG/O          | None       |          94 |               0 |  94 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk                              |
+| g5        | n/a   | BUFG/O          | None       |           4 |               0 |   0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | rtiox4_clk                              |
+| g11       | n/a   | BUFH/O          | None       |           1 |               0 |   0 |      0 |    0 |   0 |  0 |    1 |   0 |       0 | main_monroe_ionphoton_txoutclk_rebuffer |
+| g12       | n/a   | BUFG/O          | None       |           0 |             211 | 211 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst                                 |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -584,15 +581,15 @@ All Modules
 27. Clock Region Cell Placement per Global Clock: Region X1Y3
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net             |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------+
-| g0        | n/a   | BUFG/O          | None       |          76 |               0 | 75 |      0 |    0 |   0 |  1 |    0 |   0 |       0 | sys_clk         |
-| g3        | n/a   | BUFG/O          | None       |          57 |               0 | 57 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk      |
-| g6        | n/a   | BUFH/O          | None       |          21 |               0 | 20 |      0 |    0 |   0 |  1 |    0 |   0 |       0 | eth_tx_half_clk |
-| g8        | n/a   | BUFG/O          | None       |           2 |               0 |  1 |      0 |    0 |   0 |  1 |    0 |   0 |       0 | eth_rx_half_clk |
-| g12       | n/a   | BUFG/O          | None       |           0 |              34 | 34 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst         |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+-----------------+
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net             |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------+
+| g0        | n/a   | BUFG/O          | None       |         336 |               0 | 325 |      0 |   10 |   0 |  1 |    0 |   0 |       0 | sys_clk         |
+| g3        | n/a   | BUFG/O          | None       |          21 |               0 |  21 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | eth_rx_clk      |
+| g6        | n/a   | BUFH/O          | None       |          21 |               0 |  20 |      0 |    0 |   0 |  1 |    0 |   0 |       0 | eth_tx_half_clk |
+| g8        | n/a   | BUFG/O          | None       |           2 |               0 |   1 |      0 |    0 |   0 |  1 |    0 |   0 |       0 | eth_rx_half_clk |
+| g12       | n/a   | BUFG/O          | None       |           0 |              36 |  35 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | sys_rst         |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts

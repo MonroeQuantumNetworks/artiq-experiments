@@ -1,105 +1,105 @@
 create_project -force -name top -part xc7a100t-fgg484-2
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_alu.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_saturation_counter.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v}]
 add_files {top.v}
 set_property library work [get_files {top.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_simple_dpram_sclk.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cache_lru.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_tcm_prontoespresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_i2f.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_muldiv.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_execute_ctrl_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_true_dpram_sclk.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_rnd.v}]
-add_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v}
-set_property library work [get_files {/nix/store/8w1v0bfls6kwvq7hg71x7rbzy53fwxnr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_utils.vh}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_decode_execute_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_f2i.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_icache.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_prontoespresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_prediction.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cfgrs.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_addsub.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pcu.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_bus_if_wb32.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dmmu.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-sprs.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_wb_mux_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_gshare.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_lsu_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_top.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_rf_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_fetch_cappuccino.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/pfpu32/pfpu32_cmp.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx-defines.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_store_buffer.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_espresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_immu.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_cpu_prontoespresso.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ticktimer.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_pic.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_dcache.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_branch_predictor_simple.v}]
+add_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v}
+set_property library work [get_files {/nix/store/b1sn833l3szn22mw567fyxl21nqikrf2-python3-3.7.4-env/lib/python3.7/site-packages/misoc/cores/mor1kx/verilog/rtl/verilog/mor1kx_ctrl_prontoespresso.v}]
 read_xdc top.xdc
 synth_design -top top -part xc7a100t-fgg484-2
 report_timing_summary -file top_timing_synth.rpt

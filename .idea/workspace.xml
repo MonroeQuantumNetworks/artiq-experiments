@@ -2,79 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bd47eb4-9335-4388-a6e0-ee3c8c652bf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/install_artiq5/artiq5dev-shell.bash" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/fast_pulse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/install_artiq4/build_artiq4.bash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/.Xil/top_propImpl.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/.Xil/top_propImpl.xdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/build_top.sh" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/build_top.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/mem_5.init" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/mem_5.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.bit" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.bit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.cache/wt/synthesis.wdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.hw/top.lpr" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.hw/top.lpr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.tcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.v" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.v" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xdc" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xpr" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top.xpr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_clock_utilization.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_control_sets.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_drc.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_io.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_power.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route.dcp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_route_status.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_timing_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_place.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_hierarchical_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_place.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/top_utilization_synth.rpt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.jou" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.log" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_10604.backup.jou" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_10604.backup.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_22222.backup.jou" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_22222.backup.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_29173.backup.jou" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/gateware/vivado_29173.backup.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/bootloader.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/libbootloader.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/csr.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/variables.mak" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/include/generated/variables.mak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/cargo/or1k-unknown-none/debug/libksupport.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/ksupport/ksupport.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libm/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libm/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libprintf/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libprintf/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libunwind/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/libunwind/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.d" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/cargo/or1k-unknown-none/debug/libruntime.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/ksupport_data.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" beforeDir="false" afterPath="$PROJECT_DIR$/artiq_kasli/monroe_ionphoton/software/runtime/runtime.fbi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-artiq1.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/build-artiq1.bash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-artiq2.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/build-artiq2.bash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conda_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/conda_list.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_db.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_db.pyon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flash_storage.img" beforeDir="false" afterPath="$PROJECT_DIR$/flash_storage.img" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasli_umd_ionphoton.time" beforeDir="false" afterPath="$PROJECT_DIR$/kasli_umd_ionphoton.time" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/last_rid.pyon" beforeDir="false" afterPath="$PROJECT_DIR$/last_rid.pyon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/base_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/base_experiment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/idle_kernel.elf" beforeDir="false" afterPath="$PROJECT_DIR$/repository/idle_kernel.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup_artiq.bash" beforeDir="false" afterPath="$PROJECT_DIR$/install_artiq4/setup_artiq.bash" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,16 +42,17 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/install_artiq4" />
-      <recent name="$PROJECT_DIR$/conda" />
-      <recent name="$PROJECT_DIR$/opticlock" />
-      <recent name="$PROJECT_DIR$/opticlock/repository" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/opticlock/applets" />
       <recent name="$PROJECT_DIR$/opticlock/repository" />
       <recent name="$PROJECT_DIR$/opticlock" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/install_artiq4/conda_local/linux-64" />
+      <recent name="$PROJECT_DIR$/install_artiq4" />
+      <recent name="$PROJECT_DIR$/conda" />
+      <recent name="$PROJECT_DIR$/opticlock" />
+      <recent name="$PROJECT_DIR$/opticlock/repository" />
     </key>
   </component>
   <component name="RunDashboard">

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date             : Mon Aug  5 05:30:01 2019
+| Date             : Mon Aug  5 18:22:17 2019
 | Host             : Batcomputer running 64-bit unknown
 | Command          : report_power -file top_power.rpt
 | Design           : top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.429        |
+| Total On-Chip Power (W)  | 2.390        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.315        |
+| Dynamic (W)              | 2.276        |
 | Device Static (W)        | 0.114        |
 | Effective TJA (C/W)      | 2.7          |
-| Max Ambient (C)          | 78.5         |
-| Junction Temperature (C) | 31.5         |
+| Max Ambient (C)          | 78.6         |
+| Junction Temperature (C) | 31.4         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,25 +52,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.100 |       23 |       --- |             --- |
-| Slice Logic              |     0.054 |    39680 |       --- |             --- |
-|   LUT as Logic           |     0.049 |    20047 |     63400 |           31.62 |
-|   Register               |     0.002 |    14400 |    126800 |           11.36 |
+| Clocks                   |     0.097 |       23 |       --- |             --- |
+| Slice Logic              |     0.050 |    39350 |       --- |             --- |
+|   LUT as Logic           |     0.044 |    19503 |     63400 |           30.76 |
+|   Register               |     0.002 |    14346 |    126800 |           11.31 |
 |   CARRY4                 |     0.002 |      582 |     15850 |            3.67 |
 |   LUT as Distributed RAM |     0.002 |      356 |     19000 |            1.87 |
-|   F7/F8 Muxes            |    <0.001 |      236 |     63400 |            0.37 |
+|   F7/F8 Muxes            |    <0.001 |      305 |     63400 |            0.48 |
+|   LUT as Shift Register  |    <0.001 |       53 |     19000 |            0.28 |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
 |   Others                 |     0.000 |       83 |       --- |             --- |
-|   LUT as Shift Register  |     0.000 |       53 |     19000 |            0.28 |
-| Signals                  |     0.100 |    33861 |       --- |             --- |
-| Block RAM                |     0.171 |       83 |       135 |           61.48 |
+| Signals                  |     0.088 |    33788 |       --- |             --- |
+| Block RAM                |     0.177 |       83 |       135 |           61.48 |
 | MMCM                     |     0.224 |        3 |         6 |           50.00 |
 | PLL                      |     0.161 |        2 |         6 |           33.33 |
 | DSPs                     |     0.007 |        6 |       240 |            2.50 |
-| I/O                      |     1.390 |      171 |       285 |           60.00 |
+| I/O                      |     1.366 |      171 |       285 |           60.00 |
 | GTP                      |     0.107 |        1 |       --- |             --- |
 | Static Power             |     0.114 |          |           |                 |
-| Total                    |     2.429 |          |           |                 |
+| Total                    |     2.390 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -80,12 +80,12 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.491 |       0.469 |      0.022 |
-| Vccaux    |       1.800 |     0.287 |       0.269 |      0.019 |
+| Vccint    |       1.000 |     0.473 |       0.452 |      0.021 |
+| Vccaux    |       1.800 |     0.277 |       0.258 |      0.018 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
-| Vcco25    |       2.500 |     0.462 |       0.458 |      0.004 |
+| Vcco25    |       2.500 |     0.463 |       0.459 |      0.004 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vcco15    |       1.500 |     0.073 |       0.069 |      0.004 |
+| Vcco15    |       1.500 |     0.071 |       0.067 |      0.004 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -133,31 +133,31 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| Clock                                                             | Domain                                                            | Constraint (ns) |
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| clk125_gtp_p                                                      | clk125_gtp_p                                                      |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2    | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2    |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb        | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb        |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys       | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys       |             8.8 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     |             2.2 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs |             2.2 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     |             5.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb         | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb         |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                      | monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                      |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_rxoutclk                        | monroe_ionphoton_monroe_ionphoton_rxoutclk                        |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                      | monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                      |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_txoutclk                        | monroe_ionphoton_monroe_ionphoton_txoutclk                        |            16.0 |
-| monroe_ionphoton_rtio_crg_fb_clk                                  | monroe_ionphoton_rtio_crg_fb_clk                                  |             8.0 |
-| monroe_ionphoton_rtio_crg_rtio_clk                                | monroe_ionphoton_rtio_crg_rtio_clk                                |             8.0 |
-| monroe_ionphoton_rtio_crg_rtiox4_clk                              | monroe_ionphoton_rtio_crg_rtiox4_clk                              |             2.0 |
-| si5324_clkout_fabric_p                                            | si5324_clkout_fabric_p                                            |             8.0 |
-| sys_clk                                                           | sys_clk                                                           |             8.8 |
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
++-------------------------------------------------------+-------------------------------------------------------+-----------------+
+| Clock                                                 | Domain                                                | Constraint (ns) |
++-------------------------------------------------------+-------------------------------------------------------+-----------------+
+| clk125_gtp_p                                          | clk125_gtp_p                                          |             8.0 |
+| main_monroe_ionphoton_clk_rx_half_unbuf               | main_monroe_ionphoton_clk_rx_half_unbuf               |            16.0 |
+| main_monroe_ionphoton_clk_rx_unbuf                    | main_monroe_ionphoton_clk_rx_unbuf                    |             8.0 |
+| main_monroe_ionphoton_clk_tx_half_unbuf               | main_monroe_ionphoton_clk_tx_half_unbuf               |            16.0 |
+| main_monroe_ionphoton_clk_tx_unbuf                    | main_monroe_ionphoton_clk_tx_unbuf                    |             8.0 |
+| main_monroe_ionphoton_monroe_ionphoton_clk125_div2    | main_monroe_ionphoton_monroe_ionphoton_clk125_div2    |            16.0 |
+| main_monroe_ionphoton_monroe_ionphoton_mmcm_fb        | main_monroe_ionphoton_monroe_ionphoton_mmcm_fb        |            16.0 |
+| main_monroe_ionphoton_monroe_ionphoton_mmcm_sys       | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys       |             8.8 |
+| main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     |             2.2 |
+| main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | main_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs |             2.2 |
+| main_monroe_ionphoton_monroe_ionphoton_pll_clk200     | main_monroe_ionphoton_monroe_ionphoton_pll_clk200     |             5.0 |
+| main_monroe_ionphoton_monroe_ionphoton_pll_fb         | main_monroe_ionphoton_monroe_ionphoton_pll_fb         |            16.0 |
+| main_monroe_ionphoton_rtio_crg_fb_clk                 | main_monroe_ionphoton_rtio_crg_fb_clk                 |             8.0 |
+| main_monroe_ionphoton_rtio_crg_rtio_clk               | main_monroe_ionphoton_rtio_crg_rtio_clk               |             8.0 |
+| main_monroe_ionphoton_rtio_crg_rtiox4_clk             | main_monroe_ionphoton_rtio_crg_rtiox4_clk             |             2.0 |
+| main_monroe_ionphoton_rx_mmcm_fb                      | main_monroe_ionphoton_rx_mmcm_fb                      |            16.0 |
+| main_monroe_ionphoton_rxoutclk                        | main_monroe_ionphoton_rxoutclk                        |            16.0 |
+| main_monroe_ionphoton_tx_mmcm_fb                      | main_monroe_ionphoton_tx_mmcm_fb                      |            16.0 |
+| main_monroe_ionphoton_txoutclk                        | main_monroe_ionphoton_txoutclk                        |            16.0 |
+| si5324_clkout_fabric_p                                | si5324_clkout_fabric_p                                |             8.0 |
+| sys_clk                                               | sys_clk                                               |             8.8 |
++-------------------------------------------------------+-------------------------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -169,13 +169,13 @@ Table of Contents
 +-----------------------------+-----------+
 | Name                        | Power (W) |
 +-----------------------------+-----------+
-| top                         |     2.315 |
-|   IOBUF                     |     0.006 |
-|   IOBUFDS                   |     0.002 |
+| top                         |     2.276 |
+|   IOBUF                     |     0.004 |
+|   IOBUFDS                   |     0.003 |
 |   IOBUFDS_1                 |     0.002 |
 |   IOBUFDS_2                 |     0.003 |
 |   IOBUFDS_3                 |     0.003 |
-|   IOBUFDS_4                 |     0.002 |
+|   IOBUFDS_4                 |     0.003 |
 |   IOBUFDS_5                 |     0.002 |
 |   IOBUFDS_INTERMDISABLE     |     0.022 |
 |     IBUFDS                  |     0.004 |
@@ -212,30 +212,30 @@ Table of Contents
 |   IOBUFDS_INTERMDISABLE_7   |     0.035 |
 |   IOBUFDS_INTERMDISABLE_8   |     0.035 |
 |   IOBUFDS_INTERMDISABLE_9   |     0.035 |
-|   IOBUF_1                   |     0.006 |
-|   IOBUF_10                  |     0.006 |
-|   IOBUF_11                  |     0.006 |
-|   IOBUF_12                  |     0.006 |
-|   IOBUF_13                  |     0.006 |
-|   IOBUF_14                  |     0.006 |
-|   IOBUF_15                  |     0.006 |
-|   IOBUF_2                   |     0.006 |
-|   IOBUF_3                   |     0.006 |
-|   IOBUF_4                   |     0.006 |
-|   IOBUF_5                   |     0.006 |
-|   IOBUF_6                   |     0.006 |
-|   IOBUF_7                   |     0.006 |
-|   IOBUF_8                   |     0.006 |
-|   IOBUF_9                   |     0.006 |
+|   IOBUF_1                   |     0.004 |
+|   IOBUF_10                  |     0.004 |
+|   IOBUF_11                  |     0.004 |
+|   IOBUF_12                  |     0.004 |
+|   IOBUF_13                  |     0.004 |
+|   IOBUF_14                  |     0.004 |
+|   IOBUF_15                  |     0.004 |
+|   IOBUF_2                   |     0.004 |
+|   IOBUF_3                   |     0.004 |
+|   IOBUF_4                   |     0.004 |
+|   IOBUF_5                   |     0.004 |
+|   IOBUF_6                   |     0.004 |
+|   IOBUF_7                   |     0.004 |
+|   IOBUF_8                   |     0.004 |
+|   IOBUF_9                   |     0.004 |
 |   OBUFDS                    |     0.002 |
 |   OBUFTDS                   |     0.002 |
 |   OBUFTDS_1                 |     0.002 |
-|   mor1kx                    |     0.053 |
-|     mor1kx_cpu              |     0.053 |
-|       cappuccino.mor1kx_cpu |     0.053 |
-|   mor1kx_1                  |     0.060 |
-|     mor1kx_cpu              |     0.060 |
-|       cappuccino.mor1kx_cpu |     0.060 |
+|   mor1kx                    |     0.052 |
+|     mor1kx_cpu              |     0.052 |
+|       cappuccino.mor1kx_cpu |     0.052 |
+|   mor1kx_1                  |     0.056 |
+|     mor1kx_cpu              |     0.056 |
+|       cappuccino.mor1kx_cpu |     0.056 |
 +-----------------------------+-----------+
 
 
