@@ -19,10 +19,11 @@ cargo:rustc-cfg=has_tmpu
 cargo:rustc-cfg=has_uart
 cargo:rustc-cfg=has_uart_phy
 cargo:rustc-cfg=clock_frequency="113281250"
+cargo:rustc-cfg=ext_ref_frequency="100.0"
 cargo:rustc-cfg=has_rtio_log
 cargo:rustc-cfg=has_si5324
 cargo:rustc-cfg=i2c_bus_count="1"
-cargo:rustc-cfg=identifier_str="4.6409.92ee20e6.beta;monroe_ionphoton"
+cargo:rustc-cfg=identifier_str="5.6915.c9356aba.beta;monroe_ionphoton"
 cargo:rustc-cfg=l2_size="131072"
 cargo:rustc-cfg=rtio_frequency="125.0"
 cargo:rustc-cfg=rtio_log_channel="36"

@@ -4,52 +4,52 @@
 
 /* rtio */
 #define CSR_RTIO_BASE 0xa0000000
-#define CSR_RTIO_CHAN_SEL_ADDR 0xa0000000
-#define CSR_RTIO_CHAN_SEL_SIZE 1
-static inline unsigned int rtio_chan_sel_read(void) {
+#define CSR_RTIO_TARGET_ADDR 0xa0000000
+#define CSR_RTIO_TARGET_SIZE 1
+static inline unsigned int rtio_target_read(void) {
 	unsigned int r = MMPTR(0xa0000000);
 	return r;
 }
-static inline void rtio_chan_sel_write(unsigned int value) {
+static inline void rtio_target_write(unsigned int value) {
 	MMPTR(0xa0000000) = value;
 }
-#define CSR_RTIO_TIMESTAMP_ADDR 0xa0000004
-#define CSR_RTIO_TIMESTAMP_SIZE 2
-static inline unsigned long long int rtio_timestamp_read(void) {
-	unsigned long long int r = MMPTR(0xa0000004);
-	r <<= 32;
-	r |= MMPTR(0xa0000008);
+#define CSR_RTIO_NOW_HI_ADDR 0xa0000004
+#define CSR_RTIO_NOW_HI_SIZE 1
+static inline unsigned int rtio_now_hi_read(void) {
+	unsigned int r = MMPTR(0xa0000004);
 	return r;
 }
-static inline void rtio_timestamp_write(unsigned long long int value) {
-	MMPTR(0xa0000004) = value >> 32;
+static inline void rtio_now_hi_write(unsigned int value) {
+	MMPTR(0xa0000004) = value;
+}
+#define CSR_RTIO_NOW_LO_ADDR 0xa0000008
+#define CSR_RTIO_NOW_LO_SIZE 1
+static inline unsigned int rtio_now_lo_read(void) {
+	unsigned int r = MMPTR(0xa0000008);
+	return r;
+}
+static inline void rtio_now_lo_write(unsigned int value) {
 	MMPTR(0xa0000008) = value;
 }
 #define CSR_RTIO_O_DATA_ADDR 0xa000000c
 #define CSR_RTIO_O_DATA_SIZE 16
-#define CSR_RTIO_O_ADDRESS_ADDR 0xa000004c
-#define CSR_RTIO_O_ADDRESS_SIZE 1
-static inline unsigned int rtio_o_address_read(void) {
+#define CSR_RTIO_O_STATUS_ADDR 0xa000004c
+#define CSR_RTIO_O_STATUS_SIZE 1
+static inline unsigned int rtio_o_status_read(void) {
 	unsigned int r = MMPTR(0xa000004c);
 	return r;
 }
-static inline void rtio_o_address_write(unsigned int value) {
-	MMPTR(0xa000004c) = value;
-}
-#define CSR_RTIO_O_WE_ADDR 0xa0000050
-#define CSR_RTIO_O_WE_SIZE 1
-static inline unsigned int rtio_o_we_read(void) {
-	unsigned int r = MMPTR(0xa0000050);
+#define CSR_RTIO_I_TIMEOUT_ADDR 0xa0000050
+#define CSR_RTIO_I_TIMEOUT_SIZE 2
+static inline unsigned long long int rtio_i_timeout_read(void) {
+	unsigned long long int r = MMPTR(0xa0000050);
+	r <<= 32;
+	r |= MMPTR(0xa0000054);
 	return r;
 }
-static inline void rtio_o_we_write(unsigned int value) {
-	MMPTR(0xa0000050) = value;
-}
-#define CSR_RTIO_O_STATUS_ADDR 0xa0000054
-#define CSR_RTIO_O_STATUS_SIZE 1
-static inline unsigned int rtio_o_status_read(void) {
-	unsigned int r = MMPTR(0xa0000054);
-	return r;
+static inline void rtio_i_timeout_write(unsigned long long int value) {
+	MMPTR(0xa0000050) = value >> 32;
+	MMPTR(0xa0000054) = value;
 }
 #define CSR_RTIO_I_DATA_ADDR 0xa0000058
 #define CSR_RTIO_I_DATA_SIZE 1
@@ -65,46 +65,37 @@ static inline unsigned long long int rtio_i_timestamp_read(void) {
 	r |= MMPTR(0xa0000060);
 	return r;
 }
-#define CSR_RTIO_I_REQUEST_ADDR 0xa0000064
-#define CSR_RTIO_I_REQUEST_SIZE 1
-static inline unsigned int rtio_i_request_read(void) {
+#define CSR_RTIO_I_STATUS_ADDR 0xa0000064
+#define CSR_RTIO_I_STATUS_SIZE 1
+static inline unsigned int rtio_i_status_read(void) {
 	unsigned int r = MMPTR(0xa0000064);
 	return r;
 }
-static inline void rtio_i_request_write(unsigned int value) {
-	MMPTR(0xa0000064) = value;
-}
-#define CSR_RTIO_I_STATUS_ADDR 0xa0000068
-#define CSR_RTIO_I_STATUS_SIZE 1
-static inline unsigned int rtio_i_status_read(void) {
+#define CSR_RTIO_I_OVERFLOW_RESET_ADDR 0xa0000068
+#define CSR_RTIO_I_OVERFLOW_RESET_SIZE 1
+static inline unsigned int rtio_i_overflow_reset_read(void) {
 	unsigned int r = MMPTR(0xa0000068);
 	return r;
 }
-#define CSR_RTIO_I_OVERFLOW_RESET_ADDR 0xa000006c
-#define CSR_RTIO_I_OVERFLOW_RESET_SIZE 1
-static inline unsigned int rtio_i_overflow_reset_read(void) {
-	unsigned int r = MMPTR(0xa000006c);
-	return r;
-}
 static inline void rtio_i_overflow_reset_write(unsigned int value) {
-	MMPTR(0xa000006c) = value;
+	MMPTR(0xa0000068) = value;
 }
-#define CSR_RTIO_COUNTER_ADDR 0xa0000070
+#define CSR_RTIO_COUNTER_ADDR 0xa000006c
 #define CSR_RTIO_COUNTER_SIZE 2
 static inline unsigned long long int rtio_counter_read(void) {
-	unsigned long long int r = MMPTR(0xa0000070);
+	unsigned long long int r = MMPTR(0xa000006c);
 	r <<= 32;
-	r |= MMPTR(0xa0000074);
+	r |= MMPTR(0xa0000070);
 	return r;
 }
-#define CSR_RTIO_COUNTER_UPDATE_ADDR 0xa0000078
+#define CSR_RTIO_COUNTER_UPDATE_ADDR 0xa0000074
 #define CSR_RTIO_COUNTER_UPDATE_SIZE 1
 static inline unsigned int rtio_counter_update_read(void) {
-	unsigned int r = MMPTR(0xa0000078);
+	unsigned int r = MMPTR(0xa0000074);
 	return r;
 }
 static inline void rtio_counter_update_write(unsigned int value) {
-	MMPTR(0xa0000078) = value;
+	MMPTR(0xa0000074) = value;
 }
 
 /* rtio_dma */
@@ -1269,15 +1260,19 @@ static inline int tmpu_page_size_read(void) {
 static inline int config_clock_frequency_read(void) {
 	return 113281250;
 }
+#define CONFIG_EXT_REF_FREQUENCY "100.0"
+static inline const char * config_ext_ref_frequency_read(void) {
+	return "100.0";
+}
 #define CONFIG_HAS_RTIO_LOG
 #define CONFIG_HAS_SI5324
 #define CONFIG_I2C_BUS_COUNT 1
 static inline int config_i2c_bus_count_read(void) {
 	return 1;
 }
-#define CONFIG_IDENTIFIER_STR "4.6409.92ee20e6.beta;monroe_ionphoton"
+#define CONFIG_IDENTIFIER_STR "5.6915.c9356aba.beta;monroe_ionphoton"
 static inline const char * config_identifier_str_read(void) {
-	return "4.6409.92ee20e6.beta;monroe_ionphoton";
+	return "5.6915.c9356aba.beta;monroe_ionphoton";
 }
 #define CONFIG_L2_SIZE 131072
 static inline int config_l2_size_read(void) {

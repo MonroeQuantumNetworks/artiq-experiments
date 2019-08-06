@@ -8,70 +8,70 @@ pub mod csr {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const CHAN_SEL_ADDR: *mut u32 = 0xa0000000 as *mut u32;
-    pub const CHAN_SEL_SIZE: usize = 1;
+    pub const TARGET_ADDR: *mut u32 = 0xa0000000 as *mut u32;
+    pub const TARGET_SIZE: usize = 1;
 
     #[inline(always)]
-    pub unsafe fn chan_sel_read() -> u32 {
-      read_volatile(CHAN_SEL_ADDR) as u32
+    pub unsafe fn target_read() -> u32 {
+      read_volatile(TARGET_ADDR) as u32
     }
 
     #[inline(always)]
-    pub unsafe fn chan_sel_write(w: u32) {
-      write_volatile(CHAN_SEL_ADDR.offset(0), (w) as u32);
+    pub unsafe fn target_write(w: u32) {
+      write_volatile(TARGET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const TIMESTAMP_ADDR: *mut u32 = 0xa0000004 as *mut u32;
-    pub const TIMESTAMP_SIZE: usize = 2;
+    pub const NOW_HI_ADDR: *mut u32 = 0xa0000004 as *mut u32;
+    pub const NOW_HI_SIZE: usize = 1;
 
     #[inline(always)]
-    pub unsafe fn timestamp_read() -> u64 {
-      let r = read_volatile(TIMESTAMP_ADDR) as u64;
-      let r = r << 32 | read_volatile(TIMESTAMP_ADDR.offset(1)) as u64;
-      r
+    pub unsafe fn now_hi_read() -> u32 {
+      read_volatile(NOW_HI_ADDR) as u32
     }
 
     #[inline(always)]
-    pub unsafe fn timestamp_write(w: u64) {
-      write_volatile(TIMESTAMP_ADDR.offset(0), (w >> 32) as u32);
-      write_volatile(TIMESTAMP_ADDR.offset(1), (w) as u32);
+    pub unsafe fn now_hi_write(w: u32) {
+      write_volatile(NOW_HI_ADDR.offset(0), (w) as u32);
+    }
+
+    pub const NOW_LO_ADDR: *mut u32 = 0xa0000008 as *mut u32;
+    pub const NOW_LO_SIZE: usize = 1;
+
+    #[inline(always)]
+    pub unsafe fn now_lo_read() -> u32 {
+      read_volatile(NOW_LO_ADDR) as u32
+    }
+
+    #[inline(always)]
+    pub unsafe fn now_lo_write(w: u32) {
+      write_volatile(NOW_LO_ADDR.offset(0), (w) as u32);
     }
 
     pub const O_DATA_ADDR: *mut u32 = 0xa000000c as *mut u32;
     pub const O_DATA_SIZE: usize = 16;
 
-    pub const O_ADDRESS_ADDR: *mut u32 = 0xa000004c as *mut u32;
-    pub const O_ADDRESS_SIZE: usize = 1;
-
-    #[inline(always)]
-    pub unsafe fn o_address_read() -> u16 {
-      read_volatile(O_ADDRESS_ADDR) as u16
-    }
-
-    #[inline(always)]
-    pub unsafe fn o_address_write(w: u16) {
-      write_volatile(O_ADDRESS_ADDR.offset(0), (w) as u32);
-    }
-
-    pub const O_WE_ADDR: *mut u32 = 0xa0000050 as *mut u32;
-    pub const O_WE_SIZE: usize = 1;
-
-    #[inline(always)]
-    pub unsafe fn o_we_read() -> u8 {
-      read_volatile(O_WE_ADDR) as u8
-    }
-
-    #[inline(always)]
-    pub unsafe fn o_we_write(w: u8) {
-      write_volatile(O_WE_ADDR.offset(0), (w) as u32);
-    }
-
-    pub const O_STATUS_ADDR: *mut u32 = 0xa0000054 as *mut u32;
+    pub const O_STATUS_ADDR: *mut u32 = 0xa000004c as *mut u32;
     pub const O_STATUS_SIZE: usize = 1;
 
     #[inline(always)]
     pub unsafe fn o_status_read() -> u8 {
       read_volatile(O_STATUS_ADDR) as u8
+    }
+
+    pub const I_TIMEOUT_ADDR: *mut u32 = 0xa0000050 as *mut u32;
+    pub const I_TIMEOUT_SIZE: usize = 2;
+
+    #[inline(always)]
+    pub unsafe fn i_timeout_read() -> u64 {
+      let r = read_volatile(I_TIMEOUT_ADDR) as u64;
+      let r = r << 32 | read_volatile(I_TIMEOUT_ADDR.offset(1)) as u64;
+      r
+    }
+
+    #[inline(always)]
+    pub unsafe fn i_timeout_write(w: u64) {
+      write_volatile(I_TIMEOUT_ADDR.offset(0), (w >> 32) as u32);
+      write_volatile(I_TIMEOUT_ADDR.offset(1), (w) as u32);
     }
 
     pub const I_DATA_ADDR: *mut u32 = 0xa0000058 as *mut u32;
@@ -92,20 +92,7 @@ pub mod csr {
       r
     }
 
-    pub const I_REQUEST_ADDR: *mut u32 = 0xa0000064 as *mut u32;
-    pub const I_REQUEST_SIZE: usize = 1;
-
-    #[inline(always)]
-    pub unsafe fn i_request_read() -> u8 {
-      read_volatile(I_REQUEST_ADDR) as u8
-    }
-
-    #[inline(always)]
-    pub unsafe fn i_request_write(w: u8) {
-      write_volatile(I_REQUEST_ADDR.offset(0), (w) as u32);
-    }
-
-    pub const I_STATUS_ADDR: *mut u32 = 0xa0000068 as *mut u32;
+    pub const I_STATUS_ADDR: *mut u32 = 0xa0000064 as *mut u32;
     pub const I_STATUS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -113,7 +100,7 @@ pub mod csr {
       read_volatile(I_STATUS_ADDR) as u8
     }
 
-    pub const I_OVERFLOW_RESET_ADDR: *mut u32 = 0xa000006c as *mut u32;
+    pub const I_OVERFLOW_RESET_ADDR: *mut u32 = 0xa0000068 as *mut u32;
     pub const I_OVERFLOW_RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -126,7 +113,7 @@ pub mod csr {
       write_volatile(I_OVERFLOW_RESET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const COUNTER_ADDR: *mut u32 = 0xa0000070 as *mut u32;
+    pub const COUNTER_ADDR: *mut u32 = 0xa000006c as *mut u32;
     pub const COUNTER_SIZE: usize = 2;
 
     #[inline(always)]
@@ -136,7 +123,7 @@ pub mod csr {
       r
     }
 
-    pub const COUNTER_UPDATE_ADDR: *mut u32 = 0xa0000078 as *mut u32;
+    pub const COUNTER_UPDATE_ADDR: *mut u32 = 0xa0000074 as *mut u32;
     pub const COUNTER_UPDATE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1675,10 +1662,11 @@ pub mod csr {
   pub const ETHMAC_SLOT_SIZE: u32 = 2048;
   pub const TMPU_PAGE_SIZE: u32 = 4096;
   pub const CONFIG_CLOCK_FREQUENCY: u32 = 113281250;
+  pub const CONFIG_EXT_REF_FREQUENCY: &'static str = "100.0";
   pub const CONFIG_HAS_RTIO_LOG: u32 = 1;
   pub const CONFIG_HAS_SI5324: u32 = 1;
   pub const CONFIG_I2C_BUS_COUNT: u32 = 1;
-  pub const CONFIG_IDENTIFIER_STR: &'static str = "4.6409.92ee20e6.beta;monroe_ionphoton";
+  pub const CONFIG_IDENTIFIER_STR: &'static str = "5.6915.c9356aba.beta;monroe_ionphoton";
   pub const CONFIG_L2_SIZE: u32 = 131072;
   pub const CONFIG_RTIO_FREQUENCY: &'static str = "125.0";
   pub const CONFIG_RTIO_LOG_CHANNEL: u32 = 36;
