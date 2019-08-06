@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date             : Mon Aug  5 18:22:17 2019
+| Date             : Tue Aug  6 01:02:26 2019
 | Host             : Batcomputer running 64-bit unknown
 | Command          : report_power -file top_power.rpt
 | Design           : top

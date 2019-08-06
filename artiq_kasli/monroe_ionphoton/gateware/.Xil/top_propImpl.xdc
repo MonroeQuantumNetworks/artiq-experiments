@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/monroe/Documents/github/artiq_kasli/monroe_ionphoton/gateware/top.xdc rfile:../top.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/gateware/top.xdc rfile:../top.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]
 set_property LOC N13 [get_ports serial_rx]
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]

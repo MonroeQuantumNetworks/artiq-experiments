@@ -1,4 +1,4 @@
-cargo:rerun-if-changed=/home/monroe/Documents/github/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg
+cargo:rerun-if-changed=/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/include/generated/rust-cfg
 cargo:rustc-cfg=has_rtio
 cargo:rustc-cfg=has_rtio_dma
 cargo:rustc-cfg=has_cri_con
