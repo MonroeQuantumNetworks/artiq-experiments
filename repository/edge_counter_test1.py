@@ -2,7 +2,6 @@
 # It is a test of the new edge_counter class, which counts without saving timestamps of individual clicks.
 # MTL 2010-06-28
 
-"""
 from artiq.experiment import *
 from artiq.coredevice.edge_counter import CounterOverflow
 
@@ -27,5 +26,3 @@ class edge_counter_test1(EnvExperiment):
             delay(100*ms)
             num_rising_edges = self.ttl0_counter.fetch_count()
             self.print_counts(num_rising_edges)
-
-"""

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Tue Aug  6 06:04:55 2019
+| Date         : Wed Aug  7 03:20:08 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt
 | Design       : top
@@ -30,16 +30,16 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 20514 |     0 |     63400 | 32.36 |
-|   LUT as Logic             | 20070 |     0 |     63400 | 31.66 |
+| Slice LUTs*                | 20260 |     0 |     63400 | 31.96 |
+|   LUT as Logic             | 19816 |     0 |     63400 | 31.26 |
 |   LUT as Memory            |   444 |     0 |     19000 |  2.34 |
 |     LUT as Distributed RAM |   356 |     0 |           |       |
 |     LUT as Shift Register  |    88 |     0 |           |       |
-| Slice Registers            | 14398 |     0 |    126800 | 11.35 |
-|   Register as Flip Flop    | 14398 |     0 |    126800 | 11.35 |
+| Slice Registers            | 14725 |     0 |    126800 | 11.61 |
+|   Register as Flip Flop    | 14725 |     0 |    126800 | 11.61 |
 |   Register as Latch        |     0 |     0 |    126800 |  0.00 |
-| F7 Muxes                   |   209 |     0 |     31700 |  0.66 |
-| F8 Muxes                   |    27 |     0 |     15850 |  0.17 |
+| F7 Muxes                   |   492 |     0 |     31700 |  1.55 |
+| F8 Muxes                   |    29 |     0 |     15850 |  0.18 |
 +----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -59,7 +59,7 @@ Table of Contents
 | 14    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 151   |          Yes |         Set |            - |
-| 14233 |          Yes |       Reset |            - |
+| 14560 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    |   83 |     0 |       135 | 61.48 |
-|   RAMB36/FIFO*    |   69 |     0 |       135 | 51.11 |
-|     RAMB36E1 only |   69 |       |           |       |
+| Block RAM Tile    |   87 |     0 |       135 | 64.44 |
+|   RAMB36/FIFO*    |   73 |     0 |       135 | 54.07 |
+|     RAMB36E1 only |   73 |       |           |       |
 |   RAMB18          |   28 |     0 |       270 | 10.37 |
 |     RAMB18E1 only |   28 |       |           |       |
 +-------------------+------+-------+-----------+-------+
@@ -112,8 +112,8 @@ Table of Contents
 | IDELAYE2/IDELAYE2_FINEDELAY |   16 |    16 |       300 |  5.33 |
 |   IDELAYE2 only             |   16 |    16 |           |       |
 | IBUFDS_GTE2                 |    1 |     1 |         2 | 50.00 |
-| ILOGIC                      |   20 |    20 |       285 |  7.02 |
-|   ISERDES                   |   20 |    20 |           |       |
+| ILOGIC                      |   24 |    24 |       285 |  8.42 |
+|   ISERDES                   |   24 |    24 |           |       |
 | OLOGIC                      |   76 |    76 |       285 | 26.67 |
 |   OSERDES                   |   76 |    76 |           |       |
 +-----------------------------+------+-------+-----------+-------+
@@ -159,30 +159,30 @@ Table of Contents
 +--------------------------+-------+---------------------+
 |         Ref Name         |  Used | Functional Category |
 +--------------------------+-------+---------------------+
-| FDRE                     | 14233 |        Flop & Latch |
-| LUT6                     | 10285 |                 LUT |
-| LUT5                     |  5853 |                 LUT |
-| LUT3                     |  3536 |                 LUT |
-| LUT4                     |  2387 |                 LUT |
-| LUT2                     |  1386 |                 LUT |
+| FDRE                     | 14560 |        Flop & Latch |
+| LUT6                     |  9773 |                 LUT |
+| LUT5                     |  5732 |                 LUT |
+| LUT3                     |  3986 |                 LUT |
+| LUT4                     |  2412 |                 LUT |
+| LUT2                     |  1531 |                 LUT |
 | CARRY4                   |   582 |          CarryLogic |
-| LUT1                     |   357 |                 LUT |
+| MUXF7                    |   492 |               MuxFx |
+| LUT1                     |   362 |                 LUT |
 | RAMD64E                  |   224 |  Distributed Memory |
-| MUXF7                    |   209 |               MuxFx |
 | RAMD32                   |   198 |  Distributed Memory |
 | FDSE                     |   151 |        Flop & Latch |
 | SRL16E                   |    88 |  Distributed Memory |
 | OSERDESE2                |    76 |                  IO |
-| RAMB36E1                 |    69 |        Block Memory |
+| RAMB36E1                 |    73 |        Block Memory |
 | RAMS32                   |    66 |  Distributed Memory |
 | IBUFDS_INTERMDISABLE_INT |    62 |                  IO |
 | OBUFTDS                  |    53 |                  IO |
 | OBUF                     |    37 |                  IO |
+| MUXF8                    |    29 |               MuxFx |
 | RAMB18E1                 |    28 |        Block Memory |
 | IBUF                     |    28 |                  IO |
-| MUXF8                    |    27 |               MuxFx |
+| ISERDESE2                |    24 |                  IO |
 | OBUFT                    |    20 |                  IO |
-| ISERDESE2                |    20 |                  IO |
 | IDELAYE2                 |    16 |                  IO |
 | FDPE                     |    14 |        Flop & Latch |
 | BUFG                     |    10 |               Clock |

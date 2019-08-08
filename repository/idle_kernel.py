@@ -10,13 +10,7 @@ class idle_kernel(EnvExperiment):
     @kernel
     def run(self):
 
-        self.core.break_realtime()
-        #start_time = now_mu() + self.core.seconds_to_mu(500*ms)
-        #while self.core.get_rtio_counter_mu() < start_time:
-        #    pass
-
-        # do not reset core, because we do not want this to change the output state of anything besides the LED
-        #self.core.reset()
+        self.core.reset()
 
         dot = 125*ms
         dash = 3*dot

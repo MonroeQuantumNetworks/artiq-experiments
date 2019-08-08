@@ -1996,6 +1996,130 @@ reg inout_8x3_inout_8x3_i_d = 1'd0;
 wire [7:0] inout_8x3_inout_8x3_i;
 reg [2:0] inout_8x3_inout_8x3_o;
 wire inout_8x3_inout_8x3_n;
+reg [7:0] inout_8x4_serdes_o0 = 8'd0;
+wire [7:0] inout_8x4_serdes_i0;
+reg inout_8x4_serdes_oe = 1'd0;
+wire inout_8x4_serdes_pad_i0;
+wire inout_8x4_serdes_pad_o0;
+wire [7:0] inout_8x4_serdes_i1;
+wire inout_8x4_serdes_pad_i1;
+wire [7:0] inout_8x4_serdes_o1;
+wire inout_8x4_serdes_t_in;
+wire inout_8x4_serdes_t_out;
+wire inout_8x4_serdes_pad_o1;
+reg inout_8x4_inout_8x4_ointerface4_stb = 1'd0;
+reg inout_8x4_inout_8x4_ointerface4_busy = 1'd0;
+reg [1:0] inout_8x4_inout_8x4_ointerface4_data = 2'd0;
+reg [1:0] inout_8x4_inout_8x4_ointerface4_address = 2'd0;
+reg [2:0] inout_8x4_inout_8x4_ointerface4_fine_ts = 3'd0;
+reg inout_8x4_inout_8x4_iinterface4_stb = 1'd0;
+reg inout_8x4_inout_8x4_iinterface4_data = 1'd0;
+reg [2:0] inout_8x4_inout_8x4_iinterface4_fine_ts = 3'd0;
+wire inout_8x4_inout_8x4_override_en;
+wire inout_8x4_inout_8x4_override_o;
+wire inout_8x4_inout_8x4_override_oe;
+wire inout_8x4_inout_8x4_input_state;
+reg inout_8x4_inout_8x4_previous_data = 1'd0;
+reg inout_8x4_inout_8x4_oe_k = 1'd0;
+reg [1:0] inout_8x4_inout_8x4_sensitivity = 2'd0;
+reg inout_8x4_inout_8x4_sample = 1'd0;
+reg inout_8x4_inout_8x4_i_d = 1'd0;
+wire [7:0] inout_8x4_inout_8x4_i;
+reg [2:0] inout_8x4_inout_8x4_o;
+wire inout_8x4_inout_8x4_n;
+reg [7:0] inout_8x5_serdes_o0 = 8'd0;
+wire [7:0] inout_8x5_serdes_i0;
+reg inout_8x5_serdes_oe = 1'd0;
+wire inout_8x5_serdes_pad_i0;
+wire inout_8x5_serdes_pad_o0;
+wire [7:0] inout_8x5_serdes_i1;
+wire inout_8x5_serdes_pad_i1;
+wire [7:0] inout_8x5_serdes_o1;
+wire inout_8x5_serdes_t_in;
+wire inout_8x5_serdes_t_out;
+wire inout_8x5_serdes_pad_o1;
+reg inout_8x5_inout_8x5_ointerface5_stb = 1'd0;
+reg inout_8x5_inout_8x5_ointerface5_busy = 1'd0;
+reg [1:0] inout_8x5_inout_8x5_ointerface5_data = 2'd0;
+reg [1:0] inout_8x5_inout_8x5_ointerface5_address = 2'd0;
+reg [2:0] inout_8x5_inout_8x5_ointerface5_fine_ts = 3'd0;
+reg inout_8x5_inout_8x5_iinterface5_stb = 1'd0;
+reg inout_8x5_inout_8x5_iinterface5_data = 1'd0;
+reg [2:0] inout_8x5_inout_8x5_iinterface5_fine_ts = 3'd0;
+wire inout_8x5_inout_8x5_override_en;
+wire inout_8x5_inout_8x5_override_o;
+wire inout_8x5_inout_8x5_override_oe;
+wire inout_8x5_inout_8x5_input_state;
+reg inout_8x5_inout_8x5_previous_data = 1'd0;
+reg inout_8x5_inout_8x5_oe_k = 1'd0;
+reg [1:0] inout_8x5_inout_8x5_sensitivity = 2'd0;
+reg inout_8x5_inout_8x5_sample = 1'd0;
+reg inout_8x5_inout_8x5_i_d = 1'd0;
+wire [7:0] inout_8x5_inout_8x5_i;
+reg [2:0] inout_8x5_inout_8x5_o;
+wire inout_8x5_inout_8x5_n;
+reg [7:0] inout_8x6_serdes_o0 = 8'd0;
+wire [7:0] inout_8x6_serdes_i0;
+reg inout_8x6_serdes_oe = 1'd0;
+wire inout_8x6_serdes_pad_i0;
+wire inout_8x6_serdes_pad_o0;
+wire [7:0] inout_8x6_serdes_i1;
+wire inout_8x6_serdes_pad_i1;
+wire [7:0] inout_8x6_serdes_o1;
+wire inout_8x6_serdes_t_in;
+wire inout_8x6_serdes_t_out;
+wire inout_8x6_serdes_pad_o1;
+reg inout_8x6_inout_8x6_ointerface6_stb = 1'd0;
+reg inout_8x6_inout_8x6_ointerface6_busy = 1'd0;
+reg [1:0] inout_8x6_inout_8x6_ointerface6_data = 2'd0;
+reg [1:0] inout_8x6_inout_8x6_ointerface6_address = 2'd0;
+reg [2:0] inout_8x6_inout_8x6_ointerface6_fine_ts = 3'd0;
+reg inout_8x6_inout_8x6_iinterface6_stb = 1'd0;
+reg inout_8x6_inout_8x6_iinterface6_data = 1'd0;
+reg [2:0] inout_8x6_inout_8x6_iinterface6_fine_ts = 3'd0;
+wire inout_8x6_inout_8x6_override_en;
+wire inout_8x6_inout_8x6_override_o;
+wire inout_8x6_inout_8x6_override_oe;
+wire inout_8x6_inout_8x6_input_state;
+reg inout_8x6_inout_8x6_previous_data = 1'd0;
+reg inout_8x6_inout_8x6_oe_k = 1'd0;
+reg [1:0] inout_8x6_inout_8x6_sensitivity = 2'd0;
+reg inout_8x6_inout_8x6_sample = 1'd0;
+reg inout_8x6_inout_8x6_i_d = 1'd0;
+wire [7:0] inout_8x6_inout_8x6_i;
+reg [2:0] inout_8x6_inout_8x6_o;
+wire inout_8x6_inout_8x6_n;
+reg [7:0] inout_8x7_serdes_o0 = 8'd0;
+wire [7:0] inout_8x7_serdes_i0;
+reg inout_8x7_serdes_oe = 1'd0;
+wire inout_8x7_serdes_pad_i0;
+wire inout_8x7_serdes_pad_o0;
+wire [7:0] inout_8x7_serdes_i1;
+wire inout_8x7_serdes_pad_i1;
+wire [7:0] inout_8x7_serdes_o1;
+wire inout_8x7_serdes_t_in;
+wire inout_8x7_serdes_t_out;
+wire inout_8x7_serdes_pad_o1;
+reg inout_8x7_inout_8x7_ointerface7_stb = 1'd0;
+reg inout_8x7_inout_8x7_ointerface7_busy = 1'd0;
+reg [1:0] inout_8x7_inout_8x7_ointerface7_data = 2'd0;
+reg [1:0] inout_8x7_inout_8x7_ointerface7_address = 2'd0;
+reg [2:0] inout_8x7_inout_8x7_ointerface7_fine_ts = 3'd0;
+reg inout_8x7_inout_8x7_iinterface7_stb = 1'd0;
+reg inout_8x7_inout_8x7_iinterface7_data = 1'd0;
+reg [2:0] inout_8x7_inout_8x7_iinterface7_fine_ts = 3'd0;
+wire inout_8x7_inout_8x7_override_en;
+wire inout_8x7_inout_8x7_override_o;
+wire inout_8x7_inout_8x7_override_oe;
+wire inout_8x7_inout_8x7_input_state;
+reg inout_8x7_inout_8x7_previous_data = 1'd0;
+reg inout_8x7_inout_8x7_oe_k = 1'd0;
+reg [1:0] inout_8x7_inout_8x7_sensitivity = 2'd0;
+reg inout_8x7_inout_8x7_sample = 1'd0;
+reg inout_8x7_inout_8x7_i_d = 1'd0;
+wire [7:0] inout_8x7_inout_8x7_i;
+reg [2:0] inout_8x7_inout_8x7_o;
+wire inout_8x7_inout_8x7_n;
 reg [7:0] output_8x0_o = 8'd0;
 reg output_8x0_t_in = 1'd0;
 wire output_8x0_t_out;
@@ -2084,50 +2208,6 @@ reg [2:0] output_8x7_fine_ts = 3'd0;
 wire output_8x7_override_en;
 wire output_8x7_override_o;
 reg output_8x7_previous_data = 1'd0;
-reg [7:0] output_8x8_o = 8'd0;
-reg output_8x8_t_in = 1'd0;
-wire output_8x8_t_out;
-wire output_8x8_pad_o;
-reg output_8x8_stb = 1'd0;
-reg output_8x8_busy = 1'd0;
-reg output_8x8_data = 1'd0;
-reg [2:0] output_8x8_fine_ts = 3'd0;
-wire output_8x8_override_en;
-wire output_8x8_override_o;
-reg output_8x8_previous_data = 1'd0;
-reg [7:0] output_8x9_o = 8'd0;
-reg output_8x9_t_in = 1'd0;
-wire output_8x9_t_out;
-wire output_8x9_pad_o;
-reg output_8x9_stb = 1'd0;
-reg output_8x9_busy = 1'd0;
-reg output_8x9_data = 1'd0;
-reg [2:0] output_8x9_fine_ts = 3'd0;
-wire output_8x9_override_en;
-wire output_8x9_override_o;
-reg output_8x9_previous_data = 1'd0;
-reg [7:0] output_8x10_o = 8'd0;
-reg output_8x10_t_in = 1'd0;
-wire output_8x10_t_out;
-wire output_8x10_pad_o;
-reg output_8x10_stb = 1'd0;
-reg output_8x10_busy = 1'd0;
-reg output_8x10_data = 1'd0;
-reg [2:0] output_8x10_fine_ts = 3'd0;
-wire output_8x10_override_en;
-wire output_8x10_override_o;
-reg output_8x10_previous_data = 1'd0;
-reg [7:0] output_8x11_o = 8'd0;
-reg output_8x11_t_in = 1'd0;
-wire output_8x11_t_out;
-wire output_8x11_pad_o;
-reg output_8x11_stb = 1'd0;
-reg output_8x11_busy = 1'd0;
-reg output_8x11_data = 1'd0;
-reg [2:0] output_8x11_fine_ts = 3'd0;
-wire output_8x11_override_en;
-wire output_8x11_override_o;
-reg output_8x11_previous_data = 1'd0;
 wire [2:0] spimaster0_interface_cs0;
 wire [2:0] spimaster0_interface_cs_polarity;
 wire spimaster0_interface_clk_next;
@@ -2193,6 +2273,50 @@ reg [7:0] spimaster0_config_div = 8'd0;
 reg [7:0] spimaster0_config_cs = 8'd0;
 reg spimaster0_read = 1'd0;
 reg pad0 = 1'd0;
+reg [7:0] output_8x8_o = 8'd0;
+reg output_8x8_t_in = 1'd0;
+wire output_8x8_t_out;
+wire output_8x8_pad_o;
+reg output_8x8_stb = 1'd0;
+reg output_8x8_busy = 1'd0;
+reg output_8x8_data = 1'd0;
+reg [2:0] output_8x8_fine_ts = 3'd0;
+wire output_8x8_override_en;
+wire output_8x8_override_o;
+reg output_8x8_previous_data = 1'd0;
+reg [7:0] output_8x9_o = 8'd0;
+reg output_8x9_t_in = 1'd0;
+wire output_8x9_t_out;
+wire output_8x9_pad_o;
+reg output_8x9_stb = 1'd0;
+reg output_8x9_busy = 1'd0;
+reg output_8x9_data = 1'd0;
+reg [2:0] output_8x9_fine_ts = 3'd0;
+wire output_8x9_override_en;
+wire output_8x9_override_o;
+reg output_8x9_previous_data = 1'd0;
+reg [7:0] output_8x10_o = 8'd0;
+reg output_8x10_t_in = 1'd0;
+wire output_8x10_t_out;
+wire output_8x10_pad_o;
+reg output_8x10_stb = 1'd0;
+reg output_8x10_busy = 1'd0;
+reg output_8x10_data = 1'd0;
+reg [2:0] output_8x10_fine_ts = 3'd0;
+wire output_8x10_override_en;
+wire output_8x10_override_o;
+reg output_8x10_previous_data = 1'd0;
+reg [7:0] output_8x11_o = 8'd0;
+reg output_8x11_t_in = 1'd0;
+wire output_8x11_t_out;
+wire output_8x11_pad_o;
+reg output_8x11_stb = 1'd0;
+reg output_8x11_busy = 1'd0;
+reg output_8x11_data = 1'd0;
+reg [2:0] output_8x11_fine_ts = 3'd0;
+wire output_8x11_override_en;
+wire output_8x11_override_o;
+reg output_8x11_previous_data = 1'd0;
 reg [7:0] output_8x12_o = 8'd0;
 reg output_8x12_t_in = 1'd0;
 wire output_8x12_t_out;
@@ -2204,50 +2328,6 @@ reg [2:0] output_8x12_fine_ts = 3'd0;
 wire output_8x12_override_en;
 wire output_8x12_override_o;
 reg output_8x12_previous_data = 1'd0;
-reg [7:0] output_8x13_o = 8'd0;
-reg output_8x13_t_in = 1'd0;
-wire output_8x13_t_out;
-wire output_8x13_pad_o;
-reg output_8x13_stb = 1'd0;
-reg output_8x13_busy = 1'd0;
-reg output_8x13_data = 1'd0;
-reg [2:0] output_8x13_fine_ts = 3'd0;
-wire output_8x13_override_en;
-wire output_8x13_override_o;
-reg output_8x13_previous_data = 1'd0;
-reg [7:0] output_8x14_o = 8'd0;
-reg output_8x14_t_in = 1'd0;
-wire output_8x14_t_out;
-wire output_8x14_pad_o;
-reg output_8x14_stb = 1'd0;
-reg output_8x14_busy = 1'd0;
-reg output_8x14_data = 1'd0;
-reg [2:0] output_8x14_fine_ts = 3'd0;
-wire output_8x14_override_en;
-wire output_8x14_override_o;
-reg output_8x14_previous_data = 1'd0;
-reg [7:0] output_8x15_o = 8'd0;
-reg output_8x15_t_in = 1'd0;
-wire output_8x15_t_out;
-wire output_8x15_pad_o;
-reg output_8x15_stb = 1'd0;
-reg output_8x15_busy = 1'd0;
-reg output_8x15_data = 1'd0;
-reg [2:0] output_8x15_fine_ts = 3'd0;
-wire output_8x15_override_en;
-wire output_8x15_override_o;
-reg output_8x15_previous_data = 1'd0;
-reg [7:0] output_8x16_o = 8'd0;
-reg output_8x16_t_in = 1'd0;
-wire output_8x16_t_out;
-wire output_8x16_pad_o;
-reg output_8x16_stb = 1'd0;
-reg output_8x16_busy = 1'd0;
-reg output_8x16_data = 1'd0;
-reg [2:0] output_8x16_fine_ts = 3'd0;
-wire output_8x16_override_en;
-wire output_8x16_override_o;
-reg output_8x16_previous_data = 1'd0;
 wire [2:0] spimaster1_interface_cs0;
 wire [2:0] spimaster1_interface_cs_polarity;
 wire spimaster1_interface_clk_next;
@@ -2313,6 +2393,50 @@ reg [7:0] spimaster1_config_div = 8'd0;
 reg [7:0] spimaster1_config_cs = 8'd0;
 reg spimaster1_read = 1'd0;
 reg pad1 = 1'd0;
+reg [7:0] output_8x13_o = 8'd0;
+reg output_8x13_t_in = 1'd0;
+wire output_8x13_t_out;
+wire output_8x13_pad_o;
+reg output_8x13_stb = 1'd0;
+reg output_8x13_busy = 1'd0;
+reg output_8x13_data = 1'd0;
+reg [2:0] output_8x13_fine_ts = 3'd0;
+wire output_8x13_override_en;
+wire output_8x13_override_o;
+reg output_8x13_previous_data = 1'd0;
+reg [7:0] output_8x14_o = 8'd0;
+reg output_8x14_t_in = 1'd0;
+wire output_8x14_t_out;
+wire output_8x14_pad_o;
+reg output_8x14_stb = 1'd0;
+reg output_8x14_busy = 1'd0;
+reg output_8x14_data = 1'd0;
+reg [2:0] output_8x14_fine_ts = 3'd0;
+wire output_8x14_override_en;
+wire output_8x14_override_o;
+reg output_8x14_previous_data = 1'd0;
+reg [7:0] output_8x15_o = 8'd0;
+reg output_8x15_t_in = 1'd0;
+wire output_8x15_t_out;
+wire output_8x15_pad_o;
+reg output_8x15_stb = 1'd0;
+reg output_8x15_busy = 1'd0;
+reg output_8x15_data = 1'd0;
+reg [2:0] output_8x15_fine_ts = 3'd0;
+wire output_8x15_override_en;
+wire output_8x15_override_o;
+reg output_8x15_previous_data = 1'd0;
+reg [7:0] output_8x16_o = 8'd0;
+reg output_8x16_t_in = 1'd0;
+wire output_8x16_t_out;
+wire output_8x16_pad_o;
+reg output_8x16_stb = 1'd0;
+reg output_8x16_busy = 1'd0;
+reg output_8x16_data = 1'd0;
+reg [2:0] output_8x16_fine_ts = 3'd0;
+wire output_8x16_override_en;
+wire output_8x16_override_o;
+reg output_8x16_previous_data = 1'd0;
 reg [7:0] output_8x17_o = 8'd0;
 reg output_8x17_t_in = 1'd0;
 wire output_8x17_t_out;
@@ -2324,50 +2448,6 @@ reg [2:0] output_8x17_fine_ts = 3'd0;
 wire output_8x17_override_en;
 wire output_8x17_override_o;
 reg output_8x17_previous_data = 1'd0;
-reg [7:0] output_8x18_o = 8'd0;
-reg output_8x18_t_in = 1'd0;
-wire output_8x18_t_out;
-wire output_8x18_pad_o;
-reg output_8x18_stb = 1'd0;
-reg output_8x18_busy = 1'd0;
-reg output_8x18_data = 1'd0;
-reg [2:0] output_8x18_fine_ts = 3'd0;
-wire output_8x18_override_en;
-wire output_8x18_override_o;
-reg output_8x18_previous_data = 1'd0;
-reg [7:0] output_8x19_o = 8'd0;
-reg output_8x19_t_in = 1'd0;
-wire output_8x19_t_out;
-wire output_8x19_pad_o;
-reg output_8x19_stb = 1'd0;
-reg output_8x19_busy = 1'd0;
-reg output_8x19_data = 1'd0;
-reg [2:0] output_8x19_fine_ts = 3'd0;
-wire output_8x19_override_en;
-wire output_8x19_override_o;
-reg output_8x19_previous_data = 1'd0;
-reg [7:0] output_8x20_o = 8'd0;
-reg output_8x20_t_in = 1'd0;
-wire output_8x20_t_out;
-wire output_8x20_pad_o;
-reg output_8x20_stb = 1'd0;
-reg output_8x20_busy = 1'd0;
-reg output_8x20_data = 1'd0;
-reg [2:0] output_8x20_fine_ts = 3'd0;
-wire output_8x20_override_en;
-wire output_8x20_override_o;
-reg output_8x20_previous_data = 1'd0;
-reg [7:0] output_8x21_o = 8'd0;
-reg output_8x21_t_in = 1'd0;
-wire output_8x21_t_out;
-wire output_8x21_pad_o;
-reg output_8x21_stb = 1'd0;
-reg output_8x21_busy = 1'd0;
-reg output_8x21_data = 1'd0;
-reg [2:0] output_8x21_fine_ts = 3'd0;
-wire output_8x21_override_en;
-wire output_8x21_override_o;
-reg output_8x21_previous_data = 1'd0;
 wire [2:0] spimaster2_interface_cs0;
 wire [2:0] spimaster2_interface_cs_polarity;
 wire spimaster2_interface_clk_next;
@@ -2433,6 +2513,50 @@ reg [7:0] spimaster2_config_div = 8'd0;
 reg [7:0] spimaster2_config_cs = 8'd0;
 reg spimaster2_read = 1'd0;
 reg pad2 = 1'd0;
+reg [7:0] output_8x18_o = 8'd0;
+reg output_8x18_t_in = 1'd0;
+wire output_8x18_t_out;
+wire output_8x18_pad_o;
+reg output_8x18_stb = 1'd0;
+reg output_8x18_busy = 1'd0;
+reg output_8x18_data = 1'd0;
+reg [2:0] output_8x18_fine_ts = 3'd0;
+wire output_8x18_override_en;
+wire output_8x18_override_o;
+reg output_8x18_previous_data = 1'd0;
+reg [7:0] output_8x19_o = 8'd0;
+reg output_8x19_t_in = 1'd0;
+wire output_8x19_t_out;
+wire output_8x19_pad_o;
+reg output_8x19_stb = 1'd0;
+reg output_8x19_busy = 1'd0;
+reg output_8x19_data = 1'd0;
+reg [2:0] output_8x19_fine_ts = 3'd0;
+wire output_8x19_override_en;
+wire output_8x19_override_o;
+reg output_8x19_previous_data = 1'd0;
+reg [7:0] output_8x20_o = 8'd0;
+reg output_8x20_t_in = 1'd0;
+wire output_8x20_t_out;
+wire output_8x20_pad_o;
+reg output_8x20_stb = 1'd0;
+reg output_8x20_busy = 1'd0;
+reg output_8x20_data = 1'd0;
+reg [2:0] output_8x20_fine_ts = 3'd0;
+wire output_8x20_override_en;
+wire output_8x20_override_o;
+reg output_8x20_previous_data = 1'd0;
+reg [7:0] output_8x21_o = 8'd0;
+reg output_8x21_t_in = 1'd0;
+wire output_8x21_t_out;
+wire output_8x21_pad_o;
+reg output_8x21_stb = 1'd0;
+reg output_8x21_busy = 1'd0;
+reg output_8x21_data = 1'd0;
+reg [2:0] output_8x21_fine_ts = 3'd0;
+wire output_8x21_override_en;
+wire output_8x21_override_o;
+reg output_8x21_previous_data = 1'd0;
 reg [7:0] output_8x22_o = 8'd0;
 reg output_8x22_t_in = 1'd0;
 wire output_8x22_t_out;
@@ -2444,50 +2568,6 @@ reg [2:0] output_8x22_fine_ts = 3'd0;
 wire output_8x22_override_en;
 wire output_8x22_override_o;
 reg output_8x22_previous_data = 1'd0;
-reg [7:0] output_8x23_o = 8'd0;
-reg output_8x23_t_in = 1'd0;
-wire output_8x23_t_out;
-wire output_8x23_pad_o;
-reg output_8x23_stb = 1'd0;
-reg output_8x23_busy = 1'd0;
-reg output_8x23_data = 1'd0;
-reg [2:0] output_8x23_fine_ts = 3'd0;
-wire output_8x23_override_en;
-wire output_8x23_override_o;
-reg output_8x23_previous_data = 1'd0;
-reg [7:0] output_8x24_o = 8'd0;
-reg output_8x24_t_in = 1'd0;
-wire output_8x24_t_out;
-wire output_8x24_pad_o;
-reg output_8x24_stb = 1'd0;
-reg output_8x24_busy = 1'd0;
-reg output_8x24_data = 1'd0;
-reg [2:0] output_8x24_fine_ts = 3'd0;
-wire output_8x24_override_en;
-wire output_8x24_override_o;
-reg output_8x24_previous_data = 1'd0;
-reg [7:0] output_8x25_o = 8'd0;
-reg output_8x25_t_in = 1'd0;
-wire output_8x25_t_out;
-wire output_8x25_pad_o;
-reg output_8x25_stb = 1'd0;
-reg output_8x25_busy = 1'd0;
-reg output_8x25_data = 1'd0;
-reg [2:0] output_8x25_fine_ts = 3'd0;
-wire output_8x25_override_en;
-wire output_8x25_override_o;
-reg output_8x25_previous_data = 1'd0;
-reg [7:0] output_8x26_o = 8'd0;
-reg output_8x26_t_in = 1'd0;
-wire output_8x26_t_out;
-wire output_8x26_pad_o;
-reg output_8x26_stb = 1'd0;
-reg output_8x26_busy = 1'd0;
-reg output_8x26_data = 1'd0;
-reg [2:0] output_8x26_fine_ts = 3'd0;
-wire output_8x26_override_en;
-wire output_8x26_override_o;
-reg output_8x26_previous_data = 1'd0;
 reg output0_stb = 1'd0;
 reg output0_busy = 1'd0;
 reg output0_data = 1'd0;
@@ -4149,28 +4229,30 @@ wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_we;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_writable;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_re;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_readable;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_din;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_dout;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_din;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_dout;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_produce_rdomain;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_r;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_produce_rdomain;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_r;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_we;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_w;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_dat_r;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_w;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record4_fifo_in_timestamp;
+wire monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record4_fifo_out_timestamp;
 wire monroe_ionphoton_rtio_core_inputs_overflow_io4;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer4_i;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer4_o;
@@ -4191,28 +4273,30 @@ wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_we;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_writable;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_re;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_readable;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_din;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_dout;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_din;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_dout;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_produce_rdomain;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_r;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_produce_rdomain;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_r;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_we;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_w;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_dat_r;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_w;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record5_fifo_in_timestamp;
+wire monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record5_fifo_out_timestamp;
 wire monroe_ionphoton_rtio_core_inputs_overflow_io5;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer5_i;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer5_o;
@@ -4233,28 +4317,30 @@ wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_we;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_writable;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_re;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_readable;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_din;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_dout;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_din;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_dout;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_ce;
-(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q = 3'd0;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary = 3'd0;
-reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_produce_rdomain;
-wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_r;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_produce_rdomain;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_r;
 wire monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_we;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_w;
-wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_adr;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_dat_r;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data;
-wire [31:0] monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_w;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record6_fifo_in_timestamp;
+wire monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record6_fifo_out_timestamp;
 wire monroe_ionphoton_rtio_core_inputs_overflow_io6;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer6_i;
 wire monroe_ionphoton_rtio_core_inputs_blindtransfer6_o;
@@ -4271,6 +4357,176 @@ reg monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o_r = 1'd0;
 reg monroe_ionphoton_rtio_core_inputs_blindtransfer6_blind = 1'd0;
 wire monroe_ionphoton_rtio_core_inputs_selected6;
 reg monroe_ionphoton_rtio_core_inputs_overflow6 = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_we;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_writable;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_re;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_readable;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_din;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_dout;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_ce;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_ce;
+(* dont_touch = "true" *) reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q = 7'd0;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_binary = 7'd0;
+reg [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_produce_rdomain;
+wire [6:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_consume_wdomain;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_we;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_dat_w;
+wire [5:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_adr;
+wire [64:0] monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_record7_fifo_in_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record7_fifo_in_timestamp;
+wire monroe_ionphoton_rtio_core_inputs_record7_fifo_out_data;
+wire [63:0] monroe_ionphoton_rtio_core_inputs_record7_fifo_out_timestamp;
+wire monroe_ionphoton_rtio_core_inputs_overflow_io7;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_o;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o_r = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o_r = 1'd0;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer7_blind = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_selected7;
+reg monroe_ionphoton_rtio_core_inputs_overflow7 = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_we;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_writable;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_re;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_readable;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_din;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_dout;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_produce_rdomain;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_consume_wdomain;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_we;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_dat_w;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_dat_r;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record8_fifo_in_data;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record8_fifo_out_data;
+wire monroe_ionphoton_rtio_core_inputs_overflow_io8;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_o;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o_r = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o_r = 1'd0;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer8_blind = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_selected8;
+reg monroe_ionphoton_rtio_core_inputs_overflow8 = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_we;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_writable;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_re;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_readable;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_din;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_dout;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_produce_rdomain;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_consume_wdomain;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_we;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_dat_w;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_dat_r;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record9_fifo_in_data;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record9_fifo_out_data;
+wire monroe_ionphoton_rtio_core_inputs_overflow_io9;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_o;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o_r = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o_r = 1'd0;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer9_blind = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_selected9;
+reg monroe_ionphoton_rtio_core_inputs_overflow9 = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_we;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_writable;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_re;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_readable;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_din;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_dout;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_ce;
+(* dont_touch = "true" *) reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q = 3'd0;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_binary = 3'd0;
+reg [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_produce_rdomain;
+wire [2:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_consume_wdomain;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_dat_r;
+wire monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_we;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_dat_w;
+wire [1:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_adr;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_dat_r;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record10_fifo_in_data;
+wire [31:0] monroe_ionphoton_rtio_core_inputs_record10_fifo_out_data;
+wire monroe_ionphoton_rtio_core_inputs_overflow_io10;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_o;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o_r = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_i;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_i = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o_r = 1'd0;
+reg monroe_ionphoton_rtio_core_inputs_blindtransfer10_blind = 1'd0;
+wire monroe_ionphoton_rtio_core_inputs_selected10;
+reg monroe_ionphoton_rtio_core_inputs_overflow10 = 1'd0;
 wire [1:0] monroe_ionphoton_rtio_core_inputs_i_status_raw;
 reg [63:0] monroe_ionphoton_rtio_core_inputs_input_timeout = 64'd0;
 reg monroe_ionphoton_rtio_core_inputs_input_pending = 1'd0;
@@ -4696,6 +4952,14 @@ wire monroe_ionphoton_mon_bussynchronizer35_i;
 wire monroe_ionphoton_mon_bussynchronizer35_o;
 wire monroe_ionphoton_mon_bussynchronizer36_i;
 wire monroe_ionphoton_mon_bussynchronizer36_o;
+wire monroe_ionphoton_mon_bussynchronizer37_i;
+wire monroe_ionphoton_mon_bussynchronizer37_o;
+wire monroe_ionphoton_mon_bussynchronizer38_i;
+wire monroe_ionphoton_mon_bussynchronizer38_o;
+wire monroe_ionphoton_mon_bussynchronizer39_i;
+wire monroe_ionphoton_mon_bussynchronizer39_o;
+wire monroe_ionphoton_mon_bussynchronizer40_i;
+wire monroe_ionphoton_mon_bussynchronizer40_o;
 reg [5:0] monroe_ionphoton_inj_chan_sel_storage_full = 6'd0;
 wire [5:0] monroe_ionphoton_inj_chan_sel_storage;
 reg monroe_ionphoton_inj_chan_sel_re = 1'd0;
@@ -4775,6 +5039,10 @@ reg monroe_ionphoton_inj_o_sys66 = 1'd0;
 reg monroe_ionphoton_inj_o_sys67 = 1'd0;
 reg monroe_ionphoton_inj_o_sys68 = 1'd0;
 reg monroe_ionphoton_inj_o_sys69 = 1'd0;
+reg monroe_ionphoton_inj_o_sys70 = 1'd0;
+reg monroe_ionphoton_inj_o_sys71 = 1'd0;
+reg monroe_ionphoton_inj_o_sys72 = 1'd0;
+reg monroe_ionphoton_inj_o_sys73 = 1'd0;
 reg [29:0] monroe_ionphoton_monroe_ionphoton_interface1_bus_adr = 30'd0;
 wire [127:0] monroe_ionphoton_monroe_ionphoton_interface1_bus_dat_w;
 wire [127:0] monroe_ionphoton_monroe_ionphoton_interface1_bus_dat_r;
@@ -5829,58 +6097,58 @@ wire xilinxasyncresetsynchronizerimpl5_rst_meta;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl47_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl48_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl48_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl49_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl49_regs1 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl50_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl50_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl49_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl49_regs1 = 7'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl50_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl50_regs1 = 7'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl51_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl51_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl52_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl52_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl53_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl53_regs1 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl54_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl54_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl53_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl53_regs1 = 7'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl54_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl54_regs1 = 7'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl55_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl55_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl56_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl56_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl57_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl57_regs1 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl58_regs0 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl58_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl57_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl57_regs1 = 7'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl58_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl58_regs1 = 7'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl59_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl59_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl60_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl60_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl61_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl61_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl62_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl62_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl63_regs0 = 16'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl63_regs1 = 16'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl61_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl61_regs1 = 7'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl62_regs0 = 7'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [6:0] xilinxmultiregimpl62_regs1 = 7'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl63_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl63_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl64_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl64_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl65_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl65_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl66_regs0 = 16'd0;
-(* async_reg = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl66_regs1 = 16'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl65_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl65_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl66_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl66_regs1 = 3'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl67_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl67_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl68_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl68_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl69_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl69_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl70_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl70_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl69_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl69_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl70_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl70_regs1 = 3'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl71_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl71_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl72_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl72_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl73_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl73_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl74_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl74_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl73_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl73_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl74_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [2:0] xilinxmultiregimpl74_regs1 = 3'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl75_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl75_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl76_regs0 = 1'd0;
@@ -5889,14 +6157,14 @@ wire xilinxasyncresetsynchronizerimpl5_rst_meta;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl77_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl78_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl78_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl79_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl79_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl79_regs0 = 16'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl79_regs1 = 16'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl80_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl80_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl81_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl81_regs1 = 1'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl82_regs0 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl82_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl82_regs0 = 16'd0;
+(* async_reg = "true", dont_touch = "true" *) reg [15:0] xilinxmultiregimpl82_regs1 = 16'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl83_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl83_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl84_regs0 = 1'd0;
@@ -6079,6 +6347,54 @@ wire xilinxasyncresetsynchronizerimpl5_rst_meta;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl172_regs1 = 1'd0;
 (* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl173_regs0 = 1'd0;
 (* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl173_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl174_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl174_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl175_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl175_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl176_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl176_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl177_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl177_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl178_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl178_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl179_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl179_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl180_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl180_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl181_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl181_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl182_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl182_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl183_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl183_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl184_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl184_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl185_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl185_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl186_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl186_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl187_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl187_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl188_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl188_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl189_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl189_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl190_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl190_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl191_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl191_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl192_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl192_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl193_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl193_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl194_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl194_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl195_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl195_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl196_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl196_regs1 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg xilinxmultiregimpl197_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg xilinxmultiregimpl197_regs1 = 1'd0;
 
 // synthesis translate_off
 reg dummy_s;
@@ -9396,6 +9712,174 @@ always @(*) begin
 // synthesis translate_on
 end
 assign inout_8x3_inout_8x3_n = (inout_8x3_inout_8x3_i == 1'd0);
+assign inout_8x4_inout_8x4_input_state = inout_8x4_serdes_i0[7];
+assign inout_8x4_inout_8x4_i = (inout_8x4_serdes_i0 ^ {8{inout_8x4_inout_8x4_i_d}});
+assign inout_8x4_serdes_i0 = inout_8x4_serdes_i1;
+assign inout_8x4_serdes_t_in = (~inout_8x4_serdes_oe);
+assign inout_8x4_serdes_o1 = inout_8x4_serdes_o0;
+assign inout_8x4_serdes_pad_i1 = inout_8x4_serdes_pad_i0;
+assign inout_8x4_serdes_pad_o0 = inout_8x4_serdes_pad_o1;
+
+// synthesis translate_off
+reg dummy_d_78;
+// synthesis translate_on
+always @(*) begin
+	inout_8x4_inout_8x4_o <= 3'd0;
+	if (inout_8x4_inout_8x4_i[7]) begin
+		inout_8x4_inout_8x4_o <= 3'd7;
+	end
+	if (inout_8x4_inout_8x4_i[6]) begin
+		inout_8x4_inout_8x4_o <= 3'd6;
+	end
+	if (inout_8x4_inout_8x4_i[5]) begin
+		inout_8x4_inout_8x4_o <= 3'd5;
+	end
+	if (inout_8x4_inout_8x4_i[4]) begin
+		inout_8x4_inout_8x4_o <= 3'd4;
+	end
+	if (inout_8x4_inout_8x4_i[3]) begin
+		inout_8x4_inout_8x4_o <= 2'd3;
+	end
+	if (inout_8x4_inout_8x4_i[2]) begin
+		inout_8x4_inout_8x4_o <= 2'd2;
+	end
+	if (inout_8x4_inout_8x4_i[1]) begin
+		inout_8x4_inout_8x4_o <= 1'd1;
+	end
+	if (inout_8x4_inout_8x4_i[0]) begin
+		inout_8x4_inout_8x4_o <= 1'd0;
+	end
+// synthesis translate_off
+	dummy_d_78 <= dummy_s;
+// synthesis translate_on
+end
+assign inout_8x4_inout_8x4_n = (inout_8x4_inout_8x4_i == 1'd0);
+assign inout_8x5_inout_8x5_input_state = inout_8x5_serdes_i0[7];
+assign inout_8x5_inout_8x5_i = (inout_8x5_serdes_i0 ^ {8{inout_8x5_inout_8x5_i_d}});
+assign inout_8x5_serdes_i0 = inout_8x5_serdes_i1;
+assign inout_8x5_serdes_t_in = (~inout_8x5_serdes_oe);
+assign inout_8x5_serdes_o1 = inout_8x5_serdes_o0;
+assign inout_8x5_serdes_pad_i1 = inout_8x5_serdes_pad_i0;
+assign inout_8x5_serdes_pad_o0 = inout_8x5_serdes_pad_o1;
+
+// synthesis translate_off
+reg dummy_d_79;
+// synthesis translate_on
+always @(*) begin
+	inout_8x5_inout_8x5_o <= 3'd0;
+	if (inout_8x5_inout_8x5_i[7]) begin
+		inout_8x5_inout_8x5_o <= 3'd7;
+	end
+	if (inout_8x5_inout_8x5_i[6]) begin
+		inout_8x5_inout_8x5_o <= 3'd6;
+	end
+	if (inout_8x5_inout_8x5_i[5]) begin
+		inout_8x5_inout_8x5_o <= 3'd5;
+	end
+	if (inout_8x5_inout_8x5_i[4]) begin
+		inout_8x5_inout_8x5_o <= 3'd4;
+	end
+	if (inout_8x5_inout_8x5_i[3]) begin
+		inout_8x5_inout_8x5_o <= 2'd3;
+	end
+	if (inout_8x5_inout_8x5_i[2]) begin
+		inout_8x5_inout_8x5_o <= 2'd2;
+	end
+	if (inout_8x5_inout_8x5_i[1]) begin
+		inout_8x5_inout_8x5_o <= 1'd1;
+	end
+	if (inout_8x5_inout_8x5_i[0]) begin
+		inout_8x5_inout_8x5_o <= 1'd0;
+	end
+// synthesis translate_off
+	dummy_d_79 <= dummy_s;
+// synthesis translate_on
+end
+assign inout_8x5_inout_8x5_n = (inout_8x5_inout_8x5_i == 1'd0);
+assign inout_8x6_inout_8x6_input_state = inout_8x6_serdes_i0[7];
+assign inout_8x6_inout_8x6_i = (inout_8x6_serdes_i0 ^ {8{inout_8x6_inout_8x6_i_d}});
+assign inout_8x6_serdes_i0 = inout_8x6_serdes_i1;
+assign inout_8x6_serdes_t_in = (~inout_8x6_serdes_oe);
+assign inout_8x6_serdes_o1 = inout_8x6_serdes_o0;
+assign inout_8x6_serdes_pad_i1 = inout_8x6_serdes_pad_i0;
+assign inout_8x6_serdes_pad_o0 = inout_8x6_serdes_pad_o1;
+
+// synthesis translate_off
+reg dummy_d_80;
+// synthesis translate_on
+always @(*) begin
+	inout_8x6_inout_8x6_o <= 3'd0;
+	if (inout_8x6_inout_8x6_i[7]) begin
+		inout_8x6_inout_8x6_o <= 3'd7;
+	end
+	if (inout_8x6_inout_8x6_i[6]) begin
+		inout_8x6_inout_8x6_o <= 3'd6;
+	end
+	if (inout_8x6_inout_8x6_i[5]) begin
+		inout_8x6_inout_8x6_o <= 3'd5;
+	end
+	if (inout_8x6_inout_8x6_i[4]) begin
+		inout_8x6_inout_8x6_o <= 3'd4;
+	end
+	if (inout_8x6_inout_8x6_i[3]) begin
+		inout_8x6_inout_8x6_o <= 2'd3;
+	end
+	if (inout_8x6_inout_8x6_i[2]) begin
+		inout_8x6_inout_8x6_o <= 2'd2;
+	end
+	if (inout_8x6_inout_8x6_i[1]) begin
+		inout_8x6_inout_8x6_o <= 1'd1;
+	end
+	if (inout_8x6_inout_8x6_i[0]) begin
+		inout_8x6_inout_8x6_o <= 1'd0;
+	end
+// synthesis translate_off
+	dummy_d_80 <= dummy_s;
+// synthesis translate_on
+end
+assign inout_8x6_inout_8x6_n = (inout_8x6_inout_8x6_i == 1'd0);
+assign inout_8x7_inout_8x7_input_state = inout_8x7_serdes_i0[7];
+assign inout_8x7_inout_8x7_i = (inout_8x7_serdes_i0 ^ {8{inout_8x7_inout_8x7_i_d}});
+assign inout_8x7_serdes_i0 = inout_8x7_serdes_i1;
+assign inout_8x7_serdes_t_in = (~inout_8x7_serdes_oe);
+assign inout_8x7_serdes_o1 = inout_8x7_serdes_o0;
+assign inout_8x7_serdes_pad_i1 = inout_8x7_serdes_pad_i0;
+assign inout_8x7_serdes_pad_o0 = inout_8x7_serdes_pad_o1;
+
+// synthesis translate_off
+reg dummy_d_81;
+// synthesis translate_on
+always @(*) begin
+	inout_8x7_inout_8x7_o <= 3'd0;
+	if (inout_8x7_inout_8x7_i[7]) begin
+		inout_8x7_inout_8x7_o <= 3'd7;
+	end
+	if (inout_8x7_inout_8x7_i[6]) begin
+		inout_8x7_inout_8x7_o <= 3'd6;
+	end
+	if (inout_8x7_inout_8x7_i[5]) begin
+		inout_8x7_inout_8x7_o <= 3'd5;
+	end
+	if (inout_8x7_inout_8x7_i[4]) begin
+		inout_8x7_inout_8x7_o <= 3'd4;
+	end
+	if (inout_8x7_inout_8x7_i[3]) begin
+		inout_8x7_inout_8x7_o <= 2'd3;
+	end
+	if (inout_8x7_inout_8x7_i[2]) begin
+		inout_8x7_inout_8x7_o <= 2'd2;
+	end
+	if (inout_8x7_inout_8x7_i[1]) begin
+		inout_8x7_inout_8x7_o <= 1'd1;
+	end
+	if (inout_8x7_inout_8x7_i[0]) begin
+		inout_8x7_inout_8x7_o <= 1'd0;
+	end
+// synthesis translate_off
+	dummy_d_81 <= dummy_s;
+// synthesis translate_on
+end
+assign inout_8x7_inout_8x7_n = (inout_8x7_inout_8x7_i == 1'd0);
 assign spimaster0_spimachine0_length = spimaster0_config_length;
 assign spimaster0_spimachine0_end0 = spimaster0_config_end;
 assign spimaster0_spimachine0_div = spimaster0_config_div;
@@ -9424,7 +9908,7 @@ assign spimaster0_spimachine0_cnt_done = (spimaster0_spimachine0_cnt == 1'd0);
 assign spimaster0_spimachine0_done = (spimaster0_spimachine0_cnt_done & (~spimaster0_spimachine0_do_extend));
 
 // synthesis translate_off
-reg dummy_d_78;
+reg dummy_d_82;
 // synthesis translate_on
 always @(*) begin
 	spimaster0_spimachine0_clk_next <= 1'd0;
@@ -9520,7 +10004,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_78 <= dummy_s;
+	dummy_d_82 <= dummy_s;
 // synthesis translate_on
 end
 assign spimaster1_spimachine1_length = spimaster1_config_length;
@@ -9551,7 +10035,7 @@ assign spimaster1_spimachine1_cnt_done = (spimaster1_spimachine1_cnt == 1'd0);
 assign spimaster1_spimachine1_done = (spimaster1_spimachine1_cnt_done & (~spimaster1_spimachine1_do_extend));
 
 // synthesis translate_off
-reg dummy_d_79;
+reg dummy_d_83;
 // synthesis translate_on
 always @(*) begin
 	spimaster1_spimachine1_clk_next <= 1'd0;
@@ -9647,7 +10131,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_79 <= dummy_s;
+	dummy_d_83 <= dummy_s;
 // synthesis translate_on
 end
 assign spimaster2_spimachine2_length = spimaster2_config_length;
@@ -9678,7 +10162,7 @@ assign spimaster2_spimachine2_cnt_done = (spimaster2_spimachine2_cnt == 1'd0);
 assign spimaster2_spimachine2_done = (spimaster2_spimachine2_cnt_done & (~spimaster2_spimachine2_do_extend));
 
 // synthesis translate_off
-reg dummy_d_80;
+reg dummy_d_84;
 // synthesis translate_on
 always @(*) begin
 	spimaster2_spimachine2_clk_next <= 1'd0;
@@ -9774,7 +10258,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_80 <= dummy_s;
+	dummy_d_84 <= dummy_s;
 // synthesis translate_on
 end
 assign sfp_ctl_led_1 = output0_pad_o;
@@ -9785,7 +10269,7 @@ assign monroe_ionphoton_rtio_tsc_full_ts = (monroe_ionphoton_rtio_tsc_coarse_ts 
 assign monroe_ionphoton_rtio_tsc_full_ts_sys = (monroe_ionphoton_rtio_tsc_coarse_ts_sys <<< 2'd3);
 
 // synthesis translate_off
-reg dummy_d_81;
+reg dummy_d_85;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_tsc_value_sys <= 61'd0;
@@ -9851,7 +10335,7 @@ always @(*) begin
 	monroe_ionphoton_rtio_tsc_value_sys[1] <= (monroe_ionphoton_rtio_tsc_value_sys[2] ^ monroe_ionphoton_rtio_tsc_value_gray_sys[1]);
 	monroe_ionphoton_rtio_tsc_value_sys[0] <= (monroe_ionphoton_rtio_tsc_value_sys[1] ^ monroe_ionphoton_rtio_tsc_value_gray_sys[0]);
 // synthesis translate_off
-	dummy_d_81 <= dummy_s;
+	dummy_d_85 <= dummy_s;
 // synthesis translate_on
 end
 assign rsys_clk = sys_clk;
@@ -10083,7 +10567,7 @@ assign monroe_ionphoton_rtio_core_outputs_lanedistributor_timestamp_above_laneB_
 assign monroe_ionphoton_rtio_core_outputs_lanedistributor_timestamp_above_last = ((monroe_ionphoton_rtio_core_outputs_lanedistributor_last_minus_timestamp - monroe_ionphoton_rtio_core_outputs_lanedistributor_compensation) < $signed({1'd0, 1'd0}));
 
 // synthesis translate_off
-reg dummy_d_82;
+reg dummy_d_86;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_use_laneB <= 1'd0;
@@ -10096,13 +10580,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_lanedistributor_use_laneB <= 1'd0;
 	end
 // synthesis translate_off
-	dummy_d_82 <= dummy_s;
+	dummy_d_86 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_lanedistributor_timestamp_above_lane_min = (monroe_ionphoton_rtio_core_outputs_lanedistributor_use_laneB ? monroe_ionphoton_rtio_core_outputs_lanedistributor_timestamp_above_laneB_min : monroe_ionphoton_rtio_core_outputs_lanedistributor_timestamp_above_laneA_min);
 
 // synthesis translate_off
-reg dummy_d_83;
+reg dummy_d_87;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_do_write <= 1'd0;
@@ -10120,13 +10604,13 @@ always @(*) begin
 		end
 	end
 // synthesis translate_off
-	dummy_d_83 <= dummy_s;
+	dummy_d_87 <= dummy_s;
 // synthesis translate_on
 end
 assign comb_lhs_array_muxed = monroe_ionphoton_rtio_core_outputs_lanedistributor_do_write;
 
 // synthesis translate_off
-reg dummy_d_84;
+reg dummy_d_88;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record0_we <= 1'd0;
@@ -10164,66 +10648,18 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_84 <= dummy_s;
+	dummy_d_88 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp = ($signed({1'd0, monroe_ionphoton_rtio_core_cri_o_timestamp}) + (monroe_ionphoton_rtio_core_outputs_lanedistributor_compensation <<< 2'd3));
 
 // synthesis translate_off
-reg dummy_d_85;
+reg dummy_d_89;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record0_payload_timestamp <= 64'd0;
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record0_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record0_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
-// synthesis translate_off
-	dummy_d_85 <= dummy_s;
-// synthesis translate_on
-end
-
-// synthesis translate_off
-reg dummy_d_86;
-// synthesis translate_on
-always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
-// synthesis translate_off
-	dummy_d_86 <= dummy_s;
-// synthesis translate_on
-end
-
-// synthesis translate_off
-reg dummy_d_87;
-// synthesis translate_on
-always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
-// synthesis translate_off
-	dummy_d_87 <= dummy_s;
-// synthesis translate_on
-end
-
-// synthesis translate_off
-reg dummy_d_88;
-// synthesis translate_on
-always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
-// synthesis translate_off
-	dummy_d_88 <= dummy_s;
-// synthesis translate_on
-end
-
-// synthesis translate_off
-reg dummy_d_89;
-// synthesis translate_on
-always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
 // synthesis translate_off
 	dummy_d_89 <= dummy_s;
 // synthesis translate_on
@@ -10233,9 +10669,9 @@ end
 reg dummy_d_90;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record1_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
 // synthesis translate_off
 	dummy_d_90 <= dummy_s;
 // synthesis translate_on
@@ -10245,9 +10681,9 @@ end
 reg dummy_d_91;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= 64'd0;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
-	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record2_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
 // synthesis translate_off
 	dummy_d_91 <= dummy_s;
 // synthesis translate_on
@@ -10257,11 +10693,59 @@ end
 reg dummy_d_92;
 // synthesis translate_on
 always @(*) begin
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record3_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+// synthesis translate_off
+	dummy_d_92 <= dummy_s;
+// synthesis translate_on
+end
+
+// synthesis translate_off
+reg dummy_d_93;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record4_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+// synthesis translate_off
+	dummy_d_93 <= dummy_s;
+// synthesis translate_on
+end
+
+// synthesis translate_off
+reg dummy_d_94;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record5_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+// synthesis translate_off
+	dummy_d_94 <= dummy_s;
+// synthesis translate_on
+end
+
+// synthesis translate_off
+reg dummy_d_95;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= 64'd0;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
+	monroe_ionphoton_rtio_core_outputs_lanedistributor_record6_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
+// synthesis translate_off
+	dummy_d_95 <= dummy_s;
+// synthesis translate_on
+end
+
+// synthesis translate_off
+reg dummy_d_96;
+// synthesis translate_on
+always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record7_payload_timestamp <= 64'd0;
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record7_payload_timestamp <= monroe_ionphoton_rtio_core_cri_o_timestamp;
 	monroe_ionphoton_rtio_core_outputs_lanedistributor_record7_payload_timestamp <= monroe_ionphoton_rtio_core_outputs_lanedistributor_compensated_timestamp;
 // synthesis translate_off
-	dummy_d_92 <= dummy_s;
+	dummy_d_96 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_lanedistributor_current_lane_writable = comb_rhs_array_muxed8;
@@ -10326,7 +10810,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_asyncfifo0_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_93;
+reg dummy_d_97;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_next_binary <= 8'd0;
@@ -10336,13 +10820,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_93 <= dummy_s;
+	dummy_d_97 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter0_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_94;
+reg dummy_d_98;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_next_binary <= 8'd0;
@@ -10352,7 +10836,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_94 <= dummy_s;
+	dummy_d_98 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q_next_binary[7:1]);
@@ -10368,7 +10852,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_asyncfifo1_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_95;
+reg dummy_d_99;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_next_binary <= 8'd0;
@@ -10378,13 +10862,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_95 <= dummy_s;
+	dummy_d_99 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter2_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_96;
+reg dummy_d_100;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_next_binary <= 8'd0;
@@ -10394,7 +10878,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_96 <= dummy_s;
+	dummy_d_100 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered1_graycounter3_q_next_binary[7:1]);
@@ -10410,7 +10894,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_asyncfifo2_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_97;
+reg dummy_d_101;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_next_binary <= 8'd0;
@@ -10420,13 +10904,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_97 <= dummy_s;
+	dummy_d_101 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter4_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_98;
+reg dummy_d_102;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_next_binary <= 8'd0;
@@ -10436,7 +10920,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_98 <= dummy_s;
+	dummy_d_102 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered2_graycounter5_q_next_binary[7:1]);
@@ -10452,7 +10936,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_asyncfifo3_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_99;
+reg dummy_d_103;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_next_binary <= 8'd0;
@@ -10462,13 +10946,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_99 <= dummy_s;
+	dummy_d_103 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter6_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_100;
+reg dummy_d_104;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_next_binary <= 8'd0;
@@ -10478,7 +10962,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_100 <= dummy_s;
+	dummy_d_104 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered3_graycounter7_q_next_binary[7:1]);
@@ -10494,7 +10978,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_asyncfifo4_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_101;
+reg dummy_d_105;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_next_binary <= 8'd0;
@@ -10504,13 +10988,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_101 <= dummy_s;
+	dummy_d_105 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter8_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_102;
+reg dummy_d_106;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_next_binary <= 8'd0;
@@ -10520,7 +11004,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_102 <= dummy_s;
+	dummy_d_106 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered4_graycounter9_q_next_binary[7:1]);
@@ -10536,7 +11020,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_asyncfifo5_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_103;
+reg dummy_d_107;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_next_binary <= 8'd0;
@@ -10546,13 +11030,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_103 <= dummy_s;
+	dummy_d_107 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter10_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_104;
+reg dummy_d_108;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_next_binary <= 8'd0;
@@ -10562,7 +11046,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_104 <= dummy_s;
+	dummy_d_108 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered5_graycounter11_q_next_binary[7:1]);
@@ -10578,7 +11062,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_asyncfifo6_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_105;
+reg dummy_d_109;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_next_binary <= 8'd0;
@@ -10588,13 +11072,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_105 <= dummy_s;
+	dummy_d_109 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter12_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_106;
+reg dummy_d_110;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_next_binary <= 8'd0;
@@ -10604,7 +11088,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_106 <= dummy_s;
+	dummy_d_110 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered6_graycounter13_q_next_binary[7:1]);
@@ -10620,7 +11104,7 @@ assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_rdport_adr = monroe
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_asyncfifo7_dout = monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_107;
+reg dummy_d_111;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_next_binary <= 8'd0;
@@ -10630,13 +11114,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_107 <= dummy_s;
+	dummy_d_111 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter14_q_next_binary[7:1]);
 
 // synthesis translate_off
-reg dummy_d_108;
+reg dummy_d_112;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_next_binary <= 8'd0;
@@ -10646,7 +11130,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_next_binary <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_108 <= dummy_s;
+	dummy_d_112 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_next = (monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_next_binary ^ monroe_ionphoton_rtio_core_outputs_asyncfifobuffered7_graycounter15_q_next_binary[7:1]);
@@ -10988,7 +11472,7 @@ assign monroe_ionphoton_rtio_core_outputs_selected294 = ((monroe_ionphoton_rtio_
 assign monroe_ionphoton_rtio_core_outputs_selected295 = ((monroe_ionphoton_rtio_core_outputs_record7_valid1 & (~monroe_ionphoton_rtio_core_outputs_record7_collision)) & (monroe_ionphoton_rtio_core_outputs_record7_payload_channel3 == 6'd36));
 
 // synthesis translate_off
-reg dummy_d_109;
+reg dummy_d_113;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference0 <= 1'd0;
@@ -11002,12 +11486,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference0 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_109 <= dummy_s;
+	dummy_d_113 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_110;
+reg dummy_d_114;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference1 <= 1'd0;
@@ -11021,12 +11505,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference1 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_110 <= dummy_s;
+	dummy_d_114 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_111;
+reg dummy_d_115;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference2 <= 1'd0;
@@ -11040,12 +11524,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference2 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_111 <= dummy_s;
+	dummy_d_115 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_112;
+reg dummy_d_116;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference3 <= 1'd0;
@@ -11059,12 +11543,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference3 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_112 <= dummy_s;
+	dummy_d_116 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_113;
+reg dummy_d_117;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference4 <= 1'd0;
@@ -11078,12 +11562,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference4 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_113 <= dummy_s;
+	dummy_d_117 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_114;
+reg dummy_d_118;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference5 <= 1'd0;
@@ -11097,12 +11581,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference5 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_114 <= dummy_s;
+	dummy_d_118 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_115;
+reg dummy_d_119;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference6 <= 1'd0;
@@ -11116,12 +11600,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference6 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_115 <= dummy_s;
+	dummy_d_119 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_116;
+reg dummy_d_120;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference7 <= 1'd0;
@@ -11135,12 +11619,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference7 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_116 <= dummy_s;
+	dummy_d_120 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_117;
+reg dummy_d_121;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference8 <= 1'd0;
@@ -11154,12 +11638,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference8 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_117 <= dummy_s;
+	dummy_d_121 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_118;
+reg dummy_d_122;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference9 <= 1'd0;
@@ -11173,12 +11657,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference9 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_118 <= dummy_s;
+	dummy_d_122 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_119;
+reg dummy_d_123;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference10 <= 1'd0;
@@ -11192,12 +11676,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference10 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_119 <= dummy_s;
+	dummy_d_123 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_120;
+reg dummy_d_124;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference11 <= 1'd0;
@@ -11211,12 +11695,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference11 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_120 <= dummy_s;
+	dummy_d_124 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_121;
+reg dummy_d_125;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference12 <= 1'd0;
@@ -11230,12 +11714,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference12 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_121 <= dummy_s;
+	dummy_d_125 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_122;
+reg dummy_d_126;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference13 <= 1'd0;
@@ -11249,12 +11733,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference13 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_122 <= dummy_s;
+	dummy_d_126 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_123;
+reg dummy_d_127;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference14 <= 1'd0;
@@ -11268,12 +11752,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference14 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_123 <= dummy_s;
+	dummy_d_127 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_124;
+reg dummy_d_128;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference15 <= 1'd0;
@@ -11287,12 +11771,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference15 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_124 <= dummy_s;
+	dummy_d_128 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_125;
+reg dummy_d_129;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference16 <= 1'd0;
@@ -11306,12 +11790,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference16 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_125 <= dummy_s;
+	dummy_d_129 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_126;
+reg dummy_d_130;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference17 <= 1'd0;
@@ -11325,12 +11809,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference17 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_126 <= dummy_s;
+	dummy_d_130 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_127;
+reg dummy_d_131;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_outputs_nondata_difference18 <= 1'd0;
@@ -11344,7 +11828,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_outputs_nondata_difference18 <= 1'd1;
 	end
 // synthesis translate_off
-	dummy_d_127 <= dummy_s;
+	dummy_d_131 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_din = {monroe_ionphoton_rtio_core_inputs_record0_fifo_in_timestamp, monroe_ionphoton_rtio_core_inputs_record0_fifo_in_data};
@@ -11383,30 +11867,66 @@ assign monroe_ionphoton_rtio_core_inputs_overflow_io3 = (monroe_ionphoton_rtio_c
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer3_i = monroe_ionphoton_rtio_core_inputs_overflow_io3;
 assign monroe_ionphoton_rtio_core_inputs_selected3 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 2'd3);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_asyncfifo3_re = ((monroe_ionphoton_rtio_core_inputs_selected3 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow3));
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_din = {monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data};
-assign {monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_dout;
-assign monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data = spimaster0_iinterface0_data;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_we = spimaster0_iinterface0_stb;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_din = {monroe_ionphoton_rtio_core_inputs_record4_fifo_in_timestamp, monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record4_fifo_out_timestamp, monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_dout;
+assign monroe_ionphoton_rtio_core_inputs_record4_fifo_in_data = inout_8x4_inout_8x4_iinterface4_data;
+assign monroe_ionphoton_rtio_core_inputs_record4_fifo_in_timestamp = {monroe_ionphoton_rtio_tsc_coarse_ts, inout_8x4_inout_8x4_iinterface4_fine_ts};
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_we = inout_8x4_inout_8x4_iinterface4_stb;
 assign monroe_ionphoton_rtio_core_inputs_overflow_io4 = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_writable));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_i = monroe_ionphoton_rtio_core_inputs_overflow_io4;
-assign monroe_ionphoton_rtio_core_inputs_selected4 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd16);
+assign monroe_ionphoton_rtio_core_inputs_selected4 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 3'd4);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_re = ((monroe_ionphoton_rtio_core_inputs_selected4 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow4));
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_din = {monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data};
-assign {monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_dout;
-assign monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data = spimaster1_iinterface1_data;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_we = spimaster1_iinterface1_stb;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_din = {monroe_ionphoton_rtio_core_inputs_record5_fifo_in_timestamp, monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record5_fifo_out_timestamp, monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_dout;
+assign monroe_ionphoton_rtio_core_inputs_record5_fifo_in_data = inout_8x5_inout_8x5_iinterface5_data;
+assign monroe_ionphoton_rtio_core_inputs_record5_fifo_in_timestamp = {monroe_ionphoton_rtio_tsc_coarse_ts, inout_8x5_inout_8x5_iinterface5_fine_ts};
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_we = inout_8x5_inout_8x5_iinterface5_stb;
 assign monroe_ionphoton_rtio_core_inputs_overflow_io5 = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_writable));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_i = monroe_ionphoton_rtio_core_inputs_overflow_io5;
-assign monroe_ionphoton_rtio_core_inputs_selected5 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd22);
+assign monroe_ionphoton_rtio_core_inputs_selected5 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 3'd5);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_re = ((monroe_ionphoton_rtio_core_inputs_selected5 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow5));
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_din = {monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data};
-assign {monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_dout;
-assign monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data = spimaster2_iinterface2_data;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_we = spimaster2_iinterface2_stb;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_din = {monroe_ionphoton_rtio_core_inputs_record6_fifo_in_timestamp, monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record6_fifo_out_timestamp, monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_dout;
+assign monroe_ionphoton_rtio_core_inputs_record6_fifo_in_data = inout_8x6_inout_8x6_iinterface6_data;
+assign monroe_ionphoton_rtio_core_inputs_record6_fifo_in_timestamp = {monroe_ionphoton_rtio_tsc_coarse_ts, inout_8x6_inout_8x6_iinterface6_fine_ts};
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_we = inout_8x6_inout_8x6_iinterface6_stb;
 assign monroe_ionphoton_rtio_core_inputs_overflow_io6 = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_writable));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_i = monroe_ionphoton_rtio_core_inputs_overflow_io6;
-assign monroe_ionphoton_rtio_core_inputs_selected6 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd28);
+assign monroe_ionphoton_rtio_core_inputs_selected6 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 3'd6);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_re = ((monroe_ionphoton_rtio_core_inputs_selected6 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow6));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_din = {monroe_ionphoton_rtio_core_inputs_record7_fifo_in_timestamp, monroe_ionphoton_rtio_core_inputs_record7_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record7_fifo_out_timestamp, monroe_ionphoton_rtio_core_inputs_record7_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_dout;
+assign monroe_ionphoton_rtio_core_inputs_record7_fifo_in_data = inout_8x7_inout_8x7_iinterface7_data;
+assign monroe_ionphoton_rtio_core_inputs_record7_fifo_in_timestamp = {monroe_ionphoton_rtio_tsc_coarse_ts, inout_8x7_inout_8x7_iinterface7_fine_ts};
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_we = inout_8x7_inout_8x7_iinterface7_stb;
+assign monroe_ionphoton_rtio_core_inputs_overflow_io7 = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_writable));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_i = monroe_ionphoton_rtio_core_inputs_overflow_io7;
+assign monroe_ionphoton_rtio_core_inputs_selected7 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 3'd7);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_re = ((monroe_ionphoton_rtio_core_inputs_selected7 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow7));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_din = {monroe_ionphoton_rtio_core_inputs_record8_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record8_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_dout;
+assign monroe_ionphoton_rtio_core_inputs_record8_fifo_in_data = spimaster0_iinterface0_data;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_we = spimaster0_iinterface0_stb;
+assign monroe_ionphoton_rtio_core_inputs_overflow_io8 = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_writable));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_i = monroe_ionphoton_rtio_core_inputs_overflow_io8;
+assign monroe_ionphoton_rtio_core_inputs_selected8 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd16);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_re = ((monroe_ionphoton_rtio_core_inputs_selected8 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow8));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_din = {monroe_ionphoton_rtio_core_inputs_record9_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record9_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_dout;
+assign monroe_ionphoton_rtio_core_inputs_record9_fifo_in_data = spimaster1_iinterface1_data;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_we = spimaster1_iinterface1_stb;
+assign monroe_ionphoton_rtio_core_inputs_overflow_io9 = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_writable));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_i = monroe_ionphoton_rtio_core_inputs_overflow_io9;
+assign monroe_ionphoton_rtio_core_inputs_selected9 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd22);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_re = ((monroe_ionphoton_rtio_core_inputs_selected9 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow9));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_din = {monroe_ionphoton_rtio_core_inputs_record10_fifo_in_data};
+assign {monroe_ionphoton_rtio_core_inputs_record10_fifo_out_data} = monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_dout;
+assign monroe_ionphoton_rtio_core_inputs_record10_fifo_in_data = spimaster2_iinterface2_data;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_we = spimaster2_iinterface2_stb;
+assign monroe_ionphoton_rtio_core_inputs_overflow_io10 = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_we & (~monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_writable));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_i = monroe_ionphoton_rtio_core_inputs_overflow_io10;
+assign monroe_ionphoton_rtio_core_inputs_selected10 = (monroe_ionphoton_rtio_core_cri_chan_sel[15:0] == 5'd28);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_re = ((monroe_ionphoton_rtio_core_inputs_selected10 & monroe_ionphoton_rtio_core_inputs_i_ack) & (~monroe_ionphoton_rtio_core_inputs_overflow10));
 assign monroe_ionphoton_rtio_core_inputs_i_status_raw = comb_rhs_array_muxed9;
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_we);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_re);
@@ -11419,7 +11939,7 @@ assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_rdport_adr = monroe_ionphoto
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_asyncfifo0_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo0_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_128;
+reg dummy_d_132;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_next_binary <= 7'd0;
@@ -11429,13 +11949,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_128 <= dummy_s;
+	dummy_d_132 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter0_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_129;
+reg dummy_d_133;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_next_binary <= 7'd0;
@@ -11445,7 +11965,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_129 <= dummy_s;
+	dummy_d_133 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo0_graycounter1_q_next_binary[6:1]);
@@ -11465,7 +11985,7 @@ assign monroe_ionphoton_rtio_core_inputs_asyncfifo1_rdport_adr = monroe_ionphoto
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo1_asyncfifo1_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo1_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_130;
+reg dummy_d_134;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_next_binary <= 7'd0;
@@ -11475,13 +11995,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_130 <= dummy_s;
+	dummy_d_134 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter2_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_131;
+reg dummy_d_135;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_next_binary <= 7'd0;
@@ -11491,7 +12011,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_131 <= dummy_s;
+	dummy_d_135 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo1_graycounter3_q_next_binary[6:1]);
@@ -11511,7 +12031,7 @@ assign monroe_ionphoton_rtio_core_inputs_asyncfifo2_rdport_adr = monroe_ionphoto
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo2_asyncfifo2_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo2_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_132;
+reg dummy_d_136;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_next_binary <= 7'd0;
@@ -11521,13 +12041,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_132 <= dummy_s;
+	dummy_d_136 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter4_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_133;
+reg dummy_d_137;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_next_binary <= 7'd0;
@@ -11537,7 +12057,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_133 <= dummy_s;
+	dummy_d_137 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo2_graycounter5_q_next_binary[6:1]);
@@ -11557,7 +12077,7 @@ assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_rdport_adr = monroe_ionphoto
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_asyncfifo3_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo3_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_134;
+reg dummy_d_138;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_next_binary <= 7'd0;
@@ -11567,13 +12087,13 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_134 <= dummy_s;
+	dummy_d_138 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_135;
+reg dummy_d_139;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_next_binary <= 7'd0;
@@ -11583,7 +12103,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_135 <= dummy_s;
+	dummy_d_139 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_next_binary[6:1]);
@@ -11594,45 +12114,45 @@ assign monroe_ionphoton_rtio_core_inputs_blindtransfer3_ps_o = (monroe_ionphoton
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer3_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer3_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer3_ps_ack_toggle_o_r);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_we);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_re);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[6] == monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[6]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[5] == monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[5])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q[4:0] != monroe_ionphoton_rtio_core_inputs_asyncfifo4_consume_wdomain[4:0]));
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q != monroe_ionphoton_rtio_core_inputs_asyncfifo4_produce_rdomain);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_din;
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_ce;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_136;
+reg dummy_d_140;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_136 <= dummy_s;
+	dummy_d_140 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_137;
+reg dummy_d_141;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_137 <= dummy_s;
+	dummy_d_141 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_next_binary[6:1]);
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer4_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer4_blind));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_o;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_o = monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_o;
@@ -11640,45 +12160,45 @@ assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_o = (monroe_ionphoton
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer4_ps_ack_toggle_o_r);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_we);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_re);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[6] == monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[6]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[5] == monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[5])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q[4:0] != monroe_ionphoton_rtio_core_inputs_asyncfifo5_consume_wdomain[4:0]));
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q != monroe_ionphoton_rtio_core_inputs_asyncfifo5_produce_rdomain);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_din;
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_ce;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_138;
+reg dummy_d_142;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_138 <= dummy_s;
+	dummy_d_142 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_139;
+reg dummy_d_143;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_139 <= dummy_s;
+	dummy_d_143 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_next_binary[6:1]);
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer5_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer5_blind));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_o;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_o = monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_o;
@@ -11686,50 +12206,234 @@ assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_o = (monroe_ionphoton
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer5_ps_ack_toggle_o_r);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_we);
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_re);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[6] == monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[6]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[5] == monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[5])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q[4:0] != monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain[4:0]));
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q != monroe_ionphoton_rtio_core_inputs_asyncfifo6_produce_rdomain);
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_din;
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_ce;
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary[5:0];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_dat_r;
 
 // synthesis translate_off
-reg dummy_d_140;
+reg dummy_d_144;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_140 <= dummy_s;
+	dummy_d_144 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_next_binary[6:1]);
 
 // synthesis translate_off
-reg dummy_d_141;
+reg dummy_d_145;
 // synthesis translate_on
 always @(*) begin
-	monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary <= 3'd0;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary <= 7'd0;
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_ce) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary + 1'd1);
 	end else begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary;
 	end
 // synthesis translate_off
-	dummy_d_141 <= dummy_s;
+	dummy_d_145 <= dummy_s;
 // synthesis translate_on
 end
-assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_next_binary[6:1]);
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer6_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer6_blind));
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_o;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_o = monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_o;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_o_r);
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_we);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_re);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q[6] == monroe_ionphoton_rtio_core_inputs_asyncfifo7_consume_wdomain[6]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q[5] == monroe_ionphoton_rtio_core_inputs_asyncfifo7_consume_wdomain[5])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q[4:0] != monroe_ionphoton_rtio_core_inputs_asyncfifo7_consume_wdomain[4:0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q != monroe_ionphoton_rtio_core_inputs_asyncfifo7_produce_rdomain);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary[5:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_din;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_ce;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary[5:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_dat_r;
+
+// synthesis translate_off
+reg dummy_d_146;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary <= 7'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_146 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary[6:1]);
+
+// synthesis translate_off
+reg dummy_d_147;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary <= 7'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_147 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary[6:1]);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer7_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer7_blind));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_o = monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_we);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_re);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo8_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo8_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo8_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q != monroe_ionphoton_rtio_core_inputs_asyncfifo8_produce_rdomain);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_din;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_ce;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_dat_r;
+
+// synthesis translate_off
+reg dummy_d_148;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_148 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary[2:1]);
+
+// synthesis translate_off
+reg dummy_d_149;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_149 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer8_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer8_blind));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_o = monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_we);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_re);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo9_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo9_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo9_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q != monroe_ionphoton_rtio_core_inputs_asyncfifo9_produce_rdomain);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_din;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_ce;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_dat_r;
+
+// synthesis translate_off
+reg dummy_d_150;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_150 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary[2:1]);
+
+// synthesis translate_off
+reg dummy_d_151;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_151 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer9_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer9_blind));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_o = monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_writable & monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_we);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_ce = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_readable & monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_re);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_writable = (((monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q[2] == monroe_ionphoton_rtio_core_inputs_asyncfifo10_consume_wdomain[2]) | (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q[1] == monroe_ionphoton_rtio_core_inputs_asyncfifo10_consume_wdomain[1])) | (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q[0] != monroe_ionphoton_rtio_core_inputs_asyncfifo10_consume_wdomain[0]));
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_readable = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q != monroe_ionphoton_rtio_core_inputs_asyncfifo10_produce_rdomain);
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_dat_w = monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_din;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_we = monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_ce;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_adr = monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary[1:0];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_dout = monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_dat_r;
+
+// synthesis translate_off
+reg dummy_d_152;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_152 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary[2:1]);
+
+// synthesis translate_off
+reg dummy_d_153;
+// synthesis translate_on
+always @(*) begin
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary <= 3'd0;
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_ce) begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary <= (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_binary + 1'd1);
+	end else begin
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_binary;
+	end
+// synthesis translate_off
+	dummy_d_153 <= dummy_s;
+// synthesis translate_on
+end
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next = (monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary ^ monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary[2:1]);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_i = (monroe_ionphoton_rtio_core_inputs_blindtransfer10_i & (~monroe_ionphoton_rtio_core_inputs_blindtransfer10_blind));
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_i = monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_o = monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_o;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o_r);
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_o = (monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o ^ monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o_r);
 assign monroe_ionphoton_rtio_core_o_collision_sync_ps_i = (monroe_ionphoton_rtio_core_o_collision_sync_i & (~monroe_ionphoton_rtio_core_o_collision_sync_blind));
 assign monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_i = monroe_ionphoton_rtio_core_o_collision_sync_ps_o;
 assign monroe_ionphoton_rtio_core_o_collision_sync_o = monroe_ionphoton_rtio_core_o_collision_sync_ps_o;
@@ -11744,7 +12448,7 @@ assign monroe_ionphoton_rtio_now_hi_w = monroe_ionphoton_rtio_now[63:32];
 assign monroe_ionphoton_rtio_now_lo_w = monroe_ionphoton_rtio_now[31:0];
 
 // synthesis translate_off
-reg dummy_d_142;
+reg dummy_d_154;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_cri_cmd <= 2'd0;
@@ -11756,7 +12460,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_cri_cmd <= 2'd2;
 	end
 // synthesis translate_off
-	dummy_d_142 <= dummy_s;
+	dummy_d_154 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_cri_chan_sel = monroe_ionphoton_rtio_target_storage[31:8];
@@ -11799,7 +12503,7 @@ assign monroe_ionphoton_dma_dma_source_stb = monroe_ionphoton_dma_dma_data_reg_l
 assign monroe_ionphoton_dma_rawslicer_source = monroe_ionphoton_dma_rawslicer_buf[615:0];
 
 // synthesis translate_off
-reg dummy_d_143;
+reg dummy_d_155;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_dma_rawslicer_sink_ack <= 1'd0;
@@ -11843,7 +12547,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_143 <= dummy_s;
+	dummy_d_155 <= dummy_s;
 // synthesis translate_on
 end
 assign {monroe_ionphoton_dma_record_converter_record_raw_data, monroe_ionphoton_dma_record_converter_record_raw_address, monroe_ionphoton_dma_record_converter_record_raw_timestamp, monroe_ionphoton_dma_record_converter_record_raw_channel, monroe_ionphoton_dma_record_converter_record_raw_length} = monroe_ionphoton_dma_rawslicer_source;
@@ -11852,7 +12556,7 @@ assign monroe_ionphoton_dma_record_converter_source_payload_timestamp = monroe_i
 assign monroe_ionphoton_dma_record_converter_source_payload_address = monroe_ionphoton_dma_record_converter_record_raw_address;
 
 // synthesis translate_off
-reg dummy_d_144;
+reg dummy_d_156;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_dma_record_converter_source_payload_data <= 512'd0;
@@ -12051,12 +12755,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_144 <= dummy_s;
+	dummy_d_156 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_145;
+reg dummy_d_157;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_dma_rawslicer_source_consume <= 7'd0;
@@ -12100,7 +12804,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_145 <= dummy_s;
+	dummy_d_157 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_dma_time_offset_sink_ack = (~monroe_ionphoton_dma_time_offset_source_stb);
@@ -12110,7 +12814,7 @@ assign monroe_ionphoton_dma_cri_master_cri_o_address = monroe_ionphoton_dma_cri_
 assign monroe_ionphoton_dma_cri_master_cri_o_data = monroe_ionphoton_dma_cri_master_sink_payload_data;
 
 // synthesis translate_off
-reg dummy_d_146;
+reg dummy_d_158;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_dma_cri_master_sink_ack <= 1'd0;
@@ -12166,12 +12870,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_146 <= dummy_s;
+	dummy_d_158 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_147;
+reg dummy_d_159;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_dma_enable_enable_w <= 1'd0;
@@ -12211,7 +12915,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_147 <= dummy_s;
+	dummy_d_159 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_monroe_ionphoton_csrbank0_target0_r = monroe_ionphoton_monroe_ionphoton_csrbank0_bus_dat_w[31:0];
@@ -12358,7 +13062,7 @@ assign monroe_ionphoton_rtio_core_cri_o_address = monroe_ionphoton_cri_con_share
 assign monroe_ionphoton_rtio_core_cri_i_timeout = monroe_ionphoton_cri_con_shared_i_timeout;
 
 // synthesis translate_off
-reg dummy_d_148;
+reg dummy_d_160;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_core_cri_cmd <= 2'd0;
@@ -12366,12 +13070,12 @@ always @(*) begin
 		monroe_ionphoton_rtio_core_cri_cmd <= monroe_ionphoton_cri_con_shared_cmd;
 	end
 // synthesis translate_off
-	dummy_d_148 <= dummy_s;
+	dummy_d_160 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_149;
+reg dummy_d_161;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_cri_con_shared_o_status <= 3'd0;
@@ -12391,7 +13095,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_149 <= dummy_s;
+	dummy_d_161 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_monroe_ionphoton_csrbank2_selected0_r = monroe_ionphoton_monroe_ionphoton_csrbank2_bus_dat_w[1:0];
@@ -12406,35 +13110,39 @@ assign monroe_ionphoton_mon_bussynchronizer4_i = inout_8x2_serdes_i0[7];
 assign monroe_ionphoton_mon_bussynchronizer5_i = inout_8x2_serdes_oe;
 assign monroe_ionphoton_mon_bussynchronizer6_i = inout_8x3_serdes_i0[7];
 assign monroe_ionphoton_mon_bussynchronizer7_i = inout_8x3_serdes_oe;
-assign monroe_ionphoton_mon_bussynchronizer8_i = output_8x0_o[7];
-assign monroe_ionphoton_mon_bussynchronizer9_i = output_8x1_o[7];
-assign monroe_ionphoton_mon_bussynchronizer10_i = output_8x2_o[7];
-assign monroe_ionphoton_mon_bussynchronizer11_i = output_8x3_o[7];
-assign monroe_ionphoton_mon_bussynchronizer12_i = output_8x4_o[7];
-assign monroe_ionphoton_mon_bussynchronizer13_i = output_8x5_o[7];
-assign monroe_ionphoton_mon_bussynchronizer14_i = output_8x6_o[7];
-assign monroe_ionphoton_mon_bussynchronizer15_i = output_8x7_o[7];
-assign monroe_ionphoton_mon_bussynchronizer16_i = output_8x8_o[7];
-assign monroe_ionphoton_mon_bussynchronizer17_i = output_8x9_o[7];
-assign monroe_ionphoton_mon_bussynchronizer18_i = output_8x10_o[7];
-assign monroe_ionphoton_mon_bussynchronizer19_i = output_8x11_o[7];
-assign monroe_ionphoton_mon_bussynchronizer20_i = output_8x12_o[7];
-assign monroe_ionphoton_mon_bussynchronizer21_i = output_8x13_o[7];
-assign monroe_ionphoton_mon_bussynchronizer22_i = output_8x14_o[7];
-assign monroe_ionphoton_mon_bussynchronizer23_i = output_8x15_o[7];
-assign monroe_ionphoton_mon_bussynchronizer24_i = output_8x16_o[7];
-assign monroe_ionphoton_mon_bussynchronizer25_i = output_8x17_o[7];
-assign monroe_ionphoton_mon_bussynchronizer26_i = output_8x18_o[7];
-assign monroe_ionphoton_mon_bussynchronizer27_i = output_8x19_o[7];
-assign monroe_ionphoton_mon_bussynchronizer28_i = output_8x20_o[7];
-assign monroe_ionphoton_mon_bussynchronizer29_i = output_8x21_o[7];
-assign monroe_ionphoton_mon_bussynchronizer30_i = output_8x22_o[7];
-assign monroe_ionphoton_mon_bussynchronizer31_i = output_8x23_o[7];
-assign monroe_ionphoton_mon_bussynchronizer32_i = output_8x24_o[7];
-assign monroe_ionphoton_mon_bussynchronizer33_i = output_8x25_o[7];
-assign monroe_ionphoton_mon_bussynchronizer34_i = output_8x26_o[7];
-assign monroe_ionphoton_mon_bussynchronizer35_i = output0_pad_o;
-assign monroe_ionphoton_mon_bussynchronizer36_i = output1_pad_o;
+assign monroe_ionphoton_mon_bussynchronizer8_i = inout_8x4_serdes_i0[7];
+assign monroe_ionphoton_mon_bussynchronizer9_i = inout_8x4_serdes_oe;
+assign monroe_ionphoton_mon_bussynchronizer10_i = inout_8x5_serdes_i0[7];
+assign monroe_ionphoton_mon_bussynchronizer11_i = inout_8x5_serdes_oe;
+assign monroe_ionphoton_mon_bussynchronizer12_i = inout_8x6_serdes_i0[7];
+assign monroe_ionphoton_mon_bussynchronizer13_i = inout_8x6_serdes_oe;
+assign monroe_ionphoton_mon_bussynchronizer14_i = inout_8x7_serdes_i0[7];
+assign monroe_ionphoton_mon_bussynchronizer15_i = inout_8x7_serdes_oe;
+assign monroe_ionphoton_mon_bussynchronizer16_i = output_8x0_o[7];
+assign monroe_ionphoton_mon_bussynchronizer17_i = output_8x1_o[7];
+assign monroe_ionphoton_mon_bussynchronizer18_i = output_8x2_o[7];
+assign monroe_ionphoton_mon_bussynchronizer19_i = output_8x3_o[7];
+assign monroe_ionphoton_mon_bussynchronizer20_i = output_8x4_o[7];
+assign monroe_ionphoton_mon_bussynchronizer21_i = output_8x5_o[7];
+assign monroe_ionphoton_mon_bussynchronizer22_i = output_8x6_o[7];
+assign monroe_ionphoton_mon_bussynchronizer23_i = output_8x7_o[7];
+assign monroe_ionphoton_mon_bussynchronizer24_i = output_8x8_o[7];
+assign monroe_ionphoton_mon_bussynchronizer25_i = output_8x9_o[7];
+assign monroe_ionphoton_mon_bussynchronizer26_i = output_8x10_o[7];
+assign monroe_ionphoton_mon_bussynchronizer27_i = output_8x11_o[7];
+assign monroe_ionphoton_mon_bussynchronizer28_i = output_8x12_o[7];
+assign monroe_ionphoton_mon_bussynchronizer29_i = output_8x13_o[7];
+assign monroe_ionphoton_mon_bussynchronizer30_i = output_8x14_o[7];
+assign monroe_ionphoton_mon_bussynchronizer31_i = output_8x15_o[7];
+assign monroe_ionphoton_mon_bussynchronizer32_i = output_8x16_o[7];
+assign monroe_ionphoton_mon_bussynchronizer33_i = output_8x17_o[7];
+assign monroe_ionphoton_mon_bussynchronizer34_i = output_8x18_o[7];
+assign monroe_ionphoton_mon_bussynchronizer35_i = output_8x19_o[7];
+assign monroe_ionphoton_mon_bussynchronizer36_i = output_8x20_o[7];
+assign monroe_ionphoton_mon_bussynchronizer37_i = output_8x21_o[7];
+assign monroe_ionphoton_mon_bussynchronizer38_i = output_8x22_o[7];
+assign monroe_ionphoton_mon_bussynchronizer39_i = output0_pad_o;
+assign monroe_ionphoton_mon_bussynchronizer40_i = output1_pad_o;
 assign monroe_ionphoton_inj_value_w = comb_rhs_array_muxed16;
 assign monroe_ionphoton_rtio_analyzer_fifo_sink_stb = monroe_ionphoton_rtio_analyzer_message_encoder_source_stb;
 assign monroe_ionphoton_rtio_analyzer_message_encoder_source_ack = monroe_ionphoton_rtio_analyzer_fifo_sink_ack;
@@ -12451,7 +13159,7 @@ assign monroe_ionphoton_rtio_analyzer_dma_sink_payload_data = monroe_ionphoton_r
 assign monroe_ionphoton_rtio_analyzer_dma_sink_payload_valid_token_count = monroe_ionphoton_rtio_analyzer_converter_source_payload_valid_token_count;
 
 // synthesis translate_off
-reg dummy_d_150;
+reg dummy_d_162;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_analyzer_message_encoder_read_done <= 1'd0;
@@ -12465,7 +13173,7 @@ always @(*) begin
 		end
 	end
 // synthesis translate_off
-	dummy_d_150 <= dummy_s;
+	dummy_d_162 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_analyzer_message_encoder_input_output_channel = monroe_ionphoton_rtio_core_cri_chan_sel;
@@ -12473,7 +13181,7 @@ assign monroe_ionphoton_rtio_analyzer_message_encoder_input_output_address_paddi
 assign monroe_ionphoton_rtio_analyzer_message_encoder_input_output_rtio_counter = monroe_ionphoton_rtio_tsc_full_ts_sys;
 
 // synthesis translate_off
-reg dummy_d_151;
+reg dummy_d_163;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_analyzer_message_encoder_input_output_message_type <= 2'd0;
@@ -12489,7 +13197,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_analyzer_message_encoder_input_output_data <= monroe_ionphoton_rtio_core_cri_i_data;
 	end
 // synthesis translate_off
-	dummy_d_151 <= dummy_s;
+	dummy_d_163 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_analyzer_message_encoder_input_output_stb = ((monroe_ionphoton_rtio_core_cri_cmd == 1'd1) | monroe_ionphoton_rtio_analyzer_message_encoder_read_done);
@@ -12498,7 +13206,7 @@ assign monroe_ionphoton_rtio_analyzer_message_encoder_exception_channel = monroe
 assign monroe_ionphoton_rtio_analyzer_message_encoder_exception_rtio_counter = monroe_ionphoton_rtio_tsc_full_ts_sys;
 
 // synthesis translate_off
-reg dummy_d_152;
+reg dummy_d_164;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_analyzer_message_encoder_exception_stb <= 1'd0;
@@ -12512,7 +13220,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_analyzer_message_encoder_exception_exception_type <= 6'd33;
 	end
 // synthesis translate_off
-	dummy_d_152 <= dummy_s;
+	dummy_d_164 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_analyzer_message_encoder_stopped_message_type = 2'd3;
@@ -12531,7 +13239,7 @@ assign monroe_ionphoton_rtio_analyzer_fifo_syncfifo_re = (monroe_ionphoton_rtio_
 assign monroe_ionphoton_rtio_analyzer_fifo_level1 = (monroe_ionphoton_rtio_analyzer_fifo_level0 + monroe_ionphoton_rtio_analyzer_fifo_readable);
 
 // synthesis translate_off
-reg dummy_d_153;
+reg dummy_d_165;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_analyzer_fifo_wrport_adr <= 7'd0;
@@ -12541,7 +13249,7 @@ always @(*) begin
 		monroe_ionphoton_rtio_analyzer_fifo_wrport_adr <= monroe_ionphoton_rtio_analyzer_fifo_produce;
 	end
 // synthesis translate_off
-	dummy_d_153 <= dummy_s;
+	dummy_d_165 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_analyzer_fifo_wrport_dat_w = monroe_ionphoton_rtio_analyzer_fifo_syncfifo_din;
@@ -12558,7 +13266,7 @@ assign monroe_ionphoton_rtio_analyzer_converter_source_eop = (monroe_ionphoton_r
 assign monroe_ionphoton_rtio_analyzer_converter_sink_ack = (monroe_ionphoton_rtio_analyzer_converter_last & monroe_ionphoton_rtio_analyzer_converter_source_ack);
 
 // synthesis translate_off
-reg dummy_d_154;
+reg dummy_d_166;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_rtio_analyzer_converter_source_payload_data <= 128'd0;
@@ -12571,7 +13279,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_154 <= dummy_s;
+	dummy_d_166 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_rtio_analyzer_converter_source_payload_valid_token_count = monroe_ionphoton_rtio_analyzer_converter_last;
@@ -12632,7 +13340,7 @@ assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_tmpu_
 assign monroe_ionphoton_request = {(monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_tmpu_cyc & (~monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_tmpu_ack)), (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_ibus_cyc & (~monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_ibus_ack))};
 
 // synthesis translate_off
-reg dummy_d_155;
+reg dummy_d_167;
 // synthesis translate_on
 always @(*) begin
 	monroe_ionphoton_slave_sel <= 6'd0;
@@ -12643,7 +13351,7 @@ always @(*) begin
 	monroe_ionphoton_slave_sel[4] <= ((1'd1 & (~monroe_ionphoton_shared_adr[28])) & monroe_ionphoton_shared_adr[27]);
 	monroe_ionphoton_slave_sel[5] <= (((1'd1 & monroe_ionphoton_shared_adr[26]) & monroe_ionphoton_shared_adr[27]) & monroe_ionphoton_shared_adr[28]);
 // synthesis translate_off
-	dummy_d_155 <= dummy_s;
+	dummy_d_167 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_sram_bus_adr = monroe_ionphoton_shared_adr;
@@ -13328,7 +14036,7 @@ assign monroe_ionphoton_interface15_bank_bus_dat_w = monroe_ionphoton_monroe_ion
 assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_interface_dat_r = (((((((((((((((monroe_ionphoton_interface0_bank_bus_dat_r | monroe_ionphoton_interface1_bank_bus_dat_r) | monroe_ionphoton_interface2_bank_bus_dat_r) | monroe_ionphoton_interface3_bank_bus_dat_r) | monroe_ionphoton_interface4_bank_bus_dat_r) | monroe_ionphoton_interface5_bank_bus_dat_r) | monroe_ionphoton_interface6_bank_bus_dat_r) | monroe_ionphoton_interface7_bank_bus_dat_r) | monroe_ionphoton_interface8_bank_bus_dat_r) | monroe_ionphoton_interface9_bank_bus_dat_r) | monroe_ionphoton_interface10_bank_bus_dat_r) | monroe_ionphoton_interface11_bank_bus_dat_r) | monroe_ionphoton_interface12_bank_bus_dat_r) | monroe_ionphoton_interface13_bank_bus_dat_r) | monroe_ionphoton_interface14_bank_bus_dat_r) | monroe_ionphoton_interface15_bank_bus_dat_r);
 
 // synthesis translate_off
-reg dummy_d_156;
+reg dummy_d_168;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed0 <= 30'd0;
@@ -13341,12 +14049,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_156 <= dummy_s;
+	dummy_d_168 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_157;
+reg dummy_d_169;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed1 <= 32'd0;
@@ -13359,12 +14067,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_157 <= dummy_s;
+	dummy_d_169 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_158;
+reg dummy_d_170;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed2 <= 4'd0;
@@ -13377,12 +14085,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_158 <= dummy_s;
+	dummy_d_170 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_159;
+reg dummy_d_171;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed3 <= 1'd0;
@@ -13395,12 +14103,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_159 <= dummy_s;
+	dummy_d_171 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_160;
+reg dummy_d_172;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed4 <= 1'd0;
@@ -13413,12 +14121,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_160 <= dummy_s;
+	dummy_d_172 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_161;
+reg dummy_d_173;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed5 <= 1'd0;
@@ -13431,12 +14139,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_161 <= dummy_s;
+	dummy_d_173 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_162;
+reg dummy_d_174;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed6 <= 3'd0;
@@ -13449,12 +14157,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_162 <= dummy_s;
+	dummy_d_174 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_163;
+reg dummy_d_175;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed7 <= 2'd0;
@@ -13467,12 +14175,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_163 <= dummy_s;
+	dummy_d_175 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_164;
+reg dummy_d_176;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed8 <= 1'd0;
@@ -13503,12 +14211,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_164 <= dummy_s;
+	dummy_d_176 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_165;
+reg dummy_d_177;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed9 <= 2'd0;
@@ -13526,16 +14234,16 @@ always @(*) begin
 			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow3, (monroe_ionphoton_rtio_core_inputs_asyncfifo3_asyncfifo3_readable & (~monroe_ionphoton_rtio_core_inputs_overflow3))};
 		end
 		3'd4: begin
-			comb_rhs_array_muxed9 <= 1'd0;
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow4, (monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_readable & (~monroe_ionphoton_rtio_core_inputs_overflow4))};
 		end
 		3'd5: begin
-			comb_rhs_array_muxed9 <= 1'd0;
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow5, (monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_readable & (~monroe_ionphoton_rtio_core_inputs_overflow5))};
 		end
 		3'd6: begin
-			comb_rhs_array_muxed9 <= 1'd0;
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow6, (monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_readable & (~monroe_ionphoton_rtio_core_inputs_overflow6))};
 		end
 		3'd7: begin
-			comb_rhs_array_muxed9 <= 1'd0;
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow7, (monroe_ionphoton_rtio_core_inputs_asyncfifo7_asyncfifo7_readable & (~monroe_ionphoton_rtio_core_inputs_overflow7))};
 		end
 		4'd8: begin
 			comb_rhs_array_muxed9 <= 1'd0;
@@ -13562,7 +14270,7 @@ always @(*) begin
 			comb_rhs_array_muxed9 <= 1'd0;
 		end
 		5'd16: begin
-			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow4, (monroe_ionphoton_rtio_core_inputs_asyncfifo4_asyncfifo4_readable & (~monroe_ionphoton_rtio_core_inputs_overflow4))};
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow8, (monroe_ionphoton_rtio_core_inputs_asyncfifo8_asyncfifo8_readable & (~monroe_ionphoton_rtio_core_inputs_overflow8))};
 		end
 		5'd17: begin
 			comb_rhs_array_muxed9 <= 1'd0;
@@ -13580,7 +14288,7 @@ always @(*) begin
 			comb_rhs_array_muxed9 <= 1'd0;
 		end
 		5'd22: begin
-			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow5, (monroe_ionphoton_rtio_core_inputs_asyncfifo5_asyncfifo5_readable & (~monroe_ionphoton_rtio_core_inputs_overflow5))};
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow9, (monroe_ionphoton_rtio_core_inputs_asyncfifo9_asyncfifo9_readable & (~monroe_ionphoton_rtio_core_inputs_overflow9))};
 		end
 		5'd23: begin
 			comb_rhs_array_muxed9 <= 1'd0;
@@ -13598,7 +14306,7 @@ always @(*) begin
 			comb_rhs_array_muxed9 <= 1'd0;
 		end
 		5'd28: begin
-			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow6, (monroe_ionphoton_rtio_core_inputs_asyncfifo6_asyncfifo6_readable & (~monroe_ionphoton_rtio_core_inputs_overflow6))};
+			comb_rhs_array_muxed9 <= {monroe_ionphoton_rtio_core_inputs_overflow10, (monroe_ionphoton_rtio_core_inputs_asyncfifo10_asyncfifo10_readable & (~monroe_ionphoton_rtio_core_inputs_overflow10))};
 		end
 		5'd29: begin
 			comb_rhs_array_muxed9 <= 1'd0;
@@ -13626,12 +14334,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_165 <= dummy_s;
+	dummy_d_177 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_166;
+reg dummy_d_178;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed10 <= 2'd0;
@@ -13644,12 +14352,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_166 <= dummy_s;
+	dummy_d_178 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_167;
+reg dummy_d_179;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed11 <= 24'd0;
@@ -13662,12 +14370,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_167 <= dummy_s;
+	dummy_d_179 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_168;
+reg dummy_d_180;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed12 <= 64'd0;
@@ -13680,12 +14388,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_168 <= dummy_s;
+	dummy_d_180 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_169;
+reg dummy_d_181;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed13 <= 512'd0;
@@ -13698,12 +14406,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_169 <= dummy_s;
+	dummy_d_181 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_170;
+reg dummy_d_182;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed14 <= 8'd0;
@@ -13716,12 +14424,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_170 <= dummy_s;
+	dummy_d_182 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_171;
+reg dummy_d_183;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed15 <= 64'd0;
@@ -13734,12 +14442,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_171 <= dummy_s;
+	dummy_d_183 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_172;
+reg dummy_d_184;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed17 <= 1'd0;
@@ -13755,12 +14463,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_172 <= dummy_s;
+	dummy_d_184 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_173;
+reg dummy_d_185;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed18 <= 1'd0;
@@ -13776,12 +14484,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_173 <= dummy_s;
+	dummy_d_185 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_174;
+reg dummy_d_186;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed19 <= 1'd0;
@@ -13797,12 +14505,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_174 <= dummy_s;
+	dummy_d_186 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_175;
+reg dummy_d_187;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed20 <= 1'd0;
@@ -13818,12 +14526,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_175 <= dummy_s;
+	dummy_d_187 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_176;
+reg dummy_d_188;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed21 <= 1'd0;
@@ -13835,247 +14543,247 @@ always @(*) begin
 			comb_rhs_array_muxed21 <= monroe_ionphoton_inj_o_sys13;
 		end
 		default: begin
-			comb_rhs_array_muxed21 <= 1'd0;
+			comb_rhs_array_muxed21 <= monroe_ionphoton_inj_o_sys14;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_176 <= dummy_s;
+	dummy_d_188 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_177;
+reg dummy_d_189;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed22 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed22 <= monroe_ionphoton_inj_o_sys14;
-		end
-		1'd1: begin
 			comb_rhs_array_muxed22 <= monroe_ionphoton_inj_o_sys15;
 		end
+		1'd1: begin
+			comb_rhs_array_muxed22 <= monroe_ionphoton_inj_o_sys16;
+		end
 		default: begin
-			comb_rhs_array_muxed22 <= 1'd0;
+			comb_rhs_array_muxed22 <= monroe_ionphoton_inj_o_sys17;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_177 <= dummy_s;
+	dummy_d_189 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_178;
+reg dummy_d_190;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed23 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed23 <= monroe_ionphoton_inj_o_sys16;
+			comb_rhs_array_muxed23 <= monroe_ionphoton_inj_o_sys18;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed23 <= monroe_ionphoton_inj_o_sys17;
+			comb_rhs_array_muxed23 <= monroe_ionphoton_inj_o_sys19;
 		end
 		default: begin
-			comb_rhs_array_muxed23 <= 1'd0;
+			comb_rhs_array_muxed23 <= monroe_ionphoton_inj_o_sys20;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_178 <= dummy_s;
+	dummy_d_190 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_179;
+reg dummy_d_191;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed24 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed24 <= monroe_ionphoton_inj_o_sys18;
+			comb_rhs_array_muxed24 <= monroe_ionphoton_inj_o_sys21;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed24 <= monroe_ionphoton_inj_o_sys19;
+			comb_rhs_array_muxed24 <= monroe_ionphoton_inj_o_sys22;
 		end
 		default: begin
-			comb_rhs_array_muxed24 <= 1'd0;
+			comb_rhs_array_muxed24 <= monroe_ionphoton_inj_o_sys23;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_179 <= dummy_s;
+	dummy_d_191 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_180;
+reg dummy_d_192;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed25 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed25 <= monroe_ionphoton_inj_o_sys20;
+			comb_rhs_array_muxed25 <= monroe_ionphoton_inj_o_sys24;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed25 <= monroe_ionphoton_inj_o_sys21;
+			comb_rhs_array_muxed25 <= monroe_ionphoton_inj_o_sys25;
 		end
 		default: begin
 			comb_rhs_array_muxed25 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_180 <= dummy_s;
+	dummy_d_192 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_181;
+reg dummy_d_193;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed26 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed26 <= monroe_ionphoton_inj_o_sys22;
+			comb_rhs_array_muxed26 <= monroe_ionphoton_inj_o_sys26;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed26 <= monroe_ionphoton_inj_o_sys23;
+			comb_rhs_array_muxed26 <= monroe_ionphoton_inj_o_sys27;
 		end
 		default: begin
 			comb_rhs_array_muxed26 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_181 <= dummy_s;
+	dummy_d_193 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_182;
+reg dummy_d_194;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed27 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed27 <= monroe_ionphoton_inj_o_sys24;
+			comb_rhs_array_muxed27 <= monroe_ionphoton_inj_o_sys28;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed27 <= monroe_ionphoton_inj_o_sys25;
+			comb_rhs_array_muxed27 <= monroe_ionphoton_inj_o_sys29;
 		end
 		default: begin
 			comb_rhs_array_muxed27 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_182 <= dummy_s;
+	dummy_d_194 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_183;
+reg dummy_d_195;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed28 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed28 <= monroe_ionphoton_inj_o_sys26;
+			comb_rhs_array_muxed28 <= monroe_ionphoton_inj_o_sys30;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed28 <= monroe_ionphoton_inj_o_sys27;
+			comb_rhs_array_muxed28 <= monroe_ionphoton_inj_o_sys31;
 		end
 		default: begin
 			comb_rhs_array_muxed28 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_183 <= dummy_s;
+	dummy_d_195 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_184;
+reg dummy_d_196;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed29 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed29 <= monroe_ionphoton_inj_o_sys28;
+			comb_rhs_array_muxed29 <= monroe_ionphoton_inj_o_sys32;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed29 <= monroe_ionphoton_inj_o_sys29;
+			comb_rhs_array_muxed29 <= monroe_ionphoton_inj_o_sys33;
 		end
 		default: begin
 			comb_rhs_array_muxed29 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_184 <= dummy_s;
+	dummy_d_196 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_185;
+reg dummy_d_197;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed30 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed30 <= monroe_ionphoton_inj_o_sys30;
+			comb_rhs_array_muxed30 <= monroe_ionphoton_inj_o_sys34;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed30 <= monroe_ionphoton_inj_o_sys31;
+			comb_rhs_array_muxed30 <= monroe_ionphoton_inj_o_sys35;
 		end
 		default: begin
 			comb_rhs_array_muxed30 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_185 <= dummy_s;
+	dummy_d_197 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_186;
+reg dummy_d_198;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed31 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed31 <= monroe_ionphoton_inj_o_sys32;
+			comb_rhs_array_muxed31 <= monroe_ionphoton_inj_o_sys36;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed31 <= monroe_ionphoton_inj_o_sys33;
+			comb_rhs_array_muxed31 <= monroe_ionphoton_inj_o_sys37;
 		end
 		default: begin
 			comb_rhs_array_muxed31 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_186 <= dummy_s;
+	dummy_d_198 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_187;
+reg dummy_d_199;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed32 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed32 <= monroe_ionphoton_inj_o_sys34;
+			comb_rhs_array_muxed32 <= monroe_ionphoton_inj_o_sys38;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed32 <= monroe_ionphoton_inj_o_sys35;
+			comb_rhs_array_muxed32 <= monroe_ionphoton_inj_o_sys39;
 		end
 		default: begin
 			comb_rhs_array_muxed32 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_187 <= dummy_s;
+	dummy_d_199 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_188;
+reg dummy_d_200;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed33 <= 1'd0;
@@ -14091,117 +14799,117 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_188 <= dummy_s;
+	dummy_d_200 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_189;
+reg dummy_d_201;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed34 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed34 <= monroe_ionphoton_inj_o_sys36;
+			comb_rhs_array_muxed34 <= monroe_ionphoton_inj_o_sys40;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed34 <= monroe_ionphoton_inj_o_sys37;
+			comb_rhs_array_muxed34 <= monroe_ionphoton_inj_o_sys41;
 		end
 		default: begin
 			comb_rhs_array_muxed34 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_189 <= dummy_s;
+	dummy_d_201 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_190;
+reg dummy_d_202;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed35 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed35 <= monroe_ionphoton_inj_o_sys38;
+			comb_rhs_array_muxed35 <= monroe_ionphoton_inj_o_sys42;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed35 <= monroe_ionphoton_inj_o_sys39;
+			comb_rhs_array_muxed35 <= monroe_ionphoton_inj_o_sys43;
 		end
 		default: begin
 			comb_rhs_array_muxed35 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_190 <= dummy_s;
+	dummy_d_202 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_191;
+reg dummy_d_203;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed36 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed36 <= monroe_ionphoton_inj_o_sys40;
+			comb_rhs_array_muxed36 <= monroe_ionphoton_inj_o_sys44;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed36 <= monroe_ionphoton_inj_o_sys41;
+			comb_rhs_array_muxed36 <= monroe_ionphoton_inj_o_sys45;
 		end
 		default: begin
 			comb_rhs_array_muxed36 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_191 <= dummy_s;
+	dummy_d_203 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_192;
+reg dummy_d_204;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed37 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed37 <= monroe_ionphoton_inj_o_sys42;
+			comb_rhs_array_muxed37 <= monroe_ionphoton_inj_o_sys46;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed37 <= monroe_ionphoton_inj_o_sys43;
+			comb_rhs_array_muxed37 <= monroe_ionphoton_inj_o_sys47;
 		end
 		default: begin
 			comb_rhs_array_muxed37 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_192 <= dummy_s;
+	dummy_d_204 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_193;
+reg dummy_d_205;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed38 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed38 <= monroe_ionphoton_inj_o_sys44;
+			comb_rhs_array_muxed38 <= monroe_ionphoton_inj_o_sys48;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed38 <= monroe_ionphoton_inj_o_sys45;
+			comb_rhs_array_muxed38 <= monroe_ionphoton_inj_o_sys49;
 		end
 		default: begin
 			comb_rhs_array_muxed38 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_193 <= dummy_s;
+	dummy_d_205 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_194;
+reg dummy_d_206;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed39 <= 1'd0;
@@ -14217,117 +14925,117 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_194 <= dummy_s;
+	dummy_d_206 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_195;
+reg dummy_d_207;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed40 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed40 <= monroe_ionphoton_inj_o_sys46;
+			comb_rhs_array_muxed40 <= monroe_ionphoton_inj_o_sys50;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed40 <= monroe_ionphoton_inj_o_sys47;
+			comb_rhs_array_muxed40 <= monroe_ionphoton_inj_o_sys51;
 		end
 		default: begin
 			comb_rhs_array_muxed40 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_195 <= dummy_s;
+	dummy_d_207 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_196;
+reg dummy_d_208;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed41 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed41 <= monroe_ionphoton_inj_o_sys48;
+			comb_rhs_array_muxed41 <= monroe_ionphoton_inj_o_sys52;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed41 <= monroe_ionphoton_inj_o_sys49;
+			comb_rhs_array_muxed41 <= monroe_ionphoton_inj_o_sys53;
 		end
 		default: begin
 			comb_rhs_array_muxed41 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_196 <= dummy_s;
+	dummy_d_208 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_197;
+reg dummy_d_209;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed42 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed42 <= monroe_ionphoton_inj_o_sys50;
+			comb_rhs_array_muxed42 <= monroe_ionphoton_inj_o_sys54;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed42 <= monroe_ionphoton_inj_o_sys51;
+			comb_rhs_array_muxed42 <= monroe_ionphoton_inj_o_sys55;
 		end
 		default: begin
 			comb_rhs_array_muxed42 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_197 <= dummy_s;
+	dummy_d_209 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_198;
+reg dummy_d_210;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed43 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed43 <= monroe_ionphoton_inj_o_sys52;
+			comb_rhs_array_muxed43 <= monroe_ionphoton_inj_o_sys56;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed43 <= monroe_ionphoton_inj_o_sys53;
+			comb_rhs_array_muxed43 <= monroe_ionphoton_inj_o_sys57;
 		end
 		default: begin
 			comb_rhs_array_muxed43 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_198 <= dummy_s;
+	dummy_d_210 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_199;
+reg dummy_d_211;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed44 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed44 <= monroe_ionphoton_inj_o_sys54;
+			comb_rhs_array_muxed44 <= monroe_ionphoton_inj_o_sys58;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed44 <= monroe_ionphoton_inj_o_sys55;
+			comb_rhs_array_muxed44 <= monroe_ionphoton_inj_o_sys59;
 		end
 		default: begin
 			comb_rhs_array_muxed44 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_199 <= dummy_s;
+	dummy_d_211 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_200;
+reg dummy_d_212;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed45 <= 1'd0;
@@ -14343,159 +15051,159 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_200 <= dummy_s;
+	dummy_d_212 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_201;
+reg dummy_d_213;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed46 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed46 <= monroe_ionphoton_inj_o_sys56;
+			comb_rhs_array_muxed46 <= monroe_ionphoton_inj_o_sys60;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed46 <= monroe_ionphoton_inj_o_sys57;
+			comb_rhs_array_muxed46 <= monroe_ionphoton_inj_o_sys61;
 		end
 		default: begin
 			comb_rhs_array_muxed46 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_201 <= dummy_s;
+	dummy_d_213 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_202;
+reg dummy_d_214;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed47 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed47 <= monroe_ionphoton_inj_o_sys58;
+			comb_rhs_array_muxed47 <= monroe_ionphoton_inj_o_sys62;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed47 <= monroe_ionphoton_inj_o_sys59;
+			comb_rhs_array_muxed47 <= monroe_ionphoton_inj_o_sys63;
 		end
 		default: begin
 			comb_rhs_array_muxed47 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_202 <= dummy_s;
+	dummy_d_214 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_203;
+reg dummy_d_215;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed48 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed48 <= monroe_ionphoton_inj_o_sys60;
+			comb_rhs_array_muxed48 <= monroe_ionphoton_inj_o_sys64;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed48 <= monroe_ionphoton_inj_o_sys61;
+			comb_rhs_array_muxed48 <= monroe_ionphoton_inj_o_sys65;
 		end
 		default: begin
 			comb_rhs_array_muxed48 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_203 <= dummy_s;
+	dummy_d_215 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_204;
+reg dummy_d_216;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed49 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed49 <= monroe_ionphoton_inj_o_sys62;
+			comb_rhs_array_muxed49 <= monroe_ionphoton_inj_o_sys66;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed49 <= monroe_ionphoton_inj_o_sys63;
+			comb_rhs_array_muxed49 <= monroe_ionphoton_inj_o_sys67;
 		end
 		default: begin
 			comb_rhs_array_muxed49 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_204 <= dummy_s;
+	dummy_d_216 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_205;
+reg dummy_d_217;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed50 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed50 <= monroe_ionphoton_inj_o_sys64;
+			comb_rhs_array_muxed50 <= monroe_ionphoton_inj_o_sys68;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed50 <= monroe_ionphoton_inj_o_sys65;
+			comb_rhs_array_muxed50 <= monroe_ionphoton_inj_o_sys69;
 		end
 		default: begin
 			comb_rhs_array_muxed50 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_205 <= dummy_s;
+	dummy_d_217 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_206;
+reg dummy_d_218;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed51 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed51 <= monroe_ionphoton_inj_o_sys66;
+			comb_rhs_array_muxed51 <= monroe_ionphoton_inj_o_sys70;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed51 <= monroe_ionphoton_inj_o_sys67;
+			comb_rhs_array_muxed51 <= monroe_ionphoton_inj_o_sys71;
 		end
 		default: begin
 			comb_rhs_array_muxed51 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_206 <= dummy_s;
+	dummy_d_218 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_207;
+reg dummy_d_219;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed52 <= 1'd0;
 	case (monroe_ionphoton_inj_override_sel_storage)
 		1'd0: begin
-			comb_rhs_array_muxed52 <= monroe_ionphoton_inj_o_sys68;
+			comb_rhs_array_muxed52 <= monroe_ionphoton_inj_o_sys72;
 		end
 		1'd1: begin
-			comb_rhs_array_muxed52 <= monroe_ionphoton_inj_o_sys69;
+			comb_rhs_array_muxed52 <= monroe_ionphoton_inj_o_sys73;
 		end
 		default: begin
 			comb_rhs_array_muxed52 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_207 <= dummy_s;
+	dummy_d_219 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_208;
+reg dummy_d_220;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed53 <= 1'd0;
@@ -14511,12 +15219,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_208 <= dummy_s;
+	dummy_d_220 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_209;
+reg dummy_d_221;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed16 <= 1'd0;
@@ -14634,12 +15342,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_209 <= dummy_s;
+	dummy_d_221 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_210;
+reg dummy_d_222;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed54 <= 30'd0;
@@ -14652,12 +15360,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_210 <= dummy_s;
+	dummy_d_222 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_211;
+reg dummy_d_223;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed55 <= 32'd0;
@@ -14670,12 +15378,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_211 <= dummy_s;
+	dummy_d_223 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_212;
+reg dummy_d_224;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed56 <= 4'd0;
@@ -14688,12 +15396,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_212 <= dummy_s;
+	dummy_d_224 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_213;
+reg dummy_d_225;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed57 <= 1'd0;
@@ -14706,12 +15414,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_213 <= dummy_s;
+	dummy_d_225 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_214;
+reg dummy_d_226;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed58 <= 1'd0;
@@ -14724,12 +15432,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_214 <= dummy_s;
+	dummy_d_226 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_215;
+reg dummy_d_227;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed59 <= 1'd0;
@@ -14742,12 +15450,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_215 <= dummy_s;
+	dummy_d_227 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_216;
+reg dummy_d_228;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed60 <= 3'd0;
@@ -14760,12 +15468,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_216 <= dummy_s;
+	dummy_d_228 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_217;
+reg dummy_d_229;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed61 <= 2'd0;
@@ -14778,12 +15486,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_217 <= dummy_s;
+	dummy_d_229 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_218;
+reg dummy_d_230;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed62 <= 30'd0;
@@ -14799,12 +15507,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_218 <= dummy_s;
+	dummy_d_230 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_219;
+reg dummy_d_231;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed63 <= 128'd0;
@@ -14820,12 +15528,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_219 <= dummy_s;
+	dummy_d_231 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_220;
+reg dummy_d_232;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed64 <= 16'd0;
@@ -14841,12 +15549,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_220 <= dummy_s;
+	dummy_d_232 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_221;
+reg dummy_d_233;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed65 <= 1'd0;
@@ -14862,12 +15570,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_221 <= dummy_s;
+	dummy_d_233 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_222;
+reg dummy_d_234;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed66 <= 1'd0;
@@ -14883,12 +15591,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_222 <= dummy_s;
+	dummy_d_234 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_223;
+reg dummy_d_235;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed67 <= 1'd0;
@@ -14904,12 +15612,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_223 <= dummy_s;
+	dummy_d_235 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_224;
+reg dummy_d_236;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed68 <= 3'd0;
@@ -14925,12 +15633,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_224 <= dummy_s;
+	dummy_d_236 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_225;
+reg dummy_d_237;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed69 <= 2'd0;
@@ -14946,12 +15654,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_225 <= dummy_s;
+	dummy_d_237 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_226;
+reg dummy_d_238;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed70 <= 30'd0;
@@ -14964,12 +15672,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_226 <= dummy_s;
+	dummy_d_238 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_227;
+reg dummy_d_239;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed71 <= 32'd0;
@@ -14982,12 +15690,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_227 <= dummy_s;
+	dummy_d_239 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_228;
+reg dummy_d_240;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed72 <= 4'd0;
@@ -15000,12 +15708,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_228 <= dummy_s;
+	dummy_d_240 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_229;
+reg dummy_d_241;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed73 <= 1'd0;
@@ -15018,12 +15726,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_229 <= dummy_s;
+	dummy_d_241 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_230;
+reg dummy_d_242;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed74 <= 1'd0;
@@ -15036,12 +15744,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_230 <= dummy_s;
+	dummy_d_242 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_231;
+reg dummy_d_243;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed75 <= 1'd0;
@@ -15054,12 +15762,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_231 <= dummy_s;
+	dummy_d_243 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_232;
+reg dummy_d_244;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed76 <= 3'd0;
@@ -15072,12 +15780,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_232 <= dummy_s;
+	dummy_d_244 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_233;
+reg dummy_d_245;
 // synthesis translate_on
 always @(*) begin
 	comb_rhs_array_muxed77 <= 2'd0;
@@ -15090,12 +15798,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_233 <= dummy_s;
+	dummy_d_245 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_234;
+reg dummy_d_246;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed0 <= 3'd0;
@@ -15150,12 +15858,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_234 <= dummy_s;
+	dummy_d_246 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_235;
+reg dummy_d_247;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed0 <= 3'd0;
@@ -15210,12 +15918,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_235 <= dummy_s;
+	dummy_d_247 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_236;
+reg dummy_d_248;
 // synthesis translate_on
 always @(*) begin
 	sync_f_rhs_array_muxed0 <= 3'd0;
@@ -15270,12 +15978,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_236 <= dummy_s;
+	dummy_d_248 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_237;
+reg dummy_d_249;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed0 <= 5'd0;
@@ -15474,12 +16182,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_237 <= dummy_s;
+	dummy_d_249 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_238;
+reg dummy_d_250;
 // synthesis translate_on
 always @(*) begin
 	sync_f_rhs_array_muxed1 <= 6'd0;
@@ -15582,12 +16290,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_238 <= dummy_s;
+	dummy_d_250 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_239;
+reg dummy_d_251;
 // synthesis translate_on
 always @(*) begin
 	sync_f_rhs_array_muxed2 <= 1'd0;
@@ -15690,12 +16398,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_239 <= dummy_s;
+	dummy_d_251 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_240;
+reg dummy_d_252;
 // synthesis translate_on
 always @(*) begin
 	sync_f_rhs_array_muxed3 <= 1'd0;
@@ -15798,12 +16506,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_240 <= dummy_s;
+	dummy_d_252 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_241;
+reg dummy_d_253;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed1 <= 4'd0;
@@ -15834,12 +16542,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_241 <= dummy_s;
+	dummy_d_253 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_242;
+reg dummy_d_254;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed2 <= 1'd0;
@@ -15870,12 +16578,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_242 <= dummy_s;
+	dummy_d_254 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_243;
+reg dummy_d_255;
 // synthesis translate_on
 always @(*) begin
 	sync_f_rhs_array_muxed4 <= 1'd0;
@@ -15906,12 +16614,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_243 <= dummy_s;
+	dummy_d_255 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_244;
+reg dummy_d_256;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed0 <= 1'd0;
@@ -15929,94 +16637,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed0 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed0 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed0 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed0 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed0 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed0 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed0 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed0 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed0 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed0 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed0 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed0 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed0 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed0 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed0 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed0 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed0 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed0 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed0 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed0 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed0 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed0 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed0 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed0 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed0 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed0 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed0 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed0 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed0 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed0 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed0 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed0 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed0 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed0 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed0 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed0 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed0 <= output0_busy;
@@ -16029,12 +16737,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_244 <= dummy_s;
+	dummy_d_256 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_245;
+reg dummy_d_257;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed1 <= 1'd0;
@@ -16052,94 +16760,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed1 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed1 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed1 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed1 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed1 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed1 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed1 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed1 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed1 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed1 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed1 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed1 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed1 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed1 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed1 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed1 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed1 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed1 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed1 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed1 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed1 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed1 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed1 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed1 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed1 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed1 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed1 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed1 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed1 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed1 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed1 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed1 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed1 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed1 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed1 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed1 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed1 <= output0_busy;
@@ -16152,12 +16860,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_245 <= dummy_s;
+	dummy_d_257 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_246;
+reg dummy_d_258;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed2 <= 1'd0;
@@ -16175,94 +16883,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed2 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed2 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed2 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed2 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed2 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed2 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed2 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed2 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed2 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed2 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed2 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed2 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed2 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed2 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed2 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed2 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed2 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed2 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed2 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed2 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed2 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed2 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed2 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed2 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed2 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed2 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed2 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed2 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed2 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed2 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed2 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed2 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed2 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed2 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed2 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed2 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed2 <= output0_busy;
@@ -16275,12 +16983,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_246 <= dummy_s;
+	dummy_d_258 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_247;
+reg dummy_d_259;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed3 <= 1'd0;
@@ -16298,94 +17006,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed3 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed3 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed3 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed3 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed3 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed3 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed3 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed3 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed3 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed3 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed3 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed3 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed3 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed3 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed3 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed3 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed3 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed3 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed3 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed3 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed3 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed3 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed3 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed3 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed3 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed3 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed3 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed3 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed3 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed3 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed3 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed3 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed3 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed3 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed3 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed3 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed3 <= output0_busy;
@@ -16398,12 +17106,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_247 <= dummy_s;
+	dummy_d_259 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_248;
+reg dummy_d_260;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed4 <= 1'd0;
@@ -16421,94 +17129,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed4 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed4 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed4 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed4 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed4 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed4 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed4 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed4 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed4 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed4 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed4 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed4 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed4 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed4 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed4 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed4 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed4 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed4 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed4 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed4 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed4 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed4 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed4 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed4 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed4 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed4 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed4 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed4 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed4 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed4 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed4 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed4 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed4 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed4 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed4 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed4 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed4 <= output0_busy;
@@ -16521,12 +17229,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_248 <= dummy_s;
+	dummy_d_260 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_249;
+reg dummy_d_261;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed5 <= 1'd0;
@@ -16544,94 +17252,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed5 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed5 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed5 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed5 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed5 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed5 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed5 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed5 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed5 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed5 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed5 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed5 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed5 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed5 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed5 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed5 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed5 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed5 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed5 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed5 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed5 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed5 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed5 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed5 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed5 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed5 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed5 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed5 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed5 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed5 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed5 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed5 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed5 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed5 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed5 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed5 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed5 <= output0_busy;
@@ -16644,12 +17352,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_249 <= dummy_s;
+	dummy_d_261 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_250;
+reg dummy_d_262;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed6 <= 1'd0;
@@ -16667,94 +17375,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed6 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed6 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed6 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed6 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed6 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed6 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed6 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed6 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed6 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed6 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed6 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed6 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed6 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed6 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed6 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed6 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed6 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed6 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed6 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed6 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed6 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed6 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed6 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed6 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed6 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed6 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed6 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed6 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed6 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed6 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed6 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed6 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed6 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed6 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed6 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed6 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed6 <= output0_busy;
@@ -16767,12 +17475,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_250 <= dummy_s;
+	dummy_d_262 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_251;
+reg dummy_d_263;
 // synthesis translate_on
 always @(*) begin
 	sync_basiclowerer_array_muxed7 <= 1'd0;
@@ -16790,94 +17498,94 @@ always @(*) begin
 			sync_basiclowerer_array_muxed7 <= inout_8x3_inout_8x3_ointerface3_busy;
 		end
 		3'd4: begin
-			sync_basiclowerer_array_muxed7 <= output_8x0_busy;
+			sync_basiclowerer_array_muxed7 <= inout_8x4_inout_8x4_ointerface4_busy;
 		end
 		3'd5: begin
-			sync_basiclowerer_array_muxed7 <= output_8x1_busy;
+			sync_basiclowerer_array_muxed7 <= inout_8x5_inout_8x5_ointerface5_busy;
 		end
 		3'd6: begin
-			sync_basiclowerer_array_muxed7 <= output_8x2_busy;
+			sync_basiclowerer_array_muxed7 <= inout_8x6_inout_8x6_ointerface6_busy;
 		end
 		3'd7: begin
-			sync_basiclowerer_array_muxed7 <= output_8x3_busy;
+			sync_basiclowerer_array_muxed7 <= inout_8x7_inout_8x7_ointerface7_busy;
 		end
 		4'd8: begin
-			sync_basiclowerer_array_muxed7 <= output_8x4_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x0_busy;
 		end
 		4'd9: begin
-			sync_basiclowerer_array_muxed7 <= output_8x5_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x1_busy;
 		end
 		4'd10: begin
-			sync_basiclowerer_array_muxed7 <= output_8x6_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x2_busy;
 		end
 		4'd11: begin
-			sync_basiclowerer_array_muxed7 <= output_8x7_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x3_busy;
 		end
 		4'd12: begin
-			sync_basiclowerer_array_muxed7 <= output_8x8_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x4_busy;
 		end
 		4'd13: begin
-			sync_basiclowerer_array_muxed7 <= output_8x9_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x5_busy;
 		end
 		4'd14: begin
-			sync_basiclowerer_array_muxed7 <= output_8x10_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x6_busy;
 		end
 		4'd15: begin
-			sync_basiclowerer_array_muxed7 <= output_8x11_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x7_busy;
 		end
 		5'd16: begin
 			sync_basiclowerer_array_muxed7 <= spimaster0_ointerface0_busy;
 		end
 		5'd17: begin
-			sync_basiclowerer_array_muxed7 <= output_8x12_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x8_busy;
 		end
 		5'd18: begin
-			sync_basiclowerer_array_muxed7 <= output_8x13_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x9_busy;
 		end
 		5'd19: begin
-			sync_basiclowerer_array_muxed7 <= output_8x14_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x10_busy;
 		end
 		5'd20: begin
-			sync_basiclowerer_array_muxed7 <= output_8x15_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x11_busy;
 		end
 		5'd21: begin
-			sync_basiclowerer_array_muxed7 <= output_8x16_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x12_busy;
 		end
 		5'd22: begin
 			sync_basiclowerer_array_muxed7 <= spimaster1_ointerface1_busy;
 		end
 		5'd23: begin
-			sync_basiclowerer_array_muxed7 <= output_8x17_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x13_busy;
 		end
 		5'd24: begin
-			sync_basiclowerer_array_muxed7 <= output_8x18_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x14_busy;
 		end
 		5'd25: begin
-			sync_basiclowerer_array_muxed7 <= output_8x19_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x15_busy;
 		end
 		5'd26: begin
-			sync_basiclowerer_array_muxed7 <= output_8x20_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x16_busy;
 		end
 		5'd27: begin
-			sync_basiclowerer_array_muxed7 <= output_8x21_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x17_busy;
 		end
 		5'd28: begin
 			sync_basiclowerer_array_muxed7 <= spimaster2_ointerface2_busy;
 		end
 		5'd29: begin
-			sync_basiclowerer_array_muxed7 <= output_8x22_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x18_busy;
 		end
 		5'd30: begin
-			sync_basiclowerer_array_muxed7 <= output_8x23_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x19_busy;
 		end
 		5'd31: begin
-			sync_basiclowerer_array_muxed7 <= output_8x24_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x20_busy;
 		end
 		6'd32: begin
-			sync_basiclowerer_array_muxed7 <= output_8x25_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x21_busy;
 		end
 		6'd33: begin
-			sync_basiclowerer_array_muxed7 <= output_8x26_busy;
+			sync_basiclowerer_array_muxed7 <= output_8x22_busy;
 		end
 		6'd34: begin
 			sync_basiclowerer_array_muxed7 <= output0_busy;
@@ -16890,12 +17598,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_251 <= dummy_s;
+	dummy_d_263 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_252;
+reg dummy_d_264;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed1 <= 8'd0;
@@ -16926,12 +17634,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_252 <= dummy_s;
+	dummy_d_264 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_253;
+reg dummy_d_265;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed2 <= 7'd0;
@@ -16962,12 +17670,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_253 <= dummy_s;
+	dummy_d_265 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_254;
+reg dummy_d_266;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed3 <= 8'd0;
@@ -16998,12 +17706,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_254 <= dummy_s;
+	dummy_d_266 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_255;
+reg dummy_d_267;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed4 <= 7'd0;
@@ -17034,12 +17742,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_255 <= dummy_s;
+	dummy_d_267 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_256;
+reg dummy_d_268;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed5 <= 8'd0;
@@ -17070,12 +17778,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_256 <= dummy_s;
+	dummy_d_268 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_257;
+reg dummy_d_269;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed6 <= 7'd0;
@@ -17106,12 +17814,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_257 <= dummy_s;
+	dummy_d_269 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_258;
+reg dummy_d_270;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed7 <= 8'd0;
@@ -17142,12 +17850,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_258 <= dummy_s;
+	dummy_d_270 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_259;
+reg dummy_d_271;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed8 <= 7'd0;
@@ -17178,16 +17886,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_259 <= dummy_s;
+	dummy_d_271 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_260;
+reg dummy_d_272;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed9 <= 8'd0;
-	case (output_8x0_fine_ts)
+	case (inout_8x4_inout_8x4_ointerface4_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed9 <= 8'd255;
 		end
@@ -17214,16 +17922,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_260 <= dummy_s;
+	dummy_d_272 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_261;
+reg dummy_d_273;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed10 <= 7'd0;
-	case (output_8x0_fine_ts)
+	case (inout_8x4_inout_8x4_ointerface4_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed10 <= 1'd0;
 		end
@@ -17250,16 +17958,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_261 <= dummy_s;
+	dummy_d_273 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_262;
+reg dummy_d_274;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed11 <= 8'd0;
-	case (output_8x1_fine_ts)
+	case (inout_8x5_inout_8x5_ointerface5_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed11 <= 8'd255;
 		end
@@ -17286,16 +17994,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_262 <= dummy_s;
+	dummy_d_274 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_263;
+reg dummy_d_275;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed12 <= 7'd0;
-	case (output_8x1_fine_ts)
+	case (inout_8x5_inout_8x5_ointerface5_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed12 <= 1'd0;
 		end
@@ -17322,16 +18030,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_263 <= dummy_s;
+	dummy_d_275 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_264;
+reg dummy_d_276;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed13 <= 8'd0;
-	case (output_8x2_fine_ts)
+	case (inout_8x6_inout_8x6_ointerface6_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed13 <= 8'd255;
 		end
@@ -17358,16 +18066,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_264 <= dummy_s;
+	dummy_d_276 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_265;
+reg dummy_d_277;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed14 <= 7'd0;
-	case (output_8x2_fine_ts)
+	case (inout_8x6_inout_8x6_ointerface6_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed14 <= 1'd0;
 		end
@@ -17394,16 +18102,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_265 <= dummy_s;
+	dummy_d_277 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_266;
+reg dummy_d_278;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed15 <= 8'd0;
-	case (output_8x3_fine_ts)
+	case (inout_8x7_inout_8x7_ointerface7_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed15 <= 8'd255;
 		end
@@ -17430,16 +18138,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_266 <= dummy_s;
+	dummy_d_278 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_267;
+reg dummy_d_279;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed16 <= 7'd0;
-	case (output_8x3_fine_ts)
+	case (inout_8x7_inout_8x7_ointerface7_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed16 <= 1'd0;
 		end
@@ -17466,16 +18174,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_267 <= dummy_s;
+	dummy_d_279 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_268;
+reg dummy_d_280;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed17 <= 8'd0;
-	case (output_8x4_fine_ts)
+	case (output_8x0_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed17 <= 8'd255;
 		end
@@ -17502,16 +18210,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_268 <= dummy_s;
+	dummy_d_280 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_269;
+reg dummy_d_281;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed18 <= 7'd0;
-	case (output_8x4_fine_ts)
+	case (output_8x0_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed18 <= 1'd0;
 		end
@@ -17538,16 +18246,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_269 <= dummy_s;
+	dummy_d_281 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_270;
+reg dummy_d_282;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed19 <= 8'd0;
-	case (output_8x5_fine_ts)
+	case (output_8x1_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed19 <= 8'd255;
 		end
@@ -17574,16 +18282,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_270 <= dummy_s;
+	dummy_d_282 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_271;
+reg dummy_d_283;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed20 <= 7'd0;
-	case (output_8x5_fine_ts)
+	case (output_8x1_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed20 <= 1'd0;
 		end
@@ -17610,16 +18318,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_271 <= dummy_s;
+	dummy_d_283 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_272;
+reg dummy_d_284;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed21 <= 8'd0;
-	case (output_8x6_fine_ts)
+	case (output_8x2_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed21 <= 8'd255;
 		end
@@ -17646,16 +18354,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_272 <= dummy_s;
+	dummy_d_284 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_273;
+reg dummy_d_285;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed22 <= 7'd0;
-	case (output_8x6_fine_ts)
+	case (output_8x2_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed22 <= 1'd0;
 		end
@@ -17682,16 +18390,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_273 <= dummy_s;
+	dummy_d_285 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_274;
+reg dummy_d_286;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed23 <= 8'd0;
-	case (output_8x7_fine_ts)
+	case (output_8x3_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed23 <= 8'd255;
 		end
@@ -17718,16 +18426,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_274 <= dummy_s;
+	dummy_d_286 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_275;
+reg dummy_d_287;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed24 <= 7'd0;
-	case (output_8x7_fine_ts)
+	case (output_8x3_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed24 <= 1'd0;
 		end
@@ -17754,16 +18462,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_275 <= dummy_s;
+	dummy_d_287 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_276;
+reg dummy_d_288;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed25 <= 8'd0;
-	case (output_8x8_fine_ts)
+	case (output_8x4_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed25 <= 8'd255;
 		end
@@ -17790,16 +18498,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_276 <= dummy_s;
+	dummy_d_288 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_277;
+reg dummy_d_289;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed26 <= 7'd0;
-	case (output_8x8_fine_ts)
+	case (output_8x4_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed26 <= 1'd0;
 		end
@@ -17826,16 +18534,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_277 <= dummy_s;
+	dummy_d_289 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_278;
+reg dummy_d_290;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed27 <= 8'd0;
-	case (output_8x9_fine_ts)
+	case (output_8x5_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed27 <= 8'd255;
 		end
@@ -17862,16 +18570,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_278 <= dummy_s;
+	dummy_d_290 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_279;
+reg dummy_d_291;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed28 <= 7'd0;
-	case (output_8x9_fine_ts)
+	case (output_8x5_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed28 <= 1'd0;
 		end
@@ -17898,16 +18606,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_279 <= dummy_s;
+	dummy_d_291 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_280;
+reg dummy_d_292;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed29 <= 8'd0;
-	case (output_8x10_fine_ts)
+	case (output_8x6_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed29 <= 8'd255;
 		end
@@ -17934,16 +18642,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_280 <= dummy_s;
+	dummy_d_292 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_281;
+reg dummy_d_293;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed30 <= 7'd0;
-	case (output_8x10_fine_ts)
+	case (output_8x6_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed30 <= 1'd0;
 		end
@@ -17970,16 +18678,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_281 <= dummy_s;
+	dummy_d_293 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_282;
+reg dummy_d_294;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed31 <= 8'd0;
-	case (output_8x11_fine_ts)
+	case (output_8x7_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed31 <= 8'd255;
 		end
@@ -18006,16 +18714,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_282 <= dummy_s;
+	dummy_d_294 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_283;
+reg dummy_d_295;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed32 <= 7'd0;
-	case (output_8x11_fine_ts)
+	case (output_8x7_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed32 <= 1'd0;
 		end
@@ -18042,16 +18750,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_283 <= dummy_s;
+	dummy_d_295 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_284;
+reg dummy_d_296;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed33 <= 8'd0;
-	case (output_8x12_fine_ts)
+	case (output_8x8_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed33 <= 8'd255;
 		end
@@ -18078,16 +18786,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_284 <= dummy_s;
+	dummy_d_296 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_285;
+reg dummy_d_297;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed34 <= 7'd0;
-	case (output_8x12_fine_ts)
+	case (output_8x8_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed34 <= 1'd0;
 		end
@@ -18114,16 +18822,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_285 <= dummy_s;
+	dummy_d_297 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_286;
+reg dummy_d_298;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed35 <= 8'd0;
-	case (output_8x13_fine_ts)
+	case (output_8x9_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed35 <= 8'd255;
 		end
@@ -18150,16 +18858,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_286 <= dummy_s;
+	dummy_d_298 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_287;
+reg dummy_d_299;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed36 <= 7'd0;
-	case (output_8x13_fine_ts)
+	case (output_8x9_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed36 <= 1'd0;
 		end
@@ -18186,16 +18894,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_287 <= dummy_s;
+	dummy_d_299 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_288;
+reg dummy_d_300;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed37 <= 8'd0;
-	case (output_8x14_fine_ts)
+	case (output_8x10_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed37 <= 8'd255;
 		end
@@ -18222,16 +18930,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_288 <= dummy_s;
+	dummy_d_300 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_289;
+reg dummy_d_301;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed38 <= 7'd0;
-	case (output_8x14_fine_ts)
+	case (output_8x10_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed38 <= 1'd0;
 		end
@@ -18258,16 +18966,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_289 <= dummy_s;
+	dummy_d_301 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_290;
+reg dummy_d_302;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed39 <= 8'd0;
-	case (output_8x15_fine_ts)
+	case (output_8x11_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed39 <= 8'd255;
 		end
@@ -18294,16 +19002,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_290 <= dummy_s;
+	dummy_d_302 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_291;
+reg dummy_d_303;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed40 <= 7'd0;
-	case (output_8x15_fine_ts)
+	case (output_8x11_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed40 <= 1'd0;
 		end
@@ -18330,16 +19038,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_291 <= dummy_s;
+	dummy_d_303 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_292;
+reg dummy_d_304;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed41 <= 8'd0;
-	case (output_8x16_fine_ts)
+	case (output_8x12_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed41 <= 8'd255;
 		end
@@ -18366,16 +19074,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_292 <= dummy_s;
+	dummy_d_304 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_293;
+reg dummy_d_305;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed42 <= 7'd0;
-	case (output_8x16_fine_ts)
+	case (output_8x12_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed42 <= 1'd0;
 		end
@@ -18402,16 +19110,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_293 <= dummy_s;
+	dummy_d_305 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_294;
+reg dummy_d_306;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed43 <= 8'd0;
-	case (output_8x17_fine_ts)
+	case (output_8x13_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed43 <= 8'd255;
 		end
@@ -18438,16 +19146,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_294 <= dummy_s;
+	dummy_d_306 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_295;
+reg dummy_d_307;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed44 <= 7'd0;
-	case (output_8x17_fine_ts)
+	case (output_8x13_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed44 <= 1'd0;
 		end
@@ -18474,16 +19182,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_295 <= dummy_s;
+	dummy_d_307 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_296;
+reg dummy_d_308;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed45 <= 8'd0;
-	case (output_8x18_fine_ts)
+	case (output_8x14_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed45 <= 8'd255;
 		end
@@ -18510,16 +19218,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_296 <= dummy_s;
+	dummy_d_308 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_297;
+reg dummy_d_309;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed46 <= 7'd0;
-	case (output_8x18_fine_ts)
+	case (output_8x14_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed46 <= 1'd0;
 		end
@@ -18546,16 +19254,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_297 <= dummy_s;
+	dummy_d_309 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_298;
+reg dummy_d_310;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed47 <= 8'd0;
-	case (output_8x19_fine_ts)
+	case (output_8x15_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed47 <= 8'd255;
 		end
@@ -18582,16 +19290,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_298 <= dummy_s;
+	dummy_d_310 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_299;
+reg dummy_d_311;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed48 <= 7'd0;
-	case (output_8x19_fine_ts)
+	case (output_8x15_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed48 <= 1'd0;
 		end
@@ -18618,16 +19326,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_299 <= dummy_s;
+	dummy_d_311 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_300;
+reg dummy_d_312;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed49 <= 8'd0;
-	case (output_8x20_fine_ts)
+	case (output_8x16_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed49 <= 8'd255;
 		end
@@ -18654,16 +19362,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_300 <= dummy_s;
+	dummy_d_312 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_301;
+reg dummy_d_313;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed50 <= 7'd0;
-	case (output_8x20_fine_ts)
+	case (output_8x16_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed50 <= 1'd0;
 		end
@@ -18690,16 +19398,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_301 <= dummy_s;
+	dummy_d_313 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_302;
+reg dummy_d_314;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed51 <= 8'd0;
-	case (output_8x21_fine_ts)
+	case (output_8x17_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed51 <= 8'd255;
 		end
@@ -18726,16 +19434,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_302 <= dummy_s;
+	dummy_d_314 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_303;
+reg dummy_d_315;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed52 <= 7'd0;
-	case (output_8x21_fine_ts)
+	case (output_8x17_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed52 <= 1'd0;
 		end
@@ -18762,16 +19470,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_303 <= dummy_s;
+	dummy_d_315 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_304;
+reg dummy_d_316;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed53 <= 8'd0;
-	case (output_8x22_fine_ts)
+	case (output_8x18_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed53 <= 8'd255;
 		end
@@ -18798,16 +19506,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_304 <= dummy_s;
+	dummy_d_316 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_305;
+reg dummy_d_317;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed54 <= 7'd0;
-	case (output_8x22_fine_ts)
+	case (output_8x18_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed54 <= 1'd0;
 		end
@@ -18834,16 +19542,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_305 <= dummy_s;
+	dummy_d_317 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_306;
+reg dummy_d_318;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed55 <= 8'd0;
-	case (output_8x23_fine_ts)
+	case (output_8x19_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed55 <= 8'd255;
 		end
@@ -18870,16 +19578,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_306 <= dummy_s;
+	dummy_d_318 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_307;
+reg dummy_d_319;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed56 <= 7'd0;
-	case (output_8x23_fine_ts)
+	case (output_8x19_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed56 <= 1'd0;
 		end
@@ -18906,16 +19614,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_307 <= dummy_s;
+	dummy_d_319 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_308;
+reg dummy_d_320;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed57 <= 8'd0;
-	case (output_8x24_fine_ts)
+	case (output_8x20_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed57 <= 8'd255;
 		end
@@ -18942,16 +19650,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_308 <= dummy_s;
+	dummy_d_320 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_309;
+reg dummy_d_321;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed58 <= 7'd0;
-	case (output_8x24_fine_ts)
+	case (output_8x20_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed58 <= 1'd0;
 		end
@@ -18978,16 +19686,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_309 <= dummy_s;
+	dummy_d_321 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_310;
+reg dummy_d_322;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed59 <= 8'd0;
-	case (output_8x25_fine_ts)
+	case (output_8x21_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed59 <= 8'd255;
 		end
@@ -19014,16 +19722,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_310 <= dummy_s;
+	dummy_d_322 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_311;
+reg dummy_d_323;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed60 <= 7'd0;
-	case (output_8x25_fine_ts)
+	case (output_8x21_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed60 <= 1'd0;
 		end
@@ -19050,16 +19758,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_311 <= dummy_s;
+	dummy_d_323 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_312;
+reg dummy_d_324;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed61 <= 8'd0;
-	case (output_8x26_fine_ts)
+	case (output_8x22_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed61 <= 8'd255;
 		end
@@ -19086,16 +19794,16 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_312 <= dummy_s;
+	dummy_d_324 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_313;
+reg dummy_d_325;
 // synthesis translate_on
 always @(*) begin
 	sync_f_t_array_muxed62 <= 7'd0;
-	case (output_8x26_fine_ts)
+	case (output_8x22_fine_ts)
 		1'd0: begin
 			sync_f_t_array_muxed62 <= 1'd0;
 		end
@@ -19122,12 +19830,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_313 <= dummy_s;
+	dummy_d_325 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_314;
+reg dummy_d_326;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed3 <= 61'd0;
@@ -19158,12 +19866,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_314 <= dummy_s;
+	dummy_d_326 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_315;
+reg dummy_d_327;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed4 <= 61'd0;
@@ -19194,12 +19902,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_315 <= dummy_s;
+	dummy_d_327 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_316;
+reg dummy_d_328;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed1 <= 32'd0;
@@ -19217,16 +19925,16 @@ always @(*) begin
 			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record3_fifo_out_data;
 		end
 		3'd4: begin
-			sync_t_rhs_array_muxed1 <= 1'd0;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data;
 		end
 		3'd5: begin
-			sync_t_rhs_array_muxed1 <= 1'd0;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data;
 		end
 		3'd6: begin
-			sync_t_rhs_array_muxed1 <= 1'd0;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data;
 		end
 		3'd7: begin
-			sync_t_rhs_array_muxed1 <= 1'd0;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record7_fifo_out_data;
 		end
 		4'd8: begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
@@ -19253,7 +19961,7 @@ always @(*) begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
 		end
 		5'd16: begin
-			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record4_fifo_out_data;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record8_fifo_out_data;
 		end
 		5'd17: begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
@@ -19271,7 +19979,7 @@ always @(*) begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
 		end
 		5'd22: begin
-			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record5_fifo_out_data;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record9_fifo_out_data;
 		end
 		5'd23: begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
@@ -19289,7 +19997,7 @@ always @(*) begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
 		end
 		5'd28: begin
-			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record6_fifo_out_data;
+			sync_t_rhs_array_muxed1 <= monroe_ionphoton_rtio_core_inputs_record10_fifo_out_data;
 		end
 		5'd29: begin
 			sync_t_rhs_array_muxed1 <= 1'd0;
@@ -19317,12 +20025,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_316 <= dummy_s;
+	dummy_d_328 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_317;
+reg dummy_d_329;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed2 <= 65'd0;
@@ -19340,16 +20048,16 @@ always @(*) begin
 			sync_t_rhs_array_muxed2 <= (monroe_ionphoton_rtio_core_inputs_record3_fifo_out_timestamp <<< 1'd0);
 		end
 		3'd4: begin
-			sync_t_rhs_array_muxed2 <= 1'd0;
+			sync_t_rhs_array_muxed2 <= (monroe_ionphoton_rtio_core_inputs_record4_fifo_out_timestamp <<< 1'd0);
 		end
 		3'd5: begin
-			sync_t_rhs_array_muxed2 <= 1'd0;
+			sync_t_rhs_array_muxed2 <= (monroe_ionphoton_rtio_core_inputs_record5_fifo_out_timestamp <<< 1'd0);
 		end
 		3'd6: begin
-			sync_t_rhs_array_muxed2 <= 1'd0;
+			sync_t_rhs_array_muxed2 <= (monroe_ionphoton_rtio_core_inputs_record6_fifo_out_timestamp <<< 1'd0);
 		end
 		3'd7: begin
-			sync_t_rhs_array_muxed2 <= 1'd0;
+			sync_t_rhs_array_muxed2 <= (monroe_ionphoton_rtio_core_inputs_record7_fifo_out_timestamp <<< 1'd0);
 		end
 		4'd8: begin
 			sync_t_rhs_array_muxed2 <= 1'd0;
@@ -19440,12 +20148,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_317 <= dummy_s;
+	dummy_d_329 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_318;
+reg dummy_d_330;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed5 <= 32'd0;
@@ -19461,12 +20169,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_318 <= dummy_s;
+	dummy_d_330 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_319;
+reg dummy_d_331;
 // synthesis translate_on
 always @(*) begin
 	sync_rhs_array_muxed6 <= 32'd0;
@@ -19482,12 +20190,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_319 <= dummy_s;
+	dummy_d_331 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_320;
+reg dummy_d_332;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed4 <= 1'd0;
@@ -19500,12 +20208,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_320 <= dummy_s;
+	dummy_d_332 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_321;
+reg dummy_d_333;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed5 <= 1'd0;
@@ -19518,12 +20226,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_321 <= dummy_s;
+	dummy_d_333 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_322;
+reg dummy_d_334;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed6 <= 1'd0;
@@ -19536,12 +20244,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_322 <= dummy_s;
+	dummy_d_334 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_323;
+reg dummy_d_335;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed7 <= 1'd0;
@@ -19554,12 +20262,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_323 <= dummy_s;
+	dummy_d_335 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_324;
+reg dummy_d_336;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed8 <= 1'd0;
@@ -19568,214 +20276,214 @@ always @(*) begin
 			sync_t_rhs_array_muxed8 <= monroe_ionphoton_mon_bussynchronizer8_o;
 		end
 		default: begin
-			sync_t_rhs_array_muxed8 <= 1'd0;
+			sync_t_rhs_array_muxed8 <= monroe_ionphoton_mon_bussynchronizer9_o;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_324 <= dummy_s;
+	dummy_d_336 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_325;
+reg dummy_d_337;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed9 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed9 <= monroe_ionphoton_mon_bussynchronizer9_o;
+			sync_t_rhs_array_muxed9 <= monroe_ionphoton_mon_bussynchronizer10_o;
 		end
 		default: begin
-			sync_t_rhs_array_muxed9 <= 1'd0;
+			sync_t_rhs_array_muxed9 <= monroe_ionphoton_mon_bussynchronizer11_o;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_325 <= dummy_s;
+	dummy_d_337 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_326;
+reg dummy_d_338;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed10 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed10 <= monroe_ionphoton_mon_bussynchronizer10_o;
+			sync_t_rhs_array_muxed10 <= monroe_ionphoton_mon_bussynchronizer12_o;
 		end
 		default: begin
-			sync_t_rhs_array_muxed10 <= 1'd0;
+			sync_t_rhs_array_muxed10 <= monroe_ionphoton_mon_bussynchronizer13_o;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_326 <= dummy_s;
+	dummy_d_338 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_327;
+reg dummy_d_339;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed11 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed11 <= monroe_ionphoton_mon_bussynchronizer11_o;
+			sync_t_rhs_array_muxed11 <= monroe_ionphoton_mon_bussynchronizer14_o;
 		end
 		default: begin
-			sync_t_rhs_array_muxed11 <= 1'd0;
+			sync_t_rhs_array_muxed11 <= monroe_ionphoton_mon_bussynchronizer15_o;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_327 <= dummy_s;
+	dummy_d_339 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_328;
+reg dummy_d_340;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed12 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed12 <= monroe_ionphoton_mon_bussynchronizer12_o;
+			sync_t_rhs_array_muxed12 <= monroe_ionphoton_mon_bussynchronizer16_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed12 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_328 <= dummy_s;
+	dummy_d_340 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_329;
+reg dummy_d_341;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed13 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed13 <= monroe_ionphoton_mon_bussynchronizer13_o;
+			sync_t_rhs_array_muxed13 <= monroe_ionphoton_mon_bussynchronizer17_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed13 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_329 <= dummy_s;
+	dummy_d_341 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_330;
+reg dummy_d_342;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed14 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed14 <= monroe_ionphoton_mon_bussynchronizer14_o;
+			sync_t_rhs_array_muxed14 <= monroe_ionphoton_mon_bussynchronizer18_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed14 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_330 <= dummy_s;
+	dummy_d_342 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_331;
+reg dummy_d_343;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed15 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed15 <= monroe_ionphoton_mon_bussynchronizer15_o;
+			sync_t_rhs_array_muxed15 <= monroe_ionphoton_mon_bussynchronizer19_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed15 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_331 <= dummy_s;
+	dummy_d_343 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_332;
+reg dummy_d_344;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed16 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed16 <= monroe_ionphoton_mon_bussynchronizer16_o;
+			sync_t_rhs_array_muxed16 <= monroe_ionphoton_mon_bussynchronizer20_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed16 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_332 <= dummy_s;
+	dummy_d_344 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_333;
+reg dummy_d_345;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed17 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed17 <= monroe_ionphoton_mon_bussynchronizer17_o;
+			sync_t_rhs_array_muxed17 <= monroe_ionphoton_mon_bussynchronizer21_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed17 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_333 <= dummy_s;
+	dummy_d_345 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_334;
+reg dummy_d_346;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed18 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed18 <= monroe_ionphoton_mon_bussynchronizer18_o;
+			sync_t_rhs_array_muxed18 <= monroe_ionphoton_mon_bussynchronizer22_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed18 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_334 <= dummy_s;
+	dummy_d_346 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_335;
+reg dummy_d_347;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed19 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed19 <= monroe_ionphoton_mon_bussynchronizer19_o;
+			sync_t_rhs_array_muxed19 <= monroe_ionphoton_mon_bussynchronizer23_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed19 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_335 <= dummy_s;
+	dummy_d_347 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_336;
+reg dummy_d_348;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed20 <= 1'd0;
@@ -19788,102 +20496,102 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_336 <= dummy_s;
+	dummy_d_348 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_337;
+reg dummy_d_349;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed21 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed21 <= monroe_ionphoton_mon_bussynchronizer20_o;
+			sync_t_rhs_array_muxed21 <= monroe_ionphoton_mon_bussynchronizer24_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed21 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_337 <= dummy_s;
+	dummy_d_349 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_338;
+reg dummy_d_350;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed22 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed22 <= monroe_ionphoton_mon_bussynchronizer21_o;
+			sync_t_rhs_array_muxed22 <= monroe_ionphoton_mon_bussynchronizer25_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed22 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_338 <= dummy_s;
+	dummy_d_350 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_339;
+reg dummy_d_351;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed23 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed23 <= monroe_ionphoton_mon_bussynchronizer22_o;
+			sync_t_rhs_array_muxed23 <= monroe_ionphoton_mon_bussynchronizer26_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed23 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_339 <= dummy_s;
+	dummy_d_351 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_340;
+reg dummy_d_352;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed24 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed24 <= monroe_ionphoton_mon_bussynchronizer23_o;
+			sync_t_rhs_array_muxed24 <= monroe_ionphoton_mon_bussynchronizer27_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed24 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_340 <= dummy_s;
+	dummy_d_352 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_341;
+reg dummy_d_353;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed25 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed25 <= monroe_ionphoton_mon_bussynchronizer24_o;
+			sync_t_rhs_array_muxed25 <= monroe_ionphoton_mon_bussynchronizer28_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed25 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_341 <= dummy_s;
+	dummy_d_353 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_342;
+reg dummy_d_354;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed26 <= 1'd0;
@@ -19896,102 +20604,102 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_342 <= dummy_s;
+	dummy_d_354 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_343;
+reg dummy_d_355;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed27 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed27 <= monroe_ionphoton_mon_bussynchronizer25_o;
+			sync_t_rhs_array_muxed27 <= monroe_ionphoton_mon_bussynchronizer29_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed27 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_343 <= dummy_s;
+	dummy_d_355 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_344;
+reg dummy_d_356;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed28 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed28 <= monroe_ionphoton_mon_bussynchronizer26_o;
+			sync_t_rhs_array_muxed28 <= monroe_ionphoton_mon_bussynchronizer30_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed28 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_344 <= dummy_s;
+	dummy_d_356 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_345;
+reg dummy_d_357;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed29 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed29 <= monroe_ionphoton_mon_bussynchronizer27_o;
+			sync_t_rhs_array_muxed29 <= monroe_ionphoton_mon_bussynchronizer31_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed29 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_345 <= dummy_s;
+	dummy_d_357 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_346;
+reg dummy_d_358;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed30 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed30 <= monroe_ionphoton_mon_bussynchronizer28_o;
+			sync_t_rhs_array_muxed30 <= monroe_ionphoton_mon_bussynchronizer32_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed30 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_346 <= dummy_s;
+	dummy_d_358 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_347;
+reg dummy_d_359;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed31 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed31 <= monroe_ionphoton_mon_bussynchronizer29_o;
+			sync_t_rhs_array_muxed31 <= monroe_ionphoton_mon_bussynchronizer33_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed31 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_347 <= dummy_s;
+	dummy_d_359 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_348;
+reg dummy_d_360;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed32 <= 1'd0;
@@ -20004,138 +20712,138 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_348 <= dummy_s;
+	dummy_d_360 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_349;
+reg dummy_d_361;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed33 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed33 <= monroe_ionphoton_mon_bussynchronizer30_o;
+			sync_t_rhs_array_muxed33 <= monroe_ionphoton_mon_bussynchronizer34_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed33 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_349 <= dummy_s;
+	dummy_d_361 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_350;
+reg dummy_d_362;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed34 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed34 <= monroe_ionphoton_mon_bussynchronizer31_o;
+			sync_t_rhs_array_muxed34 <= monroe_ionphoton_mon_bussynchronizer35_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed34 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_350 <= dummy_s;
+	dummy_d_362 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_351;
+reg dummy_d_363;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed35 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed35 <= monroe_ionphoton_mon_bussynchronizer32_o;
+			sync_t_rhs_array_muxed35 <= monroe_ionphoton_mon_bussynchronizer36_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed35 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_351 <= dummy_s;
+	dummy_d_363 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_352;
+reg dummy_d_364;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed36 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed36 <= monroe_ionphoton_mon_bussynchronizer33_o;
+			sync_t_rhs_array_muxed36 <= monroe_ionphoton_mon_bussynchronizer37_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed36 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_352 <= dummy_s;
+	dummy_d_364 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_353;
+reg dummy_d_365;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed37 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed37 <= monroe_ionphoton_mon_bussynchronizer34_o;
+			sync_t_rhs_array_muxed37 <= monroe_ionphoton_mon_bussynchronizer38_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed37 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_353 <= dummy_s;
+	dummy_d_365 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_354;
+reg dummy_d_366;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed38 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed38 <= monroe_ionphoton_mon_bussynchronizer35_o;
+			sync_t_rhs_array_muxed38 <= monroe_ionphoton_mon_bussynchronizer39_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed38 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_354 <= dummy_s;
+	dummy_d_366 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_355;
+reg dummy_d_367;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed39 <= 1'd0;
 	case (monroe_ionphoton_mon_probe_sel_storage)
 		1'd0: begin
-			sync_t_rhs_array_muxed39 <= monroe_ionphoton_mon_bussynchronizer36_o;
+			sync_t_rhs_array_muxed39 <= monroe_ionphoton_mon_bussynchronizer40_o;
 		end
 		default: begin
 			sync_t_rhs_array_muxed39 <= 1'd0;
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_355 <= dummy_s;
+	dummy_d_367 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_356;
+reg dummy_d_368;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed40 <= 1'd0;
@@ -20148,12 +20856,12 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_356 <= dummy_s;
+	dummy_d_368 <= dummy_s;
 // synthesis translate_on
 end
 
 // synthesis translate_off
-reg dummy_d_357;
+reg dummy_d_369;
 // synthesis translate_on
 always @(*) begin
 	sync_t_rhs_array_muxed3 <= 1'd0;
@@ -20271,7 +20979,7 @@ always @(*) begin
 		end
 	endcase
 // synthesis translate_off
-	dummy_d_357 <= dummy_s;
+	dummy_d_369 <= dummy_s;
 // synthesis translate_on
 end
 assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_uart_phy_rx = xilinxmultiregimpl0_regs1;
@@ -20339,119 +21047,143 @@ assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_produce_rdomain = xilinxmult
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_consume_wdomain = xilinxmultiregimpl58_regs1;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_o = xilinxmultiregimpl59_regs1;
 assign monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o = xilinxmultiregimpl60_regs1;
-assign monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_o = xilinxmultiregimpl61_regs1;
-assign monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_o = xilinxmultiregimpl62_regs1;
-assign monroe_ionphoton_rtio_core_o_collision_sync_data_o = xilinxmultiregimpl63_regs1;
-assign monroe_ionphoton_rtio_core_o_busy_sync_ps_toggle_o = xilinxmultiregimpl64_regs1;
-assign monroe_ionphoton_rtio_core_o_busy_sync_ps_ack_toggle_o = xilinxmultiregimpl65_regs1;
-assign monroe_ionphoton_rtio_core_o_busy_sync_data_o = xilinxmultiregimpl66_regs1;
-assign monroe_ionphoton_mon_bussynchronizer0_o = xilinxmultiregimpl67_regs1;
-assign monroe_ionphoton_mon_bussynchronizer1_o = xilinxmultiregimpl68_regs1;
-assign monroe_ionphoton_mon_bussynchronizer2_o = xilinxmultiregimpl69_regs1;
-assign monroe_ionphoton_mon_bussynchronizer3_o = xilinxmultiregimpl70_regs1;
-assign monroe_ionphoton_mon_bussynchronizer4_o = xilinxmultiregimpl71_regs1;
-assign monroe_ionphoton_mon_bussynchronizer5_o = xilinxmultiregimpl72_regs1;
-assign monroe_ionphoton_mon_bussynchronizer6_o = xilinxmultiregimpl73_regs1;
-assign monroe_ionphoton_mon_bussynchronizer7_o = xilinxmultiregimpl74_regs1;
-assign monroe_ionphoton_mon_bussynchronizer8_o = xilinxmultiregimpl75_regs1;
-assign monroe_ionphoton_mon_bussynchronizer9_o = xilinxmultiregimpl76_regs1;
-assign monroe_ionphoton_mon_bussynchronizer10_o = xilinxmultiregimpl77_regs1;
-assign monroe_ionphoton_mon_bussynchronizer11_o = xilinxmultiregimpl78_regs1;
-assign monroe_ionphoton_mon_bussynchronizer12_o = xilinxmultiregimpl79_regs1;
-assign monroe_ionphoton_mon_bussynchronizer13_o = xilinxmultiregimpl80_regs1;
-assign monroe_ionphoton_mon_bussynchronizer14_o = xilinxmultiregimpl81_regs1;
-assign monroe_ionphoton_mon_bussynchronizer15_o = xilinxmultiregimpl82_regs1;
-assign monroe_ionphoton_mon_bussynchronizer16_o = xilinxmultiregimpl83_regs1;
-assign monroe_ionphoton_mon_bussynchronizer17_o = xilinxmultiregimpl84_regs1;
-assign monroe_ionphoton_mon_bussynchronizer18_o = xilinxmultiregimpl85_regs1;
-assign monroe_ionphoton_mon_bussynchronizer19_o = xilinxmultiregimpl86_regs1;
-assign monroe_ionphoton_mon_bussynchronizer20_o = xilinxmultiregimpl87_regs1;
-assign monroe_ionphoton_mon_bussynchronizer21_o = xilinxmultiregimpl88_regs1;
-assign monroe_ionphoton_mon_bussynchronizer22_o = xilinxmultiregimpl89_regs1;
-assign monroe_ionphoton_mon_bussynchronizer23_o = xilinxmultiregimpl90_regs1;
-assign monroe_ionphoton_mon_bussynchronizer24_o = xilinxmultiregimpl91_regs1;
-assign monroe_ionphoton_mon_bussynchronizer25_o = xilinxmultiregimpl92_regs1;
-assign monroe_ionphoton_mon_bussynchronizer26_o = xilinxmultiregimpl93_regs1;
-assign monroe_ionphoton_mon_bussynchronizer27_o = xilinxmultiregimpl94_regs1;
-assign monroe_ionphoton_mon_bussynchronizer28_o = xilinxmultiregimpl95_regs1;
-assign monroe_ionphoton_mon_bussynchronizer29_o = xilinxmultiregimpl96_regs1;
-assign monroe_ionphoton_mon_bussynchronizer30_o = xilinxmultiregimpl97_regs1;
-assign monroe_ionphoton_mon_bussynchronizer31_o = xilinxmultiregimpl98_regs1;
-assign monroe_ionphoton_mon_bussynchronizer32_o = xilinxmultiregimpl99_regs1;
-assign monroe_ionphoton_mon_bussynchronizer33_o = xilinxmultiregimpl100_regs1;
-assign monroe_ionphoton_mon_bussynchronizer34_o = xilinxmultiregimpl101_regs1;
-assign monroe_ionphoton_mon_bussynchronizer35_o = xilinxmultiregimpl102_regs1;
-assign monroe_ionphoton_mon_bussynchronizer36_o = xilinxmultiregimpl103_regs1;
-assign inout_8x0_inout_8x0_override_en = xilinxmultiregimpl104_regs1;
-assign inout_8x0_inout_8x0_override_o = xilinxmultiregimpl105_regs1;
-assign inout_8x0_inout_8x0_override_oe = xilinxmultiregimpl106_regs1;
-assign inout_8x1_inout_8x1_override_en = xilinxmultiregimpl107_regs1;
-assign inout_8x1_inout_8x1_override_o = xilinxmultiregimpl108_regs1;
-assign inout_8x1_inout_8x1_override_oe = xilinxmultiregimpl109_regs1;
-assign inout_8x2_inout_8x2_override_en = xilinxmultiregimpl110_regs1;
-assign inout_8x2_inout_8x2_override_o = xilinxmultiregimpl111_regs1;
-assign inout_8x2_inout_8x2_override_oe = xilinxmultiregimpl112_regs1;
-assign inout_8x3_inout_8x3_override_en = xilinxmultiregimpl113_regs1;
-assign inout_8x3_inout_8x3_override_o = xilinxmultiregimpl114_regs1;
-assign inout_8x3_inout_8x3_override_oe = xilinxmultiregimpl115_regs1;
-assign output_8x0_override_en = xilinxmultiregimpl116_regs1;
-assign output_8x0_override_o = xilinxmultiregimpl117_regs1;
-assign output_8x1_override_en = xilinxmultiregimpl118_regs1;
-assign output_8x1_override_o = xilinxmultiregimpl119_regs1;
-assign output_8x2_override_en = xilinxmultiregimpl120_regs1;
-assign output_8x2_override_o = xilinxmultiregimpl121_regs1;
-assign output_8x3_override_en = xilinxmultiregimpl122_regs1;
-assign output_8x3_override_o = xilinxmultiregimpl123_regs1;
-assign output_8x4_override_en = xilinxmultiregimpl124_regs1;
-assign output_8x4_override_o = xilinxmultiregimpl125_regs1;
-assign output_8x5_override_en = xilinxmultiregimpl126_regs1;
-assign output_8x5_override_o = xilinxmultiregimpl127_regs1;
-assign output_8x6_override_en = xilinxmultiregimpl128_regs1;
-assign output_8x6_override_o = xilinxmultiregimpl129_regs1;
-assign output_8x7_override_en = xilinxmultiregimpl130_regs1;
-assign output_8x7_override_o = xilinxmultiregimpl131_regs1;
-assign output_8x8_override_en = xilinxmultiregimpl132_regs1;
-assign output_8x8_override_o = xilinxmultiregimpl133_regs1;
-assign output_8x9_override_en = xilinxmultiregimpl134_regs1;
-assign output_8x9_override_o = xilinxmultiregimpl135_regs1;
-assign output_8x10_override_en = xilinxmultiregimpl136_regs1;
-assign output_8x10_override_o = xilinxmultiregimpl137_regs1;
-assign output_8x11_override_en = xilinxmultiregimpl138_regs1;
-assign output_8x11_override_o = xilinxmultiregimpl139_regs1;
-assign output_8x12_override_en = xilinxmultiregimpl140_regs1;
-assign output_8x12_override_o = xilinxmultiregimpl141_regs1;
-assign output_8x13_override_en = xilinxmultiregimpl142_regs1;
-assign output_8x13_override_o = xilinxmultiregimpl143_regs1;
-assign output_8x14_override_en = xilinxmultiregimpl144_regs1;
-assign output_8x14_override_o = xilinxmultiregimpl145_regs1;
-assign output_8x15_override_en = xilinxmultiregimpl146_regs1;
-assign output_8x15_override_o = xilinxmultiregimpl147_regs1;
-assign output_8x16_override_en = xilinxmultiregimpl148_regs1;
-assign output_8x16_override_o = xilinxmultiregimpl149_regs1;
-assign output_8x17_override_en = xilinxmultiregimpl150_regs1;
-assign output_8x17_override_o = xilinxmultiregimpl151_regs1;
-assign output_8x18_override_en = xilinxmultiregimpl152_regs1;
-assign output_8x18_override_o = xilinxmultiregimpl153_regs1;
-assign output_8x19_override_en = xilinxmultiregimpl154_regs1;
-assign output_8x19_override_o = xilinxmultiregimpl155_regs1;
-assign output_8x20_override_en = xilinxmultiregimpl156_regs1;
-assign output_8x20_override_o = xilinxmultiregimpl157_regs1;
-assign output_8x21_override_en = xilinxmultiregimpl158_regs1;
-assign output_8x21_override_o = xilinxmultiregimpl159_regs1;
-assign output_8x22_override_en = xilinxmultiregimpl160_regs1;
-assign output_8x22_override_o = xilinxmultiregimpl161_regs1;
-assign output_8x23_override_en = xilinxmultiregimpl162_regs1;
-assign output_8x23_override_o = xilinxmultiregimpl163_regs1;
-assign output_8x24_override_en = xilinxmultiregimpl164_regs1;
-assign output_8x24_override_o = xilinxmultiregimpl165_regs1;
-assign output_8x25_override_en = xilinxmultiregimpl166_regs1;
-assign output_8x25_override_o = xilinxmultiregimpl167_regs1;
-assign output_8x26_override_en = xilinxmultiregimpl168_regs1;
-assign output_8x26_override_o = xilinxmultiregimpl169_regs1;
-assign output0_override_en = xilinxmultiregimpl170_regs1;
-assign output0_override_o = xilinxmultiregimpl171_regs1;
-assign output1_override_en = xilinxmultiregimpl172_regs1;
-assign output1_override_o = xilinxmultiregimpl173_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_produce_rdomain = xilinxmultiregimpl61_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_consume_wdomain = xilinxmultiregimpl62_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o = xilinxmultiregimpl63_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o = xilinxmultiregimpl64_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_produce_rdomain = xilinxmultiregimpl65_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_consume_wdomain = xilinxmultiregimpl66_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o = xilinxmultiregimpl67_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o = xilinxmultiregimpl68_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_produce_rdomain = xilinxmultiregimpl69_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_consume_wdomain = xilinxmultiregimpl70_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o = xilinxmultiregimpl71_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o = xilinxmultiregimpl72_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_produce_rdomain = xilinxmultiregimpl73_regs1;
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_consume_wdomain = xilinxmultiregimpl74_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o = xilinxmultiregimpl75_regs1;
+assign monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o = xilinxmultiregimpl76_regs1;
+assign monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_o = xilinxmultiregimpl77_regs1;
+assign monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_o = xilinxmultiregimpl78_regs1;
+assign monroe_ionphoton_rtio_core_o_collision_sync_data_o = xilinxmultiregimpl79_regs1;
+assign monroe_ionphoton_rtio_core_o_busy_sync_ps_toggle_o = xilinxmultiregimpl80_regs1;
+assign monroe_ionphoton_rtio_core_o_busy_sync_ps_ack_toggle_o = xilinxmultiregimpl81_regs1;
+assign monroe_ionphoton_rtio_core_o_busy_sync_data_o = xilinxmultiregimpl82_regs1;
+assign monroe_ionphoton_mon_bussynchronizer0_o = xilinxmultiregimpl83_regs1;
+assign monroe_ionphoton_mon_bussynchronizer1_o = xilinxmultiregimpl84_regs1;
+assign monroe_ionphoton_mon_bussynchronizer2_o = xilinxmultiregimpl85_regs1;
+assign monroe_ionphoton_mon_bussynchronizer3_o = xilinxmultiregimpl86_regs1;
+assign monroe_ionphoton_mon_bussynchronizer4_o = xilinxmultiregimpl87_regs1;
+assign monroe_ionphoton_mon_bussynchronizer5_o = xilinxmultiregimpl88_regs1;
+assign monroe_ionphoton_mon_bussynchronizer6_o = xilinxmultiregimpl89_regs1;
+assign monroe_ionphoton_mon_bussynchronizer7_o = xilinxmultiregimpl90_regs1;
+assign monroe_ionphoton_mon_bussynchronizer8_o = xilinxmultiregimpl91_regs1;
+assign monroe_ionphoton_mon_bussynchronizer9_o = xilinxmultiregimpl92_regs1;
+assign monroe_ionphoton_mon_bussynchronizer10_o = xilinxmultiregimpl93_regs1;
+assign monroe_ionphoton_mon_bussynchronizer11_o = xilinxmultiregimpl94_regs1;
+assign monroe_ionphoton_mon_bussynchronizer12_o = xilinxmultiregimpl95_regs1;
+assign monroe_ionphoton_mon_bussynchronizer13_o = xilinxmultiregimpl96_regs1;
+assign monroe_ionphoton_mon_bussynchronizer14_o = xilinxmultiregimpl97_regs1;
+assign monroe_ionphoton_mon_bussynchronizer15_o = xilinxmultiregimpl98_regs1;
+assign monroe_ionphoton_mon_bussynchronizer16_o = xilinxmultiregimpl99_regs1;
+assign monroe_ionphoton_mon_bussynchronizer17_o = xilinxmultiregimpl100_regs1;
+assign monroe_ionphoton_mon_bussynchronizer18_o = xilinxmultiregimpl101_regs1;
+assign monroe_ionphoton_mon_bussynchronizer19_o = xilinxmultiregimpl102_regs1;
+assign monroe_ionphoton_mon_bussynchronizer20_o = xilinxmultiregimpl103_regs1;
+assign monroe_ionphoton_mon_bussynchronizer21_o = xilinxmultiregimpl104_regs1;
+assign monroe_ionphoton_mon_bussynchronizer22_o = xilinxmultiregimpl105_regs1;
+assign monroe_ionphoton_mon_bussynchronizer23_o = xilinxmultiregimpl106_regs1;
+assign monroe_ionphoton_mon_bussynchronizer24_o = xilinxmultiregimpl107_regs1;
+assign monroe_ionphoton_mon_bussynchronizer25_o = xilinxmultiregimpl108_regs1;
+assign monroe_ionphoton_mon_bussynchronizer26_o = xilinxmultiregimpl109_regs1;
+assign monroe_ionphoton_mon_bussynchronizer27_o = xilinxmultiregimpl110_regs1;
+assign monroe_ionphoton_mon_bussynchronizer28_o = xilinxmultiregimpl111_regs1;
+assign monroe_ionphoton_mon_bussynchronizer29_o = xilinxmultiregimpl112_regs1;
+assign monroe_ionphoton_mon_bussynchronizer30_o = xilinxmultiregimpl113_regs1;
+assign monroe_ionphoton_mon_bussynchronizer31_o = xilinxmultiregimpl114_regs1;
+assign monroe_ionphoton_mon_bussynchronizer32_o = xilinxmultiregimpl115_regs1;
+assign monroe_ionphoton_mon_bussynchronizer33_o = xilinxmultiregimpl116_regs1;
+assign monroe_ionphoton_mon_bussynchronizer34_o = xilinxmultiregimpl117_regs1;
+assign monroe_ionphoton_mon_bussynchronizer35_o = xilinxmultiregimpl118_regs1;
+assign monroe_ionphoton_mon_bussynchronizer36_o = xilinxmultiregimpl119_regs1;
+assign monroe_ionphoton_mon_bussynchronizer37_o = xilinxmultiregimpl120_regs1;
+assign monroe_ionphoton_mon_bussynchronizer38_o = xilinxmultiregimpl121_regs1;
+assign monroe_ionphoton_mon_bussynchronizer39_o = xilinxmultiregimpl122_regs1;
+assign monroe_ionphoton_mon_bussynchronizer40_o = xilinxmultiregimpl123_regs1;
+assign inout_8x0_inout_8x0_override_en = xilinxmultiregimpl124_regs1;
+assign inout_8x0_inout_8x0_override_o = xilinxmultiregimpl125_regs1;
+assign inout_8x0_inout_8x0_override_oe = xilinxmultiregimpl126_regs1;
+assign inout_8x1_inout_8x1_override_en = xilinxmultiregimpl127_regs1;
+assign inout_8x1_inout_8x1_override_o = xilinxmultiregimpl128_regs1;
+assign inout_8x1_inout_8x1_override_oe = xilinxmultiregimpl129_regs1;
+assign inout_8x2_inout_8x2_override_en = xilinxmultiregimpl130_regs1;
+assign inout_8x2_inout_8x2_override_o = xilinxmultiregimpl131_regs1;
+assign inout_8x2_inout_8x2_override_oe = xilinxmultiregimpl132_regs1;
+assign inout_8x3_inout_8x3_override_en = xilinxmultiregimpl133_regs1;
+assign inout_8x3_inout_8x3_override_o = xilinxmultiregimpl134_regs1;
+assign inout_8x3_inout_8x3_override_oe = xilinxmultiregimpl135_regs1;
+assign inout_8x4_inout_8x4_override_en = xilinxmultiregimpl136_regs1;
+assign inout_8x4_inout_8x4_override_o = xilinxmultiregimpl137_regs1;
+assign inout_8x4_inout_8x4_override_oe = xilinxmultiregimpl138_regs1;
+assign inout_8x5_inout_8x5_override_en = xilinxmultiregimpl139_regs1;
+assign inout_8x5_inout_8x5_override_o = xilinxmultiregimpl140_regs1;
+assign inout_8x5_inout_8x5_override_oe = xilinxmultiregimpl141_regs1;
+assign inout_8x6_inout_8x6_override_en = xilinxmultiregimpl142_regs1;
+assign inout_8x6_inout_8x6_override_o = xilinxmultiregimpl143_regs1;
+assign inout_8x6_inout_8x6_override_oe = xilinxmultiregimpl144_regs1;
+assign inout_8x7_inout_8x7_override_en = xilinxmultiregimpl145_regs1;
+assign inout_8x7_inout_8x7_override_o = xilinxmultiregimpl146_regs1;
+assign inout_8x7_inout_8x7_override_oe = xilinxmultiregimpl147_regs1;
+assign output_8x0_override_en = xilinxmultiregimpl148_regs1;
+assign output_8x0_override_o = xilinxmultiregimpl149_regs1;
+assign output_8x1_override_en = xilinxmultiregimpl150_regs1;
+assign output_8x1_override_o = xilinxmultiregimpl151_regs1;
+assign output_8x2_override_en = xilinxmultiregimpl152_regs1;
+assign output_8x2_override_o = xilinxmultiregimpl153_regs1;
+assign output_8x3_override_en = xilinxmultiregimpl154_regs1;
+assign output_8x3_override_o = xilinxmultiregimpl155_regs1;
+assign output_8x4_override_en = xilinxmultiregimpl156_regs1;
+assign output_8x4_override_o = xilinxmultiregimpl157_regs1;
+assign output_8x5_override_en = xilinxmultiregimpl158_regs1;
+assign output_8x5_override_o = xilinxmultiregimpl159_regs1;
+assign output_8x6_override_en = xilinxmultiregimpl160_regs1;
+assign output_8x6_override_o = xilinxmultiregimpl161_regs1;
+assign output_8x7_override_en = xilinxmultiregimpl162_regs1;
+assign output_8x7_override_o = xilinxmultiregimpl163_regs1;
+assign output_8x8_override_en = xilinxmultiregimpl164_regs1;
+assign output_8x8_override_o = xilinxmultiregimpl165_regs1;
+assign output_8x9_override_en = xilinxmultiregimpl166_regs1;
+assign output_8x9_override_o = xilinxmultiregimpl167_regs1;
+assign output_8x10_override_en = xilinxmultiregimpl168_regs1;
+assign output_8x10_override_o = xilinxmultiregimpl169_regs1;
+assign output_8x11_override_en = xilinxmultiregimpl170_regs1;
+assign output_8x11_override_o = xilinxmultiregimpl171_regs1;
+assign output_8x12_override_en = xilinxmultiregimpl172_regs1;
+assign output_8x12_override_o = xilinxmultiregimpl173_regs1;
+assign output_8x13_override_en = xilinxmultiregimpl174_regs1;
+assign output_8x13_override_o = xilinxmultiregimpl175_regs1;
+assign output_8x14_override_en = xilinxmultiregimpl176_regs1;
+assign output_8x14_override_o = xilinxmultiregimpl177_regs1;
+assign output_8x15_override_en = xilinxmultiregimpl178_regs1;
+assign output_8x15_override_o = xilinxmultiregimpl179_regs1;
+assign output_8x16_override_en = xilinxmultiregimpl180_regs1;
+assign output_8x16_override_o = xilinxmultiregimpl181_regs1;
+assign output_8x17_override_en = xilinxmultiregimpl182_regs1;
+assign output_8x17_override_o = xilinxmultiregimpl183_regs1;
+assign output_8x18_override_en = xilinxmultiregimpl184_regs1;
+assign output_8x18_override_o = xilinxmultiregimpl185_regs1;
+assign output_8x19_override_en = xilinxmultiregimpl186_regs1;
+assign output_8x19_override_o = xilinxmultiregimpl187_regs1;
+assign output_8x20_override_en = xilinxmultiregimpl188_regs1;
+assign output_8x20_override_o = xilinxmultiregimpl189_regs1;
+assign output_8x21_override_en = xilinxmultiregimpl190_regs1;
+assign output_8x21_override_o = xilinxmultiregimpl191_regs1;
+assign output_8x22_override_en = xilinxmultiregimpl192_regs1;
+assign output_8x22_override_o = xilinxmultiregimpl193_regs1;
+assign output0_override_en = xilinxmultiregimpl194_regs1;
+assign output0_override_o = xilinxmultiregimpl195_regs1;
+assign output1_override_en = xilinxmultiregimpl196_regs1;
+assign output1_override_o = xilinxmultiregimpl197_regs1;
 
 always @(posedge clk200_clk) begin
 	if ((monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter != 1'd0)) begin
@@ -20851,6 +21583,34 @@ always @(posedge rio_clk) begin
 			inout_8x3_inout_8x3_sample <= 1'd1;
 		end
 	end
+	inout_8x4_inout_8x4_sample <= 1'd0;
+	if ((inout_8x4_inout_8x4_ointerface4_stb & inout_8x4_inout_8x4_ointerface4_address[1])) begin
+		inout_8x4_inout_8x4_sensitivity <= inout_8x4_inout_8x4_ointerface4_data;
+		if (inout_8x4_inout_8x4_ointerface4_address[0]) begin
+			inout_8x4_inout_8x4_sample <= 1'd1;
+		end
+	end
+	inout_8x5_inout_8x5_sample <= 1'd0;
+	if ((inout_8x5_inout_8x5_ointerface5_stb & inout_8x5_inout_8x5_ointerface5_address[1])) begin
+		inout_8x5_inout_8x5_sensitivity <= inout_8x5_inout_8x5_ointerface5_data;
+		if (inout_8x5_inout_8x5_ointerface5_address[0]) begin
+			inout_8x5_inout_8x5_sample <= 1'd1;
+		end
+	end
+	inout_8x6_inout_8x6_sample <= 1'd0;
+	if ((inout_8x6_inout_8x6_ointerface6_stb & inout_8x6_inout_8x6_ointerface6_address[1])) begin
+		inout_8x6_inout_8x6_sensitivity <= inout_8x6_inout_8x6_ointerface6_data;
+		if (inout_8x6_inout_8x6_ointerface6_address[0]) begin
+			inout_8x6_inout_8x6_sample <= 1'd1;
+		end
+	end
+	inout_8x7_inout_8x7_sample <= 1'd0;
+	if ((inout_8x7_inout_8x7_ointerface7_stb & inout_8x7_inout_8x7_ointerface7_address[1])) begin
+		inout_8x7_inout_8x7_sensitivity <= inout_8x7_inout_8x7_ointerface7_data;
+		if (inout_8x7_inout_8x7_ointerface7_address[0]) begin
+			inout_8x7_inout_8x7_sample <= 1'd1;
+		end
+	end
 	if ((monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_re | (~monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_readable))) begin
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_dout <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_asyncfifo0_dout;
 		monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_readable <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_asyncfifo0_readable;
@@ -21053,96 +21813,100 @@ always @(posedge rio_clk) begin
 	inout_8x3_inout_8x3_ointerface3_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected24 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected25 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected26 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected27 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected28 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected29 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected30 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected31 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
 	inout_8x3_inout_8x3_ointerface3_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected24 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected25 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected26 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected27 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected28 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected29 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected30 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected31 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
 	inout_8x3_inout_8x3_ointerface3_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected24 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected25 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected26 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected27 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected28 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected29 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected30 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected31 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x0_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected32 | monroe_ionphoton_rtio_core_outputs_selected33) | monroe_ionphoton_rtio_core_outputs_selected34) | monroe_ionphoton_rtio_core_outputs_selected35) | monroe_ionphoton_rtio_core_outputs_selected36) | monroe_ionphoton_rtio_core_outputs_selected37) | monroe_ionphoton_rtio_core_outputs_selected38) | monroe_ionphoton_rtio_core_outputs_selected39);
-	output_8x0_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected32 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected33 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected34 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected35 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected36 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected37 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected38 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected39 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x0_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected32 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected33 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected34 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected35 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected36 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected37 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected38 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected39 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x1_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected40 | monroe_ionphoton_rtio_core_outputs_selected41) | monroe_ionphoton_rtio_core_outputs_selected42) | monroe_ionphoton_rtio_core_outputs_selected43) | monroe_ionphoton_rtio_core_outputs_selected44) | monroe_ionphoton_rtio_core_outputs_selected45) | monroe_ionphoton_rtio_core_outputs_selected46) | monroe_ionphoton_rtio_core_outputs_selected47);
-	output_8x1_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected40 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected41 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected42 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected43 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected44 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected45 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected46 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected47 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x1_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected40 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected41 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected42 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected43 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected44 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected45 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected46 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected47 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x2_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected48 | monroe_ionphoton_rtio_core_outputs_selected49) | monroe_ionphoton_rtio_core_outputs_selected50) | monroe_ionphoton_rtio_core_outputs_selected51) | monroe_ionphoton_rtio_core_outputs_selected52) | monroe_ionphoton_rtio_core_outputs_selected53) | monroe_ionphoton_rtio_core_outputs_selected54) | monroe_ionphoton_rtio_core_outputs_selected55);
-	output_8x2_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected48 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected49 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected50 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected51 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected52 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected53 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected54 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected55 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x2_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected48 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected49 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected50 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected51 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected52 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected53 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected54 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected55 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x3_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected56 | monroe_ionphoton_rtio_core_outputs_selected57) | monroe_ionphoton_rtio_core_outputs_selected58) | monroe_ionphoton_rtio_core_outputs_selected59) | monroe_ionphoton_rtio_core_outputs_selected60) | monroe_ionphoton_rtio_core_outputs_selected61) | monroe_ionphoton_rtio_core_outputs_selected62) | monroe_ionphoton_rtio_core_outputs_selected63);
-	output_8x3_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected56 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected57 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected58 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected59 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected60 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected61 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected62 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected63 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x3_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected56 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected57 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected58 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected59 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected60 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected61 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected62 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected63 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x4_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected64 | monroe_ionphoton_rtio_core_outputs_selected65) | monroe_ionphoton_rtio_core_outputs_selected66) | monroe_ionphoton_rtio_core_outputs_selected67) | monroe_ionphoton_rtio_core_outputs_selected68) | monroe_ionphoton_rtio_core_outputs_selected69) | monroe_ionphoton_rtio_core_outputs_selected70) | monroe_ionphoton_rtio_core_outputs_selected71);
-	output_8x4_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected64 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected65 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected66 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected67 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected68 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected69 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected70 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected71 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x4_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected64 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected65 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected66 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected67 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected68 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected69 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected70 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected71 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x5_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected72 | monroe_ionphoton_rtio_core_outputs_selected73) | monroe_ionphoton_rtio_core_outputs_selected74) | monroe_ionphoton_rtio_core_outputs_selected75) | monroe_ionphoton_rtio_core_outputs_selected76) | monroe_ionphoton_rtio_core_outputs_selected77) | monroe_ionphoton_rtio_core_outputs_selected78) | monroe_ionphoton_rtio_core_outputs_selected79);
-	output_8x5_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected72 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected73 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected74 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected75 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected76 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected77 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected78 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected79 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x5_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected72 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected73 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected74 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected75 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected76 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected77 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected78 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected79 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x6_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected80 | monroe_ionphoton_rtio_core_outputs_selected81) | monroe_ionphoton_rtio_core_outputs_selected82) | monroe_ionphoton_rtio_core_outputs_selected83) | monroe_ionphoton_rtio_core_outputs_selected84) | monroe_ionphoton_rtio_core_outputs_selected85) | monroe_ionphoton_rtio_core_outputs_selected86) | monroe_ionphoton_rtio_core_outputs_selected87);
-	output_8x6_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected80 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected81 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected82 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected83 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected84 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected85 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected86 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected87 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x6_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected80 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected81 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected82 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected83 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected84 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected85 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected86 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected87 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x7_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected88 | monroe_ionphoton_rtio_core_outputs_selected89) | monroe_ionphoton_rtio_core_outputs_selected90) | monroe_ionphoton_rtio_core_outputs_selected91) | monroe_ionphoton_rtio_core_outputs_selected92) | monroe_ionphoton_rtio_core_outputs_selected93) | monroe_ionphoton_rtio_core_outputs_selected94) | monroe_ionphoton_rtio_core_outputs_selected95);
-	output_8x7_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected88 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected89 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected90 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected91 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected92 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected93 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected94 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected95 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x7_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected88 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected89 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected90 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected91 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected92 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected93 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected94 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected95 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x8_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected96 | monroe_ionphoton_rtio_core_outputs_selected97) | monroe_ionphoton_rtio_core_outputs_selected98) | monroe_ionphoton_rtio_core_outputs_selected99) | monroe_ionphoton_rtio_core_outputs_selected100) | monroe_ionphoton_rtio_core_outputs_selected101) | monroe_ionphoton_rtio_core_outputs_selected102) | monroe_ionphoton_rtio_core_outputs_selected103);
-	output_8x8_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected96 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected97 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected98 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected99 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected100 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected101 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected102 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected103 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x8_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected96 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected97 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected98 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected99 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected100 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected101 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected102 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected103 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x9_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected104 | monroe_ionphoton_rtio_core_outputs_selected105) | monroe_ionphoton_rtio_core_outputs_selected106) | monroe_ionphoton_rtio_core_outputs_selected107) | monroe_ionphoton_rtio_core_outputs_selected108) | monroe_ionphoton_rtio_core_outputs_selected109) | monroe_ionphoton_rtio_core_outputs_selected110) | monroe_ionphoton_rtio_core_outputs_selected111);
-	output_8x9_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected104 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected105 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected106 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected107 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected108 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected109 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected110 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected111 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x9_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected104 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected105 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected106 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected107 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected108 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected109 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected110 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected111 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x10_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected112 | monroe_ionphoton_rtio_core_outputs_selected113) | monroe_ionphoton_rtio_core_outputs_selected114) | monroe_ionphoton_rtio_core_outputs_selected115) | monroe_ionphoton_rtio_core_outputs_selected116) | monroe_ionphoton_rtio_core_outputs_selected117) | monroe_ionphoton_rtio_core_outputs_selected118) | monroe_ionphoton_rtio_core_outputs_selected119);
-	output_8x10_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected112 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected113 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected114 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected115 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected116 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected117 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected118 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected119 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x10_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected112 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected113 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected114 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected115 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected116 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected117 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected118 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected119 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x11_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected120 | monroe_ionphoton_rtio_core_outputs_selected121) | monroe_ionphoton_rtio_core_outputs_selected122) | monroe_ionphoton_rtio_core_outputs_selected123) | monroe_ionphoton_rtio_core_outputs_selected124) | monroe_ionphoton_rtio_core_outputs_selected125) | monroe_ionphoton_rtio_core_outputs_selected126) | monroe_ionphoton_rtio_core_outputs_selected127);
-	output_8x11_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected120 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected121 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected122 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected123 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected124 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected125 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected126 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected127 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x11_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected120 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected121 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected122 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected123 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected124 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected125 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected126 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected127 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	inout_8x4_inout_8x4_ointerface4_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected32 | monroe_ionphoton_rtio_core_outputs_selected33) | monroe_ionphoton_rtio_core_outputs_selected34) | monroe_ionphoton_rtio_core_outputs_selected35) | monroe_ionphoton_rtio_core_outputs_selected36) | monroe_ionphoton_rtio_core_outputs_selected37) | monroe_ionphoton_rtio_core_outputs_selected38) | monroe_ionphoton_rtio_core_outputs_selected39);
+	inout_8x4_inout_8x4_ointerface4_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected32 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected33 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected34 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected35 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected36 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected37 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected38 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected39 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	inout_8x4_inout_8x4_ointerface4_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected32 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected33 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected34 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected35 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected36 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected37 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected38 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected39 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
+	inout_8x4_inout_8x4_ointerface4_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected32 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected33 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected34 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected35 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected36 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected37 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected38 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected39 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	inout_8x5_inout_8x5_ointerface5_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected40 | monroe_ionphoton_rtio_core_outputs_selected41) | monroe_ionphoton_rtio_core_outputs_selected42) | monroe_ionphoton_rtio_core_outputs_selected43) | monroe_ionphoton_rtio_core_outputs_selected44) | monroe_ionphoton_rtio_core_outputs_selected45) | monroe_ionphoton_rtio_core_outputs_selected46) | monroe_ionphoton_rtio_core_outputs_selected47);
+	inout_8x5_inout_8x5_ointerface5_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected40 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected41 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected42 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected43 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected44 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected45 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected46 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected47 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	inout_8x5_inout_8x5_ointerface5_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected40 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected41 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected42 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected43 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected44 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected45 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected46 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected47 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
+	inout_8x5_inout_8x5_ointerface5_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected40 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected41 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected42 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected43 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected44 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected45 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected46 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected47 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	inout_8x6_inout_8x6_ointerface6_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected48 | monroe_ionphoton_rtio_core_outputs_selected49) | monroe_ionphoton_rtio_core_outputs_selected50) | monroe_ionphoton_rtio_core_outputs_selected51) | monroe_ionphoton_rtio_core_outputs_selected52) | monroe_ionphoton_rtio_core_outputs_selected53) | monroe_ionphoton_rtio_core_outputs_selected54) | monroe_ionphoton_rtio_core_outputs_selected55);
+	inout_8x6_inout_8x6_ointerface6_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected48 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected49 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected50 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected51 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected52 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected53 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected54 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected55 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	inout_8x6_inout_8x6_ointerface6_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected48 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected49 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected50 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected51 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected52 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected53 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected54 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected55 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
+	inout_8x6_inout_8x6_ointerface6_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected48 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected49 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected50 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected51 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected52 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected53 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected54 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected55 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	inout_8x7_inout_8x7_ointerface7_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected56 | monroe_ionphoton_rtio_core_outputs_selected57) | monroe_ionphoton_rtio_core_outputs_selected58) | monroe_ionphoton_rtio_core_outputs_selected59) | monroe_ionphoton_rtio_core_outputs_selected60) | monroe_ionphoton_rtio_core_outputs_selected61) | monroe_ionphoton_rtio_core_outputs_selected62) | monroe_ionphoton_rtio_core_outputs_selected63);
+	inout_8x7_inout_8x7_ointerface7_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected56 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected57 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected58 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected59 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected60 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected61 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected62 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected63 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	inout_8x7_inout_8x7_ointerface7_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected56 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected57 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected58 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected59 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected60 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected61 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected62 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected63 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
+	inout_8x7_inout_8x7_ointerface7_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected56 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected57 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected58 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected59 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected60 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected61 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected62 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected63 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x0_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected64 | monroe_ionphoton_rtio_core_outputs_selected65) | monroe_ionphoton_rtio_core_outputs_selected66) | monroe_ionphoton_rtio_core_outputs_selected67) | monroe_ionphoton_rtio_core_outputs_selected68) | monroe_ionphoton_rtio_core_outputs_selected69) | monroe_ionphoton_rtio_core_outputs_selected70) | monroe_ionphoton_rtio_core_outputs_selected71);
+	output_8x0_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected64 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected65 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected66 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected67 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected68 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected69 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected70 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected71 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x0_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected64 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected65 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected66 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected67 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected68 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected69 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected70 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected71 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x1_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected72 | monroe_ionphoton_rtio_core_outputs_selected73) | monroe_ionphoton_rtio_core_outputs_selected74) | monroe_ionphoton_rtio_core_outputs_selected75) | monroe_ionphoton_rtio_core_outputs_selected76) | monroe_ionphoton_rtio_core_outputs_selected77) | monroe_ionphoton_rtio_core_outputs_selected78) | monroe_ionphoton_rtio_core_outputs_selected79);
+	output_8x1_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected72 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected73 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected74 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected75 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected76 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected77 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected78 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected79 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x1_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected72 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected73 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected74 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected75 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected76 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected77 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected78 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected79 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x2_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected80 | monroe_ionphoton_rtio_core_outputs_selected81) | monroe_ionphoton_rtio_core_outputs_selected82) | monroe_ionphoton_rtio_core_outputs_selected83) | monroe_ionphoton_rtio_core_outputs_selected84) | monroe_ionphoton_rtio_core_outputs_selected85) | monroe_ionphoton_rtio_core_outputs_selected86) | monroe_ionphoton_rtio_core_outputs_selected87);
+	output_8x2_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected80 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected81 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected82 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected83 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected84 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected85 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected86 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected87 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x2_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected80 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected81 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected82 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected83 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected84 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected85 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected86 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected87 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x3_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected88 | monroe_ionphoton_rtio_core_outputs_selected89) | monroe_ionphoton_rtio_core_outputs_selected90) | monroe_ionphoton_rtio_core_outputs_selected91) | monroe_ionphoton_rtio_core_outputs_selected92) | monroe_ionphoton_rtio_core_outputs_selected93) | monroe_ionphoton_rtio_core_outputs_selected94) | monroe_ionphoton_rtio_core_outputs_selected95);
+	output_8x3_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected88 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected89 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected90 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected91 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected92 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected93 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected94 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected95 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x3_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected88 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected89 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected90 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected91 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected92 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected93 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected94 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected95 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x4_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected96 | monroe_ionphoton_rtio_core_outputs_selected97) | monroe_ionphoton_rtio_core_outputs_selected98) | monroe_ionphoton_rtio_core_outputs_selected99) | monroe_ionphoton_rtio_core_outputs_selected100) | monroe_ionphoton_rtio_core_outputs_selected101) | monroe_ionphoton_rtio_core_outputs_selected102) | monroe_ionphoton_rtio_core_outputs_selected103);
+	output_8x4_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected96 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected97 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected98 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected99 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected100 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected101 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected102 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected103 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x4_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected96 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected97 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected98 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected99 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected100 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected101 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected102 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected103 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x5_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected104 | monroe_ionphoton_rtio_core_outputs_selected105) | monroe_ionphoton_rtio_core_outputs_selected106) | monroe_ionphoton_rtio_core_outputs_selected107) | monroe_ionphoton_rtio_core_outputs_selected108) | monroe_ionphoton_rtio_core_outputs_selected109) | monroe_ionphoton_rtio_core_outputs_selected110) | monroe_ionphoton_rtio_core_outputs_selected111);
+	output_8x5_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected104 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected105 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected106 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected107 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected108 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected109 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected110 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected111 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x5_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected104 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected105 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected106 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected107 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected108 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected109 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected110 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected111 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x6_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected112 | monroe_ionphoton_rtio_core_outputs_selected113) | monroe_ionphoton_rtio_core_outputs_selected114) | monroe_ionphoton_rtio_core_outputs_selected115) | monroe_ionphoton_rtio_core_outputs_selected116) | monroe_ionphoton_rtio_core_outputs_selected117) | monroe_ionphoton_rtio_core_outputs_selected118) | monroe_ionphoton_rtio_core_outputs_selected119);
+	output_8x6_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected112 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected113 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected114 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected115 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected116 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected117 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected118 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected119 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x6_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected112 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected113 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected114 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected115 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected116 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected117 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected118 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected119 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x7_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected120 | monroe_ionphoton_rtio_core_outputs_selected121) | monroe_ionphoton_rtio_core_outputs_selected122) | monroe_ionphoton_rtio_core_outputs_selected123) | monroe_ionphoton_rtio_core_outputs_selected124) | monroe_ionphoton_rtio_core_outputs_selected125) | monroe_ionphoton_rtio_core_outputs_selected126) | monroe_ionphoton_rtio_core_outputs_selected127);
+	output_8x7_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected120 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected121 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected122 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected123 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected124 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected125 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected126 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected127 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x7_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected120 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected121 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected122 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected123 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected124 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected125 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected126 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected127 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
 	spimaster0_ointerface0_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected128 | monroe_ionphoton_rtio_core_outputs_selected129) | monroe_ionphoton_rtio_core_outputs_selected130) | monroe_ionphoton_rtio_core_outputs_selected131) | monroe_ionphoton_rtio_core_outputs_selected132) | monroe_ionphoton_rtio_core_outputs_selected133) | monroe_ionphoton_rtio_core_outputs_selected134) | monroe_ionphoton_rtio_core_outputs_selected135);
 	spimaster0_ointerface0_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected128 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected129 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected130 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected131 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected132 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected133 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected134 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected135 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
 	spimaster0_ointerface0_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected128 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected129 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected130 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected131 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected132 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected133 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected134 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected135 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x12_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected136 | monroe_ionphoton_rtio_core_outputs_selected137) | monroe_ionphoton_rtio_core_outputs_selected138) | monroe_ionphoton_rtio_core_outputs_selected139) | monroe_ionphoton_rtio_core_outputs_selected140) | monroe_ionphoton_rtio_core_outputs_selected141) | monroe_ionphoton_rtio_core_outputs_selected142) | monroe_ionphoton_rtio_core_outputs_selected143);
-	output_8x12_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected136 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected137 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected138 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected139 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected140 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected141 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected142 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected143 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x12_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected136 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected137 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected138 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected139 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected140 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected141 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected142 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected143 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x13_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected144 | monroe_ionphoton_rtio_core_outputs_selected145) | monroe_ionphoton_rtio_core_outputs_selected146) | monroe_ionphoton_rtio_core_outputs_selected147) | monroe_ionphoton_rtio_core_outputs_selected148) | monroe_ionphoton_rtio_core_outputs_selected149) | monroe_ionphoton_rtio_core_outputs_selected150) | monroe_ionphoton_rtio_core_outputs_selected151);
-	output_8x13_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected144 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected145 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected146 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected147 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected148 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected149 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected150 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected151 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x13_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected144 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected145 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected146 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected147 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected148 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected149 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected150 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected151 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x14_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected152 | monroe_ionphoton_rtio_core_outputs_selected153) | monroe_ionphoton_rtio_core_outputs_selected154) | monroe_ionphoton_rtio_core_outputs_selected155) | monroe_ionphoton_rtio_core_outputs_selected156) | monroe_ionphoton_rtio_core_outputs_selected157) | monroe_ionphoton_rtio_core_outputs_selected158) | monroe_ionphoton_rtio_core_outputs_selected159);
-	output_8x14_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected152 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected153 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected154 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected155 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected156 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected157 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected158 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected159 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x14_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected152 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected153 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected154 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected155 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected156 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected157 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected158 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected159 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x15_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected160 | monroe_ionphoton_rtio_core_outputs_selected161) | monroe_ionphoton_rtio_core_outputs_selected162) | monroe_ionphoton_rtio_core_outputs_selected163) | monroe_ionphoton_rtio_core_outputs_selected164) | monroe_ionphoton_rtio_core_outputs_selected165) | monroe_ionphoton_rtio_core_outputs_selected166) | monroe_ionphoton_rtio_core_outputs_selected167);
-	output_8x15_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected160 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected161 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected162 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected163 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected164 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected165 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected166 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected167 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x15_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected160 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected161 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected162 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected163 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected164 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected165 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected166 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected167 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x16_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected168 | monroe_ionphoton_rtio_core_outputs_selected169) | monroe_ionphoton_rtio_core_outputs_selected170) | monroe_ionphoton_rtio_core_outputs_selected171) | monroe_ionphoton_rtio_core_outputs_selected172) | monroe_ionphoton_rtio_core_outputs_selected173) | monroe_ionphoton_rtio_core_outputs_selected174) | monroe_ionphoton_rtio_core_outputs_selected175);
-	output_8x16_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected168 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected169 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected170 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected171 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected172 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected173 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected174 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected175 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x16_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected168 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected169 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected170 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected171 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected172 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected173 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected174 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected175 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x8_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected136 | monroe_ionphoton_rtio_core_outputs_selected137) | monroe_ionphoton_rtio_core_outputs_selected138) | monroe_ionphoton_rtio_core_outputs_selected139) | monroe_ionphoton_rtio_core_outputs_selected140) | monroe_ionphoton_rtio_core_outputs_selected141) | monroe_ionphoton_rtio_core_outputs_selected142) | monroe_ionphoton_rtio_core_outputs_selected143);
+	output_8x8_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected136 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected137 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected138 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected139 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected140 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected141 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected142 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected143 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x8_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected136 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected137 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected138 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected139 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected140 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected141 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected142 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected143 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x9_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected144 | monroe_ionphoton_rtio_core_outputs_selected145) | monroe_ionphoton_rtio_core_outputs_selected146) | monroe_ionphoton_rtio_core_outputs_selected147) | monroe_ionphoton_rtio_core_outputs_selected148) | monroe_ionphoton_rtio_core_outputs_selected149) | monroe_ionphoton_rtio_core_outputs_selected150) | monroe_ionphoton_rtio_core_outputs_selected151);
+	output_8x9_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected144 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected145 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected146 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected147 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected148 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected149 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected150 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected151 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x9_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected144 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected145 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected146 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected147 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected148 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected149 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected150 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected151 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x10_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected152 | monroe_ionphoton_rtio_core_outputs_selected153) | monroe_ionphoton_rtio_core_outputs_selected154) | monroe_ionphoton_rtio_core_outputs_selected155) | monroe_ionphoton_rtio_core_outputs_selected156) | monroe_ionphoton_rtio_core_outputs_selected157) | monroe_ionphoton_rtio_core_outputs_selected158) | monroe_ionphoton_rtio_core_outputs_selected159);
+	output_8x10_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected152 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected153 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected154 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected155 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected156 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected157 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected158 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected159 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x10_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected152 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected153 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected154 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected155 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected156 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected157 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected158 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected159 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x11_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected160 | monroe_ionphoton_rtio_core_outputs_selected161) | monroe_ionphoton_rtio_core_outputs_selected162) | monroe_ionphoton_rtio_core_outputs_selected163) | monroe_ionphoton_rtio_core_outputs_selected164) | monroe_ionphoton_rtio_core_outputs_selected165) | monroe_ionphoton_rtio_core_outputs_selected166) | monroe_ionphoton_rtio_core_outputs_selected167);
+	output_8x11_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected160 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected161 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected162 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected163 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected164 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected165 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected166 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected167 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x11_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected160 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected161 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected162 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected163 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected164 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected165 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected166 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected167 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x12_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected168 | monroe_ionphoton_rtio_core_outputs_selected169) | monroe_ionphoton_rtio_core_outputs_selected170) | monroe_ionphoton_rtio_core_outputs_selected171) | monroe_ionphoton_rtio_core_outputs_selected172) | monroe_ionphoton_rtio_core_outputs_selected173) | monroe_ionphoton_rtio_core_outputs_selected174) | monroe_ionphoton_rtio_core_outputs_selected175);
+	output_8x12_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected168 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected169 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected170 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected171 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected172 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected173 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected174 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected175 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x12_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected168 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected169 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected170 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected171 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected172 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected173 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected174 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected175 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
 	spimaster1_ointerface1_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected176 | monroe_ionphoton_rtio_core_outputs_selected177) | monroe_ionphoton_rtio_core_outputs_selected178) | monroe_ionphoton_rtio_core_outputs_selected179) | monroe_ionphoton_rtio_core_outputs_selected180) | monroe_ionphoton_rtio_core_outputs_selected181) | monroe_ionphoton_rtio_core_outputs_selected182) | monroe_ionphoton_rtio_core_outputs_selected183);
 	spimaster1_ointerface1_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected176 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected177 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected178 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected179 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected180 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected181 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected182 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected183 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
 	spimaster1_ointerface1_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected176 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected177 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected178 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected179 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected180 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected181 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected182 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected183 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x17_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected184 | monroe_ionphoton_rtio_core_outputs_selected185) | monroe_ionphoton_rtio_core_outputs_selected186) | monroe_ionphoton_rtio_core_outputs_selected187) | monroe_ionphoton_rtio_core_outputs_selected188) | monroe_ionphoton_rtio_core_outputs_selected189) | monroe_ionphoton_rtio_core_outputs_selected190) | monroe_ionphoton_rtio_core_outputs_selected191);
-	output_8x17_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected184 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected185 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected186 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected187 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected188 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected189 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected190 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected191 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x17_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected184 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected185 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected186 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected187 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected188 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected189 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected190 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected191 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x18_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected192 | monroe_ionphoton_rtio_core_outputs_selected193) | monroe_ionphoton_rtio_core_outputs_selected194) | monroe_ionphoton_rtio_core_outputs_selected195) | monroe_ionphoton_rtio_core_outputs_selected196) | monroe_ionphoton_rtio_core_outputs_selected197) | monroe_ionphoton_rtio_core_outputs_selected198) | monroe_ionphoton_rtio_core_outputs_selected199);
-	output_8x18_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected192 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected193 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected194 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected195 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected196 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected197 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected198 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected199 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x18_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected192 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected193 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected194 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected195 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected196 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected197 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected198 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected199 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x19_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected200 | monroe_ionphoton_rtio_core_outputs_selected201) | monroe_ionphoton_rtio_core_outputs_selected202) | monroe_ionphoton_rtio_core_outputs_selected203) | monroe_ionphoton_rtio_core_outputs_selected204) | monroe_ionphoton_rtio_core_outputs_selected205) | monroe_ionphoton_rtio_core_outputs_selected206) | monroe_ionphoton_rtio_core_outputs_selected207);
-	output_8x19_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected200 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected201 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected202 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected203 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected204 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected205 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected206 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected207 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x19_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected200 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected201 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected202 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected203 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected204 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected205 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected206 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected207 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x20_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected208 | monroe_ionphoton_rtio_core_outputs_selected209) | monroe_ionphoton_rtio_core_outputs_selected210) | monroe_ionphoton_rtio_core_outputs_selected211) | monroe_ionphoton_rtio_core_outputs_selected212) | monroe_ionphoton_rtio_core_outputs_selected213) | monroe_ionphoton_rtio_core_outputs_selected214) | monroe_ionphoton_rtio_core_outputs_selected215);
-	output_8x20_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected208 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected209 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected210 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected211 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected212 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected213 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected214 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected215 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x20_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected208 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected209 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected210 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected211 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected212 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected213 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected214 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected215 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x21_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected216 | monroe_ionphoton_rtio_core_outputs_selected217) | monroe_ionphoton_rtio_core_outputs_selected218) | monroe_ionphoton_rtio_core_outputs_selected219) | monroe_ionphoton_rtio_core_outputs_selected220) | monroe_ionphoton_rtio_core_outputs_selected221) | monroe_ionphoton_rtio_core_outputs_selected222) | monroe_ionphoton_rtio_core_outputs_selected223);
-	output_8x21_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected216 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected217 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected218 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected219 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected220 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected221 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected222 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected223 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x21_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected216 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected217 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected218 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected219 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected220 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected221 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected222 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected223 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x13_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected184 | monroe_ionphoton_rtio_core_outputs_selected185) | monroe_ionphoton_rtio_core_outputs_selected186) | monroe_ionphoton_rtio_core_outputs_selected187) | monroe_ionphoton_rtio_core_outputs_selected188) | monroe_ionphoton_rtio_core_outputs_selected189) | monroe_ionphoton_rtio_core_outputs_selected190) | monroe_ionphoton_rtio_core_outputs_selected191);
+	output_8x13_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected184 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected185 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected186 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected187 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected188 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected189 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected190 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected191 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x13_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected184 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected185 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected186 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected187 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected188 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected189 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected190 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected191 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x14_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected192 | monroe_ionphoton_rtio_core_outputs_selected193) | monroe_ionphoton_rtio_core_outputs_selected194) | monroe_ionphoton_rtio_core_outputs_selected195) | monroe_ionphoton_rtio_core_outputs_selected196) | monroe_ionphoton_rtio_core_outputs_selected197) | monroe_ionphoton_rtio_core_outputs_selected198) | monroe_ionphoton_rtio_core_outputs_selected199);
+	output_8x14_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected192 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected193 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected194 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected195 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected196 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected197 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected198 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected199 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x14_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected192 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected193 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected194 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected195 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected196 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected197 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected198 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected199 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x15_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected200 | monroe_ionphoton_rtio_core_outputs_selected201) | monroe_ionphoton_rtio_core_outputs_selected202) | monroe_ionphoton_rtio_core_outputs_selected203) | monroe_ionphoton_rtio_core_outputs_selected204) | monroe_ionphoton_rtio_core_outputs_selected205) | monroe_ionphoton_rtio_core_outputs_selected206) | monroe_ionphoton_rtio_core_outputs_selected207);
+	output_8x15_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected200 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected201 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected202 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected203 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected204 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected205 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected206 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected207 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x15_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected200 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected201 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected202 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected203 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected204 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected205 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected206 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected207 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x16_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected208 | monroe_ionphoton_rtio_core_outputs_selected209) | monroe_ionphoton_rtio_core_outputs_selected210) | monroe_ionphoton_rtio_core_outputs_selected211) | monroe_ionphoton_rtio_core_outputs_selected212) | monroe_ionphoton_rtio_core_outputs_selected213) | monroe_ionphoton_rtio_core_outputs_selected214) | monroe_ionphoton_rtio_core_outputs_selected215);
+	output_8x16_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected208 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected209 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected210 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected211 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected212 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected213 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected214 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected215 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x16_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected208 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected209 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected210 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected211 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected212 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected213 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected214 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected215 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x17_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected216 | monroe_ionphoton_rtio_core_outputs_selected217) | monroe_ionphoton_rtio_core_outputs_selected218) | monroe_ionphoton_rtio_core_outputs_selected219) | monroe_ionphoton_rtio_core_outputs_selected220) | monroe_ionphoton_rtio_core_outputs_selected221) | monroe_ionphoton_rtio_core_outputs_selected222) | monroe_ionphoton_rtio_core_outputs_selected223);
+	output_8x17_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected216 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected217 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected218 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected219 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected220 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected221 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected222 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected223 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x17_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected216 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected217 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected218 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected219 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected220 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected221 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected222 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected223 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
 	spimaster2_ointerface2_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected224 | monroe_ionphoton_rtio_core_outputs_selected225) | monroe_ionphoton_rtio_core_outputs_selected226) | monroe_ionphoton_rtio_core_outputs_selected227) | monroe_ionphoton_rtio_core_outputs_selected228) | monroe_ionphoton_rtio_core_outputs_selected229) | monroe_ionphoton_rtio_core_outputs_selected230) | monroe_ionphoton_rtio_core_outputs_selected231);
 	spimaster2_ointerface2_address <= ((((((((monroe_ionphoton_rtio_core_outputs_selected224 ? monroe_ionphoton_rtio_core_outputs_record0_payload_address3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected225 ? monroe_ionphoton_rtio_core_outputs_record1_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected226 ? monroe_ionphoton_rtio_core_outputs_record2_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected227 ? monroe_ionphoton_rtio_core_outputs_record3_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected228 ? monroe_ionphoton_rtio_core_outputs_record4_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected229 ? monroe_ionphoton_rtio_core_outputs_record5_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected230 ? monroe_ionphoton_rtio_core_outputs_record6_payload_address3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected231 ? monroe_ionphoton_rtio_core_outputs_record7_payload_address3 : 1'd0));
 	spimaster2_ointerface2_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected224 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected225 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected226 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected227 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected228 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected229 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected230 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected231 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x22_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected232 | monroe_ionphoton_rtio_core_outputs_selected233) | monroe_ionphoton_rtio_core_outputs_selected234) | monroe_ionphoton_rtio_core_outputs_selected235) | monroe_ionphoton_rtio_core_outputs_selected236) | monroe_ionphoton_rtio_core_outputs_selected237) | monroe_ionphoton_rtio_core_outputs_selected238) | monroe_ionphoton_rtio_core_outputs_selected239);
-	output_8x22_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected232 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected233 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected234 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected235 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected236 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected237 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected238 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected239 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x22_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected232 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected233 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected234 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected235 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected236 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected237 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected238 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected239 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x23_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected240 | monroe_ionphoton_rtio_core_outputs_selected241) | monroe_ionphoton_rtio_core_outputs_selected242) | monroe_ionphoton_rtio_core_outputs_selected243) | monroe_ionphoton_rtio_core_outputs_selected244) | monroe_ionphoton_rtio_core_outputs_selected245) | monroe_ionphoton_rtio_core_outputs_selected246) | monroe_ionphoton_rtio_core_outputs_selected247);
-	output_8x23_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected240 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected241 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected242 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected243 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected244 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected245 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected246 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected247 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x23_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected240 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected241 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected242 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected243 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected244 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected245 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected246 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected247 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x24_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected248 | monroe_ionphoton_rtio_core_outputs_selected249) | monroe_ionphoton_rtio_core_outputs_selected250) | monroe_ionphoton_rtio_core_outputs_selected251) | monroe_ionphoton_rtio_core_outputs_selected252) | monroe_ionphoton_rtio_core_outputs_selected253) | monroe_ionphoton_rtio_core_outputs_selected254) | monroe_ionphoton_rtio_core_outputs_selected255);
-	output_8x24_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected248 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected249 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected250 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected251 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected252 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected253 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected254 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected255 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x24_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected248 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected249 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected250 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected251 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected252 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected253 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected254 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected255 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x25_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected256 | monroe_ionphoton_rtio_core_outputs_selected257) | monroe_ionphoton_rtio_core_outputs_selected258) | monroe_ionphoton_rtio_core_outputs_selected259) | monroe_ionphoton_rtio_core_outputs_selected260) | monroe_ionphoton_rtio_core_outputs_selected261) | monroe_ionphoton_rtio_core_outputs_selected262) | monroe_ionphoton_rtio_core_outputs_selected263);
-	output_8x25_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected256 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected257 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected258 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected259 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected260 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected261 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected262 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected263 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x25_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected256 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected257 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected258 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected259 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected260 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected261 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected262 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected263 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
-	output_8x26_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected264 | monroe_ionphoton_rtio_core_outputs_selected265) | monroe_ionphoton_rtio_core_outputs_selected266) | monroe_ionphoton_rtio_core_outputs_selected267) | monroe_ionphoton_rtio_core_outputs_selected268) | monroe_ionphoton_rtio_core_outputs_selected269) | monroe_ionphoton_rtio_core_outputs_selected270) | monroe_ionphoton_rtio_core_outputs_selected271);
-	output_8x26_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected264 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected265 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected266 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected267 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected268 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected269 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected270 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected271 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
-	output_8x26_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected264 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected265 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected266 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected267 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected268 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected269 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected270 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected271 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x18_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected232 | monroe_ionphoton_rtio_core_outputs_selected233) | monroe_ionphoton_rtio_core_outputs_selected234) | monroe_ionphoton_rtio_core_outputs_selected235) | monroe_ionphoton_rtio_core_outputs_selected236) | monroe_ionphoton_rtio_core_outputs_selected237) | monroe_ionphoton_rtio_core_outputs_selected238) | monroe_ionphoton_rtio_core_outputs_selected239);
+	output_8x18_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected232 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected233 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected234 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected235 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected236 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected237 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected238 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected239 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x18_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected232 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected233 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected234 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected235 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected236 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected237 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected238 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected239 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x19_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected240 | monroe_ionphoton_rtio_core_outputs_selected241) | monroe_ionphoton_rtio_core_outputs_selected242) | monroe_ionphoton_rtio_core_outputs_selected243) | monroe_ionphoton_rtio_core_outputs_selected244) | monroe_ionphoton_rtio_core_outputs_selected245) | monroe_ionphoton_rtio_core_outputs_selected246) | monroe_ionphoton_rtio_core_outputs_selected247);
+	output_8x19_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected240 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected241 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected242 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected243 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected244 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected245 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected246 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected247 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x19_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected240 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected241 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected242 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected243 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected244 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected245 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected246 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected247 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x20_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected248 | monroe_ionphoton_rtio_core_outputs_selected249) | monroe_ionphoton_rtio_core_outputs_selected250) | monroe_ionphoton_rtio_core_outputs_selected251) | monroe_ionphoton_rtio_core_outputs_selected252) | monroe_ionphoton_rtio_core_outputs_selected253) | monroe_ionphoton_rtio_core_outputs_selected254) | monroe_ionphoton_rtio_core_outputs_selected255);
+	output_8x20_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected248 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected249 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected250 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected251 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected252 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected253 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected254 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected255 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x20_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected248 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected249 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected250 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected251 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected252 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected253 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected254 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected255 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x21_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected256 | monroe_ionphoton_rtio_core_outputs_selected257) | monroe_ionphoton_rtio_core_outputs_selected258) | monroe_ionphoton_rtio_core_outputs_selected259) | monroe_ionphoton_rtio_core_outputs_selected260) | monroe_ionphoton_rtio_core_outputs_selected261) | monroe_ionphoton_rtio_core_outputs_selected262) | monroe_ionphoton_rtio_core_outputs_selected263);
+	output_8x21_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected256 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected257 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected258 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected259 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected260 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected261 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected262 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected263 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x21_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected256 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected257 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected258 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected259 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected260 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected261 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected262 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected263 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
+	output_8x22_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected264 | monroe_ionphoton_rtio_core_outputs_selected265) | monroe_ionphoton_rtio_core_outputs_selected266) | monroe_ionphoton_rtio_core_outputs_selected267) | monroe_ionphoton_rtio_core_outputs_selected268) | monroe_ionphoton_rtio_core_outputs_selected269) | monroe_ionphoton_rtio_core_outputs_selected270) | monroe_ionphoton_rtio_core_outputs_selected271);
+	output_8x22_fine_ts <= ((((((((monroe_ionphoton_rtio_core_outputs_selected264 ? monroe_ionphoton_rtio_core_outputs_record0_payload_fine_ts1[2:0] : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected265 ? monroe_ionphoton_rtio_core_outputs_record1_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected266 ? monroe_ionphoton_rtio_core_outputs_record2_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected267 ? monroe_ionphoton_rtio_core_outputs_record3_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected268 ? monroe_ionphoton_rtio_core_outputs_record4_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected269 ? monroe_ionphoton_rtio_core_outputs_record5_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected270 ? monroe_ionphoton_rtio_core_outputs_record6_payload_fine_ts1[2:0] : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected271 ? monroe_ionphoton_rtio_core_outputs_record7_payload_fine_ts1[2:0] : 1'd0));
+	output_8x22_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected264 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected265 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected266 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected267 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected268 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected269 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected270 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected271 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
 	output0_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected272 | monroe_ionphoton_rtio_core_outputs_selected273) | monroe_ionphoton_rtio_core_outputs_selected274) | monroe_ionphoton_rtio_core_outputs_selected275) | monroe_ionphoton_rtio_core_outputs_selected276) | monroe_ionphoton_rtio_core_outputs_selected277) | monroe_ionphoton_rtio_core_outputs_selected278) | monroe_ionphoton_rtio_core_outputs_selected279);
 	output0_data <= ((((((((monroe_ionphoton_rtio_core_outputs_selected272 ? monroe_ionphoton_rtio_core_outputs_record0_payload_data3 : 1'd0) | (monroe_ionphoton_rtio_core_outputs_selected273 ? monroe_ionphoton_rtio_core_outputs_record1_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected274 ? monroe_ionphoton_rtio_core_outputs_record2_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected275 ? monroe_ionphoton_rtio_core_outputs_record3_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected276 ? monroe_ionphoton_rtio_core_outputs_record4_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected277 ? monroe_ionphoton_rtio_core_outputs_record5_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected278 ? monroe_ionphoton_rtio_core_outputs_record6_payload_data3 : 1'd0)) | (monroe_ionphoton_rtio_core_outputs_selected279 ? monroe_ionphoton_rtio_core_outputs_record7_payload_data3 : 1'd0));
 	output1_stb <= (((((((monroe_ionphoton_rtio_core_outputs_selected280 | monroe_ionphoton_rtio_core_outputs_selected281) | monroe_ionphoton_rtio_core_outputs_selected282) | monroe_ionphoton_rtio_core_outputs_selected283) | monroe_ionphoton_rtio_core_outputs_selected284) | monroe_ionphoton_rtio_core_outputs_selected285) | monroe_ionphoton_rtio_core_outputs_selected286) | monroe_ionphoton_rtio_core_outputs_selected287);
@@ -22807,6 +23571,54 @@ always @(posedge rio_clk) begin
 		monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_i);
 	end
 	monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_o;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_next;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer7_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer7_blind <= 1'd1;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_o) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer7_blind <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_o;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_next;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer8_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer8_blind <= 1'd1;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_o) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer8_blind <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_o;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_next;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer9_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer9_blind <= 1'd1;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_o) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer9_blind <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_o;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_next;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer10_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer10_blind <= 1'd1;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_o) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer10_blind <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_o;
 	if (monroe_ionphoton_rtio_core_o_collision_sync_i) begin
 		monroe_ionphoton_rtio_core_o_collision_sync_blind <= 1'd1;
 	end
@@ -22846,6 +23658,18 @@ always @(posedge rio_clk) begin
 		inout_8x3_inout_8x3_ointerface3_stb <= 1'd0;
 		inout_8x3_inout_8x3_sensitivity <= 2'd0;
 		inout_8x3_inout_8x3_sample <= 1'd0;
+		inout_8x4_inout_8x4_ointerface4_stb <= 1'd0;
+		inout_8x4_inout_8x4_sensitivity <= 2'd0;
+		inout_8x4_inout_8x4_sample <= 1'd0;
+		inout_8x5_inout_8x5_ointerface5_stb <= 1'd0;
+		inout_8x5_inout_8x5_sensitivity <= 2'd0;
+		inout_8x5_inout_8x5_sample <= 1'd0;
+		inout_8x6_inout_8x6_ointerface6_stb <= 1'd0;
+		inout_8x6_inout_8x6_sensitivity <= 2'd0;
+		inout_8x6_inout_8x6_sample <= 1'd0;
+		inout_8x7_inout_8x7_ointerface7_stb <= 1'd0;
+		inout_8x7_inout_8x7_sensitivity <= 2'd0;
+		inout_8x7_inout_8x7_sample <= 1'd0;
 		output_8x0_stb <= 1'd0;
 		output_8x1_stb <= 1'd0;
 		output_8x2_stb <= 1'd0;
@@ -22854,28 +23678,24 @@ always @(posedge rio_clk) begin
 		output_8x5_stb <= 1'd0;
 		output_8x6_stb <= 1'd0;
 		output_8x7_stb <= 1'd0;
+		spimaster0_ointerface0_stb <= 1'd0;
 		output_8x8_stb <= 1'd0;
 		output_8x9_stb <= 1'd0;
 		output_8x10_stb <= 1'd0;
 		output_8x11_stb <= 1'd0;
-		spimaster0_ointerface0_stb <= 1'd0;
 		output_8x12_stb <= 1'd0;
+		spimaster1_ointerface1_stb <= 1'd0;
 		output_8x13_stb <= 1'd0;
 		output_8x14_stb <= 1'd0;
 		output_8x15_stb <= 1'd0;
 		output_8x16_stb <= 1'd0;
-		spimaster1_ointerface1_stb <= 1'd0;
 		output_8x17_stb <= 1'd0;
+		spimaster2_ointerface2_stb <= 1'd0;
 		output_8x18_stb <= 1'd0;
 		output_8x19_stb <= 1'd0;
 		output_8x20_stb <= 1'd0;
 		output_8x21_stb <= 1'd0;
-		spimaster2_ointerface2_stb <= 1'd0;
 		output_8x22_stb <= 1'd0;
-		output_8x23_stb <= 1'd0;
-		output_8x24_stb <= 1'd0;
-		output_8x25_stb <= 1'd0;
-		output_8x26_stb <= 1'd0;
 		output0_stb <= 1'd0;
 		output1_stb <= 1'd0;
 		stb <= 1'd0;
@@ -23005,15 +23825,27 @@ always @(posedge rio_clk) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter6_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_blindtransfer3_blind <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter8_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_blindtransfer4_blind <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter10_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_blindtransfer5_blind <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter12_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_blindtransfer6_blind <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q_binary <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_blindtransfer7_blind <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_blindtransfer8_blind <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_blindtransfer9_blind <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_blindtransfer10_blind <= 1'd0;
 		monroe_ionphoton_rtio_core_o_collision_sync_blind <= 1'd0;
 		monroe_ionphoton_rtio_core_o_busy_sync_blind <= 1'd0;
 	end
@@ -23061,150 +23893,174 @@ always @(posedge rio_clk) begin
 	xilinxmultiregimpl58_regs1 <= xilinxmultiregimpl58_regs0;
 	xilinxmultiregimpl60_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_i;
 	xilinxmultiregimpl60_regs1 <= xilinxmultiregimpl60_regs0;
-	xilinxmultiregimpl62_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_i;
+	xilinxmultiregimpl62_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q;
 	xilinxmultiregimpl62_regs1 <= xilinxmultiregimpl62_regs0;
-	xilinxmultiregimpl65_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_ps_ack_toggle_i;
-	xilinxmultiregimpl65_regs1 <= xilinxmultiregimpl65_regs0;
-	xilinxmultiregimpl104_regs0 <= monroe_ionphoton_inj_o_sys0;
-	xilinxmultiregimpl104_regs1 <= xilinxmultiregimpl104_regs0;
-	xilinxmultiregimpl105_regs0 <= monroe_ionphoton_inj_o_sys1;
-	xilinxmultiregimpl105_regs1 <= xilinxmultiregimpl105_regs0;
-	xilinxmultiregimpl106_regs0 <= monroe_ionphoton_inj_o_sys2;
-	xilinxmultiregimpl106_regs1 <= xilinxmultiregimpl106_regs0;
-	xilinxmultiregimpl107_regs0 <= monroe_ionphoton_inj_o_sys3;
-	xilinxmultiregimpl107_regs1 <= xilinxmultiregimpl107_regs0;
-	xilinxmultiregimpl108_regs0 <= monroe_ionphoton_inj_o_sys4;
-	xilinxmultiregimpl108_regs1 <= xilinxmultiregimpl108_regs0;
-	xilinxmultiregimpl109_regs0 <= monroe_ionphoton_inj_o_sys5;
-	xilinxmultiregimpl109_regs1 <= xilinxmultiregimpl109_regs0;
-	xilinxmultiregimpl110_regs0 <= monroe_ionphoton_inj_o_sys6;
-	xilinxmultiregimpl110_regs1 <= xilinxmultiregimpl110_regs0;
-	xilinxmultiregimpl111_regs0 <= monroe_ionphoton_inj_o_sys7;
-	xilinxmultiregimpl111_regs1 <= xilinxmultiregimpl111_regs0;
-	xilinxmultiregimpl112_regs0 <= monroe_ionphoton_inj_o_sys8;
-	xilinxmultiregimpl112_regs1 <= xilinxmultiregimpl112_regs0;
-	xilinxmultiregimpl113_regs0 <= monroe_ionphoton_inj_o_sys9;
-	xilinxmultiregimpl113_regs1 <= xilinxmultiregimpl113_regs0;
-	xilinxmultiregimpl114_regs0 <= monroe_ionphoton_inj_o_sys10;
-	xilinxmultiregimpl114_regs1 <= xilinxmultiregimpl114_regs0;
-	xilinxmultiregimpl115_regs0 <= monroe_ionphoton_inj_o_sys11;
-	xilinxmultiregimpl115_regs1 <= xilinxmultiregimpl115_regs0;
-	xilinxmultiregimpl116_regs0 <= monroe_ionphoton_inj_o_sys12;
-	xilinxmultiregimpl116_regs1 <= xilinxmultiregimpl116_regs0;
-	xilinxmultiregimpl117_regs0 <= monroe_ionphoton_inj_o_sys13;
-	xilinxmultiregimpl117_regs1 <= xilinxmultiregimpl117_regs0;
-	xilinxmultiregimpl118_regs0 <= monroe_ionphoton_inj_o_sys14;
-	xilinxmultiregimpl118_regs1 <= xilinxmultiregimpl118_regs0;
-	xilinxmultiregimpl119_regs0 <= monroe_ionphoton_inj_o_sys15;
-	xilinxmultiregimpl119_regs1 <= xilinxmultiregimpl119_regs0;
-	xilinxmultiregimpl120_regs0 <= monroe_ionphoton_inj_o_sys16;
-	xilinxmultiregimpl120_regs1 <= xilinxmultiregimpl120_regs0;
-	xilinxmultiregimpl121_regs0 <= monroe_ionphoton_inj_o_sys17;
-	xilinxmultiregimpl121_regs1 <= xilinxmultiregimpl121_regs0;
-	xilinxmultiregimpl122_regs0 <= monroe_ionphoton_inj_o_sys18;
-	xilinxmultiregimpl122_regs1 <= xilinxmultiregimpl122_regs0;
-	xilinxmultiregimpl123_regs0 <= monroe_ionphoton_inj_o_sys19;
-	xilinxmultiregimpl123_regs1 <= xilinxmultiregimpl123_regs0;
-	xilinxmultiregimpl124_regs0 <= monroe_ionphoton_inj_o_sys20;
+	xilinxmultiregimpl64_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_i;
+	xilinxmultiregimpl64_regs1 <= xilinxmultiregimpl64_regs0;
+	xilinxmultiregimpl66_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q;
+	xilinxmultiregimpl66_regs1 <= xilinxmultiregimpl66_regs0;
+	xilinxmultiregimpl68_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_i;
+	xilinxmultiregimpl68_regs1 <= xilinxmultiregimpl68_regs0;
+	xilinxmultiregimpl70_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q;
+	xilinxmultiregimpl70_regs1 <= xilinxmultiregimpl70_regs0;
+	xilinxmultiregimpl72_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_i;
+	xilinxmultiregimpl72_regs1 <= xilinxmultiregimpl72_regs0;
+	xilinxmultiregimpl74_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q;
+	xilinxmultiregimpl74_regs1 <= xilinxmultiregimpl74_regs0;
+	xilinxmultiregimpl76_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_i;
+	xilinxmultiregimpl76_regs1 <= xilinxmultiregimpl76_regs0;
+	xilinxmultiregimpl78_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_i;
+	xilinxmultiregimpl78_regs1 <= xilinxmultiregimpl78_regs0;
+	xilinxmultiregimpl81_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_ps_ack_toggle_i;
+	xilinxmultiregimpl81_regs1 <= xilinxmultiregimpl81_regs0;
+	xilinxmultiregimpl124_regs0 <= monroe_ionphoton_inj_o_sys0;
 	xilinxmultiregimpl124_regs1 <= xilinxmultiregimpl124_regs0;
-	xilinxmultiregimpl125_regs0 <= monroe_ionphoton_inj_o_sys21;
+	xilinxmultiregimpl125_regs0 <= monroe_ionphoton_inj_o_sys1;
 	xilinxmultiregimpl125_regs1 <= xilinxmultiregimpl125_regs0;
-	xilinxmultiregimpl126_regs0 <= monroe_ionphoton_inj_o_sys22;
+	xilinxmultiregimpl126_regs0 <= monroe_ionphoton_inj_o_sys2;
 	xilinxmultiregimpl126_regs1 <= xilinxmultiregimpl126_regs0;
-	xilinxmultiregimpl127_regs0 <= monroe_ionphoton_inj_o_sys23;
+	xilinxmultiregimpl127_regs0 <= monroe_ionphoton_inj_o_sys3;
 	xilinxmultiregimpl127_regs1 <= xilinxmultiregimpl127_regs0;
-	xilinxmultiregimpl128_regs0 <= monroe_ionphoton_inj_o_sys24;
+	xilinxmultiregimpl128_regs0 <= monroe_ionphoton_inj_o_sys4;
 	xilinxmultiregimpl128_regs1 <= xilinxmultiregimpl128_regs0;
-	xilinxmultiregimpl129_regs0 <= monroe_ionphoton_inj_o_sys25;
+	xilinxmultiregimpl129_regs0 <= monroe_ionphoton_inj_o_sys5;
 	xilinxmultiregimpl129_regs1 <= xilinxmultiregimpl129_regs0;
-	xilinxmultiregimpl130_regs0 <= monroe_ionphoton_inj_o_sys26;
+	xilinxmultiregimpl130_regs0 <= monroe_ionphoton_inj_o_sys6;
 	xilinxmultiregimpl130_regs1 <= xilinxmultiregimpl130_regs0;
-	xilinxmultiregimpl131_regs0 <= monroe_ionphoton_inj_o_sys27;
+	xilinxmultiregimpl131_regs0 <= monroe_ionphoton_inj_o_sys7;
 	xilinxmultiregimpl131_regs1 <= xilinxmultiregimpl131_regs0;
-	xilinxmultiregimpl132_regs0 <= monroe_ionphoton_inj_o_sys28;
+	xilinxmultiregimpl132_regs0 <= monroe_ionphoton_inj_o_sys8;
 	xilinxmultiregimpl132_regs1 <= xilinxmultiregimpl132_regs0;
-	xilinxmultiregimpl133_regs0 <= monroe_ionphoton_inj_o_sys29;
+	xilinxmultiregimpl133_regs0 <= monroe_ionphoton_inj_o_sys9;
 	xilinxmultiregimpl133_regs1 <= xilinxmultiregimpl133_regs0;
-	xilinxmultiregimpl134_regs0 <= monroe_ionphoton_inj_o_sys30;
+	xilinxmultiregimpl134_regs0 <= monroe_ionphoton_inj_o_sys10;
 	xilinxmultiregimpl134_regs1 <= xilinxmultiregimpl134_regs0;
-	xilinxmultiregimpl135_regs0 <= monroe_ionphoton_inj_o_sys31;
+	xilinxmultiregimpl135_regs0 <= monroe_ionphoton_inj_o_sys11;
 	xilinxmultiregimpl135_regs1 <= xilinxmultiregimpl135_regs0;
-	xilinxmultiregimpl136_regs0 <= monroe_ionphoton_inj_o_sys32;
+	xilinxmultiregimpl136_regs0 <= monroe_ionphoton_inj_o_sys12;
 	xilinxmultiregimpl136_regs1 <= xilinxmultiregimpl136_regs0;
-	xilinxmultiregimpl137_regs0 <= monroe_ionphoton_inj_o_sys33;
+	xilinxmultiregimpl137_regs0 <= monroe_ionphoton_inj_o_sys13;
 	xilinxmultiregimpl137_regs1 <= xilinxmultiregimpl137_regs0;
-	xilinxmultiregimpl138_regs0 <= monroe_ionphoton_inj_o_sys34;
+	xilinxmultiregimpl138_regs0 <= monroe_ionphoton_inj_o_sys14;
 	xilinxmultiregimpl138_regs1 <= xilinxmultiregimpl138_regs0;
-	xilinxmultiregimpl139_regs0 <= monroe_ionphoton_inj_o_sys35;
+	xilinxmultiregimpl139_regs0 <= monroe_ionphoton_inj_o_sys15;
 	xilinxmultiregimpl139_regs1 <= xilinxmultiregimpl139_regs0;
-	xilinxmultiregimpl140_regs0 <= monroe_ionphoton_inj_o_sys36;
+	xilinxmultiregimpl140_regs0 <= monroe_ionphoton_inj_o_sys16;
 	xilinxmultiregimpl140_regs1 <= xilinxmultiregimpl140_regs0;
-	xilinxmultiregimpl141_regs0 <= monroe_ionphoton_inj_o_sys37;
+	xilinxmultiregimpl141_regs0 <= monroe_ionphoton_inj_o_sys17;
 	xilinxmultiregimpl141_regs1 <= xilinxmultiregimpl141_regs0;
-	xilinxmultiregimpl142_regs0 <= monroe_ionphoton_inj_o_sys38;
+	xilinxmultiregimpl142_regs0 <= monroe_ionphoton_inj_o_sys18;
 	xilinxmultiregimpl142_regs1 <= xilinxmultiregimpl142_regs0;
-	xilinxmultiregimpl143_regs0 <= monroe_ionphoton_inj_o_sys39;
+	xilinxmultiregimpl143_regs0 <= monroe_ionphoton_inj_o_sys19;
 	xilinxmultiregimpl143_regs1 <= xilinxmultiregimpl143_regs0;
-	xilinxmultiregimpl144_regs0 <= monroe_ionphoton_inj_o_sys40;
+	xilinxmultiregimpl144_regs0 <= monroe_ionphoton_inj_o_sys20;
 	xilinxmultiregimpl144_regs1 <= xilinxmultiregimpl144_regs0;
-	xilinxmultiregimpl145_regs0 <= monroe_ionphoton_inj_o_sys41;
+	xilinxmultiregimpl145_regs0 <= monroe_ionphoton_inj_o_sys21;
 	xilinxmultiregimpl145_regs1 <= xilinxmultiregimpl145_regs0;
-	xilinxmultiregimpl146_regs0 <= monroe_ionphoton_inj_o_sys42;
+	xilinxmultiregimpl146_regs0 <= monroe_ionphoton_inj_o_sys22;
 	xilinxmultiregimpl146_regs1 <= xilinxmultiregimpl146_regs0;
-	xilinxmultiregimpl147_regs0 <= monroe_ionphoton_inj_o_sys43;
+	xilinxmultiregimpl147_regs0 <= monroe_ionphoton_inj_o_sys23;
 	xilinxmultiregimpl147_regs1 <= xilinxmultiregimpl147_regs0;
-	xilinxmultiregimpl148_regs0 <= monroe_ionphoton_inj_o_sys44;
+	xilinxmultiregimpl148_regs0 <= monroe_ionphoton_inj_o_sys24;
 	xilinxmultiregimpl148_regs1 <= xilinxmultiregimpl148_regs0;
-	xilinxmultiregimpl149_regs0 <= monroe_ionphoton_inj_o_sys45;
+	xilinxmultiregimpl149_regs0 <= monroe_ionphoton_inj_o_sys25;
 	xilinxmultiregimpl149_regs1 <= xilinxmultiregimpl149_regs0;
-	xilinxmultiregimpl150_regs0 <= monroe_ionphoton_inj_o_sys46;
+	xilinxmultiregimpl150_regs0 <= monroe_ionphoton_inj_o_sys26;
 	xilinxmultiregimpl150_regs1 <= xilinxmultiregimpl150_regs0;
-	xilinxmultiregimpl151_regs0 <= monroe_ionphoton_inj_o_sys47;
+	xilinxmultiregimpl151_regs0 <= monroe_ionphoton_inj_o_sys27;
 	xilinxmultiregimpl151_regs1 <= xilinxmultiregimpl151_regs0;
-	xilinxmultiregimpl152_regs0 <= monroe_ionphoton_inj_o_sys48;
+	xilinxmultiregimpl152_regs0 <= monroe_ionphoton_inj_o_sys28;
 	xilinxmultiregimpl152_regs1 <= xilinxmultiregimpl152_regs0;
-	xilinxmultiregimpl153_regs0 <= monroe_ionphoton_inj_o_sys49;
+	xilinxmultiregimpl153_regs0 <= monroe_ionphoton_inj_o_sys29;
 	xilinxmultiregimpl153_regs1 <= xilinxmultiregimpl153_regs0;
-	xilinxmultiregimpl154_regs0 <= monroe_ionphoton_inj_o_sys50;
+	xilinxmultiregimpl154_regs0 <= monroe_ionphoton_inj_o_sys30;
 	xilinxmultiregimpl154_regs1 <= xilinxmultiregimpl154_regs0;
-	xilinxmultiregimpl155_regs0 <= monroe_ionphoton_inj_o_sys51;
+	xilinxmultiregimpl155_regs0 <= monroe_ionphoton_inj_o_sys31;
 	xilinxmultiregimpl155_regs1 <= xilinxmultiregimpl155_regs0;
-	xilinxmultiregimpl156_regs0 <= monroe_ionphoton_inj_o_sys52;
+	xilinxmultiregimpl156_regs0 <= monroe_ionphoton_inj_o_sys32;
 	xilinxmultiregimpl156_regs1 <= xilinxmultiregimpl156_regs0;
-	xilinxmultiregimpl157_regs0 <= monroe_ionphoton_inj_o_sys53;
+	xilinxmultiregimpl157_regs0 <= monroe_ionphoton_inj_o_sys33;
 	xilinxmultiregimpl157_regs1 <= xilinxmultiregimpl157_regs0;
-	xilinxmultiregimpl158_regs0 <= monroe_ionphoton_inj_o_sys54;
+	xilinxmultiregimpl158_regs0 <= monroe_ionphoton_inj_o_sys34;
 	xilinxmultiregimpl158_regs1 <= xilinxmultiregimpl158_regs0;
-	xilinxmultiregimpl159_regs0 <= monroe_ionphoton_inj_o_sys55;
+	xilinxmultiregimpl159_regs0 <= monroe_ionphoton_inj_o_sys35;
 	xilinxmultiregimpl159_regs1 <= xilinxmultiregimpl159_regs0;
-	xilinxmultiregimpl160_regs0 <= monroe_ionphoton_inj_o_sys56;
+	xilinxmultiregimpl160_regs0 <= monroe_ionphoton_inj_o_sys36;
 	xilinxmultiregimpl160_regs1 <= xilinxmultiregimpl160_regs0;
-	xilinxmultiregimpl161_regs0 <= monroe_ionphoton_inj_o_sys57;
+	xilinxmultiregimpl161_regs0 <= monroe_ionphoton_inj_o_sys37;
 	xilinxmultiregimpl161_regs1 <= xilinxmultiregimpl161_regs0;
-	xilinxmultiregimpl162_regs0 <= monroe_ionphoton_inj_o_sys58;
+	xilinxmultiregimpl162_regs0 <= monroe_ionphoton_inj_o_sys38;
 	xilinxmultiregimpl162_regs1 <= xilinxmultiregimpl162_regs0;
-	xilinxmultiregimpl163_regs0 <= monroe_ionphoton_inj_o_sys59;
+	xilinxmultiregimpl163_regs0 <= monroe_ionphoton_inj_o_sys39;
 	xilinxmultiregimpl163_regs1 <= xilinxmultiregimpl163_regs0;
-	xilinxmultiregimpl164_regs0 <= monroe_ionphoton_inj_o_sys60;
+	xilinxmultiregimpl164_regs0 <= monroe_ionphoton_inj_o_sys40;
 	xilinxmultiregimpl164_regs1 <= xilinxmultiregimpl164_regs0;
-	xilinxmultiregimpl165_regs0 <= monroe_ionphoton_inj_o_sys61;
+	xilinxmultiregimpl165_regs0 <= monroe_ionphoton_inj_o_sys41;
 	xilinxmultiregimpl165_regs1 <= xilinxmultiregimpl165_regs0;
-	xilinxmultiregimpl166_regs0 <= monroe_ionphoton_inj_o_sys62;
+	xilinxmultiregimpl166_regs0 <= monroe_ionphoton_inj_o_sys42;
 	xilinxmultiregimpl166_regs1 <= xilinxmultiregimpl166_regs0;
-	xilinxmultiregimpl167_regs0 <= monroe_ionphoton_inj_o_sys63;
+	xilinxmultiregimpl167_regs0 <= monroe_ionphoton_inj_o_sys43;
 	xilinxmultiregimpl167_regs1 <= xilinxmultiregimpl167_regs0;
-	xilinxmultiregimpl168_regs0 <= monroe_ionphoton_inj_o_sys64;
+	xilinxmultiregimpl168_regs0 <= monroe_ionphoton_inj_o_sys44;
 	xilinxmultiregimpl168_regs1 <= xilinxmultiregimpl168_regs0;
-	xilinxmultiregimpl169_regs0 <= monroe_ionphoton_inj_o_sys65;
+	xilinxmultiregimpl169_regs0 <= monroe_ionphoton_inj_o_sys45;
 	xilinxmultiregimpl169_regs1 <= xilinxmultiregimpl169_regs0;
-	xilinxmultiregimpl170_regs0 <= monroe_ionphoton_inj_o_sys66;
+	xilinxmultiregimpl170_regs0 <= monroe_ionphoton_inj_o_sys46;
 	xilinxmultiregimpl170_regs1 <= xilinxmultiregimpl170_regs0;
-	xilinxmultiregimpl171_regs0 <= monroe_ionphoton_inj_o_sys67;
+	xilinxmultiregimpl171_regs0 <= monroe_ionphoton_inj_o_sys47;
 	xilinxmultiregimpl171_regs1 <= xilinxmultiregimpl171_regs0;
-	xilinxmultiregimpl172_regs0 <= monroe_ionphoton_inj_o_sys68;
+	xilinxmultiregimpl172_regs0 <= monroe_ionphoton_inj_o_sys48;
 	xilinxmultiregimpl172_regs1 <= xilinxmultiregimpl172_regs0;
-	xilinxmultiregimpl173_regs0 <= monroe_ionphoton_inj_o_sys69;
+	xilinxmultiregimpl173_regs0 <= monroe_ionphoton_inj_o_sys49;
 	xilinxmultiregimpl173_regs1 <= xilinxmultiregimpl173_regs0;
+	xilinxmultiregimpl174_regs0 <= monroe_ionphoton_inj_o_sys50;
+	xilinxmultiregimpl174_regs1 <= xilinxmultiregimpl174_regs0;
+	xilinxmultiregimpl175_regs0 <= monroe_ionphoton_inj_o_sys51;
+	xilinxmultiregimpl175_regs1 <= xilinxmultiregimpl175_regs0;
+	xilinxmultiregimpl176_regs0 <= monroe_ionphoton_inj_o_sys52;
+	xilinxmultiregimpl176_regs1 <= xilinxmultiregimpl176_regs0;
+	xilinxmultiregimpl177_regs0 <= monroe_ionphoton_inj_o_sys53;
+	xilinxmultiregimpl177_regs1 <= xilinxmultiregimpl177_regs0;
+	xilinxmultiregimpl178_regs0 <= monroe_ionphoton_inj_o_sys54;
+	xilinxmultiregimpl178_regs1 <= xilinxmultiregimpl178_regs0;
+	xilinxmultiregimpl179_regs0 <= monroe_ionphoton_inj_o_sys55;
+	xilinxmultiregimpl179_regs1 <= xilinxmultiregimpl179_regs0;
+	xilinxmultiregimpl180_regs0 <= monroe_ionphoton_inj_o_sys56;
+	xilinxmultiregimpl180_regs1 <= xilinxmultiregimpl180_regs0;
+	xilinxmultiregimpl181_regs0 <= monroe_ionphoton_inj_o_sys57;
+	xilinxmultiregimpl181_regs1 <= xilinxmultiregimpl181_regs0;
+	xilinxmultiregimpl182_regs0 <= monroe_ionphoton_inj_o_sys58;
+	xilinxmultiregimpl182_regs1 <= xilinxmultiregimpl182_regs0;
+	xilinxmultiregimpl183_regs0 <= monroe_ionphoton_inj_o_sys59;
+	xilinxmultiregimpl183_regs1 <= xilinxmultiregimpl183_regs0;
+	xilinxmultiregimpl184_regs0 <= monroe_ionphoton_inj_o_sys60;
+	xilinxmultiregimpl184_regs1 <= xilinxmultiregimpl184_regs0;
+	xilinxmultiregimpl185_regs0 <= monroe_ionphoton_inj_o_sys61;
+	xilinxmultiregimpl185_regs1 <= xilinxmultiregimpl185_regs0;
+	xilinxmultiregimpl186_regs0 <= monroe_ionphoton_inj_o_sys62;
+	xilinxmultiregimpl186_regs1 <= xilinxmultiregimpl186_regs0;
+	xilinxmultiregimpl187_regs0 <= monroe_ionphoton_inj_o_sys63;
+	xilinxmultiregimpl187_regs1 <= xilinxmultiregimpl187_regs0;
+	xilinxmultiregimpl188_regs0 <= monroe_ionphoton_inj_o_sys64;
+	xilinxmultiregimpl188_regs1 <= xilinxmultiregimpl188_regs0;
+	xilinxmultiregimpl189_regs0 <= monroe_ionphoton_inj_o_sys65;
+	xilinxmultiregimpl189_regs1 <= xilinxmultiregimpl189_regs0;
+	xilinxmultiregimpl190_regs0 <= monroe_ionphoton_inj_o_sys66;
+	xilinxmultiregimpl190_regs1 <= xilinxmultiregimpl190_regs0;
+	xilinxmultiregimpl191_regs0 <= monroe_ionphoton_inj_o_sys67;
+	xilinxmultiregimpl191_regs1 <= xilinxmultiregimpl191_regs0;
+	xilinxmultiregimpl192_regs0 <= monroe_ionphoton_inj_o_sys68;
+	xilinxmultiregimpl192_regs1 <= xilinxmultiregimpl192_regs0;
+	xilinxmultiregimpl193_regs0 <= monroe_ionphoton_inj_o_sys69;
+	xilinxmultiregimpl193_regs1 <= xilinxmultiregimpl193_regs0;
+	xilinxmultiregimpl194_regs0 <= monroe_ionphoton_inj_o_sys70;
+	xilinxmultiregimpl194_regs1 <= xilinxmultiregimpl194_regs0;
+	xilinxmultiregimpl195_regs0 <= monroe_ionphoton_inj_o_sys71;
+	xilinxmultiregimpl195_regs1 <= xilinxmultiregimpl195_regs0;
+	xilinxmultiregimpl196_regs0 <= monroe_ionphoton_inj_o_sys72;
+	xilinxmultiregimpl196_regs1 <= xilinxmultiregimpl196_regs0;
+	xilinxmultiregimpl197_regs0 <= monroe_ionphoton_inj_o_sys73;
+	xilinxmultiregimpl197_regs1 <= xilinxmultiregimpl197_regs0;
 end
 
 always @(posedge rio_phy_clk) begin
@@ -23320,6 +24176,118 @@ always @(posedge rio_phy_clk) begin
 			end
 		end
 	end
+	if ((inout_8x4_inout_8x4_ointerface4_stb & (inout_8x4_inout_8x4_ointerface4_address == 1'd1))) begin
+		inout_8x4_inout_8x4_oe_k <= inout_8x4_inout_8x4_ointerface4_data[0];
+	end
+	if (inout_8x4_inout_8x4_override_en) begin
+		inout_8x4_serdes_oe <= inout_8x4_inout_8x4_override_oe;
+	end else begin
+		inout_8x4_serdes_oe <= inout_8x4_inout_8x4_oe_k;
+	end
+	inout_8x4_inout_8x4_i_d <= inout_8x4_serdes_i0[7];
+	inout_8x4_inout_8x4_iinterface4_stb <= ((inout_8x4_inout_8x4_sample | (inout_8x4_inout_8x4_sensitivity[0] & (inout_8x4_serdes_i0[7] & (~inout_8x4_inout_8x4_i_d)))) | (inout_8x4_inout_8x4_sensitivity[1] & ((~inout_8x4_serdes_i0[7]) & inout_8x4_inout_8x4_i_d)));
+	inout_8x4_inout_8x4_iinterface4_data <= inout_8x4_serdes_i0[7];
+	inout_8x4_inout_8x4_iinterface4_fine_ts <= inout_8x4_inout_8x4_o;
+	if ((inout_8x4_inout_8x4_ointerface4_stb & (inout_8x4_inout_8x4_ointerface4_address == 1'd0))) begin
+		inout_8x4_inout_8x4_previous_data <= inout_8x4_inout_8x4_ointerface4_data[0];
+	end
+	if (inout_8x4_inout_8x4_override_en) begin
+		inout_8x4_serdes_o0 <= {8{inout_8x4_inout_8x4_override_o}};
+	end else begin
+		if ((((inout_8x4_inout_8x4_ointerface4_stb & (inout_8x4_inout_8x4_ointerface4_address == 1'd0)) & (~inout_8x4_inout_8x4_previous_data)) & inout_8x4_inout_8x4_ointerface4_data[0])) begin
+			inout_8x4_serdes_o0 <= sync_f_t_array_muxed9;
+		end else begin
+			if ((((inout_8x4_inout_8x4_ointerface4_stb & (inout_8x4_inout_8x4_ointerface4_address == 1'd0)) & inout_8x4_inout_8x4_previous_data) & (~inout_8x4_inout_8x4_ointerface4_data[0]))) begin
+				inout_8x4_serdes_o0 <= sync_f_t_array_muxed10;
+			end else begin
+				inout_8x4_serdes_o0 <= {8{inout_8x4_inout_8x4_previous_data}};
+			end
+		end
+	end
+	if ((inout_8x5_inout_8x5_ointerface5_stb & (inout_8x5_inout_8x5_ointerface5_address == 1'd1))) begin
+		inout_8x5_inout_8x5_oe_k <= inout_8x5_inout_8x5_ointerface5_data[0];
+	end
+	if (inout_8x5_inout_8x5_override_en) begin
+		inout_8x5_serdes_oe <= inout_8x5_inout_8x5_override_oe;
+	end else begin
+		inout_8x5_serdes_oe <= inout_8x5_inout_8x5_oe_k;
+	end
+	inout_8x5_inout_8x5_i_d <= inout_8x5_serdes_i0[7];
+	inout_8x5_inout_8x5_iinterface5_stb <= ((inout_8x5_inout_8x5_sample | (inout_8x5_inout_8x5_sensitivity[0] & (inout_8x5_serdes_i0[7] & (~inout_8x5_inout_8x5_i_d)))) | (inout_8x5_inout_8x5_sensitivity[1] & ((~inout_8x5_serdes_i0[7]) & inout_8x5_inout_8x5_i_d)));
+	inout_8x5_inout_8x5_iinterface5_data <= inout_8x5_serdes_i0[7];
+	inout_8x5_inout_8x5_iinterface5_fine_ts <= inout_8x5_inout_8x5_o;
+	if ((inout_8x5_inout_8x5_ointerface5_stb & (inout_8x5_inout_8x5_ointerface5_address == 1'd0))) begin
+		inout_8x5_inout_8x5_previous_data <= inout_8x5_inout_8x5_ointerface5_data[0];
+	end
+	if (inout_8x5_inout_8x5_override_en) begin
+		inout_8x5_serdes_o0 <= {8{inout_8x5_inout_8x5_override_o}};
+	end else begin
+		if ((((inout_8x5_inout_8x5_ointerface5_stb & (inout_8x5_inout_8x5_ointerface5_address == 1'd0)) & (~inout_8x5_inout_8x5_previous_data)) & inout_8x5_inout_8x5_ointerface5_data[0])) begin
+			inout_8x5_serdes_o0 <= sync_f_t_array_muxed11;
+		end else begin
+			if ((((inout_8x5_inout_8x5_ointerface5_stb & (inout_8x5_inout_8x5_ointerface5_address == 1'd0)) & inout_8x5_inout_8x5_previous_data) & (~inout_8x5_inout_8x5_ointerface5_data[0]))) begin
+				inout_8x5_serdes_o0 <= sync_f_t_array_muxed12;
+			end else begin
+				inout_8x5_serdes_o0 <= {8{inout_8x5_inout_8x5_previous_data}};
+			end
+		end
+	end
+	if ((inout_8x6_inout_8x6_ointerface6_stb & (inout_8x6_inout_8x6_ointerface6_address == 1'd1))) begin
+		inout_8x6_inout_8x6_oe_k <= inout_8x6_inout_8x6_ointerface6_data[0];
+	end
+	if (inout_8x6_inout_8x6_override_en) begin
+		inout_8x6_serdes_oe <= inout_8x6_inout_8x6_override_oe;
+	end else begin
+		inout_8x6_serdes_oe <= inout_8x6_inout_8x6_oe_k;
+	end
+	inout_8x6_inout_8x6_i_d <= inout_8x6_serdes_i0[7];
+	inout_8x6_inout_8x6_iinterface6_stb <= ((inout_8x6_inout_8x6_sample | (inout_8x6_inout_8x6_sensitivity[0] & (inout_8x6_serdes_i0[7] & (~inout_8x6_inout_8x6_i_d)))) | (inout_8x6_inout_8x6_sensitivity[1] & ((~inout_8x6_serdes_i0[7]) & inout_8x6_inout_8x6_i_d)));
+	inout_8x6_inout_8x6_iinterface6_data <= inout_8x6_serdes_i0[7];
+	inout_8x6_inout_8x6_iinterface6_fine_ts <= inout_8x6_inout_8x6_o;
+	if ((inout_8x6_inout_8x6_ointerface6_stb & (inout_8x6_inout_8x6_ointerface6_address == 1'd0))) begin
+		inout_8x6_inout_8x6_previous_data <= inout_8x6_inout_8x6_ointerface6_data[0];
+	end
+	if (inout_8x6_inout_8x6_override_en) begin
+		inout_8x6_serdes_o0 <= {8{inout_8x6_inout_8x6_override_o}};
+	end else begin
+		if ((((inout_8x6_inout_8x6_ointerface6_stb & (inout_8x6_inout_8x6_ointerface6_address == 1'd0)) & (~inout_8x6_inout_8x6_previous_data)) & inout_8x6_inout_8x6_ointerface6_data[0])) begin
+			inout_8x6_serdes_o0 <= sync_f_t_array_muxed13;
+		end else begin
+			if ((((inout_8x6_inout_8x6_ointerface6_stb & (inout_8x6_inout_8x6_ointerface6_address == 1'd0)) & inout_8x6_inout_8x6_previous_data) & (~inout_8x6_inout_8x6_ointerface6_data[0]))) begin
+				inout_8x6_serdes_o0 <= sync_f_t_array_muxed14;
+			end else begin
+				inout_8x6_serdes_o0 <= {8{inout_8x6_inout_8x6_previous_data}};
+			end
+		end
+	end
+	if ((inout_8x7_inout_8x7_ointerface7_stb & (inout_8x7_inout_8x7_ointerface7_address == 1'd1))) begin
+		inout_8x7_inout_8x7_oe_k <= inout_8x7_inout_8x7_ointerface7_data[0];
+	end
+	if (inout_8x7_inout_8x7_override_en) begin
+		inout_8x7_serdes_oe <= inout_8x7_inout_8x7_override_oe;
+	end else begin
+		inout_8x7_serdes_oe <= inout_8x7_inout_8x7_oe_k;
+	end
+	inout_8x7_inout_8x7_i_d <= inout_8x7_serdes_i0[7];
+	inout_8x7_inout_8x7_iinterface7_stb <= ((inout_8x7_inout_8x7_sample | (inout_8x7_inout_8x7_sensitivity[0] & (inout_8x7_serdes_i0[7] & (~inout_8x7_inout_8x7_i_d)))) | (inout_8x7_inout_8x7_sensitivity[1] & ((~inout_8x7_serdes_i0[7]) & inout_8x7_inout_8x7_i_d)));
+	inout_8x7_inout_8x7_iinterface7_data <= inout_8x7_serdes_i0[7];
+	inout_8x7_inout_8x7_iinterface7_fine_ts <= inout_8x7_inout_8x7_o;
+	if ((inout_8x7_inout_8x7_ointerface7_stb & (inout_8x7_inout_8x7_ointerface7_address == 1'd0))) begin
+		inout_8x7_inout_8x7_previous_data <= inout_8x7_inout_8x7_ointerface7_data[0];
+	end
+	if (inout_8x7_inout_8x7_override_en) begin
+		inout_8x7_serdes_o0 <= {8{inout_8x7_inout_8x7_override_o}};
+	end else begin
+		if ((((inout_8x7_inout_8x7_ointerface7_stb & (inout_8x7_inout_8x7_ointerface7_address == 1'd0)) & (~inout_8x7_inout_8x7_previous_data)) & inout_8x7_inout_8x7_ointerface7_data[0])) begin
+			inout_8x7_serdes_o0 <= sync_f_t_array_muxed15;
+		end else begin
+			if ((((inout_8x7_inout_8x7_ointerface7_stb & (inout_8x7_inout_8x7_ointerface7_address == 1'd0)) & inout_8x7_inout_8x7_previous_data) & (~inout_8x7_inout_8x7_ointerface7_data[0]))) begin
+				inout_8x7_serdes_o0 <= sync_f_t_array_muxed16;
+			end else begin
+				inout_8x7_serdes_o0 <= {8{inout_8x7_inout_8x7_previous_data}};
+			end
+		end
+	end
 	if (output_8x0_stb) begin
 		output_8x0_previous_data <= output_8x0_data;
 	end
@@ -23327,10 +24295,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x0_o <= {8{output_8x0_override_o}};
 	end else begin
 		if (((output_8x0_stb & (~output_8x0_previous_data)) & output_8x0_data)) begin
-			output_8x0_o <= sync_f_t_array_muxed9;
+			output_8x0_o <= sync_f_t_array_muxed17;
 		end else begin
 			if (((output_8x0_stb & output_8x0_previous_data) & (~output_8x0_data))) begin
-				output_8x0_o <= sync_f_t_array_muxed10;
+				output_8x0_o <= sync_f_t_array_muxed18;
 			end else begin
 				output_8x0_o <= {8{output_8x0_previous_data}};
 			end
@@ -23343,10 +24311,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x1_o <= {8{output_8x1_override_o}};
 	end else begin
 		if (((output_8x1_stb & (~output_8x1_previous_data)) & output_8x1_data)) begin
-			output_8x1_o <= sync_f_t_array_muxed11;
+			output_8x1_o <= sync_f_t_array_muxed19;
 		end else begin
 			if (((output_8x1_stb & output_8x1_previous_data) & (~output_8x1_data))) begin
-				output_8x1_o <= sync_f_t_array_muxed12;
+				output_8x1_o <= sync_f_t_array_muxed20;
 			end else begin
 				output_8x1_o <= {8{output_8x1_previous_data}};
 			end
@@ -23359,10 +24327,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x2_o <= {8{output_8x2_override_o}};
 	end else begin
 		if (((output_8x2_stb & (~output_8x2_previous_data)) & output_8x2_data)) begin
-			output_8x2_o <= sync_f_t_array_muxed13;
+			output_8x2_o <= sync_f_t_array_muxed21;
 		end else begin
 			if (((output_8x2_stb & output_8x2_previous_data) & (~output_8x2_data))) begin
-				output_8x2_o <= sync_f_t_array_muxed14;
+				output_8x2_o <= sync_f_t_array_muxed22;
 			end else begin
 				output_8x2_o <= {8{output_8x2_previous_data}};
 			end
@@ -23375,10 +24343,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x3_o <= {8{output_8x3_override_o}};
 	end else begin
 		if (((output_8x3_stb & (~output_8x3_previous_data)) & output_8x3_data)) begin
-			output_8x3_o <= sync_f_t_array_muxed15;
+			output_8x3_o <= sync_f_t_array_muxed23;
 		end else begin
 			if (((output_8x3_stb & output_8x3_previous_data) & (~output_8x3_data))) begin
-				output_8x3_o <= sync_f_t_array_muxed16;
+				output_8x3_o <= sync_f_t_array_muxed24;
 			end else begin
 				output_8x3_o <= {8{output_8x3_previous_data}};
 			end
@@ -23391,10 +24359,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x4_o <= {8{output_8x4_override_o}};
 	end else begin
 		if (((output_8x4_stb & (~output_8x4_previous_data)) & output_8x4_data)) begin
-			output_8x4_o <= sync_f_t_array_muxed17;
+			output_8x4_o <= sync_f_t_array_muxed25;
 		end else begin
 			if (((output_8x4_stb & output_8x4_previous_data) & (~output_8x4_data))) begin
-				output_8x4_o <= sync_f_t_array_muxed18;
+				output_8x4_o <= sync_f_t_array_muxed26;
 			end else begin
 				output_8x4_o <= {8{output_8x4_previous_data}};
 			end
@@ -23407,10 +24375,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x5_o <= {8{output_8x5_override_o}};
 	end else begin
 		if (((output_8x5_stb & (~output_8x5_previous_data)) & output_8x5_data)) begin
-			output_8x5_o <= sync_f_t_array_muxed19;
+			output_8x5_o <= sync_f_t_array_muxed27;
 		end else begin
 			if (((output_8x5_stb & output_8x5_previous_data) & (~output_8x5_data))) begin
-				output_8x5_o <= sync_f_t_array_muxed20;
+				output_8x5_o <= sync_f_t_array_muxed28;
 			end else begin
 				output_8x5_o <= {8{output_8x5_previous_data}};
 			end
@@ -23423,10 +24391,10 @@ always @(posedge rio_phy_clk) begin
 		output_8x6_o <= {8{output_8x6_override_o}};
 	end else begin
 		if (((output_8x6_stb & (~output_8x6_previous_data)) & output_8x6_data)) begin
-			output_8x6_o <= sync_f_t_array_muxed21;
+			output_8x6_o <= sync_f_t_array_muxed29;
 		end else begin
 			if (((output_8x6_stb & output_8x6_previous_data) & (~output_8x6_data))) begin
-				output_8x6_o <= sync_f_t_array_muxed22;
+				output_8x6_o <= sync_f_t_array_muxed30;
 			end else begin
 				output_8x6_o <= {8{output_8x6_previous_data}};
 			end
@@ -23439,76 +24407,12 @@ always @(posedge rio_phy_clk) begin
 		output_8x7_o <= {8{output_8x7_override_o}};
 	end else begin
 		if (((output_8x7_stb & (~output_8x7_previous_data)) & output_8x7_data)) begin
-			output_8x7_o <= sync_f_t_array_muxed23;
+			output_8x7_o <= sync_f_t_array_muxed31;
 		end else begin
 			if (((output_8x7_stb & output_8x7_previous_data) & (~output_8x7_data))) begin
-				output_8x7_o <= sync_f_t_array_muxed24;
+				output_8x7_o <= sync_f_t_array_muxed32;
 			end else begin
 				output_8x7_o <= {8{output_8x7_previous_data}};
-			end
-		end
-	end
-	if (output_8x8_stb) begin
-		output_8x8_previous_data <= output_8x8_data;
-	end
-	if (output_8x8_override_en) begin
-		output_8x8_o <= {8{output_8x8_override_o}};
-	end else begin
-		if (((output_8x8_stb & (~output_8x8_previous_data)) & output_8x8_data)) begin
-			output_8x8_o <= sync_f_t_array_muxed25;
-		end else begin
-			if (((output_8x8_stb & output_8x8_previous_data) & (~output_8x8_data))) begin
-				output_8x8_o <= sync_f_t_array_muxed26;
-			end else begin
-				output_8x8_o <= {8{output_8x8_previous_data}};
-			end
-		end
-	end
-	if (output_8x9_stb) begin
-		output_8x9_previous_data <= output_8x9_data;
-	end
-	if (output_8x9_override_en) begin
-		output_8x9_o <= {8{output_8x9_override_o}};
-	end else begin
-		if (((output_8x9_stb & (~output_8x9_previous_data)) & output_8x9_data)) begin
-			output_8x9_o <= sync_f_t_array_muxed27;
-		end else begin
-			if (((output_8x9_stb & output_8x9_previous_data) & (~output_8x9_data))) begin
-				output_8x9_o <= sync_f_t_array_muxed28;
-			end else begin
-				output_8x9_o <= {8{output_8x9_previous_data}};
-			end
-		end
-	end
-	if (output_8x10_stb) begin
-		output_8x10_previous_data <= output_8x10_data;
-	end
-	if (output_8x10_override_en) begin
-		output_8x10_o <= {8{output_8x10_override_o}};
-	end else begin
-		if (((output_8x10_stb & (~output_8x10_previous_data)) & output_8x10_data)) begin
-			output_8x10_o <= sync_f_t_array_muxed29;
-		end else begin
-			if (((output_8x10_stb & output_8x10_previous_data) & (~output_8x10_data))) begin
-				output_8x10_o <= sync_f_t_array_muxed30;
-			end else begin
-				output_8x10_o <= {8{output_8x10_previous_data}};
-			end
-		end
-	end
-	if (output_8x11_stb) begin
-		output_8x11_previous_data <= output_8x11_data;
-	end
-	if (output_8x11_override_en) begin
-		output_8x11_o <= {8{output_8x11_override_o}};
-	end else begin
-		if (((output_8x11_stb & (~output_8x11_previous_data)) & output_8x11_data)) begin
-			output_8x11_o <= sync_f_t_array_muxed31;
-		end else begin
-			if (((output_8x11_stb & output_8x11_previous_data) & (~output_8x11_data))) begin
-				output_8x11_o <= sync_f_t_array_muxed32;
-			end else begin
-				output_8x11_o <= {8{output_8x11_previous_data}};
 			end
 		end
 	end
@@ -23558,6 +24462,70 @@ always @(posedge rio_phy_clk) begin
 		end
 	end
 	spimaster0_state <= spimaster0_next_state;
+	if (output_8x8_stb) begin
+		output_8x8_previous_data <= output_8x8_data;
+	end
+	if (output_8x8_override_en) begin
+		output_8x8_o <= {8{output_8x8_override_o}};
+	end else begin
+		if (((output_8x8_stb & (~output_8x8_previous_data)) & output_8x8_data)) begin
+			output_8x8_o <= sync_f_t_array_muxed33;
+		end else begin
+			if (((output_8x8_stb & output_8x8_previous_data) & (~output_8x8_data))) begin
+				output_8x8_o <= sync_f_t_array_muxed34;
+			end else begin
+				output_8x8_o <= {8{output_8x8_previous_data}};
+			end
+		end
+	end
+	if (output_8x9_stb) begin
+		output_8x9_previous_data <= output_8x9_data;
+	end
+	if (output_8x9_override_en) begin
+		output_8x9_o <= {8{output_8x9_override_o}};
+	end else begin
+		if (((output_8x9_stb & (~output_8x9_previous_data)) & output_8x9_data)) begin
+			output_8x9_o <= sync_f_t_array_muxed35;
+		end else begin
+			if (((output_8x9_stb & output_8x9_previous_data) & (~output_8x9_data))) begin
+				output_8x9_o <= sync_f_t_array_muxed36;
+			end else begin
+				output_8x9_o <= {8{output_8x9_previous_data}};
+			end
+		end
+	end
+	if (output_8x10_stb) begin
+		output_8x10_previous_data <= output_8x10_data;
+	end
+	if (output_8x10_override_en) begin
+		output_8x10_o <= {8{output_8x10_override_o}};
+	end else begin
+		if (((output_8x10_stb & (~output_8x10_previous_data)) & output_8x10_data)) begin
+			output_8x10_o <= sync_f_t_array_muxed37;
+		end else begin
+			if (((output_8x10_stb & output_8x10_previous_data) & (~output_8x10_data))) begin
+				output_8x10_o <= sync_f_t_array_muxed38;
+			end else begin
+				output_8x10_o <= {8{output_8x10_previous_data}};
+			end
+		end
+	end
+	if (output_8x11_stb) begin
+		output_8x11_previous_data <= output_8x11_data;
+	end
+	if (output_8x11_override_en) begin
+		output_8x11_o <= {8{output_8x11_override_o}};
+	end else begin
+		if (((output_8x11_stb & (~output_8x11_previous_data)) & output_8x11_data)) begin
+			output_8x11_o <= sync_f_t_array_muxed39;
+		end else begin
+			if (((output_8x11_stb & output_8x11_previous_data) & (~output_8x11_data))) begin
+				output_8x11_o <= sync_f_t_array_muxed40;
+			end else begin
+				output_8x11_o <= {8{output_8x11_previous_data}};
+			end
+		end
+	end
 	if (output_8x12_stb) begin
 		output_8x12_previous_data <= output_8x12_data;
 	end
@@ -23565,76 +24533,12 @@ always @(posedge rio_phy_clk) begin
 		output_8x12_o <= {8{output_8x12_override_o}};
 	end else begin
 		if (((output_8x12_stb & (~output_8x12_previous_data)) & output_8x12_data)) begin
-			output_8x12_o <= sync_f_t_array_muxed33;
+			output_8x12_o <= sync_f_t_array_muxed41;
 		end else begin
 			if (((output_8x12_stb & output_8x12_previous_data) & (~output_8x12_data))) begin
-				output_8x12_o <= sync_f_t_array_muxed34;
+				output_8x12_o <= sync_f_t_array_muxed42;
 			end else begin
 				output_8x12_o <= {8{output_8x12_previous_data}};
-			end
-		end
-	end
-	if (output_8x13_stb) begin
-		output_8x13_previous_data <= output_8x13_data;
-	end
-	if (output_8x13_override_en) begin
-		output_8x13_o <= {8{output_8x13_override_o}};
-	end else begin
-		if (((output_8x13_stb & (~output_8x13_previous_data)) & output_8x13_data)) begin
-			output_8x13_o <= sync_f_t_array_muxed35;
-		end else begin
-			if (((output_8x13_stb & output_8x13_previous_data) & (~output_8x13_data))) begin
-				output_8x13_o <= sync_f_t_array_muxed36;
-			end else begin
-				output_8x13_o <= {8{output_8x13_previous_data}};
-			end
-		end
-	end
-	if (output_8x14_stb) begin
-		output_8x14_previous_data <= output_8x14_data;
-	end
-	if (output_8x14_override_en) begin
-		output_8x14_o <= {8{output_8x14_override_o}};
-	end else begin
-		if (((output_8x14_stb & (~output_8x14_previous_data)) & output_8x14_data)) begin
-			output_8x14_o <= sync_f_t_array_muxed37;
-		end else begin
-			if (((output_8x14_stb & output_8x14_previous_data) & (~output_8x14_data))) begin
-				output_8x14_o <= sync_f_t_array_muxed38;
-			end else begin
-				output_8x14_o <= {8{output_8x14_previous_data}};
-			end
-		end
-	end
-	if (output_8x15_stb) begin
-		output_8x15_previous_data <= output_8x15_data;
-	end
-	if (output_8x15_override_en) begin
-		output_8x15_o <= {8{output_8x15_override_o}};
-	end else begin
-		if (((output_8x15_stb & (~output_8x15_previous_data)) & output_8x15_data)) begin
-			output_8x15_o <= sync_f_t_array_muxed39;
-		end else begin
-			if (((output_8x15_stb & output_8x15_previous_data) & (~output_8x15_data))) begin
-				output_8x15_o <= sync_f_t_array_muxed40;
-			end else begin
-				output_8x15_o <= {8{output_8x15_previous_data}};
-			end
-		end
-	end
-	if (output_8x16_stb) begin
-		output_8x16_previous_data <= output_8x16_data;
-	end
-	if (output_8x16_override_en) begin
-		output_8x16_o <= {8{output_8x16_override_o}};
-	end else begin
-		if (((output_8x16_stb & (~output_8x16_previous_data)) & output_8x16_data)) begin
-			output_8x16_o <= sync_f_t_array_muxed41;
-		end else begin
-			if (((output_8x16_stb & output_8x16_previous_data) & (~output_8x16_data))) begin
-				output_8x16_o <= sync_f_t_array_muxed42;
-			end else begin
-				output_8x16_o <= {8{output_8x16_previous_data}};
 			end
 		end
 	end
@@ -23684,6 +24588,70 @@ always @(posedge rio_phy_clk) begin
 		end
 	end
 	spimaster1_state <= spimaster1_next_state;
+	if (output_8x13_stb) begin
+		output_8x13_previous_data <= output_8x13_data;
+	end
+	if (output_8x13_override_en) begin
+		output_8x13_o <= {8{output_8x13_override_o}};
+	end else begin
+		if (((output_8x13_stb & (~output_8x13_previous_data)) & output_8x13_data)) begin
+			output_8x13_o <= sync_f_t_array_muxed43;
+		end else begin
+			if (((output_8x13_stb & output_8x13_previous_data) & (~output_8x13_data))) begin
+				output_8x13_o <= sync_f_t_array_muxed44;
+			end else begin
+				output_8x13_o <= {8{output_8x13_previous_data}};
+			end
+		end
+	end
+	if (output_8x14_stb) begin
+		output_8x14_previous_data <= output_8x14_data;
+	end
+	if (output_8x14_override_en) begin
+		output_8x14_o <= {8{output_8x14_override_o}};
+	end else begin
+		if (((output_8x14_stb & (~output_8x14_previous_data)) & output_8x14_data)) begin
+			output_8x14_o <= sync_f_t_array_muxed45;
+		end else begin
+			if (((output_8x14_stb & output_8x14_previous_data) & (~output_8x14_data))) begin
+				output_8x14_o <= sync_f_t_array_muxed46;
+			end else begin
+				output_8x14_o <= {8{output_8x14_previous_data}};
+			end
+		end
+	end
+	if (output_8x15_stb) begin
+		output_8x15_previous_data <= output_8x15_data;
+	end
+	if (output_8x15_override_en) begin
+		output_8x15_o <= {8{output_8x15_override_o}};
+	end else begin
+		if (((output_8x15_stb & (~output_8x15_previous_data)) & output_8x15_data)) begin
+			output_8x15_o <= sync_f_t_array_muxed47;
+		end else begin
+			if (((output_8x15_stb & output_8x15_previous_data) & (~output_8x15_data))) begin
+				output_8x15_o <= sync_f_t_array_muxed48;
+			end else begin
+				output_8x15_o <= {8{output_8x15_previous_data}};
+			end
+		end
+	end
+	if (output_8x16_stb) begin
+		output_8x16_previous_data <= output_8x16_data;
+	end
+	if (output_8x16_override_en) begin
+		output_8x16_o <= {8{output_8x16_override_o}};
+	end else begin
+		if (((output_8x16_stb & (~output_8x16_previous_data)) & output_8x16_data)) begin
+			output_8x16_o <= sync_f_t_array_muxed49;
+		end else begin
+			if (((output_8x16_stb & output_8x16_previous_data) & (~output_8x16_data))) begin
+				output_8x16_o <= sync_f_t_array_muxed50;
+			end else begin
+				output_8x16_o <= {8{output_8x16_previous_data}};
+			end
+		end
+	end
 	if (output_8x17_stb) begin
 		output_8x17_previous_data <= output_8x17_data;
 	end
@@ -23691,76 +24659,12 @@ always @(posedge rio_phy_clk) begin
 		output_8x17_o <= {8{output_8x17_override_o}};
 	end else begin
 		if (((output_8x17_stb & (~output_8x17_previous_data)) & output_8x17_data)) begin
-			output_8x17_o <= sync_f_t_array_muxed43;
+			output_8x17_o <= sync_f_t_array_muxed51;
 		end else begin
 			if (((output_8x17_stb & output_8x17_previous_data) & (~output_8x17_data))) begin
-				output_8x17_o <= sync_f_t_array_muxed44;
+				output_8x17_o <= sync_f_t_array_muxed52;
 			end else begin
 				output_8x17_o <= {8{output_8x17_previous_data}};
-			end
-		end
-	end
-	if (output_8x18_stb) begin
-		output_8x18_previous_data <= output_8x18_data;
-	end
-	if (output_8x18_override_en) begin
-		output_8x18_o <= {8{output_8x18_override_o}};
-	end else begin
-		if (((output_8x18_stb & (~output_8x18_previous_data)) & output_8x18_data)) begin
-			output_8x18_o <= sync_f_t_array_muxed45;
-		end else begin
-			if (((output_8x18_stb & output_8x18_previous_data) & (~output_8x18_data))) begin
-				output_8x18_o <= sync_f_t_array_muxed46;
-			end else begin
-				output_8x18_o <= {8{output_8x18_previous_data}};
-			end
-		end
-	end
-	if (output_8x19_stb) begin
-		output_8x19_previous_data <= output_8x19_data;
-	end
-	if (output_8x19_override_en) begin
-		output_8x19_o <= {8{output_8x19_override_o}};
-	end else begin
-		if (((output_8x19_stb & (~output_8x19_previous_data)) & output_8x19_data)) begin
-			output_8x19_o <= sync_f_t_array_muxed47;
-		end else begin
-			if (((output_8x19_stb & output_8x19_previous_data) & (~output_8x19_data))) begin
-				output_8x19_o <= sync_f_t_array_muxed48;
-			end else begin
-				output_8x19_o <= {8{output_8x19_previous_data}};
-			end
-		end
-	end
-	if (output_8x20_stb) begin
-		output_8x20_previous_data <= output_8x20_data;
-	end
-	if (output_8x20_override_en) begin
-		output_8x20_o <= {8{output_8x20_override_o}};
-	end else begin
-		if (((output_8x20_stb & (~output_8x20_previous_data)) & output_8x20_data)) begin
-			output_8x20_o <= sync_f_t_array_muxed49;
-		end else begin
-			if (((output_8x20_stb & output_8x20_previous_data) & (~output_8x20_data))) begin
-				output_8x20_o <= sync_f_t_array_muxed50;
-			end else begin
-				output_8x20_o <= {8{output_8x20_previous_data}};
-			end
-		end
-	end
-	if (output_8x21_stb) begin
-		output_8x21_previous_data <= output_8x21_data;
-	end
-	if (output_8x21_override_en) begin
-		output_8x21_o <= {8{output_8x21_override_o}};
-	end else begin
-		if (((output_8x21_stb & (~output_8x21_previous_data)) & output_8x21_data)) begin
-			output_8x21_o <= sync_f_t_array_muxed51;
-		end else begin
-			if (((output_8x21_stb & output_8x21_previous_data) & (~output_8x21_data))) begin
-				output_8x21_o <= sync_f_t_array_muxed52;
-			end else begin
-				output_8x21_o <= {8{output_8x21_previous_data}};
 			end
 		end
 	end
@@ -23810,6 +24714,70 @@ always @(posedge rio_phy_clk) begin
 		end
 	end
 	spimaster2_state <= spimaster2_next_state;
+	if (output_8x18_stb) begin
+		output_8x18_previous_data <= output_8x18_data;
+	end
+	if (output_8x18_override_en) begin
+		output_8x18_o <= {8{output_8x18_override_o}};
+	end else begin
+		if (((output_8x18_stb & (~output_8x18_previous_data)) & output_8x18_data)) begin
+			output_8x18_o <= sync_f_t_array_muxed53;
+		end else begin
+			if (((output_8x18_stb & output_8x18_previous_data) & (~output_8x18_data))) begin
+				output_8x18_o <= sync_f_t_array_muxed54;
+			end else begin
+				output_8x18_o <= {8{output_8x18_previous_data}};
+			end
+		end
+	end
+	if (output_8x19_stb) begin
+		output_8x19_previous_data <= output_8x19_data;
+	end
+	if (output_8x19_override_en) begin
+		output_8x19_o <= {8{output_8x19_override_o}};
+	end else begin
+		if (((output_8x19_stb & (~output_8x19_previous_data)) & output_8x19_data)) begin
+			output_8x19_o <= sync_f_t_array_muxed55;
+		end else begin
+			if (((output_8x19_stb & output_8x19_previous_data) & (~output_8x19_data))) begin
+				output_8x19_o <= sync_f_t_array_muxed56;
+			end else begin
+				output_8x19_o <= {8{output_8x19_previous_data}};
+			end
+		end
+	end
+	if (output_8x20_stb) begin
+		output_8x20_previous_data <= output_8x20_data;
+	end
+	if (output_8x20_override_en) begin
+		output_8x20_o <= {8{output_8x20_override_o}};
+	end else begin
+		if (((output_8x20_stb & (~output_8x20_previous_data)) & output_8x20_data)) begin
+			output_8x20_o <= sync_f_t_array_muxed57;
+		end else begin
+			if (((output_8x20_stb & output_8x20_previous_data) & (~output_8x20_data))) begin
+				output_8x20_o <= sync_f_t_array_muxed58;
+			end else begin
+				output_8x20_o <= {8{output_8x20_previous_data}};
+			end
+		end
+	end
+	if (output_8x21_stb) begin
+		output_8x21_previous_data <= output_8x21_data;
+	end
+	if (output_8x21_override_en) begin
+		output_8x21_o <= {8{output_8x21_override_o}};
+	end else begin
+		if (((output_8x21_stb & (~output_8x21_previous_data)) & output_8x21_data)) begin
+			output_8x21_o <= sync_f_t_array_muxed59;
+		end else begin
+			if (((output_8x21_stb & output_8x21_previous_data) & (~output_8x21_data))) begin
+				output_8x21_o <= sync_f_t_array_muxed60;
+			end else begin
+				output_8x21_o <= {8{output_8x21_previous_data}};
+			end
+		end
+	end
 	if (output_8x22_stb) begin
 		output_8x22_previous_data <= output_8x22_data;
 	end
@@ -23817,76 +24785,12 @@ always @(posedge rio_phy_clk) begin
 		output_8x22_o <= {8{output_8x22_override_o}};
 	end else begin
 		if (((output_8x22_stb & (~output_8x22_previous_data)) & output_8x22_data)) begin
-			output_8x22_o <= sync_f_t_array_muxed53;
+			output_8x22_o <= sync_f_t_array_muxed61;
 		end else begin
 			if (((output_8x22_stb & output_8x22_previous_data) & (~output_8x22_data))) begin
-				output_8x22_o <= sync_f_t_array_muxed54;
+				output_8x22_o <= sync_f_t_array_muxed62;
 			end else begin
 				output_8x22_o <= {8{output_8x22_previous_data}};
-			end
-		end
-	end
-	if (output_8x23_stb) begin
-		output_8x23_previous_data <= output_8x23_data;
-	end
-	if (output_8x23_override_en) begin
-		output_8x23_o <= {8{output_8x23_override_o}};
-	end else begin
-		if (((output_8x23_stb & (~output_8x23_previous_data)) & output_8x23_data)) begin
-			output_8x23_o <= sync_f_t_array_muxed55;
-		end else begin
-			if (((output_8x23_stb & output_8x23_previous_data) & (~output_8x23_data))) begin
-				output_8x23_o <= sync_f_t_array_muxed56;
-			end else begin
-				output_8x23_o <= {8{output_8x23_previous_data}};
-			end
-		end
-	end
-	if (output_8x24_stb) begin
-		output_8x24_previous_data <= output_8x24_data;
-	end
-	if (output_8x24_override_en) begin
-		output_8x24_o <= {8{output_8x24_override_o}};
-	end else begin
-		if (((output_8x24_stb & (~output_8x24_previous_data)) & output_8x24_data)) begin
-			output_8x24_o <= sync_f_t_array_muxed57;
-		end else begin
-			if (((output_8x24_stb & output_8x24_previous_data) & (~output_8x24_data))) begin
-				output_8x24_o <= sync_f_t_array_muxed58;
-			end else begin
-				output_8x24_o <= {8{output_8x24_previous_data}};
-			end
-		end
-	end
-	if (output_8x25_stb) begin
-		output_8x25_previous_data <= output_8x25_data;
-	end
-	if (output_8x25_override_en) begin
-		output_8x25_o <= {8{output_8x25_override_o}};
-	end else begin
-		if (((output_8x25_stb & (~output_8x25_previous_data)) & output_8x25_data)) begin
-			output_8x25_o <= sync_f_t_array_muxed59;
-		end else begin
-			if (((output_8x25_stb & output_8x25_previous_data) & (~output_8x25_data))) begin
-				output_8x25_o <= sync_f_t_array_muxed60;
-			end else begin
-				output_8x25_o <= {8{output_8x25_previous_data}};
-			end
-		end
-	end
-	if (output_8x26_stb) begin
-		output_8x26_previous_data <= output_8x26_data;
-	end
-	if (output_8x26_override_en) begin
-		output_8x26_o <= {8{output_8x26_override_o}};
-	end else begin
-		if (((output_8x26_stb & (~output_8x26_previous_data)) & output_8x26_data)) begin
-			output_8x26_o <= sync_f_t_array_muxed61;
-		end else begin
-			if (((output_8x26_stb & output_8x26_previous_data) & (~output_8x26_data))) begin
-				output_8x26_o <= sync_f_t_array_muxed62;
-			end else begin
-				output_8x26_o <= {8{output_8x26_previous_data}};
 			end
 		end
 	end
@@ -23931,6 +24835,30 @@ always @(posedge rio_phy_clk) begin
 		inout_8x3_inout_8x3_previous_data <= 1'd0;
 		inout_8x3_inout_8x3_oe_k <= 1'd0;
 		inout_8x3_inout_8x3_i_d <= 1'd0;
+		inout_8x4_serdes_o0 <= 8'd0;
+		inout_8x4_serdes_oe <= 1'd0;
+		inout_8x4_inout_8x4_iinterface4_stb <= 1'd0;
+		inout_8x4_inout_8x4_previous_data <= 1'd0;
+		inout_8x4_inout_8x4_oe_k <= 1'd0;
+		inout_8x4_inout_8x4_i_d <= 1'd0;
+		inout_8x5_serdes_o0 <= 8'd0;
+		inout_8x5_serdes_oe <= 1'd0;
+		inout_8x5_inout_8x5_iinterface5_stb <= 1'd0;
+		inout_8x5_inout_8x5_previous_data <= 1'd0;
+		inout_8x5_inout_8x5_oe_k <= 1'd0;
+		inout_8x5_inout_8x5_i_d <= 1'd0;
+		inout_8x6_serdes_o0 <= 8'd0;
+		inout_8x6_serdes_oe <= 1'd0;
+		inout_8x6_inout_8x6_iinterface6_stb <= 1'd0;
+		inout_8x6_inout_8x6_previous_data <= 1'd0;
+		inout_8x6_inout_8x6_oe_k <= 1'd0;
+		inout_8x6_inout_8x6_i_d <= 1'd0;
+		inout_8x7_serdes_o0 <= 8'd0;
+		inout_8x7_serdes_oe <= 1'd0;
+		inout_8x7_inout_8x7_iinterface7_stb <= 1'd0;
+		inout_8x7_inout_8x7_previous_data <= 1'd0;
+		inout_8x7_inout_8x7_oe_k <= 1'd0;
+		inout_8x7_inout_8x7_i_d <= 1'd0;
 		output_8x0_o <= 8'd0;
 		output_8x0_previous_data <= 1'd0;
 		output_8x1_o <= 8'd0;
@@ -23947,14 +24875,6 @@ always @(posedge rio_phy_clk) begin
 		output_8x6_previous_data <= 1'd0;
 		output_8x7_o <= 8'd0;
 		output_8x7_previous_data <= 1'd0;
-		output_8x8_o <= 8'd0;
-		output_8x8_previous_data <= 1'd0;
-		output_8x9_o <= 8'd0;
-		output_8x9_previous_data <= 1'd0;
-		output_8x10_o <= 8'd0;
-		output_8x10_previous_data <= 1'd0;
-		output_8x11_o <= 8'd0;
-		output_8x11_previous_data <= 1'd0;
 		spimaster0_interface_cs1 <= 3'd7;
 		spimaster0_interface_clk <= 1'd0;
 		spimaster0_spimachine0_cnt <= 7'd0;
@@ -23972,16 +24892,16 @@ always @(posedge rio_phy_clk) begin
 		spimaster0_config_div <= 8'd0;
 		spimaster0_config_cs <= 8'd0;
 		spimaster0_read <= 1'd0;
+		output_8x8_o <= 8'd0;
+		output_8x8_previous_data <= 1'd0;
+		output_8x9_o <= 8'd0;
+		output_8x9_previous_data <= 1'd0;
+		output_8x10_o <= 8'd0;
+		output_8x10_previous_data <= 1'd0;
+		output_8x11_o <= 8'd0;
+		output_8x11_previous_data <= 1'd0;
 		output_8x12_o <= 8'd0;
 		output_8x12_previous_data <= 1'd0;
-		output_8x13_o <= 8'd0;
-		output_8x13_previous_data <= 1'd0;
-		output_8x14_o <= 8'd0;
-		output_8x14_previous_data <= 1'd0;
-		output_8x15_o <= 8'd0;
-		output_8x15_previous_data <= 1'd0;
-		output_8x16_o <= 8'd0;
-		output_8x16_previous_data <= 1'd0;
 		spimaster1_interface_cs1 <= 3'd7;
 		spimaster1_interface_clk <= 1'd0;
 		spimaster1_spimachine1_cnt <= 7'd0;
@@ -23999,16 +24919,16 @@ always @(posedge rio_phy_clk) begin
 		spimaster1_config_div <= 8'd0;
 		spimaster1_config_cs <= 8'd0;
 		spimaster1_read <= 1'd0;
+		output_8x13_o <= 8'd0;
+		output_8x13_previous_data <= 1'd0;
+		output_8x14_o <= 8'd0;
+		output_8x14_previous_data <= 1'd0;
+		output_8x15_o <= 8'd0;
+		output_8x15_previous_data <= 1'd0;
+		output_8x16_o <= 8'd0;
+		output_8x16_previous_data <= 1'd0;
 		output_8x17_o <= 8'd0;
 		output_8x17_previous_data <= 1'd0;
-		output_8x18_o <= 8'd0;
-		output_8x18_previous_data <= 1'd0;
-		output_8x19_o <= 8'd0;
-		output_8x19_previous_data <= 1'd0;
-		output_8x20_o <= 8'd0;
-		output_8x20_previous_data <= 1'd0;
-		output_8x21_o <= 8'd0;
-		output_8x21_previous_data <= 1'd0;
 		spimaster2_interface_cs1 <= 3'd7;
 		spimaster2_interface_clk <= 1'd0;
 		spimaster2_spimachine2_cnt <= 7'd0;
@@ -24026,16 +24946,16 @@ always @(posedge rio_phy_clk) begin
 		spimaster2_config_div <= 8'd0;
 		spimaster2_config_cs <= 8'd0;
 		spimaster2_read <= 1'd0;
+		output_8x18_o <= 8'd0;
+		output_8x18_previous_data <= 1'd0;
+		output_8x19_o <= 8'd0;
+		output_8x19_previous_data <= 1'd0;
+		output_8x20_o <= 8'd0;
+		output_8x20_previous_data <= 1'd0;
+		output_8x21_o <= 8'd0;
+		output_8x21_previous_data <= 1'd0;
 		output_8x22_o <= 8'd0;
 		output_8x22_previous_data <= 1'd0;
-		output_8x23_o <= 8'd0;
-		output_8x23_previous_data <= 1'd0;
-		output_8x24_o <= 8'd0;
-		output_8x24_previous_data <= 1'd0;
-		output_8x25_o <= 8'd0;
-		output_8x25_previous_data <= 1'd0;
-		output_8x26_o <= 8'd0;
-		output_8x26_previous_data <= 1'd0;
 		output0_pad_k <= 1'd0;
 		output1_pad_k <= 1'd0;
 		spimaster0_state <= 3'd0;
@@ -24158,6 +25078,30 @@ always @(posedge rsys_clk) begin
 	if (monroe_ionphoton_rtio_core_inputs_blindtransfer6_o) begin
 		monroe_ionphoton_rtio_core_inputs_overflow6 <= 1'd1;
 	end
+	if ((monroe_ionphoton_rtio_core_inputs_selected7 & monroe_ionphoton_rtio_core_inputs_i_ack)) begin
+		monroe_ionphoton_rtio_core_inputs_overflow7 <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer7_o) begin
+		monroe_ionphoton_rtio_core_inputs_overflow7 <= 1'd1;
+	end
+	if ((monroe_ionphoton_rtio_core_inputs_selected8 & monroe_ionphoton_rtio_core_inputs_i_ack)) begin
+		monroe_ionphoton_rtio_core_inputs_overflow8 <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer8_o) begin
+		monroe_ionphoton_rtio_core_inputs_overflow8 <= 1'd1;
+	end
+	if ((monroe_ionphoton_rtio_core_inputs_selected9 & monroe_ionphoton_rtio_core_inputs_i_ack)) begin
+		monroe_ionphoton_rtio_core_inputs_overflow9 <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer9_o) begin
+		monroe_ionphoton_rtio_core_inputs_overflow9 <= 1'd1;
+	end
+	if ((monroe_ionphoton_rtio_core_inputs_selected10 & monroe_ionphoton_rtio_core_inputs_i_ack)) begin
+		monroe_ionphoton_rtio_core_inputs_overflow10 <= 1'd0;
+	end
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer10_o) begin
+		monroe_ionphoton_rtio_core_inputs_overflow10 <= 1'd1;
+	end
 	monroe_ionphoton_rtio_core_inputs_i_ack <= 1'd0;
 	if (monroe_ionphoton_rtio_core_inputs_i_ack) begin
 		monroe_ionphoton_rtio_core_cri_i_status <= {1'd0, monroe_ionphoton_rtio_core_inputs_i_status_raw[1], (~monroe_ionphoton_rtio_core_inputs_i_status_raw[0])};
@@ -24217,6 +25161,30 @@ always @(posedge rsys_clk) begin
 	if (monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_i) begin
 		monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_ack_toggle_i);
 	end
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_next;
+	monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_o;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_ack_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_next;
+	monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_o;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_ack_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_next;
+	monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_o;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_ack_toggle_i);
+	end
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_binary <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next_binary;
+	monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_next;
+	monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o_r <= monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_o;
+	if (monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_i) begin
+		monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_ack_toggle_i);
+	end
 	monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_o_r <= monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_o;
 	if (monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_i) begin
 		monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_i <= (~monroe_ionphoton_rtio_core_o_collision_sync_ps_ack_toggle_i);
@@ -24272,15 +25240,27 @@ always @(posedge rsys_clk) begin
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_asyncfifo3_graycounter7_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_overflow3 <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo4_graycounter9_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_overflow4 <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo5_graycounter11_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_overflow5 <= 1'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q <= 3'd0;
-		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo6_graycounter13_q_binary <= 7'd0;
 		monroe_ionphoton_rtio_core_inputs_overflow6 <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter15_q_binary <= 7'd0;
+		monroe_ionphoton_rtio_core_inputs_overflow7 <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter17_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_overflow8 <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter19_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_overflow9 <= 1'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter21_q_binary <= 3'd0;
+		monroe_ionphoton_rtio_core_inputs_overflow10 <= 1'd0;
 		monroe_ionphoton_rtio_core_inputs_input_pending <= 1'd0;
 	end
 	xilinxmultiregimpl18_regs0 <= monroe_ionphoton_rtio_core_outputs_asyncfifobuffered0_graycounter1_q;
@@ -24327,14 +25307,30 @@ always @(posedge rsys_clk) begin
 	xilinxmultiregimpl57_regs1 <= xilinxmultiregimpl57_regs0;
 	xilinxmultiregimpl59_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer6_ps_toggle_i;
 	xilinxmultiregimpl59_regs1 <= xilinxmultiregimpl59_regs0;
-	xilinxmultiregimpl61_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_i;
+	xilinxmultiregimpl61_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_graycounter14_q;
 	xilinxmultiregimpl61_regs1 <= xilinxmultiregimpl61_regs0;
-	xilinxmultiregimpl63_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_bxfer_data;
+	xilinxmultiregimpl63_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer7_ps_toggle_i;
 	xilinxmultiregimpl63_regs1 <= xilinxmultiregimpl63_regs0;
-	xilinxmultiregimpl64_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_ps_toggle_i;
-	xilinxmultiregimpl64_regs1 <= xilinxmultiregimpl64_regs0;
-	xilinxmultiregimpl66_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_bxfer_data;
-	xilinxmultiregimpl66_regs1 <= xilinxmultiregimpl66_regs0;
+	xilinxmultiregimpl65_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_graycounter16_q;
+	xilinxmultiregimpl65_regs1 <= xilinxmultiregimpl65_regs0;
+	xilinxmultiregimpl67_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer8_ps_toggle_i;
+	xilinxmultiregimpl67_regs1 <= xilinxmultiregimpl67_regs0;
+	xilinxmultiregimpl69_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_graycounter18_q;
+	xilinxmultiregimpl69_regs1 <= xilinxmultiregimpl69_regs0;
+	xilinxmultiregimpl71_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer9_ps_toggle_i;
+	xilinxmultiregimpl71_regs1 <= xilinxmultiregimpl71_regs0;
+	xilinxmultiregimpl73_regs0 <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_graycounter20_q;
+	xilinxmultiregimpl73_regs1 <= xilinxmultiregimpl73_regs0;
+	xilinxmultiregimpl75_regs0 <= monroe_ionphoton_rtio_core_inputs_blindtransfer10_ps_toggle_i;
+	xilinxmultiregimpl75_regs1 <= xilinxmultiregimpl75_regs0;
+	xilinxmultiregimpl77_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_ps_toggle_i;
+	xilinxmultiregimpl77_regs1 <= xilinxmultiregimpl77_regs0;
+	xilinxmultiregimpl79_regs0 <= monroe_ionphoton_rtio_core_o_collision_sync_bxfer_data;
+	xilinxmultiregimpl79_regs1 <= xilinxmultiregimpl79_regs0;
+	xilinxmultiregimpl80_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_ps_toggle_i;
+	xilinxmultiregimpl80_regs1 <= xilinxmultiregimpl80_regs0;
+	xilinxmultiregimpl82_regs0 <= monroe_ionphoton_rtio_core_o_busy_sync_bxfer_data;
+	xilinxmultiregimpl82_regs1 <= xilinxmultiregimpl82_regs0;
 end
 
 always @(posedge rtio_clk) begin
@@ -25174,173 +26170,185 @@ always @(posedge sys_clk) begin
 	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd4)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys13 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd5)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd4)) & (monroe_ionphoton_inj_override_sel_storage == 2'd2))) begin
 		monroe_ionphoton_inj_o_sys14 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd5)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd5)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys15 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd6)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd5)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys16 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd6)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd5)) & (monroe_ionphoton_inj_override_sel_storage == 2'd2))) begin
 		monroe_ionphoton_inj_o_sys17 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd7)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd6)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys18 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd7)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd6)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys19 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd8)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd6)) & (monroe_ionphoton_inj_override_sel_storage == 2'd2))) begin
 		monroe_ionphoton_inj_o_sys20 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd8)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd7)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys21 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd9)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd7)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys22 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd9)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 3'd7)) & (monroe_ionphoton_inj_override_sel_storage == 2'd2))) begin
 		monroe_ionphoton_inj_o_sys23 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd10)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd8)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys24 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd10)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd8)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys25 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd11)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd9)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys26 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd11)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd9)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys27 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd12)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd10)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys28 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd12)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd10)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys29 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd13)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd11)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys30 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd13)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd11)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys31 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd14)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd12)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys32 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd14)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd12)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys33 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd15)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd13)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys34 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd15)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd13)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys35 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd17)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd14)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys36 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd17)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd14)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys37 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd18)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd15)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys38 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd18)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 4'd15)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys39 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd19)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd17)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys40 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd19)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd17)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys41 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd20)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd18)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys42 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd20)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd18)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys43 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd21)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd19)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys44 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd21)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd19)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys45 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd23)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd20)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys46 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd23)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd20)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys47 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd24)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd21)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys48 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd24)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd21)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys49 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd25)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd23)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys50 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd25)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd23)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys51 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd26)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd24)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys52 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd26)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd24)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys53 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd27)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd25)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys54 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd27)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd25)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys55 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd29)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd26)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys56 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd29)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd26)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys57 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd30)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd27)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys58 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd30)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd27)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys59 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd31)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd29)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys60 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd31)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd29)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys61 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd32)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd30)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys62 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd32)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd30)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys63 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd33)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd31)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys64 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd33)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 5'd31)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys65 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd34)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd32)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys66 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd34)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd32)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys67 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd35)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd33)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
 		monroe_ionphoton_inj_o_sys68 <= monroe_ionphoton_inj_value_r;
 	end
-	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd35)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd33)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
 		monroe_ionphoton_inj_o_sys69 <= monroe_ionphoton_inj_value_r;
+	end
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd34)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+		monroe_ionphoton_inj_o_sys70 <= monroe_ionphoton_inj_value_r;
+	end
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd34)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+		monroe_ionphoton_inj_o_sys71 <= monroe_ionphoton_inj_value_r;
+	end
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd35)) & (monroe_ionphoton_inj_override_sel_storage == 1'd0))) begin
+		monroe_ionphoton_inj_o_sys72 <= monroe_ionphoton_inj_value_r;
+	end
+	if (((monroe_ionphoton_inj_value_re & (monroe_ionphoton_inj_chan_sel_storage == 6'd35)) & (monroe_ionphoton_inj_override_sel_storage == 1'd1))) begin
+		monroe_ionphoton_inj_o_sys73 <= monroe_ionphoton_inj_value_r;
 	end
 	monroe_ionphoton_rtio_analyzer_enable_r <= monroe_ionphoton_rtio_analyzer_enable_storage;
 	if ((monroe_ionphoton_rtio_analyzer_enable_storage & (~monroe_ionphoton_rtio_analyzer_enable_r))) begin
@@ -26745,6 +27753,10 @@ always @(posedge sys_clk) begin
 		monroe_ionphoton_inj_o_sys67 <= 1'd0;
 		monroe_ionphoton_inj_o_sys68 <= 1'd0;
 		monroe_ionphoton_inj_o_sys69 <= 1'd0;
+		monroe_ionphoton_inj_o_sys70 <= 1'd0;
+		monroe_ionphoton_inj_o_sys71 <= 1'd0;
+		monroe_ionphoton_inj_o_sys72 <= 1'd0;
+		monroe_ionphoton_inj_o_sys73 <= 1'd0;
 		monroe_ionphoton_monroe_ionphoton_interface1_bus_adr <= 30'd0;
 		monroe_ionphoton_rtio_analyzer_enable_storage_full <= 1'd0;
 		monroe_ionphoton_rtio_analyzer_enable_re <= 1'd0;
@@ -26821,80 +27833,88 @@ always @(posedge sys_clk) begin
 	xilinxmultiregimpl15_regs1 <= xilinxmultiregimpl15_regs0;
 	xilinxmultiregimpl16_regs0 <= monroe_ionphoton_rtio_tsc_value_gray_rtio;
 	xilinxmultiregimpl16_regs1 <= xilinxmultiregimpl16_regs0;
-	xilinxmultiregimpl67_regs0 <= monroe_ionphoton_mon_bussynchronizer0_i;
-	xilinxmultiregimpl67_regs1 <= xilinxmultiregimpl67_regs0;
-	xilinxmultiregimpl68_regs0 <= monroe_ionphoton_mon_bussynchronizer1_i;
-	xilinxmultiregimpl68_regs1 <= xilinxmultiregimpl68_regs0;
-	xilinxmultiregimpl69_regs0 <= monroe_ionphoton_mon_bussynchronizer2_i;
-	xilinxmultiregimpl69_regs1 <= xilinxmultiregimpl69_regs0;
-	xilinxmultiregimpl70_regs0 <= monroe_ionphoton_mon_bussynchronizer3_i;
-	xilinxmultiregimpl70_regs1 <= xilinxmultiregimpl70_regs0;
-	xilinxmultiregimpl71_regs0 <= monroe_ionphoton_mon_bussynchronizer4_i;
-	xilinxmultiregimpl71_regs1 <= xilinxmultiregimpl71_regs0;
-	xilinxmultiregimpl72_regs0 <= monroe_ionphoton_mon_bussynchronizer5_i;
-	xilinxmultiregimpl72_regs1 <= xilinxmultiregimpl72_regs0;
-	xilinxmultiregimpl73_regs0 <= monroe_ionphoton_mon_bussynchronizer6_i;
-	xilinxmultiregimpl73_regs1 <= xilinxmultiregimpl73_regs0;
-	xilinxmultiregimpl74_regs0 <= monroe_ionphoton_mon_bussynchronizer7_i;
-	xilinxmultiregimpl74_regs1 <= xilinxmultiregimpl74_regs0;
-	xilinxmultiregimpl75_regs0 <= monroe_ionphoton_mon_bussynchronizer8_i;
-	xilinxmultiregimpl75_regs1 <= xilinxmultiregimpl75_regs0;
-	xilinxmultiregimpl76_regs0 <= monroe_ionphoton_mon_bussynchronizer9_i;
-	xilinxmultiregimpl76_regs1 <= xilinxmultiregimpl76_regs0;
-	xilinxmultiregimpl77_regs0 <= monroe_ionphoton_mon_bussynchronizer10_i;
-	xilinxmultiregimpl77_regs1 <= xilinxmultiregimpl77_regs0;
-	xilinxmultiregimpl78_regs0 <= monroe_ionphoton_mon_bussynchronizer11_i;
-	xilinxmultiregimpl78_regs1 <= xilinxmultiregimpl78_regs0;
-	xilinxmultiregimpl79_regs0 <= monroe_ionphoton_mon_bussynchronizer12_i;
-	xilinxmultiregimpl79_regs1 <= xilinxmultiregimpl79_regs0;
-	xilinxmultiregimpl80_regs0 <= monroe_ionphoton_mon_bussynchronizer13_i;
-	xilinxmultiregimpl80_regs1 <= xilinxmultiregimpl80_regs0;
-	xilinxmultiregimpl81_regs0 <= monroe_ionphoton_mon_bussynchronizer14_i;
-	xilinxmultiregimpl81_regs1 <= xilinxmultiregimpl81_regs0;
-	xilinxmultiregimpl82_regs0 <= monroe_ionphoton_mon_bussynchronizer15_i;
-	xilinxmultiregimpl82_regs1 <= xilinxmultiregimpl82_regs0;
-	xilinxmultiregimpl83_regs0 <= monroe_ionphoton_mon_bussynchronizer16_i;
+	xilinxmultiregimpl83_regs0 <= monroe_ionphoton_mon_bussynchronizer0_i;
 	xilinxmultiregimpl83_regs1 <= xilinxmultiregimpl83_regs0;
-	xilinxmultiregimpl84_regs0 <= monroe_ionphoton_mon_bussynchronizer17_i;
+	xilinxmultiregimpl84_regs0 <= monroe_ionphoton_mon_bussynchronizer1_i;
 	xilinxmultiregimpl84_regs1 <= xilinxmultiregimpl84_regs0;
-	xilinxmultiregimpl85_regs0 <= monroe_ionphoton_mon_bussynchronizer18_i;
+	xilinxmultiregimpl85_regs0 <= monroe_ionphoton_mon_bussynchronizer2_i;
 	xilinxmultiregimpl85_regs1 <= xilinxmultiregimpl85_regs0;
-	xilinxmultiregimpl86_regs0 <= monroe_ionphoton_mon_bussynchronizer19_i;
+	xilinxmultiregimpl86_regs0 <= monroe_ionphoton_mon_bussynchronizer3_i;
 	xilinxmultiregimpl86_regs1 <= xilinxmultiregimpl86_regs0;
-	xilinxmultiregimpl87_regs0 <= monroe_ionphoton_mon_bussynchronizer20_i;
+	xilinxmultiregimpl87_regs0 <= monroe_ionphoton_mon_bussynchronizer4_i;
 	xilinxmultiregimpl87_regs1 <= xilinxmultiregimpl87_regs0;
-	xilinxmultiregimpl88_regs0 <= monroe_ionphoton_mon_bussynchronizer21_i;
+	xilinxmultiregimpl88_regs0 <= monroe_ionphoton_mon_bussynchronizer5_i;
 	xilinxmultiregimpl88_regs1 <= xilinxmultiregimpl88_regs0;
-	xilinxmultiregimpl89_regs0 <= monroe_ionphoton_mon_bussynchronizer22_i;
+	xilinxmultiregimpl89_regs0 <= monroe_ionphoton_mon_bussynchronizer6_i;
 	xilinxmultiregimpl89_regs1 <= xilinxmultiregimpl89_regs0;
-	xilinxmultiregimpl90_regs0 <= monroe_ionphoton_mon_bussynchronizer23_i;
+	xilinxmultiregimpl90_regs0 <= monroe_ionphoton_mon_bussynchronizer7_i;
 	xilinxmultiregimpl90_regs1 <= xilinxmultiregimpl90_regs0;
-	xilinxmultiregimpl91_regs0 <= monroe_ionphoton_mon_bussynchronizer24_i;
+	xilinxmultiregimpl91_regs0 <= monroe_ionphoton_mon_bussynchronizer8_i;
 	xilinxmultiregimpl91_regs1 <= xilinxmultiregimpl91_regs0;
-	xilinxmultiregimpl92_regs0 <= monroe_ionphoton_mon_bussynchronizer25_i;
+	xilinxmultiregimpl92_regs0 <= monroe_ionphoton_mon_bussynchronizer9_i;
 	xilinxmultiregimpl92_regs1 <= xilinxmultiregimpl92_regs0;
-	xilinxmultiregimpl93_regs0 <= monroe_ionphoton_mon_bussynchronizer26_i;
+	xilinxmultiregimpl93_regs0 <= monroe_ionphoton_mon_bussynchronizer10_i;
 	xilinxmultiregimpl93_regs1 <= xilinxmultiregimpl93_regs0;
-	xilinxmultiregimpl94_regs0 <= monroe_ionphoton_mon_bussynchronizer27_i;
+	xilinxmultiregimpl94_regs0 <= monroe_ionphoton_mon_bussynchronizer11_i;
 	xilinxmultiregimpl94_regs1 <= xilinxmultiregimpl94_regs0;
-	xilinxmultiregimpl95_regs0 <= monroe_ionphoton_mon_bussynchronizer28_i;
+	xilinxmultiregimpl95_regs0 <= monroe_ionphoton_mon_bussynchronizer12_i;
 	xilinxmultiregimpl95_regs1 <= xilinxmultiregimpl95_regs0;
-	xilinxmultiregimpl96_regs0 <= monroe_ionphoton_mon_bussynchronizer29_i;
+	xilinxmultiregimpl96_regs0 <= monroe_ionphoton_mon_bussynchronizer13_i;
 	xilinxmultiregimpl96_regs1 <= xilinxmultiregimpl96_regs0;
-	xilinxmultiregimpl97_regs0 <= monroe_ionphoton_mon_bussynchronizer30_i;
+	xilinxmultiregimpl97_regs0 <= monroe_ionphoton_mon_bussynchronizer14_i;
 	xilinxmultiregimpl97_regs1 <= xilinxmultiregimpl97_regs0;
-	xilinxmultiregimpl98_regs0 <= monroe_ionphoton_mon_bussynchronizer31_i;
+	xilinxmultiregimpl98_regs0 <= monroe_ionphoton_mon_bussynchronizer15_i;
 	xilinxmultiregimpl98_regs1 <= xilinxmultiregimpl98_regs0;
-	xilinxmultiregimpl99_regs0 <= monroe_ionphoton_mon_bussynchronizer32_i;
+	xilinxmultiregimpl99_regs0 <= monroe_ionphoton_mon_bussynchronizer16_i;
 	xilinxmultiregimpl99_regs1 <= xilinxmultiregimpl99_regs0;
-	xilinxmultiregimpl100_regs0 <= monroe_ionphoton_mon_bussynchronizer33_i;
+	xilinxmultiregimpl100_regs0 <= monroe_ionphoton_mon_bussynchronizer17_i;
 	xilinxmultiregimpl100_regs1 <= xilinxmultiregimpl100_regs0;
-	xilinxmultiregimpl101_regs0 <= monroe_ionphoton_mon_bussynchronizer34_i;
+	xilinxmultiregimpl101_regs0 <= monroe_ionphoton_mon_bussynchronizer18_i;
 	xilinxmultiregimpl101_regs1 <= xilinxmultiregimpl101_regs0;
-	xilinxmultiregimpl102_regs0 <= monroe_ionphoton_mon_bussynchronizer35_i;
+	xilinxmultiregimpl102_regs0 <= monroe_ionphoton_mon_bussynchronizer19_i;
 	xilinxmultiregimpl102_regs1 <= xilinxmultiregimpl102_regs0;
-	xilinxmultiregimpl103_regs0 <= monroe_ionphoton_mon_bussynchronizer36_i;
+	xilinxmultiregimpl103_regs0 <= monroe_ionphoton_mon_bussynchronizer20_i;
 	xilinxmultiregimpl103_regs1 <= xilinxmultiregimpl103_regs0;
+	xilinxmultiregimpl104_regs0 <= monroe_ionphoton_mon_bussynchronizer21_i;
+	xilinxmultiregimpl104_regs1 <= xilinxmultiregimpl104_regs0;
+	xilinxmultiregimpl105_regs0 <= monroe_ionphoton_mon_bussynchronizer22_i;
+	xilinxmultiregimpl105_regs1 <= xilinxmultiregimpl105_regs0;
+	xilinxmultiregimpl106_regs0 <= monroe_ionphoton_mon_bussynchronizer23_i;
+	xilinxmultiregimpl106_regs1 <= xilinxmultiregimpl106_regs0;
+	xilinxmultiregimpl107_regs0 <= monroe_ionphoton_mon_bussynchronizer24_i;
+	xilinxmultiregimpl107_regs1 <= xilinxmultiregimpl107_regs0;
+	xilinxmultiregimpl108_regs0 <= monroe_ionphoton_mon_bussynchronizer25_i;
+	xilinxmultiregimpl108_regs1 <= xilinxmultiregimpl108_regs0;
+	xilinxmultiregimpl109_regs0 <= monroe_ionphoton_mon_bussynchronizer26_i;
+	xilinxmultiregimpl109_regs1 <= xilinxmultiregimpl109_regs0;
+	xilinxmultiregimpl110_regs0 <= monroe_ionphoton_mon_bussynchronizer27_i;
+	xilinxmultiregimpl110_regs1 <= xilinxmultiregimpl110_regs0;
+	xilinxmultiregimpl111_regs0 <= monroe_ionphoton_mon_bussynchronizer28_i;
+	xilinxmultiregimpl111_regs1 <= xilinxmultiregimpl111_regs0;
+	xilinxmultiregimpl112_regs0 <= monroe_ionphoton_mon_bussynchronizer29_i;
+	xilinxmultiregimpl112_regs1 <= xilinxmultiregimpl112_regs0;
+	xilinxmultiregimpl113_regs0 <= monroe_ionphoton_mon_bussynchronizer30_i;
+	xilinxmultiregimpl113_regs1 <= xilinxmultiregimpl113_regs0;
+	xilinxmultiregimpl114_regs0 <= monroe_ionphoton_mon_bussynchronizer31_i;
+	xilinxmultiregimpl114_regs1 <= xilinxmultiregimpl114_regs0;
+	xilinxmultiregimpl115_regs0 <= monroe_ionphoton_mon_bussynchronizer32_i;
+	xilinxmultiregimpl115_regs1 <= xilinxmultiregimpl115_regs0;
+	xilinxmultiregimpl116_regs0 <= monroe_ionphoton_mon_bussynchronizer33_i;
+	xilinxmultiregimpl116_regs1 <= xilinxmultiregimpl116_regs0;
+	xilinxmultiregimpl117_regs0 <= monroe_ionphoton_mon_bussynchronizer34_i;
+	xilinxmultiregimpl117_regs1 <= xilinxmultiregimpl117_regs0;
+	xilinxmultiregimpl118_regs0 <= monroe_ionphoton_mon_bussynchronizer35_i;
+	xilinxmultiregimpl118_regs1 <= xilinxmultiregimpl118_regs0;
+	xilinxmultiregimpl119_regs0 <= monroe_ionphoton_mon_bussynchronizer36_i;
+	xilinxmultiregimpl119_regs1 <= xilinxmultiregimpl119_regs0;
+	xilinxmultiregimpl120_regs0 <= monroe_ionphoton_mon_bussynchronizer37_i;
+	xilinxmultiregimpl120_regs1 <= xilinxmultiregimpl120_regs0;
+	xilinxmultiregimpl121_regs0 <= monroe_ionphoton_mon_bussynchronizer38_i;
+	xilinxmultiregimpl121_regs1 <= xilinxmultiregimpl121_regs0;
+	xilinxmultiregimpl122_regs0 <= monroe_ionphoton_mon_bussynchronizer39_i;
+	xilinxmultiregimpl122_regs1 <= xilinxmultiregimpl122_regs0;
+	xilinxmultiregimpl123_regs0 <= monroe_ionphoton_mon_bussynchronizer40_i;
+	xilinxmultiregimpl123_regs1 <= xilinxmultiregimpl123_regs0;
 end
 
 always @(posedge sys_kernel_clk) begin
@@ -30495,12 +31515,252 @@ IOBUFDS_INTERMDISABLE #(
 	.O(inout_8x3_serdes_pad_i0)
 );
 
+ISERDESE2 #(
+	.DATA_RATE("DDR"),
+	.DATA_WIDTH(4'd8),
+	.INTERFACE_TYPE("NETWORKING"),
+	.NUM_CE(1'd1)
+) ISERDESE2_20 (
+	.CE1(1'd1),
+	.CLK(rtiox4_clk),
+	.CLKB((~rtiox4_clk)),
+	.CLKDIV(rio_phy_clk),
+	.D(inout_8x4_serdes_pad_i1),
+	.RST(rio_phy_rst),
+	.Q1(inout_8x4_serdes_i1[7]),
+	.Q2(inout_8x4_serdes_i1[6]),
+	.Q3(inout_8x4_serdes_i1[5]),
+	.Q4(inout_8x4_serdes_i1[4]),
+	.Q5(inout_8x4_serdes_i1[3]),
+	.Q6(inout_8x4_serdes_i1[2]),
+	.Q7(inout_8x4_serdes_i1[1]),
+	.Q8(inout_8x4_serdes_i1[0])
+);
+
 OSERDESE2 #(
 	.DATA_RATE_OQ("DDR"),
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
 ) OSERDESE2_49 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(inout_8x4_serdes_o1[0]),
+	.D2(inout_8x4_serdes_o1[1]),
+	.D3(inout_8x4_serdes_o1[2]),
+	.D4(inout_8x4_serdes_o1[3]),
+	.D5(inout_8x4_serdes_o1[4]),
+	.D6(inout_8x4_serdes_o1[5]),
+	.D7(inout_8x4_serdes_o1[6]),
+	.D8(inout_8x4_serdes_o1[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(inout_8x4_serdes_t_in),
+	.TCE(1'd1),
+	.OQ(inout_8x4_serdes_pad_o1),
+	.TQ(inout_8x4_serdes_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("TRUE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_4 (
+	.I(inout_8x4_serdes_pad_o0),
+	.IBUFDISABLE((~inout_8x4_serdes_t_out)),
+	.INTERMDISABLE((~inout_8x4_serdes_t_out)),
+	.T(inout_8x4_serdes_t_out),
+	.IO(dio0_p_4),
+	.IOB(dio0_n_4),
+	.O(inout_8x4_serdes_pad_i0)
+);
+
+ISERDESE2 #(
+	.DATA_RATE("DDR"),
+	.DATA_WIDTH(4'd8),
+	.INTERFACE_TYPE("NETWORKING"),
+	.NUM_CE(1'd1)
+) ISERDESE2_21 (
+	.CE1(1'd1),
+	.CLK(rtiox4_clk),
+	.CLKB((~rtiox4_clk)),
+	.CLKDIV(rio_phy_clk),
+	.D(inout_8x5_serdes_pad_i1),
+	.RST(rio_phy_rst),
+	.Q1(inout_8x5_serdes_i1[7]),
+	.Q2(inout_8x5_serdes_i1[6]),
+	.Q3(inout_8x5_serdes_i1[5]),
+	.Q4(inout_8x5_serdes_i1[4]),
+	.Q5(inout_8x5_serdes_i1[3]),
+	.Q6(inout_8x5_serdes_i1[2]),
+	.Q7(inout_8x5_serdes_i1[1]),
+	.Q8(inout_8x5_serdes_i1[0])
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_50 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(inout_8x5_serdes_o1[0]),
+	.D2(inout_8x5_serdes_o1[1]),
+	.D3(inout_8x5_serdes_o1[2]),
+	.D4(inout_8x5_serdes_o1[3]),
+	.D5(inout_8x5_serdes_o1[4]),
+	.D6(inout_8x5_serdes_o1[5]),
+	.D7(inout_8x5_serdes_o1[6]),
+	.D8(inout_8x5_serdes_o1[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(inout_8x5_serdes_t_in),
+	.TCE(1'd1),
+	.OQ(inout_8x5_serdes_pad_o1),
+	.TQ(inout_8x5_serdes_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("TRUE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_5 (
+	.I(inout_8x5_serdes_pad_o0),
+	.IBUFDISABLE((~inout_8x5_serdes_t_out)),
+	.INTERMDISABLE((~inout_8x5_serdes_t_out)),
+	.T(inout_8x5_serdes_t_out),
+	.IO(dio0_p_5),
+	.IOB(dio0_n_5),
+	.O(inout_8x5_serdes_pad_i0)
+);
+
+ISERDESE2 #(
+	.DATA_RATE("DDR"),
+	.DATA_WIDTH(4'd8),
+	.INTERFACE_TYPE("NETWORKING"),
+	.NUM_CE(1'd1)
+) ISERDESE2_22 (
+	.CE1(1'd1),
+	.CLK(rtiox4_clk),
+	.CLKB((~rtiox4_clk)),
+	.CLKDIV(rio_phy_clk),
+	.D(inout_8x6_serdes_pad_i1),
+	.RST(rio_phy_rst),
+	.Q1(inout_8x6_serdes_i1[7]),
+	.Q2(inout_8x6_serdes_i1[6]),
+	.Q3(inout_8x6_serdes_i1[5]),
+	.Q4(inout_8x6_serdes_i1[4]),
+	.Q5(inout_8x6_serdes_i1[3]),
+	.Q6(inout_8x6_serdes_i1[2]),
+	.Q7(inout_8x6_serdes_i1[1]),
+	.Q8(inout_8x6_serdes_i1[0])
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_51 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(inout_8x6_serdes_o1[0]),
+	.D2(inout_8x6_serdes_o1[1]),
+	.D3(inout_8x6_serdes_o1[2]),
+	.D4(inout_8x6_serdes_o1[3]),
+	.D5(inout_8x6_serdes_o1[4]),
+	.D6(inout_8x6_serdes_o1[5]),
+	.D7(inout_8x6_serdes_o1[6]),
+	.D8(inout_8x6_serdes_o1[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(inout_8x6_serdes_t_in),
+	.TCE(1'd1),
+	.OQ(inout_8x6_serdes_pad_o1),
+	.TQ(inout_8x6_serdes_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("TRUE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_6 (
+	.I(inout_8x6_serdes_pad_o0),
+	.IBUFDISABLE((~inout_8x6_serdes_t_out)),
+	.INTERMDISABLE((~inout_8x6_serdes_t_out)),
+	.T(inout_8x6_serdes_t_out),
+	.IO(dio0_p_6),
+	.IOB(dio0_n_6),
+	.O(inout_8x6_serdes_pad_i0)
+);
+
+ISERDESE2 #(
+	.DATA_RATE("DDR"),
+	.DATA_WIDTH(4'd8),
+	.INTERFACE_TYPE("NETWORKING"),
+	.NUM_CE(1'd1)
+) ISERDESE2_23 (
+	.CE1(1'd1),
+	.CLK(rtiox4_clk),
+	.CLKB((~rtiox4_clk)),
+	.CLKDIV(rio_phy_clk),
+	.D(inout_8x7_serdes_pad_i1),
+	.RST(rio_phy_rst),
+	.Q1(inout_8x7_serdes_i1[7]),
+	.Q2(inout_8x7_serdes_i1[6]),
+	.Q3(inout_8x7_serdes_i1[5]),
+	.Q4(inout_8x7_serdes_i1[4]),
+	.Q5(inout_8x7_serdes_i1[3]),
+	.Q6(inout_8x7_serdes_i1[2]),
+	.Q7(inout_8x7_serdes_i1[1]),
+	.Q8(inout_8x7_serdes_i1[0])
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_52 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(inout_8x7_serdes_o1[0]),
+	.D2(inout_8x7_serdes_o1[1]),
+	.D3(inout_8x7_serdes_o1[2]),
+	.D4(inout_8x7_serdes_o1[3]),
+	.D5(inout_8x7_serdes_o1[4]),
+	.D6(inout_8x7_serdes_o1[5]),
+	.D7(inout_8x7_serdes_o1[6]),
+	.D8(inout_8x7_serdes_o1[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(inout_8x7_serdes_t_in),
+	.TCE(1'd1),
+	.OQ(inout_8x7_serdes_pad_o1),
+	.TQ(inout_8x7_serdes_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("TRUE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_7 (
+	.I(inout_8x7_serdes_pad_o0),
+	.IBUFDISABLE((~inout_8x7_serdes_t_out)),
+	.INTERMDISABLE((~inout_8x7_serdes_t_out)),
+	.T(inout_8x7_serdes_t_out),
+	.IO(dio0_p_7),
+	.IOB(dio0_n_7),
+	.O(inout_8x7_serdes_pad_i0)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_53 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x0_o[0]),
@@ -30523,13 +31783,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_4 (
+) IOBUFDS_INTERMDISABLE_8 (
 	.I(output_8x0_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x0_t_out),
-	.IO(dio0_p_4),
-	.IOB(dio0_n_4)
+	.IO(dio1_p),
+	.IOB(dio1_n)
 );
 
 OSERDESE2 #(
@@ -30537,7 +31797,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_50 (
+) OSERDESE2_54 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x1_o[0]),
@@ -30560,13 +31820,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_5 (
+) IOBUFDS_INTERMDISABLE_9 (
 	.I(output_8x1_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x1_t_out),
-	.IO(dio0_p_5),
-	.IOB(dio0_n_5)
+	.IO(dio1_p_1),
+	.IOB(dio1_n_1)
 );
 
 OSERDESE2 #(
@@ -30574,7 +31834,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_51 (
+) OSERDESE2_55 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x2_o[0]),
@@ -30597,13 +31857,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_6 (
+) IOBUFDS_INTERMDISABLE_10 (
 	.I(output_8x2_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x2_t_out),
-	.IO(dio0_p_6),
-	.IOB(dio0_n_6)
+	.IO(dio1_p_2),
+	.IOB(dio1_n_2)
 );
 
 OSERDESE2 #(
@@ -30611,7 +31871,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_52 (
+) OSERDESE2_56 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x3_o[0]),
@@ -30634,13 +31894,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_7 (
+) IOBUFDS_INTERMDISABLE_11 (
 	.I(output_8x3_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x3_t_out),
-	.IO(dio0_p_7),
-	.IOB(dio0_n_7)
+	.IO(dio1_p_3),
+	.IOB(dio1_n_3)
 );
 
 OSERDESE2 #(
@@ -30648,7 +31908,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_53 (
+) OSERDESE2_57 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x4_o[0]),
@@ -30671,13 +31931,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_8 (
+) IOBUFDS_INTERMDISABLE_12 (
 	.I(output_8x4_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x4_t_out),
-	.IO(dio1_p),
-	.IOB(dio1_n)
+	.IO(dio1_p_4),
+	.IOB(dio1_n_4)
 );
 
 OSERDESE2 #(
@@ -30685,7 +31945,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_54 (
+) OSERDESE2_58 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x5_o[0]),
@@ -30708,13 +31968,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_9 (
+) IOBUFDS_INTERMDISABLE_13 (
 	.I(output_8x5_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x5_t_out),
-	.IO(dio1_p_1),
-	.IOB(dio1_n_1)
+	.IO(dio1_p_5),
+	.IOB(dio1_n_5)
 );
 
 OSERDESE2 #(
@@ -30722,7 +31982,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_55 (
+) OSERDESE2_59 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x6_o[0]),
@@ -30745,13 +32005,13 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_10 (
+) IOBUFDS_INTERMDISABLE_14 (
 	.I(output_8x6_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x6_t_out),
-	.IO(dio1_p_2),
-	.IOB(dio1_n_2)
+	.IO(dio1_p_6),
+	.IOB(dio1_n_6)
 );
 
 OSERDESE2 #(
@@ -30759,7 +32019,7 @@ OSERDESE2 #(
 	.DATA_RATE_TQ("BUF"),
 	.DATA_WIDTH(4'd8),
 	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_56 (
+) OSERDESE2_60 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
 	.D1(output_8x7_o[0]),
@@ -30782,159 +32042,11 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_11 (
+) IOBUFDS_INTERMDISABLE_15 (
 	.I(output_8x7_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x7_t_out),
-	.IO(dio1_p_3),
-	.IOB(dio1_n_3)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_57 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x8_o[0]),
-	.D2(output_8x8_o[1]),
-	.D3(output_8x8_o[2]),
-	.D4(output_8x8_o[3]),
-	.D5(output_8x8_o[4]),
-	.D6(output_8x8_o[5]),
-	.D7(output_8x8_o[6]),
-	.D8(output_8x8_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x8_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x8_pad_o),
-	.TQ(output_8x8_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_12 (
-	.I(output_8x8_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x8_t_out),
-	.IO(dio1_p_4),
-	.IOB(dio1_n_4)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_58 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x9_o[0]),
-	.D2(output_8x9_o[1]),
-	.D3(output_8x9_o[2]),
-	.D4(output_8x9_o[3]),
-	.D5(output_8x9_o[4]),
-	.D6(output_8x9_o[5]),
-	.D7(output_8x9_o[6]),
-	.D8(output_8x9_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x9_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x9_pad_o),
-	.TQ(output_8x9_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_13 (
-	.I(output_8x9_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x9_t_out),
-	.IO(dio1_p_5),
-	.IOB(dio1_n_5)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_59 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x10_o[0]),
-	.D2(output_8x10_o[1]),
-	.D3(output_8x10_o[2]),
-	.D4(output_8x10_o[3]),
-	.D5(output_8x10_o[4]),
-	.D6(output_8x10_o[5]),
-	.D7(output_8x10_o[6]),
-	.D8(output_8x10_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x10_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x10_pad_o),
-	.TQ(output_8x10_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_14 (
-	.I(output_8x10_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x10_t_out),
-	.IO(dio1_p_6),
-	.IOB(dio1_n_6)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_60 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x11_o[0]),
-	.D2(output_8x11_o[1]),
-	.D3(output_8x11_o[2]),
-	.D4(output_8x11_o[3]),
-	.D5(output_8x11_o[4]),
-	.D6(output_8x11_o[5]),
-	.D7(output_8x11_o[6]),
-	.D8(output_8x11_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x11_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x11_pad_o),
-	.TQ(output_8x11_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_15 (
-	.I(output_8x11_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x11_t_out),
 	.IO(dio1_p_7),
 	.IOB(dio1_n_7)
 );
@@ -30991,6 +32103,154 @@ OSERDESE2 #(
 ) OSERDESE2_61 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
+	.D1(output_8x8_o[0]),
+	.D2(output_8x8_o[1]),
+	.D3(output_8x8_o[2]),
+	.D4(output_8x8_o[3]),
+	.D5(output_8x8_o[4]),
+	.D6(output_8x8_o[5]),
+	.D7(output_8x8_o[6]),
+	.D8(output_8x8_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x8_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x8_pad_o),
+	.TQ(output_8x8_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_16 (
+	.I(output_8x8_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x8_t_out),
+	.IO(urukul2_io_update_p),
+	.IOB(urukul2_io_update_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_62 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x9_o[0]),
+	.D2(output_8x9_o[1]),
+	.D3(output_8x9_o[2]),
+	.D4(output_8x9_o[3]),
+	.D5(output_8x9_o[4]),
+	.D6(output_8x9_o[5]),
+	.D7(output_8x9_o[6]),
+	.D8(output_8x9_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x9_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x9_pad_o),
+	.TQ(output_8x9_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_17 (
+	.I(output_8x9_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x9_t_out),
+	.IO(urukul2_sw0_p),
+	.IOB(urukul2_sw0_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_63 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x10_o[0]),
+	.D2(output_8x10_o[1]),
+	.D3(output_8x10_o[2]),
+	.D4(output_8x10_o[3]),
+	.D5(output_8x10_o[4]),
+	.D6(output_8x10_o[5]),
+	.D7(output_8x10_o[6]),
+	.D8(output_8x10_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x10_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x10_pad_o),
+	.TQ(output_8x10_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_18 (
+	.I(output_8x10_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x10_t_out),
+	.IO(urukul2_sw1_p),
+	.IOB(urukul2_sw1_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_64 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x11_o[0]),
+	.D2(output_8x11_o[1]),
+	.D3(output_8x11_o[2]),
+	.D4(output_8x11_o[3]),
+	.D5(output_8x11_o[4]),
+	.D6(output_8x11_o[5]),
+	.D7(output_8x11_o[6]),
+	.D8(output_8x11_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x11_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x11_pad_o),
+	.TQ(output_8x11_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_19 (
+	.I(output_8x11_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x11_t_out),
+	.IO(urukul2_sw2_p),
+	.IOB(urukul2_sw2_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_65 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
 	.D1(output_8x12_o[0]),
 	.D2(output_8x12_o[1]),
 	.D3(output_8x12_o[2]),
@@ -31011,159 +32271,11 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_16 (
+) IOBUFDS_INTERMDISABLE_20 (
 	.I(output_8x12_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x12_t_out),
-	.IO(urukul2_io_update_p),
-	.IOB(urukul2_io_update_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_62 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x13_o[0]),
-	.D2(output_8x13_o[1]),
-	.D3(output_8x13_o[2]),
-	.D4(output_8x13_o[3]),
-	.D5(output_8x13_o[4]),
-	.D6(output_8x13_o[5]),
-	.D7(output_8x13_o[6]),
-	.D8(output_8x13_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x13_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x13_pad_o),
-	.TQ(output_8x13_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_17 (
-	.I(output_8x13_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x13_t_out),
-	.IO(urukul2_sw0_p),
-	.IOB(urukul2_sw0_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_63 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x14_o[0]),
-	.D2(output_8x14_o[1]),
-	.D3(output_8x14_o[2]),
-	.D4(output_8x14_o[3]),
-	.D5(output_8x14_o[4]),
-	.D6(output_8x14_o[5]),
-	.D7(output_8x14_o[6]),
-	.D8(output_8x14_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x14_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x14_pad_o),
-	.TQ(output_8x14_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_18 (
-	.I(output_8x14_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x14_t_out),
-	.IO(urukul2_sw1_p),
-	.IOB(urukul2_sw1_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_64 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x15_o[0]),
-	.D2(output_8x15_o[1]),
-	.D3(output_8x15_o[2]),
-	.D4(output_8x15_o[3]),
-	.D5(output_8x15_o[4]),
-	.D6(output_8x15_o[5]),
-	.D7(output_8x15_o[6]),
-	.D8(output_8x15_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x15_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x15_pad_o),
-	.TQ(output_8x15_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_19 (
-	.I(output_8x15_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x15_t_out),
-	.IO(urukul2_sw2_p),
-	.IOB(urukul2_sw2_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_65 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x16_o[0]),
-	.D2(output_8x16_o[1]),
-	.D3(output_8x16_o[2]),
-	.D4(output_8x16_o[3]),
-	.D5(output_8x16_o[4]),
-	.D6(output_8x16_o[5]),
-	.D7(output_8x16_o[6]),
-	.D8(output_8x16_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x16_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x16_pad_o),
-	.TQ(output_8x16_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_20 (
-	.I(output_8x16_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x16_t_out),
 	.IO(urukul2_sw3_p),
 	.IOB(urukul2_sw3_n)
 );
@@ -31220,6 +32332,154 @@ OSERDESE2 #(
 ) OSERDESE2_66 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
+	.D1(output_8x13_o[0]),
+	.D2(output_8x13_o[1]),
+	.D3(output_8x13_o[2]),
+	.D4(output_8x13_o[3]),
+	.D5(output_8x13_o[4]),
+	.D6(output_8x13_o[5]),
+	.D7(output_8x13_o[6]),
+	.D8(output_8x13_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x13_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x13_pad_o),
+	.TQ(output_8x13_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_21 (
+	.I(output_8x13_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x13_t_out),
+	.IO(urukul4_io_update_p),
+	.IOB(urukul4_io_update_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_67 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x14_o[0]),
+	.D2(output_8x14_o[1]),
+	.D3(output_8x14_o[2]),
+	.D4(output_8x14_o[3]),
+	.D5(output_8x14_o[4]),
+	.D6(output_8x14_o[5]),
+	.D7(output_8x14_o[6]),
+	.D8(output_8x14_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x14_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x14_pad_o),
+	.TQ(output_8x14_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_22 (
+	.I(output_8x14_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x14_t_out),
+	.IO(urukul4_sw0_p),
+	.IOB(urukul4_sw0_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_68 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x15_o[0]),
+	.D2(output_8x15_o[1]),
+	.D3(output_8x15_o[2]),
+	.D4(output_8x15_o[3]),
+	.D5(output_8x15_o[4]),
+	.D6(output_8x15_o[5]),
+	.D7(output_8x15_o[6]),
+	.D8(output_8x15_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x15_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x15_pad_o),
+	.TQ(output_8x15_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_23 (
+	.I(output_8x15_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x15_t_out),
+	.IO(urukul4_sw1_p),
+	.IOB(urukul4_sw1_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_69 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x16_o[0]),
+	.D2(output_8x16_o[1]),
+	.D3(output_8x16_o[2]),
+	.D4(output_8x16_o[3]),
+	.D5(output_8x16_o[4]),
+	.D6(output_8x16_o[5]),
+	.D7(output_8x16_o[6]),
+	.D8(output_8x16_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x16_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x16_pad_o),
+	.TQ(output_8x16_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_24 (
+	.I(output_8x16_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x16_t_out),
+	.IO(urukul4_sw2_p),
+	.IOB(urukul4_sw2_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_70 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
 	.D1(output_8x17_o[0]),
 	.D2(output_8x17_o[1]),
 	.D3(output_8x17_o[2]),
@@ -31240,159 +32500,11 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_21 (
+) IOBUFDS_INTERMDISABLE_25 (
 	.I(output_8x17_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x17_t_out),
-	.IO(urukul4_io_update_p),
-	.IOB(urukul4_io_update_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_67 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x18_o[0]),
-	.D2(output_8x18_o[1]),
-	.D3(output_8x18_o[2]),
-	.D4(output_8x18_o[3]),
-	.D5(output_8x18_o[4]),
-	.D6(output_8x18_o[5]),
-	.D7(output_8x18_o[6]),
-	.D8(output_8x18_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x18_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x18_pad_o),
-	.TQ(output_8x18_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_22 (
-	.I(output_8x18_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x18_t_out),
-	.IO(urukul4_sw0_p),
-	.IOB(urukul4_sw0_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_68 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x19_o[0]),
-	.D2(output_8x19_o[1]),
-	.D3(output_8x19_o[2]),
-	.D4(output_8x19_o[3]),
-	.D5(output_8x19_o[4]),
-	.D6(output_8x19_o[5]),
-	.D7(output_8x19_o[6]),
-	.D8(output_8x19_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x19_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x19_pad_o),
-	.TQ(output_8x19_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_23 (
-	.I(output_8x19_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x19_t_out),
-	.IO(urukul4_sw1_p),
-	.IOB(urukul4_sw1_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_69 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x20_o[0]),
-	.D2(output_8x20_o[1]),
-	.D3(output_8x20_o[2]),
-	.D4(output_8x20_o[3]),
-	.D5(output_8x20_o[4]),
-	.D6(output_8x20_o[5]),
-	.D7(output_8x20_o[6]),
-	.D8(output_8x20_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x20_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x20_pad_o),
-	.TQ(output_8x20_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_24 (
-	.I(output_8x20_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x20_t_out),
-	.IO(urukul4_sw2_p),
-	.IOB(urukul4_sw2_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_70 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x21_o[0]),
-	.D2(output_8x21_o[1]),
-	.D3(output_8x21_o[2]),
-	.D4(output_8x21_o[3]),
-	.D5(output_8x21_o[4]),
-	.D6(output_8x21_o[5]),
-	.D7(output_8x21_o[6]),
-	.D8(output_8x21_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x21_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x21_pad_o),
-	.TQ(output_8x21_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_25 (
-	.I(output_8x21_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x21_t_out),
 	.IO(urukul4_sw3_p),
 	.IOB(urukul4_sw3_n)
 );
@@ -31449,6 +32561,154 @@ OSERDESE2 #(
 ) OSERDESE2_71 (
 	.CLK(rtiox4_clk),
 	.CLKDIV(rio_phy_clk),
+	.D1(output_8x18_o[0]),
+	.D2(output_8x18_o[1]),
+	.D3(output_8x18_o[2]),
+	.D4(output_8x18_o[3]),
+	.D5(output_8x18_o[4]),
+	.D6(output_8x18_o[5]),
+	.D7(output_8x18_o[6]),
+	.D8(output_8x18_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x18_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x18_pad_o),
+	.TQ(output_8x18_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_26 (
+	.I(output_8x18_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x18_t_out),
+	.IO(urukul6_io_update_p),
+	.IOB(urukul6_io_update_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_72 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x19_o[0]),
+	.D2(output_8x19_o[1]),
+	.D3(output_8x19_o[2]),
+	.D4(output_8x19_o[3]),
+	.D5(output_8x19_o[4]),
+	.D6(output_8x19_o[5]),
+	.D7(output_8x19_o[6]),
+	.D8(output_8x19_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x19_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x19_pad_o),
+	.TQ(output_8x19_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_27 (
+	.I(output_8x19_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x19_t_out),
+	.IO(urukul6_sw0_p),
+	.IOB(urukul6_sw0_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_73 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x20_o[0]),
+	.D2(output_8x20_o[1]),
+	.D3(output_8x20_o[2]),
+	.D4(output_8x20_o[3]),
+	.D5(output_8x20_o[4]),
+	.D6(output_8x20_o[5]),
+	.D7(output_8x20_o[6]),
+	.D8(output_8x20_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x20_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x20_pad_o),
+	.TQ(output_8x20_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_28 (
+	.I(output_8x20_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x20_t_out),
+	.IO(urukul6_sw1_p),
+	.IOB(urukul6_sw1_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_74 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
+	.D1(output_8x21_o[0]),
+	.D2(output_8x21_o[1]),
+	.D3(output_8x21_o[2]),
+	.D4(output_8x21_o[3]),
+	.D5(output_8x21_o[4]),
+	.D6(output_8x21_o[5]),
+	.D7(output_8x21_o[6]),
+	.D8(output_8x21_o[7]),
+	.OCE(1'd1),
+	.RST(rio_phy_rst),
+	.T1(output_8x21_t_in),
+	.TCE(1'd1),
+	.OQ(output_8x21_pad_o),
+	.TQ(output_8x21_t_out)
+);
+
+IOBUFDS_INTERMDISABLE #(
+	.DIFF_TERM("FALSE"),
+	.IBUF_LOW_PWR("TRUE"),
+	.USE_IBUFDISABLE("TRUE")
+) IOBUFDS_INTERMDISABLE_29 (
+	.I(output_8x21_pad_o),
+	.IBUFDISABLE(1'd1),
+	.INTERMDISABLE(1'd1),
+	.T(output_8x21_t_out),
+	.IO(urukul6_sw2_p),
+	.IOB(urukul6_sw2_n)
+);
+
+OSERDESE2 #(
+	.DATA_RATE_OQ("DDR"),
+	.DATA_RATE_TQ("BUF"),
+	.DATA_WIDTH(4'd8),
+	.TRISTATE_WIDTH(1'd1)
+) OSERDESE2_75 (
+	.CLK(rtiox4_clk),
+	.CLKDIV(rio_phy_clk),
 	.D1(output_8x22_o[0]),
 	.D2(output_8x22_o[1]),
 	.D3(output_8x22_o[2]),
@@ -31469,159 +32729,11 @@ IOBUFDS_INTERMDISABLE #(
 	.DIFF_TERM("FALSE"),
 	.IBUF_LOW_PWR("TRUE"),
 	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_26 (
+) IOBUFDS_INTERMDISABLE_30 (
 	.I(output_8x22_pad_o),
 	.IBUFDISABLE(1'd1),
 	.INTERMDISABLE(1'd1),
 	.T(output_8x22_t_out),
-	.IO(urukul6_io_update_p),
-	.IOB(urukul6_io_update_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_72 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x23_o[0]),
-	.D2(output_8x23_o[1]),
-	.D3(output_8x23_o[2]),
-	.D4(output_8x23_o[3]),
-	.D5(output_8x23_o[4]),
-	.D6(output_8x23_o[5]),
-	.D7(output_8x23_o[6]),
-	.D8(output_8x23_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x23_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x23_pad_o),
-	.TQ(output_8x23_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_27 (
-	.I(output_8x23_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x23_t_out),
-	.IO(urukul6_sw0_p),
-	.IOB(urukul6_sw0_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_73 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x24_o[0]),
-	.D2(output_8x24_o[1]),
-	.D3(output_8x24_o[2]),
-	.D4(output_8x24_o[3]),
-	.D5(output_8x24_o[4]),
-	.D6(output_8x24_o[5]),
-	.D7(output_8x24_o[6]),
-	.D8(output_8x24_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x24_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x24_pad_o),
-	.TQ(output_8x24_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_28 (
-	.I(output_8x24_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x24_t_out),
-	.IO(urukul6_sw1_p),
-	.IOB(urukul6_sw1_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_74 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x25_o[0]),
-	.D2(output_8x25_o[1]),
-	.D3(output_8x25_o[2]),
-	.D4(output_8x25_o[3]),
-	.D5(output_8x25_o[4]),
-	.D6(output_8x25_o[5]),
-	.D7(output_8x25_o[6]),
-	.D8(output_8x25_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x25_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x25_pad_o),
-	.TQ(output_8x25_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_29 (
-	.I(output_8x25_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x25_t_out),
-	.IO(urukul6_sw2_p),
-	.IOB(urukul6_sw2_n)
-);
-
-OSERDESE2 #(
-	.DATA_RATE_OQ("DDR"),
-	.DATA_RATE_TQ("BUF"),
-	.DATA_WIDTH(4'd8),
-	.TRISTATE_WIDTH(1'd1)
-) OSERDESE2_75 (
-	.CLK(rtiox4_clk),
-	.CLKDIV(rio_phy_clk),
-	.D1(output_8x26_o[0]),
-	.D2(output_8x26_o[1]),
-	.D3(output_8x26_o[2]),
-	.D4(output_8x26_o[3]),
-	.D5(output_8x26_o[4]),
-	.D6(output_8x26_o[5]),
-	.D7(output_8x26_o[6]),
-	.D8(output_8x26_o[7]),
-	.OCE(1'd1),
-	.RST(rio_phy_rst),
-	.T1(output_8x26_t_in),
-	.TCE(1'd1),
-	.OQ(output_8x26_pad_o),
-	.TQ(output_8x26_t_out)
-);
-
-IOBUFDS_INTERMDISABLE #(
-	.DIFF_TERM("FALSE"),
-	.IBUF_LOW_PWR("TRUE"),
-	.USE_IBUFDISABLE("TRUE")
-) IOBUFDS_INTERMDISABLE_30 (
-	.I(output_8x26_pad_o),
-	.IBUFDISABLE(1'd1),
-	.INTERMDISABLE(1'd1),
-	.T(output_8x26_t_out),
 	.IO(urukul6_sw3_p),
 	.IOB(urukul6_sw3_n)
 );
@@ -31968,9 +33080,9 @@ end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_wrport_dat_r = storage_18[memadr_46];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo3_rdport_dat_r = storage_18[memadr_47];
 
-reg [31:0] storage_19[0:3];
-reg [1:0] memadr_48;
-reg [1:0] memadr_49;
+reg [64:0] storage_19[0:63];
+reg [5:0] memadr_48;
+reg [5:0] memadr_49;
 always @(posedge rio_clk) begin
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_we)
 		storage_19[monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_w;
@@ -31984,9 +33096,9 @@ end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_wrport_dat_r = storage_19[memadr_48];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo4_rdport_dat_r = storage_19[memadr_49];
 
-reg [31:0] storage_20[0:3];
-reg [1:0] memadr_50;
-reg [1:0] memadr_51;
+reg [64:0] storage_20[0:63];
+reg [5:0] memadr_50;
+reg [5:0] memadr_51;
 always @(posedge rio_clk) begin
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_we)
 		storage_20[monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_w;
@@ -32000,9 +33112,9 @@ end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_wrport_dat_r = storage_20[memadr_50];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo5_rdport_dat_r = storage_20[memadr_51];
 
-reg [31:0] storage_21[0:3];
-reg [1:0] memadr_52;
-reg [1:0] memadr_53;
+reg [64:0] storage_21[0:63];
+reg [5:0] memadr_52;
+reg [5:0] memadr_53;
 always @(posedge rio_clk) begin
 	if (monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_we)
 		storage_21[monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_w;
@@ -32016,438 +33128,502 @@ end
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_wrport_dat_r = storage_21[memadr_52];
 assign monroe_ionphoton_rtio_core_inputs_asyncfifo6_rdport_dat_r = storage_21[memadr_53];
 
-reg [256:0] storage_22[0:127];
+reg [64:0] storage_22[0:63];
+reg [5:0] memadr_54;
+reg [5:0] memadr_55;
+always @(posedge rio_clk) begin
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_we)
+		storage_22[monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_dat_w;
+	memadr_54 <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_adr;
+end
+
+always @(posedge rsys_clk) begin
+	memadr_55 <= monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_adr;
+end
+
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_wrport_dat_r = storage_22[memadr_54];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo7_rdport_dat_r = storage_22[memadr_55];
+
+reg [31:0] storage_23[0:3];
+reg [1:0] memadr_56;
+reg [1:0] memadr_57;
+always @(posedge rio_clk) begin
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_we)
+		storage_23[monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_dat_w;
+	memadr_56 <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_adr;
+end
+
+always @(posedge rsys_clk) begin
+	memadr_57 <= monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_adr;
+end
+
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_wrport_dat_r = storage_23[memadr_56];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo8_rdport_dat_r = storage_23[memadr_57];
+
+reg [31:0] storage_24[0:3];
+reg [1:0] memadr_58;
+reg [1:0] memadr_59;
+always @(posedge rio_clk) begin
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_we)
+		storage_24[monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_dat_w;
+	memadr_58 <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_adr;
+end
+
+always @(posedge rsys_clk) begin
+	memadr_59 <= monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_adr;
+end
+
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_wrport_dat_r = storage_24[memadr_58];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo9_rdport_dat_r = storage_24[memadr_59];
+
+reg [31:0] storage_25[0:3];
+reg [1:0] memadr_60;
+reg [1:0] memadr_61;
+always @(posedge rio_clk) begin
+	if (monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_we)
+		storage_25[monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_adr] <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_dat_w;
+	memadr_60 <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_adr;
+end
+
+always @(posedge rsys_clk) begin
+	memadr_61 <= monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_adr;
+end
+
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_wrport_dat_r = storage_25[memadr_60];
+assign monroe_ionphoton_rtio_core_inputs_asyncfifo10_rdport_dat_r = storage_25[memadr_61];
+
+reg [256:0] storage_26[0:127];
 reg [256:0] memdat_5;
 reg [256:0] memdat_6;
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_rtio_analyzer_fifo_wrport_we)
-		storage_22[monroe_ionphoton_rtio_analyzer_fifo_wrport_adr] <= monroe_ionphoton_rtio_analyzer_fifo_wrport_dat_w;
-	memdat_5 <= storage_22[monroe_ionphoton_rtio_analyzer_fifo_wrport_adr];
+		storage_26[monroe_ionphoton_rtio_analyzer_fifo_wrport_adr] <= monroe_ionphoton_rtio_analyzer_fifo_wrport_dat_w;
+	memdat_5 <= storage_26[monroe_ionphoton_rtio_analyzer_fifo_wrport_adr];
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_rtio_analyzer_fifo_rdport_re)
-		memdat_6 <= storage_22[monroe_ionphoton_rtio_analyzer_fifo_rdport_adr];
+		memdat_6 <= storage_26[monroe_ionphoton_rtio_analyzer_fifo_rdport_adr];
 end
 
 assign monroe_ionphoton_rtio_analyzer_fifo_wrport_dat_r = memdat_5;
 assign monroe_ionphoton_rtio_analyzer_fifo_rdport_dat_r = memdat_6;
 
 reg [7:0] data_mem_grain0[0:8191];
-reg [12:0] memadr_54;
+reg [12:0] memadr_62;
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[0])
 		data_mem_grain0[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[7:0];
-	memadr_54 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[7:0] = data_mem_grain0[memadr_54];
-
-reg [7:0] data_mem_grain1[0:8191];
-reg [12:0] memadr_55;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[1])
-		data_mem_grain1[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[15:8];
-	memadr_55 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[15:8] = data_mem_grain1[memadr_55];
-
-reg [7:0] data_mem_grain2[0:8191];
-reg [12:0] memadr_56;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[2])
-		data_mem_grain2[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[23:16];
-	memadr_56 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[23:16] = data_mem_grain2[memadr_56];
-
-reg [7:0] data_mem_grain3[0:8191];
-reg [12:0] memadr_57;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[3])
-		data_mem_grain3[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[31:24];
-	memadr_57 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[31:24] = data_mem_grain3[memadr_57];
-
-reg [7:0] data_mem_grain4[0:8191];
-reg [12:0] memadr_58;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[4])
-		data_mem_grain4[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[39:32];
-	memadr_58 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[39:32] = data_mem_grain4[memadr_58];
-
-reg [7:0] data_mem_grain5[0:8191];
-reg [12:0] memadr_59;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[5])
-		data_mem_grain5[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[47:40];
-	memadr_59 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[47:40] = data_mem_grain5[memadr_59];
-
-reg [7:0] data_mem_grain6[0:8191];
-reg [12:0] memadr_60;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[6])
-		data_mem_grain6[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[55:48];
-	memadr_60 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[55:48] = data_mem_grain6[memadr_60];
-
-reg [7:0] data_mem_grain7[0:8191];
-reg [12:0] memadr_61;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[7])
-		data_mem_grain7[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[63:56];
-	memadr_61 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
-end
-
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[63:56] = data_mem_grain7[memadr_61];
-
-reg [7:0] data_mem_grain8[0:8191];
-reg [12:0] memadr_62;
-always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[8])
-		data_mem_grain8[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[71:64];
 	memadr_62 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[71:64] = data_mem_grain8[memadr_62];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[7:0] = data_mem_grain0[memadr_62];
 
-reg [7:0] data_mem_grain9[0:8191];
+reg [7:0] data_mem_grain1[0:8191];
 reg [12:0] memadr_63;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[9])
-		data_mem_grain9[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[79:72];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[1])
+		data_mem_grain1[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[15:8];
 	memadr_63 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[79:72] = data_mem_grain9[memadr_63];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[15:8] = data_mem_grain1[memadr_63];
 
-reg [7:0] data_mem_grain10[0:8191];
+reg [7:0] data_mem_grain2[0:8191];
 reg [12:0] memadr_64;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[10])
-		data_mem_grain10[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[87:80];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[2])
+		data_mem_grain2[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[23:16];
 	memadr_64 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[87:80] = data_mem_grain10[memadr_64];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[23:16] = data_mem_grain2[memadr_64];
 
-reg [7:0] data_mem_grain11[0:8191];
+reg [7:0] data_mem_grain3[0:8191];
 reg [12:0] memadr_65;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[11])
-		data_mem_grain11[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[95:88];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[3])
+		data_mem_grain3[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[31:24];
 	memadr_65 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[95:88] = data_mem_grain11[memadr_65];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[31:24] = data_mem_grain3[memadr_65];
 
-reg [7:0] data_mem_grain12[0:8191];
+reg [7:0] data_mem_grain4[0:8191];
 reg [12:0] memadr_66;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[12])
-		data_mem_grain12[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[103:96];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[4])
+		data_mem_grain4[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[39:32];
 	memadr_66 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[103:96] = data_mem_grain12[memadr_66];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[39:32] = data_mem_grain4[memadr_66];
 
-reg [7:0] data_mem_grain13[0:8191];
+reg [7:0] data_mem_grain5[0:8191];
 reg [12:0] memadr_67;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[13])
-		data_mem_grain13[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[111:104];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[5])
+		data_mem_grain5[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[47:40];
 	memadr_67 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[111:104] = data_mem_grain13[memadr_67];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[47:40] = data_mem_grain5[memadr_67];
 
-reg [7:0] data_mem_grain14[0:8191];
+reg [7:0] data_mem_grain6[0:8191];
 reg [12:0] memadr_68;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[14])
-		data_mem_grain14[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[119:112];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[6])
+		data_mem_grain6[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[55:48];
 	memadr_68 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[119:112] = data_mem_grain14[memadr_68];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[55:48] = data_mem_grain6[memadr_68];
 
-reg [7:0] data_mem_grain15[0:8191];
+reg [7:0] data_mem_grain7[0:8191];
 reg [12:0] memadr_69;
 always @(posedge sys_clk) begin
-	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[15])
-		data_mem_grain15[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[127:120];
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[7])
+		data_mem_grain7[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[63:56];
 	memadr_69 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[127:120] = data_mem_grain15[memadr_69];
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[63:56] = data_mem_grain7[memadr_69];
+
+reg [7:0] data_mem_grain8[0:8191];
+reg [12:0] memadr_70;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[8])
+		data_mem_grain8[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[71:64];
+	memadr_70 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[71:64] = data_mem_grain8[memadr_70];
+
+reg [7:0] data_mem_grain9[0:8191];
+reg [12:0] memadr_71;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[9])
+		data_mem_grain9[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[79:72];
+	memadr_71 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[79:72] = data_mem_grain9[memadr_71];
+
+reg [7:0] data_mem_grain10[0:8191];
+reg [12:0] memadr_72;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[10])
+		data_mem_grain10[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[87:80];
+	memadr_72 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[87:80] = data_mem_grain10[memadr_72];
+
+reg [7:0] data_mem_grain11[0:8191];
+reg [12:0] memadr_73;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[11])
+		data_mem_grain11[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[95:88];
+	memadr_73 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[95:88] = data_mem_grain11[memadr_73];
+
+reg [7:0] data_mem_grain12[0:8191];
+reg [12:0] memadr_74;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[12])
+		data_mem_grain12[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[103:96];
+	memadr_74 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[103:96] = data_mem_grain12[memadr_74];
+
+reg [7:0] data_mem_grain13[0:8191];
+reg [12:0] memadr_75;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[13])
+		data_mem_grain13[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[111:104];
+	memadr_75 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[111:104] = data_mem_grain13[memadr_75];
+
+reg [7:0] data_mem_grain14[0:8191];
+reg [12:0] memadr_76;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[14])
+		data_mem_grain14[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[119:112];
+	memadr_76 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[119:112] = data_mem_grain14[memadr_76];
+
+reg [7:0] data_mem_grain15[0:8191];
+reg [12:0] memadr_77;
+always @(posedge sys_clk) begin
+	if (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_we[15])
+		data_mem_grain15[monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr] <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_w[127:120];
+	memadr_77 <= monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_adr;
+end
+
+assign monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_data_port_dat_r[127:120] = data_mem_grain15[memadr_77];
 
 reg [7:0] mem_grain0[0:381];
-reg [8:0] memadr_70;
-reg [8:0] memadr_71;
+reg [8:0] memadr_78;
+reg [8:0] memadr_79;
 always @(posedge sys_clk) begin
-	memadr_70 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
+	memadr_78 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram0_we[0])
 		mem_grain0[monroe_ionphoton_monroe_ionphoton_sram0_adr1] <= monroe_ionphoton_monroe_ionphoton_sram0_dat_w[7:0];
-	memadr_71 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
+	memadr_79 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[7:0] = mem_grain0[memadr_70];
-assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[7:0] = mem_grain0[memadr_71];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[7:0] = mem_grain0[memadr_78];
+assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[7:0] = mem_grain0[memadr_79];
 
 reg [7:0] mem_grain1[0:381];
-reg [8:0] memadr_72;
-reg [8:0] memadr_73;
+reg [8:0] memadr_80;
+reg [8:0] memadr_81;
 always @(posedge sys_clk) begin
-	memadr_72 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
+	memadr_80 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram0_we[1])
 		mem_grain1[monroe_ionphoton_monroe_ionphoton_sram0_adr1] <= monroe_ionphoton_monroe_ionphoton_sram0_dat_w[15:8];
-	memadr_73 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
+	memadr_81 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[15:8] = mem_grain1[memadr_72];
-assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[15:8] = mem_grain1[memadr_73];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[15:8] = mem_grain1[memadr_80];
+assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[15:8] = mem_grain1[memadr_81];
 
 reg [7:0] mem_grain2[0:381];
-reg [8:0] memadr_74;
-reg [8:0] memadr_75;
+reg [8:0] memadr_82;
+reg [8:0] memadr_83;
 always @(posedge sys_clk) begin
-	memadr_74 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
+	memadr_82 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram0_we[2])
 		mem_grain2[monroe_ionphoton_monroe_ionphoton_sram0_adr1] <= monroe_ionphoton_monroe_ionphoton_sram0_dat_w[23:16];
-	memadr_75 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
+	memadr_83 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[23:16] = mem_grain2[memadr_74];
-assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[23:16] = mem_grain2[memadr_75];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[23:16] = mem_grain2[memadr_82];
+assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[23:16] = mem_grain2[memadr_83];
 
 reg [7:0] mem_grain3[0:381];
-reg [8:0] memadr_76;
-reg [8:0] memadr_77;
+reg [8:0] memadr_84;
+reg [8:0] memadr_85;
 always @(posedge sys_clk) begin
-	memadr_76 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
+	memadr_84 <= monroe_ionphoton_monroe_ionphoton_reader_memory0_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram0_we[3])
 		mem_grain3[monroe_ionphoton_monroe_ionphoton_sram0_adr1] <= monroe_ionphoton_monroe_ionphoton_sram0_dat_w[31:24];
-	memadr_77 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
+	memadr_85 <= monroe_ionphoton_monroe_ionphoton_sram0_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[31:24] = mem_grain3[memadr_76];
-assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[31:24] = mem_grain3[memadr_77];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory0_dat_r[31:24] = mem_grain3[memadr_84];
+assign monroe_ionphoton_monroe_ionphoton_sram0_dat_r1[31:24] = mem_grain3[memadr_85];
 
 reg [7:0] mem_grain0_1[0:381];
-reg [8:0] memadr_78;
-reg [8:0] memadr_79;
+reg [8:0] memadr_86;
+reg [8:0] memadr_87;
 always @(posedge sys_clk) begin
-	memadr_78 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
+	memadr_86 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram1_we[0])
 		mem_grain0_1[monroe_ionphoton_monroe_ionphoton_sram1_adr1] <= monroe_ionphoton_monroe_ionphoton_sram1_dat_w[7:0];
-	memadr_79 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
+	memadr_87 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[7:0] = mem_grain0_1[memadr_78];
-assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[7:0] = mem_grain0_1[memadr_79];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[7:0] = mem_grain0_1[memadr_86];
+assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[7:0] = mem_grain0_1[memadr_87];
 
 reg [7:0] mem_grain1_1[0:381];
-reg [8:0] memadr_80;
-reg [8:0] memadr_81;
+reg [8:0] memadr_88;
+reg [8:0] memadr_89;
 always @(posedge sys_clk) begin
-	memadr_80 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
+	memadr_88 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram1_we[1])
 		mem_grain1_1[monroe_ionphoton_monroe_ionphoton_sram1_adr1] <= monroe_ionphoton_monroe_ionphoton_sram1_dat_w[15:8];
-	memadr_81 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
+	memadr_89 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[15:8] = mem_grain1_1[memadr_80];
-assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[15:8] = mem_grain1_1[memadr_81];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[15:8] = mem_grain1_1[memadr_88];
+assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[15:8] = mem_grain1_1[memadr_89];
 
 reg [7:0] mem_grain2_1[0:381];
-reg [8:0] memadr_82;
-reg [8:0] memadr_83;
+reg [8:0] memadr_90;
+reg [8:0] memadr_91;
 always @(posedge sys_clk) begin
-	memadr_82 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
+	memadr_90 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram1_we[2])
 		mem_grain2_1[monroe_ionphoton_monroe_ionphoton_sram1_adr1] <= monroe_ionphoton_monroe_ionphoton_sram1_dat_w[23:16];
-	memadr_83 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
+	memadr_91 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[23:16] = mem_grain2_1[memadr_82];
-assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[23:16] = mem_grain2_1[memadr_83];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[23:16] = mem_grain2_1[memadr_90];
+assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[23:16] = mem_grain2_1[memadr_91];
 
 reg [7:0] mem_grain3_1[0:381];
-reg [8:0] memadr_84;
-reg [8:0] memadr_85;
+reg [8:0] memadr_92;
+reg [8:0] memadr_93;
 always @(posedge sys_clk) begin
-	memadr_84 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
+	memadr_92 <= monroe_ionphoton_monroe_ionphoton_reader_memory1_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram1_we[3])
 		mem_grain3_1[monroe_ionphoton_monroe_ionphoton_sram1_adr1] <= monroe_ionphoton_monroe_ionphoton_sram1_dat_w[31:24];
-	memadr_85 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
+	memadr_93 <= monroe_ionphoton_monroe_ionphoton_sram1_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[31:24] = mem_grain3_1[memadr_84];
-assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[31:24] = mem_grain3_1[memadr_85];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory1_dat_r[31:24] = mem_grain3_1[memadr_92];
+assign monroe_ionphoton_monroe_ionphoton_sram1_dat_r1[31:24] = mem_grain3_1[memadr_93];
 
 reg [7:0] mem_grain0_2[0:381];
-reg [8:0] memadr_86;
-reg [8:0] memadr_87;
+reg [8:0] memadr_94;
+reg [8:0] memadr_95;
 always @(posedge sys_clk) begin
-	memadr_86 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
+	memadr_94 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram2_we[0])
 		mem_grain0_2[monroe_ionphoton_monroe_ionphoton_sram2_adr1] <= monroe_ionphoton_monroe_ionphoton_sram2_dat_w[7:0];
-	memadr_87 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
+	memadr_95 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[7:0] = mem_grain0_2[memadr_86];
-assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[7:0] = mem_grain0_2[memadr_87];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[7:0] = mem_grain0_2[memadr_94];
+assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[7:0] = mem_grain0_2[memadr_95];
 
 reg [7:0] mem_grain1_2[0:381];
-reg [8:0] memadr_88;
-reg [8:0] memadr_89;
+reg [8:0] memadr_96;
+reg [8:0] memadr_97;
 always @(posedge sys_clk) begin
-	memadr_88 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
+	memadr_96 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram2_we[1])
 		mem_grain1_2[monroe_ionphoton_monroe_ionphoton_sram2_adr1] <= monroe_ionphoton_monroe_ionphoton_sram2_dat_w[15:8];
-	memadr_89 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
+	memadr_97 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[15:8] = mem_grain1_2[memadr_88];
-assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[15:8] = mem_grain1_2[memadr_89];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[15:8] = mem_grain1_2[memadr_96];
+assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[15:8] = mem_grain1_2[memadr_97];
 
 reg [7:0] mem_grain2_2[0:381];
-reg [8:0] memadr_90;
-reg [8:0] memadr_91;
+reg [8:0] memadr_98;
+reg [8:0] memadr_99;
 always @(posedge sys_clk) begin
-	memadr_90 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
+	memadr_98 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram2_we[2])
 		mem_grain2_2[monroe_ionphoton_monroe_ionphoton_sram2_adr1] <= monroe_ionphoton_monroe_ionphoton_sram2_dat_w[23:16];
-	memadr_91 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
+	memadr_99 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[23:16] = mem_grain2_2[memadr_90];
-assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[23:16] = mem_grain2_2[memadr_91];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[23:16] = mem_grain2_2[memadr_98];
+assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[23:16] = mem_grain2_2[memadr_99];
 
 reg [7:0] mem_grain3_2[0:381];
-reg [8:0] memadr_92;
-reg [8:0] memadr_93;
+reg [8:0] memadr_100;
+reg [8:0] memadr_101;
 always @(posedge sys_clk) begin
-	memadr_92 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
+	memadr_100 <= monroe_ionphoton_monroe_ionphoton_reader_memory2_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram2_we[3])
 		mem_grain3_2[monroe_ionphoton_monroe_ionphoton_sram2_adr1] <= monroe_ionphoton_monroe_ionphoton_sram2_dat_w[31:24];
-	memadr_93 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
+	memadr_101 <= monroe_ionphoton_monroe_ionphoton_sram2_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[31:24] = mem_grain3_2[memadr_92];
-assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[31:24] = mem_grain3_2[memadr_93];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory2_dat_r[31:24] = mem_grain3_2[memadr_100];
+assign monroe_ionphoton_monroe_ionphoton_sram2_dat_r1[31:24] = mem_grain3_2[memadr_101];
 
 reg [7:0] mem_grain0_3[0:381];
-reg [8:0] memadr_94;
-reg [8:0] memadr_95;
+reg [8:0] memadr_102;
+reg [8:0] memadr_103;
 always @(posedge sys_clk) begin
-	memadr_94 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
+	memadr_102 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram3_we[0])
 		mem_grain0_3[monroe_ionphoton_monroe_ionphoton_sram3_adr1] <= monroe_ionphoton_monroe_ionphoton_sram3_dat_w[7:0];
-	memadr_95 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
+	memadr_103 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[7:0] = mem_grain0_3[memadr_94];
-assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[7:0] = mem_grain0_3[memadr_95];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[7:0] = mem_grain0_3[memadr_102];
+assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[7:0] = mem_grain0_3[memadr_103];
 
 reg [7:0] mem_grain1_3[0:381];
-reg [8:0] memadr_96;
-reg [8:0] memadr_97;
+reg [8:0] memadr_104;
+reg [8:0] memadr_105;
 always @(posedge sys_clk) begin
-	memadr_96 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
+	memadr_104 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram3_we[1])
 		mem_grain1_3[monroe_ionphoton_monroe_ionphoton_sram3_adr1] <= monroe_ionphoton_monroe_ionphoton_sram3_dat_w[15:8];
-	memadr_97 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
+	memadr_105 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[15:8] = mem_grain1_3[memadr_96];
-assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[15:8] = mem_grain1_3[memadr_97];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[15:8] = mem_grain1_3[memadr_104];
+assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[15:8] = mem_grain1_3[memadr_105];
 
 reg [7:0] mem_grain2_3[0:381];
-reg [8:0] memadr_98;
-reg [8:0] memadr_99;
+reg [8:0] memadr_106;
+reg [8:0] memadr_107;
 always @(posedge sys_clk) begin
-	memadr_98 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
+	memadr_106 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram3_we[2])
 		mem_grain2_3[monroe_ionphoton_monroe_ionphoton_sram3_adr1] <= monroe_ionphoton_monroe_ionphoton_sram3_dat_w[23:16];
-	memadr_99 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
+	memadr_107 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[23:16] = mem_grain2_3[memadr_98];
-assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[23:16] = mem_grain2_3[memadr_99];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[23:16] = mem_grain2_3[memadr_106];
+assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[23:16] = mem_grain2_3[memadr_107];
 
 reg [7:0] mem_grain3_3[0:381];
-reg [8:0] memadr_100;
-reg [8:0] memadr_101;
+reg [8:0] memadr_108;
+reg [8:0] memadr_109;
 always @(posedge sys_clk) begin
-	memadr_100 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
+	memadr_108 <= monroe_ionphoton_monroe_ionphoton_reader_memory3_adr;
 end
 
 always @(posedge sys_clk) begin
 	if (monroe_ionphoton_monroe_ionphoton_sram3_we[3])
 		mem_grain3_3[monroe_ionphoton_monroe_ionphoton_sram3_adr1] <= monroe_ionphoton_monroe_ionphoton_sram3_dat_w[31:24];
-	memadr_101 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
+	memadr_109 <= monroe_ionphoton_monroe_ionphoton_sram3_adr1;
 end
 
-assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[31:24] = mem_grain3_3[memadr_100];
-assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[31:24] = mem_grain3_3[memadr_101];
+assign monroe_ionphoton_monroe_ionphoton_reader_memory3_dat_r[31:24] = mem_grain3_3[memadr_108];
+assign monroe_ionphoton_monroe_ionphoton_sram3_dat_r1[31:24] = mem_grain3_3[memadr_109];
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)

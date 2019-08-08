@@ -1662,7 +1662,7 @@ pub mod csr {
   pub const ETHMAC_SLOT_SIZE: u32 = 2048;
   pub const TMPU_PAGE_SIZE: u32 = 4096;
   pub const CONFIG_CLOCK_FREQUENCY: u32 = 113281250;
-  pub const CONFIG_EXT_REF_FREQUENCY: &'static str = "100.0";
+  pub const CONFIG_EXT_REF_FREQUENCY: &'static str = "125.0";
   pub const CONFIG_HAS_RTIO_LOG: u32 = 1;
   pub const CONFIG_HAS_SI5324: u32 = 1;
   pub const CONFIG_I2C_BUS_COUNT: u32 = 1;

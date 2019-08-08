@@ -4,14 +4,14 @@ M. Lichtman 2019-07-11"""
 import numpy as np
 import PyQt5  # make sure pyqtgraph imports Qt5
 import pyqtgraph
-import datetime, time
-
+import datetime
+import time
 import dateaxisitem
 
 from artiq.applets.simple import TitleApplet
 
 
-class XYPlot(pyqtgraph.GraphicsLayoutWidget):
+class plot_separate_scrolling_xy(pyqtgraph.GraphicsLayoutWidget):
 
     def __init__(self, args):
         pyqtgraph.GraphicsLayoutWidget.__init__(self)
@@ -24,9 +24,9 @@ class XYPlot(pyqtgraph.GraphicsLayoutWidget):
 
         # load the channel names
         try:
-            channel_names = data[self.args.counter_channels][1]
+            channel_names = [str(i, 'utf-8') for i in data[self.args.counter_channel_names][1]]
         except KeyError:
-            print("ho-hum")
+            print("KeyError in plot_separate_scrolling_xy")
             return
 
         # update the plot structure if there is any change to the channel list
@@ -63,30 +63,31 @@ class XYPlot(pyqtgraph.GraphicsLayoutWidget):
         # load new data
         try:
             y = data[self.args.y][1]
+            # expect a 1D array
+            if not ((len(y.shape) == 1) and (len(y) == self.num_channels)):
+                print("data is not 1D array of length=num_channels")
+                return
+
+            # roll the arrays back and replace the latest value
+            self.x = np.roll(self.x, -1)
+            self.y = np.roll(self.y, -1, axis=0)
+            self.x[-1] = time.time()  # new x-value is a timestamp
+            self.y[-1] = y  # latest values from the 'detectors' dataset
+
+            # iterate over channels and set the plot data
+            for i in range(self.num_channels):
+                self.lines[i].setData(self.x, self.y[:, i])
+                self.now_labels[i].setText('{:d}'.format(int(self.y[-1, i])))
+                self.avg_labels[i].setText('avg {:.1f}'.format(np.nanmean(self.y[:, i])))
+
         except KeyError:
             return
-        # expect a 1D array
-        if not ((len(y.shape) == 1) and (len(y) == self.num_channels)):
-            print("data is not 1D array of length=num_channels")
-            return
-
-        # roll the arrays back and replace the latest value
-        self.x = np.roll(self.x, -1)
-        self.y = np.roll(self.y, -1, axis=0)
-        self.x[-1] = time.time()  # new x-value is a timestamp
-        self.y[-1] = y  # latest values from the 'detectors' dataset
-
-        # iterate over channels and set the plot data
-        for i in range(self.num_channels):
-            self.lines[i].setData(self.x, self.y[:, i])
-            self.now_labels[i].setText('{:d}'.format(int(self.y[-1, i])))
-            self.avg_labels[i].setText('avg {:.1f}'.format(np.nanmean(self.y[:, i])))
 
 
 def main():
-    applet = TitleApplet(XYPlot)
+    applet = TitleApplet(plot_separate_scrolling_xy)
     applet.add_dataset("y", "Y values")
-    applet.add_dataset("counter_channels", "persistent settings")
+    applet.add_dataset("counter_channel_names", "names of channels")
     applet.run()
 
 if __name__ == "__main__":

@@ -1260,9 +1260,9 @@ static inline int tmpu_page_size_read(void) {
 static inline int config_clock_frequency_read(void) {
 	return 113281250;
 }
-#define CONFIG_EXT_REF_FREQUENCY "100.0"
+#define CONFIG_EXT_REF_FREQUENCY "125.0"
 static inline const char * config_ext_ref_frequency_read(void) {
-	return "100.0";
+	return "125.0";
 }
 #define CONFIG_HAS_RTIO_LOG
 #define CONFIG_HAS_SI5324

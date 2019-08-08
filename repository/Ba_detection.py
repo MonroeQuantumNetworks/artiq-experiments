@@ -1,127 +1,112 @@
 """This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
 
-from artiq.experiment import *  # NumberValue, delay, now_mu, at_mu, kernel
+from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
+from artiq.language.units import s, ms, us, ns, MHz
 from artiq.coredevice.exceptions import RTIOOverflow
+from artiq.experiment import NumberValue
 import numpy as np
 import base_experiment
+
 
 class Ba_detection(base_experiment.base_experiment):
 
     def build(self):
-
-        # setup channels
-        super().load_globals_from_dataset()
-        super().build_common()
-
+        super().build()
         self.setattr_argument('detections_per_point', NumberValue(100, ndecimals=0, min=1, step=1))
         self.setattr_argument('max_trials_per_point', NumberValue(10000, ndecimals=0, min=1, step=1))
-        self.active_detector_channels = [self.detect0, self.detect1]
 
     @kernel
     def cool(self):
-        self.DDS['493_s-'].on()
-        self.DDS['493_pi'].on()
-        self.DDS['493_s+'].on()
-        delay(self.cooling_time)
-        self.DDS['493_s-'].off()
-        self.DDS['493_pi'].off()
-        self.DDS['493_s+'].off()
-
-    @kernel
-    def pump0(self):
-        self.DDS['493_s-'].on()
-        delay(self.pumping_time)
-        self.DDS['493_s-'].off()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        delay_mu(10)
+        self.DDS__493__Bob__sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__493__Bob__pi.sw.on()
+        delay_mu(10)
+        delay(self.globals__timing__cooling_time)
+        delay_mu(10)
+        self.DDS__493__Bob__sigma_1.sw.off()
+        delay_mu(10)
+        self.DDS__493__Bob__sigma_2.sw.off()
+        delay_mu(10)
+        self.DDS__493__Bob__pi.sw.off()
+        delay_mu(10)
 
     @kernel
     def pump1(self):
-        self.DDS['493_s+'].on()
-        delay(self.pumping_time)
-        self.DDS['493_s+'].off()
+        self.DDS__493__Bob__sigma_1.sw.pulse(self.globals__timing__pumping_time)
 
     @kernel
-    def detect0(self):
-        self.DDS['493_s-'].on()
-        delay(self.detection_time)
-        self.DDS['493_s-'].off()
+    def pump2(self):
+        self.DDS__493__Bob__sigma_2.sw.pulse(self.globals__timing__pumping_time)
+
+    @kernel
+    def get_counts(self):
+        return self.Bob_camera_side_APD.count(self.Bob_camera_side_APD.gate_rising(self.globals__timing__detection_time))
 
     @kernel
     def detect1(self):
-        self.DDS['493_s+'].on()
-        delay(self.detection_time)
-        self.DDS['493_s+'].off()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        counts = self.get_counts()
+        self.DDS__493__Bob__sigma_1.sw.off()
+        return counts
 
-    """
     @kernel
-    def acquire_counts:
-            try:
-                # acquire counts on all input channels
-                gate_t = self.core.seconds_to_mu(self.detection_time)
-                t = now_mu()  # mark the time before the gate_opens
-                for ch in range(self.num_channels):
-                    gate_end_mu[ch] = self.channels[ch].gate_rising_mu(gate_t)
-                    at_mu(t)  # rewind the time cursor
+    def detect2(self):
+        self.DDS__493__Bob__sigma_2.sw.on()
+        counts = self.get_counts()
+        self.DDS__493__Bob__sigma_2.sw.off()
+        return counts
 
-                # readout all input channels
-                for ch in range(self.num_channels):
-                    num_rising_edges[ch] = self.channels[ch].count(gate_end_mu[ch])
-            except RTIOOverflow:
-                print("RTIO input overflow")
+    @kernel
+    def setup(self):
+        self.DDS__493__Bob__sigma_1.sw.off()
+        delay_mu(10)
+        self.DDS__493__Bob__sigma_2.sw.off()
+        delay_mu(10)
+        self.DDS__650__sigma_1.sw.on()
+        delay_mu(10)
+        self.DDS__650__sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__650__Bob__pi.sw.on()
+        delay_mu(10)
+        self.DDS__650__fast_AOM.sw.on()
+        delay_mu(10)
+        self.DDS__493__Bob__pi.sw.off()
+        delay_mu(10)
 
-                # clear counters, but set to 1 not 0 so we can tell when the error actually clears
-                for ch in range(self.num_channels):
-                    num_rising_edges[ch] = 1
-
-                not_clear = True
-                while not_clear:
-                    not_clear = False
-                    try:
-                        for ch in range(self.num_channels):
-                            num_rising_edges[ch] = self.channels[ch].count(now_mu())
-                            if num_rising_edges[ch] != 0:
-                                not_clear = True
-                    except RTIOOverflow:
-                        print("RTIO input overflow")
-                        not_clear = True
-                    else:
-                        print("RTIO input overflow solved")
-            else:
-                # update the dataset, which will trigger a plot update
-                self.set_dataset("detectors", num_rising_edges, broadcast=True)
-    """
-
+    @kernel
     def run(self):
-        #self.cooling_time = getattr(self, 'global.cooling.cooling_time')
-        print(dir(self))
 
-    @kernel
-    def kernel_run(self):
+        self.core.reset()
 
-        self.core.break_realtime()
+        self.setup()
 
         trials = 0
-        self.detect0 = 0
-        self.detect1 = 0
+        sum1 = 0
+        sum2 = 0
 
-        # holder for detector counts
-        gate_end_mu = np.full(self.num_channels, 0)
-        num_rising_edges = np.full(self.num_channels, 0)
+        while (trials <= self.max_trials_per_point) and ((sum1 + sum2) < self.detections_per_point):
 
-        while (trials <= self.max_trials_per_point) and ((detect0 + detect1) < self.detections_per_point):
-
-            # allow whatever slack is necessary
+            print(trials)
             self.core.break_realtime()
 
-            self.cool()
-            self.pump0()
-            self.detect0()
+            # allow whatever slack is necessary
 
+            delay(1 * ms)
             self.cool()
             self.pump1()
-            self.detect1()
+            sum2 += self.detect1()
+
+            delay(1 * ms)
+            self.cool()
+            self.pump2()
+            sum2 += self.detect2()
 
             trials += 1
 
         # export ratio of detections
-        self.set_dataset('ratio', self.detect0/(self.detect0 + self.detect1))
+        ratio = sum1/(sum1 + sum2)
+        print('ratio', ratio)
+        self.set_dataset('ratio', ratio, broadcast=True, archive=True)
 

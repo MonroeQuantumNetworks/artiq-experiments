@@ -18,7 +18,7 @@ has_tmpu
 has_uart
 has_uart_phy
 clock_frequency="113281250"
-ext_ref_frequency="100.0"
+ext_ref_frequency="125.0"
 has_rtio_log
 has_si5324
 i2c_bus_count="1"

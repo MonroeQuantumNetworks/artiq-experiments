@@ -13,10 +13,11 @@ M. Lichtman updated 2019-08-02
 
 import traceback
 
-from artiq.language.core import kernel, delay
+from artiq.language.core import kernel, delay, at_mu, now_mu
 from artiq.language.environment import HasEnvironment, EnvExperiment
 from artiq.experiment import NumberValue, BooleanValue, TerminationRequested
 from artiq.language.units import s, ms, us, ns, MHz
+import numpy as np
 
 
 class base_experiment(EnvExperiment):
@@ -24,26 +25,32 @@ class base_experiment(EnvExperiment):
     # these lists contain default values, they will be overwritten by what is in the datasets and then what is typed in the GUI
 
     DDS_list = [
-        ('493__sigma_minus', 'urukul0_ch0', 10*MHz, 10.0, True),
-        ('493__pi', 'urukul0_ch1', 10*MHz, 10.0, True),
-        ('493__sigma_plus', 'urukul0_ch2', 10 * MHz, 10.0, True),
-        ('urukul0_ch3', 'urukul0_ch3', 10*MHz, 10.0, True),
-        ('urukul1_ch0', 'urukul1_ch0', 10*MHz, 10.0, True),
-        ('urukul1_ch1', 'urukul1_ch1', 10*MHz, 10.0, True),
-        ('urukul1_ch2', 'urukul1_ch2', 10*MHz, 10.0, True),
-        ('urukul1_ch3', 'urukul1_ch3', 10*MHz, 10.0, True),
-        ('urukul2_ch0', 'urukul2_ch0', 10*MHz, 10.0, True),
-        ('urukul2_ch1', 'urukul2_ch1', 10*MHz, 10.0, True),
-        ('urukul2_ch2', 'urukul2_ch2', 10*MHz, 10.0, True),
-        ('urukul2_ch3', 'urukul2_ch3', 10*MHz, 10.0, True)
+        ('493__Alice__sigma_1', 'urukul0_ch0', 75*MHz, 1.0, 10.0, True),
+        ('493__Alice__sigma_2', 'urukul0_ch1', 85*MHz, 1.0, 10.0, True),
+        ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 1.0, 10.0, True),
+        ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 1.0, 10.0, True),
+        ('650__sigma_1', 'urukul1_ch0', 81.5*MHz, 1.0, 10.0, True),
+        ('650__sigma_2', 'urukul1_ch1', 78.5*MHz, 1.0, 10.0, True),
+        ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
+        ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
+        ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
+        ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),  # not done
+        ('493__Bob__pi', 'urukul2_ch2', 75*MHz, 1.0, 10.0, True),  # not done
+        ('urukul2_ch3', 'urukul2_ch3', 10*MHz, 0.0, 31.5, False)  # unassigned
     ]
 
-    counter_inputs = [
-        ('HOM1', 'ttl0'),
-        ('HOM2', 'ttl1')
-    ]
+    TTL_input_list = [
+        ('HOM0', 'ttl0'),
+        ('HOM1', 'ttl1'),
+        ('HOM2', 'ttl2'),
+        ('HOM3', 'ttl3'),
+        ('Alice_camera_side_APD', 'ttl4'),
+        ('Bob_camera_side_APD', 'ttl5'),
+        ('Alice_PMT', 'ttl6'),
+        ('Bob_PMT', 'ttl7')
+        ]
 
-    TTL_output = [
+    TTL_output_list = [
         ('ttl8', 'ttl8', False),
         ('tll9', 'ttl9', False),
         ('ttl10', 'ttl10', False),
@@ -145,13 +152,14 @@ class base_experiment(EnvExperiment):
 
         # TTL output #
 
-        for name, hardware, default in self.TTL_output:
+        for name, hardware, default in self.TTL_output_list:
             self.boolean_argument('globals__TTL_output__'+name, default, tooltip=hardware)
 
         # DDS #
 
-        for name, hardware, freq_default, att_default, sw_default in self.DDS_list:
+        for name, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
             self.number_argument('globals__DDS__' + name + '__frequency', freq_default, tooltip=hardware, unit='MHz', ndecimals=9, min=0.0*MHz, max=500.0*MHz, step=1.0*MHz)
+            self.number_argument('globals__DDS__' + name + '__amplitude', amp_default, tooltip=hardware, scale=1.0, ndecimals=9, min=0.0, max=1.0, step=0.1)
             self.number_argument('globals__DDS__' + name + '__attenuation', att_default, tooltip=hardware, unit='dB', scale=1.0, ndecimals=9, min=0.0, max=31.5, step=0.5)
             self.boolean_argument('globals__DDS__' + name + '__switch', sw_default, tooltip=hardware)
 
@@ -165,21 +173,31 @@ class base_experiment(EnvExperiment):
 
         # TTL inputs #
 
-        self.num_counter_channels = len(self.counter_inputs)
-        self.counter_channels = []
-        for name, hardware in self.counter_inputs:
+        self.globals__TTL_input__num_channels = len(self.TTL_input_list)
+        self.globals__TTL_input__channel_names = []
+        self.TTL_input_channels = []
+        for name, hardware in self.TTL_input_list:
             # register hardware name
             self.setattr_device(hardware)
             # setup alias
             setattr(self, name, getattr(self, hardware))
             # create list in hardware order
-            self.counter_channels.append(getattr(self, hardware))
+            self.globals__TTL_input__channel_names.append(name)
+            self.TTL_input_channels.append(getattr(self, hardware))
 
         # TTL outputs #
 
-        for name, hardware, default in self.TTL_output:
+        self.globals__TTL_output__num_channels = len(self.TTL_output_list)
+        self.globals__TTL_output__channel_names = []
+        self.TTL_output_channels = []
+        for name, hardware, default in self.TTL_output_list:
+            # register hardware name
             self.setattr_device(hardware)
+            # setup alias
             setattr(self, name, getattr(self, hardware))
+            # create list in hardware order
+            self.globals__TTL_output__channel_names.append(name)
+            self.TTL_output_channels.append(getattr(self, hardware))
 
         # DDS channels #
 
@@ -190,11 +208,11 @@ class base_experiment(EnvExperiment):
         self.DDS_device_list = []
         self.DDS_name_list = []
 
-        for name, hardware, freq_default, att_default, sw_default in self.DDS_list:
+        for name, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
             # setup device with real hardware name
             self.setattr_device(hardware)
             # setup alias
-            setattr(self, name, getattr(self, hardware))
+            setattr(self, 'DDS__'+name, getattr(self, hardware))
             # add device to lists
             self.DDS_name_list.append(name)
             self.DDS_device_list.append(getattr(self, hardware))
@@ -204,7 +222,26 @@ class base_experiment(EnvExperiment):
         for key in dir(self):
             if key.startswith('globals__'):
                 key2 = '.'.join(key.split('__'))
-                self.set_dataset(key2, getattr(self, key), broadcast=True, persist=True, archive=True)
+                value = getattr(self, key)
+                if isinstance(value, (bool, int, float, np.ndarray)):
+                    self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                elif isinstance(value, list):
+                    if isinstance(value[0], (bool, int, float, bytes)):
+                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                    elif isinstance(value[0], str):
+                        self.set_dataset(key2, [bytes(i, 'utf-8') for i in value], broadcast=True, persist=True, archive=True)
+                    else:
+                        print('attempting to store dataset with list of type:', type(value[0]))
+                        try:
+                            self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                        except:
+                            print('fail')
+                else:
+                    print('attempting to store dataset of type:', type(value))
+                    try:
+                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                    except:
+                        print('fail')
 
     def prepare(self):
         self.write_globals_to_datasets()

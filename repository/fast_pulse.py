@@ -10,12 +10,8 @@ import base_experiment
 class fast_pulse(base_experiment.base_experiment):
     kernel_invariants = {"t"}
 
-    def build(self):
-        self.setattr_device('core')
-        self.setattr_device('ttl8')
-
     def run(self):
-        self.t = 10*ns
+        self.t = 1*ms
         self.kernel_run()
 
     @kernel

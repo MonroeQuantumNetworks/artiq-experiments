@@ -16,6 +16,7 @@ git fetch upstream
 rm -rf ~/Documents/github/nix-scripts
 cd ~/Documents/github
 git clone --recursive https://git.m-labs.hk/m-labs/nix-scripts
+
 export NIX_PATH=~/.nix-defexpr/channels
 nix-channel --add https://nixbld.m-labs.hk/channel/custom/artiq/full/artiq-full
 nix-channel --remove nixpkgs

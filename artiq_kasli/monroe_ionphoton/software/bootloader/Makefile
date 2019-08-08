@@ -1,1 +1,1 @@
-/nix/store/p5ra81s730jlirxvsbwi88ln0i86gkn0-python3-3.7.4-env/lib/python3.7/site-packages/artiq/firmware/bootloader/Makefile
+/nix/store/qwrr0hdjg100f2nf2l76wgmr25rj68d7-python3-3.7.4-env/lib/python3.7/site-packages/artiq/firmware/bootloader/Makefile

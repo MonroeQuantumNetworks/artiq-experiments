@@ -3,7 +3,8 @@
 import numpy as np
 import PyQt5  # make sure pyqtgraph imports Qt5
 import pyqtgraph
-import datetime, time
+import datetime
+import time
 
 
 class DateAxisItem(pyqtgraph.AxisItem):
