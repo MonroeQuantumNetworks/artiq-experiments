@@ -23,6 +23,7 @@ class settings(base_experiment.base_experiment):
         self.load_globals_from_dataset()
         self.build_globals_arguments()
         self.build_common()
+        print('settings.py build() done')
 
     @kernel
     def DDS_setup(self, i):
@@ -40,7 +41,7 @@ class settings(base_experiment.base_experiment):
         sw = self.DDS_sw_list[i]
 
         # setup the channel
-        channel.init()
+        #channel.init()
 
         if not sw:
             channel.sw.off()
@@ -78,9 +79,9 @@ class settings(base_experiment.base_experiment):
 
         # DDS channels #
 
-        self.urukul0_cpld.init()
-        self.urukul1_cpld.init()
-        self.urukul2_cpld.init()
+        #self.urukul0_cpld.init()
+        #self.urukul1_cpld.init()
+        #self.urukul2_cpld.init()
 
         for i in range(len(self.DDS_device_list)):
             self.DDS_setup(i)

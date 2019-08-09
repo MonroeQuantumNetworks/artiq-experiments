@@ -1,7 +1,7 @@
 """This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
 
 from artiq.language.core import kernel, delay, at_mu, now_mu
-from artiq.experiment import TerminationRequested
+from artiq.experiment import NumberValue, TerminationRequested
 from artiq.language.units import s, ms, us, ns, MHz
 from artiq.coredevice.exceptions import RTIOOverflow
 import numpy as np
@@ -12,11 +12,12 @@ class idle_counters(base_experiment.base_experiment):
     def build(self):
 
         super().build()
-        self.setattr_device('scheduler')
+        self.setattr_argument('detection_time', NumberValue(100*ms, unit='ms', ndecimals=9, min=0, step=1.0))
+        print('idle_counters.py build() done')
 
     def run(self):
 
-        self.gate_t = self.core.seconds_to_mu(1*s)
+        self.gate_t = self.core.seconds_to_mu(self.detection_time)
 
         try:  # catch TerminationRequested
 
@@ -33,15 +34,34 @@ class idle_counters(base_experiment.base_experiment):
                 self.kernel_run()
 
                 # allow other experiments to preempt
+                self.core.comm.close()
+                print("idle_counters.py: pausing to allow pre-emption")
                 self.scheduler.pause()
+
 
         except TerminationRequested:
             print('Terminated gracefully')
 
     @kernel
+    def setup(self):
+        delay_mu(10000)
+        self.DDS__493__Alice__sigma_1.sw.on()
+        self.DDS__493__Alice__sigma_2.sw.on()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        self.DDS__493__Bob__sigma_2.sw.on()
+        self.DDS__650__sigma_1.sw.on()
+        self.DDS__650__sigma_2.sw.on()
+        self.DDS__650__Alice__pi.sw.on()
+        self.DDS__650__Bob__pi.sw.on()
+        self.DDS__650__fast_AOM.sw.on()
+        self.DDS__493__Alice__cooling.sw.on()
+        self.DDS__493__Bob__pi.sw.on()
+
+    @kernel
     def kernel_run(self):
 
         self.core.reset()
+        #self.setup()
 
         while not self.scheduler.check_pause():
 

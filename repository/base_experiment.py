@@ -65,6 +65,7 @@ class base_experiment(EnvExperiment):
 
         self.load_globals_from_dataset()
         self.build_common()
+        print('base_experiment.build() done for {}'.format(self.__class__))
 
     def load_globals_from_dataset(self):
 
@@ -90,7 +91,7 @@ class base_experiment(EnvExperiment):
                 print("Error in key:", key)
             traceback.print_exc()
 
-        print("Loaded {} globals.".format(i))
+        #print("Loaded {} globals.".format(i))
 
     def number_argument(self, arg, default, tooltip=None, **kwargs):
         """Create a new GUI entry for a NumberValue.
@@ -168,6 +169,7 @@ class base_experiment(EnvExperiment):
         # base functionality #
 
         self.setattr_device('core')
+        self.setattr_device('scheduler')
         self.setattr_device('led0')
         self.setattr_device('led1')
 
