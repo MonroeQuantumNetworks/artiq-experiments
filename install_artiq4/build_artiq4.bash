@@ -1,4 +1,5 @@
-nix-shell -I artiqSrc=/home/monroe/Documents/github/artiq-fork/artiq /home/monroe/Documents/github/nix-scripts/artiq-fast/shell-dev.nix
+# run this line first separately, the rest of the script needs to be run within the nix shell
+# nix-shell -I artiqSrc=/home/monroe/Documents/github/artiq-fork/artiq /home/monroe/Documents/github/nix-scripts/artiq-fast/shell-dev.nix
 
 # compile the firmware with Vivado
 cd ~/Documents/github/artiq-experiments

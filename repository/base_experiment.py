@@ -34,9 +34,9 @@ class base_experiment(EnvExperiment):
         ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
         ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
         ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
-        ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),  # not done
-        ('493__Bob__pi', 'urukul2_ch2', 75*MHz, 1.0, 10.0, True),  # not done
-        ('urukul2_ch3', 'urukul2_ch3', 10*MHz, 0.0, 31.5, False)  # unassigned
+        ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
+        ('532__tone_1', 'urukul2_ch2', 110*MHz, 0.5, 19.5, False),
+        ('532__tone_2', 'urukul2_ch3', 110*MHz, 0.5, 19.5, False)
     ]
 
     TTL_input_list = [

@@ -26,7 +26,7 @@ class Ba_detection_timescan_multiscan(base_experiment.base_experiment):
         self.setattr_argument('Raman_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
 
 
-        print('Ba_detection_multiscan.py build() done')
+        print('Raman_rotation.py build() done')
 
     @kernel
     def cool(self):
