@@ -86,7 +86,7 @@ class Ba_detection_Bob(base_experiment.base_experiment):
         self.DDS__650__sigma_2.sw.on()
         self.DDS__650__Bob__pi.sw.on()
         self.DDS__650__fast_AOM.sw.on()
-        self.DDS__493__Bob__pi.sw.off()
+        #self.DDS__493__Bob__pi.sw.off()
 
     @kernel
     def unsetup(self):
@@ -98,7 +98,7 @@ class Ba_detection_Bob(base_experiment.base_experiment):
         self.DDS__650__sigma_2.sw.on()
         self.DDS__650__Bob__pi.sw.on()
         self.DDS__650__fast_AOM.sw.on()
-        self.DDS__493__Bob__pi.sw.on()
+        #self.DDS__493__Bob__pi.sw.on()
 
     def run(self):
 

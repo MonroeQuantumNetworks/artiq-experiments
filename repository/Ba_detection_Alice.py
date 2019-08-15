@@ -31,7 +31,7 @@ class Ba_detection_Alice(base_experiment.base_experiment):
     @kernel
     def cool(self):
 
-        delay_mu(100000)
+        delay_mu(80000)
         self.DDS__493__Alice__sigma_1.sw.on()
         self.DDS__493__Alice__sigma_2.sw.on()
         #self.DDS__493__Alice__cooling.sw.on()
@@ -59,7 +59,7 @@ class Ba_detection_Alice(base_experiment.base_experiment):
         delay(self.detection_time)
         self.DDS__493__Alice__sigma_1.sw.off()
 
-        delay_mu(100000)
+        delay_mu(80000)
 
         return self.Alice_camera_side_APD.count(gate_end_mu)
 
@@ -72,7 +72,7 @@ class Ba_detection_Alice(base_experiment.base_experiment):
         delay(self.detection_time)
         self.DDS__493__Alice__sigma_2.sw.off()
 
-        delay_mu(100000)
+        delay_mu(80000)
 
         return self.Alice_camera_side_APD.count(gate_end_mu)
 

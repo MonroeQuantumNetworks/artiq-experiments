@@ -31,37 +31,24 @@ class idle_counters(base_experiment.base_experiment):
 
             while True:
 
+                self.setup()
+
                 self.kernel_run()
 
                 # allow other experiments to preempt
                 self.core.comm.close()
-                print("idle_counters.py: pausing to allow pre-emption")
+                print("idle_counters.py: pause")
                 self.scheduler.pause()
+                print("idle_counters.py: unpause")
 
 
         except TerminationRequested:
             print('Terminated gracefully')
 
     @kernel
-    def setup(self):
-        delay_mu(10000)
-        self.DDS__493__Alice__sigma_1.sw.on()
-        self.DDS__493__Alice__sigma_2.sw.on()
-        self.DDS__493__Bob__sigma_1.sw.on()
-        self.DDS__493__Bob__sigma_2.sw.on()
-        self.DDS__650__sigma_1.sw.on()
-        self.DDS__650__sigma_2.sw.on()
-        self.DDS__650__Alice__pi.sw.on()
-        self.DDS__650__Bob__pi.sw.on()
-        self.DDS__650__fast_AOM.sw.on()
-        self.DDS__493__Alice__cooling.sw.on()
-        self.DDS__493__Bob__pi.sw.on()
-
-    @kernel
     def kernel_run(self):
 
         self.core.reset()
-        #self.setup()
 
         while not self.scheduler.check_pause():
 

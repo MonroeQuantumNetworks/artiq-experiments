@@ -40,10 +40,10 @@ class base_experiment(EnvExperiment):
     ]
 
     TTL_input_list = [
-        ('HOM0', 'ttl0'),
-        ('HOM1', 'ttl1'),
-        ('HOM2', 'ttl2'),
-        ('HOM3', 'ttl3'),
+        #('HOM0', 'ttl0'),
+        #('HOM1', 'ttl1'),
+        #('HOM2', 'ttl2'),
+        #('HOM3', 'ttl3'),
         ('Alice_camera_side_APD', 'ttl4'),
         ('Bob_camera_side_APD', 'ttl5'),
         ('Alice_PMT', 'ttl6'),
@@ -219,31 +219,99 @@ class base_experiment(EnvExperiment):
             self.DDS_name_list.append(name)
             self.DDS_device_list.append(getattr(self, hardware))
 
-    def write_globals_to_datasets(self):
+    def write_globals_to_datasets(self, archive=False):
         # Write globals to datasets.  This will take care of things added both programatically and through arguments.
         for key in dir(self):
             if key.startswith('globals__'):
                 key2 = '.'.join(key.split('__'))
                 value = getattr(self, key)
                 if isinstance(value, (bool, int, float, np.ndarray)):
-                    self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                    self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
                 elif isinstance(value, list):
                     if isinstance(value[0], (bool, int, float, bytes)):
-                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
                     elif isinstance(value[0], str):
-                        self.set_dataset(key2, [bytes(i, 'utf-8') for i in value], broadcast=True, persist=True, archive=True)
+                        self.set_dataset(key2, [bytes(i, 'utf-8') for i in value], broadcast=True, persist=True, archive=archive)
                     else:
                         print('attempting to store dataset with list of type:', type(value[0]))
                         try:
-                            self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                            self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
                         except:
                             print('fail')
                 else:
                     print('attempting to store dataset of type:', type(value))
                     try:
-                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=True)
+                        self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
                     except:
                         print('fail')
+
+    @kernel
+    def DDS_setup(self, i):
+        """
+        Sets up one DDS channel based on passed in info
+        :param i:  The index for the matching lists of DDS info created during build().
+        :return:
+        """
+
+        delay_mu(10000)
+        # name = self.DDS_name_list[i]
+        channel = self.DDS_device_list[i]
+        freq = self.DDS_freq_list[i]
+        amp = self.DDS_amp_list[i]
+        att = self.DDS_att_list[i]
+        sw = self.DDS_sw_list[i]
+
+        if not sw:
+            channel.sw.off()
+
+
+        delay_mu(41000)
+        channel.set_att(att)
+        delay_mu(4000)
+
+        delay_mu(95000)
+        channel.set(freq, amplitude=amp)
+        delay_mu(6000)
+
+        delay_mu(10000)
+
+        if sw:
+            channel.sw.on()
+
+    def setup(self):
+
+        # Overwrite the globals again.  If any were changed in the GUI they were saved in prepare().
+        self.load_globals_from_dataset()
+
+        # Store a list of DDS values, which are harder to access on the kernel.
+        self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]
+        self.DDS_amp_list = [getattr(self, 'globals__DDS__' + name + '__amplitude') for name in self.DDS_name_list]
+        self.DDS_att_list = [getattr(self, 'globals__DDS__' + name + '__attenuation') for name in self.DDS_name_list]
+        self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]
+
+        # Store a list of TTL values, which are harder to access on the kernel.
+        self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
+        self.kernel_setup()
+
+    @kernel
+    def kernel_setup(self):
+
+        self.core.reset()
+
+        # DDS channels #
+
+        delay_mu(86000)
+        for i in range(len(self.DDS_device_list)):
+            self.DDS_setup(i)
+
+        # TTL outputs #
+
+        for i in range(self.globals__TTL_output__num_channels):
+            channel = self.TTL_output_channels[i]
+            if self.TTL_output_sw_list[i]:
+                channel.on()
+            else:
+                channel.off()
 
     def prepare(self):
         self.write_globals_to_datasets()
