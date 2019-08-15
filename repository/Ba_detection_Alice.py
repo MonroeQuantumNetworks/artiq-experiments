@@ -26,7 +26,7 @@ class Ba_detection_Alice(base_experiment.base_experiment):
         self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('DDS__493__Alice__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
-        print('Ba_detection_Alice.py build() done')
+        print('{}.build() done'.format(self.__class__))
 
     @kernel
     def cool(self):

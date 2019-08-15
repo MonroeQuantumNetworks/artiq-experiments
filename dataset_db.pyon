@@ -1,7 +1,7 @@
 {
     "Ba_detection_names": [b'pump1', b'pump2', b'detect1', b'detect2'],
-    "active_scan_names": [],
-    "detectors": nparray((4, ), "<i8", b'jwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlk8AAAAAAAA='),
+    "active_scan_names": [b'detection_time'],
+    "detectors": nparray((4, ), "<i8", b'30EAAAAAAABjkQAAAAAAAAAAAAAAAAAAAFMAAAAAAAA='),
     "globals.DDS.493.Alice.cooling.amplitude": 0.999,
     "globals.DDS.493.Alice.cooling.attenuation": 19.5,
     "globals.DDS.493.Alice.cooling.frequency": 80000000.0,

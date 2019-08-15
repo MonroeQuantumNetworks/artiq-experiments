@@ -1,8 +1,8 @@
  ## serial:0.rx
-set_property LOC N13 [get_ports serial_rx]
+set_property LOC M17 [get_ports serial_rx]
 set_property IOSTANDARD LVCMOS25 [get_ports serial_rx]
  ## serial:0.tx
-set_property LOC N17 [get_ports serial_tx]
+set_property LOC T16 [get_ports serial_tx]
 set_property IOSTANDARD LVCMOS25 [get_ports serial_tx]
  ## clk125_gtp:0.p
 set_property LOC F10 [get_ports clk125_gtp_p]
@@ -239,32 +239,29 @@ set_property LOC A4 [get_ports sfp_txn]
 set_property LOC B8 [get_ports sfp_rxp]
  ## sfp:0.rxn
 set_property LOC A8 [get_ports sfp_rxn]
- ## sfp_ctl:0.mod_def1
-set_property LOC U7 [get_ports sfp_ctl_mod_def1]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def1]
- ## sfp_ctl:0.mod_def2
-set_property LOC T3 [get_ports sfp_ctl_mod_def2]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def2]
  ## sfp_ctl:0.los
-set_property LOC P15 [get_ports sfp_ctl_los]
+set_property LOC N15 [get_ports sfp_ctl_los]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_los]
- ## sfp_ctl:0.mod_present
-set_property LOC U16 [get_ports sfp_ctl_mod_present]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present]
+ ## sfp_ctl:0.mod_present_n
+set_property LOC P16 [get_ports sfp_ctl_mod_present_n]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present_n]
  ## sfp_ctl:0.rate_select
-set_property LOC N15 [get_ports sfp_ctl_rate_select]
+set_property LOC R14 [get_ports sfp_ctl_rate_select]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select]
+ ## sfp_ctl:0.rate_select1
+set_property LOC P15 [get_ports sfp_ctl_rate_select1]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select1]
  ## sfp_ctl:0.tx_disable
-set_property LOC R14 [get_ports sfp_ctl_tx_disable]
+set_property LOC N14 [get_ports sfp_ctl_tx_disable]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_disable]
  ## sfp_ctl:0.tx_fault
-set_property LOC N14 [get_ports sfp_ctl_tx_fault]
+set_property LOC U7 [get_ports sfp_ctl_tx_fault]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_fault]
  ## sfp_ctl:0.led
-set_property LOC P16 [get_ports sfp_ctl_led]
+set_property LOC U16 [get_ports sfp_ctl_led]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_led]
  ## user_led:0
-set_property LOC T16 [get_ports user_led]
+set_property LOC N17 [get_ports user_led]
 set_property IOSTANDARD LVCMOS25 [get_ports user_led]
  ## i2c:0.scl
 set_property LOC J16 [get_ports i2c_scl]
@@ -272,9 +269,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports i2c_scl]
  ## i2c:0.sda
 set_property LOC F15 [get_ports i2c_sda]
 set_property IOSTANDARD LVCMOS25 [get_ports i2c_sda]
- ## clk_sel:0
-set_property LOC F21 [get_ports clk_sel]
-set_property IOSTANDARD LVCMOS25 [get_ports clk_sel]
  ## dio0:0.p
 set_property LOC R4 [get_ports dio0_p]
 set_property IOSTANDARD LVDS_25 [get_ports dio0_p]
@@ -587,21 +581,18 @@ set_property IOSTANDARD LVDS_25 [get_ports urukul6_sw3_p]
  ## urukul6_sw3:0.n
 set_property LOC E17 [get_ports urukul6_sw3_n]
 set_property IOSTANDARD LVDS_25 [get_ports urukul6_sw3_n]
- ## sfp_ctl:1.mod_def1
-set_property LOC P17 [get_ports sfp_ctl_mod_def1_1]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def1_1]
- ## sfp_ctl:1.mod_def2
-set_property LOC U18 [get_ports sfp_ctl_mod_def2_1]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def2_1]
  ## sfp_ctl:1.los
-set_property LOC R18 [get_ports sfp_ctl_los_1]
+set_property LOC T18 [get_ports sfp_ctl_los_1]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_los_1]
- ## sfp_ctl:1.mod_present
-set_property LOC W20 [get_ports sfp_ctl_mod_present_1]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present_1]
+ ## sfp_ctl:1.mod_present_n
+set_property LOC P17 [get_ports sfp_ctl_mod_present_n_1]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present_n_1]
  ## sfp_ctl:1.rate_select
-set_property LOC T18 [get_ports sfp_ctl_rate_select_1]
+set_property LOC U18 [get_ports sfp_ctl_rate_select_1]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select_1]
+ ## sfp_ctl:1.rate_select1
+set_property LOC R18 [get_ports sfp_ctl_rate_select1_1]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select1_1]
  ## sfp_ctl:1.tx_disable
 set_property LOC R17 [get_ports sfp_ctl_tx_disable_1]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_disable_1]
@@ -611,29 +602,26 @@ set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_fault_1]
  ## sfp_ctl:1.led
 set_property LOC R19 [get_ports sfp_ctl_led_1]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_led_1]
- ## sfp_ctl:2.mod_def1
-set_property LOC P14 [get_ports sfp_ctl_mod_def1_2]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def1_2]
- ## sfp_ctl:2.mod_def2
-set_property LOC P20 [get_ports sfp_ctl_mod_def2_2]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_def2_2]
  ## sfp_ctl:2.los
-set_property LOC V22 [get_ports sfp_ctl_los_2]
+set_property LOC R16 [get_ports sfp_ctl_los_2]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_los_2]
- ## sfp_ctl:2.mod_present
-set_property LOC T21 [get_ports sfp_ctl_mod_present_2]
-set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present_2]
+ ## sfp_ctl:2.mod_present_n
+set_property LOC T20 [get_ports sfp_ctl_mod_present_n_2]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_mod_present_n_2]
  ## sfp_ctl:2.rate_select
-set_property LOC T20 [get_ports sfp_ctl_rate_select_2]
+set_property LOC P14 [get_ports sfp_ctl_rate_select_2]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select_2]
+ ## sfp_ctl:2.rate_select1
+set_property LOC U21 [get_ports sfp_ctl_rate_select1_2]
+set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_rate_select1_2]
  ## sfp_ctl:2.tx_disable
-set_property LOC U21 [get_ports sfp_ctl_tx_disable_2]
+set_property LOC P20 [get_ports sfp_ctl_tx_disable_2]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_disable_2]
  ## sfp_ctl:2.tx_fault
-set_property LOC R16 [get_ports sfp_ctl_tx_fault_2]
+set_property LOC P19 [get_ports sfp_ctl_tx_fault_2]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_tx_fault_2]
  ## sfp_ctl:2.led
-set_property LOC P19 [get_ports sfp_ctl_led_2]
+set_property LOC W20 [get_ports sfp_ctl_led_2]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_led_2]
  ## si5324_clkout_fabric:0.p
 set_property LOC Y18 [get_ports si5324_clkout_fabric_p]
@@ -650,19 +638,19 @@ create_clock -name sys_clk -period 8.827586206896552 [get_nets sys_clk]
 
 create_clock -name clk125_gtp_p -period 8.0 [get_nets clk125_gtp_p]
 
-create_clock -name monroe_ionphoton_monroe_ionphoton_txoutclk -period 16.0 [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]
+create_clock -name main_genericstandalone_txoutclk -period 16.0 [get_nets main_genericstandalone_txoutclk]
 
-create_clock -name monroe_ionphoton_monroe_ionphoton_rxoutclk -period 16.0 [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]
+create_clock -name main_genericstandalone_rxoutclk -period 16.0 [get_nets main_genericstandalone_rxoutclk]
 
 create_clock -name si5324_clkout_fabric_p -period 8.0 [get_nets si5324_clkout_fabric_p]
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets main_genericstandalone_txoutclk]] -asynchronous
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets main_genericstandalone_rxoutclk]] -asynchronous
 
 set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets sys_clk]] -group [get_clocks -include_generated_clocks -of [get_nets rtio_clk]] -asynchronous
 
-set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_txoutclk]] -group [get_clocks -include_generated_clocks -of [get_nets monroe_ionphoton_monroe_ionphoton_rxoutclk]] -asynchronous
+set_clock_groups -group [get_clocks -include_generated_clocks -of [get_nets main_genericstandalone_txoutclk]] -group [get_clocks -include_generated_clocks -of [get_nets main_genericstandalone_rxoutclk]] -asynchronous
 
 set_false_path -quiet -to [get_nets -filter {mr_ff == TRUE}]
 

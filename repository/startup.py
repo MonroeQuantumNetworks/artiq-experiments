@@ -18,12 +18,13 @@ import settings
 class startup(settings.settings):
 
     def build(self):
+        # This appears the same as base_experiment.build(), but we write it again to override settings.build()
         self.load_globals_from_dataset()
         self.build_common()
         print('startup.py build() done')
 
     def run(self):
-
+        # Overrides settings.run(), not base_experiment.run()
         self.startup_kernel()
         super().run()
 

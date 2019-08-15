@@ -51,7 +51,7 @@ class plot_separate_scrolling_xy(pyqtgraph.GraphicsLayoutWidget):
                 if i > 0:
                     self.plots[i].setXLink(self.plots[0])
                 # create the elements of each plot widget
-                self.lines += [self.plots[i].plot(pen=i, symbol='o', symbolPen=('w'))]
+                self.lines += [self.plots[i].plot(pen=i, symbol=None)]  # symbol='o', symbolPen=('w'))]
                 # add text readout
                 self.name_labels += [self.addLabel(self.channel_names[i], color='w', size='20pt')]
                 self.nextRow()

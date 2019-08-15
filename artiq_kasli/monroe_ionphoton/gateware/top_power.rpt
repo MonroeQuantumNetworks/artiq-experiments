@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date             : Wed Aug 14 20:00:25 2019
+| Date             : Thu Aug 15 08:02:33 2019
 | Host             : Batcomputer running 64-bit unknown
 | Command          : report_power -file top_power.rpt
 | Design           : top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.402        |
+| Total On-Chip Power (W)  | 2.421        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.288        |
+| Dynamic (W)              | 2.307        |
 | Device Static (W)        | 0.114        |
 | Effective TJA (C/W)      | 2.7          |
-| Max Ambient (C)          | 78.6         |
-| Junction Temperature (C) | 31.4         |
+| Max Ambient (C)          | 78.5         |
+| Junction Temperature (C) | 31.5         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,25 +52,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.102 |       23 |       --- |             --- |
-| Slice Logic              |     0.054 |    40295 |       --- |             --- |
-|   LUT as Logic           |     0.049 |    19787 |     63400 |           31.21 |
-|   Register               |     0.002 |    14739 |    126800 |           11.62 |
+| Clocks                   |     0.104 |       23 |       --- |             --- |
+| Slice Logic              |     0.061 |    40305 |       --- |             --- |
+|   LUT as Logic           |     0.055 |    19796 |     63400 |           31.22 |
+|   Register               |     0.002 |    14749 |    126800 |           11.63 |
 |   LUT as Distributed RAM |     0.002 |      356 |     19000 |            1.87 |
 |   CARRY4                 |     0.002 |      582 |     15850 |            3.67 |
 |   F7/F8 Muxes            |    <0.001 |      521 |     63400 |            0.82 |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
 |   Others                 |     0.000 |       83 |       --- |             --- |
-|   LUT as Shift Register  |     0.000 |       53 |     19000 |            0.28 |
-| Signals                  |     0.096 |    34462 |       --- |             --- |
-| Block RAM                |     0.196 |       87 |       135 |           64.44 |
+|   LUT as Shift Register  |     0.000 |       52 |     19000 |            0.27 |
+| Signals                  |     0.105 |    34480 |       --- |             --- |
+| Block RAM                |     0.194 |       87 |       135 |           64.44 |
 | MMCM                     |     0.224 |        3 |         6 |           50.00 |
 | PLL                      |     0.161 |        2 |         6 |           33.33 |
 | DSPs                     |     0.006 |        6 |       240 |            2.50 |
-| I/O                      |     1.341 |      171 |       285 |           60.00 |
+| I/O                      |     1.344 |      170 |       285 |           59.65 |
 | GTP                      |     0.107 |        1 |       --- |             --- |
 | Static Power             |     0.114 |          |           |                 |
-| Total                    |     2.402 |          |           |                 |
+| Total                    |     2.421 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -80,8 +80,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.514 |       0.492 |      0.022 |
-| Vccaux    |       1.800 |     0.288 |       0.270 |      0.018 |
+| Vccint    |       1.000 |     0.530 |       0.509 |      0.022 |
+| Vccaux    |       1.800 |     0.289 |       0.271 |      0.018 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.440 |       0.436 |      0.004 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -133,31 +133,31 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| Clock                                                             | Domain                                                            | Constraint (ns) |
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| clk125_gtp_p                                                      | clk125_gtp_p                                                      |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               | monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf               |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    | monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                    |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               | monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf               |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    | monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                    |             8.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2    | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2    |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb        | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb        |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys       | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys       |             8.8 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x     |             2.2 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs |             2.2 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200     |             5.0 |
-| monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb         | monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb         |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                      | monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                      |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_rxoutclk                        | monroe_ionphoton_monroe_ionphoton_rxoutclk                        |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                      | monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                      |            16.0 |
-| monroe_ionphoton_monroe_ionphoton_txoutclk                        | monroe_ionphoton_monroe_ionphoton_txoutclk                        |            16.0 |
-| monroe_ionphoton_rtio_crg_fb_clk                                  | monroe_ionphoton_rtio_crg_fb_clk                                  |             8.0 |
-| monroe_ionphoton_rtio_crg_rtio_clk                                | monroe_ionphoton_rtio_crg_rtio_clk                                |             8.0 |
-| monroe_ionphoton_rtio_crg_rtiox4_clk                              | monroe_ionphoton_rtio_crg_rtiox4_clk                              |             2.0 |
-| si5324_clkout_fabric_p                                            | si5324_clkout_fabric_p                                            |             8.0 |
-| sys_clk                                                           | sys_clk                                                           |             8.8 |
-+-------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
+| Clock                                                   | Domain                                                  | Constraint (ns) |
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
+| clk125_gtp_p                                            | clk125_gtp_p                                            |             8.0 |
+| main_genericstandalone_clk_rx_half_unbuf                | main_genericstandalone_clk_rx_half_unbuf                |            16.0 |
+| main_genericstandalone_clk_rx_unbuf                     | main_genericstandalone_clk_rx_unbuf                     |             8.0 |
+| main_genericstandalone_clk_tx_half_unbuf                | main_genericstandalone_clk_tx_half_unbuf                |            16.0 |
+| main_genericstandalone_clk_tx_unbuf                     | main_genericstandalone_clk_tx_unbuf                     |             8.0 |
+| main_genericstandalone_genericstandalone_clk125_div2    | main_genericstandalone_genericstandalone_clk125_div2    |            16.0 |
+| main_genericstandalone_genericstandalone_mmcm_fb        | main_genericstandalone_genericstandalone_mmcm_fb        |            16.0 |
+| main_genericstandalone_genericstandalone_mmcm_sys       | main_genericstandalone_genericstandalone_mmcm_sys       |             8.8 |
+| main_genericstandalone_genericstandalone_mmcm_sys4x     | main_genericstandalone_genericstandalone_mmcm_sys4x     |             2.2 |
+| main_genericstandalone_genericstandalone_mmcm_sys4x_dqs | main_genericstandalone_genericstandalone_mmcm_sys4x_dqs |             2.2 |
+| main_genericstandalone_genericstandalone_pll_clk200     | main_genericstandalone_genericstandalone_pll_clk200     |             5.0 |
+| main_genericstandalone_genericstandalone_pll_fb         | main_genericstandalone_genericstandalone_pll_fb         |            16.0 |
+| main_genericstandalone_rx_mmcm_fb                       | main_genericstandalone_rx_mmcm_fb                       |            16.0 |
+| main_genericstandalone_rxoutclk                         | main_genericstandalone_rxoutclk                         |            16.0 |
+| main_genericstandalone_tx_mmcm_fb                       | main_genericstandalone_tx_mmcm_fb                       |            16.0 |
+| main_genericstandalone_txoutclk                         | main_genericstandalone_txoutclk                         |            16.0 |
+| main_rtio_crg_fb_clk                                    | main_rtio_crg_fb_clk                                    |             8.0 |
+| main_rtio_crg_rtio_clk                                  | main_rtio_crg_rtio_clk                                  |             8.0 |
+| main_rtio_crg_rtiox4_clk                                | main_rtio_crg_rtiox4_clk                                |             2.0 |
+| si5324_clkout_fabric_p                                  | si5324_clkout_fabric_p                                  |             8.0 |
+| sys_clk                                                 | sys_clk                                                 |             8.8 |
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -169,7 +169,7 @@ Table of Contents
 +-----------------------------+-----------+
 | Name                        | Power (W) |
 +-----------------------------+-----------+
-| top                         |     2.288 |
+| top                         |     2.307 |
 |   IOBUF                     |     0.005 |
 |   IOBUFDS                   |     0.003 |
 |   IOBUFDS_1                 |     0.002 |
@@ -220,13 +220,13 @@ Table of Contents
 |   IOBUF_10                  |     0.005 |
 |   IOBUF_11                  |     0.005 |
 |   IOBUF_12                  |     0.006 |
-|   IOBUF_13                  |     0.005 |
+|   IOBUF_13                  |     0.006 |
 |   IOBUF_14                  |     0.005 |
 |   IOBUF_15                  |     0.005 |
 |   IOBUF_2                   |     0.005 |
 |   IOBUF_3                   |     0.005 |
 |   IOBUF_4                   |     0.006 |
-|   IOBUF_5                   |     0.005 |
+|   IOBUF_5                   |     0.006 |
 |   IOBUF_6                   |     0.005 |
 |   IOBUF_7                   |     0.005 |
 |   IOBUF_8                   |     0.005 |
@@ -234,12 +234,12 @@ Table of Contents
 |   OBUFDS                    |     0.002 |
 |   OBUFTDS                   |     0.002 |
 |   OBUFTDS_1                 |     0.002 |
-|   mor1kx                    |     0.053 |
-|     mor1kx_cpu              |     0.053 |
-|       cappuccino.mor1kx_cpu |     0.053 |
-|   mor1kx_1                  |     0.055 |
-|     mor1kx_cpu              |     0.055 |
-|       cappuccino.mor1kx_cpu |     0.055 |
+|   mor1kx                    |     0.052 |
+|     mor1kx_cpu              |     0.052 |
+|       cappuccino.mor1kx_cpu |     0.052 |
+|   mor1kx_1                  |     0.054 |
+|     mor1kx_cpu              |     0.054 |
+|       cappuccino.mor1kx_cpu |     0.054 |
 +-----------------------------+-----------+
 
 

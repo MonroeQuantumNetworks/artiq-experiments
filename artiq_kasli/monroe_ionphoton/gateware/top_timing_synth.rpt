@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Wed Aug 14 19:57:58 2019
+| Date         : Thu Aug 15 07:59:53 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_timing_summary -file top_timing_synth.rpt
 | Design       : top
@@ -138,29 +138,29 @@ Timing constraints are not met.
 | -------------
 ------------------------------------------------------------------------------------------------
 
-Clock                                                                  Waveform(ns)         Period(ns)      Frequency(MHz)
------                                                                  ------------         ----------      --------------
-clk125_gtp_p                                                           {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2       {0.000 8.000}        16.000          62.500          
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb         {0.000 8.000}        16.000          62.500          
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys        {0.000 4.414}        8.828           113.281         
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x      {0.000 1.103}        2.207           453.125         
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs  {0.552 1.655}        2.207           453.125         
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200      {0.000 2.500}        5.000           200.000         
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb          {0.000 8.000}        16.000          62.500          
-monroe_ionphoton_monroe_ionphoton_rxoutclk                             {0.000 8.000}        16.000          62.500          
-  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf                  {0.000 8.000}        16.000          62.500          
-  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                       {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                         {0.000 8.000}        16.000          62.500          
-monroe_ionphoton_monroe_ionphoton_txoutclk                             {0.000 8.000}        16.000          62.500          
-  monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf                  {0.000 8.000}        16.000          62.500          
-  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                       {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                         {0.000 8.000}        16.000          62.500          
-si5324_clkout_fabric_p                                                 {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_rtio_crg_fb_clk                                     {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_rtio_crg_rtio_clk                                   {0.000 4.000}        8.000           125.000         
-  monroe_ionphoton_rtio_crg_rtiox4_clk                                 {0.000 1.000}        2.000           500.000         
-sys_clk                                                                {0.000 4.414}        8.828           113.276         
+Clock                                                        Waveform(ns)         Period(ns)      Frequency(MHz)
+-----                                                        ------------         ----------      --------------
+clk125_gtp_p                                                 {0.000 4.000}        8.000           125.000         
+  main_genericstandalone_genericstandalone_clk125_div2       {0.000 8.000}        16.000          62.500          
+    main_genericstandalone_genericstandalone_mmcm_fb         {0.000 8.000}        16.000          62.500          
+    main_genericstandalone_genericstandalone_mmcm_sys        {0.000 4.414}        8.828           113.281         
+    main_genericstandalone_genericstandalone_mmcm_sys4x      {0.000 1.103}        2.207           453.125         
+    main_genericstandalone_genericstandalone_mmcm_sys4x_dqs  {0.552 1.655}        2.207           453.125         
+    main_genericstandalone_genericstandalone_pll_clk200      {0.000 2.500}        5.000           200.000         
+    main_genericstandalone_genericstandalone_pll_fb          {0.000 8.000}        16.000          62.500          
+main_genericstandalone_rxoutclk                              {0.000 8.000}        16.000          62.500          
+  main_genericstandalone_clk_rx_half_unbuf                   {0.000 8.000}        16.000          62.500          
+  main_genericstandalone_clk_rx_unbuf                        {0.000 4.000}        8.000           125.000         
+  main_genericstandalone_rx_mmcm_fb                          {0.000 8.000}        16.000          62.500          
+main_genericstandalone_txoutclk                              {0.000 8.000}        16.000          62.500          
+  main_genericstandalone_clk_tx_half_unbuf                   {0.000 8.000}        16.000          62.500          
+  main_genericstandalone_clk_tx_unbuf                        {0.000 4.000}        8.000           125.000         
+  main_genericstandalone_tx_mmcm_fb                          {0.000 8.000}        16.000          62.500          
+si5324_clkout_fabric_p                                       {0.000 4.000}        8.000           125.000         
+  main_rtio_crg_fb_clk                                       {0.000 4.000}        8.000           125.000         
+  main_rtio_crg_rtio_clk                                     {0.000 4.000}        8.000           125.000         
+  main_rtio_crg_rtiox4_clk                                   {0.000 1.000}        2.000           500.000         
+sys_clk                                                      {0.000 4.414}        8.828           113.276         
 
 
 ------------------------------------------------------------------------------------------------
@@ -168,29 +168,29 @@ sys_clk                                                                {0.000 4.
 | -----------------
 ------------------------------------------------------------------------------------------------
 
-Clock                                                                      WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
------                                                                      -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk125_gtp_p                                                                                                                                                                                                             6.462        0.000                       0                     2  
-  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2                                                                                                                                                         5.000        0.000                       0                     2  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb                                                                                                                                                          14.751        0.000                       0                     2  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys                                                                                                                                                          7.235        0.000                       0                     2  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x                                                                                                                                                        0.614        0.000                       0                    77  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs                                                                                                                                                    0.614        0.000                       0                     4  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200            2.964        0.000                      0                   13        0.132        0.000                      0                   13        0.264        0.000                       0                    10  
-    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb                                                                                                                                                           14.751        0.000                       0                     2  
-monroe_ionphoton_monroe_ionphoton_rxoutclk                                                                                                                                                                               5.000        0.000                       0                     3  
-  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf                                                                                                                                                                    7.500        0.000                       0                     5  
-  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                             3.889        0.000                      0                  606        0.037        0.000                      0                  606        2.870        0.000                       0                   220  
-  monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb                                                                                                                                                                          14.751        0.000                       0                     2  
-monroe_ionphoton_monroe_ionphoton_txoutclk                                                                                                                                                                               5.000        0.000                       0                     3  
-  monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf                       14.158        0.000                      0                   20        0.269        0.000                      0                   20        7.500        0.000                       0                    24  
-  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                             1.876        0.000                      0                  442        0.037        0.000                      0                  442        3.500        0.000                       0                   208  
-  monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb                                                                                                                                                                          14.751        0.000                       0                     2  
-si5324_clkout_fabric_p                                                                                                                                                                                                   2.000        0.000                       0                     1  
-  monroe_ionphoton_rtio_crg_fb_clk                                                                                                                                                                                       6.751        0.000                       0                     2  
-  monroe_ionphoton_rtio_crg_rtio_clk                                         2.077        0.000                      0                 7723       -0.183       -5.671                     31                 7723        2.870        0.000                       0                  5427  
-  monroe_ionphoton_rtio_crg_rtiox4_clk                                                                                                                                                                                   0.408        0.000                       0                    49  
-sys_clk                                                                      1.223        0.000                      0                28119        0.035        0.000                      0                28119        3.114        0.000                       0                  9710  
+Clock                                                            WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----                                                            -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk125_gtp_p                                                                                                                                                                                                   6.462        0.000                       0                     2  
+  main_genericstandalone_genericstandalone_clk125_div2                                                                                                                                                         5.000        0.000                       0                     2  
+    main_genericstandalone_genericstandalone_mmcm_fb                                                                                                                                                          14.751        0.000                       0                     2  
+    main_genericstandalone_genericstandalone_mmcm_sys                                                                                                                                                          7.235        0.000                       0                     2  
+    main_genericstandalone_genericstandalone_mmcm_sys4x                                                                                                                                                        0.614        0.000                       0                    77  
+    main_genericstandalone_genericstandalone_mmcm_sys4x_dqs                                                                                                                                                    0.614        0.000                       0                     4  
+    main_genericstandalone_genericstandalone_pll_clk200            2.964        0.000                      0                   13        0.132        0.000                      0                   13        0.264        0.000                       0                    10  
+    main_genericstandalone_genericstandalone_pll_fb                                                                                                                                                           14.751        0.000                       0                     2  
+main_genericstandalone_rxoutclk                                                                                                                                                                                5.000        0.000                       0                     3  
+  main_genericstandalone_clk_rx_half_unbuf                                                                                                                                                                     7.500        0.000                       0                     5  
+  main_genericstandalone_clk_rx_unbuf                              3.889        0.000                      0                  606        0.037        0.000                      0                  606        2.870        0.000                       0                   220  
+  main_genericstandalone_rx_mmcm_fb                                                                                                                                                                           14.751        0.000                       0                     2  
+main_genericstandalone_txoutclk                                                                                                                                                                                5.000        0.000                       0                     3  
+  main_genericstandalone_clk_tx_half_unbuf                        14.158        0.000                      0                   20        0.269        0.000                      0                   20        7.500        0.000                       0                    24  
+  main_genericstandalone_clk_tx_unbuf                              1.876        0.000                      0                  442        0.037        0.000                      0                  442        3.500        0.000                       0                   208  
+  main_genericstandalone_tx_mmcm_fb                                                                                                                                                                           14.751        0.000                       0                     2  
+si5324_clkout_fabric_p                                                                                                                                                                                         2.000        0.000                       0                     1  
+  main_rtio_crg_fb_clk                                                                                                                                                                                         6.751        0.000                       0                     2  
+  main_rtio_crg_rtio_clk                                           2.077        0.000                      0                 7723       -0.183       -5.671                     31                 7723        2.870        0.000                       0                  5427  
+  main_rtio_crg_rtiox4_clk                                                                                                                                                                                     0.408        0.000                       0                    49  
+sys_clk                                                            1.223        0.000                      0                28119        0.035        0.000                      0                28119        3.114        0.000                       0                  9710  
 
 
 ------------------------------------------------------------------------------------------------
@@ -198,16 +198,16 @@ sys_clk                                                                      1.2
 | -----------------
 ------------------------------------------------------------------------------------------------
 
-From Clock                                                     To Clock                                                           WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
-----------                                                     --------                                                           -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
-                                                               monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200        2.807        0.000                      0                    1                                                                        
-monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                 monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf                  6.846        0.000                      0                    1       -0.114       -0.114                      1                    1  
-                                                               monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                       2.711        0.000                      0                    1                                                                        
-monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf            monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf                       5.877        0.000                      0                   10        0.213        0.000                      0                   10  
-monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                 monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf                  6.738        0.000                      0                   20       -0.286       -5.659                     20                   20  
-                                                               monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf                       2.285        0.000                      0                    1                                                                        
-                                                               monroe_ionphoton_rtio_crg_rtio_clk                                   2.884        0.000                      0                    3                                                                        
-                                                               sys_clk                                                              1.928        0.000                      0                    1                                                                        
+From Clock                                           To Clock                                                 WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------                                           --------                                                 -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+                                                     main_genericstandalone_genericstandalone_pll_clk200        2.807        0.000                      0                    1                                                                        
+main_genericstandalone_clk_rx_unbuf                  main_genericstandalone_clk_rx_half_unbuf                   6.846        0.000                      0                    1       -0.114       -0.114                      1                    1  
+                                                     main_genericstandalone_clk_rx_unbuf                        2.711        0.000                      0                    1                                                                        
+main_genericstandalone_clk_rx_half_unbuf             main_genericstandalone_clk_rx_unbuf                        5.877        0.000                      0                   10        0.213        0.000                      0                   10  
+main_genericstandalone_clk_tx_unbuf                  main_genericstandalone_clk_tx_half_unbuf                   6.738        0.000                      0                   20       -0.286       -5.659                     20                   20  
+                                                     main_genericstandalone_clk_tx_unbuf                        2.285        0.000                      0                    1                                                                        
+                                                     main_rtio_crg_rtio_clk                                     2.884        0.000                      0                    3                                                                        
+                                                     sys_clk                                                    1.928        0.000                      0                    1                                                                        
 
 
 ------------------------------------------------------------------------------------------------
@@ -248,8 +248,8 @@ Min Period  n/a     GTPE2_COMMON/GTREFCLK0  n/a            1.538         8.000  
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+From Clock:  main_genericstandalone_genericstandalone_clk125_div2
+  To Clock:  main_genericstandalone_genericstandalone_clk125_div2
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -259,7 +259,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        5.000ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+Clock Name:         main_genericstandalone_genericstandalone_clk125_div2
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { IBUFDS_GTE2/ODIV2 }
@@ -273,8 +273,8 @@ High Pulse Width  Slow    MMCME2_ADV/CLKIN1  n/a            3.000         8.000 
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb
+From Clock:  main_genericstandalone_genericstandalone_mmcm_fb
+  To Clock:  main_genericstandalone_genericstandalone_mmcm_fb
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -284,7 +284,7 @@ PW    :            0  Failing Endpoints,  Worst Slack       14.751ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_fb
+Clock Name:         main_genericstandalone_genericstandalone_mmcm_fb
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { MMCME2_BASE/CLKFBOUT }
@@ -296,8 +296,8 @@ Max Period  n/a     MMCME2_ADV/CLKFBIN   n/a            100.000       16.000    
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys
+From Clock:  main_genericstandalone_genericstandalone_mmcm_sys
+  To Clock:  main_genericstandalone_genericstandalone_mmcm_sys
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -307,7 +307,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        7.235ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys
+Clock Name:         main_genericstandalone_genericstandalone_mmcm_sys
 Waveform(ns):       { 0.000 4.414 }
 Period(ns):         8.828
 Sources:            { MMCME2_BASE/CLKOUT0 }
@@ -319,8 +319,8 @@ Max Period  n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       8.828      
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x
+From Clock:  main_genericstandalone_genericstandalone_mmcm_sys4x
+  To Clock:  main_genericstandalone_genericstandalone_mmcm_sys4x
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -330,7 +330,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        0.614ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x
+Clock Name:         main_genericstandalone_genericstandalone_mmcm_sys4x
 Waveform(ns):       { 0.000 1.103 }
 Period(ns):         2.207
 Sources:            { MMCME2_BASE/CLKOUT1 }
@@ -342,8 +342,8 @@ Max Period  n/a     MMCME2_ADV/CLKOUT1  n/a            213.360       2.207      
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs
+From Clock:  main_genericstandalone_genericstandalone_mmcm_sys4x_dqs
+  To Clock:  main_genericstandalone_genericstandalone_mmcm_sys4x_dqs
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -353,7 +353,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        0.614ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_mmcm_sys4x_dqs
+Clock Name:         main_genericstandalone_genericstandalone_mmcm_sys4x_dqs
 Waveform(ns):       { 0.552 1.655 }
 Period(ns):         2.207
 Sources:            { MMCME2_BASE/CLKOUT2 }
@@ -365,8 +365,8 @@ Max Period  n/a     MMCME2_ADV/CLKOUT2  n/a            213.360       2.207      
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+From Clock:  main_genericstandalone_genericstandalone_pll_clk200
+  To Clock:  main_genericstandalone_genericstandalone_pll_clk200
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.964ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.132ns,  Total Violation        0.000ns
@@ -377,13 +377,13 @@ PW    :            0  Failing Endpoints,  Worst Slack        0.264ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             2.964ns  (required time - arrival time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/C
-                            (rising edge-triggered cell FDSE clocked by monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/CE
-                            (rising edge-triggered cell FDSE clocked by monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+  Source:                 main_genericstandalone_genericstandalone_reset_counter_reg[0]/C
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_genericstandalone_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            main_genericstandalone_genericstandalone_reset_counter_reg[0]/CE
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_genericstandalone_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             main_genericstandalone_genericstandalone_pll_clk200
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            5.000ns  (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise@5.000ns - monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise@0.000ns)
+  Requirement:            5.000ns  (main_genericstandalone_genericstandalone_pll_clk200 rise@5.000ns - main_genericstandalone_genericstandalone_pll_clk200 rise@0.000ns)
   Data Path Delay:        1.676ns  (logic 0.629ns (37.530%)  route 1.047ns (62.470%))
   Logic Levels:           1  (LUT4=1)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
@@ -397,7 +397,7 @@ Slack (MET) :             2.964ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise edge)
+                         (clock main_genericstandalone_genericstandalone_pll_clk200 rise edge)
                                                       0.000     0.000 r  
     F10                                               0.000     0.000 r  clk125_gtp_p (IN)
                          net (fo=0)                   0.000     0.000    clk125_gtp_p
@@ -405,22 +405,22 @@ Slack (MET) :             2.964ns  (required time - arrival time)
                          net (fo=1, estimated)        0.000     0.000    clk125_gtp_p_IBUF
     IBUFDS_GTE2_X0Y3     IBUFDS_GTE2 (Prop_ibufds_gte2_I_ODIV2)
                                                       2.355     2.355 r  IBUFDS_GTE2/ODIV2
-                         net (fo=2, unplaced)         0.584     2.939    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+                         net (fo=2, unplaced)         0.584     2.939    main_genericstandalone_genericstandalone_clk125_div2
                          PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
                                                       0.077     3.016 r  PLLE2_BASE/CLKOUT0
-                         net (fo=1, unplaced)         0.647     3.663    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                         net (fo=1, unplaced)         0.647     3.663    main_genericstandalone_genericstandalone_pll_clk200
                          BUFG (Prop_bufg_I_O)         0.081     3.744 r  BUFG_3/O
                          net (fo=8, unplaced)         0.584     4.328    clk200_clk
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/C
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDSE (Prop_fdse_C_Q)         0.397     4.725 r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/Q
-                         net (fo=6, unplaced)         0.657     5.382    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[0]
-                         LUT4 (Prop_lut4_I1_O)        0.232     5.614 r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[3]_i_1/O
-                         net (fo=4, unplaced)         0.390     6.004    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[3]_i_1_n_0
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/CE
+                         FDSE (Prop_fdse_C_Q)         0.397     4.725 r  main_genericstandalone_genericstandalone_reset_counter_reg[0]/Q
+                         net (fo=6, unplaced)         0.657     5.382    main_genericstandalone_genericstandalone_reset_counter[0]
+                         LUT4 (Prop_lut4_I1_O)        0.232     5.614 r  main_genericstandalone_genericstandalone_reset_counter[3]_i_1/O
+                         net (fo=4, unplaced)         0.390     6.004    main_genericstandalone_genericstandalone_reset_counter[3]_i_1_n_0
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise edge)
+                         (clock main_genericstandalone_genericstandalone_pll_clk200 rise edge)
                                                       5.000     5.000 r  
     F10                                               0.000     5.000 r  clk125_gtp_p (IN)
                          net (fo=0)                   0.000     5.000    clk125_gtp_p
@@ -428,16 +428,16 @@ Slack (MET) :             2.964ns  (required time - arrival time)
                          net (fo=1, estimated)        0.000     5.000    clk125_gtp_p_IBUF
     IBUFDS_GTE2_X0Y3     IBUFDS_GTE2 (Prop_ibufds_gte2_I_ODIV2)
                                                       1.418     6.418 r  IBUFDS_GTE2/ODIV2
-                         net (fo=2, unplaced)         0.439     6.857    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+                         net (fo=2, unplaced)         0.439     6.857    main_genericstandalone_genericstandalone_clk125_div2
                          PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
                                                       0.073     6.930 r  PLLE2_BASE/CLKOUT0
-                         net (fo=1, unplaced)         0.615     7.545    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                         net (fo=1, unplaced)         0.615     7.545    main_genericstandalone_genericstandalone_pll_clk200
                          BUFG (Prop_bufg_I_O)         0.077     7.622 r  BUFG_3/O
                          net (fo=8, unplaced)         0.439     8.061    clk200_clk
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]/C
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[0]/C
                          clock pessimism              1.122     9.183    
                          clock uncertainty           -0.050     9.133    
-                         FDSE (Setup_fdse_C_CE)      -0.165     8.968    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[0]
+                         FDSE (Setup_fdse_C_CE)      -0.165     8.968    main_genericstandalone_genericstandalone_reset_counter_reg[0]
   -------------------------------------------------------------------
                          required time                          8.968    
                          arrival time                          -6.004    
@@ -451,13 +451,13 @@ Slack (MET) :             2.964ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.132ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/C
-                            (rising edge-triggered cell FDSE clocked by monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/D
-                            (rising edge-triggered cell FDSE clocked by monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+  Source:                 main_genericstandalone_genericstandalone_reset_counter_reg[2]/C
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_genericstandalone_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            main_genericstandalone_genericstandalone_reset_counter_reg[2]/D
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_genericstandalone_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             main_genericstandalone_genericstandalone_pll_clk200
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise@0.000ns - monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_genericstandalone_pll_clk200 rise@0.000ns - main_genericstandalone_genericstandalone_pll_clk200 rise@0.000ns)
   Data Path Delay:        0.376ns  (logic 0.245ns (65.174%)  route 0.131ns (34.826%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.145ns (DCD - SCD - CPR)
@@ -467,7 +467,7 @@ Slack (MET) :             0.132ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise edge)
+                         (clock main_genericstandalone_genericstandalone_pll_clk200 rise edge)
                                                       0.000     0.000 r  
     F10                                               0.000     0.000 r  clk125_gtp_p (IN)
                          net (fo=0)                   0.000     0.000    clk125_gtp_p
@@ -475,22 +475,22 @@ Slack (MET) :             0.132ns  (arrival time - required time)
                          net (fo=1, estimated)        0.000     0.000    clk125_gtp_p_IBUF
     IBUFDS_GTE2_X0Y3     IBUFDS_GTE2 (Prop_ibufds_gte2_I_ODIV2)
                                                       0.441     0.441 r  IBUFDS_GTE2/ODIV2
-                         net (fo=2, unplaced)         0.114     0.555    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+                         net (fo=2, unplaced)         0.114     0.555    main_genericstandalone_genericstandalone_clk125_div2
                          PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
                                                       0.050     0.605 r  PLLE2_BASE/CLKOUT0
-                         net (fo=1, unplaced)         0.321     0.926    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                         net (fo=1, unplaced)         0.321     0.926    main_genericstandalone_genericstandalone_pll_clk200
                          BUFG (Prop_bufg_I_O)         0.026     0.952 r  BUFG_3/O
                          net (fo=8, unplaced)         0.114     1.066    clk200_clk
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/C
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[2]/C
   -------------------------------------------------------------------    -------------------
-                         FDSE (Prop_fdse_C_Q)         0.147     1.213 r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/Q
-                         net (fo=4, unplaced)         0.131     1.344    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[2]
-                         LUT3 (Prop_lut3_I2_O)        0.098     1.442 r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[2]_i_1/O
-                         net (fo=1, unplaced)         0.000     1.442    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter[2]_i_1_n_0
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/D
+                         FDSE (Prop_fdse_C_Q)         0.147     1.213 r  main_genericstandalone_genericstandalone_reset_counter_reg[2]/Q
+                         net (fo=4, unplaced)         0.131     1.344    main_genericstandalone_genericstandalone_reset_counter[2]
+                         LUT3 (Prop_lut3_I2_O)        0.098     1.442 r  main_genericstandalone_genericstandalone_reset_counter[2]_i_1/O
+                         net (fo=1, unplaced)         0.000     1.442    main_genericstandalone_genericstandalone_reset_counter[2]_i_1_n_0
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200 rise edge)
+                         (clock main_genericstandalone_genericstandalone_pll_clk200 rise edge)
                                                       0.000     0.000 r  
     F10                                               0.000     0.000 r  clk125_gtp_p (IN)
                          net (fo=0)                   0.000     0.000    clk125_gtp_p
@@ -498,15 +498,15 @@ Slack (MET) :             0.132ns  (arrival time - required time)
                          net (fo=1, estimated)        0.000     0.000    clk125_gtp_p_IBUF
     IBUFDS_GTE2_X0Y3     IBUFDS_GTE2 (Prop_ibufds_gte2_I_ODIV2)
                                                       0.732     0.732 r  IBUFDS_GTE2/ODIV2
-                         net (fo=2, unplaced)         0.259     0.991    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+                         net (fo=2, unplaced)         0.259     0.991    main_genericstandalone_genericstandalone_clk125_div2
                          PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
                                                       0.053     1.044 r  PLLE2_BASE/CLKOUT0
-                         net (fo=1, unplaced)         0.338     1.382    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                         net (fo=1, unplaced)         0.338     1.382    main_genericstandalone_genericstandalone_pll_clk200
                          BUFG (Prop_bufg_I_O)         0.029     1.411 r  BUFG_3/O
                          net (fo=8, unplaced)         0.259     1.670    clk200_clk
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]/C
+                         FDSE                                         r  main_genericstandalone_genericstandalone_reset_counter_reg[2]/C
                          clock pessimism             -0.459     1.211    
-                         FDSE (Hold_fdse_C_D)         0.099     1.310    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_reset_counter_reg[2]
+                         FDSE (Hold_fdse_C_D)         0.099     1.310    main_genericstandalone_genericstandalone_reset_counter_reg[2]
   -------------------------------------------------------------------
                          required time                         -1.310    
                          arrival time                           1.442    
@@ -519,7 +519,7 @@ Slack (MET) :             0.132ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+Clock Name:         main_genericstandalone_genericstandalone_pll_clk200
 Waveform(ns):       { 0.000 2.500 }
 Period(ns):         5.000
 Sources:            { PLLE2_BASE/CLKOUT0 }
@@ -533,8 +533,8 @@ High Pulse Width  Fast    FDPE/C             n/a            0.500         2.500 
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb
+From Clock:  main_genericstandalone_genericstandalone_pll_fb
+  To Clock:  main_genericstandalone_genericstandalone_pll_fb
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -544,7 +544,7 @@ PW    :            0  Failing Endpoints,  Worst Slack       14.751ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_fb
+Clock Name:         main_genericstandalone_genericstandalone_pll_fb
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { PLLE2_BASE/CLKFBOUT }
@@ -556,8 +556,8 @@ Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        16.000     
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_rxoutclk
-  To Clock:  monroe_ionphoton_monroe_ionphoton_rxoutclk
+From Clock:  main_genericstandalone_rxoutclk
+  To Clock:  main_genericstandalone_rxoutclk
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -567,7 +567,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        5.000ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_rxoutclk
+Clock Name:         main_genericstandalone_rxoutclk
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { GTPE2_CHANNEL/RXOUTCLK }
@@ -581,8 +581,8 @@ High Pulse Width  Fast    MMCME2_ADV/CLKIN1       n/a            3.000         8
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+From Clock:  main_genericstandalone_clk_rx_half_unbuf
+  To Clock:  main_genericstandalone_clk_rx_half_unbuf
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -592,7 +592,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        7.500ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+Clock Name:         main_genericstandalone_clk_rx_half_unbuf
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { MMCME2_BASE_2/CLKOUT0 }
@@ -600,14 +600,14 @@ Sources:            { MMCME2_BASE_2/CLKOUT0 }
 Check Type        Corner  Lib Pin                 Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
 Min Period        n/a     GTPE2_CHANNEL/RXUSRCLK  n/a            3.030         16.000      12.970     GTPE2_CHANNEL_X0Y4  GTPE2_CHANNEL/RXUSRCLK
 Max Period        n/a     MMCME2_ADV/CLKOUT0      n/a            213.360       16.000      197.360                        MMCME2_BASE_2/CLKOUT0
-Low Pulse Width   Slow    FDRE/C                  n/a            0.500         8.000       7.500                          monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
-High Pulse Width  Slow    FDRE/C                  n/a            0.500         8.000       7.500                          monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
+Low Pulse Width   Slow    FDRE/C                  n/a            0.500         8.000       7.500                          main_genericstandalone_phase_half_rereg_reg/C
+High Pulse Width  Slow    FDRE/C                  n/a            0.500         8.000       7.500                          main_genericstandalone_phase_half_rereg_reg/C
 
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+From Clock:  main_genericstandalone_clk_rx_unbuf
+  To Clock:  main_genericstandalone_clk_rx_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        3.889ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
@@ -618,13 +618,13 @@ PW    :            0  Failing Endpoints,  Worst Slack        2.870ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             3.889ns  (required time - arrival time)
-  Source:                 xilinxmultiregimpl12_regs1_reg[6]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_reg_reg[0]/CE
-                            (rising edge-triggered cell FDSE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+  Source:                 builder_xilinxmultiregimpl12_regs1_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_crc32_checker_crc_reg_reg[0]/CE
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@8.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@0.000ns)
+  Requirement:            8.000ns  (main_genericstandalone_clk_rx_unbuf rise@8.000ns - main_genericstandalone_clk_rx_unbuf rise@0.000ns)
   Data Path Delay:        3.748ns  (logic 1.049ns (27.988%)  route 2.699ns (72.012%))
   Logic Levels:           5  (LUT3=2 LUT6=3)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
@@ -638,49 +638,49 @@ Slack (MET) :             3.889ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.647     0.647    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.647     0.647    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.081     0.728 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.584     1.312    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     1.312    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.077     1.389 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.647     2.037    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.647     2.037    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.081     2.118 r  BUFG_7/O
                          net (fo=218, unplaced)       0.584     2.702    eth_rx_clk
-                         FDRE                                         r  xilinxmultiregimpl12_regs1_reg[6]/C
+                         FDRE                                         r  builder_xilinxmultiregimpl12_regs1_reg[6]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.099 r  xilinxmultiregimpl12_regs1_reg[6]/Q
-                         net (fo=1, unplaced)         0.779     3.878    xilinxmultiregimpl12_regs1[6]
+                         FDRE (Prop_fdre_C_Q)         0.397     3.099 r  builder_xilinxmultiregimpl12_regs1_reg[6]/Q
+                         net (fo=1, unplaced)         0.779     3.878    builder_xilinxmultiregimpl12_regs1[6]
                          LUT6 (Prop_lut6_I0_O)        0.232     4.110 r  storage_4_reg_i_9/O
                          net (fo=1, unplaced)         0.347     4.457    storage_4_reg_i_9_n_0
                          LUT6 (Prop_lut6_I5_O)        0.105     4.562 r  storage_4_reg_i_1/O
-                         net (fo=4, unplaced)         0.371     4.933    monroe_ionphoton_monroe_ionphoton_rx_cdc_asyncfifo_writable
-                         LUT3 (Prop_lut3_I1_O)        0.105     5.038 r  monroe_ionphoton_monroe_ionphoton_rx_converter_converter_demux[1]_i_2/O
+                         net (fo=4, unplaced)         0.371     4.933    main_genericstandalone_rx_cdc_asyncfifo_writable
+                         LUT3 (Prop_lut3_I1_O)        0.105     5.038 r  main_genericstandalone_rx_converter_converter_demux[1]_i_2/O
                          net (fo=15, unplaced)        0.400     5.438    p_1354_in
-                         LUT6 (Prop_lut6_I5_O)        0.105     5.543 r  FSM_onehot_liteethmaccrc32checker_state[2]_i_2/O
-                         net (fo=3, unplaced)         0.365     5.908    FSM_onehot_liteethmaccrc32checker_state[2]_i_2_n_0
-                         LUT3 (Prop_lut3_I0_O)        0.105     6.013 r  monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_reg[31]_i_1/O
-                         net (fo=32, unplaced)        0.437     6.450    monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_ce
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_reg_reg[0]/CE
+                         LUT6 (Prop_lut6_I5_O)        0.105     5.543 r  FSM_onehot_builder_liteethmaccrc32checker_state[2]_i_2/O
+                         net (fo=3, unplaced)         0.365     5.908    FSM_onehot_builder_liteethmaccrc32checker_state[2]_i_2_n_0
+                         LUT3 (Prop_lut3_I0_O)        0.105     6.013 r  main_genericstandalone_crc32_checker_crc_reg[31]_i_1/O
+                         net (fo=32, unplaced)        0.437     6.450    main_genericstandalone_crc32_checker_crc_ce
+                         FDSE                                         r  main_genericstandalone_crc32_checker_crc_reg_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       8.000     8.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     8.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.615     8.615    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.615     8.615    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.077     8.692 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.439     9.131    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439     9.131    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.073     9.204 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.615     9.819    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.615     9.819    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.077     9.896 r  BUFG_7/O
                          net (fo=218, unplaced)       0.439    10.335    eth_rx_clk
-                         FDSE                                         r  monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_reg_reg[0]/C
+                         FDSE                                         r  main_genericstandalone_crc32_checker_crc_reg_reg[0]/C
                          clock pessimism              0.222    10.557    
                          clock uncertainty           -0.053    10.504    
-                         FDSE (Setup_fdse_C_CE)      -0.165    10.339    monroe_ionphoton_monroe_ionphoton_crc32_checker_crc_reg_reg[0]
+                         FDSE (Setup_fdse_C_CE)      -0.165    10.339    main_genericstandalone_crc32_checker_crc_reg_reg[0]
   -------------------------------------------------------------------
                          required time                         10.339    
                          arrival time                          -6.450    
@@ -694,13 +694,13 @@ Slack (MET) :             3.889ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.037ns  (arrival time - required time)
-  Source:                 xilinxmultiregimpl12_regs0_reg[0]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            xilinxmultiregimpl12_regs1_reg[0]/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+  Source:                 builder_xilinxmultiregimpl12_regs0_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            builder_xilinxmultiregimpl12_regs1_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_rx_unbuf rise@0.000ns - main_genericstandalone_clk_rx_unbuf rise@0.000ns)
   Data Path Delay:        0.220ns  (logic 0.147ns (66.849%)  route 0.073ns (33.151%))
   Logic Levels:           0  
   Clock Path Skew:        0.145ns (DCD - SCD - CPR)
@@ -710,38 +710,38 @@ Slack (MET) :             0.037ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.321     0.321    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.321     0.321    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.026     0.347 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.114     0.461    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.461    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     0.511 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.321     0.832    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.321     0.832    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.026     0.858 r  BUFG_7/O
                          net (fo=218, unplaced)       0.114     0.972    eth_rx_clk
-                         FDRE                                         r  xilinxmultiregimpl12_regs0_reg[0]/C
+                         FDRE                                         r  builder_xilinxmultiregimpl12_regs0_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     1.119 r  xilinxmultiregimpl12_regs0_reg[0]/Q
-                         net (fo=1, unplaced)         0.073     1.192    xilinxmultiregimpl12_regs0[0]
-                         FDRE                                         r  xilinxmultiregimpl12_regs1_reg[0]/D
+                         FDRE (Prop_fdre_C_Q)         0.147     1.119 r  builder_xilinxmultiregimpl12_regs0_reg[0]/Q
+                         net (fo=1, unplaced)         0.073     1.192    builder_xilinxmultiregimpl12_regs0[0]
+                         FDRE                                         r  builder_xilinxmultiregimpl12_regs1_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.338     0.338    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.338     0.338    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.029     0.367 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.259     0.626    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.626    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.053     0.679 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.338     1.017    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.338     1.017    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.029     1.046 r  BUFG_7/O
                          net (fo=218, unplaced)       0.259     1.305    eth_rx_clk
-                         FDRE                                         r  xilinxmultiregimpl12_regs1_reg[0]/C
+                         FDRE                                         r  builder_xilinxmultiregimpl12_regs1_reg[0]/C
                          clock pessimism             -0.188     1.117    
-                         FDRE (Hold_fdre_C_D)         0.038     1.155    xilinxmultiregimpl12_regs1_reg[0]
+                         FDRE (Hold_fdre_C_D)         0.038     1.155    builder_xilinxmultiregimpl12_regs1_reg[0]
   -------------------------------------------------------------------
                          required time                         -1.155    
                          arrival time                           1.192    
@@ -754,7 +754,7 @@ Slack (MET) :             0.037ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+Clock Name:         main_genericstandalone_clk_rx_unbuf
 Waveform(ns):       { 0.000 4.000 }
 Period(ns):         8.000
 Sources:            { MMCME2_BASE_2/CLKOUT1 }
@@ -768,8 +768,8 @@ High Pulse Width  Fast    RAMD32/CLK          n/a            1.130         4.000
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb
-  To Clock:  monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb
+From Clock:  main_genericstandalone_rx_mmcm_fb
+  To Clock:  main_genericstandalone_rx_mmcm_fb
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -779,7 +779,7 @@ PW    :            0  Failing Endpoints,  Worst Slack       14.751ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_rx_mmcm_fb
+Clock Name:         main_genericstandalone_rx_mmcm_fb
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { MMCME2_BASE_2/CLKFBOUT }
@@ -791,8 +791,8 @@ Max Period  n/a     MMCME2_ADV/CLKFBIN   n/a            100.000       16.000    
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_txoutclk
-  To Clock:  monroe_ionphoton_monroe_ionphoton_txoutclk
+From Clock:  main_genericstandalone_txoutclk
+  To Clock:  main_genericstandalone_txoutclk
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -802,7 +802,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        5.000ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_txoutclk
+Clock Name:         main_genericstandalone_txoutclk
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { GTPE2_CHANNEL/TXOUTCLK }
@@ -816,8 +816,8 @@ High Pulse Width  Fast    MMCME2_ADV/CLKIN1       n/a            3.000         8
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+From Clock:  main_genericstandalone_clk_tx_half_unbuf
+  To Clock:  main_genericstandalone_clk_tx_half_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack       14.158ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.269ns,  Total Violation        0.000ns
@@ -828,13 +828,13 @@ PW    :            0  Failing Endpoints,  Worst Slack        7.500ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             14.158ns  (required time - arrival time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[9]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Source:                 main_genericstandalone_tx_data_half_reg[9]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
   Destination:            GTPE2_CHANNEL/TXCHARDISPMODE[0]
-                            (rising edge-triggered cell GTPE2_CHANNEL clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                            (rising edge-triggered cell GTPE2_CHANNEL clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_tx_half_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            16.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@16.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@0.000ns)
+  Requirement:            16.000ns  (main_genericstandalone_clk_tx_half_unbuf rise@16.000ns - main_genericstandalone_clk_tx_half_unbuf rise@0.000ns)
   Data Path Delay:        1.044ns  (logic 0.397ns (38.011%)  route 0.647ns (61.989%))
   Logic Levels:           0  
   Clock Path Skew:        -0.032ns (DCD - SCD + CPR)
@@ -848,33 +848,33 @@ Slack (MET) :             14.158ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.584     0.584    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.584     0.584    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.106     0.690 r  BUFH/O
-                         net (fo=1, unplaced)         0.584     1.274    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     1.274    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.077     1.351 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.584     1.935    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.584     1.935    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.106     2.041 r  BUFH_1/O
                          net (fo=22, unplaced)        0.647     2.688    eth_tx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[9]/C
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[9]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.085 r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[9]/Q
-                         net (fo=1, unplaced)         0.647     3.733    monroe_ionphoton_monroe_ionphoton_tx_data_half[9]
+                         FDRE (Prop_fdre_C_Q)         0.397     3.085 r  main_genericstandalone_tx_data_half_reg[9]/Q
+                         net (fo=1, unplaced)         0.647     3.733    main_genericstandalone_tx_data_half[9]
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                                r  GTPE2_CHANNEL/TXCHARDISPMODE[0]
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                      16.000    16.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000    16.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.439    16.439    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.439    16.439    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.069    16.508 r  BUFH/O
-                         net (fo=1, unplaced)         0.439    16.947    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439    16.947    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.073    17.020 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.439    17.459    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.439    17.459    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.069    17.528 r  BUFH_1/O
                          net (fo=22, unplaced)        0.615    18.143    eth_tx_half_clk
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                                r  GTPE2_CHANNEL/TXUSRCLK2
@@ -895,13 +895,13 @@ Slack (MET) :             14.158ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.269ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Source:                 main_genericstandalone_tx_data_half_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
   Destination:            GTPE2_CHANNEL/TXDATA[0]
-                            (rising edge-triggered cell GTPE2_CHANNEL clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                            (rising edge-triggered cell GTPE2_CHANNEL clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_tx_half_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_tx_half_unbuf rise@0.000ns - main_genericstandalone_clk_tx_half_unbuf rise@0.000ns)
   Data Path Delay:        0.468ns  (logic 0.147ns (31.406%)  route 0.321ns (68.594%))
   Logic Levels:           0  
   Clock Path Skew:        0.145ns (DCD - SCD - CPR)
@@ -911,33 +911,33 @@ Slack (MET) :             0.269ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.114     0.114    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.114     0.114    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.020     0.134 r  BUFH/O
-                         net (fo=1, unplaced)         0.114     0.248    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.248    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.050     0.298 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.114     0.412    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.114     0.412    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.020     0.432 r  BUFH_1/O
                          net (fo=22, unplaced)        0.193     0.625    eth_tx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/C
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     0.772 r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/Q
-                         net (fo=1, unplaced)         0.321     1.093    monroe_ionphoton_monroe_ionphoton_tx_data_half[0]
+                         FDRE (Prop_fdre_C_Q)         0.147     0.772 r  main_genericstandalone_tx_data_half_reg[0]/Q
+                         net (fo=1, unplaced)         0.321     1.093    main_genericstandalone_tx_data_half[0]
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                                r  GTPE2_CHANNEL/TXDATA[0]
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.259     0.259    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.259     0.259    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.043     0.302 r  BUFH/O
-                         net (fo=1, unplaced)         0.259     0.561    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.561    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.053     0.614 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.259     0.873    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.259     0.873    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.043     0.916 r  BUFH_1/O
                          net (fo=22, unplaced)        0.338     1.254    eth_tx_half_clk
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                                r  GTPE2_CHANNEL/TXUSRCLK2
@@ -956,7 +956,7 @@ Slack (MET) :             0.269ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+Clock Name:         main_genericstandalone_clk_tx_half_unbuf
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { MMCME2_BASE_1/CLKOUT0 }
@@ -964,14 +964,14 @@ Sources:            { MMCME2_BASE_1/CLKOUT0 }
 Check Type        Corner  Lib Pin                 Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
 Min Period        n/a     GTPE2_CHANNEL/TXUSRCLK  n/a            3.030         16.000      12.970     GTPE2_CHANNEL_X0Y4  GTPE2_CHANNEL/TXUSRCLK
 Max Period        n/a     MMCME2_ADV/CLKOUT0      n/a            213.360       16.000      197.360                        MMCME2_BASE_1/CLKOUT0
-Low Pulse Width   Fast    FDRE/C                  n/a            0.500         8.000       7.500                          monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/C
-High Pulse Width  Slow    FDRE/C                  n/a            0.500         8.000       7.500                          monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/C
+Low Pulse Width   Fast    FDRE/C                  n/a            0.500         8.000       7.500                          main_genericstandalone_tx_data_half_reg[0]/C
+High Pulse Width  Slow    FDRE/C                  n/a            0.500         8.000       7.500                          main_genericstandalone_tx_data_half_reg[0]/C
 
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+From Clock:  main_genericstandalone_clk_tx_unbuf
+  To Clock:  main_genericstandalone_clk_tx_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        1.876ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
@@ -983,12 +983,12 @@ Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             1.876ns  (required time - arrival time)
   Source:                 storage_3_reg/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1 clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b_reg[0]/R
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                            (rising edge-triggered cell RAMB36E1 clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_pcs_transmitpath_code6b_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_tx_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@8.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@0.000ns)
+  Requirement:            8.000ns  (main_genericstandalone_clk_tx_unbuf rise@8.000ns - main_genericstandalone_clk_tx_unbuf rise@0.000ns)
   Data Path Delay:        5.474ns  (logic 2.545ns (46.489%)  route 2.929ns (53.511%))
   Logic Levels:           4  (LUT6=4)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
@@ -1002,15 +1002,15 @@ Slack (MET) :             1.876ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.584     0.584    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.584     0.584    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.106     0.690 r  BUFH/O
-                         net (fo=1, unplaced)         0.584     1.274    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     1.274    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.077     1.351 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.584     1.935    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.584     1.935    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.106     2.041 r  BUFH_2/O
                          net (fo=206, unplaced)       0.584     2.625    eth_tx_clk
                          RAMB36E1                                     r  storage_3_reg/CLKARDCLK
@@ -1018,32 +1018,32 @@ Slack (MET) :             1.876ns  (required time - arrival time)
                          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[9])
                                                       2.125     4.750 f  storage_3_reg/DOADO[9]
                          net (fo=1, unplaced)         0.647     5.397    storage_3_reg_n_26
-                         LUT6 (Prop_lut6_I5_O)        0.105     5.502 f  monroe_ionphoton_monroe_ionphoton_crc32_inserter_reg[26]_i_2/O
-                         net (fo=8, unplaced)         0.620     6.122    monroe_ionphoton_monroe_ionphoton_crc32_inserter_reg[26]_i_2_n_0
+                         LUT6 (Prop_lut6_I5_O)        0.105     5.502 f  main_genericstandalone_crc32_inserter_reg[26]_i_2/O
+                         net (fo=8, unplaced)         0.620     6.122    main_genericstandalone_crc32_inserter_reg[26]_i_2_n_0
                          LUT6 (Prop_lut6_I0_O)        0.105     6.227 r  g0_b0__1_i_17/O
                          net (fo=1, unplaced)         0.328     6.555    g0_b0__1_i_17_n_0
                          LUT6 (Prop_lut6_I4_O)        0.105     6.660 f  g0_b0__1_i_4/O
-                         net (fo=11, unplaced)        0.824     7.484    monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_d0[1]
-                         LUT6 (Prop_lut6_I0_O)        0.105     7.589 r  monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b[3]_i_1/O
-                         net (fo=4, unplaced)         0.510     8.099    monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b[3]_i_1_n_0
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b_reg[0]/R
+                         net (fo=11, unplaced)        0.824     7.484    main_genericstandalone_pcs_transmitpath_d0[1]
+                         LUT6 (Prop_lut6_I0_O)        0.105     7.589 r  main_genericstandalone_pcs_transmitpath_code6b[3]_i_1/O
+                         net (fo=4, unplaced)         0.510     8.099    main_genericstandalone_pcs_transmitpath_code6b[3]_i_1_n_0
+                         FDRE                                         r  main_genericstandalone_pcs_transmitpath_code6b_reg[0]/R
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       8.000     8.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     8.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.439     8.439    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.439     8.439    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.069     8.508 r  BUFH/O
-                         net (fo=1, unplaced)         0.439     8.947    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439     8.947    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.073     9.020 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.439     9.459    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.439     9.459    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.069     9.528 r  BUFH_2/O
                          net (fo=206, unplaced)       0.439     9.967    eth_tx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b_reg[0]/C
+                         FDRE                                         r  main_genericstandalone_pcs_transmitpath_code6b_reg[0]/C
                          clock pessimism              0.513    10.480    
                          clock uncertainty           -0.053    10.427    
-                         FDRE (Setup_fdre_C_R)       -0.452     9.975    monroe_ionphoton_monroe_ionphoton_pcs_transmitpath_code6b_reg[0]
+                         FDRE (Setup_fdre_C_R)       -0.452     9.975    main_genericstandalone_pcs_transmitpath_code6b_reg[0]
   -------------------------------------------------------------------
                          required time                          9.975    
                          arrival time                          -8.099    
@@ -1057,13 +1057,13 @@ Slack (MET) :             1.876ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.037ns  (arrival time - required time)
-  Source:                 xilinxmultiregimpl1_regs0_reg/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            xilinxmultiregimpl1_regs1_reg/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+  Source:                 builder_xilinxmultiregimpl1_regs0_reg/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            builder_xilinxmultiregimpl1_regs1_reg/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_tx_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_tx_unbuf rise@0.000ns - main_genericstandalone_clk_tx_unbuf rise@0.000ns)
   Data Path Delay:        0.220ns  (logic 0.147ns (66.849%)  route 0.073ns (33.151%))
   Logic Levels:           0  
   Clock Path Skew:        0.145ns (DCD - SCD - CPR)
@@ -1073,38 +1073,38 @@ Slack (MET) :             0.037ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.114     0.114    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.114     0.114    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.020     0.134 r  BUFH/O
-                         net (fo=1, unplaced)         0.114     0.248    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.248    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     0.298 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.114     0.412    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.114     0.412    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.020     0.432 r  BUFH_2/O
                          net (fo=206, unplaced)       0.114     0.546    eth_tx_clk
-                         FDRE                                         r  xilinxmultiregimpl1_regs0_reg/C
+                         FDRE                                         r  builder_xilinxmultiregimpl1_regs0_reg/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     0.693 r  xilinxmultiregimpl1_regs0_reg/Q
-                         net (fo=1, unplaced)         0.073     0.766    xilinxmultiregimpl1_regs0
-                         FDRE                                         r  xilinxmultiregimpl1_regs1_reg/D
+                         FDRE (Prop_fdre_C_Q)         0.147     0.693 r  builder_xilinxmultiregimpl1_regs0_reg/Q
+                         net (fo=1, unplaced)         0.073     0.766    builder_xilinxmultiregimpl1_regs0
+                         FDRE                                         r  builder_xilinxmultiregimpl1_regs1_reg/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.259     0.259    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.259     0.259    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.043     0.302 r  BUFH/O
-                         net (fo=1, unplaced)         0.259     0.561    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.561    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.053     0.614 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.259     0.873    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.259     0.873    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.043     0.916 r  BUFH_2/O
                          net (fo=206, unplaced)       0.259     1.175    eth_tx_clk
-                         FDRE                                         r  xilinxmultiregimpl1_regs1_reg/C
+                         FDRE                                         r  builder_xilinxmultiregimpl1_regs1_reg/C
                          clock pessimism             -0.484     0.691    
-                         FDRE (Hold_fdre_C_D)         0.038     0.729    xilinxmultiregimpl1_regs1_reg
+                         FDRE (Hold_fdre_C_D)         0.038     0.729    builder_xilinxmultiregimpl1_regs1_reg
   -------------------------------------------------------------------
                          required time                         -0.729    
                          arrival time                           0.766    
@@ -1117,7 +1117,7 @@ Slack (MET) :             0.037ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+Clock Name:         main_genericstandalone_clk_tx_unbuf
 Waveform(ns):       { 0.000 4.000 }
 Period(ns):         8.000
 Sources:            { MMCME2_BASE_1/CLKOUT1 }
@@ -1131,8 +1131,8 @@ High Pulse Width  Slow    FDPE/C              n/a            0.500         4.000
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb
-  To Clock:  monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb
+From Clock:  main_genericstandalone_tx_mmcm_fb
+  To Clock:  main_genericstandalone_tx_mmcm_fb
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -1142,7 +1142,7 @@ PW    :            0  Failing Endpoints,  Worst Slack       14.751ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_monroe_ionphoton_tx_mmcm_fb
+Clock Name:         main_genericstandalone_tx_mmcm_fb
 Waveform(ns):       { 0.000 8.000 }
 Period(ns):         16.000
 Sources:            { MMCME2_BASE_1/CLKFBOUT }
@@ -1179,8 +1179,8 @@ High Pulse Width  Fast    PLLE2_ADV/CLKIN2  n/a            2.000         4.000  
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_rtio_crg_fb_clk
-  To Clock:  monroe_ionphoton_rtio_crg_fb_clk
+From Clock:  main_rtio_crg_fb_clk
+  To Clock:  main_rtio_crg_fb_clk
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -1190,7 +1190,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        6.751ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_rtio_crg_fb_clk
+Clock Name:         main_rtio_crg_fb_clk
 Waveform(ns):       { 0.000 4.000 }
 Period(ns):         8.000
 Sources:            { PLLE2_ADV/CLKFBOUT }
@@ -1202,8 +1202,8 @@ Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        8.000      
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_rtio_crg_rtio_clk
-  To Clock:  monroe_ionphoton_rtio_crg_rtio_clk
+From Clock:  main_rtio_crg_rtio_clk
+  To Clock:  main_rtio_crg_rtio_clk
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.077ns,  Total Violation        0.000ns
 Hold  :           31  Failing Endpoints,  Worst Slack       -0.183ns,  Total Violation       -5.671ns
@@ -1214,13 +1214,13 @@ PW    :            0  Failing Endpoints,  Worst Slack        2.870ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             2.077ns  (required time - arrival time)
-  Source:                 spimaster1_spimachine1_cnt_reg[5]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_rtio_core_outputs_busy_channel_reg[0]/R
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_rtio_crg_rtio_clk
+  Source:                 main_spimaster1_spimachine1_cnt_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_rtio_core_outputs_busy_channel_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_rtio_crg_rtio_clk
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_rtio_crg_rtio_clk rise@8.000ns - monroe_ionphoton_rtio_crg_rtio_clk rise@0.000ns)
+  Requirement:            8.000ns  (main_rtio_crg_rtio_clk rise@8.000ns - main_rtio_crg_rtio_clk rise@0.000ns)
   Data Path Delay:        5.268ns  (logic 1.364ns (25.892%)  route 3.904ns (74.108%))
   Logic Levels:           8  (LUT2=3 LUT5=2 LUT6=3)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
@@ -1234,55 +1234,55 @@ Slack (MET) :             2.077ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_rtio_crg_rtio_clk rise edge)
+                         (clock main_rtio_crg_rtio_clk rise edge)
                                                       0.000     0.000 r  
     Y18                                               0.000     0.000 r  si5324_clkout_fabric_p (IN)
                          net (fo=0)                   0.000     0.000    si5324_clkout_fabric_p
     Y18                  IBUFDS (Prop_ibufds_I_O)     0.946     0.946 r  IBUFGDS/O
-                         net (fo=1, unplaced)         0.584     1.530    monroe_ionphoton_rtio_crg_clk_synth_se
+                         net (fo=1, unplaced)         0.584     1.530    main_rtio_crg_clk_synth_se
                          PLLE2_ADV (Prop_plle2_adv_CLKIN2_CLKOUT1)
                                                       0.078     1.608 r  PLLE2_ADV/CLKOUT1
-                         net (fo=1, unplaced)         0.647     2.255    monroe_ionphoton_rtio_crg_rtio_clk
+                         net (fo=1, unplaced)         0.647     2.255    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.081     2.336 r  BUFG_8/O
                          net (fo=5425, unplaced)      0.647     2.984    rtio_clk
-                         FDRE                                         r  spimaster1_spimachine1_cnt_reg[5]/C
+                         FDRE                                         r  main_spimaster1_spimachine1_cnt_reg[5]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.381 f  spimaster1_spimachine1_cnt_reg[5]/Q
-                         net (fo=3, unplaced)         0.797     4.178    spimaster1_spimachine1_cnt_reg[5]
-                         LUT6 (Prop_lut6_I0_O)        0.232     4.410 f  spimaster1_spimachine1_cnt[6]_i_3/O
-                         net (fo=2, unplaced)         0.358     4.768    spimaster1_spimachine1_cnt[6]_i_3_n_0
-                         LUT2 (Prop_lut2_I1_O)        0.105     4.873 f  spimaster1_interface_cs1[2]_i_3/O
-                         net (fo=10, unplaced)        0.390     5.263    spimaster1_interface_cs1[2]_i_3_n_0
-                         LUT2 (Prop_lut2_I1_O)        0.105     5.368 r  spimaster1_interface_mosi_reg_i_2/O
-                         net (fo=8, unplaced)         0.385     5.753    spimaster1_interface_mosi_reg_i_2_n_0
-                         LUT6 (Prop_lut6_I2_O)        0.105     5.858 r  spimaster1_config_cs[2]_i_3/O
-                         net (fo=9, unplaced)         0.388     6.246    spimaster1_spimachine1_writable
-                         LUT5 (Prop_lut5_I0_O)        0.105     6.351 r  monroe_ionphoton_rtio_core_outputs_busy_i_28/O
-                         net (fo=1, unplaced)         0.328     6.679    monroe_ionphoton_rtio_core_outputs_busy_i_28_n_0
-                         LUT5 (Prop_lut5_I1_O)        0.105     6.784 f  monroe_ionphoton_rtio_core_outputs_busy_i_13/O
-                         net (fo=7, unplaced)         0.382     7.166    monroe_ionphoton_rtio_core_outputs_busy1
-                         LUT2 (Prop_lut2_I1_O)        0.105     7.271 f  monroe_ionphoton_rtio_core_outputs_busy_i_4/O
-                         net (fo=2, unplaced)         0.358     7.629    monroe_ionphoton_rtio_core_outputs_busy_i_4_n_0
-                         LUT6 (Prop_lut6_I5_O)        0.105     7.734 r  monroe_ionphoton_rtio_core_outputs_busy_channel[5]_i_1/O
-                         net (fo=6, unplaced)         0.518     8.252    monroe_ionphoton_rtio_core_outputs_busy_channel
-                         FDRE                                         r  monroe_ionphoton_rtio_core_outputs_busy_channel_reg[0]/R
+                         FDRE (Prop_fdre_C_Q)         0.397     3.381 f  main_spimaster1_spimachine1_cnt_reg[5]/Q
+                         net (fo=3, unplaced)         0.797     4.178    main_spimaster1_spimachine1_cnt_reg[5]
+                         LUT6 (Prop_lut6_I0_O)        0.232     4.410 f  main_spimaster1_spimachine1_cnt[6]_i_3/O
+                         net (fo=2, unplaced)         0.358     4.768    main_spimaster1_spimachine1_cnt[6]_i_3_n_0
+                         LUT2 (Prop_lut2_I1_O)        0.105     4.873 f  main_spimaster1_interface_cs1[2]_i_3/O
+                         net (fo=10, unplaced)        0.390     5.263    main_spimaster1_interface_cs1[2]_i_3_n_0
+                         LUT2 (Prop_lut2_I1_O)        0.105     5.368 r  main_spimaster1_interface_mosi_reg_i_2/O
+                         net (fo=8, unplaced)         0.385     5.753    main_spimaster1_interface_mosi_reg_i_2_n_0
+                         LUT6 (Prop_lut6_I2_O)        0.105     5.858 r  main_spimaster1_config_cs[2]_i_3/O
+                         net (fo=9, unplaced)         0.388     6.246    main_spimaster1_spimachine1_writable
+                         LUT5 (Prop_lut5_I0_O)        0.105     6.351 r  main_rtio_core_outputs_busy_i_28/O
+                         net (fo=1, unplaced)         0.328     6.679    main_rtio_core_outputs_busy_i_28_n_0
+                         LUT5 (Prop_lut5_I1_O)        0.105     6.784 f  main_rtio_core_outputs_busy_i_13/O
+                         net (fo=7, unplaced)         0.382     7.166    main_rtio_core_outputs_busy1
+                         LUT2 (Prop_lut2_I1_O)        0.105     7.271 f  main_rtio_core_outputs_busy_i_4/O
+                         net (fo=2, unplaced)         0.358     7.629    main_rtio_core_outputs_busy_i_4_n_0
+                         LUT6 (Prop_lut6_I5_O)        0.105     7.734 r  main_rtio_core_outputs_busy_channel[5]_i_1/O
+                         net (fo=6, unplaced)         0.518     8.252    main_rtio_core_outputs_busy_channel
+                         FDRE                                         r  main_rtio_core_outputs_busy_channel_reg[0]/R
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_rtio_crg_rtio_clk rise edge)
+                         (clock main_rtio_crg_rtio_clk rise edge)
                                                       8.000     8.000 r  
     Y18                                               0.000     8.000 r  si5324_clkout_fabric_p (IN)
                          net (fo=0)                   0.000     8.000    si5324_clkout_fabric_p
     Y18                  IBUFDS (Prop_ibufds_I_O)     0.905     8.905 r  IBUFGDS/O
-                         net (fo=1, unplaced)         0.439     9.344    monroe_ionphoton_rtio_crg_clk_synth_se
+                         net (fo=1, unplaced)         0.439     9.344    main_rtio_crg_clk_synth_se
                          PLLE2_ADV (Prop_plle2_adv_CLKIN2_CLKOUT1)
                                                       0.074     9.418 r  PLLE2_ADV/CLKOUT1
-                         net (fo=1, unplaced)         0.615    10.034    monroe_ionphoton_rtio_crg_rtio_clk
+                         net (fo=1, unplaced)         0.615    10.034    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.077    10.111 r  BUFG_8/O
                          net (fo=5425, unplaced)      0.502    10.613    rtio_clk
-                         FDRE                                         r  monroe_ionphoton_rtio_core_outputs_busy_channel_reg[0]/C
+                         FDRE                                         r  main_rtio_core_outputs_busy_channel_reg[0]/C
                          clock pessimism              0.226    10.839    
                          clock uncertainty           -0.058    10.781    
-                         FDRE (Setup_fdre_C_R)       -0.452    10.329    monroe_ionphoton_rtio_core_outputs_busy_channel_reg[0]
+                         FDRE (Setup_fdre_C_R)       -0.452    10.329    main_rtio_core_outputs_busy_channel_reg[0]
   -------------------------------------------------------------------
                          required time                         10.329    
                          arrival time                          -8.252    
@@ -1297,12 +1297,12 @@ Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
   Source:                 FDPE_13/C
-                            (rising edge-triggered cell FDPE clocked by monroe_ionphoton_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+                            (rising edge-triggered cell FDPE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            OSERDESE2_45/RST
-                            (rising edge-triggered cell OSERDESE2 clocked by monroe_ionphoton_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_rtio_crg_rtio_clk
+                            (rising edge-triggered cell OSERDESE2 clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_rtio_crg_rtio_clk
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_rtio_crg_rtio_clk rise@0.000ns - monroe_ionphoton_rtio_crg_rtio_clk rise@0.000ns)
+  Requirement:            0.000ns  (main_rtio_crg_rtio_clk rise@0.000ns - main_rtio_crg_rtio_clk rise@0.000ns)
   Data Path Delay:        0.468ns  (logic 0.147ns (31.406%)  route 0.321ns (68.594%))
   Logic Levels:           0  
   Clock Path Skew:        0.145ns (DCD - SCD - CPR)
@@ -1312,15 +1312,15 @@ Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_rtio_crg_rtio_clk rise edge)
+                         (clock main_rtio_crg_rtio_clk rise edge)
                                                       0.000     0.000 r  
     Y18                                               0.000     0.000 r  si5324_clkout_fabric_p (IN)
                          net (fo=0)                   0.000     0.000    si5324_clkout_fabric_p
     Y18                  IBUFDS (Prop_ibufds_I_O)     0.441     0.441 r  IBUFGDS/O
-                         net (fo=1, unplaced)         0.114     0.555    monroe_ionphoton_rtio_crg_clk_synth_se
+                         net (fo=1, unplaced)         0.114     0.555    main_rtio_crg_clk_synth_se
                          PLLE2_ADV (Prop_plle2_adv_CLKIN2_CLKOUT1)
                                                       0.051     0.606 r  PLLE2_ADV/CLKOUT1
-                         net (fo=1, unplaced)         0.321     0.927    monroe_ionphoton_rtio_crg_rtio_clk
+                         net (fo=1, unplaced)         0.321     0.927    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.026     0.953 r  BUFG_8/O
                          net (fo=5425, unplaced)      0.193     1.146    rtio_clk
                          FDPE                                         r  FDPE_13/C
@@ -1330,15 +1330,15 @@ Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
     OLOGIC_X1Y74         OSERDESE2                                    r  OSERDESE2_45/RST
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_rtio_crg_rtio_clk rise edge)
+                         (clock main_rtio_crg_rtio_clk rise edge)
                                                       0.000     0.000 r  
     Y18                                               0.000     0.000 r  si5324_clkout_fabric_p (IN)
                          net (fo=0)                   0.000     0.000    si5324_clkout_fabric_p
     Y18                  IBUFDS (Prop_ibufds_I_O)     0.477     0.477 r  IBUFGDS/O
-                         net (fo=1, unplaced)         0.259     0.736    monroe_ionphoton_rtio_crg_clk_synth_se
+                         net (fo=1, unplaced)         0.259     0.736    main_rtio_crg_clk_synth_se
                          PLLE2_ADV (Prop_plle2_adv_CLKIN2_CLKOUT1)
                                                       0.054     0.790 r  PLLE2_ADV/CLKOUT1
-                         net (fo=1, unplaced)         0.338     1.128    monroe_ionphoton_rtio_crg_rtio_clk
+                         net (fo=1, unplaced)         0.338     1.128    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.029     1.157 r  BUFG_8/O
                          net (fo=5425, unplaced)      0.338     1.495    rtio_clk
     OLOGIC_X1Y74         OSERDESE2                                    r  OSERDESE2_45/CLKDIV
@@ -1357,13 +1357,13 @@ Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_rtio_crg_rtio_clk
+Clock Name:         main_rtio_crg_rtio_clk
 Waveform(ns):       { 0.000 4.000 }
 Period(ns):         8.000
 Sources:            { PLLE2_ADV/CLKOUT1 }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
-Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.170         8.000       5.830                storage_12_reg_1/CLKARDCLK
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.170         8.000       5.830                storage_14_reg_1/CLKARDCLK
 Max Period        n/a     PLLE2_ADV/CLKOUT1   n/a            160.000       8.000       152.000              PLLE2_ADV/CLKOUT1
 Low Pulse Width   Slow    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_23_reg_0_3_0_5/RAMA/CLK
 High Pulse Width  Fast    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_23_reg_0_3_0_5/RAMA/CLK
@@ -1371,8 +1371,8 @@ High Pulse Width  Fast    RAMD32/CLK          n/a            1.130         4.000
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_rtio_crg_rtiox4_clk
-  To Clock:  monroe_ionphoton_rtio_crg_rtiox4_clk
+From Clock:  main_rtio_crg_rtiox4_clk
+  To Clock:  main_rtio_crg_rtiox4_clk
 
 Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -1382,7 +1382,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        0.408ns,  Total Vio
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         monroe_ionphoton_rtio_crg_rtiox4_clk
+Clock Name:         main_rtio_crg_rtiox4_clk
 Waveform(ns):       { 0.000 1.000 }
 Period(ns):         2.000
 Sources:            { PLLE2_ADV/CLKOUT0 }
@@ -1488,7 +1488,7 @@ Slack (MET) :             1.223ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.035ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_uart_phy_source_payload_data_reg[0]/C
+  Source:                 main_genericstandalone_genericstandalone_genericstandalone_uart_phy_source_payload_data_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@4.414ns period=8.828ns})
   Destination:            storage_1_reg_0_15_0_5/RAMA/I
                             (rising edge-triggered cell RAMD32 clocked by sys_clk  {rise@0.000ns fall@4.414ns period=8.828ns})
@@ -1507,9 +1507,9 @@ Slack (MET) :             0.035ns  (arrival time - required time)
                          (clock sys_clk rise edge)    0.000     0.000 r  
                          BUFG                         0.000     0.000 r  BUFG/O
                          net (fo=9712, unplaced)      0.193     0.193    sys_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_uart_phy_source_payload_data_reg[0]/C
+                         FDRE                                         r  main_genericstandalone_genericstandalone_genericstandalone_uart_phy_source_payload_data_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     0.340 r  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_uart_phy_source_payload_data_reg[0]/Q
+                         FDRE (Prop_fdre_C_Q)         0.147     0.340 r  main_genericstandalone_genericstandalone_genericstandalone_uart_phy_source_payload_data_reg[0]/Q
                          net (fo=1, unplaced)         0.127     0.467    storage_1_reg_0_15_0_5/DIA0
                          RAMD32                                       r  storage_1_reg_0_15_0_5/RAMA/I
   -------------------------------------------------------------------    -------------------
@@ -1547,7 +1547,7 @@ High Pulse Width  Slow    RAMD32/CLK            n/a            1.130         4.4
 
 ---------------------------------------------------------------------------------------------------
 From Clock:  
-  To Clock:  monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+  To Clock:  main_genericstandalone_genericstandalone_pll_clk200
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.807ns,  Total Violation        0.000ns
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -1560,8 +1560,8 @@ Slack (MET) :             2.807ns  (required time - arrival time)
   Source:                 FDPE_2/Q
                             (internal pin)
   Destination:            FDPE_3/D
-                            (rising edge-triggered cell FDPE clocked by monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                            (rising edge-triggered cell FDPE clocked by main_genericstandalone_genericstandalone_pll_clk200  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             main_genericstandalone_genericstandalone_pll_clk200
   Path Type:              Setup (Max at Fast Process Corner)
   Requirement:            2.000ns  (MaxDelay Path 2.000ns)
   Data Path Delay:        0.077ns  (logic 0.000ns (0.000%)  route 0.077ns (100.000%))
@@ -1579,7 +1579,7 @@ Slack (MET) :             2.807ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          FDPE                         0.000     0.000 r  FDPE_2/Q
-                         net (fo=1, unplaced)         0.077     0.077    xilinxasyncresetsynchronizerimpl0_rst_meta
+                         net (fo=1, unplaced)         0.077     0.077    builder_xilinxasyncresetsynchronizerimpl0_rst_meta
                          FDPE                                         r  FDPE_3/D
   -------------------------------------------------------------------    -------------------
 
@@ -1590,10 +1590,10 @@ Slack (MET) :             2.807ns  (required time - arrival time)
                          net (fo=1, estimated)        0.000     2.000    clk125_gtp_p_IBUF
     IBUFDS_GTE2_X0Y3     IBUFDS_GTE2 (Prop_ibufds_gte2_I_ODIV2)
                                                       0.441     2.441 r  IBUFDS_GTE2/ODIV2
-                         net (fo=2, unplaced)         0.114     2.555    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_clk125_div2
+                         net (fo=2, unplaced)         0.114     2.555    main_genericstandalone_genericstandalone_clk125_div2
                          PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
                                                       0.050     2.605 r  PLLE2_BASE/CLKOUT0
-                         net (fo=1, unplaced)         0.321     2.926    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_pll_clk200
+                         net (fo=1, unplaced)         0.321     2.926    main_genericstandalone_genericstandalone_pll_clk200
                          BUFG (Prop_bufg_I_O)         0.026     2.952 r  BUFG_3/O
                          net (fo=8, unplaced)         0.114     3.066    clk200_clk
                          FDPE                                         r  FDPE_3/C
@@ -1611,8 +1611,8 @@ Slack (MET) :             2.807ns  (required time - arrival time)
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+From Clock:  main_genericstandalone_clk_rx_unbuf
+  To Clock:  main_genericstandalone_clk_rx_half_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        6.846ns,  Total Violation        0.000ns
 Hold  :            1  Failing Endpoint ,  Worst Slack       -0.114ns,  Total Violation       -0.114ns
@@ -1622,13 +1622,13 @@ Hold  :            1  Failing Endpoint ,  Worst Slack       -0.114ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             6.846ns  (required time - arrival time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_phase_half_reg/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+  Source:                 main_genericstandalone_phase_half_reg/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_phase_half_rereg_reg/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_rx_half_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise@16.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@8.000ns)
+  Requirement:            8.000ns  (main_genericstandalone_clk_rx_half_unbuf rise@16.000ns - main_genericstandalone_clk_rx_unbuf rise@8.000ns)
   Data Path Delay:        0.701ns  (logic 0.397ns (56.633%)  route 0.304ns (43.367%))
   Logic Levels:           0  
   Clock Path Skew:        -0.118ns (DCD - SCD + CPR)
@@ -1642,39 +1642,39 @@ Slack (MET) :             6.846ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       8.000     8.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     8.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.647     8.647    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.647     8.647    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.081     8.728 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.584     9.312    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     9.312    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.077     9.389 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.647    10.037    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.647    10.037    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.081    10.118 r  BUFG_7/O
                          net (fo=218, unplaced)       0.584    10.702    eth_rx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_reg/C
+                         FDRE                                         r  main_genericstandalone_phase_half_reg/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397    11.099 r  monroe_ionphoton_monroe_ionphoton_phase_half_reg/Q
-                         net (fo=12, unplaced)        0.304    11.403    monroe_ionphoton_monroe_ionphoton_phase_half
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/D
+                         FDRE (Prop_fdre_C_Q)         0.397    11.099 r  main_genericstandalone_phase_half_reg/Q
+                         net (fo=12, unplaced)        0.304    11.403    main_genericstandalone_phase_half
+                         FDRE                                         r  main_genericstandalone_phase_half_rereg_reg/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_half_unbuf rise edge)
                                                      16.000    16.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000    16.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.615    16.615    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.615    16.615    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.077    16.692 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.439    17.131    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439    17.131    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.073    17.204 r  MMCME2_BASE_2/CLKOUT0
-                         net (fo=1, unplaced)         0.615    17.819    monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+                         net (fo=1, unplaced)         0.615    17.819    main_genericstandalone_clk_rx_half_unbuf
                          BUFG (Prop_bufg_I_O)         0.077    17.896 r  BUFG_6/O
                          net (fo=3, unplaced)         0.502    18.399    eth_rx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
+                         FDRE                                         r  main_genericstandalone_phase_half_rereg_reg/C
                          clock pessimism              0.185    18.584    
                          clock uncertainty           -0.177    18.407    
-                         FDRE (Setup_fdre_C_D)       -0.158    18.249    monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg
+                         FDRE (Setup_fdre_C_D)       -0.158    18.249    main_genericstandalone_phase_half_rereg_reg
   -------------------------------------------------------------------
                          required time                         18.249    
                          arrival time                         -11.403    
@@ -1688,13 +1688,13 @@ Slack (MET) :             6.846ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (VIOLATED) :        -0.114ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_phase_half_reg/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+  Source:                 main_genericstandalone_phase_half_reg/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_phase_half_rereg_reg/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_rx_half_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_rx_half_unbuf rise@0.000ns - main_genericstandalone_clk_rx_unbuf rise@0.000ns)
   Data Path Delay:        0.298ns  (logic 0.147ns (49.369%)  route 0.151ns (50.631%))
   Logic Levels:           0  
   Clock Path Skew:        0.244ns (DCD - SCD - CPR)
@@ -1708,39 +1708,39 @@ Slack (VIOLATED) :        -0.114ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.321     0.321    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.321     0.321    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.026     0.347 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.114     0.461    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.461    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     0.511 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.321     0.832    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.321     0.832    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.026     0.858 r  BUFG_7/O
                          net (fo=218, unplaced)       0.114     0.972    eth_rx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_reg/C
+                         FDRE                                         r  main_genericstandalone_phase_half_reg/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     1.119 r  monroe_ionphoton_monroe_ionphoton_phase_half_reg/Q
-                         net (fo=12, unplaced)        0.151     1.270    monroe_ionphoton_monroe_ionphoton_phase_half
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/D
+                         FDRE (Prop_fdre_C_Q)         0.147     1.119 r  main_genericstandalone_phase_half_reg/Q
+                         net (fo=12, unplaced)        0.151     1.270    main_genericstandalone_phase_half
+                         FDRE                                         r  main_genericstandalone_phase_half_rereg_reg/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.338     0.338    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.338     0.338    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.029     0.367 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.259     0.626    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.626    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.053     0.679 r  MMCME2_BASE_2/CLKOUT0
-                         net (fo=1, unplaced)         0.338     1.017    monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+                         net (fo=1, unplaced)         0.338     1.017    main_genericstandalone_clk_rx_half_unbuf
                          BUFG (Prop_bufg_I_O)         0.029     1.046 r  BUFG_6/O
                          net (fo=3, unplaced)         0.338     1.384    eth_rx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
+                         FDRE                                         r  main_genericstandalone_phase_half_rereg_reg/C
                          clock pessimism             -0.168     1.216    
                          clock uncertainty            0.177     1.393    
-                         FDRE (Hold_fdre_C_D)        -0.009     1.384    monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg
+                         FDRE (Hold_fdre_C_D)        -0.009     1.384    main_genericstandalone_phase_half_rereg_reg
   -------------------------------------------------------------------
                          required time                         -1.384    
                          arrival time                           1.270    
@@ -1753,7 +1753,7 @@ Slack (VIOLATED) :        -0.114ns  (arrival time - required time)
 
 ---------------------------------------------------------------------------------------------------
 From Clock:  
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+  To Clock:  main_genericstandalone_clk_rx_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.711ns,  Total Violation        0.000ns
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -1766,8 +1766,8 @@ Slack (MET) :             2.711ns  (required time - arrival time)
   Source:                 FDPE_6/Q
                             (internal pin)
   Destination:            FDPE_7/D
-                            (rising edge-triggered cell FDPE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                            (rising edge-triggered cell FDPE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Setup (Max at Fast Process Corner)
   Requirement:            2.000ns  (MaxDelay Path 2.000ns)
   Data Path Delay:        0.077ns  (logic 0.000ns (0.000%)  route 0.077ns (100.000%))
@@ -1785,18 +1785,18 @@ Slack (MET) :             2.711ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          FDPE                         0.000     0.000 r  FDPE_6/Q
-                         net (fo=1, unplaced)         0.077     0.077    xilinxasyncresetsynchronizerimpl2_rst_meta
+                         net (fo=1, unplaced)         0.077     0.077    builder_xilinxasyncresetsynchronizerimpl2_rst_meta
                          FDPE                                         r  FDPE_7/D
   -------------------------------------------------------------------    -------------------
 
                          max delay                    2.000     2.000    
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     2.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.321     2.321    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.321     2.321    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.026     2.347 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.114     2.461    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     2.461    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     2.511 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.321     2.832    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.321     2.832    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.026     2.858 r  BUFG_7/O
                          net (fo=218, unplaced)       0.114     2.972    eth_rx_clk
                          FDPE                                         r  FDPE_7/C
@@ -1814,8 +1814,8 @@ Slack (MET) :             2.711ns  (required time - arrival time)
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+From Clock:  main_genericstandalone_clk_rx_half_unbuf
+  To Clock:  main_genericstandalone_clk_rx_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        5.877ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.213ns,  Total Violation        0.000ns
@@ -1826,12 +1826,12 @@ Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             5.877ns  (required time - arrival time)
   Source:                 GTPE2_CHANNEL/RXUSRCLK2
-                            (rising edge-triggered cell GTPE2_CHANNEL clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_rx_data1_reg[9]/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                            (rising edge-triggered cell GTPE2_CHANNEL clocked by main_genericstandalone_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Destination:            main_genericstandalone_rx_data1_reg[9]/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@8.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise@0.000ns)
+  Requirement:            8.000ns  (main_genericstandalone_clk_rx_unbuf rise@8.000ns - main_genericstandalone_clk_rx_half_unbuf rise@0.000ns)
   Data Path Delay:        1.744ns  (logic 1.097ns (62.886%)  route 0.647ns (37.114%))
   Logic Levels:           1  (LUT4=1)
   Clock Path Skew:        -0.245ns (DCD - SCD + CPR)
@@ -1845,15 +1845,15 @@ Slack (MET) :             5.877ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.647     0.647    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.647     0.647    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.081     0.728 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.584     1.312    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     1.312    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.077     1.389 r  MMCME2_BASE_2/CLKOUT0
-                         net (fo=1, unplaced)         0.647     2.037    monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+                         net (fo=1, unplaced)         0.647     2.037    main_genericstandalone_clk_rx_half_unbuf
                          BUFG (Prop_bufg_I_O)         0.081     2.118 r  BUFG_6/O
                          net (fo=3, unplaced)         0.647     2.765    eth_rx_half_clk
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                                r  GTPE2_CHANNEL/RXUSRCLK2
@@ -1861,26 +1861,26 @@ Slack (MET) :             5.877ns  (required time - arrival time)
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL (Prop_gtpe2_channel_RXUSRCLK2_RXDISPERR[0])
                                                       0.992     3.757 r  GTPE2_CHANNEL/RXDISPERR[0]
                          net (fo=1, unplaced)         0.647     4.405    GTPE2_CHANNEL_n_159
-                         LUT4 (Prop_lut4_I3_O)        0.105     4.510 r  monroe_ionphoton_monroe_ionphoton_rx_data1[9]_i_1/O
-                         net (fo=1, unplaced)         0.000     4.510    monroe_ionphoton_monroe_ionphoton_rx_data1[9]_i_1_n_0
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_rx_data1_reg[9]/D
+                         LUT4 (Prop_lut4_I3_O)        0.105     4.510 r  main_genericstandalone_rx_data1[9]_i_1/O
+                         net (fo=1, unplaced)         0.000     4.510    main_genericstandalone_rx_data1[9]_i_1_n_0
+                         FDRE                                         r  main_genericstandalone_rx_data1_reg[9]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       8.000     8.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     8.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.615     8.615    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.615     8.615    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.077     8.692 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.439     9.131    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439     9.131    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.073     9.204 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.615     9.819    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.615     9.819    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.077     9.896 r  BUFG_7/O
                          net (fo=218, unplaced)       0.439    10.335    eth_rx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_rx_data1_reg[9]/C
+                         FDRE                                         r  main_genericstandalone_rx_data1_reg[9]/C
                          clock pessimism              0.185    10.520    
                          clock uncertainty           -0.177    10.344    
-                         FDRE (Setup_fdre_C_D)        0.043    10.387    monroe_ionphoton_monroe_ionphoton_rx_data1_reg[9]
+                         FDRE (Setup_fdre_C_D)        0.043    10.387    main_genericstandalone_rx_data1_reg[9]
   -------------------------------------------------------------------
                          required time                         10.387    
                          arrival time                          -4.510    
@@ -1894,13 +1894,13 @@ Slack (MET) :             5.877ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.213ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_rx_data1_reg[8]/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+  Source:                 main_genericstandalone_phase_half_rereg_reg/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Destination:            main_genericstandalone_rx_data1_reg[8]/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_rx_unbuf rise@0.000ns - main_genericstandalone_clk_rx_half_unbuf rise@0.000ns)
   Data Path Delay:        0.574ns  (logic 0.243ns (42.315%)  route 0.331ns (57.685%))
   Logic Levels:           1  (LUT4=1)
   Clock Path Skew:        0.086ns (DCD - SCD - CPR)
@@ -1914,41 +1914,41 @@ Slack (MET) :             0.213ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.321     0.321    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.321     0.321    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.026     0.347 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.114     0.461    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.461    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.050     0.511 r  MMCME2_BASE_2/CLKOUT0
-                         net (fo=1, unplaced)         0.321     0.832    monroe_ionphoton_monroe_ionphoton_clk_rx_half_unbuf
+                         net (fo=1, unplaced)         0.321     0.832    main_genericstandalone_clk_rx_half_unbuf
                          BUFG (Prop_bufg_I_O)         0.026     0.858 r  BUFG_6/O
                          net (fo=3, unplaced)         0.193     1.051    eth_rx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/C
+                         FDRE                                         r  main_genericstandalone_phase_half_rereg_reg/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     1.198 r  monroe_ionphoton_monroe_ionphoton_phase_half_rereg_reg/Q
-                         net (fo=10, unplaced)        0.331     1.529    monroe_ionphoton_monroe_ionphoton_phase_half_rereg
-                         LUT4 (Prop_lut4_I1_O)        0.096     1.625 r  monroe_ionphoton_monroe_ionphoton_rx_data1[8]_i_1/O
-                         net (fo=1, unplaced)         0.000     1.625    monroe_ionphoton_monroe_ionphoton_rx_data1[8]_i_1_n_0
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_rx_data1_reg[8]/D
+                         FDRE (Prop_fdre_C_Q)         0.147     1.198 r  main_genericstandalone_phase_half_rereg_reg/Q
+                         net (fo=10, unplaced)        0.331     1.529    main_genericstandalone_phase_half_rereg
+                         LUT4 (Prop_lut4_I1_O)        0.096     1.625 r  main_genericstandalone_rx_data1[8]_i_1/O
+                         net (fo=1, unplaced)         0.000     1.625    main_genericstandalone_rx_data1[8]_i_1_n_0
+                         FDRE                                         r  main_genericstandalone_rx_data1_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_rx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/RXOUTCLK
-                         net (fo=1, unplaced)         0.338     0.338    monroe_ionphoton_monroe_ionphoton_rxoutclk
+                         net (fo=1, unplaced)         0.338     0.338    main_genericstandalone_rxoutclk
                          BUFG (Prop_bufg_I_O)         0.029     0.367 r  BUFG_5/O
-                         net (fo=1, unplaced)         0.259     0.626    monroe_ionphoton_monroe_ionphoton_rxoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.626    main_genericstandalone_rxoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.053     0.679 r  MMCME2_BASE_2/CLKOUT1
-                         net (fo=1, unplaced)         0.338     1.017    monroe_ionphoton_monroe_ionphoton_clk_rx_unbuf
+                         net (fo=1, unplaced)         0.338     1.017    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.029     1.046 r  BUFG_7/O
                          net (fo=218, unplaced)       0.259     1.305    eth_rx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_rx_data1_reg[8]/C
+                         FDRE                                         r  main_genericstandalone_rx_data1_reg[8]/C
                          clock pessimism             -0.168     1.137    
                          clock uncertainty            0.177     1.314    
-                         FDRE (Hold_fdre_C_D)         0.099     1.413    monroe_ionphoton_monroe_ionphoton_rx_data1_reg[8]
+                         FDRE (Hold_fdre_C_D)         0.099     1.413    main_genericstandalone_rx_data1_reg[8]
   -------------------------------------------------------------------
                          required time                         -1.413    
                          arrival time                           1.625    
@@ -1960,8 +1960,8 @@ Slack (MET) :             0.213ns  (arrival time - required time)
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+From Clock:  main_genericstandalone_clk_tx_unbuf
+  To Clock:  main_genericstandalone_clk_tx_half_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        6.738ns,  Total Violation        0.000ns
 Hold  :           20  Failing Endpoints,  Worst Slack       -0.286ns,  Total Violation       -5.659ns
@@ -1971,13 +1971,13 @@ Hold  :           20  Failing Endpoints,  Worst Slack       -0.286ns,  Total Vio
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             6.738ns  (required time - arrival time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_buf_reg[10]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[10]/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+  Source:                 main_genericstandalone_buf_reg[10]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_tx_data_half_reg[10]/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_tx_half_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            8.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@16.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@8.000ns)
+  Requirement:            8.000ns  (main_genericstandalone_clk_tx_half_unbuf rise@16.000ns - main_genericstandalone_clk_tx_unbuf rise@8.000ns)
   Data Path Delay:        0.664ns  (logic 0.397ns (59.789%)  route 0.267ns (40.211%))
   Logic Levels:           0  
   Clock Path Skew:        -0.264ns (DCD - SCD + CPR)
@@ -1991,39 +1991,39 @@ Slack (MET) :             6.738ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       8.000     8.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     8.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.584     8.584    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.584     8.584    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.106     8.690 r  BUFH/O
-                         net (fo=1, unplaced)         0.584     9.274    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.584     9.274    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.077     9.351 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.584     9.935    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.584     9.935    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.106    10.041 r  BUFH_2/O
                          net (fo=206, unplaced)       0.584    10.625    eth_tx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_buf_reg[10]/C
+                         FDRE                                         r  main_genericstandalone_buf_reg[10]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397    11.022 r  monroe_ionphoton_monroe_ionphoton_buf_reg[10]/Q
-                         net (fo=2, unplaced)         0.267    11.289    monroe_ionphoton_monroe_ionphoton_buf[10]
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[10]/D
+                         FDRE (Prop_fdre_C_Q)         0.397    11.022 r  main_genericstandalone_buf_reg[10]/Q
+                         net (fo=2, unplaced)         0.267    11.289    main_genericstandalone_buf[10]
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                      16.000    16.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000    16.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.439    16.439    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.439    16.439    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.069    16.508 r  BUFH/O
-                         net (fo=1, unplaced)         0.439    16.947    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.439    16.947    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.073    17.020 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.439    17.459    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.439    17.459    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.069    17.528 r  BUFH_1/O
                          net (fo=22, unplaced)        0.502    18.030    eth_tx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[10]/C
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[10]/C
                          clock pessimism              0.331    18.361    
                          clock uncertainty           -0.177    18.185    
-                         FDRE (Setup_fdre_C_D)       -0.158    18.027    monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[10]
+                         FDRE (Setup_fdre_C_D)       -0.158    18.027    main_genericstandalone_tx_data_half_reg[10]
   -------------------------------------------------------------------
                          required time                         18.027    
                          arrival time                         -11.289    
@@ -2037,13 +2037,13 @@ Slack (MET) :             6.738ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (VIOLATED) :        -0.286ns  (arrival time - required time)
-  Source:                 monroe_ionphoton_monroe_ionphoton_buf_reg[0]/C
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/D
-                            (rising edge-triggered cell FDRE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+  Source:                 main_genericstandalone_buf_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_tx_data_half_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_tx_half_unbuf  {rise@0.000ns fall@8.000ns period=16.000ns})
+  Path Group:             main_genericstandalone_clk_tx_half_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise@0.000ns - monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise@0.000ns)
+  Requirement:            0.000ns  (main_genericstandalone_clk_tx_half_unbuf rise@0.000ns - main_genericstandalone_clk_tx_unbuf rise@0.000ns)
   Data Path Delay:        0.274ns  (logic 0.147ns (53.659%)  route 0.127ns (46.341%))
   Logic Levels:           0  
   Clock Path Skew:        0.392ns (DCD - SCD - CPR)
@@ -2057,39 +2057,39 @@ Slack (VIOLATED) :        -0.286ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.114     0.114    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.114     0.114    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.020     0.134 r  BUFH/O
-                         net (fo=1, unplaced)         0.114     0.248    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     0.248    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     0.298 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.114     0.412    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.114     0.412    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.020     0.432 r  BUFH_2/O
                          net (fo=206, unplaced)       0.114     0.546    eth_tx_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_buf_reg[0]/C
+                         FDRE                                         r  main_genericstandalone_buf_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.147     0.693 r  monroe_ionphoton_monroe_ionphoton_buf_reg[0]/Q
-                         net (fo=1, unplaced)         0.127     0.820    monroe_ionphoton_monroe_ionphoton_buf[0]
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/D
+                         FDRE (Prop_fdre_C_Q)         0.147     0.693 r  main_genericstandalone_buf_reg[0]/Q
+                         net (fo=1, unplaced)         0.127     0.820    main_genericstandalone_buf[0]
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf rise edge)
+                         (clock main_genericstandalone_clk_tx_half_unbuf rise edge)
                                                       0.000     0.000 r  
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     0.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.259     0.259    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.259     0.259    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.043     0.302 r  BUFH/O
-                         net (fo=1, unplaced)         0.259     0.561    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.259     0.561    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
                                                       0.053     0.614 r  MMCME2_BASE_1/CLKOUT0
-                         net (fo=1, unplaced)         0.259     0.873    monroe_ionphoton_monroe_ionphoton_clk_tx_half_unbuf
+                         net (fo=1, unplaced)         0.259     0.873    main_genericstandalone_clk_tx_half_unbuf
                          BUFH (Prop_bufh_I_O)         0.043     0.916 r  BUFH_1/O
                          net (fo=22, unplaced)        0.338     1.254    eth_tx_half_clk
-                         FDRE                                         r  monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]/C
+                         FDRE                                         r  main_genericstandalone_tx_data_half_reg[0]/C
                          clock pessimism             -0.316     0.938    
                          clock uncertainty            0.177     1.115    
-                         FDRE (Hold_fdre_C_D)        -0.009     1.106    monroe_ionphoton_monroe_ionphoton_tx_data_half_reg[0]
+                         FDRE (Hold_fdre_C_D)        -0.009     1.106    main_genericstandalone_tx_data_half_reg[0]
   -------------------------------------------------------------------
                          required time                         -1.106    
                          arrival time                           0.820    
@@ -2102,7 +2102,7 @@ Slack (VIOLATED) :        -0.286ns  (arrival time - required time)
 
 ---------------------------------------------------------------------------------------------------
 From Clock:  
-  To Clock:  monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+  To Clock:  main_genericstandalone_clk_tx_unbuf
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.285ns,  Total Violation        0.000ns
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -2115,8 +2115,8 @@ Slack (MET) :             2.285ns  (required time - arrival time)
   Source:                 FDPE_4/Q
                             (internal pin)
   Destination:            FDPE_5/D
-                            (rising edge-triggered cell FDPE clocked by monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                            (rising edge-triggered cell FDPE clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_genericstandalone_clk_tx_unbuf
   Path Type:              Setup (Max at Fast Process Corner)
   Requirement:            2.000ns  (MaxDelay Path 2.000ns)
   Data Path Delay:        0.077ns  (logic 0.000ns (0.000%)  route 0.077ns (100.000%))
@@ -2134,18 +2134,18 @@ Slack (MET) :             2.285ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          FDPE                         0.000     0.000 r  FDPE_4/Q
-                         net (fo=1, unplaced)         0.077     0.077    xilinxasyncresetsynchronizerimpl1_rst_meta
+                         net (fo=1, unplaced)         0.077     0.077    builder_xilinxasyncresetsynchronizerimpl1_rst_meta
                          FDPE                                         r  FDPE_5/D
   -------------------------------------------------------------------    -------------------
 
                          max delay                    2.000     2.000    
     GTPE2_CHANNEL_X0Y4   GTPE2_CHANNEL                0.000     2.000 r  GTPE2_CHANNEL/TXOUTCLK
-                         net (fo=1, unplaced)         0.114     2.114    monroe_ionphoton_monroe_ionphoton_txoutclk
+                         net (fo=1, unplaced)         0.114     2.114    main_genericstandalone_txoutclk
                          BUFH (Prop_bufh_I_O)         0.020     2.134 r  BUFH/O
-                         net (fo=1, unplaced)         0.114     2.248    monroe_ionphoton_monroe_ionphoton_txoutclk_rebuffer
+                         net (fo=1, unplaced)         0.114     2.248    main_genericstandalone_txoutclk_rebuffer
                          MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
                                                       0.050     2.298 r  MMCME2_BASE_1/CLKOUT1
-                         net (fo=1, unplaced)         0.114     2.412    monroe_ionphoton_monroe_ionphoton_clk_tx_unbuf
+                         net (fo=1, unplaced)         0.114     2.412    main_genericstandalone_clk_tx_unbuf
                          BUFH (Prop_bufh_I_O)         0.020     2.432 r  BUFH_2/O
                          net (fo=206, unplaced)       0.114     2.546    eth_tx_clk
                          FDPE                                         r  FDPE_5/C
@@ -2164,7 +2164,7 @@ Slack (MET) :             2.285ns  (required time - arrival time)
 
 ---------------------------------------------------------------------------------------------------
 From Clock:  
-  To Clock:  monroe_ionphoton_rtio_crg_rtio_clk
+  To Clock:  main_rtio_crg_rtio_clk
 
 Setup :            0  Failing Endpoints,  Worst Slack        2.884ns,  Total Violation        0.000ns
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
@@ -2177,8 +2177,8 @@ Slack (MET) :             2.884ns  (required time - arrival time)
   Source:                 FDPE_10/Q
                             (internal pin)
   Destination:            FDPE_11/D
-                            (rising edge-triggered cell FDPE clocked by monroe_ionphoton_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Path Group:             monroe_ionphoton_rtio_crg_rtio_clk
+                            (rising edge-triggered cell FDPE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             main_rtio_crg_rtio_clk
   Path Type:              Setup (Max at Fast Process Corner)
   Requirement:            2.000ns  (MaxDelay Path 2.000ns)
   Data Path Delay:        0.077ns  (logic 0.000ns (0.000%)  route 0.077ns (100.000%))
@@ -2196,7 +2196,7 @@ Slack (MET) :             2.884ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          FDPE                         0.000     0.000 r  FDPE_10/Q
-                         net (fo=1, unplaced)         0.077     0.077    xilinxasyncresetsynchronizerimpl4_rst_meta
+                         net (fo=1, unplaced)         0.077     0.077    builder_xilinxasyncresetsynchronizerimpl4_rst_meta
                          FDPE                                         r  FDPE_11/D
   -------------------------------------------------------------------    -------------------
 
@@ -2204,10 +2204,10 @@ Slack (MET) :             2.884ns  (required time - arrival time)
     Y18                                               0.000     2.000 r  si5324_clkout_fabric_p (IN)
                          net (fo=0)                   0.000     2.000    si5324_clkout_fabric_p
     Y18                  IBUFDS (Prop_ibufds_I_O)     0.441     2.441 r  IBUFGDS/O
-                         net (fo=1, unplaced)         0.114     2.555    monroe_ionphoton_rtio_crg_clk_synth_se
+                         net (fo=1, unplaced)         0.114     2.555    main_rtio_crg_clk_synth_se
                          PLLE2_ADV (Prop_plle2_adv_CLKIN2_CLKOUT1)
                                                       0.051     2.606 r  PLLE2_ADV/CLKOUT1
-                         net (fo=1, unplaced)         0.321     2.927    monroe_ionphoton_rtio_crg_rtio_clk
+                         net (fo=1, unplaced)         0.321     2.927    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.026     2.953 r  BUFG_8/O
                          net (fo=5425, unplaced)      0.193     3.146    rtio_clk
                          FDPE                                         r  FDPE_11/C
@@ -2258,7 +2258,7 @@ Slack (MET) :             1.928ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          FDPE                         0.000     0.000 r  FDPE/Q
-                         net (fo=1, unplaced)         0.077     0.077    monroe_ionphoton_monroe_ionphoton_monroe_ionphoton_asyncresetsynchronizerbufg_rst_meta
+                         net (fo=1, unplaced)         0.077     0.077    main_genericstandalone_genericstandalone_asyncresetsynchronizerbufg_rst_meta
                          FDPE                                         r  FDPE_1/D
   -------------------------------------------------------------------    -------------------
 

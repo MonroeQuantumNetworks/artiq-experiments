@@ -1,13 +1,12 @@
 set -v
 
-# create the nix shell
-#nix-shell -p git
-#nix-shell -I artiqSrc=~/Documents/github/artiq-fork/artiq ~/Documents/github/nix-scripts/artiq-fast/shell-dev.nix
+# run this from within the shell-dev.nix environment
 
 # compile the firmware with Vivado
 cd ~/Documents/github/artiq-experiments
 rm -rf ~/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton
-python -m artiq.gateware.targets.kasli -V monroe_ionphoton
+#python -m artiq.gateware.targets.kasli -V monroe_ionphoton
+python -m artiq.gateware.targets.kasli_generic monroe_ionphoton.json
 
 # flash the firmware to the board
 artiq_flash -t kasli -V monroe_ionphoton --srcbuild -d ./artiq_kasli

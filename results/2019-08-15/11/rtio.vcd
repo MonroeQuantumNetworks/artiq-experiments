@@ -1,0 +1,78 @@
+$timescale 1000ps $end
+$var wire 1 ! ttl/led0 $end
+$var wire 1 " ttl/led1 $end
+$scope module spi2/spi_urukul0 $end
+$var wire 1 # spi_urukul0/stb $end
+$var wire 8 $ spi_urukul0/flags $end
+$var wire 5 % spi_urukul0/length $end
+$var wire 8 & spi_urukul0/div $end
+$var wire 8 ' spi_urukul0/chip_select $end
+$var wire 32 ( spi_urukul0/write $end
+$var wire 32 ) spi_urukul0/read $end
+$upscope $end
+$scope module spi2/spi_urukul1 $end
+$var wire 1 * spi_urukul1/stb $end
+$var wire 8 + spi_urukul1/flags $end
+$var wire 5 , spi_urukul1/length $end
+$var wire 8 - spi_urukul1/div $end
+$var wire 8 . spi_urukul1/chip_select $end
+$var wire 32 / spi_urukul1/write $end
+$var wire 32 0 spi_urukul1/read $end
+$upscope $end
+$scope module spi2/spi_urukul2 $end
+$var wire 1 1 spi_urukul2/stb $end
+$var wire 8 2 spi_urukul2/flags $end
+$var wire 5 3 spi_urukul2/length $end
+$var wire 8 4 spi_urukul2/div $end
+$var wire 8 5 spi_urukul2/chip_select $end
+$var wire 32 6 spi_urukul2/write $end
+$var wire 32 7 spi_urukul2/read $end
+$upscope $end
+$var wire 1 8 ttl/ttl0 $end
+$var wire 1 9 ttl/ttl1 $end
+$var wire 1 : ttl/ttl10 $end
+$var wire 1 ; ttl/ttl11 $end
+$var wire 1 < ttl/ttl12 $end
+$var wire 1 = ttl/ttl13 $end
+$var wire 1 > ttl/ttl14 $end
+$var wire 1 ? ttl/ttl15 $end
+$var wire 1 @ ttl/ttl2 $end
+$var wire 1 A ttl/ttl3 $end
+$var wire 1 B ttl/ttl4 $end
+$var wire 1 C ttl/ttl5 $end
+$var wire 1 D ttl/ttl6 $end
+$var wire 1 E ttl/ttl7 $end
+$var wire 1 F ttl/ttl8 $end
+$var wire 1 G ttl/ttl9 $end
+$var wire 1 H ttl/ttl_urukul0_io_update $end
+$var wire 1 I ttl/ttl_urukul0_sw0 $end
+$var wire 1 J ttl/ttl_urukul0_sw1 $end
+$var wire 1 K ttl/ttl_urukul0_sw2 $end
+$var wire 1 L ttl/ttl_urukul0_sw3 $end
+$var wire 1 M ttl/ttl_urukul1_io_update $end
+$var wire 1 N ttl/ttl_urukul1_sw0 $end
+$var wire 1 O ttl/ttl_urukul1_sw1 $end
+$var wire 1 P ttl/ttl_urukul1_sw2 $end
+$var wire 1 Q ttl/ttl_urukul1_sw3 $end
+$var wire 1 R ttl/ttl_urukul2_io_update $end
+$var wire 1 S ttl/ttl_urukul2_sw0 $end
+$var wire 1 T ttl/ttl_urukul2_sw1 $end
+$var wire 1 U ttl/ttl_urukul2_sw2 $end
+$var wire 1 V ttl/ttl_urukul2_sw3 $end
+$var wire 56 W log/msg $end
+$var wire 64 X rtio_slack $end
+#0
+b0011111100011000011110001011111100100101111001111001001010011001 X
+b0011111100010101010110000100010110101011000111101100000011111010 X
+b01100101011101100110010101101110011101000010000000110001 W
+b0011111100010101001101100111001100000011101011011011010010000100 X
+#1800
+b0011111100010011001011101100001000011011011111110001110110101001 X
+b0011111100001111101000010001011001001011110110000000000011101111 X
+b01100101011101100110010101101110011101000010000000110010 W
+b0011111100001111010111010111000011111100111101011110100000000010 X
+#3600
+b0011111100001010101111110100000001101001100111101111011101110100 X
+b0011111100000100110110101010010011110100000011010010010011111001 X
+b01100101011101100110010101101110011101000010000000110011 W
+b0011111100000100100101101111111110100101001010110000110000001100 X

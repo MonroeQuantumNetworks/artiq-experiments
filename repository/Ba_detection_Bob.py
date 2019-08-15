@@ -8,6 +8,7 @@ from artiq.experiment import *  # TODO: can we import rtio_log without import * 
 #from artiq.language.scan import Scannable
 import numpy as np
 import base_experiment
+import os
 
 
 class Ba_detection_Bob(base_experiment.base_experiment):
@@ -26,7 +27,9 @@ class Ba_detection_Bob(base_experiment.base_experiment):
         self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
-        print('Ba_detection_Bob.py build() done')
+        self.detector = self.Bob_PMT
+
+        print('{}.build() done'.format(self.__class__))
 
     @kernel
     def cool(self):
@@ -53,7 +56,7 @@ class Ba_detection_Bob(base_experiment.base_experiment):
     @kernel
     def detect1(self):
         t = now_mu()
-        gate_end_mu = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+        gate_end_mu = self.detector.gate_rising(self.detection_time)
         at_mu(t)
         self.DDS__493__Bob__sigma_1.sw.on()
         delay(self.detection_time)
@@ -61,12 +64,12 @@ class Ba_detection_Bob(base_experiment.base_experiment):
 
         delay_mu(100000)
 
-        return self.Bob_camera_side_APD.count(gate_end_mu)
+        return self.detector.count(gate_end_mu)
 
     @kernel
     def detect2(self):
         t = now_mu()
-        gate_end_mu = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+        gate_end_mu = self.detector.gate_rising(self.detection_time)
         at_mu(t)
         self.DDS__493__Bob__sigma_2.sw.on()
         delay(self.detection_time)
@@ -74,7 +77,7 @@ class Ba_detection_Bob(base_experiment.base_experiment):
 
         delay_mu(100000)
 
-        return self.Bob_camera_side_APD.count(gate_end_mu)
+        return self.detector.count(gate_end_mu)
 
     @kernel
     def setup(self):

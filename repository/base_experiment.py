@@ -198,7 +198,7 @@ class base_experiment(EnvExperiment):
             # setup alias
             setattr(self, name, getattr(self, hardware))
             # create list in hardware order
-            self.globals__TTL_output__channel_names.append(name)
+            self.globals__TTL_output__channel_names.append(bytes(name, 'utf-8'))
             self.TTL_output_channels.append(getattr(self, hardware))
 
         # DDS channels #
@@ -280,9 +280,6 @@ class base_experiment(EnvExperiment):
 
     def setup(self):
 
-        # Overwrite the globals again.  If any were changed in the GUI they were saved in prepare().
-        self.load_globals_from_dataset()
-
         # Store a list of DDS values, which are harder to access on the kernel.
         self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]
         self.DDS_amp_list = [getattr(self, 'globals__DDS__' + name + '__amplitude') for name in self.DDS_name_list]
@@ -313,8 +310,12 @@ class base_experiment(EnvExperiment):
             else:
                 channel.off()
 
-    def prepare(self):
-        self.write_globals_to_datasets()
-
     def run(self):
+        # subclasses should override run_worker(), not run()
+        self.write_globals_to_datasets()
+        self.run_worker()
+        self.write_globals_to_datasets(archive=True)
+
+    def run_worker(self):
+        # subclasses should override run_worker(), not run()
         pass

@@ -13,9 +13,9 @@ class idle_counters(base_experiment.base_experiment):
 
         super().build()
         self.setattr_argument('detection_time', NumberValue(100*ms, unit='ms', ndecimals=9, min=0, step=1.0))
-        print('idle_counters.py build() done')
+        print('{}.build() done'.format(self.__class__))
 
-    def run(self):
+    def run_worker(self):
 
         self.gate_t = self.core.seconds_to_mu(self.detection_time)
 
@@ -30,6 +30,9 @@ class idle_counters(base_experiment.base_experiment):
             self.morse_index = 0
 
             while True:
+
+                # Overwrite the globals from the database again, so we have the most current setup.
+                self.load_globals_from_dataset()
 
                 self.setup()
 
