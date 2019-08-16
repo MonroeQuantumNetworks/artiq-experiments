@@ -10,7 +10,7 @@ import numpy as np
 import base_experiment
 
 
-class Ba_detection_timescan_multiscan(base_experiment.base_experiment):
+class Raman_rotation(base_experiment.base_experiment):
 
     def build(self):
         super().build()

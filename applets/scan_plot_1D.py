@@ -48,9 +48,6 @@ class scan_plot_1D(pyqtgraph.GraphicsLayoutWidget):
             self.avg_labels = []
             for i in range(self.num_channels):
                 self.plots += [self.addPlot(rowspan=3)]  #, axisItems={'bottom': dateaxisitem.DateAxisItem(orientation='bottom')})]
-                # link x-axes of all plots to the top one
-                if i > 0:
-                    self.plots[i].setXLink(self.plots[0])
                 # create the elements of each plot widget
                 self.lines += [self.plots[i].plot(pen=None, symbol='o', symbolPen=('w'))]
                 # add text readout
@@ -60,18 +57,26 @@ class scan_plot_1D(pyqtgraph.GraphicsLayoutWidget):
                 self.nextRow()
                 self.avg_labels += [self.addLabel('', color='w', size='20pt')]
                 self.nextRow()
+                # link x-axes of all plots to the top one
+                if i != 0:
+                    self.plots[i].setXLink(self.plots[0])
+
 
         # load new data
         try:
 
             self.y = np.array(data[self.args.y][1])
             # account for 1D shape when we only have the first point
-            if len(self.y.shape)==1:
-                self.y = np.reshape(self.y, (1,len(self.y)))
+            if len(self.y.shape) == 1:
+                self.y = np.reshape(self.y, (1, len(self.y)))
 
             # expect that x is a 1D array of the same length as y
             self.x = np.array(data.get(self.args.x, (False, None))[1])
             #self.xlabel = [', '.join(i) for i in data.get(self.args.xlabel, (False, None))[1]]
+
+            # check to see that we have both x and y updated
+            if len(self.x) != len(self.y):
+                return
 
             # iterate over channels and set the plot data
             for i in range(self.num_channels):

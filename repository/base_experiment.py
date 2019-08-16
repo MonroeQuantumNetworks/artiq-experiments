@@ -17,10 +17,13 @@ from artiq.language.core import kernel, delay, at_mu, now_mu
 from artiq.language.environment import HasEnvironment, EnvExperiment
 from artiq.experiment import NumberValue, BooleanValue, TerminationRequested
 from artiq.language.units import s, ms, us, ns, MHz
+from artiq.coredevice.comm_analyzer import (get_analyzer_dump, decode_dump, decoded_dump_to_vcd)
 import numpy as np
 
 
 class base_experiment(EnvExperiment):
+
+    core_ip_address = '192.168.1.98'
 
     # these lists contain default values, they will be overwritten by what is in the datasets and then what is typed in the GUI
 
@@ -65,7 +68,7 @@ class base_experiment(EnvExperiment):
 
         self.load_globals_from_dataset()
         self.build_common()
-        print('base_experiment.build() done for {}'.format(self.__class__))
+        #print('base_experiment.build() done for {}'.format(self.__class__))
 
     def load_globals_from_dataset(self):
 
@@ -278,6 +281,14 @@ class base_experiment(EnvExperiment):
         if sw:
             channel.sw.on()
 
+    def coreanalyzer_purge(self):
+        get_analyzer_dump(self.core_ip_address)
+
+    def coreanalyzer_write(self):
+        with open('/home/monroe/Documents/github/artiq-experiments/rtio.vcd', "w") as f:
+            decoded_dump_to_vcd(f, self.get_device_db(), decode_dump(get_analyzer_dump(self.core_ip_address)))
+
+
     def setup(self):
 
         # Store a list of DDS values, which are harder to access on the kernel.
@@ -288,6 +299,7 @@ class base_experiment(EnvExperiment):
 
         # Store a list of TTL values, which are harder to access on the kernel.
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
+
         self.kernel_setup()
 
     @kernel

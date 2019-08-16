@@ -21,6 +21,5 @@ class ttl_test1(base_experiment.base_experiment):
                     self.ttl14.pulse(500 * us)
                     self.ttl15.pulse(500 * us)
                 delay(500*us)
-                self.core.wait_until_mu(now_mu()-125000)
         except TerminationRequested:
             print('Terminated gracefully')

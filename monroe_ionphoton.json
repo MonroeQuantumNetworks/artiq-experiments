@@ -42,6 +42,18 @@
               "ref_frequency": 125e6,
               "clk_sel": 1,
               "pll_n": 32
+          },
+          {
+              "type": "urukul",
+              "ports": [8, 9],
+              "dds": "ad9910",
+              "ref_frequency": 125e6,
+              "clk_sel": 1,
+              "pll_n": 32
+          },
+          {
+              "type": "zotino",
+              "ports": [10]
           }
-     ]
+      ]
   }

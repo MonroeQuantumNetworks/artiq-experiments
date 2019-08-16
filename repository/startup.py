@@ -27,6 +27,7 @@ class startup(settings.settings):
         # Overrides settings.run(), not base_experiment.run()
         self.startup_kernel()
         super().run()
+        print("super run done")
 
     @kernel
     def startup_kernel(self):
@@ -36,5 +37,15 @@ class startup(settings.settings):
         # DDS channels #
 
         self.urukul0_cpld.init()
+        print("urukul 1 done")
+        self.core.break_realtime()
         self.urukul1_cpld.init()
+        print("urukul 2 done")
+        self.core.break_realtime()
         self.urukul2_cpld.init()
+        print("urukul 3 done")
+        self.core.break_realtime()
+
+        for channel in self.DDS_device_list:
+            channel.init()
+
