@@ -16,7 +16,7 @@ import traceback
 from artiq.language.core import kernel, delay, at_mu, now_mu
 from artiq.language.environment import HasEnvironment, EnvExperiment
 from artiq.experiment import NumberValue, BooleanValue, TerminationRequested
-from artiq.language.units import s, ms, us, ns, MHz
+from artiq.language.units import s, ms, us, ns, MHz, V
 from artiq.coredevice.comm_analyzer import (get_analyzer_dump, decode_dump, decoded_dump_to_vcd)
 import numpy as np
 
@@ -26,6 +26,13 @@ class base_experiment(EnvExperiment):
     core_ip_address = '192.168.1.98'
 
     # these lists contain default values, they will be overwritten by what is in the datasets and then what is typed in the GUI
+
+    urukul_cpld_list = [
+        'urukul0_cpld',
+        'urukul1_cpld',
+        'urukul2_cpld',
+        'urukul3_cpld'
+    ]
 
     DDS_list = [
         ('493__Alice__sigma_1', 'urukul0_ch0', 75*MHz, 1.0, 10.0, True),
@@ -39,7 +46,11 @@ class base_experiment(EnvExperiment):
         ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
         ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
         ('532__tone_1', 'urukul2_ch2', 110*MHz, 0.5, 19.5, False),
-        ('532__tone_2', 'urukul2_ch3', 110*MHz, 0.5, 19.5, False)
+        ('532__tone_2', 'urukul2_ch3', 110*MHz, 0.5, 19.5, False),
+        ('Alice_trap_RF', 'urukul3_ch0', 18.624*MHz, 0.491, 13.0, True),
+        ('Bob_trap_RF', 'urukul3_ch1', 14.0111*MHz, 0.51, 20.0, True),
+        ('urukul3_ch2', 'urukul3_ch2', 10 * MHz, 0.5, 10.0, False),
+        ('urukul3_ch3', 'urukul3_ch3', 10 * MHz, 0.5, 10.0, False)
     ]
 
     TTL_input_list = [
@@ -63,6 +74,27 @@ class base_experiment(EnvExperiment):
         ('ttl14', 'ttl14', False),
         ('ttl15', 'ttl15',  False)
     ]
+
+    DAC_list = [
+        ('Alice_camera_DC_bias', 0, -0.15),
+        ('Alice_camera_RF_bias', 1, 0.18),
+        ('Alice_big_lens_RF_bias', 2, -0.03),
+        ('Alice_big_lens_DC_bias', 3, 0.12),
+        ('Bob_RF_bias_0', 4, 0.27),
+        ('Bob_RF_bias_1', 5, 0.169),
+        ('Bob_Dsub_side_ground_bias', 6, 0.083),
+        ('Bob_resonator_side_ground_bias', 7, 0.165),
+        ('DAC8', 8, 0.0),
+        ('DAC9', 9, 0.0),
+        ('DAC10', 10, 0.0),
+        ('DAC11', 11, 0.0),
+        ('DAC12', 12, 0.0),
+        ('DAC13', 13, 0.0),
+        ('DAC14', 14, 0.0),
+        ('DAC15', 15, 0.0)
+    ]
+
+    num_DAC_channels = 16
 
     def build(self):
 
@@ -162,10 +194,15 @@ class base_experiment(EnvExperiment):
         # DDS #
 
         for name, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
-            self.number_argument('globals__DDS__' + name + '__frequency', freq_default, tooltip=hardware, unit='MHz', ndecimals=9, min=0.0*MHz, max=500.0*MHz, step=1.0*MHz)
+            self.number_argument('globals__DDS__' + name + '__frequency', freq_default, tooltip=hardware, unit='MHz', ndecimals=9, min=0.0*MHz, max=500.0*MHz, step=0.01*MHz)
             self.number_argument('globals__DDS__' + name + '__amplitude', amp_default, tooltip=hardware, scale=1.0, ndecimals=9, min=0.0, max=1.0, step=0.1)
             self.number_argument('globals__DDS__' + name + '__attenuation', att_default, tooltip=hardware, unit='dB', scale=1.0, ndecimals=9, min=0.0, max=31.5, step=0.5)
             self.boolean_argument('globals__DDS__' + name + '__switch', sw_default, tooltip=hardware)
+
+        # DAC #
+
+        for name, channel, voltage_default in self.DAC_list:
+            self.number_argument('globals__DAC__'+name, voltage_default, tooltip='zotino0_ch'+str(channel), unit='V', ndecimals=9, min=-10*V, max=9.999*V, step=1*V)
 
     def build_common(self):
 
@@ -206,9 +243,10 @@ class base_experiment(EnvExperiment):
 
         # DDS channels #
 
-        self.setattr_device('urukul0_cpld')
-        self.setattr_device('urukul1_cpld')
-        self.setattr_device('urukul2_cpld')
+        self.urukul_cplds = []
+        for name in self.urukul_cpld_list:
+            self.setattr_device(name)
+            self.urukul_cplds.append(getattr(self, name))
 
         self.DDS_device_list = []
         self.DDS_name_list = []
@@ -217,10 +255,17 @@ class base_experiment(EnvExperiment):
             # setup device with real hardware name
             self.setattr_device(hardware)
             # setup alias
-            setattr(self, 'DDS__'+name, getattr(self, hardware))
+            alias_name = "DDS__" + name
+            setattr(self, alias_name, getattr(self, hardware))
+            #kernel_invariants = getattr(self, "kernel_invariants", set())
+            #self.kernel_invariants = kernel_invariants | {alias_name}
             # add device to lists
             self.DDS_name_list.append(name)
             self.DDS_device_list.append(getattr(self, hardware))
+
+        # DAC #
+
+        self.setattr_device('zotino0')
 
     def write_globals_to_datasets(self, archive=False):
         # Write globals to datasets.  This will take care of things added both programatically and through arguments.
@@ -300,6 +345,10 @@ class base_experiment(EnvExperiment):
         # Store a list of TTL values, which are harder to access on the kernel.
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
 
+        # DAC #
+        self.DAC_voltage_list = [getattr(self, 'globals__DAC__'+name) for name, channel, voltage_default in self.DAC_list]
+        self.DAC_channel_list = [channel for name, channel, voltage_default in self.DAC_list]
+
         self.kernel_setup()
 
     @kernel
@@ -321,6 +370,12 @@ class base_experiment(EnvExperiment):
                 channel.on()
             else:
                 channel.off()
+
+        # DAC #
+
+        #self.core.break_realtime()
+        delay_mu(1000000)
+        self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)
 
     def run(self):
         # subclasses should override run_worker(), not run()
