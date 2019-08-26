@@ -9,134 +9,80 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Bob_DMA(base_experiment.base_experiment):
+class Ba_detection_Alice_DMA_BrightDetectionOnly(base_experiment.base_experiment):
 
     def build(self):
         super().build()
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         self.setattr_device("core_dma")
-        self.detector = self.Bob_camera_side_APD
+        self.detector = self.Alice_camera_side_APD
 
-        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
+        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
         self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(1, 10000, 10000)], global_min=0, global_step=1, ndecimals=0))
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__493__Alice__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__493__Alice__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__493__Alice__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
-        self.sum11 = 0
-        self.sum12 = 0
-
+        self.sum12 = 1
 
 
     @kernel
     def prep_record(self):
 
         with self.core_dma.record("pulses"):
-            self.urukul0_ch2.sw.off() # Bob 493 sigma 1
-            self.urukul0_ch3.sw.off() # Bob 493 sigma 2
-            self.urukul1_ch3.sw.on() # Bob 650 pi
+            self.urukul0_ch0.sw.off() # Alice 493 sigma 1
+            self.urukul3_ch0.sw.off() # Alice 493 sigma 2
+            self.urukul1_ch2.sw.on() # Alice 650 pi
             self.urukul2_ch0.sw.on() # 650 fast AOM
             self.urukul1_ch0.sw.on() # 650 sigma 1
             self.urukul1_ch1.sw.on() # 650 sigma 2
-
-    @kernel
-    def record_pump_sigma1_detect_sigma1(self):
-        gate_end_mu_11 = 0
-
-        with self.core_dma.record("pulses"):
-            # cooling
-            self.urukul0_ch2.sw.on()  # Bob 493 sigma 1
-            self.urukul0_ch3.sw.on()  # Bob 493 sigma 2
-
-            delay(self.cooling_time)
-
-            self.urukul0_ch2.sw.off()
-            self.urukul0_ch3.sw.off()
-
-            delay(10*ns)
-
-            # pumping, sigma 1
-            self.urukul0_ch2.sw.on()
-            delay(self.pumping_time)
-            self.urukul0_ch2.sw.off()
-
-            delay(10*ns)
-
-            # detection, sigma 1
-            t11 = now_mu()
-            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
-            at_mu(t11)
-
-            self.urukul0_ch2.sw.on()
-            delay(self.detection_time)
-            self.urukul0_ch2.sw.off()
-
-            delay(10*ns)
-
-        return gate_end_mu_11
+            self.urukul2_ch1.sw.off() # Alice 493 cooling
 
     @kernel
     def record_pump_sigma1_detect_sigma2(self):
-        gate_end_mu_12 = 0
-
+        gate_end_mu = 0
         with self.core_dma.record("pulses"):
             # cooling
-            self.urukul0_ch2.sw.on()  # Bob 493 sigma 1
-            self.urukul0_ch3.sw.on()  # Bob 493 sigma 2
+            self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
+            self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
+            self.urukul2_ch1.sw.on() # Alice 493 cooling
 
             delay(self.cooling_time)
 
-            self.urukul0_ch2.sw.off()
-            self.urukul0_ch3.sw.off()
+            self.urukul0_ch0.sw.off()
+            self.urukul3_ch0.sw.off()
+            self.urukul2_ch1.sw.off()
 
             delay(10*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch2.sw.on()
+            self.urukul0_ch0.sw.on()
             delay(self.pumping_time)
-            self.urukul0_ch2.sw.off()
+            self.urukul0_ch0.sw.off()
 
-            delay(10*ns)
+            delay(500*ns)
 
-            # detection, sigma 1
             t12 = now_mu()
-            gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
+            gate_end_mu = self.detector.gate_rising(self.detection_time)
             at_mu(t12)
 
-            self.urukul0_ch3.sw.on()
+            self.urukul3_ch0.sw.on()
             delay(self.detection_time)
-            self.urukul0_ch3.sw.off()
+            self.urukul3_ch0.sw.off()
 
-            delay(10*ns)
-
-        return gate_end_mu_12
-
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_frequency(freq)
-        delay_mu(6000)
-
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_amplitude(amp)
-        delay_mu(6000)
+            delay(100*ns)
+        return gate_end_mu
 
     def run(self):
 
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
-        self.set_dataset('sum11', [], archive=True)
         self.set_dataset('sum12', [], archive=True)
-        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect1', 'detect2']], broadcast=True, archive=True, persist=True)
+        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['sum12']], broadcast=True, archive=True, persist=True)
 
         try:
 
@@ -159,10 +105,12 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             self.set_dataset('scan_x', [], broadcast=True, archive=True)
 
             self.point_num = 0
-
+            # Preparation for experiment
+            gate_end_mu = self.kernel_prep_run()
+            self.gate_end_mu = gate_end_mu
             for point in msm:
 
-                print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
+                #print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
                 for name in self.active_scan_names:
@@ -186,11 +134,8 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
                 self.kernel_run()
 
-                ratio11 = self.sum11 / (self.sum11 + self.sum12)
-                ratio12 = self.sum12 / (self.sum11 + self.sum12)
-                ratios = np.array([ratio11, ratio12])
+                ratios = np.array([self.sum12])
 
-                self.append_to_dataset('sum11', self.sum11)
                 self.append_to_dataset('sum12', self.sum12)
                 self.append_to_dataset('ratio_list', ratios)
 
@@ -202,45 +147,42 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
         except TerminationRequested:
             print('Terminated gracefully')
-        # finally:
-        #     print(self.sum11, self.sum12)
+
 
     @kernel
-    def kernel_run(self):
-        counts11 = 0
-        counts12 = 0
-
-        sum11 = 0
-        sum12 = 0
-        self.core.reset()
-
+    def kernel_prep_run(self):
         # Preparation for experiment
         self.prep_record()
         pulses_handle = self.core_dma.get_handle("pulses")
         self.core.break_realtime()
         self.core_dma.playback_handle(pulses_handle)
         self.core.break_realtime()
+        gate_end_mu = self.record_pump_sigma1_detect_sigma2()
+        return gate_end_mu
+
+    @kernel
+    def kernel_run(self):
+        counts12 = 0
+        sum12 = 1
+        self.core.reset()
 
         # Pump sigma 1, detect sigma 1
-        gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
-        for i in range(self.detections_per_point):
-            pulses_handle = self.core_dma.get_handle("pulses")
-            self.core.break_realtime()
-            self.core_dma.playback_handle(pulses_handle)
-            counts11 = self.detector.count(gate_end_mu_11)
-            sum11 += counts11
-        self.sum11 = sum11
-
-        # Pump sigma 1, detect sigma 2
+        if self.point_num == 0:
+            gate_end_mu = self.record_pump_sigma1_detect_sigma2()
+        else:
+            gate_end_mu = self.gate_end_mu
+        pulses_handle = self.core_dma.get_handle("pulses")
         self.core.break_realtime()
-        gate_end_mu_12 = self.record_pump_sigma1_detect_sigma2()
+
         for i in range(self.detections_per_point):
-            pulses_handle = self.core_dma.get_handle("pulses")
-            self.core.break_realtime()
+            delay_mu(100)
             self.core_dma.playback_handle(pulses_handle)
-            counts12 = self.detector.count(gate_end_mu_12)
+
+            counts12 = self.detector.count(gate_end_mu)
             sum12 += counts12
+
         self.sum12 = sum12
+
 
 
 
