@@ -48,6 +48,7 @@ class Ba_detection_Alice(base_experiment.base_experiment):
 
     @kernel
     def pump2(self):
+
         self.DDS__493__Alice__sigma_2.sw.pulse(self.globals__timing__pumping_time)
 
     @kernel

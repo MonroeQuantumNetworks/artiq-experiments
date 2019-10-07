@@ -1,4 +1,4 @@
-"""This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
+"""Implements detection on Bob"""
 
 from artiq.experiment import *  # TODO: can we import rtio_log without import * ?
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -36,74 +36,100 @@ class Ba_detection_Bob(base_experiment.base_experiment):
     @kernel
     def cool(self):
 
-        delay_mu(100000)
-        self.DDS__493__Bob__sigma_1.sw.on()
-        self.DDS__493__Bob__sigma_2.sw.on()
+        # cool loses 43000 mu on the first run (banked), and gains 40000 mu on every subsequent run
+
+        delay_mu(18000)
+        rtio_log('msg', 'c1')
+        with parallel:
+            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
         #self.DDS__493__Bob__pi.sw.on()
 
         delay(self.cooling_time)
-
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
+        with parallel:
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
         #self.DDS__493__Bob__pi.sw.off()
 
     @kernel
     def pump1(self):
-        self.DDS__493__Bob__sigma_1.sw.pulse(self.pumping_time)
+        #delay_mu(54000)  # pumping loses
+
+        delay_mu(18000)
+        rtio_log('msg', 'p1')
+
+        self.DDS__493__Bob__sigma_1.sw.on()
+        delay(self.pumping_time)
+        self.DDS__493__Bob__sigma_1.sw.off()
 
     @kernel
     def pump2(self):
-        self.DDS__493__Bob__sigma_2.sw.pulse(self.pumping_time)
+        delay_mu(18000)
+        rtio_log('msg', 'p2')
+
+        self.DDS__493__Bob__sigma_2.sw.on()
+        delay(self.pumping_time)
+        self.DDS__493__Bob__sigma_2.sw.off()
+        #self.DDS__493__Bob__sigma_2.sw.pulse(self.pumping_time)
 
     @kernel
     def detect1(self):
+        delay_mu(18000)
+        rtio_log('msg', 'd1')
+
+        delay_mu(60000)
+
         t = now_mu()
         gate_end_mu = self.detector.gate_rising(self.detection_time)
         at_mu(t)
+
         self.DDS__493__Bob__sigma_1.sw.on()
         delay(self.detection_time)
         self.DDS__493__Bob__sigma_1.sw.off()
-
-        delay_mu(100000)
-
         return self.detector.count(gate_end_mu)
 
     @kernel
     def detect2(self):
+        delay_mu(18000)
+        rtio_log('msg', 'd1')
+
+        delay_mu(60000)
+
         t = now_mu()
         gate_end_mu = self.detector.gate_rising(self.detection_time)
         at_mu(t)
         self.DDS__493__Bob__sigma_2.sw.on()
         delay(self.detection_time)
         self.DDS__493__Bob__sigma_2.sw.off()
-
-        delay_mu(100000)
-
         return self.detector.count(gate_end_mu)
 
     @kernel
-    def setup(self):
+    def prep(self):
 
         delay_mu(10000)
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
-        self.DDS__650__sigma_1.sw.on()
-        self.DDS__650__sigma_2.sw.on()
-        self.DDS__650__Bob__pi.sw.on()
-        self.DDS__650__fast_AOM.sw.on()
+        with parallel:
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
+            self.DDS__650__sigma_1.sw.on()
+            self.DDS__650__sigma_2.sw.on()
+            self.DDS__650__Bob__pi.sw.on()
+            self.DDS__650__fast_AOM.sw.on()
         #self.DDS__493__Bob__pi.sw.off()
 
     @kernel
-    def unsetup(self):
+    def unprep(self):
 
         delay_mu(10000)
-        self.DDS__493__Bob__sigma_1.sw.on()
-        self.DDS__493__Bob__sigma_2.sw.on()
-        self.DDS__650__sigma_1.sw.on()
-        self.DDS__650__sigma_2.sw.on()
-        self.DDS__650__Bob__pi.sw.on()
-        self.DDS__650__fast_AOM.sw.on()
-        #self.DDS__493__Bob__pi.sw.on()
+        with parallel:
+            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
+            self.DDS__650__sigma_1.sw.on()
+            self.DDS__650__sigma_2.sw.on()
+            self.DDS__650__Bob__pi.sw.on()
+            self.DDS__650__fast_AOM.sw.on()
+            #self.DDS__493__Bob__pi.sw.on()
+
+
 
     def run(self):
 
@@ -132,14 +158,24 @@ class Ba_detection_Bob(base_experiment.base_experiment):
 
             for point in msm:
 
-                #print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
-
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
                 for name in self.active_scan_names:
                     setattr(self, name, getattr(point, name))
 
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
+
+                # update DDS if scanning DDS
+                for name in self.active_scan_names:
+                    if name.startswith('DDS'):
+                        if name.endswith('__frequency'):
+                            channel_name = name.rstrip('__frequency')
+                            channel = getattr(self, channel_name)
+                            self.set_DDS_freq(channel, getattr(self, name))
+                        if name.endswith('__amplitude'):
+                            channel_name = name.rstrip('__amplitude')
+                            channel = getattr(self, channel_name)
+                            self.set_DDS_amp(channel, getattr(self, name))
 
                 self.experiment_specific_run()
 
@@ -196,81 +232,68 @@ class Ba_detection_Bob(base_experiment.base_experiment):
         self.core.reset()
 
         delay_mu(18000)
-        rtio_log('msg', '1')
-        delay_mu(18000)
-        rtio_log('msg', '2')
-        delay_mu(18000)
-        rtio_log('msg', '3')
-        delay_mu(18000)
-        rtio_log('msg', '4')
+        rtio_log('msg', '6')
 
-
-        # update DDS frequency and amplitude at each step
-        delay_mu(100000)
-        self.DDS__493__Bob__sigma_1.set(self.DDS__493__Bob__sigma_1__frequency, amplitude=self.DDS__493__Bob__sigma_1__amplitude)
+        self.prep()
 
         delay_mu(18000)
-        rtio_log('msg', '2')
-
-        delay_mu(100000)
-        self.DDS__493__Bob__sigma_2.set(self.DDS__493__Bob__sigma_2__frequency, amplitude=self.DDS__493__Bob__sigma_2__amplitude)
-
-        delay_mu(18000)
-        rtio_log('msg', '3')
-
-        delay_mu(100000)
-
-        self.setup()
-
-        delay_mu(18000)
-        rtio_log('msg', '4')
+        rtio_log('msg', '7')
 
 
         trials = 0
 
-        while (trials <= self.max_trials_per_point) and ((self.sum11 + self.sum12 +self.sum21 + self.sum22) < self.detections_per_point):
+        delay_mu(43000)  # takes care of 43000 mu loss in first run of cool()
+
+        #while (trials <= self.max_trials_per_point) and ((self.sum11 + self.sum12 +self.sum21 + self.sum22) < self.detections_per_point):
+        for i in range(10):
+
+            delay_mu(70000)
+
+            delay_mu(10000)  # for detect .count, but just once?
 
             delay_mu(22000)
             rtio_log('msg', 'starting trial ', trials, 'sum11 ', self.sum11, 'sum12 ', self.sum12, 'sum21', self.sum21, 'sum22', self.sum22)
 
             delay_mu(18000)
-            rtio_log('msg', '5')
+            rtio_log('msg', '8')
 
+            delay_mu(100000)
             self.cool()
-            self.pump1()
-            self.sum11 += self.detect1()
+
+            #self.sum11 += self.detect1()
+            self.sum11 = 1
 
             delay_mu(18000)
-            rtio_log('msg', '6')
+            rtio_log('msg', '9')
 
             self.cool()
             self.pump1()
             self.sum12 += self.detect2()
 
             delay_mu(18000)
-            rtio_log('msg', '7')
+            rtio_log('msg', '10')
 
             self.cool()
             self.pump2()
             self.sum21 += self.detect1()
 
             delay_mu(18000)
-            rtio_log('msg', '8')
+            rtio_log('msg', '11')
 
             self.cool()
             self.pump2()
             self.sum22 += self.detect2()
 
             delay_mu(18000)
-            rtio_log('msg', '9')
+            rtio_log('msg', '12')
 
             trials += 1
 
         delay_mu(18000)
-        rtio_log('msg', '10')
+        rtio_log('msg', '13')
 
-        self.unsetup()
+        self.unprep()
 
         delay_mu(18000)
-        rtio_log('msg', '11')
+        rtio_log('msg', '14')
 

@@ -34,18 +34,14 @@ class startup(settings.settings):
 
         self.core.reset()
 
-        # DDS channels #
+        # DDS #
 
-        self.urukul0_cpld.init()
-        print("urukul 1 done")
-        self.core.break_realtime()
-        self.urukul1_cpld.init()
-        print("urukul 2 done")
-        self.core.break_realtime()
-        self.urukul2_cpld.init()
-        print("urukul 3 done")
-        self.core.break_realtime()
-
+        for i in range(len(self.urukul_cplds)):
+            self.urukul_cplds[i].init()
         for channel in self.DDS_device_list:
             channel.init()
+
+        # DAC #
+
+        self.zotino0.init()
 

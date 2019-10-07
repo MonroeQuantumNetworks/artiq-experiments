@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Thu Aug 15 07:59:54 2019
+| Date         : Fri Aug 16 06:30:24 2019
 | Host         : Batcomputer running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt
 | Design       : top
@@ -30,16 +30,16 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 20260 |     0 |     63400 | 31.96 |
-|   LUT as Logic             | 19816 |     0 |     63400 | 31.26 |
-|   LUT as Memory            |   444 |     0 |     19000 |  2.34 |
-|     LUT as Distributed RAM |   356 |     0 |           |       |
+| Slice LUTs*                | 22477 |     0 |     63400 | 35.45 |
+|   LUT as Logic             | 21985 |     0 |     63400 | 34.68 |
+|   LUT as Memory            |   492 |     0 |     19000 |  2.59 |
+|     LUT as Distributed RAM |   404 |     0 |           |       |
 |     LUT as Shift Register  |    88 |     0 |           |       |
-| Slice Registers            | 14725 |     0 |    126800 | 11.61 |
-|   Register as Flip Flop    | 14725 |     0 |    126800 | 11.61 |
+| Slice Registers            | 18833 |     0 |    126800 | 14.85 |
+|   Register as Flip Flop    | 18833 |     0 |    126800 | 14.85 |
 |   Register as Latch        |     0 |     0 |    126800 |  0.00 |
-| F7 Muxes                   |   492 |     0 |     31700 |  1.55 |
-| F8 Muxes                   |    29 |     0 |     15850 |  0.18 |
+| F7 Muxes                   |   249 |     0 |     31700 |  0.79 |
+| F8 Muxes                   |    30 |     0 |     15850 |  0.19 |
 +----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 14    |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 151   |          Yes |         Set |            - |
-| 14560 |          Yes |       Reset |            - |
+| 192   |          Yes |         Set |            - |
+| 18627 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -95,9 +95,9 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |  170 |   170 |       285 | 59.65 |
-|   IOB Master Pads           |   82 |       |           |       |
-|   IOB Slave Pads            |   82 |       |           |       |
+| Bonded IOB                  |  208 |   208 |       285 | 72.98 |
+|   IOB Master Pads           |  101 |       |           |       |
+|   IOB Slave Pads            |  101 |       |           |       |
 | Bonded IPADs                |    4 |     4 |        14 | 28.57 |
 | Bonded OPADs                |    2 |     2 |         8 | 25.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
@@ -105,7 +105,7 @@ Table of Contents
 | OUT_FIFO                    |    0 |     0 |        24 |  0.00 |
 | IN_FIFO                     |    0 |     0 |        24 |  0.00 |
 | IDELAYCTRL                  |    1 |     0 |         6 | 16.67 |
-| IBUFDS                      |    7 |     7 |       274 |  2.55 |
+| IBUFDS                      |   11 |    11 |       274 |  4.01 |
 | GTPE2_CHANNEL               |    1 |     1 |         4 | 25.00 |
 | PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |        24 |  0.00 |
 | PHASER_IN/PHASER_IN_PHY     |    0 |     0 |        24 |  0.00 |
@@ -114,8 +114,8 @@ Table of Contents
 | IBUFDS_GTE2                 |    1 |     1 |         2 | 50.00 |
 | ILOGIC                      |   24 |    24 |       285 |  8.42 |
 |   ISERDES                   |   24 |    24 |           |       |
-| OLOGIC                      |   76 |    76 |       285 | 26.67 |
-|   OSERDES                   |   76 |    76 |           |       |
+| OLOGIC                      |   83 |    83 |       285 | 29.12 |
+|   OSERDES                   |   83 |    83 |           |       |
 +-----------------------------+------+-------+-----------+-------+
 
 
@@ -159,36 +159,36 @@ Table of Contents
 +--------------------------+-------+---------------------+
 |         Ref Name         |  Used | Functional Category |
 +--------------------------+-------+---------------------+
-| FDRE                     | 14560 |        Flop & Latch |
-| LUT6                     |  9773 |                 LUT |
-| LUT5                     |  5732 |                 LUT |
-| LUT3                     |  3986 |                 LUT |
-| LUT4                     |  2412 |                 LUT |
-| LUT2                     |  1531 |                 LUT |
-| CARRY4                   |   582 |          CarryLogic |
-| MUXF7                    |   492 |               MuxFx |
-| LUT1                     |   362 |                 LUT |
+| FDRE                     | 18627 |        Flop & Latch |
+| LUT6                     | 10689 |                 LUT |
+| LUT5                     |  5939 |                 LUT |
+| LUT3                     |  3861 |                 LUT |
+| LUT4                     |  3515 |                 LUT |
+| LUT2                     |  1662 |                 LUT |
+| CARRY4                   |   583 |          CarryLogic |
+| LUT1                     |   426 |                 LUT |
+| RAMD32                   |   270 |  Distributed Memory |
+| MUXF7                    |   249 |               MuxFx |
 | RAMD64E                  |   224 |  Distributed Memory |
-| RAMD32                   |   198 |  Distributed Memory |
-| FDSE                     |   151 |        Flop & Latch |
+| FDSE                     |   192 |        Flop & Latch |
+| RAMS32                   |    90 |  Distributed Memory |
 | SRL16E                   |    88 |  Distributed Memory |
-| OSERDESE2                |    76 |                  IO |
+| OSERDESE2                |    83 |                  IO |
+| IBUFDS_INTERMDISABLE_INT |    76 |                  IO |
 | RAMB36E1                 |    73 |        Block Memory |
-| RAMS32                   |    66 |  Distributed Memory |
-| IBUFDS_INTERMDISABLE_INT |    62 |                  IO |
-| OBUFTDS                  |    53 |                  IO |
+| OBUFTDS                  |    71 |                  IO |
 | OBUF                     |    36 |                  IO |
-| MUXF8                    |    29 |               MuxFx |
+| MUXF8                    |    30 |               MuxFx |
 | RAMB18E1                 |    28 |        Block Memory |
 | IBUF                     |    28 |                  IO |
 | ISERDESE2                |    24 |                  IO |
 | OBUFT                    |    20 |                  IO |
 | IDELAYE2                 |    16 |                  IO |
 | FDPE                     |    14 |        Flop & Latch |
+| IBUFDS                   |    11 |                  IO |
 | BUFG                     |    10 |               Clock |
-| IBUFDS                   |     7 |                  IO |
+| OBUFDS                   |     6 |                  IO |
 | DSP48E1                  |     6 |    Block Arithmetic |
-| OBUFDS                   |     5 |                  IO |
 | MMCME2_ADV               |     3 |               Clock |
 | INV                      |     3 |                 LUT |
 | BUFH                     |     3 |               Clock |

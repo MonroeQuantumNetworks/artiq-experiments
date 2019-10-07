@@ -25,7 +25,7 @@ i2c_bus_count="1"
 identifier_str="5.6915.c9356aba.beta;monroe_ionphoton"
 l2_size="131072"
 rtio_frequency="125.0"
-rtio_log_channel="36"
+rtio_log_channel="45"
 si5324_as_synthesizer
 si5324_ext_ref
 si5324_soft_reset

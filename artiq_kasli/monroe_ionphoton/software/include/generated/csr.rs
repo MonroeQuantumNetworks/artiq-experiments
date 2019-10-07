@@ -1260,14 +1260,16 @@ pub mod csr {
     }
 
     pub const MON_VALUE_ADDR: *mut u32 = 0xe000800c as *mut u32;
-    pub const MON_VALUE_SIZE: usize = 1;
+    pub const MON_VALUE_SIZE: usize = 2;
 
     #[inline(always)]
-    pub unsafe fn mon_value_read() -> u8 {
-      read_volatile(MON_VALUE_ADDR) as u8
+    pub unsafe fn mon_value_read() -> u16 {
+      let r = read_volatile(MON_VALUE_ADDR) as u16;
+      let r = r << 8 | read_volatile(MON_VALUE_ADDR.offset(1)) as u16;
+      r
     }
 
-    pub const INJ_CHAN_SEL_ADDR: *mut u32 = 0xe0008010 as *mut u32;
+    pub const INJ_CHAN_SEL_ADDR: *mut u32 = 0xe0008014 as *mut u32;
     pub const INJ_CHAN_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1280,7 +1282,7 @@ pub mod csr {
       write_volatile(INJ_CHAN_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const INJ_OVERRIDE_SEL_ADDR: *mut u32 = 0xe0008014 as *mut u32;
+    pub const INJ_OVERRIDE_SEL_ADDR: *mut u32 = 0xe0008018 as *mut u32;
     pub const INJ_OVERRIDE_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1293,7 +1295,7 @@ pub mod csr {
       write_volatile(INJ_OVERRIDE_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const INJ_VALUE_ADDR: *mut u32 = 0xe0008018 as *mut u32;
+    pub const INJ_VALUE_ADDR: *mut u32 = 0xe000801c as *mut u32;
     pub const INJ_VALUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1669,7 +1671,7 @@ pub mod csr {
   pub const CONFIG_IDENTIFIER_STR: &'static str = "5.6915.c9356aba.beta;monroe_ionphoton";
   pub const CONFIG_L2_SIZE: u32 = 131072;
   pub const CONFIG_RTIO_FREQUENCY: &'static str = "125.0";
-  pub const CONFIG_RTIO_LOG_CHANNEL: u32 = 36;
+  pub const CONFIG_RTIO_LOG_CHANNEL: u32 = 45;
   pub const CONFIG_SI5324_AS_SYNTHESIZER: u32 = 1;
   pub const CONFIG_SI5324_EXT_REF: u32 = 1;
   pub const CONFIG_SI5324_SOFT_RESET: u32 = 1;

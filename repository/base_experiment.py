@@ -185,6 +185,7 @@ class base_experiment(EnvExperiment):
         self.number_argument('globals__timing__pumping_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__excitation_pulse_time', 10*ns, unit='ns', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__detection_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
+        self.number_argument('globals__timing__raman_time', 1000*ns, unit='ns', ndecimals=1, min=0.0, step=10.0)
 
         # TTL output #
 

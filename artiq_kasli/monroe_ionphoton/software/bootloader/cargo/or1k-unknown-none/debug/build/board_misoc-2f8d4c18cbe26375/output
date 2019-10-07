@@ -26,7 +26,7 @@ cargo:rustc-cfg=i2c_bus_count="1"
 cargo:rustc-cfg=identifier_str="5.6915.c9356aba.beta;monroe_ionphoton"
 cargo:rustc-cfg=l2_size="131072"
 cargo:rustc-cfg=rtio_frequency="125.0"
-cargo:rustc-cfg=rtio_log_channel="36"
+cargo:rustc-cfg=rtio_log_channel="45"
 cargo:rustc-cfg=si5324_as_synthesizer
 cargo:rustc-cfg=si5324_ext_ref
 cargo:rustc-cfg=si5324_soft_reset
@@ -46,9 +46,9 @@ CC_or1k_unknown_none = Some("clang")
 TARGET = Some("or1k-unknown-none")
 HOST = Some("x86_64-unknown-linux-gnu")
 CFLAGS_or1k-unknown-none = None
-CFLAGS_or1k_unknown_none = Some("-Os -mhard-mul -mhard-div -mror -mffl1 -maddc -fomit-frame-pointer -ffunction-sections -Wall -fno-builtin -nostdinc -I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include/base -I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include -I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/common -I/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/include -fexceptions -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Werror=incompatible-pointer-types")
+CFLAGS_or1k_unknown_none = Some("-Os -mhard-mul -mhard-div -mror -mffl1 -maddc -fomit-frame-pointer -ffunction-sections -Wall -fno-builtin -nostdinc -I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include/base -I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include -I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/common -I/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/include -fexceptions -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Werror=incompatible-pointer-types")
 DEBUG = Some("true")
-running: "clang" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-Os" "-mhard-mul" "-mhard-div" "-mror" "-mffl1" "-maddc" "-fomit-frame-pointer" "-ffunction-sections" "-Wall" "-fno-builtin" "-nostdinc" "-I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include/base" "-I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include" "-I/nix/store/z74npy9rny2nrsg2bpkkdvlrpba683dr-python3-3.7.4-env/lib/python3.7/site-packages/misoc/common" "-I/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/include" "-fexceptions" "-Wstrict-prototypes" "-Wold-style-definition" "-Wmissing-prototypes" "-Werror=incompatible-pointer-types" "-g" "--target=or1k-unknown-none" "-Wall" "-Wextra" "-o" "/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/board_misoc-2f8d4c18cbe26375/out/or1k/vectors.o" "-c" "or1k/vectors.S"
+running: "clang" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-Os" "-mhard-mul" "-mhard-div" "-mror" "-mffl1" "-maddc" "-fomit-frame-pointer" "-ffunction-sections" "-Wall" "-fno-builtin" "-nostdinc" "-I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include/base" "-I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/software/include" "-I/nix/store/rcjnzs064dv45dgl4jh0jl7gw30v35vm-python3-3.7.4-env/lib/python3.7/site-packages/misoc/common" "-I/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/include" "-fexceptions" "-Wstrict-prototypes" "-Wold-style-definition" "-Wmissing-prototypes" "-Werror=incompatible-pointer-types" "-g" "--target=or1k-unknown-none" "-Wall" "-Wextra" "-o" "/home/monroe/Documents/github/artiq-experiments/artiq_kasli/monroe_ionphoton/software/bootloader/cargo/or1k-unknown-none/debug/build/board_misoc-2f8d4c18cbe26375/out/or1k/vectors.o" "-c" "or1k/vectors.S"
 exit code: 0
 TARGET = Some("or1k-unknown-none")
 TARGET = Some("or1k-unknown-none")

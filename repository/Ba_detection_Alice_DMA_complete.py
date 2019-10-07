@@ -62,7 +62,7 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
     def record_pump_sigma1_detect_sigma1(self):
         gate_end_mu_11 = 0
         gate_end_mu_12 = 0
-        with self.core_dma.record("pulses"):
+        with self.core_dma.record("sigma_1_pulses"):
             # cooling
             self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
             self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
@@ -88,22 +88,26 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
             gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
             at_mu(t11)
 
-            self.urukul0_ch0.sw.on()
+            self.urukul3_ch0.sw.on()
             delay(self.detection_time)
-            self.urukul0_ch0.sw.off()
-
+            self.urukul3_ch0.sw.off()
             delay(50*ns)
+
         return gate_end_mu_11
 
     @kernel
     def record_pump_sigma1_detect_sigma2(self):
-        with self.core_dma.record("pulses"):
+        with self.core_dma.record("sigma_2_pulses"):
             # cooling
             self.urukul0_ch0.sw.on()
             self.urukul3_ch0.sw.on()
             self.urukul2_ch1.sw.on()
 
-            delay(100*ns)
+            delay(self.cooling_time)
+
+            self.urukul0_ch0.sw.off()
+            self.urukul3_ch0.sw.off()
+            self.urukul2_ch1.sw.off()
 
             # pumping, sigma 1
             self.urukul0_ch0.sw.on()
@@ -117,9 +121,11 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
             gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
             at_mu(t12)
 
-            self.urukul3_ch0.sw.on()
+            self.urukul0_ch0.sw.on()
             delay(self.detection_time)
-            self.urukul3_ch0.sw.off()
+            self.urukul0_ch0.sw.off()
+
+            delay(50*ns)
 
         return gate_end_mu_12
 
@@ -217,26 +223,24 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
 
         # Pump sigma 1, detect sigma 1
 
-        gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
-        pulses_handle = self.core_dma.get_handle("pulses")
-        self.core.break_realtime()
-
+        gate_end_mu_11= self.record_pump_sigma1_detect_sigma1()
+        self.core.reset()
+        gate_end_mu_12 = self.record_pump_sigma1_detect_sigma2()
+        pulses_handle_sigma_1 = self.core_dma.get_handle("sigma_1_pulses")
+        pulses_handle_sigma_2 = self.core_dma.get_handle("sigma_2_pulses")
+        self.core.reset()
         for i in range(self.detections_per_point):
             delay_mu(5000)
-            self.core_dma.playback_handle(pulses_handle)
+            self.core_dma.playback_handle(pulses_handle_sigma_1)
 
             counts11 = self.detector.count(gate_end_mu_11)
             sum11 += counts11
 
-        gate_end_mu_12 = self.record_pump_sigma1_detect_sigma2()
-        pulses_handle = self.core_dma.get_handle("pulses")
-        self.core.break_realtime()
-
-        for i in range(self.detections_per_point):
             delay_mu(5000)
-            self.core_dma.playback_handle(pulses_handle)
+            at_mu(t)
+            self.core_dma.playback_handle(pulses_handle_sigma_2)
 
-            counts12 = self.detector.count(gate_end_mu_11)
+            counts12 = self.detector.count(gate_end_mu_12)
             sum12 += counts12
 
         self.sum11 = sum11

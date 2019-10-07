@@ -924,37 +924,39 @@ static inline void rtio_moninj_mon_value_update_write(unsigned char value) {
 	MMPTR(0xe0008008) = value;
 }
 #define CSR_RTIO_MONINJ_MON_VALUE_ADDR 0xe000800c
-#define CSR_RTIO_MONINJ_MON_VALUE_SIZE 1
-static inline unsigned char rtio_moninj_mon_value_read(void) {
-	unsigned char r = MMPTR(0xe000800c);
+#define CSR_RTIO_MONINJ_MON_VALUE_SIZE 2
+static inline unsigned short int rtio_moninj_mon_value_read(void) {
+	unsigned short int r = MMPTR(0xe000800c);
+	r <<= 8;
+	r |= MMPTR(0xe0008010);
 	return r;
 }
-#define CSR_RTIO_MONINJ_INJ_CHAN_SEL_ADDR 0xe0008010
+#define CSR_RTIO_MONINJ_INJ_CHAN_SEL_ADDR 0xe0008014
 #define CSR_RTIO_MONINJ_INJ_CHAN_SEL_SIZE 1
 static inline unsigned char rtio_moninj_inj_chan_sel_read(void) {
-	unsigned char r = MMPTR(0xe0008010);
-	return r;
-}
-static inline void rtio_moninj_inj_chan_sel_write(unsigned char value) {
-	MMPTR(0xe0008010) = value;
-}
-#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_ADDR 0xe0008014
-#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_SIZE 1
-static inline unsigned char rtio_moninj_inj_override_sel_read(void) {
 	unsigned char r = MMPTR(0xe0008014);
 	return r;
 }
-static inline void rtio_moninj_inj_override_sel_write(unsigned char value) {
+static inline void rtio_moninj_inj_chan_sel_write(unsigned char value) {
 	MMPTR(0xe0008014) = value;
 }
-#define CSR_RTIO_MONINJ_INJ_VALUE_ADDR 0xe0008018
-#define CSR_RTIO_MONINJ_INJ_VALUE_SIZE 1
-static inline unsigned char rtio_moninj_inj_value_read(void) {
+#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_ADDR 0xe0008018
+#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_SIZE 1
+static inline unsigned char rtio_moninj_inj_override_sel_read(void) {
 	unsigned char r = MMPTR(0xe0008018);
 	return r;
 }
-static inline void rtio_moninj_inj_value_write(unsigned char value) {
+static inline void rtio_moninj_inj_override_sel_write(unsigned char value) {
 	MMPTR(0xe0008018) = value;
+}
+#define CSR_RTIO_MONINJ_INJ_VALUE_ADDR 0xe000801c
+#define CSR_RTIO_MONINJ_INJ_VALUE_SIZE 1
+static inline unsigned char rtio_moninj_inj_value_read(void) {
+	unsigned char r = MMPTR(0xe000801c);
+	return r;
+}
+static inline void rtio_moninj_inj_value_write(unsigned char value) {
+	MMPTR(0xe000801c) = value;
 }
 
 /* spiflash */
@@ -1282,9 +1284,9 @@ static inline int config_l2_size_read(void) {
 static inline const char * config_rtio_frequency_read(void) {
 	return "125.0";
 }
-#define CONFIG_RTIO_LOG_CHANNEL 36
+#define CONFIG_RTIO_LOG_CHANNEL 45
 static inline int config_rtio_log_channel_read(void) {
-	return 36;
+	return 45;
 }
 #define CONFIG_SI5324_AS_SYNTHESIZER
 #define CONFIG_SI5324_EXT_REF

@@ -533,7 +533,7 @@ device_db = {
             "ldac_device": "ttl_zotino0_ldac",
             "clr_device": "ttl_zotino0_clr"
         }
-    }
+    },
 
     "led0": {
         "type": "local",

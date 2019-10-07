@@ -581,6 +581,120 @@ set_property IOSTANDARD LVDS_25 [get_ports urukul6_sw3_p]
  ## urukul6_sw3:0.n
 set_property LOC E17 [get_ports urukul6_sw3_n]
 set_property IOSTANDARD LVDS_25 [get_ports urukul6_sw3_n]
+ ## urukul8_spi_p:0.clk
+set_property LOC D17 [get_ports urukul8_spi_p_clk]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_clk]
+ ## urukul8_spi_p:0.mosi
+set_property LOC A15 [get_ports urukul8_spi_p_mosi]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_mosi]
+ ## urukul8_spi_p:0.miso
+set_property LOC A13 [get_ports urukul8_spi_p_miso]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_miso]
+ ## urukul8_spi_p:0.cs_n
+set_property LOC A18 [get_ports urukul8_spi_p_cs_n[0]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_cs_n[0]]
+ ## urukul8_spi_p:0.cs_n
+set_property LOC C13 [get_ports urukul8_spi_p_cs_n[1]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_cs_n[1]]
+ ## urukul8_spi_p:0.cs_n
+set_property LOC C14 [get_ports urukul8_spi_p_cs_n[2]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_p_cs_n[2]]
+ ## urukul8_spi_n:0.clk
+set_property LOC C17 [get_ports urukul8_spi_n_clk]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_clk]
+ ## urukul8_spi_n:0.mosi
+set_property LOC A16 [get_ports urukul8_spi_n_mosi]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_mosi]
+ ## urukul8_spi_n:0.miso
+set_property LOC A14 [get_ports urukul8_spi_n_miso]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_miso]
+ ## urukul8_spi_n:0.cs_n
+set_property LOC A19 [get_ports urukul8_spi_n_cs_n[0]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_cs_n[0]]
+ ## urukul8_spi_n:0.cs_n
+set_property LOC B13 [get_ports urukul8_spi_n_cs_n[1]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_cs_n[1]]
+ ## urukul8_spi_n:0.cs_n
+set_property LOC C15 [get_ports urukul8_spi_n_cs_n[2]]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_spi_n_cs_n[2]]
+ ## urukul8_dds_reset_sync_in:0.p
+set_property LOC B15 [get_ports urukul8_dds_reset_sync_in_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_dds_reset_sync_in_p]
+ ## urukul8_dds_reset_sync_in:0.n
+set_property LOC B16 [get_ports urukul8_dds_reset_sync_in_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_dds_reset_sync_in_n]
+ ## urukul8_io_update:0.p
+set_property LOC B20 [get_ports urukul8_io_update_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_io_update_p]
+ ## urukul8_io_update:0.n
+set_property LOC A20 [get_ports urukul8_io_update_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_io_update_n]
+ ## urukul8_sw0:0.p
+set_property LOC D20 [get_ports urukul8_sw0_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw0_p]
+ ## urukul8_sw0:0.n
+set_property LOC C20 [get_ports urukul8_sw0_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw0_n]
+ ## urukul8_sw1:0.p
+set_property LOC E22 [get_ports urukul8_sw1_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw1_p]
+ ## urukul8_sw1:0.n
+set_property LOC D22 [get_ports urukul8_sw1_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw1_n]
+ ## urukul8_sw2:0.p
+set_property LOC C22 [get_ports urukul8_sw2_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw2_p]
+ ## urukul8_sw2:0.n
+set_property LOC B22 [get_ports urukul8_sw2_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw2_n]
+ ## urukul8_sw3:0.p
+set_property LOC E21 [get_ports urukul8_sw3_p]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw3_p]
+ ## urukul8_sw3:0.n
+set_property LOC D21 [get_ports urukul8_sw3_n]
+set_property IOSTANDARD LVDS_25 [get_ports urukul8_sw3_n]
+ ## zotino10_spi_p:0.clk
+set_property LOC V13 [get_ports zotino10_spi_p_clk]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_p_clk]
+ ## zotino10_spi_p:0.mosi
+set_property LOC Y16 [get_ports zotino10_spi_p_mosi]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_p_mosi]
+ ## zotino10_spi_p:0.miso
+set_property LOC AB16 [get_ports zotino10_spi_p_miso]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_p_miso]
+ ## zotino10_spi_p:0.cs_n
+set_property LOC AA13 [get_ports zotino10_spi_p_cs_n[0]]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_p_cs_n[0]]
+ ## zotino10_spi_p:0.cs_n
+set_property LOC Y13 [get_ports zotino10_spi_p_cs_n[1]]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_p_cs_n[1]]
+ ## zotino10_spi_n:0.clk
+set_property LOC V14 [get_ports zotino10_spi_n_clk]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_n_clk]
+ ## zotino10_spi_n:0.mosi
+set_property LOC AA16 [get_ports zotino10_spi_n_mosi]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_n_mosi]
+ ## zotino10_spi_n:0.miso
+set_property LOC AB17 [get_ports zotino10_spi_n_miso]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_n_miso]
+ ## zotino10_spi_n:0.cs_n
+set_property LOC AB13 [get_ports zotino10_spi_n_cs_n[0]]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_n_cs_n[0]]
+ ## zotino10_spi_n:0.cs_n
+set_property LOC AA14 [get_ports zotino10_spi_n_cs_n[1]]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_spi_n_cs_n[1]]
+ ## zotino10_ldac_n:0.p
+set_property LOC AA15 [get_ports zotino10_ldac_n_p]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_ldac_n_p]
+ ## zotino10_ldac_n:0.n
+set_property LOC AB15 [get_ports zotino10_ldac_n_n]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_ldac_n_n]
+ ## zotino10_clr_n:0.p
+set_property LOC T14 [get_ports zotino10_clr_n_p]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_clr_n_p]
+ ## zotino10_clr_n:0.n
+set_property LOC T15 [get_ports zotino10_clr_n_n]
+set_property IOSTANDARD LVDS_25 [get_ports zotino10_clr_n_n]
  ## sfp_ctl:1.los
 set_property LOC T18 [get_ports sfp_ctl_los_1]
 set_property IOSTANDARD LVCMOS25 [get_ports sfp_ctl_los_1]

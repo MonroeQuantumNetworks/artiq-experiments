@@ -26,7 +26,7 @@ cargo:rustc-cfg=i2c_bus_count="1"
 cargo:rustc-cfg=identifier_str="5.6915.c9356aba.beta;monroe_ionphoton"
 cargo:rustc-cfg=l2_size="131072"
 cargo:rustc-cfg=rtio_frequency="125.0"
-cargo:rustc-cfg=rtio_log_channel="36"
+cargo:rustc-cfg=rtio_log_channel="45"
 cargo:rustc-cfg=si5324_as_synthesizer
 cargo:rustc-cfg=si5324_ext_ref
 cargo:rustc-cfg=si5324_soft_reset
