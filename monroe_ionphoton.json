@@ -8,20 +8,12 @@
     "ext_ref_frequency": 125e6,
     "peripherals": [
         {
-            "type": "dio",
+            "type": "entangler",
             "ports": [
-                0
-            ],
-            "bank_direction_low": "input",
-            "bank_direction_high": "input"
-        },
-        {
-            "type": "dio",
-            "ports": [
+                0,
                 1
             ],
-            "bank_direction_low": "output",
-            "bank_direction_high": "output"
+            "uses_reference": false
         },
         {
             "type": "urukul",
