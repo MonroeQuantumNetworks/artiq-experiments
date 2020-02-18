@@ -13,6 +13,7 @@
                 0,
                 1
             ],
+            "uses_running_output": false,
             "uses_reference": false
         },
         {
