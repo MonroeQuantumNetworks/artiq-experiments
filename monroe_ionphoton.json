@@ -1,59 +1,70 @@
-  {
-      "target": "kasli",
-      "variant": "monroe_ionphoton",
-      "hw_rev": "v1.1",
-      "base": "standalone",
-      "core_addr": "192.168.1.98",
-      "rtio_frequency": 125e6,
-      "ext_ref_frequency": 125e6,
-      "peripherals": [
-          {
-              "type": "dio",
-              "ports": [0],
-              "bank_direction_low": "input",
-              "bank_direction_high": "input"
-          },
-          {
-              "type": "dio",
-              "ports": [1],
-              "bank_direction_low": "output",
-              "bank_direction_high": "output"
-          },
-          {
-              "type": "urukul",
-              "ports": [2, 3],
-              "dds": "ad9910",
-              "ref_frequency": 125e6,
-              "clk_sel": 1,
-              "pll_n": 32
-          },
-          {
-              "type": "urukul",
-              "ports": [4, 5],
-              "dds": "ad9910",
-              "ref_frequency": 125e6,
-              "clk_sel": 1,
-              "pll_n": 32
-          },
-          {
-              "type": "urukul",
-              "ports": [6, 7],
-              "dds": "ad9910",
-              "ref_frequency": 125e6,
-              "clk_sel": 1,
-              "pll_n": 32
-          },
-          {
-              "type": "urukul",
-              "ports": [8, 9],
-              "dds": "ad9910",
-              "ref_frequency": 125e6,
-              "clk_sel": 1,
-              "pll_n": 32
-          },
-          {
-              "type": "zotino",
-              "ports": [10]
-          }
-      ]
-  }
+{
+    "target": "kasli",
+    "variant": "monroe_ionphoton",
+    "hw_rev": "v1.1",
+    "base": "standalone",
+    "core_addr": "192.168.1.98",
+    "rtio_frequency": 125e6,
+    "ext_ref_frequency": 125e6,
+    "peripherals": [
+        {
+            "type": "entangler",
+            "ports": [
+                0,
+                1
+            ],
+            "uses_running_output": false,
+            "uses_reference": false
+        },
+        {
+            "type": "urukul",
+            "ports": [
+                2,
+                3
+            ],
+            "dds": "ad9910",
+            "ref_frequency": 125e6,
+            "clk_sel": 1,
+            "pll_n": 32
+        },
+        {
+            "type": "urukul",
+            "ports": [
+                4,
+                5
+            ],
+            "dds": "ad9910",
+            "ref_frequency": 125e6,
+            "clk_sel": 1,
+            "pll_n": 32
+        },
+        {
+            "type": "urukul",
+            "ports": [
+                6,
+                7
+            ],
+            "dds": "ad9910",
+            "ref_frequency": 125e6,
+            "clk_sel": 1,
+            "pll_n": 32
+        },
+        {
+            "type": "urukul",
+            "ports": [
+                8,
+                9
+            ],
+            "dds": "ad9910",
+            "ref_frequency": 125e6,
+            "clk_sel": 1,
+            "pll_n": 32
+        },
+        {
+            "type": "zotino",
+            "ports": [
+                10
+            ]
+        }
+    ]
+}
