@@ -1,8 +1,7 @@
-"""Started off as Simplest possible Entangler experiment.
+""" Ion-Photon Entanglement with 4-APD HOM measurement
 March 6 2020:
-George added more functionality to run the IonPhoton Alice-Bob networking experiment
-Has the appropriate functions to cool, pump and do state detection. Raman is WIP.
-Test functions are also present
+George created this file to run Ion-Photon entanglement measurements
+A single ion emits only 1 photon so we detect 0001, 0010, 0100 and 1000.
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -17,8 +16,6 @@ from dynaconf import LazySettings
 import base_experiment
 from artiq.experiment import *
 from Lecroy1102 import Lecroy1102
-import time
-
 
 # Get the number of inputs & outputs from the settings file.
 settings = LazySettings(
@@ -29,10 +26,8 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class EntanglerDemo(base_experiment.base_experiment):
-    """Demo experiment for the Entangler.
-
-    Uses the example files in this folder.
+class Entangler_Ion_Photon(base_experiment.base_experiment):
+    """Experiment for Ion-Photon Entanglement generation - Bob.
     """
 
     def build(self):
@@ -60,17 +55,13 @@ class EntanglerDemo(base_experiment.base_experiment):
         # Add other inputs
         super().build()
         self.setattr_device("core_dma")
-        # self.setattr_argument('fastloop_period_ns', NumberValue(1000, min=10, step=1, ndecimals=0))
         self.setattr_argument('cooling_time', NumberValue(50000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        # self.setattr_argument('pumping_time', NumberValue(300e-9, unit='ns', min=0 * ns, ndecimals=0))
-        # self.setattr_argument('single_photon_time', NumberValue(10e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(200000, step=1000, min=1000, max=2e9, ndecimals=0))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=100, ndecimals=0))
         self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
 
         self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
-
         self.setattr_argument('raman_time', NumberValue(2e-6, unit='us', min=0 * us, ndecimals=0))
 
         self.setattr_argument('test_mode', BooleanValue(True))
@@ -83,7 +74,7 @@ class EntanglerDemo(base_experiment.base_experiment):
 
         :return:
         """
-        self.count = 10
+
         self.set_dataset('data_list_x', [], broadcast=True, archive=True)
 
         # Print estimated run-time
@@ -94,15 +85,10 @@ class EntanglerDemo(base_experiment.base_experiment):
         if self.prepare_awg_bool:
             self.prepare_awg()
 
-        kernel_data = self.kernel_run()     # Run the rest of the program on the core device
-        self.append_to_dataset('data_list_x', kernel_data)
+        sum1, sum2, ratio = self.kernel_run()     # Run the rest of the program on the core device
+        self.append_to_dataset('data_list_x', sum1)
 
-        # Example code from m-labs
-        # Test generate some data for a dataset parabola
-        # self.set_dataset("parabola", np.full(self.count, np.nan), broadcast=True)
-        # for i in range(self.count):
-        #     self.mutate_dataset("parabola", i, i * i)
-        #     time.sleep(0.2)
+        print("Entangler sequence is done", sum1, sum2, ratio, "Test mode:", self.test_mode)
 
     @kernel
     def kernel_run(self):
@@ -116,7 +102,7 @@ class EntanglerDemo(base_experiment.base_experiment):
         """
 
         self.core.reset()
-        self.core.break_realtime()  # Adds at least 125 us of slack
+        self.core.break_realtime()  # Increases slack to at least 125 us
         self.init()
 
         # Initialize counters to zero
@@ -135,7 +121,7 @@ class EntanglerDemo(base_experiment.base_experiment):
         slack = 0
         loop = 0
 
-        self.set_dataset('data_core', [0], broadcast=True, archive=True)
+        self.set_dataset('core_pattern1', np.array([0, 0], dtype=int), broadcast=True, archive=True)
 
         # Pre-load all the pulse sequences using DMA
         self.prerecord_cooling_loop()
@@ -144,6 +130,8 @@ class EntanglerDemo(base_experiment.base_experiment):
 
         # Assign handles to the pre-recorded sequences
         fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
+
+        loop_data = zeros = [[0]*3]*4
 
         for loop in range(self.loops_to_run):
 
@@ -155,7 +143,7 @@ class EntanglerDemo(base_experiment.base_experiment):
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1000,
+                    cycle_len=970,
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
@@ -166,7 +154,7 @@ class EntanglerDemo(base_experiment.base_experiment):
                     out_stop3=710,  # Done generating
                     in_start=50,  # Look for photons on APD0
                     in_stop=900,
-                    pattern_list=[0b0001, 0b1000, 0b0100, 0b0010],
+                    pattern_list=[0b0010, 0b0001, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right
                 )
@@ -174,50 +162,51 @@ class EntanglerDemo(base_experiment.base_experiment):
 
                 # self.check_entangler_status() # Do we need this?
 
-                # slack = 0     # Check the amount of slack. Was ~10 us
-                # slack = now_mu() - self.core.get_rtio_counter_mu()
-
                 if pattern == 1 or pattern == 2:
-                    print("Entangler success + :)", pattern)
+                    print("Entangler success", pattern)
                     break
                 elif pattern == 4 or pattern == 8:
-                    print("Entangler success - :)", pattern)
+                    print("Entangler success", pattern)
                     # self.run_rotation() # Rotate to match the other state
                     break
                 else:   # Failed to entangle
                     # delay_mu(100)
                     if self.test_mode:
-                        pattern = 1     # Change this to 0 later
+                        pattern = 1
                     else:
                         pattern = 0
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
             elif detect_flag == 1:
-                Alice_counts_detect1, Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
-                sumA1 += Alice_counts_detect1
+                Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
                 sumB1 += Bob_counts_detect1
                 detect_flag = 2
             elif detect_flag == 2:
-                Alice_counts_detect2, Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
-                sumA2 += Alice_counts_detect2
+                Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
                 sumB2 += Bob_counts_detect2
                 detect_flag = 1
-            else:
-                # Do nothing
-                delay(1*us)
-            # print(sumA1, sumA2)
 
-            Alice_ratio = sumA1/(sumA1 + sumA2)
-            Bob_ratio = (sumB1 + sumB2)/1
+            if pattern == 0:
+                delay_mu(100)
+            elif pattern == 1:
+                detect_p1 += 1
+            elif pattern == 2:
+                detect_p2 += 1
+            elif pattern == 4:
+                detect_p3 += 1
+            elif pattern == 8:
+                detect_p4 += 1
 
-            self.append_to_dataset('data_core', Alice_ratio)
+            Bob_ratio = sumB1/(sumB1 + sumB2)
 
-        aliceratio = np.array([Alice_ratio, Bob_ratio])
+            temp = [sumB1, sumB2]
 
-        print("Entangler sequence is done", sumA1, sumA2, Alice_ratio, "Test mode:", self.test_mode)
+            self.append_to_dataset('core_pattern1', temp)
 
-        return Alice_ratio
+        # print("Entangler sequence is done", sumA1, sumA2, Alice_ratio, "Test mode:", self.test_mode)
+
+        return sumB1, sumB2, Bob_ratio
 
     @kernel
     def init(self):
@@ -286,7 +275,7 @@ class EntanglerDemo(base_experiment.base_experiment):
 
         # Doesn't strictly NEED to break_realtime, but it's safe.
         # self.core.break_realtime()
-        delay_mu(30000)     # George found the minimum of 15 us delay here. Increase if necessary
+        delay_mu(60000)     # George found the minimum of 15 us delay here. Increase if necessary
 
         # Disable entangler control of outputs
         self.entangler.set_config(enable=False)
@@ -294,37 +283,6 @@ class EntanglerDemo(base_experiment.base_experiment):
         # You might also want to disable gating for inputs, but out-of-scope
 
         return end_timestamp, reason
-
-    @kernel
-    def run_cooling(self, cool_time):
-        """Slow loop, run cooling cycle. CURRENTLY NOT USED
-
-        Needs input for length of the cooling cycle
-
-        Turn on 650 Pi with ttl1
-        Turn on all 493 beams with ttl2
-        Turn on 650 fast-cw ttl3
-        Turn on 650 sigma1 & sigma2 ttl4 and ttl5
-        """
-        # print("Running the cooling sequence")
-
-        self.core.break_realtime()
-
-        with parallel:
-            self.ttl_650_pi.on()
-            self.ttl_493_all.on()
-            self.ttl_650_fast_cw.on()
-            self.ttl_650_sigma_1.on()
-            self.ttl_650_sigma_2.on()
-
-        delay(cool_time)
-
-        with parallel:
-            self.ttl_650_pi.off()
-            self.ttl_493_all.off()
-            self.ttl_650_fast_cw.off()
-            self.ttl_650_sigma_1.off()
-            self.ttl_650_sigma_2.off()
 
     @kernel
     def check_entangler_status(self):
@@ -380,32 +338,6 @@ class EntanglerDemo(base_experiment.base_experiment):
                 self.ttl_test.off()
 
     @kernel
-    def prerecord_detect_sigma_1(self):
-        """Pre-record the detection loop sequence. CURRENTLY NOT USED
-
-        NOT USED. DOES NOT WORK
-        """
-        with self.core_dma.record("slow_loop_detect_sigma_1_pulses"):
-
-            # Detection
-            t1 = now_mu()
-            with parallel:
-                gate_end_mu_a1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                gate_end_mu_b1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-
-            at_mu(t1)
-            with parallel:
-                # self.ttl_650_pi.pulse(self.detection_time)
-                #
-                self.ttl_650_fast_cw.pulse(self.detection_time)
-                self.ttl_650_sigma_1.pulse(self.detection_time)
-                self.ttl_650_sigma_2.pulse(self.detection_time)
-                self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-                self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
-
-        return gate_end_mu_a1, gate_end_mu_b1
-
-    @kernel
     def run_detection1(self):
         """Non-DMA detection loop sequence. With test pulses
 
@@ -415,16 +347,16 @@ class EntanglerDemo(base_experiment.base_experiment):
         delay(100 * us)     # This is needed to buffer for pulse train generation
         t1 = now_mu()
         with parallel:
-            gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+            # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
             gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
 
         at_mu(t1)
         with parallel:
             # self.ttl_650_pi.pulse(self.detection_time)
-            # self.ttl_650_fast_cw.pulse(self.detection_time)
-            # self.ttl_650_sigma_1.pulse(self.detection_time)
+            self.ttl_650_fast_cw.pulse(self.detection_time)
+            self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
-            self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
+            # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
             self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
             with sequential:    # Generate fake pulse sequence for triggering the counter
                 for i in range(31):
@@ -435,10 +367,9 @@ class EntanglerDemo(base_experiment.base_experiment):
                     self.ttl_test.pulse(1 * us)
                     delay(1 * us)
 
-        Alice_counts = self.Alice_camera_side_APD.count(gate_end_mu_A1)
         Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
 
-        return Alice_counts, Bob_counts
+        return Bob_counts
 
     @kernel
     def run_detection2(self):
@@ -450,26 +381,25 @@ class EntanglerDemo(base_experiment.base_experiment):
         delay(100 * us)     # This is needed to buffer for pulse train generation
         t1 = now_mu()
         with parallel:
-            gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+            # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
             gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
 
         at_mu(t1)
         with parallel:
             # self.ttl_650_pi.pulse(self.detection_time)
-            # self.ttl_650_fast_cw.pulse(self.detection_time)
-            # self.ttl_650_sigma_1.pulse(self.detection_time)
+            self.ttl_650_fast_cw.pulse(self.detection_time)
+            self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
-            self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
+            # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
             self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
             with sequential:    # Generate fake pulse sequence for triggering the counter
                 for i in range(13):
                     self.ttl_650_pi.pulse(1 * us)
                     delay(1 * us)
 
-        Alice_counts = self.Alice_camera_side_APD.count(gate_end_mu_A2)
         Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B2)
 
-        return Alice_counts, Bob_counts
+        return Bob_counts
 
     def prepare_awg(self):
         """ Non-kernel code section for preparing the Lecroy 1102 AWG
@@ -513,7 +443,7 @@ class EntanglerDemo(base_experiment.base_experiment):
         This function calculates the expected runtime with the given inputs
         """
         entangler_time = (self.cooling_time / ns + self.fastloop_run_ns)
-        print("Entangler time", entangler_time * ns, "seconds")
+        print("Entangler time", "{:.2f}".format(entangler_time * ns), "seconds")
         loop_time = (entangler_time + 30000) * self.entangle_cycles_per_loop
         print("Loop time", "{:.2f}".format(loop_time * ns), "seconds")
         total_time = (loop_time + 200000 + self.detection_time) * self.loops_to_run
