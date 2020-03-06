@@ -54,7 +54,7 @@ class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 
 
             # Fast 650 nm excitation
-            self.DDS__650__sigma_2.sw.on() # Prepare by turning on slow AOM
+            self.DDS__650__sigma_2.sw.on()      # Prepare by turning on slow AOM
             delay_mu(100)
             self.ttl8.pulse(100*ns)
 
@@ -148,14 +148,13 @@ class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
-
     @kernel
     def kernel_run(self):
         self.core.reset()
 
         gate_end_mu_detector0, gate_end_mu_detector1, gate_end_mu_detector2, gate_end_mu_detector3 = self.fast_loop()
         self.core.reset()
-        gate_end_mu_A1, gate_end_m_B1 = self.slow_loop_detect_sigma_1()
+        gate_end_mu_A1, gate_end_mu_B1 = self.slow_loop_detect_sigma_1()
         self.core.reset()
         gate_end_mu_A2, gate_end_mu_B2 = self.slow_loop_detect_sigma_2()
 

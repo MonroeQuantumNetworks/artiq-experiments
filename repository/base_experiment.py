@@ -54,25 +54,26 @@ class base_experiment(EnvExperiment):
     ]
 
     TTL_input_list = [
-        #('HOM0', 'ttl0'),
-        #('HOM1', 'ttl1'),
-        #('HOM2', 'ttl2'),
-        #('HOM3', 'ttl3'),
-        ('Alice_camera_side_APD', 'ttl4'),
-        ('Bob_camera_side_APD', 'ttl5'),
-        ('Alice_PMT', 'ttl6'),
-        ('Bob_PMT', 'ttl7')
+        ('HOM0', 'ttl8'),
+        ('HOM1', 'ttl9'),
+        ('HOM2', 'ttl10'),
+        ('HOM3', 'ttl11'),
+        ('Alice_camera_side_APD', 'ttl12'),
+        ('Bob_camera_side_APD', 'ttl13'),
+        ('Alice_PMT', 'ttl14'),
+        ('Bob_PMT', 'ttl15')
         ]
 
+    # George modified these names
     TTL_output_list = [
-        ('ttl8', 'ttl8', False),
-        ('tll9', 'ttl9', False),
-        ('ttl10', 'ttl10', False),
-        ('ttl11', 'ttl11', False),
-        ('ttl12', 'ttl12', False),
-        ('ttl13', 'ttl13', False),
-        ('ttl14', 'ttl14', False),
-        ('ttl15', 'ttl15',  False)
+        ('ttl0', 'ttl0', False),
+        ('ttl_650_pi', 'ttl1', False),
+        ('ttl_493_all', 'ttl2', False),
+        ('ttl_650_fast_cw', 'ttl3', False),
+        ('ttl_650_sigma_1', 'ttl4', False),
+        ('ttl_650_sigma_2', 'ttl5', False),
+        ('ttl_650_fast_pulse', 'ttl6', False),
+        ('ttl_test', 'ttl7', False)
     ]
 
     DAC_list = [
@@ -103,30 +104,30 @@ class base_experiment(EnvExperiment):
         #print('base_experiment.build() done for {}'.format(self.__class__))
 
     def load_globals_from_dataset(self):
-
-        # search the DatasetDB directly
-        try:
-
-            i = 0  # counter for number of loaded globals
-            for key in self.get_dataset_db():
-                if key.startswith('globals.'):
-
-                    # Create an attribute for every globals dataset.
-                    # Do not archive now, because we will archive in prepare() after changes may have been made.
-
-                    # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
-                    key2 = '__'.join(key.split('.'))
-                    setattr(self, key2, self.get_dataset(key, archive=False))
-
-                    i += 1
-
-        except Exception as e:
-            print("Could not load globals!!!")
-            if key is not None:
-                print("Error in key:", key)
-            traceback.print_exc()
-
-        #print("Loaded {} globals.".format(i))
+        pass
+        # # search the DatasetDB directly
+        # try:
+        #
+        #     i = 0  # counter for number of loaded globals
+        #     for key in self.get_dataset_db():
+        #         if key.startswith('globals.'):
+        #
+        #             # Create an attribute for every globals dataset.
+        #             # Do not archive now, because we will archive in prepare() after changes may have been made.
+        #
+        #             # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
+        #             key2 = '__'.join(key.split('.'))
+        #             setattr(self, key2, self.get_dataset(key, archive=False))
+        #
+        #             i += 1
+        #
+        # except Exception as e:
+        #     print("Could not load globals!!!")
+        #     if key is not None:
+        #         print("Error in key:", key)
+        #     traceback.print_exc()
+        #
+        # #print("Loaded {} globals.".format(i))
 
     def number_argument(self, arg, default, tooltip=None, **kwargs):
         """Create a new GUI entry for a NumberValue.
