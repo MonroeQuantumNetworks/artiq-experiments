@@ -195,10 +195,16 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 sum_p1_B2 += sumB2
             elif pattern == 2:
                 detect_p2 += 1
+                sum_p2_B1 += sumB1
+                sum_p2_B2 += sumB2
             elif pattern == 4:
                 detect_p3 += 1
+                sum_p3_B1 += sumB1
+                sum_p3_B2 += sumB2                
             elif pattern == 8:
                 detect_p4 += 1
+                sum_p4_B1 += sumB1
+                sum_p4_B2 += sumB2                
 
             Bob_ratio = sumB1/(sumB1 + sumB2)
 
