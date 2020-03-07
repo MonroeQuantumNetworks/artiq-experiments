@@ -191,6 +191,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 delay_mu(100)
             elif pattern == 1:
                 detect_p1 += 1
+                sum_p1_B1 += sumB1
+                sum_p1_B2 += sumB2
             elif pattern == 2:
                 detect_p2 += 1
             elif pattern == 4:
