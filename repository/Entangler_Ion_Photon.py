@@ -75,7 +75,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         :return:
         """
 
-        self.set_dataset('data_list_x', [], broadcast=True, archive=True)
+        self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
+        self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
 
         # Print estimated run-time
         if self.calculate_runtime:
@@ -85,10 +86,17 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         if self.prepare_awg_bool:
             self.prepare_awg()
 
-        sum1, sum2, ratio = self.kernel_run()     # Run the rest of the program on the core device
-        self.append_to_dataset('data_list_x', sum1)
+        for photons_detected in range(5):
+            data = self.kernel_run()     # Run the rest of the program on the core device
+            self.append_to_dataset('data_list_sums', data)
+            ratio_p1 = sum_p1_B1/ (sum_p1_B1+ sum_p1_B2) 
+            ratio_p2 = sum_p2_B1 / (sum_p2_B1+ sum_p2_B2)
+            ratio_p3 = sum_p3_B1 / (sum_p3_B1+ sum_p3_B2)
+            ratio_p4 = sum_p4_B1 / (sum_p4_B1+ sum_p4_B2)
+            ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
+            self.append_to_dataset('data_list_ratios', data)
 
-        print("Entangler sequence is done", sum1, sum2, ratio, "Test mode:", self.test_mode)
+        print("Entangler sequence is done", sum_p1_B1, sum_p1_B2, ratio_p1, "Test mode:", self.test_mode)
 
     @kernel
     def kernel_run(self):
@@ -180,11 +188,13 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 delay_mu(100)      # Do nothing
             elif detect_flag == 1:
                 Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
-                sumB1 += Bob_counts_detect1
+                sumB1 = Bob_counts_detect1
+                sumB2 = 0
                 detect_flag = 2
             elif detect_flag == 2:
                 Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
-                sumB2 += Bob_counts_detect2
+                sumB2 = Bob_counts_detect2
+                sumB1 = 0
                 detect_flag = 1
 
             if pattern == 0:
@@ -206,15 +216,16 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 sum_p4_B1 += sumB1
                 sum_p4_B2 += sumB2                
 
-            Bob_ratio = sumB1/(sumB1 + sumB2)
+            # Bob_ratio = sumB1/(sumB1 + sumB2)  # Calculate ratios outside
 
-            temp = [sumB1, sumB2]
+            temp = [sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2]
+            self.append_to_dataset('core_pattern1', temp)   # How fast is this?
 
-            self.append_to_dataset('core_pattern1', temp)
+            break   # Break out of loop and return to Host
 
         # print("Entangler sequence is done", sumA1, sumA2, Alice_ratio, "Test mode:", self.test_mode)
 
-        return sumB1, sumB2, Bob_ratio
+        return temp     # How slow is it if I return an array to the host?
 
     @kernel
     def init(self):
