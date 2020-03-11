@@ -99,12 +99,19 @@ class base_experiment(EnvExperiment):
 
     def build(self):
 
-        self.load_globals_from_dataset()
+        # self.load_globals_from_dataset()
         self.build_common()
+        print('Base-experiment build Hello6')
+        self.build_globals_arguments()  # George added this because it seems logical?
+        print('Base-experiment build Hello7')
+        self.load_globals_from_dataset()    # Moved this below build globals arguments
+        # self.setup()        # George added this because it seems logical?
+        print('Base-experiment build Hello8')
         #print('base_experiment.build() done for {}'.format(self.__class__))
 
     def load_globals_from_dataset(self):
-        pass
+        # pass
+        # This is the old way we loaded globals from the dataset:
         # # search the DatasetDB directly
         # try:
         #
@@ -126,8 +133,52 @@ class base_experiment(EnvExperiment):
         #     if key is not None:
         #         print("Error in key:", key)
         #     traceback.print_exc()
-        #
-        # #print("Loaded {} globals.".format(i))
+
+        # Here is George trying out a new way which is much less elegant:
+        try:
+            # Read in the datasets for all the TTL outputs
+            for key, hardware, default in self.TTL_output_list:
+                key ='globals.TTL_output.' + key
+                print(key)
+                # Create an attribute for every globals dataset.
+                # Do not archive now, because we will archive in prepare() after changes may have been made.
+
+                # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
+                key2 = '__'.join(key.split('.'))
+                setattr(self, key2, self.get_dataset(key, archive=False))
+
+            # Read in the datasets for all the DDS settings
+            for key, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
+                key_amp = 'globals__DDS__' + key + '__amplitude'
+                key_att = 'globals__DDS__' + key + '__attenuation'
+                key_freq = 'globals__DDS__' + key + '__frequency'
+                key_sw = 'globals__DDS__' + key + '__switch'
+                key_amp2 = '.'.join(key_amp.split('__'))
+                key_att2 = '.'.join(key_att.split('__'))
+                key_freq2 = '.'.join(key_freq.split('__'))
+                key_sw2 = '.'.join(key_sw.split('__'))
+                print(key_freq2)
+                setattr(self, key_amp, self.get_dataset(key_amp2, archive=False))
+                setattr(self, key_att, self.get_dataset(key_att2, archive=False))
+                setattr(self, key_freq, self.get_dataset(key_freq2, archive=False))
+                setattr(self, key_sw, self.get_dataset(key_sw2, archive=False))
+
+        except Exception as e:
+            print("Could not load globals!!!")
+            if key is not None:
+                print("Error in key:", key)
+            traceback.print_exc()
+
+        #print("Loaded {} globals.".format(i))
+
+        # for name, hardware, default in self.TTL_output_list:
+        #     self.boolean_argument('globals__TTL_output__'+name, default, tooltip=hardware)
+        # for name, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
+        #     self.number_argument('globals__DDS__' + name + '__frequency', freq_default, tooltip=hardware, unit='MHz', ndecimals=9, min=0.0*MHz, max=500.0*MHz, step=0.01*MHz)
+        #     self.number_argument('globals__DDS__' + name + '__amplitude', amp_default, tooltip=hardware, scale=1.0, ndecimals=9, min=0.0, max=1.0, step=0.1)
+        #     self.number_argument('globals__DDS__' + name + '__attenuation', att_default, tooltip=hardware, unit='dB', scale=1.0, ndecimals=9, min=0.0, max=31.5, step=0.5)
+        #     self.boolean_argument('globals__DDS__' + name + '__switch', sw_default, tooltip=hardware)
+
 
     def number_argument(self, arg, default, tooltip=None, **kwargs):
         """Create a new GUI entry for a NumberValue.
@@ -181,7 +232,7 @@ class base_experiment(EnvExperiment):
         """
 
         # timing variables #
-
+        print('Code is within build_global_arguments')
         self.number_argument('globals__timing__cooling_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__pumping_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__excitation_pulse_time', 10*ns, unit='ns', ndecimals=9, min=0.0, step=1.0)
@@ -207,6 +258,10 @@ class base_experiment(EnvExperiment):
             self.number_argument('globals__DAC__'+name, voltage_default, tooltip='zotino0_ch'+str(channel), unit='V', ndecimals=9, min=-10*V, max=9.999*V, step=1*V)
 
     def build_common(self):
+        '''
+        This builds the various TTL input/output and DDS_name_list lists
+        from the default values listed at the top
+        '''
 
         # base functionality #
 
@@ -277,11 +332,14 @@ class base_experiment(EnvExperiment):
                 value = getattr(self, key)
                 if isinstance(value, (bool, int, float, np.ndarray)):
                     self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
+                    print('Write1', key2)
                 elif isinstance(value, list):
                     if isinstance(value[0], (bool, int, float, bytes)):
                         self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
+                        print('Write2', key2)
                     elif isinstance(value[0], str):
                         self.set_dataset(key2, [bytes(i, 'utf-8') for i in value], broadcast=True, persist=True, archive=archive)
+                        print('Write3', key2)
                     else:
                         print('attempting to store dataset with list of type:', type(value[0]))
                         try:
@@ -292,6 +350,7 @@ class base_experiment(EnvExperiment):
                     print('attempting to store dataset of type:', type(value))
                     try:
                         self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
+                        print('succeeded to store dataset of type:', type(value))
                     except:
                         print('fail')
 
@@ -339,7 +398,10 @@ class base_experiment(EnvExperiment):
     def setup(self):
 
         # Store a list of DDS values, which are harder to access on the kernel.
-        self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]
+        print("BASE_EXPT LINE 343", self.DDS_name_list)     # George added this for debugging
+        # DDS_name_list exists, but globals__DDS__493__Alice__sigma_1__frequency does not exist
+        self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]    # First "real" error is this line
+        print("BASE_EXPT LINE 346", self.DDS_freq_list)  # George added this for debugging
         self.DDS_amp_list = [getattr(self, 'globals__DDS__' + name + '__amplitude') for name in self.DDS_name_list]
         self.DDS_att_list = [getattr(self, 'globals__DDS__' + name + '__attenuation') for name in self.DDS_name_list]
         self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]

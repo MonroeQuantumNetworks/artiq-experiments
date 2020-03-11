@@ -26,7 +26,7 @@ class startup(settings.settings):
     def run(self):
         # Overrides settings.run(), not base_experiment.run()
         self.startup_kernel()
-        super().run()
+        super().run()           # Error is in here
         print("super run done")
 
     @kernel
