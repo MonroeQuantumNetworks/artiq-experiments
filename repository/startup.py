@@ -9,6 +9,9 @@ This file should be used as the startup kernel (untested).
 Other experiments should subclass base_experiment, not this file.
 
 M. Lichtman 2019-08-02
+
+Because of how I changed load_globals_from_dataset, may need to revisit the ordering of calls in startup.build()
+George Toh 2020-03-11
 """
 
 from artiq.language.core import kernel
@@ -26,8 +29,8 @@ class startup(settings.settings):
     def run(self):
         # Overrides settings.run(), not base_experiment.run()
         self.startup_kernel()
-        super().run()           # Error is in here
-        print("super run done")
+        super().run()
+        print("STARTUP super run done")
 
     @kernel
     def startup_kernel(self):

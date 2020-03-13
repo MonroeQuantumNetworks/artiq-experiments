@@ -28,7 +28,6 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class EntanglerDemo(artiq_env.EnvExperiment):
 
 class Bob_Timing_Test(base_experiment.base_experiment):
-# class Bob_Timing_Test(settings3.settings):
     """Experiment for Testing AOM Timings - Bob.
     """
 
@@ -64,7 +63,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         # self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
-        self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
+        self.setattr_argument('loops_to_run', NumberValue(5000000, step=1, min=1, max=10000000, ndecimals=0))
 
         self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
         self.setattr_argument('raman_time', NumberValue(2e-6, unit='us', min=0 * us, ndecimals=0))
@@ -76,43 +75,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
                                                               global_step=1 * us, unit='us', ndecimals=3))
 
-        # for i in range(len(self.DDS_device_list)):
-        #     self.DDS_setup(i)
-        #
-        # @kernel
-        # def DDS_setup(self, i):
-        #     """
-        #     Sets up one DDS channel based on passed in info
-        #     :param i:  The index for the matching lists of DDS info created during build().
-        #     :return:
-        #     """
-
-        # i = 1
-        # delay_mu(10000)
-        # # name = self.DDS_name_list[i]
-        # channel = self.DDS_device_list[i]
-        # freq = self.DDS_freq_list[i]
-        # amp = self.DDS_amp_list[i]
-        # att = self.DDS_att_list[i]
-        # sw = self.DDS_sw_list[i]
-        #
-        # print(channel, freq, amp, att, sw)
-
-            # if not sw:
-            #     channel.sw.off()
-            #
-            # delay_mu(41000)
-            # channel.set_att(att)
-            # delay_mu(4000)
-            #
-            # delay_mu(95000)
-            # channel.set(freq, amplitude=amp)
-            # delay_mu(6000)
-            #
-            # delay_mu(10000)
-            #
-            # if sw:
-            #     channel.sw.on()
 
     def run(self):
         """
@@ -124,6 +86,10 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.kernel_run()     # Run the rest of the program on the core device
 
         print("Actual time taken = {:.2f} seconds" .format(time.time() - t_now))        # Calculate how long the experiment took
+
+        # These are necessary to restore the system to the state before the experiment.
+        self.load_globals_from_dataset()    # This loads global settings from datasets
+        self.setup()        # This sends settings out to the ARTIQ hardware
 
     @kernel
     def kernel_run(self):
@@ -143,27 +109,22 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.core.break_realtime()
         delay_mu(1000000)
 
+        # self.ttl_493_all.off()
+        # self.ttl0.off()
+        # self.DDS__493__Bob__sigma_1.sw.off()
+        # self.DDS__493__Bob__sigma_2.sw.off()
+
         for i in range(self.loops_to_run):
-            # self.ttl0.on()      # This is the trigger pulse for the PicoHarp
-            # delay_mu(100)
-            # self.ttl0.off()
-            delay_mu(100000)
 
             self.core_dma.playback_handle(fast_loop_cooling_handle)
-            self.core.break_realtime()
 
-        i = 1
-        delay_mu(10000)
-        # name = self.DDS_name_list[i]
-        channel = self.DDS_device_list[i]
-        # freq = self.globals__DDS__532__tone_1__switch
+            # self.core.break_realtime()
+            delay_mu(4000)
 
-        freq = self.globals__DDS__493__Alice__sigma_1__frequency
-        amp = self.globals__DDS__493__Alice__sigma_1__amplitude
-        att = self.globals__DDS__493__Alice__sigma_1__attenuation
-        sw = self.globals__DDS__493__Alice__sigma_1__switch
 
-        print(channel, freq, amp, att, sw)
+
+        print("Kernel done")
+        # print(self.globals__DDS__493__Alice__sigma_1__frequency)
 
     @kernel
     def init(self):
@@ -273,31 +234,31 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """
         with self.core_dma.record("cooling_loop_pulses"):
             # Cool
-            self.ttl0.pulse(100 * ns)      # This is the trigger pulse for the PicoHarp
-            self.ttl_test.pulse(100 * ns)
-            delay_mu(5000)
+            # with parallel:
+            #     self.ttl0.pulse(30 * ns)      # This is the trigger pulse for the PicoHarp
+            #     self.ttl_test.pulse(30 * ns)
 
+            self.ttl0.pulse(500 * ns)
             with parallel:
-                self.ttl_650_pi.on()
-                self.ttl_493_all.on()
+                # self.ttl_650_pi.on()
+                # self.ttl_493_all.on()
                 self.DDS__493__Bob__sigma_1.sw.on()
                 self.DDS__493__Bob__sigma_2.sw.on()
-                self.ttl_650_fast_cw.on()
-                self.ttl_650_sigma_1.on()
-                self.ttl_650_sigma_2.on()
+                # self.ttl_650_fast_cw.on()
+                # self.ttl_650_sigma_1.on()
+                # self.ttl_650_sigma_2.on()
                 self.ttl_test.on()  # This channel for diagnostics
 
-                # delay(1000 * us)
-                delay(self.cooling_time)
+            delay(self.cooling_time)
 
             with parallel:
-                self.ttl_650_pi.off()
-                self.ttl_493_all.off()
+                # self.ttl_650_pi.off()
+                # self.ttl_493_all.off()
                 self.DDS__493__Bob__sigma_1.sw.off()
                 self.DDS__493__Bob__sigma_2.sw.off()
-                self.ttl_650_fast_cw.off()
-                self.ttl_650_sigma_1.off()
-                self.ttl_650_sigma_2.off()
+                # self.ttl_650_fast_cw.off()
+                # self.ttl_650_sigma_1.off()
+                # self.ttl_650_sigma_2.off()
                 self.ttl_test.off()
 
     @kernel

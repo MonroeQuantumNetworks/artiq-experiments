@@ -111,6 +111,10 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         # print("Entangler sequence is done", sum_p1_B1, sum_p1_B2, ratio_p1, "Test mode:", self.test_mode)
         print("Code is done running {:.0f} {:.0f} {:.0f} {:.2f}, Test mode: ".format(detect_p1, sum_p1_B1, sum_p1_B2, ratio_p1), self.test_mode)
 
+        # These are necessary to restore the system to the state before the experiment.
+        self.load_globals_from_dataset()    # This loads global settings from datasets
+        self.setup()        # This sends settings out to the ARTIQ hardware
+
     @kernel
     def kernel_run(self):
         """Init and run the Entangler on the kernel.
@@ -173,14 +177,15 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # Cooling loop sequence using pre-recorded dma sequence
-                self.core_dma.playback_handle(fast_loop_cooling_handle)
+                # self.core_dma.playback_handle(fast_loop_cooling_handle)
+                delay_mu(30000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=970,
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=500,  # Done cooling and pumping, turn off all lasers
+                    out_stop=50,  # Done cooling and pumping, turn off all lasers
                     out_start2=600,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=800,
                     out_start3=700,  # Generate single photon by turning on the fast-pulse AOM
@@ -294,6 +299,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
 
         Args:
             cycle_len (int): Length of each entanglement cycle.
+            pump_650_sigma : Choose if 650 pump is sigma-1 or sigma-2
             out_start (int): Time in cycle when all pumping outputs should turn on.
             out_stop (int): Time in cycle when all pumping outputs should turn off.
             out_start2 (int): Time when opposite 650 sigma slow AOM should turn on
@@ -309,6 +315,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         # This writes an output-high time to all the channels
         for channel in range(num_outputs):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
+        self.entangler.set_timing_mu(0, 0, 30)      # Hard coded these pulse sequences for testing
+        self.entangler.set_timing_mu(2, 0, 30)
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -425,7 +433,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
             # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-            self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
+            # self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
             with sequential:    # Generate fake pulse sequence for triggering the counter
                 for i in range(31):
                     self.ttl_650_pi.pulse(1 * us)
@@ -459,7 +467,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
             # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-            self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
+            # self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
             with sequential:    # Generate fake pulse sequence for triggering the counter
                 for i in range(13):
                     self.ttl_650_pi.pulse(1 * us)
