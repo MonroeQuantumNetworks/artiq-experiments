@@ -70,7 +70,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         self.setattr_argument('test_mode', BooleanValue(True))
         self.setattr_argument('calculate_runtime', BooleanValue(True))
-        self.setattr_argument('prepare_awg_bool', BooleanValue(False))
+        self.setattr_argument('Bob493_TTL_vs_DDS', BooleanValue(False))
 
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
                                                               global_step=1 * us, unit='us', ndecimals=3))
@@ -111,17 +111,18 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         # self.ttl_493_all.off()
         # self.ttl0.off()
-        # self.DDS__493__Bob__sigma_1.sw.off()
-        # self.DDS__493__Bob__sigma_2.sw.off()
+        self.DDS__493__Bob__sigma_1.sw.off()
+        self.DDS__493__Bob__sigma_2.sw.off()
+        # self.ttl_650_fast_cw.off()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        self.DDS__493__Bob__sigma_2.sw.on()
 
         for i in range(self.loops_to_run):
 
             self.core_dma.playback_handle(fast_loop_cooling_handle)
 
             # self.core.break_realtime()
-            delay_mu(4000)
-
-
+            delay_mu(6000)
 
         print("Kernel done")
         # print(self.globals__DDS__493__Alice__sigma_1__frequency)
@@ -234,17 +235,20 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """
         with self.core_dma.record("cooling_loop_pulses"):
             # Cool
-            # with parallel:
-            #     self.ttl0.pulse(30 * ns)      # This is the trigger pulse for the PicoHarp
-            #     self.ttl_test.pulse(30 * ns)
 
-            self.ttl0.pulse(500 * ns)
+            self.ttl0.pulse(20 * ns)    # This is the trigger pulse for the PicoHarp
             with parallel:
+                # if self.Bob493_TTL_vs_DDS:
+                #     self.ttl_493_all.on()
+                # else:
+                #     self.DDS__493__Bob__sigma_1.sw.on()
+                #     self.DDS__493__Bob__sigma_2.sw.on()
                 # self.ttl_650_pi.on()
-                # self.ttl_493_all.on()
-                self.DDS__493__Bob__sigma_1.sw.on()
-                self.DDS__493__Bob__sigma_2.sw.on()
-                # self.ttl_650_fast_cw.on()
+                self.ttl_650_fast_pulse.on()
+                # with sequential:
+                #     self.ttl_650_fast_cw.on()
+                #     delay_mu(10)
+                #     self.ttl_650_fast_cw.off()
                 # self.ttl_650_sigma_1.on()
                 # self.ttl_650_sigma_2.on()
                 self.ttl_test.on()  # This channel for diagnostics
@@ -252,10 +256,13 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             delay(self.cooling_time)
 
             with parallel:
+                # if self.Bob493_TTL_vs_DDS:
+                #     self.ttl_493_all.off()
+                # else:
+                #     self.DDS__493__Bob__sigma_1.sw.off()
+                #     self.DDS__493__Bob__sigma_2.sw.off()
                 # self.ttl_650_pi.off()
-                # self.ttl_493_all.off()
-                self.DDS__493__Bob__sigma_1.sw.off()
-                self.DDS__493__Bob__sigma_2.sw.off()
+                self.ttl_650_fast_pulse.off()
                 # self.ttl_650_fast_cw.off()
                 # self.ttl_650_sigma_1.off()
                 # self.ttl_650_sigma_2.off()

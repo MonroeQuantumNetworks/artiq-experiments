@@ -130,6 +130,13 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         self.core.break_realtime()  # Increases slack to at least 125 us
         self.init()
 
+        # Turn these off for now
+        self.DDS__493__Bob__sigma_1.sw.off()
+        # self.DDS__493__Bob__sigma_2.sw.off()
+        self.ttl_493_all.off()
+        self.ttl_650_fast_cw.off()
+        # They get restored to the initial values later
+
         # Initialize counters to zero
         sumA1 = 1
         sumB1 = 1
@@ -178,14 +185,14 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 # self.core_dma.playback_handle(fast_loop_cooling_handle)
-                delay_mu(30000)
+                delay(self.cooling_time)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=970,
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=50,  # Done cooling and pumping, turn off all lasers
+                    out_stop=150,  # Done cooling and pumping, turn off all lasers
                     out_start2=600,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=800,
                     out_start3=700,  # Generate single photon by turning on the fast-pulse AOM
@@ -270,8 +277,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             #     sum_p4_B1 += sumB1
             #     sum_p4_B2 += sumB2
 
-            ratio1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)        # This doesn't take too long
-            self.append_to_dataset('core_pattern1', ratio1)     # This doesn't take too long
+            # ratio1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)        # This doesn't take too long
+            # self.append_to_dataset('core_pattern1', ratio1)     # This doesn't take too long
 
             # break   # Break out of loop and return to Host
 
@@ -287,6 +294,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         self.out0_0.pulse(1.5 * aq_units.us)  # marker signal for observing timing
         for ttl_input in self.entangle_inputs:
             ttl_input.input()
+
 
     @kernel
     def setup_entangler(
@@ -315,8 +323,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         # This writes an output-high time to all the channels
         for channel in range(num_outputs):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
-        self.entangler.set_timing_mu(0, 0, 30)      # Hard coded these pulse sequences for testing
-        self.entangler.set_timing_mu(2, 0, 30)
+        self.entangler.set_timing_mu(0, 10, 20)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -395,8 +402,11 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         with self.core_dma.record("cooling_loop_pulses"):
             # Cool
             with parallel:
+                self.DDS__493__Bob__sigma_2.sw.on()     # Added for testing
                 self.ttl_650_pi.on()
-                self.ttl_493_all.on()
+                with sequential:
+                    delay_mu(750)
+                    self.ttl_493_all.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
@@ -406,8 +416,11 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 delay(self.cooling_time)
 
             with parallel:
+                self.DDS__493__Bob__sigma_2.sw.off()     # Added for testing
                 self.ttl_650_pi.off()
-                self.ttl_493_all.off()
+                with sequential:
+                    delay_mu(750)
+                    self.ttl_493_all.off()
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
