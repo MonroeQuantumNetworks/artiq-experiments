@@ -131,10 +131,21 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         self.init()
 
         # Turn these off for now
-        self.DDS__493__Bob__sigma_1.sw.off()
+        # self.DDS__493__Bob__sigma_1.sw.off()
         # self.DDS__493__Bob__sigma_2.sw.off()
+        # self.ttl_493_all.off()
+        # self.ttl_650_fast_cw.off()
+
+
+        # Turn off everything initially
+        self.DDS__493__Bob__sigma_1.sw.off()
+        self.DDS__493__Bob__sigma_2.sw.off()
         self.ttl_493_all.off()
         self.ttl_650_fast_cw.off()
+        self.ttl_650_sigma_1.off()
+        self.ttl_650_sigma_2.off()
+        self.ttl_650_pi.off()
+        delay_mu(100000)
         # They get restored to the initial values later
 
         # Initialize counters to zero
@@ -192,12 +203,12 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=150,  # Done cooling and pumping, turn off all lasers
-                    out_start2=600,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=800,
-                    out_start3=700,  # Generate single photon by turning on the fast-pulse AOM
-                    out_stop3=710,  # Done generating
-                    in_start=50,  # Look for photons on APD0
+                    out_stop=250,  # Done cooling and pumping, turn off all lasers
+                    out_start2=250,  # Turn on the opposite 650 sigma slow-AOM
+                    out_stop2=600,
+                    out_start3=300,  # Generate single photon by turning on the fast-pulse AOM
+                    out_stop3=310,  # Done generating
+                    in_start=800,  # Look for photons on APD0
                     in_stop=900,
                     pattern_list=[0b0010, 0b0001, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
@@ -319,11 +330,23 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             pattern_list (list(int)): List of patterns that inputs are matched
                 against. Matching ANY will stop the entangler.
         """
+        #
+        # TTL_output_list = [
+        #     ('ttl0', 'ttl0', False),
+        #     ('ttl_650_pi', 'ttl1', False),
+        #     ('ttl_493_all', 'ttl2', False),
+        #     ('ttl_650_fast_cw', 'ttl3', False),
+        #     ('ttl_650_sigma_1', 'ttl4', False),
+        #     ('ttl_650_sigma_2', 'ttl5', False),
+        #     ('ttl_650_fast_pulse', 'ttl6', False),
+        #     ('ttl_test', 'ttl7', False)
+        # ]
         self.entangler.init()
         # This writes an output-high time to all the channels
         for channel in range(num_outputs):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
         self.entangler.set_timing_mu(0, 10, 20)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(6, 1000, 1000)  # not used
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -332,7 +355,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         else:
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-        # self.entangler.set_timing_mu(7, 10000, 10000)   # ttl7 unused, disable output
+        self.entangler.set_timing_mu(7, 10, 30)   # ttl7 unused, disable output
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)

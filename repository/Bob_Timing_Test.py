@@ -100,28 +100,35 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         # Pre-load all the pulse sequences using DMA
         self.prerecord_cooling_loop()
+        self.prerecord_timing_test()
 
         delay_mu(100000)
         self.core.break_realtime()
 
         fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
+        timing_test_handle = self.core_dma.get_handle("timing_test_pulses")
 
         self.core.break_realtime()
         delay_mu(1000000)
 
         # self.ttl_493_all.off()
         # self.ttl0.off()
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
-        # self.ttl_650_fast_cw.off()
-        self.DDS__493__Bob__sigma_1.sw.on()
-        self.DDS__493__Bob__sigma_2.sw.on()
+        if self.Bob493_TTL_vs_DDS:
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
+        self.ttl_650_fast_cw.off()
+        self.ttl_650_sigma_1.off()
+        self.ttl_650_sigma_2.off()
+        self.ttl_650_pi.off()
+        # self.DDS__493__Bob__sigma_1.sw.on()
+        # self.DDS__493__Bob__sigma_2.sw.on()
+        # self.ttl_650_sigma_1.on()
+        # self.ttl_650_sigma_2.on()
 
         for i in range(self.loops_to_run):
 
             self.core_dma.playback_handle(fast_loop_cooling_handle)
-
-            # self.core.break_realtime()
+            # self.core_dma.playback_handle(timing_test_handle)
             delay_mu(6000)
 
         print("Kernel done")
@@ -234,39 +241,78 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         This is faster than non pre-recorded
         """
         with self.core_dma.record("cooling_loop_pulses"):
-            # Cool
+            # Turn these on before the trigger pulse
+            # self.ttl_650_sigma_1.on()
+            # self.ttl_650_sigma_2.on()
+            self.ttl_650_fast_cw.on()
+            self.ttl_650_pi.on()
+            if self.Bob493_TTL_vs_DDS:
+                self.ttl_493_all.on()
+            else:
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
+
+            delay_mu(1000)
 
             self.ttl0.pulse(20 * ns)    # This is the trigger pulse for the PicoHarp
             with parallel:
-                # if self.Bob493_TTL_vs_DDS:
-                #     self.ttl_493_all.on()
-                # else:
-                #     self.DDS__493__Bob__sigma_1.sw.on()
-                #     self.DDS__493__Bob__sigma_2.sw.on()
+                pass
+                # with sequential:
+                #     delay_mu(1000)
                 # self.ttl_650_pi.on()
-                self.ttl_650_fast_pulse.on()
+                # self.ttl_650_fast_pulse.on()
+                # self.ttl_650_fast_cw.on()
                 # with sequential:
                 #     self.ttl_650_fast_cw.on()
                 #     delay_mu(10)
                 #     self.ttl_650_fast_cw.off()
-                # self.ttl_650_sigma_1.on()
-                # self.ttl_650_sigma_2.on()
-                self.ttl_test.on()  # This channel for diagnostics
+                self.ttl_650_sigma_1.on()
+                self.ttl_650_sigma_2.on()
+                # self.ttl_test.on()  # This channel for diagnostics
 
             delay(self.cooling_time)
 
             with parallel:
-                # if self.Bob493_TTL_vs_DDS:
-                #     self.ttl_493_all.off()
-                # else:
-                #     self.DDS__493__Bob__sigma_1.sw.off()
-                #     self.DDS__493__Bob__sigma_2.sw.off()
-                # self.ttl_650_pi.off()
-                self.ttl_650_fast_pulse.off()
-                # self.ttl_650_fast_cw.off()
-                # self.ttl_650_sigma_1.off()
-                # self.ttl_650_sigma_2.off()
-                self.ttl_test.off()
+
+                self.ttl_650_pi.off()
+                # self.ttl_650_fast_pulse.off()
+                self.ttl_650_sigma_1.off()
+                self.ttl_650_sigma_2.off()
+                self.ttl_650_fast_cw.off()
+                # self.ttl_test.off()
+                if self.Bob493_TTL_vs_DDS:
+                    self.ttl_493_all.off()
+                else:
+                    self.DDS__493__Bob__sigma_1.sw.off()
+                    self.DDS__493__Bob__sigma_2.sw.off()
+
+            # Generate Single Photons
+            # delay_mu(300)
+            # self.ttl_650_sigma_1.on()
+            # delay_mu(2500)
+            # self.ttl_650_fast_cw.on()
+            # delay_mu(10)
+            # self.ttl_650_fast_cw.off()
+            # delay_mu(500)
+            # self.ttl_650_sigma_1.off()
+
+    @kernel
+    def prerecord_timing_test(self):
+        """Pre-record the timing test sequence.
+
+        This is used for optimizing AOM positions
+        """
+        with self.core_dma.record("timing_test_pulses"):
+            # Cool
+            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+            with parallel:
+                self.ttl_650_fast_cw.on()
+
+            delay(self.cooling_time)
+
+            with parallel:
+                self.ttl_650_fast_cw.off()
+
 
     @kernel
     def run_detection1(self):
