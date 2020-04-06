@@ -42,6 +42,8 @@ class scantest(base_experiment.base_experiment):
                     self.active_scan_names.append(name)
             # Create datasets for each scan?
             self.set_dataset('active_scan_names', [bytes(i, 'utf-8') for i in self.active_scan_names], broadcast=True, archive=True, persist=True)
+            self.set_dataset('dummy_data_x', [], broadcast=True, archive=True)
+            self.set_dataset('dummy_data_y', [], broadcast=True, archive=True)
 
             # Combine the scan variables into a multiscan
             print('Multi-scan run:')
@@ -49,6 +51,8 @@ class scantest(base_experiment.base_experiment):
             msm = MultiScanManager(*self.active_scans)
             for point in msm:
                 print(counter, ["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
+                self.append_to_dataset('dummy_data_x', getattr(point, name))   # Create dummy dataset for practice
+                self.append_to_dataset('dummy_data_y', bytes(name, 'utf-8'))  # Create dummy dataset for practice
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
                 # print(self.active_scan_names)
