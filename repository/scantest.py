@@ -1,4 +1,4 @@
-"""This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
+"""This scan example program."""
 
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -24,7 +24,7 @@ class scantest(base_experiment.base_experiment):
         try:  # catch TerminationRequested
 
             # setup the scans to only scan the active variables
-            self.scans = [
+            self.scans = [  # name the different scan types
                 ("cooling_time", self.cooling_time_scan),
                 ("pumping_time", self.pumping_time_scan),
                 ("detection_time", self.detection_time_scan)
@@ -35,23 +35,32 @@ class scantest(base_experiment.base_experiment):
                 if isinstance(scan, NoScan):
                     # just set the single value
                     setattr(self, name, scan.value)
+                    print('No Scan Needed for', name)
                 else:
+                    print('Something to scan on', name)
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
+            # Create datasets for each scan?
             self.set_dataset('active_scan_names', [bytes(i, 'utf-8') for i in self.active_scan_names], broadcast=True, archive=True, persist=True)
+
+            # Combine the scan variables into a multiscan
+            print('Multi-scan run:')
+            counter = 1     # Added this to count the number of scans
             msm = MultiScanManager(*self.active_scans)
-
             for point in msm:
-
-                print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
+                print(counter, ["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
+                # print(self.active_scan_names)
                 for name in self.active_scan_names:
                     setattr(self, name, getattr(point, name))
+                    # print('This is getattr', name, getattr(self, name))
 
                 # allow other experiments to preempt
                 self.core.comm.close()
                 self.scheduler.pause()
+
+                counter = counter+1
 
         except TerminationRequested:
             print('Terminated gracefully')
