@@ -192,106 +192,110 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
 
             # Repeat running the entangler cycles_to_run times
             self.core.break_realtime()      # This appears to be necessary when running the dma
-            for channel in range(self.entangle_cycles_per_loop):
+            try:
+                for channel in range(self.entangle_cycles_per_loop):
 
-                # Cooling loop sequence using pre-recorded dma sequence
-                # self.core_dma.playback_handle(fast_loop_cooling_handle)
-                delay(self.cooling_time)
+                    # Cooling loop sequence using pre-recorded dma sequence
+                    # self.core_dma.playback_handle(fast_loop_cooling_handle)
+                    delay(self.cooling_time)
 
-                self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=970,
-                    # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
-                    pump_650_sigma=self.pump_650sigma_1or2,
-                    out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=250,  # Done cooling and pumping, turn off all lasers
-                    out_start2=250,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=600,
-                    out_start3=300,  # Generate single photon by turning on the fast-pulse AOM
-                    out_stop3=310,  # Done generating
-                    in_start=800,  # Look for photons on APD0
-                    in_stop=900,
-                    pattern_list=[0b0010, 0b0001, 0b0100, 0b1000],
-                    # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
-                    # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right
-                )
-                end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
+                    self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
+                        cycle_len=970,
+                        # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
+                        pump_650_sigma=self.pump_650sigma_1or2,
+                        out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
+                        out_stop=250,  # Done cooling and pumping, turn off all lasers
+                        out_start2=250,  # Turn on the opposite 650 sigma slow-AOM
+                        out_stop2=600,
+                        out_start3=300,  # Generate single photon by turning on the fast-pulse AOM
+                        out_stop3=310,  # Done generating
+                        in_start=800,  # Look for photons on APD0
+                        in_stop=900,
+                        pattern_list=[0b0010, 0b0001, 0b0100, 0b1000],
+                        # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
+                        # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right
+                    )
+                    end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
 
-                # self.check_entangler_status() # Do we need this?
+                    # self.check_entangler_status() # Do we need this?
 
-                if pattern == 1 or pattern == 2:
-                    print("Entangler success", pattern)
-                    break
-                elif pattern == 4 or pattern == 8:
-                    print("Entangler success", pattern)
-                    # self.run_rotation() # Rotate to match the other state
-                    break
-                else:   # Failed to entangle
-                    # delay_mu(100)
-                    if self.test_mode:  # Generate some counts for test-mode
-                        pattern = 1
-                    else:
-                        pattern = 0
+                    if pattern == 1 or pattern == 2:
+                        print("Entangler success", pattern)
+                        break
+                    elif pattern == 4 or pattern == 8:
+                        print("Entangler success", pattern)
+                        # self.run_rotation() # Rotate to match the other state
+                        break
+                    else:   # Failed to entangle
+                        # delay_mu(100)
+                        if self.test_mode:  # Generate some counts for test-mode
+                            pattern = 1
+                        else:
+                            pattern = 0
 
-            if pattern == 0:
-                delay_mu(100)      # Do nothing
-            elif detect_flag == 1:
-                Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
-                sumB1 = Bob_counts_detect1
-                sumB2 = 0
-                detect_flag = 2
-                if pattern == 1:
-                    detect_p1 += 1
-                    sum_p1_B1 += sumB1
-                elif pattern == 2:
-                    # detect_p2 += 1
-                    sum_p2_B1 += sumB1
-                elif pattern == 4:
-                    # detect_p3 += 1
-                    sum_p3_B1 += sumB1
-                elif pattern == 8:
-                    # detect_p4 += 1
-                    sum_p4_B1 += sumB1
-            elif detect_flag == 2:
-                Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
-                sumB2 = Bob_counts_detect2
-                sumB1 = 0
-                detect_flag = 1
-                if pattern == 1:
-                    detect_p1 += 1
-                    sum_p1_B2 += sumB2
-                elif pattern == 2:
-                    # detect_p2 += 1
-                    sum_p2_B2 += sumB2
-                elif pattern == 4:
-                    # detect_p3 += 1
-                    sum_p3_B2 += sumB2
-                elif pattern == 8:
-                    # detect_p4 += 1
-                    sum_p4_B2 += sumB2
+                if pattern == 0:
+                    delay_mu(100)      # Do nothing
+                elif detect_flag == 1:
+                    Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
+                    sumB1 = Bob_counts_detect1
+                    sumB2 = 0
+                    detect_flag = 2
+                    if pattern == 1:
+                        detect_p1 += 1
+                        sum_p1_B1 += sumB1
+                    elif pattern == 2:
+                        # detect_p2 += 1
+                        sum_p2_B1 += sumB1
+                    elif pattern == 4:
+                        # detect_p3 += 1
+                        sum_p3_B1 += sumB1
+                    elif pattern == 8:
+                        # detect_p4 += 1
+                        sum_p4_B1 += sumB1
+                elif detect_flag == 2:
+                    Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
+                    sumB2 = Bob_counts_detect2
+                    sumB1 = 0
+                    detect_flag = 1
+                    if pattern == 1:
+                        detect_p1 += 1
+                        sum_p1_B2 += sumB2
+                    elif pattern == 2:
+                        # detect_p2 += 1
+                        sum_p2_B2 += sumB2
+                    elif pattern == 4:
+                        # detect_p3 += 1
+                        sum_p3_B2 += sumB2
+                    elif pattern == 8:
+                        # detect_p4 += 1
+                        sum_p4_B2 += sumB2
 
-            # if pattern == 0:
-            #     delay_mu(100)
-            # elif pattern == 1:
-            #     # detect_p1 += 1
-            #     sum_p1_B1 += sumB1
-            #     sum_p1_B2 += sumB2
-            # elif pattern == 2:
-            #     # detect_p2 += 1
-            #     sum_p2_B1 += sumB1
-            #     sum_p2_B2 += sumB2
-            # elif pattern == 4:
-            #     # detect_p3 += 1
-            #     sum_p3_B1 += sumB1
-            #     sum_p3_B2 += sumB2
-            # elif pattern == 8:
-            #     # detect_p4 += 1
-            #     sum_p4_B1 += sumB1
-            #     sum_p4_B2 += sumB2
+                # if pattern == 0:
+                #     delay_mu(100)
+                # elif pattern == 1:
+                #     # detect_p1 += 1
+                #     sum_p1_B1 += sumB1
+                #     sum_p1_B2 += sumB2
+                # elif pattern == 2:
+                #     # detect_p2 += 1
+                #     sum_p2_B1 += sumB1
+                #     sum_p2_B2 += sumB2
+                # elif pattern == 4:
+                #     # detect_p3 += 1
+                #     sum_p3_B1 += sumB1
+                #     sum_p3_B2 += sumB2
+                # elif pattern == 8:
+                #     # detect_p4 += 1
+                #     sum_p4_B1 += sumB1
+                #     sum_p4_B2 += sumB2
 
-            # ratio1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)        # This doesn't take too long
-            # self.append_to_dataset('core_pattern1', ratio1)     # This doesn't take too long
+                # ratio1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)        # This doesn't take too long
+                # self.append_to_dataset('core_pattern1', ratio1)     # This doesn't take too long
 
-            # break   # Break out of loop and return to Host
+            # If Termination requested by user, print message and break out of loop 
+            except TerminationRequested:
+                print('Terminated gracefully')
+                break
 
         # print("Entangler sequence is done", sum_p1_B1, sumB2, ratio1, "Test mode:", self.test_mode)
 

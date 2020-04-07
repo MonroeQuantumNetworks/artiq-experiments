@@ -1,4 +1,6 @@
-"""This scan example program."""
+""" This is a scan example program.
+    Use the code segments in here to create a real program with scannable objects
+"""
 
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -65,6 +67,8 @@ class scantest(base_experiment.base_experiment):
                 self.scheduler.pause()
 
                 counter = counter+1
+
+                # Insert code to run experiment with scanned variables here
 
         except TerminationRequested:
             print('Terminated gracefully')

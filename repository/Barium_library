@@ -21,16 +21,8 @@ class Barium_library(base_experiment.base_experiment):
     """
 
     def build(self):
-        """Add the Entangler driver."""
-        self.setattr_device("core")
-
-        # Add other inputs
-        super().build()
-        self.setattr_device("core_dma")
-        # self.setattr_argument('slack_time', NumberValue(40000, step=5000, min=15000, max=150000, ndecimals=0))
         self.setattr_argument('cooling_time', NumberValue(100000e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
-        self.setattr_argument('raman_time', NumberValue(2e-6, unit='us', min=0 * us, ndecimals=0))
 
     def run(self):
         """
