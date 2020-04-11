@@ -19,6 +19,10 @@ import settings
 
 
 class startup(settings.settings):
+    """Startup routine
+
+    Run this when starting artiq_master
+    """
 
     def build(self):
         # This appears the same as base_experiment.build(), but we write it again to override settings.build()
@@ -47,4 +51,3 @@ class startup(settings.settings):
         # DAC #
 
         self.zotino0.init()
-

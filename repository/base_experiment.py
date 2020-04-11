@@ -11,9 +11,9 @@ Every other experiment should:
 M. Lichtman updated 2019-08-02
 
 I modified load_globals_from_dataset() to not use get_dataset_db(). Will need to clean up calls in build().
-Currently, load_globals... will work for DDS and TTL_outputs, which are what we need for now.
+Currently, load_globals_from_dataset() is hardcoded to work for DDS, DAC and TTL_outputs.
 
-George Toh 2020-03-11
+George Toh 2020-04-11
 """
 
 import traceback
@@ -106,16 +106,13 @@ class base_experiment(EnvExperiment):
 
         # self.load_globals_from_dataset()
         self.build_common()
-        # print('Base-experiment build Hello6')
-        self.build_globals_arguments()  # George added this because it seems logical?
+        # self.build_globals_arguments()  # George added this because it seems necessary. Can I do without this?
         # I need to get rid of build globals arguments because it is generating many entries in the GUI
-
-        # print('Base-experiment build Hello7')
 
         # load_globals_from_dataset takes the global values from the dataset and put them into the local variables.
         self.load_globals_from_dataset()    # Moved this below build globals arguments
         # self.setup()        # George added this because it seems logical?
-        # print('Base-experiment build Hello8')
+
         #print('base_experiment.build() done for {}'.format(self.__class__))
 
     def load_globals_from_dataset(self):
@@ -148,9 +145,16 @@ class base_experiment(EnvExperiment):
             # Read in the datasets for all the TTL outputs
             for key, hardware, default in self.TTL_output_list:
                 key ='globals.TTL_output.' + key
-                # print(key)
                 # Create an attribute for every globals dataset.
                 # Do not archive now, because we will archive in prepare() after changes may have been made.
+
+                # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
+                key2 = '__'.join(key.split('.'))
+                setattr(self, key2, self.get_dataset(key, archive=False))
+
+            # Read in the datasets for all the DAC outputs
+            for key, hardware, default in self.DAC_list:
+                key ='globals.DAC.' + key
 
                 # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
                 key2 = '__'.join(key.split('.'))
@@ -166,13 +170,11 @@ class base_experiment(EnvExperiment):
                 key_att2 = '.'.join(key_att.split('__'))
                 key_freq2 = '.'.join(key_freq.split('__'))
                 key_sw2 = '.'.join(key_sw.split('__'))
-                # print(key_freq2)
+                
                 setattr(self, key_amp, self.get_dataset(key_amp2, archive=False))
                 setattr(self, key_att, self.get_dataset(key_att2, archive=False))
                 setattr(self, key_freq, self.get_dataset(key_freq2, archive=False))
                 setattr(self, key_sw, self.get_dataset(key_sw2, archive=False))
-
-                ''' George is to write another paragraph here to convert DAC_list into globals'''
 
         except Exception as e:
             print("Could not load globals!!!")
@@ -224,9 +226,6 @@ class base_experiment(EnvExperiment):
     def build_globals_arguments(self):
         """
         Create a GUI entry for each globals.
-        This is the preferred way to add globals to our system.
-        So to add a new globals, start by creating an argument for it here.
-        If it begins with 'globals__' it will automatically be added to the globals datasets.
         It is also possible to add a global to the namespace with no GUI entry by:
 
         if not hasattr(self, 'globals__mygroup__myglobal'):
@@ -234,7 +233,6 @@ class base_experiment(EnvExperiment):
         """
 
         # timing variables #
-        # print('Code is within build_global_arguments')
         self.number_argument('globals__timing__cooling_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__pumping_time', 10*us, unit='us', ndecimals=9, min=0.0, step=1.0)
         self.number_argument('globals__timing__excitation_pulse_time', 10*ns, unit='ns', ndecimals=9, min=0.0, step=1.0)
@@ -258,6 +256,7 @@ class base_experiment(EnvExperiment):
 
         for name, channel, voltage_default in self.DAC_list:
             self.number_argument('globals__DAC__'+name, voltage_default, tooltip='zotino0_ch'+str(channel), unit='V', ndecimals=9, min=-10*V, max=9.999*V, step=1*V)
+
 
     def build_common(self):
         '''
@@ -334,14 +333,11 @@ class base_experiment(EnvExperiment):
                 value = getattr(self, key)
                 if isinstance(value, (bool, int, float, np.ndarray)):
                     self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
-                    # print('base_experiment Write1', key2)
                 elif isinstance(value, list):
                     if isinstance(value[0], (bool, int, float, bytes)):
                         self.set_dataset(key2, value, broadcast=True, persist=True, archive=archive)
-                        # print('base_experiment Write2', key2)
                     elif isinstance(value[0], str):
                         self.set_dataset(key2, [bytes(i, 'utf-8') for i in value], broadcast=True, persist=True, archive=archive)
-                        # print('base_experiment Write3', key2)
                     else:
                         print('attempting to store dataset with list of type:', type(value[0]))
                         try:
@@ -400,9 +396,7 @@ class base_experiment(EnvExperiment):
     def setup(self):
 
         # Store a list of DDS values, which are harder to access on the kernel.
-        # print("BASE_EXPT setup LINE 343", self.DDS_name_list)     # George added this for debugging
         self.DDS_freq_list = [getattr(self, 'globals__DDS__' + name + '__frequency') for name in self.DDS_name_list]
-        # print("BASE_EXPT setup LINE 346", self.DDS_freq_list)  # George added this for debugging
         self.DDS_amp_list = [getattr(self, 'globals__DDS__' + name + '__amplitude') for name in self.DDS_name_list]
         self.DDS_att_list = [getattr(self, 'globals__DDS__' + name + '__attenuation') for name in self.DDS_name_list]
         self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]
@@ -411,8 +405,8 @@ class base_experiment(EnvExperiment):
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
 
         # DAC #
-        # self.DAC_voltage_list = [getattr(self, 'globals__DAC__'+name) for name, channel, voltage_default in self.DAC_list]
-        # self.DAC_channel_list = [channel for name, channel, voltage_default in self.DAC_list]
+        self.DAC_voltage_list = [getattr(self, 'globals__DAC__'+name) for name, channel, voltage_default in self.DAC_list]
+        self.DAC_channel_list = [channel for name, channel, voltage_default in self.DAC_list]
 
         self.kernel_setup()
 
@@ -438,9 +432,9 @@ class base_experiment(EnvExperiment):
 
         # DAC #
 
-        #self.core.break_realtime()
-        # delay_mu(1000000)
-        # self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)
+        self.core.break_realtime()
+        delay_mu(1000000)
+        self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)
 
     def run(self):
         # subclasses should override run_worker(), not run()
@@ -450,4 +444,5 @@ class base_experiment(EnvExperiment):
 
     def run_worker(self):
         # subclasses should override run_worker(), not run()
+        # George: What does this do?
         pass
