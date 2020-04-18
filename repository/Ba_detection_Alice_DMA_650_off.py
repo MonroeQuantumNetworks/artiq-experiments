@@ -1,3 +1,15 @@
+""" Legacy script
+Alice Barium detection, with scannable variables
+
+    Hard-coded urukul channels
+    650 seems to be ON for all cool/pump/detect stages despite the file name
+    Possible Bug: 650 remains on? See line 124
+
+Changed ttl11 (650 fast) to ttl_650_fast_cw
+
+George Toh 2020-04-18
+"""
+
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
@@ -55,7 +67,7 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             delay(8*ns)
             self.urukul1_ch2.sw.off() # Alice 650 pi
             delay(8*ns)
-            self.ttl11.off() # 650 fast AOM
+            self.ttl_650_fast_cw.off() # 650 fast AOM
             delay(8*ns)
             self.urukul1_ch0.sw.on() # 650 sigma 1
             delay(8*ns)
@@ -73,12 +85,12 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             with parallel:
                 self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
                 self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()             # 650 fast
                 self.urukul1_ch2.sw.on()
 
             delay(self.cooling_time)
             with parallel:
-                self.ttl11.off()
+                self.ttl_650_fast_cw.off()
                 self.urukul0_ch0.sw.off()
                 self.urukul3_ch0.sw.off()
                 self.urukul2_ch1.sw.off()
@@ -87,14 +99,14 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
 
             # pumping, sigma 1
             with parallel:
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul0_ch0.sw.on()
                 self.urukul1_ch2.sw.on()
 
             delay(self.pumping_time)
             with parallel:
                 self.urukul0_ch0.sw.off()
-                self.ttl11.off()
+                self.ttl_650_fast_cw.off()
                 self.urukul1_ch2.sw.off()
 
             delay(500*ns)
@@ -105,14 +117,14 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             at_mu(t11)
 
             with parallel:
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul0_ch0.sw.on()
                 self.urukul1_ch2.sw.on()
 
             delay(self.detection_time)
             with parallel:
                 self.urukul0_ch0.sw.off()
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul1_ch2.sw.off()
 
             delay(50*ns)
@@ -125,12 +137,12 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             with parallel:
                 self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
                 self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul1_ch2.sw.on()
 
             delay(self.cooling_time)
             with parallel:
-                self.ttl11.off()
+                self.ttl_650_fast_cw.off()
                 self.urukul0_ch0.sw.off()
                 self.urukul3_ch0.sw.off()
                 self.urukul2_ch1.sw.off()
@@ -139,14 +151,14 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
 
             # pumping, sigma 1
             with parallel:
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul0_ch0.sw.on()
                 self.urukul1_ch2.sw.on()
 
             delay(self.pumping_time)
             with parallel:
                 self.urukul0_ch0.sw.off()
-                self.ttl11.off()
+                self.ttl_650_fast_cw.off()
                 self.urukul1_ch2.sw.off()
 
             delay(500 * ns)
@@ -157,14 +169,14 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             at_mu(t12)
 
             with parallel:
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul3_ch0.sw.on()
                 self.urukul1_ch2.sw.on()
 
             delay(self.detection_time)
             with parallel:
                 self.urukul3_ch0.sw.off()
-                self.ttl11.on()
+                self.ttl_650_fast_cw.on()
                 self.urukul1_ch2.sw.off()
 
             delay(50 * ns)
@@ -223,7 +235,6 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
                             channel_name = name.rstrip('__amplitude')
                             channel = getattr(self, channel_name)
                             self.set_DDS_amp(channel, getattr(self, name))
-
 
                 self.kernel_run()
 

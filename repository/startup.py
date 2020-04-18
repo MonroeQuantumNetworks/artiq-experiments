@@ -12,6 +12,9 @@ M. Lichtman 2019-08-02
 
 Because of how I changed load_globals_from_dataset, may need to revisit the ordering of calls in startup.build()
 George Toh 2020-03-11
+
+Updated
+George Toh 2020-04-11
 """
 
 from artiq.language.core import kernel
