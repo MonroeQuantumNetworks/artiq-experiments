@@ -10,7 +10,8 @@ Every other experiment should:
 
 M. Lichtman updated 2019-08-02
 
-I modified load_globals_from_dataset() to not use get_dataset_db(). Will need to clean up calls in build().
+I modified load_globals_from_dataset() to not use get_dataset_db(). 
+Cleaned up calls in build().
 Currently, load_globals_from_dataset() is hardcoded to work for DDS, DAC and TTL_outputs.
 
 George Toh 2020-04-11
@@ -262,6 +263,7 @@ class base_experiment(EnvExperiment):
         '''
         This builds the various TTL input/output and DDS_name_list lists
         from the default values listed at the top
+        Setting up alias allows you to call 'ttl_493_all' instead of 'ttl2'
         '''
 
         # base functionality #

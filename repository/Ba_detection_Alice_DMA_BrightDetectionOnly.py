@@ -1,3 +1,12 @@
+""" Legacy script
+Alice Barium detection using DMA, with scannable variables
+
+    Hard-coded urukul channels - May need to be modified
+    650 remains OFF for detection
+    Only does Cool/pump-1/detect-2
+
+George Toh 2020-04-18
+"""
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
@@ -61,17 +70,18 @@ class Ba_detection_Alice_DMA_BrightDetectionOnly(base_experiment.base_experiment
             delay(10*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch0.sw.on()
+            self.urukul0_ch0.sw.on()    # 493 sigma 1
             delay(self.pumping_time)
             self.urukul0_ch0.sw.off()
 
             delay(500*ns)
 
+            # Detection
             t12 = now_mu()
             gate_end_mu = self.detector.gate_rising(self.detection_time)
+            
             at_mu(t12)
-
-            self.urukul3_ch0.sw.on()
+            self.urukul3_ch0.sw.on()    # 493 sigma 2
             delay(self.detection_time)
             self.urukul3_ch0.sw.off()
 

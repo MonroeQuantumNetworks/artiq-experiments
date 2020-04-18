@@ -1,3 +1,14 @@
+""" Legacy script
+Bob Barium detection using DMA, with scannable variables
+
+    Hard-coded urukul channels - May need to be modified
+    650 remains ON for all cool/pump/detect stages
+    Repeats pump1/detect1 many times, then does pump1/detect2 many times
+    
+Changed ttl11 (650 fast) to ttl_650_fast_cw
+
+George Toh 2020-04-18
+"""
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz

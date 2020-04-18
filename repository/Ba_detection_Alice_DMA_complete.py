@@ -1,3 +1,16 @@
+""" Legacy script
+Alice Barium detection using DMA, with scannable variables
+
+    Does Cool/Pump-1/Detect-1&2
+    Hard-coded urukul channels - May need to be modified
+    650 remains OFF for detection
+
+Added and corrected comments for readability
+Reversed the function names and variables 1<->2 to correct error
+
+George Toh 2020-04-18
+"""
+
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
@@ -59,10 +72,10 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
 
 
     @kernel
-    def record_pump_sigma1_detect_sigma1(self):
+    def record_pump_sigma1_detect_sigma2(self):
         gate_end_mu_11 = 0
         gate_end_mu_12 = 0
-        with self.core_dma.record("sigma_1_pulses"):
+        with self.core_dma.record("sigma_2_pulses"):
             # cooling
             self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
             self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
@@ -77,27 +90,27 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
             delay(100*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch0.sw.on()
+            self.urukul0_ch0.sw.on()    # Alice 493 sigma 1
             delay(self.pumping_time)
             self.urukul0_ch0.sw.off()
 
             delay(500*ns)
 
-            # detection, sigma 1
+            # detection, sigma 2
             t11 = now_mu()
-            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
+            gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
             at_mu(t11)
 
-            self.urukul3_ch0.sw.on()
+            self.urukul3_ch0.sw.on()    # Alice 493 sigma 2
             delay(self.detection_time)
             self.urukul3_ch0.sw.off()
             delay(50*ns)
 
-        return gate_end_mu_11
+        return gate_end_mu_12
 
     @kernel
-    def record_pump_sigma1_detect_sigma2(self):
-        with self.core_dma.record("sigma_2_pulses"):
+    def record_pump_sigma1_detect_sigma1(self):
+        with self.core_dma.record("sigma_1_pulses"):
             # cooling
             self.urukul0_ch0.sw.on()
             self.urukul3_ch0.sw.on()
@@ -110,7 +123,7 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
             self.urukul2_ch1.sw.off()
 
             # pumping, sigma 1
-            self.urukul0_ch0.sw.on()
+            self.urukul0_ch0.sw.on()    # Alice 493 sigma 1
             delay(self.pumping_time)
             self.urukul0_ch0.sw.off()
 
@@ -118,16 +131,16 @@ class Ba_detection_Alice_DMA_complete(base_experiment.base_experiment):
 
             #detection, sigma 2
             t12 = now_mu()
-            gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
+            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
             at_mu(t12)
 
-            self.urukul0_ch0.sw.on()
+            self.urukul0_ch0.sw.on()     # Alice 493 sigma 1
             delay(self.detection_time)
             self.urukul0_ch0.sw.off()
 
             delay(50*ns)
 
-        return gate_end_mu_12
+        return gate_end_mu_11
 
     def run(self):
 

@@ -1,4 +1,17 @@
-"""Implements detection on Bob"""
+""" Legacy script
+Bob Barium detection, with scannable variables
+
+    Does Cool/Pump-1&2/Detect-1&2
+    650 lasers remain ON for the duration of the experiment
+    Uses readable variables names, decoded in base_experiment
+    Functions experiment_specific_run(self) and experiment_specific_preamble(self) are where the code should go
+    Runs 11 > 12 > 21 > 22 before repeating
+
+Has debug messages + delays still in the code, need to be removed
+Code is the same as Ba_detection_Alice but with delays inserted
+
+George Toh 2020-04-18
+"""
 
 from artiq.experiment import *  # TODO: can we import rtio_log without import * ?
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -43,13 +56,11 @@ class Ba_detection_Bob(base_experiment.base_experiment):
         with parallel:
             self.DDS__493__Bob__sigma_1.sw.on()
             self.DDS__493__Bob__sigma_2.sw.on()
-        #self.DDS__493__Bob__pi.sw.on()
 
         delay(self.cooling_time)
         with parallel:
             self.DDS__493__Bob__sigma_1.sw.off()
             self.DDS__493__Bob__sigma_2.sw.off()
-        #self.DDS__493__Bob__pi.sw.off()
 
     @kernel
     def pump1(self):
@@ -114,7 +125,6 @@ class Ba_detection_Bob(base_experiment.base_experiment):
             self.DDS__650__sigma_2.sw.on()
             self.DDS__650__Bob__pi.sw.on()
             self.DDS__650__fast_AOM.sw.on()
-        #self.DDS__493__Bob__pi.sw.off()
 
     @kernel
     def unprep(self):
@@ -127,9 +137,6 @@ class Ba_detection_Bob(base_experiment.base_experiment):
             self.DDS__650__sigma_2.sw.on()
             self.DDS__650__Bob__pi.sw.on()
             self.DDS__650__fast_AOM.sw.on()
-            #self.DDS__493__Bob__pi.sw.on()
-
-
 
     def run(self):
 

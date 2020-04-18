@@ -1,8 +1,9 @@
 """ Legacy script
-Alice Barium detection, with scannable variables
+Alice Barium detection using DMA, with scannable variables
 
-    Hard-coded urukul channels
-    650 seems to be ON for all cool/pump/detect stages despite the file name
+    Hard-coded urukul channels - May need to be modified
+    650 seems to be ON for all cool/pump/detect stages despite the file name.
+    Repeats pump1/detect1 many times, then does pump1/detect2 many times
     Possible Bug: 650 remains on? See line 124
 
 Changed ttl11 (650 fast) to ttl_650_fast_cw
@@ -124,7 +125,7 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             delay(self.detection_time)
             with parallel:
                 self.urukul0_ch0.sw.off()
-                self.ttl_650_fast_cw.on()
+                self.ttl_650_fast_cw.on()       # George: I think this is a bug
                 self.urukul1_ch2.sw.off()
 
             delay(50*ns)
@@ -176,7 +177,7 @@ class Ba_detection_Alice_DMA_650_off(base_experiment.base_experiment):
             delay(self.detection_time)
             with parallel:
                 self.urukul3_ch0.sw.off()
-                self.ttl_650_fast_cw.on()
+                self.ttl_650_fast_cw.on()       # George: I think this is a bug, should be off
                 self.urukul1_ch2.sw.off()
 
             delay(50 * ns)

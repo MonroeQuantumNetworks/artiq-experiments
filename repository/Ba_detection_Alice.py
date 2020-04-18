@@ -1,5 +1,14 @@
-"""This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
+""" Legacy script
+Alice Barium detection, with scannable variables
 
+    Does Cool/Pump-1&2/Detect-1&2
+    650 lasers remain ON for the duration of the experiment
+    Uses readable variables names, decoded in base_experiment
+    Functions experiment_specific_run(self) and experiment_specific_preamble(self) are where the code should go
+    Runs 11 > 12 > 21 > 22 before repeating
+
+George Toh 2020-04-18
+"""
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
