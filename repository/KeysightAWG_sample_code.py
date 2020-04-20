@@ -37,7 +37,7 @@ aouID = awg.openWithSlot(AWG_PRODUCT, CHASSIS, AWG_SLOT)
 # Check aouID for errors and close connection if an error is found
 if aouID < 0:
 # If aouID is a negative number, an error occurred so print it out
-print("ERROR")
+    print("ERROR")
 # Print error code so it can be looked up in the Keysight SD1 error list.
 print("aouID:", aouID)
 # Since there was an error, close the connection with the AWG.

@@ -101,6 +101,15 @@ class base_experiment(EnvExperiment):
         ('DAC15', 15, 0.0)
     ]
 
+    # George added this list. These are hardcoded in lines 255+, need to improve how this is handled
+    timing_list = [
+        ('cooling_time'),
+        ('pumping_time'),
+        ('excitation_pulse_time'),
+        ('detection_time'),
+        ('raman_time'),
+    ]
+
     num_DAC_channels = 16
 
     def build(self):
@@ -142,6 +151,7 @@ class base_experiment(EnvExperiment):
         #     traceback.print_exc()
 
         # Here is George trying out a new way which is much less elegant:
+        # These loops are hard-coded to extract the global values from the dataset and save them to local variables
         try:
             # Read in the datasets for all the TTL outputs
             for key, hardware, default in self.TTL_output_list:
@@ -176,6 +186,15 @@ class base_experiment(EnvExperiment):
                 setattr(self, key_att, self.get_dataset(key_att2, archive=False))
                 setattr(self, key_freq, self.get_dataset(key_freq2, archive=False))
                 setattr(self, key_sw, self.get_dataset(key_sw2, archive=False))
+
+            # Read in the datasets for the global timings
+            for key in self.timing_list:
+                key ='globals.timing.' + key
+                # globals.timing.cooling_time
+
+                key2 = '__'.join(key.split('.'))
+                # globals__timing__cooling_time
+                setattr(self, key2, self.get_dataset(key, archive=False))
 
         except Exception as e:
             print("Could not load globals!!!")
