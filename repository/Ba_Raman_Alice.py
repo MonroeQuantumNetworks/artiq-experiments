@@ -1,3 +1,16 @@
+""" Legacy script
+Alice Barium Raman frequency+time scan script
+
+    Simple script to do a Raman time and frequency scan on Alice
+
+    Does Cool/Pump1/Detect1&2 - No Pump2
+    Hardcoded urukul channels, but names are listed in this script
+    Uses functions experiment_specific_run(self) and experiment_specific_preamble(self) to insert the code to be run
+    Line 220: Runs coreanalyzer purge??
+
+George Toh 2020-04-20
+"""
+
 import time
 
 from artiq.experiment import *

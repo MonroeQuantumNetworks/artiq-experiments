@@ -1,5 +1,18 @@
-import time
+""" Legacy script
+Alice Barium Raman frequency+time scan script using DMA
 
+    Simple script to do a Raman time and frequency scan on Alice
+
+    Does Cool/Pump1/Detect1&2 - No Pump2
+    Hardcoded urukul channels, but names are listed in this script
+    Does not have functions experiment_specific_run(self) and experiment_specific_preamble(self)
+
+    Line 188: Dataset Ba_detection_names seemingly unused. For applet labels?
+
+George Toh 2020-04-20
+"""
+
+import time
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz

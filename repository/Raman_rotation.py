@@ -1,4 +1,12 @@
-"""This idle program reads out 8 counters while blinking "I D L E" in morse code on LED0."""
+""" Legacy script
+Bob Barium Single Photon Excitation script
+
+    Simple script to do a Raman time scan on Bob
+    Uses readable urukul channel names
+    Does Cool/Pump1&2/Detect1&2
+
+George Toh 2020-04-20
+"""
 
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -11,6 +19,8 @@ import base_experiment
 
 
 class Raman_rotation(base_experiment.base_experiment):
+    """Bob Raman Rotation
+    """
 
     def build(self):
         super().build()
@@ -24,7 +34,6 @@ class Raman_rotation(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('Raman_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-
 
         print('Raman_rotation.py build() done')
 

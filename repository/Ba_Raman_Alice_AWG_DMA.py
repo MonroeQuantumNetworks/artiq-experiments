@@ -1,10 +1,25 @@
-import time
+""" Legacy script
+Alice Barium Raman frequency+time scan script using DMA and AWG
 
+    Simple script to do a Raman time scan on Alice (Frequency fixed)
+
+    Does Cool/Pump1/Detect1&2 - No Pump2
+    Hardcoded urukul channels, but names are listed in this script
+    Does not have functions experiment_specific_run(self) and experiment_specific_preamble(self)
+
+    Line 186: Dataset Ba_detection_names seemingly unused. For applet labels?
+    Waveforms are hardcoded: (Line 198)
+            waveform1 = 0.115*(np.sin(2 * np.pi * 106.9 * MHz * t) + np.sin(2 * np.pi * 113.2 * MHz * t))
+            waveform2 = np.sin(2 * np.pi * 85 * MHz * t)
+
+George Toh 2020-04-20
+"""
+
+import time
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
 #from artiq.coredevice.exceptions import RTIOOverflow
-#from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
 import base_experiment
@@ -27,8 +42,6 @@ class Ba_Raman_Alice_AWG_DMA(base_experiment.base_experiment):
         self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0*us, 3*self.globals__timing__raman_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-
-
 
         self.sum11 = 1
         self.sum12 = 1
@@ -267,7 +280,6 @@ class Ba_Raman_Alice_AWG_DMA(base_experiment.base_experiment):
 
         # update DDS frequency and amplitude at each step
         self.core.reset()
-
 
         gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
         pulses_handle = self.core_dma.get_handle("pulses")

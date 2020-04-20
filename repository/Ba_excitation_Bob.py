@@ -1,3 +1,15 @@
+""" Legacy script
+Bob Barium Single Photon Excitation script
+
+    Appears to be a simple script to run the single photon excitation scheme infinite times
+    Writes a mega long DMA sequence (repeated 2000 times)
+    Does Cool/Pump/Excite - No detect?
+    Hardcoded urukul channels, but names are listed in this script
+    Has some timing adjustments in the code to make sure the laser pulses overlap
+
+George Toh 2020-04-19
+"""
+
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz

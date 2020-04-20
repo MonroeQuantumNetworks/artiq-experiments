@@ -1,6 +1,6 @@
 """ Barium Library for commonly used functions
 April 6 2020:
-George created this file to compile and store functions commonly used for Barium
+George created this file to compile and store functions commonly used for Barium 
 
 """
 import artiq.language.environment as artiq_env
