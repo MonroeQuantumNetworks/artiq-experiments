@@ -5,6 +5,8 @@ Bob Barium Single Photon Excitation script
     Uses readable urukul channel names
     Does Cool/Pump1&2/Detect1&2
 
+2020-04-20: Tried running it, fixed some globals bugs
+
 George Toh 2020-04-20
 """
 
@@ -31,9 +33,7 @@ class Raman_rotation(base_experiment.base_experiment):
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('Raman_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('Raman_time__scan', Scannable( default=[NoScan(self.globals__timing__raman_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
 
         print('Raman_rotation.py build() done')
 
@@ -53,11 +53,11 @@ class Raman_rotation(base_experiment.base_experiment):
 
     @kernel
     def pump1(self):
-        self.DDS__493__Bob__sigma_1.sw.pulse(self.globals__timing__pumping_time)
+        self.DDS__493__Bob__sigma_1.sw.pulse(self.pumping_time)
 
     @kernel
     def pump2(self):
-        self.DDS__493__Bob__sigma_2.sw.pulse(self.globals__timing__pumping_time)
+        self.DDS__493__Bob__sigma_2.sw.pulse(self.pumping_time)
 
     @kernel
     def detect1(self):
@@ -86,7 +86,7 @@ class Raman_rotation(base_experiment.base_experiment):
         return self.Bob_camera_side_APD.count(gate_end_mu)
 
     def Raman_rotation(self):
-        self.DDS__532__AOM1.sw.pulse(self.globals__timing__Raman_time)
+        self.DDS__532__tone_1.sw.pulse(self.Raman_time)
 
     @kernel
     def setup(self):
@@ -98,19 +98,20 @@ class Raman_rotation(base_experiment.base_experiment):
         self.DDS__650__sigma_2.sw.on()
         self.DDS__650__Bob__pi.sw.on()
         self.DDS__650__fast_AOM.sw.on()
-        self.DDS__493__Bob__pi.sw.off()
+        # self.DDS__493__Bob__pi.sw.off()
 
     @kernel
     def unsetup(self):
 
-        delay_mu(10000)
+        # delay_mu(10000)
+        self.core.break_realtime()      # In testing, this was necessary to prevent RTIO underflow
         self.DDS__493__Bob__sigma_1.sw.on()
         self.DDS__493__Bob__sigma_2.sw.on()
         self.DDS__650__sigma_1.sw.on()
         self.DDS__650__sigma_2.sw.on()
         self.DDS__650__Bob__pi.sw.on()
         self.DDS__650__fast_AOM.sw.on()
-        self.DDS__493__Bob__pi.sw.on()
+        # self.DDS__493__Bob__pi.sw.on()
 
     def run(self):
 
@@ -137,7 +138,7 @@ class Raman_rotation(base_experiment.base_experiment):
 
             for point in msm:
 
-                #print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
+                # print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
                 for name in self.active_scan_names:
