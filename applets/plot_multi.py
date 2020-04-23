@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Plot multiple inputs on the same plot.
 
 George took this applet from Euriqa.
