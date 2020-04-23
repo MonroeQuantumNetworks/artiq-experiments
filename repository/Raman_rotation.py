@@ -11,11 +11,11 @@ George Toh 2020-04-20
 """
 
 from artiq.experiment import *
-#from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
-#from artiq.language.units import s, ms, us, ns, MHz
-#from artiq.coredevice.exceptions import RTIOOverflow
-#from artiq.experiment import NumberValue
-#from artiq.language.scan import Scannable
+# from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
+# from artiq.language.units import s, ms, us, ns, MHz
+# from artiq.coredevice.exceptions import RTIOOverflow
+# from artiq.experiment import NumberValue
+# from artiq.language.scan import Scannable
 import numpy as np
 import base_experiment
 
@@ -25,6 +25,7 @@ class Raman_rotation(base_experiment.base_experiment):
     """
 
     def build(self):
+        self.setattr_device("ccb")        
         super().build()
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
         self.setattr_argument('max_trials_per_point', NumberValue(10000, ndecimals=0, min=1, step=1))
@@ -35,7 +36,7 @@ class Raman_rotation(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('Raman_time__scan', Scannable( default=[NoScan(self.globals__timing__raman_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
 
-        print('Raman_rotation.py build() done')
+        # print('Raman_rotation.py build() done')
 
     @kernel
     def cool(self):

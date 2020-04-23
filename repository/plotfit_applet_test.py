@@ -12,8 +12,9 @@ import base_experiment
 from artiq.language.core import delay
 import artiq.language.units as aq_units
 
+import time
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from scipy import optimize
 import logging      # How to use this?
 
@@ -82,17 +83,17 @@ class plotfit_applet_test(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
-    def sinecurve(t, amp, lambda, phase):
-        return amp * np.sin(2*pi/lambda*t + phase)
+    def sinecurve(t, amp, lambda1, phase):
+        return amp * np.sin(2 * np.pi / lambda1 * t + phase)
 
     def experiment_specific_preamble(self):
 
         # Create datasets to hold data for plotting
         self.set_dataset('ratio_list',[], broadcast=True, archive=True)
-        self.set_dataset('ydataset', [], archive=True)
-        self.set_dataset('xdataset', [], archive=True)
-        self.set_dataset('xfitdataset', [], archive=True)
-        self.set_dataset('yfitdataset', [], archive=True)
+        self.set_dataset('ydataset', [], broadcast=True, archive=True)
+        self.set_dataset('xdataset', [], broadcast=True, archive=True)
+        self.set_dataset('xfitdataset', [], broadcast=True, archive=True)
+        self.set_dataset('yfitdataset', [], broadcast=True, archive=True)
         # self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['xdata', 'ydata', 'detect1', 'detect2']], broadcast=True, archive=True, persist=True)
 
         # Prepare these for applet generation
@@ -177,42 +178,41 @@ class plotfit_applet_test(base_experiment.base_experiment):
             # + self._exp_dataset_path("parity_error_bars")
             # + " --error-bars-top "
             # + self._exp_dataset_path("parity_error_bars"),
-            group=self.applet_group,
+            # group=self.applet_group,
         )
 
 
     def experiment_specific_run(self):
 
         # Generate fake data
-        for t in self.points_to_plot
+        for t in range(self.points_to_plot):
             ydata = self.sine_amp * np.sin( 2 * np.pi / self.sine_lambda * t)
             xdata = t
 
             # Store data into datasets
-            self.append_to_dataset('xdataset', self.xdata)
-            self.append_to_dataset('ydataset', self.ydata)
+            self.append_to_dataset('xdataset', xdata)
+            self.append_to_dataset('ydataset', ydata)
             ratios = np.array([xdata, ydata, 0, 0])
             self.append_to_dataset('ratio_list', ratios)
 
-            delay(1)
+            time.sleep(0.1)
+
 
         # Once done generating fake data, time to fit
 
-        x = np.arange(1,self.points_to_plot,1)
-        y = logistic(x, *params)
-
         params = (self.fit_amp, self.fit_lambda, self.fit_phase)    # Initial parameters
         results, cov = optimize.curve_fit(sinecurve, xdataset[...], ydataset[...], p0=params)   # Do the fit
-        print(params)
-        print(results)
+        print('Init params: ', params)
+        print('Fit results: ', results)
 
-        yfit = sinecurve(x, *results)   # The * passes multiple arguments to the function
+        xfit = np.arange(1,self.points_to_plot,1)
+        yfit = sinecurve(xfit, *results)   # The * passes multiple arguments to the function
 
-        for (x,y) in zip(xfit, yfit)
+        for (x,y) in zip(xfit, yfit):
             print('Loading to dataset', x, y)
             self.append_to_dataset('xfitdataset', x)
             self.append_to_dataset('yfitdataset', y)
 
-            delay(100 * ms)
+            # time.sleep(0.1)
 
    
