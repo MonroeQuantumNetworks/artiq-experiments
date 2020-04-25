@@ -3,6 +3,7 @@ let
   # you may also want certain packages from there.
   pkgs = import <nixpkgs> {};
   artiq-full = import <artiq-full> { inherit pkgs; };
+  entangler = pkgs.callPackage ~/Documents/github/entangler-core/nix/default.nix { artiqpkgs=artiq-full; };
 in
   pkgs.mkShell {
     buildInputs = [
@@ -22,6 +23,8 @@ in
         ps.scipy
         ps.numba
         ps.bokeh
+        ps.more-itertools
+	entangler
       ]))
       # List desired non-Python packages here
       artiq-full.openocd  # needed for flashing boards, also provides proxy bitstreams

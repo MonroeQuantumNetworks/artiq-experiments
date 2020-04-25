@@ -1,6 +1,6 @@
 {
-    "Ba_detection_names": [b'Alice_sum_1', b'Bob_sum_1', b'Alice_sum_2', b'Bob_sum_2'],
-    "active_scan_names": [b'cooling_time', b'pumping_time', b'detection_time'],
+    "Ba_detection_names": [b'pump1', b'pump2', b'detect1', b'detect2'],
+    "active_scan_names": [],
     "detectors": nparray((4, ), "<i8", b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='),
     "globals.DAC.0": 0.0,
     "globals.DAC.1": 0.0,
