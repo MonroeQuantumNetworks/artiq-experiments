@@ -22,7 +22,7 @@ class plotfit_applet_test(base_experiment.base_experiment):
     '''Plot and Fit applet test'''
     def build(self):
         super().build()
-
+        self.setattr_device("ccb")
         # Fake data to be generated
         self.setattr_argument('points_to_plot', NumberValue(200, ndecimals=0, min=1, step=10))
         self.setattr_argument('sine_amp', NumberValue(1, ndecimals=1, min=0.1, step=0.1))
@@ -72,7 +72,7 @@ class plotfit_applet_test(base_experiment.base_experiment):
                     setattr(self, name, getattr(point, name))
 
                 # update the plot x-axis ticks
-                self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
+                # self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
                 self.experiment_specific_run()
 
@@ -83,8 +83,6 @@ class plotfit_applet_test(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
-    def sinecurve(t, amp, lambda1, phase):
-        return amp * np.sin(2 * np.pi / lambda1 * t + phase)
 
     def experiment_specific_preamble(self):
 
@@ -153,33 +151,33 @@ class plotfit_applet_test(base_experiment.base_experiment):
         #     "dummy_active_pmts", np.asarray([1]), persist=False, broadcast=True
         # )
         
-        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
-        self.ccb.issue(
-            "create_applet",
-            name="Parity",
-            command=applet_stream_cmd
-            + " --x "
-            + "xdataset"
-            + " --y-names "
-            + "ydataset"
-            + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset"
-            + " --y-label "
-            + "'"
-            + self.ylabel
-            + "'"
-            + " --x-label "
-            + "'"
-            + self.xlabel
-            + "'"
-            # + " --active-pmts "
-            # + self._exp_dataset_path("dummy_active_pmts")
-            # + " --error-bars-bottom "
-            # + self._exp_dataset_path("parity_error_bars")
-            # + " --error-bars-top "
-            # + self._exp_dataset_path("parity_error_bars"),
-            # group=self.applet_group,
-        )
+        # applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        # self.ccb.issue(
+        #     "create_applet",
+        #     name="Parity",
+        #     command=applet_stream_cmd
+        #     + " --x "
+        #     + "xdataset"
+        #     + " --y-names "
+        #     + "ydataset"
+        #     + " --x-fit " + "xfitdataset"
+        #     + " --y-fits " + "yfitdataset"
+        #     + " --y-label "
+        #     + "'"
+        #     + self.ylabel
+        #     + "'"
+        #     + " --x-label "
+        #     + "'"
+        #     + self.xlabel
+        #     + "'"
+        #     # + " --active-pmts "
+        #     # + self._exp_dataset_path("dummy_active_pmts")
+        #     # + " --error-bars-bottom "
+        #     # + self._exp_dataset_path("parity_error_bars")
+        #     # + " --error-bars-top "
+        #     # + self._exp_dataset_path("parity_error_bars"),
+        #     # group=self.applet_group,
+        # )
 
 
     def experiment_specific_run(self):
@@ -197,6 +195,8 @@ class plotfit_applet_test(base_experiment.base_experiment):
 
             time.sleep(0.1)
 
+        def sinecurve(t, amp, lambda1, phase):
+            return amp * np.sin(2 * np.pi / lambda1 * t + phase)
 
         # Once done generating fake data, time to fit
 
