@@ -7,10 +7,12 @@ See below for examples on generating a sine wave output, and a sawtooth wave out
 # ----------
 # Import required system components
 import sys
+import os
 # ----------
 # Append the system path to include the
 # location of Keysight SD1 Programming Libraries then import the library
 sys.path.append('/usr/local/Keysight/SD1/')
+os.environ['LD_LIBRARY_PATH']=/usr/local/lib/Keysight/SD1:/nix/store/y38ip1k9n3ymi4s6niviwbyx69vxg2n1-qtbase-5.12.3/lib/:/usr/lib/x86_64-linux-gnu/:/snap/core18/1668/lib/x86_64-linux-gnu/
 import keysightSD1 as key # Import SD1 library and AWG/Digitizer commands.
 #
 # # ----------

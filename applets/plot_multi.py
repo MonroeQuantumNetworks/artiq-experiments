@@ -422,7 +422,7 @@ class MultiYPlot(plot.XYPlot):
             self.fit = False
 
         # Validate
-        if x_fit is not None and self.fit and (y_fits.shape[1] != len(x_fit)):
+        if x_fit is not None and self.fit and (y_fits.shape[1] != len(x_fit)):      # This line throws up an error, Tuple index out of range
             _LOGGER.error("Fit array sizes do not match")
             _LOGGER.error("Y size: %s. X size: %s", y_fits.shape, len(x_fit))
             raise RuntimeError("Dataset array sizes do not match")

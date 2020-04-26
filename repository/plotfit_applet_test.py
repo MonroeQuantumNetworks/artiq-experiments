@@ -87,19 +87,14 @@ class plotfit_applet_test(base_experiment.base_experiment):
     def experiment_specific_preamble(self):
 
         # Create datasets to hold data for plotting
-        self.set_dataset('ratio_list',[], broadcast=True, archive=True)
-        self.set_dataset('ydataset', [], broadcast=True, archive=True)
-        self.set_dataset('xdataset', [], broadcast=True, archive=True)
-        self.set_dataset('xfitdataset', [], broadcast=True, archive=True)
-        self.set_dataset('yfitdataset', [], broadcast=True, archive=True)
+        self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('ydataset', np.zeros(self.points_to_plot), broadcast=True, archive=True)
+        self.set_dataset('xdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
+
+        self.set_dataset('xfitdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
+        self.set_dataset('yfitdataset', np.zeros(self.points_to_plot), broadcast=True, archive=True)
         # self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['xdata', 'ydata', 'detect1', 'detect2']], broadcast=True, archive=True, persist=True)
 
-        # Prepare these for applet generation
-        data_folder = "raman_awg"
-        applet_name = "Raman AWG"
-        applet_group = "Raman"
-        ylabel = "Population Transfer"
-        xlabel = "Rabi Pulse Length (us)"
 
         # self.set_variables(
         # data_folder=self.data_folder,
@@ -150,34 +145,35 @@ class plotfit_applet_test(base_experiment.base_experiment):
         # self.set_experiment_data(
         #     "dummy_active_pmts", np.asarray([1]), persist=False, broadcast=True
         # )
-        
-        # applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
-        # self.ccb.issue(
-        #     "create_applet",
-        #     name="Parity",
-        #     command=applet_stream_cmd
-        #     + " --x "
-        #     + "xdataset"
-        #     + " --y-names "
-        #     + "ydataset"
-        #     + " --x-fit " + "xfitdataset"
-        #     + " --y-fits " + "yfitdataset"
-        #     + " --y-label "
-        #     + "'"
-        #     + self.ylabel
-        #     + "'"
-        #     + " --x-label "
-        #     + "'"
-        #     + self.xlabel
-        #     + "'"
-        #     # + " --active-pmts "
-        #     # + self._exp_dataset_path("dummy_active_pmts")
-        #     # + " --error-bars-bottom "
-        #     # + self._exp_dataset_path("parity_error_bars")
-        #     # + " --error-bars-top "
-        #     # + self._exp_dataset_path("parity_error_bars"),
-        #     # group=self.applet_group,
-        # )
+
+        ylabel = "Signal"
+        xlabel = "Datapoints"
+
+        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        self.ccb.issue(
+            "create_applet",
+            name="Plot_Fit_Test",
+            command=applet_stream_cmd
+            + " --x " + "xdataset"
+            + " --y-names " + "ydataset"
+            + " --x-fit " + "xfitdataset"
+            + " --y-fits " + "yfitdataset"
+            + " --y-label "
+            + "'"
+            + ylabel
+            + "'"
+            + " --x-label "
+            + "'"
+            + xlabel
+            + "'"
+            # + " --active-pmts "
+            # + self._exp_dataset_path("dummy_active_pmts")
+            # + " --error-bars-bottom "
+            # + self._exp_dataset_path("parity_error_bars")
+            # + " --error-bars-top "
+            # + self._exp_dataset_path("parity_error_bars"),
+            # group=self.applet_group,
+        )
 
 
     def experiment_specific_run(self):
@@ -187,9 +183,12 @@ class plotfit_applet_test(base_experiment.base_experiment):
             ydata = self.sine_amp * np.sin( 2 * np.pi / self.sine_lambda * t)
             xdata = t
 
-            # Store data into datasets
-            self.append_to_dataset('xdataset', xdata)
-            self.append_to_dataset('ydataset', ydata)
+            # self.mutate_dataset(key, index, value)
+            # updates the dataset value at given index to value
+            self.mutate_dataset('xdataset', t, xdata)
+            self.mutate_dataset('ydataset', t, ydata)
+
+
             ratios = np.array([xdata, ydata, 0, 0])
             self.append_to_dataset('ratio_list', ratios)
 
@@ -201,18 +200,22 @@ class plotfit_applet_test(base_experiment.base_experiment):
         # Once done generating fake data, time to fit
 
         params = (self.fit_amp, self.fit_lambda, self.fit_phase)    # Initial parameters
-        results, cov = optimize.curve_fit(sinecurve, xdataset[...], ydataset[...], p0=params)   # Do the fit
+        results, cov = optimize.curve_fit(sinecurve, self.get_dataset('xdataset'), self.get_dataset('ydataset'), p0=params)   # Do the fit
         print('Init params: ', params)
         print('Fit results: ', results)
 
         xfit = np.arange(1,self.points_to_plot,1)
-        yfit = sinecurve(xfit, *results)   # The * passes multiple arguments to the function
+        yfit = sinecurve(xfit, *results)-0.2   # The * passes multiple arguments to the function
 
-        for (x,y) in zip(xfit, yfit):
-            print('Loading to dataset', x, y)
-            self.append_to_dataset('xfitdataset', x)
-            self.append_to_dataset('yfitdataset', y)
-
+        # i = 0
+        # for (x, y) in zip(xfit, yfit):
+        #     self.mutate_dataset('xfitdataset', i, x)
+        #     self.mutate_dataset('yfitdataset', i, y)
+        #     i += 1
+            # self.append_to_dataset('xfitdataset', x)
+            # self.append_to_dataset('yfitdataset', y)
             # time.sleep(0.1)
 
+        self.mutate_dataset('xfitdataset', xfit, xfit)  # This loads the whole fit at once instead of term by term
+        self.mutate_dataset('yfitdataset', xfit, yfit)  # This loads the whole fit at once instead of term by term
    
