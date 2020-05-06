@@ -14,15 +14,15 @@ class Keysight(base_experiment.base_experiment)
     chassis = 1         # Chassis number holding product
     slot = 4            # Slot number of product in chassis
     channel = 1         # Channel being used
-    amplitude = 0.1     # (Unit: Vpp) Amplitude of AWG output signal (0.1 Vpp), how to change it to artiq control
-    frequency1 = 1e6     # (Unit: Hz ) Frequency of AWG output signal (1 MHz), how to change it to artiq control
-    frequency2 = 2e6
+    amplitude = 0.1     # (Unit: Vpp) Amplitude of AWG output signal (0.1 Vpp)
+    frequency1 = 10      # (Unit: MHz ) Frequency of AWG output signal in MHz
+    frequency2 = 20
     waveshape = keysightSD1.SD_Waveshapes.AOU_AWG # Specify AWG output
     delay = 0     # (Unit: ns) Delay after trigger before generating output.
     cycles = 0          # Number of cycles. Zero specifies infinite cycles.
                   # Otherwise, a new trigger is required to actuate each cycle
     prescaler = 0 # Integer division reduces high freq signals to lower frequency
-
+    cycle_len = int(frequency1 - frequency2) + 1 #Define the length of one cycle of our wave
 
     def run(self):
         # Select settings and use specified variables
@@ -37,11 +37,11 @@ class Keysight(base_experiment.base_experiment)
             awg.AWGflush(channel) # Stops signal from outputing out of channel 1
 
 
-            # Create an array that represents a sawtooth signal using "numpy"
-            array = numpy.zeros(1000) # Create array of zeros with 1000 elements
+            # Create an array that represents sum of two sine signals using "numpy"
+            array = numpy.zeros(cycle_len) # Create array of zeros with 1000 elements
 
-            for i in range(1, len(array)): # This for..loop will increment from -0.5
-                array[i] = np.sin(i*2*np.pi*frequency1) + np.sin(i*2*np.pi*frequency2)
+            for i in range(1, len(array)): #Create appropriate waveform in array
+                array[i] = np.sin(1000*i*2*np.pi*frequency1) + np.sin(1000*i*2*np.pi*frequency2)
 
             wave = keysightSD1.SD_Wave() # Create SD_Wave object and call it "wave"
             # (will place the array inside "wave")
