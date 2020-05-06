@@ -1,9 +1,4 @@
-# Import keysight Libraries by first specifying the path, this might not be
-# required later depending on how the nix default file is runs
-
-import system
-sys.path.append('C:\Program Files (x86)\Keysight\SD1\Libraries\Python')
-
+# Write introduction here
 
 import keysightSD1 # Import Python SD1 library and AWG/Digitizer commands.
 import base_experiment

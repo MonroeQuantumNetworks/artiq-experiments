@@ -32,7 +32,7 @@ in
 
     ];
     # environment.sessionVariables.LD_LIBRARY_PATH = [ "/usr/local/lib/Keysight/SD1" ];
-    LD_LIBRARY_PATH="/usr/local/lib/Keysight/SD1:/nix/store/y38ip1k9n3ymi4s6niviwbyx69vxg2n1-qtbase-5.12.3/lib/:/usr/lib/x86_64-linux-gnu/:/snap/core18/1668/lib/x86_64-linux-gnu/";
+    LD_LIBRARY_PATH="/usr/local/lib/Keysight/SD1:/nix/store/y38ip1k9n3ymi4s6niviwbyx69vxg2n1-qtbase-5.12.3/lib/:/usr/lib/x86_64-linux-gnu/:/snap/core18/1754/lib/x86_64-linux-gnu/";
     PYTHONPATH="/usr/local/Keysight/SD1/";
   }
 
