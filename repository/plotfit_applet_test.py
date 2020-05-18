@@ -88,11 +88,12 @@ class plotfit_applet_test(base_experiment.base_experiment):
 
         # Create datasets to hold data for plotting
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
-        self.set_dataset('ydataset', np.zeros(self.points_to_plot), broadcast=True, archive=True)
         self.set_dataset('xdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
+        self.set_dataset('ydataset2', np.zeros(self.points_to_plot), broadcast=True, archive=True)
 
         self.set_dataset('xfitdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
         self.set_dataset('yfitdataset', np.zeros(self.points_to_plot), broadcast=True, archive=True)
+        self.set_dataset('yfitdataset2', np.zeros(self.points_to_plot), broadcast=True, archive=True)
         # self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['xdata', 'ydata', 'detect1', 'detect2']], broadcast=True, archive=True, persist=True)
 
 
@@ -155,9 +156,9 @@ class plotfit_applet_test(base_experiment.base_experiment):
             name="Plot_Fit_Test",
             command=applet_stream_cmd
             + " --x " + "xdataset"
-            + " --y-names " + "ydataset"
+            + " --y-names " + "ydataset ydataset2"  # The code requires >1 datasets to be submitted here
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset"
+            + " --y-fits " + "yfitdataset yfitdataset2"
             + " --y-label "
             + "'"
             + ylabel
@@ -187,6 +188,7 @@ class plotfit_applet_test(base_experiment.base_experiment):
             # updates the dataset value at given index to value
             self.mutate_dataset('xdataset', t, xdata)
             self.mutate_dataset('ydataset', t, ydata)
+            self.mutate_dataset('ydataset2', t, ydata*0.7)
 
 
             ratios = np.array([xdata, ydata, 0, 0])
@@ -205,17 +207,13 @@ class plotfit_applet_test(base_experiment.base_experiment):
         print('Fit results: ', results)
 
         xfit = np.arange(1,self.points_to_plot,1)
-        yfit = sinecurve(xfit, *results)-0.2   # The * passes multiple arguments to the function
+        yfit = sinecurve(xfit, *results)   # The * passes multiple arguments to the function
 
-        # i = 0
-        # for (x, y) in zip(xfit, yfit):
-        #     self.mutate_dataset('xfitdataset', i, x)
-        #     self.mutate_dataset('yfitdataset', i, y)
-        #     i += 1
-            # self.append_to_dataset('xfitdataset', x)
-            # self.append_to_dataset('yfitdataset', y)
-            # time.sleep(0.1)
+        params = (self.fit_amp, self.fit_lambda, self.fit_phase)    # Initial parameters
+        results, cov = optimize.curve_fit(sinecurve, self.get_dataset('xdataset'), self.get_dataset('ydataset2'), p0=params)   # Do the fit
+        yfit2 = sinecurve(xfit, *results)   # The * passes multiple arguments to the function
 
         self.mutate_dataset('xfitdataset', xfit, xfit)  # This loads the whole fit at once instead of term by term
-        self.mutate_dataset('yfitdataset', xfit, yfit)  # This loads the whole fit at once instead of term by term
+        self.mutate_dataset('yfitdataset', xfit, yfit)  
+        self.mutate_dataset('yfitdataset2', xfit, yfit2)  
    
