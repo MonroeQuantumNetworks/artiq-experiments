@@ -4,7 +4,9 @@ George took this applet from Euriqa.
 It should plot data live as it updates as a line
     then fit the data and plot fit (line) and data (dots)
 
-George Toh 2020-04-20
+Modified this applet to handle one y dataset only instead of needing multiple y datasets.
+
+George Toh 2020-05-19
 """
 
 # Here are two examples from Euriqa awg_XX_gates:
@@ -318,7 +320,11 @@ class MultiYPlot(plot.XYPlot):
             # _LOGGER.debug("%s data: %s", y_name, y_data)
             self.curves[i].setData(x=x, y=y_data)
             if self.fit:
-                self.fits[i].setData(x=x_fit, y=y_fits[i])
+                # self.fits[i].setData(x=x_fit, y=y_fits[i])  # ERROR print:Exception: Plot data must be 1D ndarray.
+                if y_fits.ndim < 2:
+                    self.fits[i].setData(x=x_fit, y=y_fits)
+                else:
+                    self.fits[i].setData(x=x_fit, y=y_fits[i])
 
         # TODO: Plot Error Bars
 
@@ -422,7 +428,7 @@ class MultiYPlot(plot.XYPlot):
             self.fit = False
 
         # Validate
-        if x_fit is not None and self.fit and (max(y_fits.shape) != len(x_fit)):      # This line throws up an error, Tuple index out of range
+        if x_fit is not None and self.fit and (max(y_fits.shape) != len(x_fit)):      # This line used to throw up an error, Tuple index out of range
             _LOGGER.error("Fit array sizes do not match")
             _LOGGER.error("Y size: %s. X size: %s", max(y_fits.shape), len(x_fit))
             raise RuntimeError("Dataset array sizes do not match")

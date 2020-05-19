@@ -89,6 +89,7 @@ class plotfit_applet_test(base_experiment.base_experiment):
         # Create datasets to hold data for plotting
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
         self.set_dataset('xdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
+        self.set_dataset('ydataset', np.zeros(self.points_to_plot), broadcast=True, archive=True)
         self.set_dataset('ydataset2', np.zeros(self.points_to_plot), broadcast=True, archive=True)
 
         self.set_dataset('xfitdataset', np.arange(self.points_to_plot), broadcast=True, archive=True)
@@ -156,9 +157,9 @@ class plotfit_applet_test(base_experiment.base_experiment):
             name="Plot_Fit_Test",
             command=applet_stream_cmd
             + " --x " + "xdataset"
-            + " --y-names " + "ydataset ydataset2"  # The code requires >1 datasets to be submitted here
+            + " --y-names " + "ydataset" 
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset yfitdataset2"
+            + " --y-fits " + "yfitdataset"
             + " --y-label "
             + "'"
             + ylabel
