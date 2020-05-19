@@ -310,7 +310,7 @@ class MultiYPlot(plot.XYPlot):
             self._plot_fits(len(ys), title)
 
         if self.fit and x_fit is None:
-            x_fit = np.linspace(x[0], x[-1], y_fits.shape[1])
+            x_fit = np.linspace(x[0], x[-1], max(y_fits.shape))
 
         for i, y_data in enumerate(ys):
             y_name = "channel {}".format(i)
@@ -344,12 +344,12 @@ class MultiYPlot(plot.XYPlot):
         # If x exists, this return the data, other it returns the tuple (False, None)
         x = np.array(data.get(self.args.x, (False, None))[1])
         if x is None:  # If x doesnt exist
-            x = np.linspace(0, y.shape[1] - 1, y.shape[1])
+            x = np.linspace(0, max(y.shape) - 1, max(y.shape))
         elif x is not None:
             if x.size > 1 and np.array_equal(
                 x, [x[0]] * x.size
             ):  # check to see if step in place scan
-                x = np.linspace(0, y.shape[1] - 1, y.shape[1])
+                x = np.linspace(0, max(y.shape) - 1, max(y.shape))
             else:
                 try:
                     sort = np.argsort(x)
@@ -362,9 +362,9 @@ class MultiYPlot(plot.XYPlot):
             x = x / float(self.args.units)
 
         # Validate
-        if y.shape[1] != len(x):
+        if max(y.shape) != len(x):
             _LOGGER.debug("Array sizes do not match")
-            _LOGGER.debug("Y size: %s. X size: %s", y.shape, len(x))
+            _LOGGER.debug("Y size: %s. X size: %s", max(y.shape), len(x))
 
         if np.all(np.isnan(y)):
             _LOGGER.debug("Datasets are just NaN")
@@ -422,9 +422,9 @@ class MultiYPlot(plot.XYPlot):
             self.fit = False
 
         # Validate
-        if x_fit is not None and self.fit and (y_fits.shape[1] != len(x_fit)):      # This line throws up an error, Tuple index out of range
+        if x_fit is not None and self.fit and (max(y_fits.shape) != len(x_fit)):      # This line throws up an error, Tuple index out of range
             _LOGGER.error("Fit array sizes do not match")
-            _LOGGER.error("Y size: %s. X size: %s", y_fits.shape, len(x_fit))
+            _LOGGER.error("Y size: %s. X size: %s", max(y_fits.shape), len(x_fit))
             raise RuntimeError("Dataset array sizes do not match")
 
         return x_fit, y_fits
