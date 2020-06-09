@@ -1,6 +1,10 @@
 """ Bob Timing Test Code
 
 This generates pulsed pumping and single photon generation sequences in Bob for test purposes
+
+It does not use the FPGA/entangler to run any of the beams
+
+George 08-06-2020
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -106,33 +110,25 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.core.break_realtime()
 
         fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
-        timing_test_handle = self.core_dma.get_handle("timing_test_pulses")
 
         self.core.break_realtime()
         delay_mu(1000000)
 
-        # self.ttl_493_all.off()
-        # self.ttl0.off()
-        if self.Bob493_TTL_vs_DDS:
+
+        # Initial setup of the beams needed
+        if self.Bob493_TTL_vs_DDS:      # Are we toggling the 493 TTLs or 493 DDS?
             self.DDS__493__Bob__sigma_1.sw.off()
             self.DDS__493__Bob__sigma_2.sw.off()
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
         self.ttl_650_pi.off()
-        # self.DDS__493__Bob__sigma_1.sw.on()
-        # self.DDS__493__Bob__sigma_2.sw.on()
-        # self.ttl_650_sigma_1.on()
-        # self.ttl_650_sigma_2.on()
 
         for i in range(self.loops_to_run):
-
-            self.core_dma.playback_handle(fast_loop_cooling_handle)
-            # self.core_dma.playback_handle(timing_test_handle)
+            self.core_dma.playback_handle(fast_loop_cooling_handle)     # Run full sequence for timing test
             delay_mu(6000)
 
         print("Kernel done")
-        # print(self.globals__DDS__493__Alice__sigma_1__frequency)
 
     @kernel
     def init(self):
@@ -245,30 +241,19 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             # self.ttl_650_sigma_1.on()
             # self.ttl_650_sigma_2.on()
             self.ttl_650_fast_cw.on()
-            self.ttl_650_pi.on()
             if self.Bob493_TTL_vs_DDS:
                 self.ttl_493_all.on()
             else:
                 self.DDS__493__Bob__sigma_1.sw.on()
                 self.DDS__493__Bob__sigma_2.sw.on()
 
+            # We did this because the 650 fast AOM is very slow
             delay_mu(1000)
 
             self.ttl0.pulse(20 * ns)    # This is the trigger pulse for the PicoHarp
             with parallel:
-                pass
-                # with sequential:
-                #     delay_mu(1000)
-                # self.ttl_650_pi.on()
-                # self.ttl_650_fast_pulse.on()
-                # self.ttl_650_fast_cw.on()
-                # with sequential:
-                #     self.ttl_650_fast_cw.on()
-                #     delay_mu(10)
-                #     self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
-                # self.ttl_test.on()  # This channel for diagnostics
 
             delay(self.cooling_time)
 
@@ -285,33 +270,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 else:
                     self.DDS__493__Bob__sigma_1.sw.off()
                     self.DDS__493__Bob__sigma_2.sw.off()
-
-            # Generate Single Photons
-            # delay_mu(300)
-            # self.ttl_650_sigma_1.on()
-            # delay_mu(2500)
-            # self.ttl_650_fast_cw.on()
-            # delay_mu(10)
-            # self.ttl_650_fast_cw.off()
-            # delay_mu(500)
-            # self.ttl_650_sigma_1.off()
-
-    @kernel
-    def prerecord_timing_test(self):
-        """Pre-record the timing test sequence.
-
-        This is used for optimizing AOM positions
-        """
-        with self.core_dma.record("timing_test_pulses"):
-            # Cool
-            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
-            with parallel:
-                self.ttl_650_fast_cw.on()
-
-            delay(self.cooling_time)
-
-            with parallel:
-                self.ttl_650_fast_cw.off()
 
 
     @kernel
