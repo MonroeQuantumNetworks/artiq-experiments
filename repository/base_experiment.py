@@ -42,9 +42,9 @@ class base_experiment(EnvExperiment):
 
     DDS_list = [
         ('493__Alice__sigma_1', 'urukul0_ch0', 75*MHz, 1.0, 10.0, True),
-        ('urukul0_ch1', 'urukul0_ch1', 85*MHz, 1.0, 10.0, True),
-        ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 1.0, 10.0, True),
-        ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 1.0, 10.0, True),
+        ('493__Alice__sigma_2', 'urukul0_ch1', 85*MHz, 1.0, 10.0, True),
+        ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 0.495, 10.5, True),
+        ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 0.545, 10.0, True),
         ('650__sigma_1', 'urukul1_ch0', 81.5*MHz, 1.0, 10.0, True),
         ('650__sigma_2', 'urukul1_ch1', 78.5*MHz, 1.0, 10.0, True),
         ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
@@ -53,7 +53,7 @@ class base_experiment(EnvExperiment):
         ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
         ('532__tone_1', 'urukul2_ch2', 110*MHz, 0.5, 19.5, False),
         ('532__tone_2', 'urukul2_ch3', 110*MHz, 0.5, 19.5, False),
-        ('493__Alice__sigma_2', 'urukul3_ch0', 85*MHz, 1.0, 10.0, True),
+        ('urukul3_ch0', 'urukul3_ch0', 85*MHz, 1.0, 10.0, True),
         ('Bob_trap_RF', 'urukul3_ch1', 14.0111*MHz, 0.51, 20.0, True),
         ('urukul3_ch2', 'urukul3_ch2', 10 * MHz, 0.5, 10.0, False),
         ('urukul3_ch3', 'urukul3_ch3', 10 * MHz, 0.5, 10.0, False)

@@ -202,17 +202,17 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
                 delay(self.cooling_time)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=970,
+                    cycle_len=1970,
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=250,  # Done cooling and pumping, turn off all lasers
-                    out_start2=250,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=600,
-                    out_start3=300,  # Generate single photon by turning on the fast-pulse AOM
-                    out_stop3=310,  # Done generating
-                    in_start=800,  # Look for photons on APD0
-                    in_stop=900,
+                    out_stop=500,  # Done cooling and pumping, turn off all lasers
+                    out_start2=1400,  # Turn on the opposite 650 sigma slow-AOM
+                    out_stop2=1600,
+                    out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM
+                    out_stop3=1360,  # Done generating
+                    in_start=700,  # Look for photons on APD0
+                    in_stop=800,
                     pattern_list=[0b0010, 0b0001, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right
@@ -347,7 +347,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         for channel in range(num_outputs):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
         self.entangler.set_timing_mu(0, 10, 20)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(6, 1000, 1000)  # not used
+        # self.entangler.set_timing_mu(6, 1000, 1000)  # Turns off pulse generator if not used
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -356,7 +356,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
         else:
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-        self.entangler.set_timing_mu(7, 10, 30)   # ttl7 unused, disable output
+        self.entangler.set_timing_mu(7, 2000, 2000)   # ttl7 unused, disable output
+        # self.entangler.set_timing_mu(1, 2000, 2000)
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)

@@ -62,22 +62,26 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         # Add other inputs
         self.setattr_device("core_dma")
-        # self.setattr_argument('slack_time', NumberValue(40000, step=5000, min=15000, max=150000, ndecimals=0))
-        self.setattr_argument('cooling_time', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))
-        self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
-        # self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
-        self.setattr_argument('loops_to_run', NumberValue(5000000, step=1, min=1, max=10000000, ndecimals=0))
+        self.setattr_argument('cool_time', NumberValue(500e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('run_cooling_sequence', BooleanValue(True))
+        self.setattr_argument('delay_one', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('delay_two', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('delay_three', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('loops_to_run', NumberValue(1000000, step=1, min=1, max=10000000, ndecimals=0))
 
-        self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
-        self.setattr_argument('raman_time', NumberValue(2e-6, unit='us', min=0 * us, ndecimals=0))
 
-        self.setattr_argument('test_mode', BooleanValue(True))
+        # self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
+        # self.setattr_argument('raman_time', NumberValue(2e-6, unit='us', min=0 * us, ndecimals=0))
+
+        # self.setattr_argument('test_mode', BooleanValue(True))
         self.setattr_argument('calculate_runtime', BooleanValue(True))
         self.setattr_argument('Bob493_TTL_vs_DDS', BooleanValue(False))
+        self.setattr_argument('run_singlephoton_loop', BooleanValue(True))
+        self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
+        self.setattr_argument('pulse650_duration', NumberValue(10e-9, step=5e-10, unit='ns', min=0 * ns, ndecimals=0))
 
-        self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
-                                                              global_step=1 * us, unit='us', ndecimals=3))
+        # self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
+        #                                                       global_step=1 * us, unit='us', ndecimals=3))
 
 
     def run(self):
@@ -103,17 +107,18 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.init()
 
         # Pre-load all the pulse sequences using DMA
-        self.prerecord_cooling_loop()
-        self.prerecord_timing_test()
+        # self.prerecord_singlephoton_loop()
+        # delay_mu(100000)
+        # self.core.break_realtime()
+        # single_photon_handle = self.core_dma.get_handle("singlephoton_loop_pulses")
 
-        delay_mu(100000)
-        self.core.break_realtime()
-
-        fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
+        # self.prerecord_cooling_loop()
+        # delay_mu(100000)
+        # self.core.break_realtime()
+        # fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
 
         self.core.break_realtime()
         delay_mu(1000000)
-
 
         # Initial setup of the beams needed
         if self.Bob493_TTL_vs_DDS:      # Are we toggling the 493 TTLs or 493 DDS?
@@ -124,9 +129,38 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_sigma_2.off()
         self.ttl_650_pi.off()
 
-        for i in range(self.loops_to_run):
-            self.core_dma.playback_handle(fast_loop_cooling_handle)     # Run full sequence for timing test
-            delay_mu(6000)
+        # This checks if we run the single photon loop or the manually customized loop
+        if self.run_singlephoton_loop:
+            # Pre-load all the pulse sequences using DMA
+            self.prerecord_singlephoton_loop()
+            delay_mu(100000)
+            self.core.break_realtime()
+            single_photon_handle = self.core_dma.get_handle("singlephoton_loop_pulses")
+            self.core.break_realtime()
+            delay_mu(1000000)
+
+            for i in range(self.loops_to_run):
+                self.core_dma.playback_handle(single_photon_handle)  # Run full sequence for single photon generation
+                delay_mu(6000)
+
+        else:
+            # Pre-load all the pulse sequences using DMA
+            self.prerecord_main_loop()
+            delay_mu(100000)
+            self.core.break_realtime()
+            fast_loop_handle = self.core_dma.get_handle("main_loop_pulses")
+            self.core.break_realtime()
+            delay_mu(1000000)
+
+            for i in range(self.loops_to_run):
+                self.ttl0.pulse(20 * ns)
+                delay_mu(100)
+
+                if self.run_cooling_sequence:
+                    self.run_cooling_loop()
+                delay_mu(2000)
+                self.core_dma.playback_handle(fast_loop_handle)     # Run custom sequence, modify below
+                delay_mu(6000)
 
         print("Kernel done")
 
@@ -231,31 +265,58 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         delay(150 * aq_units.us)
 
     @kernel
-    def prerecord_cooling_loop(self):
-        """Pre-record the cooling loop sequence.
+    def run_cooling_loop(self):
 
-        This is faster than non pre-recorded
+        # Turn on cooling lasers
+        self.ttl_650_sigma_1.on()
+        self.ttl_650_sigma_2.on()
+        self.ttl_650_fast_cw.on()
+        self.ttl_650_pi.on()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        self.DDS__493__Bob__sigma_2.sw.on()
+
+        # Wait while lasers cool
+        delay(self.cool_time)
+
+        # Turn off cooling lasers
+        self.ttl_650_sigma_1.off()
+        self.ttl_650_sigma_2.off()
+        self.ttl_650_fast_cw.off()
+        self.ttl_650_pi.off()
+        self.DDS__493__Bob__sigma_1.sw.off()
+        self.DDS__493__Bob__sigma_2.sw.off()
+
+    @kernel
+    def prerecord_main_loop(self):
+        """Pre-record the main loop sequence.
+        This is a spare loop sequence you can switch to by unchecking "run_singlephoton_loop"
+        Customize to run whatever sequence is required.
+        Currently it is similar to the cool sequence.
         """
-        with self.core_dma.record("cooling_loop_pulses"):
+        with self.core_dma.record("main_loop_pulses"):
+
+            # self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+
             # Turn these on before the trigger pulse
             # self.ttl_650_sigma_1.on()
             # self.ttl_650_sigma_2.on()
             self.ttl_650_fast_cw.on()
-            if self.Bob493_TTL_vs_DDS:
-                self.ttl_493_all.on()
-            else:
-                self.DDS__493__Bob__sigma_1.sw.on()
-                self.DDS__493__Bob__sigma_2.sw.on()
+            self.ttl_650_pi.on()
 
-            # We did this because the 650 fast AOM is very slow
-            delay_mu(1000)
+            # if self.Bob493_TTL_vs_DDS:
+            #     self.ttl_493_all.on()
+            # else:
+            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
 
-            self.ttl0.pulse(20 * ns)    # This is the trigger pulse for the PicoHarp
+            delay(self.delay_one)       # In case some additional delay is needed
+
+            delay(self.delay_two)
             with parallel:
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
 
-            delay(self.cooling_time)
+            delay(self.delay_three)
 
             with parallel:
 
@@ -264,14 +325,98 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
-                # self.ttl_test.off()
+
+                # if self.Bob493_TTL_vs_DDS:
+                #     self.ttl_493_all.off()
+                # else:
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
+
+    @kernel
+    def prerecord_singlephoton_loop(self):
+        """Pre-record the single photon generation loop sequence.
+
+        This is faster than non pre-recorded
+        """
+        with self.core_dma.record("singlephoton_loop_pulses"):
+            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+
+            if self.run_cooling_sequence:
+                # Turn on cooling lasers
+                self.ttl_650_sigma_1.on()
+                self.ttl_650_sigma_2.on()
+                self.ttl_650_fast_cw.on()
+                self.ttl_650_pi.on()
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
+
+                # Wait while lasers cool
+                delay(self.cool_time)
+
+                # Turn off cooling lasers
+                self.ttl_650_sigma_1.off()
+                self.ttl_650_sigma_2.off()
+                self.ttl_650_fast_cw.off()
+                self.ttl_650_pi.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
+
+                delay(300*ns)
+
+            with parallel:
+                self.ttl_650_fast_cw.on()
+                self.ttl_650_pi.on()
+
+                # This if statement generates error firmware.runtime.rtio_mgt:RTIO sequence error involving channel 22
+                if self.Bob493_TTL_vs_DDS:
+                    self.ttl_493_all.on()
+                else:
+                    self.DDS__493__Bob__sigma_1.sw.on()
+                    self.DDS__493__Bob__sigma_2.sw.on()
+
+            delay(self.delay_one)
+
+            # Turn on 650 sigmas after a short delay
+            if self.pump_650sigma_1or2 == 1:
+                self.ttl_650_sigma_1.on()
+            else:
+                self.ttl_650_sigma_2.on()
+
+            delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
+
+            # Now turn off all the beams
+            with parallel:
+                self.ttl_650_fast_cw.off()
+                self.ttl_650_pi.off()
+
+                if self.pump_650sigma_1or2 == 1:
+                    self.ttl_650_sigma_1.off()
+                else:
+                    self.ttl_650_sigma_2.off()
+
                 if self.Bob493_TTL_vs_DDS:
                     self.ttl_493_all.off()
                 else:
                     self.DDS__493__Bob__sigma_1.sw.off()
                     self.DDS__493__Bob__sigma_2.sw.off()
 
+            delay(self.delay_three)
 
+            #   Turn on the slow AOM first, no 650 light because 650 fast is off
+            if self.pump_650sigma_1or2 == 1:
+                self.ttl_650_sigma_2.on()
+            else:
+                self.ttl_650_sigma_1.on()
+
+            delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
+
+            self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            # self.ttl_650_fast_pulse.pulse(self.pulse650_duration)     # Use this if using the pulse generator
+
+            self.ttl_650_sigma_1.off()
+            self.ttl_650_sigma_2.off()
+
+    # Detection sequences are unused here
     @kernel
     def run_detection1(self):
         """Non-DMA detection loop sequence. With test pulses
