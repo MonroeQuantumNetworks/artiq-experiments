@@ -1,13 +1,14 @@
-""" Legacy script
+""" Untested modified Legacy script
 Bob Barium detection using DMA, with scannable variables
+Automatically does both pump12 and detect12
 
-    Hard-coded urukul channels - May need to be modified
+    Hard-coded urukul channels have been modified into readable names
     650 remains ON for all cool/pump/detect stages
     Repeats pump1/detect1 many times, then does pump1/detect2 many times
     
 Changed ttl11 (650 fast) to ttl_650_fast_cw
 
-George Toh 2020-04-18
+George Toh 2020-06-12
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -21,6 +22,8 @@ import os
 import time
 
 class Ba_detection_Bob_DMA(base_experiment.base_experiment):
+    """Experiment for Time Scans - Bob.
+    """
 
     def build(self):
         super().build()
@@ -30,31 +33,30 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
         self.setattr_device("core_dma")
         self.detector = self.Bob_camera_side_APD
 
-        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
-        self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(1, 10000, 10000)], global_min=0, global_step=1, ndecimals=0))
-        self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
+        self.scan_names = [cooling_time', 'pumping_time', 'detection_time']
+        self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        # self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
         self.sum11 = 0
         self.sum12 = 0
 
 
-
     @kernel
     def prep_record(self):
-
+        # This is used for detection
         with self.core_dma.record("pulses"):
-            self.urukul0_ch2.sw.off() # Bob 493 sigma 1
-            self.urukul0_ch3.sw.off() # Bob 493 sigma 2
-            self.urukul1_ch3.sw.on() # Bob 650 pi
-            self.urukul2_ch0.sw.on() # 650 fast AOM
-            self.urukul1_ch0.sw.on() # 650 sigma 1
-            self.urukul1_ch1.sw.on() # 650 sigma 2
+            self.493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
+            self.493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
+            self.650__Bob__pi.sw.on() # Bob 650 pi
+            self.650__fast_AOM.sw.on() # 650 fast AOM
+            self.650__sigma_1.sw.on() # 650 sigma 1
+            self.650__sigma_2.sw.on() # 650 sigma 2
 
     @kernel
     def record_pump_sigma1_detect_sigma1(self):
@@ -62,20 +64,20 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
         with self.core_dma.record("pulses"):
             # cooling
-            self.urukul0_ch2.sw.on()  # Bob 493 sigma 1
-            self.urukul0_ch3.sw.on()  # Bob 493 sigma 2
+            self.493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
+            self.493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
 
             delay(self.cooling_time)
 
-            self.urukul0_ch2.sw.off()
-            self.urukul0_ch3.sw.off()
+            self.493__Bob__sigma_1.sw.off()
+            self.493__Bob__sigma_2.sw.off()
 
             delay(10*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch2.sw.on()
+            self.493__Bob__sigma_1.sw.on()
             delay(self.pumping_time)
-            self.urukul0_ch2.sw.off()
+            self.493__Bob__sigma_1.sw.off()
 
             delay(10*ns)
 
@@ -84,9 +86,9 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
             at_mu(t11)
 
-            self.urukul0_ch2.sw.on()
+            self.493__Bob__sigma_1.sw.on()
             delay(self.detection_time)
-            self.urukul0_ch2.sw.off()
+            self.493__Bob__sigma_1.sw.off()
 
             delay(10*ns)
 
@@ -98,20 +100,20 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
         with self.core_dma.record("pulses"):
             # cooling
-            self.urukul0_ch2.sw.on()  # Bob 493 sigma 1
-            self.urukul0_ch3.sw.on()  # Bob 493 sigma 2
+            self.493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
+            self.493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
 
             delay(self.cooling_time)
 
-            self.urukul0_ch2.sw.off()
-            self.urukul0_ch3.sw.off()
+            self.493__Bob__sigma_1.sw.off()
+            self.493__Bob__sigma_2.sw.off()
 
             delay(10*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch2.sw.on()
+            self.493__Bob__sigma_1.sw.on()
             delay(self.pumping_time)
-            self.urukul0_ch2.sw.off()
+            self.493__Bob__sigma_1.sw.off()
 
             delay(10*ns)
 
@@ -120,9 +122,9 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
             at_mu(t12)
 
-            self.urukul0_ch3.sw.on()
+            self.493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
-            self.urukul0_ch3.sw.off()
+            self.493__Bob__sigma_2.sw.off()
 
             delay(10*ns)
 
@@ -144,10 +146,35 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
     def run(self):
 
-        self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('ratio_list1', [], broadcast=True, archive=True)
         self.set_dataset('sum11', [], archive=True)
         self.set_dataset('sum12', [], archive=True)
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect1', 'detect2']], broadcast=True, archive=True, persist=True)
+        self.set_dataset('ratio_list2', [], broadcast=True, archive=True)
+        self.set_dataset('sum21', [], archive=True)
+        self.set_dataset('sum22', [], archive=True)
+
+        # This creates a applet shortcut in the Artiq applet list
+        ylabel = "Time"
+        xlabel = "Ratios"
+        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        self.ccb.issue(
+            "create_applet",
+            name="Plot_Fit_Test",
+            command=applet_stream_cmd
+            + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
+            + " --y-names " + "ratio_list1, ratiolist2" 
+            # + " --x-fit " + "xfitdataset"
+            # + " --y-fits " + "yfitdataset"
+            + " --y-label "
+            + "'"
+            + ylabel
+            + "'"
+            + " --x-label "
+            + "'"
+            + xlabel
+            + "'"
+        )
 
         try:
 
@@ -194,16 +221,26 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
                             channel = getattr(self, channel_name)
                             self.set_DDS_amp(channel, getattr(self, name))
 
-
+                # Run the main portion of code here
                 self.kernel_run()
 
+                # For pumping with sigma1
                 ratio11 = self.sum11 / (self.sum11 + self.sum12)
                 ratio12 = self.sum12 / (self.sum11 + self.sum12)
                 ratios = np.array([ratio11, ratio12])
 
                 self.append_to_dataset('sum11', self.sum11)
                 self.append_to_dataset('sum12', self.sum12)
-                self.append_to_dataset('ratio_list', ratios)
+                self.append_to_dataset('ratio_list1', ratios)
+
+                # For pumping with sigma2
+                ratio11 = self.sum21 / (self.sum21 + self.sum22)
+                ratio12 = self.sum22 / (self.sum21 + self.sum22)
+                ratios = np.array([ratio21, ratio22])
+
+                self.append_to_dataset('sum21', self.sum11)
+                self.append_to_dataset('sum22', self.sum12)
+                self.append_to_dataset('ratio_list2', ratios)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -216,13 +253,21 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
         # finally:
         #     print(self.sum11, self.sum12)
 
+        # These are necessary to restore the system to the state before the experiment.
+        self.load_globals_from_dataset()    # This loads global settings from datasets
+        self.setup()        # This sends settings out to the ARTIQ hardware
+
     @kernel
     def kernel_run(self):
         counts11 = 0
         counts12 = 0
+        counts21 = 0
+        counts22 = 0
 
         sum11 = 0
         sum12 = 0
+        sum21 = 0
+        sum22 = 0
         self.core.reset()
 
         # Preparation for experiment
@@ -233,11 +278,11 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
         self.core.break_realtime()
 
         # Pump sigma 1, detect sigma 1
-        gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
+        gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()    # This pre-records the DMA sequence
         for i in range(self.detections_per_point):
-            pulses_handle = self.core_dma.get_handle("pulses")
-            self.core.break_realtime()
-            self.core_dma.playback_handle(pulses_handle)
+            pulses_handle = self.core_dma.get_handle("pulses")      # I'm not sure this needs to be in the loop
+            self.core.break_realtime()                              # Generate sufficient slack (125 us might be too much)
+            self.core_dma.playback_handle(pulses_handle)            # Playback the cool/pump/detect sequence
             counts11 = self.detector.count(gate_end_mu_11)
             sum11 += counts11
         self.sum11 = sum11
@@ -253,5 +298,97 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             sum12 += counts12
         self.sum12 = sum12
 
+        # Pump sigma 2, detect sigma 1
+        self.core.break_realtime()
+        gate_end_mu_21 = self.record_pump_sigma2_detect_sigma1()
+        for i in range(self.detections_per_point):
+            pulses_handle = self.core_dma.get_handle("pulses")
+            self.core.break_realtime()
+            self.core_dma.playback_handle(pulses_handle)
+            counts21 = self.detector.count(gate_end_mu_12)
+            sum21 += counts21
+        self.sum21 = sum21
+
+        # Pump sigma 2, detect sigma 2
+        self.core.break_realtime()
+        gate_end_mu_22 = self.record_pump_sigma2_detect_sigma2()
+        for i in range(self.detections_per_point):
+            pulses_handle = self.core_dma.get_handle("pulses")
+            self.core.break_realtime()
+            self.core_dma.playback_handle(pulses_handle)
+            counts12 = self.detector.count(gate_end_mu_12)
+            sum22 += counts22
+        self.sum22 = sum22        
 
 
+    @kernel
+    def record_pump_sigma2_detect_sigma1(self):
+        gate_end_mu_11 = 0
+
+        with self.core_dma.record("pulses"):
+            # cooling
+            self.493__Bob__sigma_1.sw.on()
+            self.493__Bob__sigma_2.sw.on() 
+
+            delay(self.cooling_time)
+
+            self.493__Bob__sigma_1.sw.off()
+            self.493__Bob__sigma_2.sw.off()
+
+            delay(10*ns)
+
+            # pumping, sigma 2
+            self.493__Bob__sigma_2.sw.on()
+            delay(self.pumping_time)
+            self.493__Bob__sigma_2.sw.off()
+
+            delay(10*ns)
+
+            # detection, sigma 1
+            t11 = now_mu()
+            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
+            at_mu(t11)
+
+            self.493__Bob__sigma_1.sw.on()
+            delay(self.detection_time)
+            self.493__Bob__sigma_1.sw.off()
+
+            delay(10*ns)
+
+        return gate_end_mu_21
+
+    @kernel
+    def record_pump_sigma2_detect_sigma2(self):
+        gate_end_mu_11 = 0
+
+        with self.core_dma.record("pulses"):
+            # cooling
+            self.493__Bob__sigma_1.sw.on()
+            self.493__Bob__sigma_2.sw.on()
+
+            delay(self.cooling_time)
+
+            self.493__Bob__sigma_1.sw.off()
+            self.493__Bob__sigma_2.sw.off()
+
+            delay(10*ns)
+
+            # pumping, sigma 2
+            self.493__Bob__sigma_2.sw.on()
+            delay(self.pumping_time)
+            self.493__Bob__sigma_2.sw.off()
+
+            delay(10*ns)
+
+            # detection, sigma 2
+            t11 = now_mu()
+            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
+            at_mu(t11)
+
+            self.493__Bob__sigma_2.sw.on()
+            delay(self.detection_time)
+            self.493__Bob__sigma_2.sw.off()
+
+            delay(10*ns)
+
+        return gate_end_mu_22
