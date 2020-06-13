@@ -374,13 +374,17 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                     self.DDS__493__Bob__sigma_1.sw.on()
                     self.DDS__493__Bob__sigma_2.sw.on()
 
-            delay(self.delay_one)
+                if self.pump_650sigma_1or2 == 1:
+                    self.ttl_650_sigma_1.on()
+                else:
+                    self.ttl_650_sigma_2.on()
+            #delay(self.delay_one)
 
             # Turn on 650 sigmas after a short delay
-            if self.pump_650sigma_1or2 == 1:
-                self.ttl_650_sigma_1.on()
-            else:
-                self.ttl_650_sigma_2.on()
+            # if self.pump_650sigma_1or2 == 1:
+            #     self.ttl_650_sigma_1.on()
+            # else:
+            #     self.ttl_650_sigma_2.on()
 
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
@@ -388,30 +392,31 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_pi.off()
-
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.off()
                 else:
                     self.ttl_650_sigma_2.off()
 
-                if self.Bob493_TTL_vs_DDS:
-                    self.ttl_493_all.off()
-                else:
-                    self.DDS__493__Bob__sigma_1.sw.off()
-                    self.DDS__493__Bob__sigma_2.sw.off()
+                # if self.Bob493_TTL_vs_DDS:
+                #     self.ttl_493_all.off()
+                # else:
+                #     self.DDS__493__Bob__sigma_1.sw.off()
+                #     self.DDS__493__Bob__sigma_2.sw.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
 
             delay(self.delay_three)
 
-            #   Turn on the slow AOM first, no 650 light because 650 fast is off
+             # Turn on the slow AOM first, no 650 light because 650 fast is off
             if self.pump_650sigma_1or2 == 1:
                 self.ttl_650_sigma_2.on()
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay(10000*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
 
             self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            # self.ttl_650_fast_pulse.pulse(self.pulse650_duration)     # Use this if using the pulse generator
+            #self.ttl_650_fast_pulse.pulse(100*ns)     # Use this if using the pulse generator
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
