@@ -5,7 +5,7 @@ Automatically does both pump12 and detect12
     Hard-coded urukul channels have been modified into readable names
     650 remains ON for all cool/pump/detect stages
     Repeats pump1/detect1 many times, then does pump1/detect2 many times
-    
+
 Changed ttl11 (650 fast) to ttl_650_fast_cw
 
 George Toh 2020-06-12
@@ -22,8 +22,8 @@ import os
 import time
 
 class Ba_detection_Bob_DMA(base_experiment.base_experiment):
-    # """Experiment for DMA Time Scans - Bob.
-    # """
+    """Experiment for Time Scans - Bob.
+    """
 
     def build(self):
         super().build()
@@ -163,7 +163,7 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             name="Plot_Fit_Test",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "ratio_list1, ratiolist2" 
+            + " --y-names " + "ratio_list1, ratiolist2"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --y-label "
@@ -318,7 +318,7 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle)
             counts12 = self.detector.count(gate_end_mu_12)
             sum22 += counts22
-        self.sum22 = sum22        
+        self.sum22 = sum22
 
 
     @kernel

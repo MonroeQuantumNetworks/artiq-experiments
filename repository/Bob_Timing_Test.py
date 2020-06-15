@@ -291,7 +291,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """Pre-record the main loop sequence.
         This is a spare loop sequence you can switch to by unchecking "run_singlephoton_loop"
         Customize to run whatever sequence is required.
-        Currently it is similar to the cool sequence.
         """
         with self.core_dma.record("main_loop_pulses"):
 
@@ -361,8 +360,10 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 self.DDS__493__Bob__sigma_1.sw.off()
                 self.DDS__493__Bob__sigma_2.sw.off()
 
-                delay(300*ns)
+                # delay(300*ns)
+                delay(self.delay_one)
 
+            # Pump sequence:
             with parallel:
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_pi.on()
@@ -378,13 +379,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                     self.ttl_650_sigma_1.on()
                 else:
                     self.ttl_650_sigma_2.on()
-            #delay(self.delay_one)
-
-            # Turn on 650 sigmas after a short delay
-            # if self.pump_650sigma_1or2 == 1:
-            #     self.ttl_650_sigma_1.on()
-            # else:
-            #     self.ttl_650_sigma_2.on()
 
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
@@ -397,13 +391,11 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 else:
                     self.ttl_650_sigma_2.off()
 
-                # if self.Bob493_TTL_vs_DDS:
-                #     self.ttl_493_all.off()
-                # else:
-                #     self.DDS__493__Bob__sigma_1.sw.off()
-                #     self.DDS__493__Bob__sigma_2.sw.off()
-                self.DDS__493__Bob__sigma_1.sw.off()
-                self.DDS__493__Bob__sigma_2.sw.off()
+                if self.Bob493_TTL_vs_DDS:
+                    self.ttl_493_all.off()
+                else:
+                    self.DDS__493__Bob__sigma_1.sw.off()
+                    self.DDS__493__Bob__sigma_2.sw.off()
 
             delay(self.delay_three)
 
@@ -413,10 +405,10 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay(10000*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
 
             self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            #self.ttl_650_fast_pulse.pulse(100*ns)     # Use this if using the pulse generator
+            # self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
@@ -427,9 +419,8 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """Non-DMA detection loop sequence. With test pulses
 
         This generates the pulse sequence needed for detection with 493 sigma 1
-        It currently generates a test pulse sequence on the 650_pi output for loopback testing
         """
-        delay(100 * us)     # This is needed to buffer for pulse train generation
+
         t1 = now_mu()
         with parallel:
             # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
@@ -443,14 +434,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_sigma_2.pulse(self.detection_time)
             # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
             self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
-            with sequential:    # Generate fake pulse sequence for triggering the counter
-                for i in range(31):
-                    self.ttl_650_pi.pulse(1 * us)
-                    delay(1 * us)
-            with sequential:     # This would have to run on SED channel 9 which does not exist
-                for i in range(31):
-                    self.ttl_test.pulse(1 * us)
-                    delay(1 * us)
 
         Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
 
@@ -461,9 +444,8 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """Non-DMA detection loop sequence. With test pulses
 
         This generates the pulse sequence needed for detection with 493 sigma 2
-        It currently generates a test pulse sequence on the 650_pi output for loopback testing
         """
-        delay(100 * us)     # This is needed to buffer for pulse train generation
+
         t1 = now_mu()
         with parallel:
             # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
@@ -477,10 +459,6 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_sigma_2.pulse(self.detection_time)
             # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
             self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
-            with sequential:    # Generate fake pulse sequence for triggering the counter
-                for i in range(13):
-                    self.ttl_650_pi.pulse(1 * us)
-                    delay(1 * us)
 
         Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B2)
 

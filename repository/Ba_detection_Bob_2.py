@@ -22,7 +22,7 @@ import os
 import time
 
 class Ba_detection_Bob_DMA(base_experiment.base_experiment):
-    # """Experiment for DMA Time Scans - Bob.
+    # """Experiment for Time Scans - Bob.
     # """
 
     def build(self):
@@ -45,7 +45,8 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
 
         self.sum11 = 0
         self.sum12 = 0
-
+        self.sum21 = 0
+        self.sum22 = 0
 
     @kernel
     def prep_record(self):
