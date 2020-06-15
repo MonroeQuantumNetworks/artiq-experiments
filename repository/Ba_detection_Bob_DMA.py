@@ -22,8 +22,6 @@ import os
 import time
 
 class Ba_detection_Bob_DMA(base_experiment.base_experiment):
-    # """Experiment for DMA Time Scans - Bob.
-    # """
 
     def build(self):
         super().build()
@@ -53,10 +51,10 @@ class Ba_detection_Bob_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses"):
             self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
             self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
-            self.ttl_650__Bob__pi.on() # Bob 650 pi
-            self.ttl_650__fast_AOM.on() # 650 fast AOM
-            self.ttl_650__sigma_1.on() # 650 sigma 1
-            self.ttl_650__sigma_2.on() # 650 sigma 2
+            self.ttl_650_pi.on() # Bob 650 pi
+            self.ttl_650_fast_cw.on() # 650 fast AOM
+            self.ttl_650_sigma_1.on() # 650 sigma 1
+            self.ttl_650_sigma_2.on() # 650 sigma 2
 
     @kernel
     def record_pump_sigma1_detect_sigma1(self):
