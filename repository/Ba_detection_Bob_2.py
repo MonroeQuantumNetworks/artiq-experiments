@@ -1,12 +1,11 @@
-""" Untested modified Legacy script
-Bob Barium detection, with scannable variables, NO DMA
+""" Tested modified Legacy script, WORKING
+Bob Barium detection, with scannable variables, partial DMA
 Automatically does both pump12 and detect12
+Turn on Ba_ratios and Ba_ratios_2 to plot the figures
 
-    Hard-coded urukul channels have been modified into readable names
-    650 remains ON for all cool/pump/detect stages
-    Repeats pump1/detect1 many times, then does pump1/detect2 many times
-    
-Changed ttl11 (650 fast) to ttl_650_fast_cw
+Known issues:
+    non-DMA detection, very slow
+    Long delay between cool and pump >250 usec
 
 George Toh 2020-06-15
 """
@@ -79,7 +78,9 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         self.set_dataset('ratio_list12', [], broadcast=True, archive=True)
         self.set_dataset('sum11', [], broadcast=True, archive=True)
         self.set_dataset('sum12', [], broadcast=True, archive=True)
-        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect1', 'detect2']], broadcast=True, archive=True, persist=True)
+        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12']], broadcast=True, archive=True, persist=True)
+        self.set_dataset('Ba_detection_names2', [bytes(i, 'utf-8') for i in ['detect21', 'detect22']], broadcast=True,
+                         archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
         self.set_dataset('ratio_list2', [], broadcast=True, archive=True)
         self.set_dataset('sum21', [], broadcast=True, archive=True)
@@ -94,7 +95,7 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
             name="Detection_Counts",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "sum11 sum12"
+            + " --y-names " + "sum11 sum12 sum21 sum22"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --y-label "
@@ -106,6 +107,7 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
             + xlabel
             + "'"
         )
+        # Also, turn on Ba_ratios and Ba_ratios_2 to plot the figures
 
         try:
 
@@ -162,8 +164,8 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
 
                 self.append_to_dataset('sum11', self.sum11)
                 self.append_to_dataset('sum12', self.sum12)
-                self.append_to_dataset('ratio_list11', ratio11)
-                self.append_to_dataset('ratio_list12', ratio12)
+                # self.append_to_dataset('ratio_list11', ratio11)
+                # self.append_to_dataset('ratio_list12', ratio12)
                 self.append_to_dataset('ratio_list', ratios)
 
                 # For pumping with sigma2
@@ -171,8 +173,8 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
                 ratio22 = self.sum22 / (self.sum21 + self.sum22)
                 ratios = np.array([ratio21, ratio22])
 
-                self.append_to_dataset('sum21', self.sum11)
-                self.append_to_dataset('sum22', self.sum12)
+                self.append_to_dataset('sum21', self.sum21)
+                self.append_to_dataset('sum22', self.sum22)
                 # self.append_to_dataset('ratio_list21', ratio21)
                 # self.append_to_dataset('ratio_list22', ratio22)
                 self.append_to_dataset('ratio_list2', ratios)
@@ -223,16 +225,17 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         # self.sum11 = sum11
 
         for i in range(self.detections_per_point):
+            delay(16000*ns)
+            self.core_dma.playback_handle(pulses_handle)  # Playback the cool/pump/detect sequence
             counts11 = self.run_detection11()
             sum11 += counts11
         self.sum11 = sum11
 
         for i in range(self.detections_per_point):
+            delay(16000 * ns)
+            self.core_dma.playback_handle(pulses_handle)  # Playback the cool/pump/detect sequence
             sum12 += self.run_detection12()
         self.sum12 = sum12
-
-        # print(sum11)
-        # print(sum12)
 
         for i in range(self.detections_per_point):
             sum21 += self.run_detection21()
@@ -259,26 +262,28 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         """
 
         self.core.break_realtime()
+        # self.core.break_realtime()
+        delay(150000 * ns)          # This extremely long delay is needed for rtio overflow
+
         self.DDS__493__Bob__sigma_1.sw.on()
         delay(self.pumping_time)
         self.DDS__493__Bob__sigma_1.sw.off()
 
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-
-        t1 = now_mu()
         with parallel:
+            self.ttl_650_fast_cw.on()
+            self.ttl_650_sigma_1.on()
+            self.ttl_650_sigma_2.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
             # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
             gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
 
-        at_mu(t1)
+        delay(self.detection_time)
+
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
-            self.ttl_650_fast_cw.pulse(self.detection_time)
-            self.ttl_650_sigma_1.pulse(self.detection_time)
-            self.ttl_650_sigma_2.pulse(self.detection_time)
-            # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-            self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
+            self.ttl_650_fast_cw.off()
+            self.ttl_650_sigma_1.off()
+            self.ttl_650_sigma_2.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
 
         Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
 
@@ -289,14 +294,12 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         """Non-DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
-
         self.core.break_realtime()
+        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
+
         self.DDS__493__Bob__sigma_1.sw.on()
         delay(self.pumping_time)
         self.DDS__493__Bob__sigma_1.sw.off()
-
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
 
         t1 = now_mu()
         with parallel:
@@ -321,14 +324,12 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         """Non-DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 1
         """
-
         self.core.break_realtime()
+        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
+
         self.DDS__493__Bob__sigma_2.sw.on()
         delay(self.pumping_time)
         self.DDS__493__Bob__sigma_2.sw.off()
-
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
 
         t1 = now_mu()
         with parallel:
@@ -353,14 +354,12 @@ class Ba_detection_Bob_2(base_experiment.base_experiment):
         """Non-DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
-
         self.core.break_realtime()
+        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
+
         self.DDS__493__Bob__sigma_2.sw.on()
         delay(self.pumping_time)
         self.DDS__493__Bob__sigma_2.sw.off()
-
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
 
         t1 = now_mu()
         with parallel:
