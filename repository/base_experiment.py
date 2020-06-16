@@ -41,8 +41,8 @@ class base_experiment(EnvExperiment):
     ]
 
     DDS_list = [
-        ('493__Alice__sigma_1', 'urukul0_ch0', 75*MHz, 1.0, 10.0, True),
-        ('493__Alice__sigma_2', 'urukul0_ch1', 85*MHz, 1.0, 10.0, True),
+        ('493__Alice__sigma_1', 'urukul0_ch0', 75*MHz, 0.55, 10.0, True),
+        ('493__Alice__sigma_2', 'urukul0_ch1', 85*MHz, 0.6, 10.0, True),
         ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 0.495, 10.5, True),
         ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 0.545, 10.0, True),
         ('650__sigma_1', 'urukul1_ch0', 81.5*MHz, 1.0, 10.0, True),

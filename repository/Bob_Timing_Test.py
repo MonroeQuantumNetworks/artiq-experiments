@@ -408,8 +408,8 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
             delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
 
-            self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            # self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+            # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
