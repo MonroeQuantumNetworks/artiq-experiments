@@ -42,10 +42,10 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
         # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
-        self.sum11 = 1
-        self.sum12 = 1
-        self.sum21 = 1
-        self.sum22 = 1
+        self.sum11 = 0
+        self.sum12 = 0
+        self.sum21 = 0
+        self.sum22 = 0
 
     @kernel
     def set_DDS_freq(self, channel, freq):
