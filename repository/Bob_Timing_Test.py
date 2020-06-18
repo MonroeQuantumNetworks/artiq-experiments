@@ -33,8 +33,6 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class EntanglerDemo(artiq_env.EnvExperiment):
 
 class Bob_Timing_Test(base_experiment.base_experiment):
-    """Experiment for Testing AOM Timings - Bob.
-    """
 
     def build(self):
 
@@ -63,12 +61,12 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         # Add other inputs
         self.setattr_device("core_dma")
-        self.setattr_argument('cool_time', NumberValue(500e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('cool_time', NumberValue(2000e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('run_cooling_sequence', BooleanValue(True))
-        self.setattr_argument('delay_one', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        self.setattr_argument('delay_two', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        self.setattr_argument('delay_three', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        self.setattr_argument('loops_to_run', NumberValue(1000000, step=1, min=1, max=10000000, ndecimals=0))
+        self.setattr_argument('delay_one', NumberValue(200e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('delay_two', NumberValue(5000e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('delay_three', NumberValue(500e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('loops_to_run', NumberValue(50000000, step=1, min=1, max=50000000, ndecimals=0))
 
 
         # self.setattr_argument('detection_time', NumberValue(200e-6, unit='us', step=1e-6, min=0 * us, ndecimals=0))
@@ -128,7 +126,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
-        self.ttl_650_pi.off()
+        self.ttl_Bob_650_pi.off()
 
         # This checks if we run the single photon loop or the manually customized loop
         if self.run_singlephoton_loop:
@@ -272,7 +270,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_sigma_1.on()
         self.ttl_650_sigma_2.on()
         self.ttl_650_fast_cw.on()
-        self.ttl_650_pi.on()
+        self.ttl_Bob_650_pi.on()
         self.DDS__493__Bob__sigma_1.sw.on()
         self.DDS__493__Bob__sigma_2.sw.on()
 
@@ -283,7 +281,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
         self.ttl_650_fast_cw.off()
-        self.ttl_650_pi.off()
+        self.ttl_Bob_650_pi.off()
         self.DDS__493__Bob__sigma_1.sw.off()
         self.DDS__493__Bob__sigma_2.sw.off()
 
@@ -301,7 +299,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             # self.ttl_650_sigma_1.on()
             # self.ttl_650_sigma_2.on()
             self.ttl_650_fast_cw.on()
-            self.ttl_650_pi.on()
+            self.ttl_Bob_650_pi.on()
 
             # if self.Bob493_TTL_vs_DDS:
             #     self.ttl_493_all.on()
@@ -320,7 +318,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
             with parallel:
 
-                self.ttl_650_pi.off()
+                self.ttl_Bob_650_pi.off()
                 # self.ttl_650_fast_pulse.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
@@ -346,7 +344,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_pi.on()
+                self.ttl_Bob_650_pi.on()
                 self.DDS__493__Bob__sigma_1.sw.on()
                 self.DDS__493__Bob__sigma_2.sw.on()
 
@@ -357,7 +355,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_pi.off()
+                self.ttl_Bob_650_pi.off()
                 self.DDS__493__Bob__sigma_1.sw.off()
                 self.DDS__493__Bob__sigma_2.sw.off()
 
@@ -367,7 +365,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             # Pump sequence:
             with parallel:
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_pi.on()
+                self.ttl_Bob_650_pi.on()
 
                 # This if statement generates error firmware.runtime.rtio_mgt:RTIO sequence error involving channel 22
                 if self.Bob493_TTL_vs_DDS:
@@ -386,7 +384,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             # Now turn off all the beams
             with parallel:
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_pi.off()
+                self.ttl_Bob_650_pi.off()
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.off()
                 else:
@@ -411,10 +409,13 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
+            # Wait a little while before turning off the slow AOMS to maximize signal
+            delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
 
-    # Detection sequences are unused here
+    # Detection sequences are unused in this code
     @kernel
     def run_detection1(self):
         """Non-DMA detection loop sequence. With test pulses
@@ -429,7 +430,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Bob_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
@@ -454,7 +455,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Bob_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)

@@ -308,7 +308,7 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
         with self.core_dma.record("pulses_prep"):
             self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
-            # self.ttl_650_pi.on() # Bob 650 pi
+            # self.ttl_Alice_650_pi.on() # Bob 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
             self.ttl_650_sigma_1.on() # 650 sigma 1
             self.ttl_650_sigma_2.on() # 650 sigma 2
@@ -386,7 +386,7 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Alice_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
@@ -416,7 +416,7 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Alice_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)

@@ -3,10 +3,9 @@
 This generates pulsed pumping and single photon generation sequences in Alice for test purposes
 It does not use the FPGA/entangler to run any of the beams
 
-KNOWN ISSUES:
-    Alice 650 AOM is controlled by SANDIA
+650 issue fixed.
 
-George 2020-06-15
+George 2020-06-17
 """
 
 import artiq.language.environment as artiq_env
@@ -46,7 +45,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         self.out0_0 = self.get_device("ttl0")
 
         # Pumping
-        # 650pi = ttl1,
+        # Alice_650pi = ttl7,
         # 493all = ttl2
         # 650fast-cw = ttl3
         # 650sigma1 = ttl4
@@ -128,7 +127,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
-        self.ttl_650_pi.off()
+        self.ttl_Alice_650_pi.off()
 
         # This checks if we run the single photon loop or the manually customized loop
         if self.run_singlephoton_loop:
@@ -272,7 +271,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_sigma_1.on()
         self.ttl_650_sigma_2.on()
         self.ttl_650_fast_cw.on()
-        self.ttl_650_pi.on()
+        self.ttl_Alice_650_pi.on()
         self.DDS__493__Alice__sigma_1.sw.on()
         self.DDS__493__Alice__sigma_2.sw.on()
 
@@ -283,7 +282,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
         self.ttl_650_fast_cw.off()
-        self.ttl_650_pi.off()
+        self.ttl_Alice_650_pi.off()
         self.DDS__493__Alice__sigma_1.sw.off()
         self.DDS__493__Alice__sigma_2.sw.off()
 
@@ -301,7 +300,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             # self.ttl_650_sigma_1.on()
             # self.ttl_650_sigma_2.on()
             self.ttl_650_fast_cw.on()
-            self.ttl_650_pi.on()
+            self.ttl_Alice_650_pi.on()
 
             # if self.Alice493_TTL_vs_DDS:
             #     self.ttl_493_all.on()
@@ -320,7 +319,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
 
             with parallel:
 
-                self.ttl_650_pi.off()
+                self.ttl_Alice_650_pi.off()
                 # self.ttl_650_fast_pulse.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
@@ -335,7 +334,6 @@ class Alice_Timing_Test(base_experiment.base_experiment):
     @kernel
     def prerecord_singlephoton_loop(self):
         """Pre-record the single photon generation loop sequence.
-
         This is faster than non pre-recorded
         """
         with self.core_dma.record("singlephoton_loop_pulses"):
@@ -346,7 +344,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_pi.on()
+                self.ttl_Alice_650_pi.on()
                 self.DDS__493__Alice__sigma_1.sw.on()
                 self.DDS__493__Alice__sigma_2.sw.on()
 
@@ -357,7 +355,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_pi.off()
+                self.ttl_Alice_650_pi.off()
                 self.DDS__493__Alice__sigma_1.sw.off()
                 self.DDS__493__Alice__sigma_2.sw.off()
 
@@ -367,7 +365,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             # Pump sequence:
             with parallel:
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_pi.on()
+                self.ttl_Alice_650_pi.on()
 
                 # This if statement generates error firmware.runtime.rtio_mgt:RTIO sequence error involving channel 22
                 if self.Alice493_TTL_vs_DDS:
@@ -388,7 +386,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             # Now turn off all the beams
             with parallel:
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_pi.off()
+                self.ttl_Alice_650_pi.off()
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.off()
                 else:
@@ -408,10 +406,13 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay_mu(100)       # Wait 100 ns so that the slow AOMs are fully turned on
 
             # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+
+            # Wait a little while before turning off the slow AOMS to maximize signal
+            delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
@@ -431,7 +432,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Alice_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)
@@ -456,7 +457,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
 
         at_mu(t1)
         with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
+            # self.ttl_Alice_650_pi.pulse(self.detection_time)
             self.ttl_650_fast_cw.pulse(self.detection_time)
             self.ttl_650_sigma_1.pulse(self.detection_time)
             self.ttl_650_sigma_2.pulse(self.detection_time)

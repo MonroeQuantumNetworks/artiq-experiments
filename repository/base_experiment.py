@@ -73,13 +73,13 @@ class base_experiment(EnvExperiment):
     # George modified these names
     TTL_output_list = [
         ('ttl0', 'ttl0', False),
-        ('ttl_650_pi', 'ttl1', False),
+        ('ttl_Bob_650_pi', 'ttl1', False),
         ('ttl_493_all', 'ttl2', False),
         ('ttl_650_fast_cw', 'ttl3', False),
         ('ttl_650_sigma_1', 'ttl4', False),
         ('ttl_650_sigma_2', 'ttl5', False),
         ('ttl_650_fast_pulse', 'ttl6', False),
-        ('ttl_test', 'ttl7', False)
+        ('ttl_Alice_650_pi', 'ttl7', False)
     ]
 
     DAC_list = [
