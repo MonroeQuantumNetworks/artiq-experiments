@@ -42,7 +42,6 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
         # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
-        # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         # 1 <--> sigma_1, 2 <--> sigma_2, 3 <--> pi
         self.sum1 = 0
         self.sum2 = 0
@@ -166,28 +165,28 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
                 mean23 = self.sum13/self.detections_per_point
 
                 # Population of D_{-3/2} state
-                d1 = (0.780311 + ((0.589575*mean23 - 0.00440285*mean13 - 0.361042*mean2 -
-                                  0.22413*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
-
-                # Population of D_{-1/2} state
-                d2 = (-0.280311 - ((0.6522231*mean23 - 0.0670587*mean13 - 1.01768*mean2 +
-                                    0.432504*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
-
-                # Population of D_{1/2} state
-                d3 = (-0.280311 + ((0.0670587*mean23 - 0.652231*mean13 - 0.432504*mean2 +
-                                   1.01768*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
-
-                # Population of D_{3/2} state
-                d4 = (0.780311 - ((0.00440285*mean23 - 0.589575*mean13 + 0.22413*mean2 +
-                                   0.361042*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
-
-                ratios = np.array([d1, d2, d3, d4])
+                # d1 = (0.780311 + ((0.589575*mean23 - 0.00440285*mean13 - 0.361042*mean2 -
+                #                   0.22413*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
+                #
+                # # Population of D_{-1/2} state
+                # d2 = (-0.280311 - ((0.6522231*mean23 - 0.0670587*mean13 - 1.01768*mean2 +
+                #                     0.432504*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
+                #
+                # # Population of D_{1/2} state
+                # d3 = (-0.280311 + ((0.0670587*mean23 - 0.652231*mean13 - 0.432504*mean2 +
+                #                    1.01768*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
+                #
+                # # Population of D_{3/2} state
+                # d4 = (0.780311 - ((0.00440285*mean23 - 0.589575*mean13 + 0.22413*mean2 +
+                #                    0.361042*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
+                #
+                # ratios = np.array([d1, d2, d3, d4])
                 self.mutate_dataset('sum1', point_num, self.sum1)
                 self.mutate_dataset('sum2', point_num, self.sum2)
                 self.mutate_dataset('sum3', point_num, self.sum3)
                 self.mutate_dataset('sum13', point_num, self.sum13)
                 self.mutate_dataset('sum23', point_num, self.sum23)
-                self.append_to_dataset('ratio_list', ratios)
+                # self.append_to_dataset('ratio_list', ratios)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -361,7 +360,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
     @kernel
     def record_detect2(self):
         """DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 650 sigma 1
+        This generates the pulse sequence needed for detection with 650 sigma 2
         """
         with self.core_dma.record("pulses_detect2"):
             with parallel:

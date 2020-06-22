@@ -1,5 +1,5 @@
 {
-    "Ba_detection_names": [b'detect11', b'detect12', b'detect21', b'detect22'],
+    "Ba_detection_names": [b'D_{-3/2}', b'D_{-1/2}', b'D_{1/2}', b'D_{3/2}'],
     "Ba_detection_names2": [b'detect21', b'detect22'],
     "active_scan_names": [b'detection_time'],
     "detectors": nparray((4, ), "<i8", b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='),
@@ -76,7 +76,7 @@
     "globals.DDS.650.fast_AOM.frequency": 400000000.0,
     "globals.DDS.650.fast_AOM.switch": true,
     "globals.DDS.650.sigma_1.amplitude": 1.0,
-    "globals.DDS.650.sigma_1.attenuation": 10.0,
+    "globals.DDS.650.sigma_1.attenuation": 11.0,
     "globals.DDS.650.sigma_1.frequency": 81500000.0,
     "globals.DDS.650.sigma_1.switch": true,
     "globals.DDS.650.sigma_2.amplitude": 1.0,
