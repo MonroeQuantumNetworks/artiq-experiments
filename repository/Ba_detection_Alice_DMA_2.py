@@ -199,7 +199,8 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
         sum12 = 0
         sum21 = 0
         sum22 = 0
-        self.core.reset()
+        self.core.reset()             # Program is slow with this line un-commented, 10x slower when commented out
+        # self.core.break_realtime()    # This is extremely slow, at least 10x slower than core.reset
 
         # Preparation for experiment
         self.prep_record()
@@ -242,14 +243,18 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            # delay_mu(300)
             with parallel:
                 gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            # delay_mu(500)
             with parallel:
                 gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
+
+            # delay_mu(500)
 
             sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
             sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
@@ -257,38 +262,8 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
 
         self.sum11 = sum11
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle02)
-        #     sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
-
         self.sum12 = sum12
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle01)
-        #     sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
-
         self.sum21 = sum21
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle02)
-        #     sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
-
         self.sum22 = sum22
 
 
@@ -366,66 +341,6 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.detection_time)
             self.DDS__493__Alice__sigma_2.sw.off()
-
-    @kernel
-    def run_detection21(self):
-        """Non-DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 493 sigma 1
-        """
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-
-        self.DDS__493__Alice__sigma_2.sw.on()
-        delay(self.pumping_time)
-        self.DDS__493__Alice__sigma_2.sw.off()
-
-        t1 = now_mu()
-        with parallel:
-            # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-            gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-
-        at_mu(t1)
-        with parallel:
-            # self.ttl_Alice_650_pi.pulse(self.detection_time)
-            self.ttl_650_fast_cw.pulse(self.detection_time)
-            self.ttl_650_sigma_1.pulse(self.detection_time)
-            self.ttl_650_sigma_2.pulse(self.detection_time)
-            # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-            self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-
-        Alice_counts = self.Alice_camera_side_APD.count(gate_end_mu_B1)
-
-        return Alice_counts
-
-    @kernel
-    def run_detection22(self):
-        """Non-DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 493 sigma 2
-        """
-        self.core.break_realtime()
-        delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-
-        self.DDS__493__Alice__sigma_2.sw.on()
-        delay(self.pumping_time)
-        self.DDS__493__Alice__sigma_2.sw.off()
-
-        t1 = now_mu()
-        with parallel:
-            # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-            gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-
-        at_mu(t1)
-        with parallel:
-            # self.ttl_Alice_650_pi.pulse(self.detection_time)
-            self.ttl_650_fast_cw.pulse(self.detection_time)
-            self.ttl_650_sigma_1.pulse(self.detection_time)
-            self.ttl_650_sigma_2.pulse(self.detection_time)
-            # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-            self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-
-        Alice_counts = self.Alice_camera_side_APD.count(gate_end_mu_B2)
-
-        return Alice_counts
 
     # @kernel
     # def record_cool(self):

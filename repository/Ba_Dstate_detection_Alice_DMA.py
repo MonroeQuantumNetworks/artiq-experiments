@@ -1,5 +1,5 @@
 """
-Bob Barium D state pumping and detection, with scannable variables, partial DMA
+Alice Barium D state pumping and detection, with scannable variables, partial DMA
 
 In practice, we will only do either sigma_1 and pi pumping, or sigma_2 and pi pumping, so this
 program only does one of the two to allow for easier optimization of that process
@@ -21,26 +21,26 @@ import base_experiment
 import os
 import time
 
-class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
+class Ba_Dstate_detection_Alice_DMA(base_experiment.base_experiment):
 
     def build(self):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        # self.detector = self.Bob_camera_side_APD
+        # self.detector = self.Alice_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
         self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
+        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        # self.setattr_argument('DDS__493__Alice__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__493__Alice__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        # self.setattr_argument('DDS__493__Alice__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
 
         # 1 <--> sigma_1, 2 <--> sigma_2, 3 <--> pi
         self.sum1 = 0
@@ -126,7 +126,8 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.set_dataset('sum13', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum23', np.zeros(point_num), broadcast=True, archive=True)
             point_num = 0
-            self.prep_kernel_run()
+
+            self.prep_kernel_run()  # Break real time and turn on 493 lasers
 
             for point in msm:
 
@@ -151,6 +152,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
                             channel = getattr(self, channel_name)
                             self.set_DDS_amp(channel, getattr(self, name))
 
+                print("STARTING KERNEL RUN")
                 # Run the main portion of code here
                 self.kernel_run()
 
@@ -158,13 +160,16 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
                 # The derivation of these expressions is in Ksenia's thesis, and the results are in Allison's
                 # OneNote notebook section.
 
-                mean1 = self.sum1/self.detections_per_point
-                mean2 = self.sum2/self.detections_per_point
-                mean3 = self.sum3/self.detections_per_point
-                mean13 = self.sum13/self.detections_per_point
-                mean23 = self.sum13/self.detections_per_point
+                mean1 = self.sum1#/self.detections_per_point
+                mean2 = self.sum2#/self.detections_per_point
+                mean3 = self.sum3#/self.detections_per_point
+                mean13 = self.sum13#/self.detections_per_point
+                mean23 = self.sum13#/self.detections_per_point
 
+                # George tried editing the signs on these to match page 114-115 of Clay Crocker thesis
+                # Results still don't make sense
                 # Population of D_{-3/2} state
+
                 d1 = (0.780311 + ((0.589575*mean23 - 0.00440285*mean13 - 0.361042*mean2 -
                                   0.22413*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
 
@@ -180,13 +185,13 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
                 d4 = (0.780311 - ((0.00440285*mean23 - 0.589575*mean13 + 0.22413*mean2 +
                                    0.361042*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
 
-                # ratios = np.array([d1, d2, d3, d4])
+                ratios = np.array([d1, d2, d3, d4])
                 self.mutate_dataset('sum1', point_num, self.sum1)
                 self.mutate_dataset('sum2', point_num, self.sum2)
                 self.mutate_dataset('sum3', point_num, self.sum3)
                 self.mutate_dataset('sum13', point_num, self.sum13)
                 self.mutate_dataset('sum23', point_num, self.sum23)
-                # self.append_to_dataset('ratio_list', ratios)
+                self.append_to_dataset('ratio_list', ratios)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -203,11 +208,16 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
 
     @kernel
     def prep_kernel_run(self):
+        self.core.reset()
         self.core.break_realtime()
         delay_mu(5000)
         self.prep_record()
-        prep_handle = self.core_dma.get_handle("pulses_prep")
-        self.core_dma.playback_handle(prep_handle)  # Turn on the 650 lasers
+        prep_handle = self.core_dma.get_handle("pulses_prep")   # This sequence turns on the 493 lasers
+
+        self.core.break_realtime()
+        delay_mu(100000)
+
+        self.core_dma.playback_handle(prep_handle)  # Turn on the 493 lasers
 
 
 
@@ -220,8 +230,9 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         sum13 = 0
         sum23 = 0
 
-        self.core.reset()           # This is not needed
-        self.core.break_realtime()
+        self.core.reset()
+        # self.core.break_realtime()    # Extremely slow
+
 
         # Preparation for experiment
         if self.pump_sigma_1_or_2 == 1:
@@ -247,39 +258,39 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            self.core.break_realtime()  # This is needed to create positive slack
-            delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
+            self.core.break_realtime()
+            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
-                gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                gate_end_mu_1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
-                gate_end_mu_2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                gate_end_mu_2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
-                gate_end_mu_3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                gate_end_mu_3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
-                gate_end_mu_13 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                gate_end_mu_13 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
 
             self.core_dma.playback_handle(pulses_handle_pump) # Cool and pump
             with parallel:
-                gate_end_mu_23 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                gate_end_mu_23 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
 
-            sum1 += self.Bob_camera_side_APD.count(gate_end_mu_1)
-            sum2 += self.Bob_camera_side_APD.count(gate_end_mu_2)
-            sum3 += self.Bob_camera_side_APD.count(gate_end_mu_3)
-            sum13 += self.Bob_camera_side_APD.count(gate_end_mu_13)
-            sum23 += self.Bob_camera_side_APD.count(gate_end_mu_23)
+            sum1 += self.Alice_camera_side_APD.count(gate_end_mu_1)
+            sum2 += self.Alice_camera_side_APD.count(gate_end_mu_2)
+            sum3 += self.Alice_camera_side_APD.count(gate_end_mu_3)
+            sum13 += self.Alice_camera_side_APD.count(gate_end_mu_13)
+            sum23 += self.Alice_camera_side_APD.count(gate_end_mu_23)
 
         self.sum1 = sum1
         self.sum2 = sum2
@@ -291,9 +302,9 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
     def prep_record(self):
         # This is used for detection
         with self.core_dma.record("pulses_prep"):
-            self.DDS__493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
-            self.DDS__493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
-            self.ttl_Bob_650_pi.off()  # Bob 650 pi
+            self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
+            self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
+            self.ttl_Alice_650_pi.off()  # Alice 650 pi
             self.ttl_650_fast_cw.off()  # 650 fast AOM
             self.ttl_650_sigma_1.off()  # 650 sigma 1
             self.ttl_650_sigma_2.off()  # 650 sigma 2
@@ -305,7 +316,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_pump_1"):
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.ttl_Alice_650_pi.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
@@ -317,7 +328,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.off()
+                self.ttl_Alice_650_pi.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_fast_cw.off()
 
@@ -328,7 +339,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_pump_2"):
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.ttl_Alice_650_pi.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
@@ -340,7 +351,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.off()
+                self.ttl_Alice_650_pi.off()
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
 
@@ -379,10 +390,10 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_detect3"):
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.ttl_Alice_650_pi.on()
             delay(self.detection_time)
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.ttl_Alice_650_pi.on()
 
     @kernel
     def record_detect13(self):
@@ -392,13 +403,13 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect13"):
             self.ttl_650_fast_cw.on()
             self.ttl_650_sigma_1.on()
-            self.ttl_Bob_650_pi.on()
+            self.ttl_Alice_650_pi.on()
 
             delay(self.detection_time)
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
-                self.ttl_Bob_650_pi.off()
+                self.ttl_Alice_650_pi.off()
 
     @kernel
     def record_detect23(self):
@@ -408,10 +419,10 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect23"):
             self.ttl_650_fast_cw.on()
             self.ttl_650_sigma_2.on()
-            self.ttl_Bob_650_pi.on()
+            self.ttl_Alice_650_pi.on()
 
             delay(self.detection_time)
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_2.off()
-                self.ttl_Bob_650_pi.off()
+                self.ttl_Alice_650_pi.off()

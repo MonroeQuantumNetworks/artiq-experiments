@@ -1,5 +1,5 @@
 {
-    "Ba_detection_names": [b'D_{-3/2}', b'D_{-1/2}', b'D_{1/2}', b'D_{3/2}'],
+    "Ba_detection_names": [b'detect11', b'detect12', b'detect21', b'detect22'],
     "Ba_detection_names2": [b'detect21', b'detect22'],
     "active_scan_names": [b'detection_time'],
     "detectors": nparray((4, ), "<i8", b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='),
