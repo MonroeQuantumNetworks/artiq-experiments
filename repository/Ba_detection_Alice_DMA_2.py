@@ -29,14 +29,15 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
         self.setattr_device("core_dma")
         # self.detector = self.Alice_camera_side_APD
 
-        self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time']
+        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(500), RangeScan(0, 1000, 10)], global_min=0, global_step=10, ndecimals=0))
         # self.setattr_argument('DDS__493__Alice__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
         # self.setattr_argument('DDS__493__Alice__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
         # self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
@@ -228,38 +229,54 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
         #     sum11 += counts11
         # self.sum11 = sum11
 
+        delay1 = int(self.delay_time)
+        delay2 = delay1 - 70
+
         for i in range(self.detections_per_point):
 
-            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
+            self.core.break_realtime()  # This makes underflow errors less likely
+            delay_mu(200000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
-                gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay1)   # For turn off time of the lasers
+                    gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
-                gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay1)
+                    gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            # delay_mu(300)
+            # delay_mu(500)
             with parallel:
-                gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay2)
+                    gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             # delay_mu(500)
             with parallel:
-                gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay2)
+                    gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
-
-            # delay_mu(500)
 
             sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
             sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
             sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
+
+        # t = now_mu()
+        # gate_end_mu = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+        # at_mu(t)
+
+
 
         self.sum11 = sum11
         self.sum12 = sum12

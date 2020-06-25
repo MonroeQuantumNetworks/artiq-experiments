@@ -230,7 +230,7 @@ class Ba_Dstate_detection_Alice_DMA(base_experiment.base_experiment):
         sum13 = 0
         sum23 = 0
 
-        self.core.reset()
+        self.core.reset()   # This is necessary to make it run fast
         # self.core.break_realtime()    # Extremely slow
 
 
@@ -258,7 +258,7 @@ class Ba_Dstate_detection_Alice_DMA(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            self.core.break_realtime()
+            self.core.break_realtime()  # This is necessary to create slack
             delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
