@@ -182,8 +182,7 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
 
         except TerminationRequested:
             print('Terminated gracefully')
-        # finally:
-        #     print(self.sum11, self.sum12)
+
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
@@ -191,10 +190,6 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
 
     @kernel
     def kernel_run(self):
-        counts11 = 0
-        counts12 = 0
-        counts21 = 0
-        counts22 = 0
 
         sum11 = 0
         sum12 = 0
@@ -219,18 +214,9 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
         self.core.break_realtime()
         self.core_dma.playback_handle(prep_handle) # Turn on the 650 lasers
 
-        # Pump sigma 1, detect sigma 1
-        # gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()    # This pre-records the DMA sequence
-        # for i in range(self.detections_per_point):
-        #     pulses_handle = self.core_dma.get_handle("pulses")      # I'm not sure this needs to be in the loop
-        #     self.core.break_realtime()                              # Generate sufficient slack (125 us might be too much)
-        #     self.core_dma.playback_handle(pulses_handle)            # Playback the cool/pump/detect sequence
-        #     counts11 = self.detector.count(gate_end_mu_11)
-        #     sum11 += counts11
-        # self.sum11 = sum11
-
-        delay1 = int(self.delay_time)
-        delay2 = delay1 - 70
+        # Adding these delays to sync up gate rising with when the laser beams actually turn on
+        delay1 = int(self.delay_time)   # For detect sigma1
+        delay2 = delay1 + 35            # For detect sigma2
 
         for i in range(self.detections_per_point):
 
@@ -238,6 +224,7 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
             delay_mu(200000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -245,22 +232,23 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(100)
             with parallel:
                 with sequential:
-                    delay_mu(delay1)
+                    delay_mu(delay2)
                     gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            # delay_mu(500)
+            delay_mu(100)
             with parallel:
                 with sequential:
-                    delay_mu(delay2)
+                    delay_mu(delay1)
                     gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            # delay_mu(500)
+            delay_mu(100)
             with parallel:
                 with sequential:
                     delay_mu(delay2)
@@ -272,17 +260,10 @@ class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
             sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
 
-        # t = now_mu()
-        # gate_end_mu = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-        # at_mu(t)
-
-
-
         self.sum11 = sum11
         self.sum12 = sum12
         self.sum21 = sum21
         self.sum22 = sum22
-
 
     # ARTIQ example
     # Using gateware counters, only a single input event each is
