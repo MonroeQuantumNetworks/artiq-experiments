@@ -29,14 +29,14 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-        self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'dummy']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(0, 10, 500)], global_min=0, global_step=0.1, ndecimals=1))
+        self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(0, 10, 10)], global_min=0, global_step=0.1, ndecimals=1))
 
         # 1 <--> sigma_1, 2 <--> sigma_2, 3 <--> pi
         self.sum1 = 0
