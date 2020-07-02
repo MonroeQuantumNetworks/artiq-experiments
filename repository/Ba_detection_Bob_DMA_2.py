@@ -32,10 +32,11 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
         self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time']
-        self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
+        self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
         # self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
         # self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
         # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
@@ -226,28 +227,40 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
         #     sum11 += counts11
         # self.sum11 = sum11
 
+        # Adding these delays to sync up gate rising with when the laser beams actually turn on
+        delay1 = int(self.delay_time)   # For detect sigma1
+        delay2 = delay1            # For detect sigma2
+
         for i in range(self.detections_per_point):
 
             delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
-                gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay1)   # For turn off/on time of the lasers
+                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
-                gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay2)   # For turn off time of the lasers
+                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             with parallel:
-                gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay1)   # For turn off time of the lasers
+                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             with parallel:
-                gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                with sequential:
+                    delay_mu(delay2)   # For turn off time of the lasers
+                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             sum11 += self.Bob_camera_side_APD.count(gate_end_mu_B1)

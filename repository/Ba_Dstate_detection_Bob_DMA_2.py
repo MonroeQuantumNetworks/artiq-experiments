@@ -164,10 +164,11 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
 
     @kernel
     def prep_kernel_run(self):
+        self.core.reset()
         self.core.break_realtime()
-        delay_mu(5000)
         self.prep_record()
         prep_handle = self.core_dma.get_handle("pulses_prep")
+        self.core.break_realtime()
         self.core_dma.playback_handle(prep_handle)  # Turn on the 650 lasers
 
     @kernel
@@ -208,46 +209,48 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
 
             self.core.break_realtime()  # This is needed to create positive slack
             delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
-            self.core_dma.playback_handle(pulses_handle_ttl)
+
+            # self.core_dma.playback_handle(pulses_handle_ttl)    # Trigger the Picoharp
+
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(460)
+                    delay_mu(200)
                     gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
-            delay_mu(100)
+            delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(460)
+                    delay_mu(200)
                     gate_end_mu_2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
-            delay_mu(100)
+            delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(560)
+                    delay_mu(200)
                     gate_end_mu_3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
-            delay_mu(100)
+            delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(560)
+                    delay_mu(200)
                     gate_end_mu_13 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
-            delay_mu(100)
+            delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool and pump
             with parallel:
                 with sequential:
-                    delay_mu(560)
+                    delay_mu(200)
                     gate_end_mu_23 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
-            delay_mu(100)
+            delay_mu(200)
 
             sum1 += self.Bob_camera_side_APD.count(gate_end_mu_1)
             sum2 += self.Bob_camera_side_APD.count(gate_end_mu_2)

@@ -152,7 +152,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             delay_mu(1000000)
 
             for i in range(self.loops_to_run):
-                self.ttl0.pulse(20 * ns)
+                # self.ttl0.pulse(20 * ns)
                 delay_mu(100)
 
                 if self.run_cooling_sequence:
@@ -293,40 +293,40 @@ class Bob_Timing_Test(base_experiment.base_experiment):
         """
         with self.core_dma.record("main_loop_pulses"):
 
-            # self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
 
-            # Turn these on before the trigger pulse
-            # self.ttl_650_sigma_1.on()
-            # self.ttl_650_sigma_2.on()
             self.ttl_650_fast_cw.on()
-            self.ttl_Bob_650_pi.on()
-
-            # if self.Bob493_TTL_vs_DDS:
-            #     self.ttl_493_all.on()
-            # else:
+            delay_mu(1000)
             self.DDS__493__Bob__sigma_1.sw.on()
+            delay_mu(1000)
             self.DDS__493__Bob__sigma_2.sw.on()
+            delay_mu(1000)
+            self.ttl_Bob_650_pi.on()
+            delay_mu(1000)
+            self.ttl_650_sigma_1.on()
+            delay_mu(1000)
+            self.ttl_650_sigma_2.on()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.off()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.on()
 
-            delay(self.delay_one)       # In case some additional delay is needed
+            # delay(self.delay_one)       # In case some additional delay is needed
+            #
+            # delay(self.delay_two)
+            # with parallel:
+            #     self.ttl_650_sigma_1.on()
+            #     self.ttl_650_sigma_2.on()
+            #
+            # delay(self.delay_three)
 
-            delay(self.delay_two)
+            delay_mu(10000)
+
             with parallel:
-                self.ttl_650_sigma_1.on()
-                self.ttl_650_sigma_2.on()
-
-            delay(self.delay_three)
-
-            with parallel:
-
                 self.ttl_Bob_650_pi.off()
-                # self.ttl_650_fast_pulse.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
-
-                # if self.Bob493_TTL_vs_DDS:
-                #     self.ttl_493_all.off()
-                # else:
                 self.DDS__493__Bob__sigma_1.sw.off()
                 self.DDS__493__Bob__sigma_2.sw.off()
 
@@ -404,7 +404,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay(100*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay(300*ns)       # Wait 100 ns so that the slow AOMs are fully turned on
 
             # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
