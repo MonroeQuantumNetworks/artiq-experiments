@@ -74,11 +74,11 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
             self.urukul1_ch2.sw.on() # Bob 650 pi
             self.urukul1_ch0.sw.on() # 650 sigma 1
             self.urukul1_ch1.sw.on() # 650 sigma 2
-            self.urukul2_ch1.sw.off() # Bob 493 cooling
+            # self.urukul2_ch1.sw.off() # Bob 493 cooling
             delay(8*ns)
-            self.urukul2_ch2.sw.on()
-            self.urukul2_ch3.sw.on()
-            self.ttl14.off()
+            # self.urukul2_ch2.sw.on()
+            # self.urukul2_ch3.sw.on()
+            # self.ttl14.off()
 
 
     @kernel
@@ -86,12 +86,12 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
         gate_end_mu_11 = 0
         gate_end_mu_12 = 0
         with self.core_dma.record("pulses"):
-            self.ttl12.pulse(100*ns)
-            # cooling
-            with parallel:
-                #self.urukul2_ch2.sw.on()
-                #self.urukul2_ch3.sw.off()
-                self.ttl14.off()
+
+            # self.ttl0.pulse(20 * ns)    # Trigger the Picoharp
+            # with parallel:
+            #     #self.urukul2_ch2.sw.on()
+            #     #self.urukul2_ch3.sw.off()
+            #     self.ttl14.off()
             delay(8*ns)
             with parallel:
                 self.DDS__493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
@@ -110,7 +110,7 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_1.sw.off()
 
-            delay(200*ns)
+            delay(500*ns)
             # Raman
             # self.ttl14.pulse(self.raman_time)
             # with parallel:
@@ -121,13 +121,12 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
             
             # detection, sigma 1
             t11 = now_mu()
-            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
-            
-            # at_mu(t11-1100)
-            at_mu(t11 - 450)
             self.DDS__493__Bob__sigma_1.sw.on()
             delay(self.detection_time)
             self.DDS__493__Bob__sigma_1.sw.off()
+
+            at_mu(t11 - 500)
+            gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
 
             delay(50*ns)
         return gate_end_mu_11
@@ -135,18 +134,20 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
     @kernel
     def record_pump_sigma1_detect_sigma2(self):
         with self.core_dma.record("pulses"):
-            # cooling
-            with parallel:
-                #self.urukul2_ch2.sw.on()
-                #self.urukul2_ch3.sw.on()
-                self.ttl14.off()
+
+            self.ttl0.pulse(20 * ns)    # Trigger the Picoharp
+
+            # with parallel:
+            #     #self.urukul2_ch2.sw.on()
+            #     #self.urukul2_ch3.sw.on()
+            #     self.ttl14.off()
             delay(8*ns)
+
+            # Cooling
             with parallel:
                 self.DDS__493__Bob__sigma_1.sw.on()
                 self.DDS__493__Bob__sigma_2.sw.on()
-
             delay(self.cooling_time)
-
             with parallel:
                 self.DDS__493__Bob__sigma_1.sw.off()
                 self.DDS__493__Bob__sigma_2.sw.off()
@@ -158,7 +159,7 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_1.sw.off()
 
-            delay(200*ns)
+            delay(500*ns)
 
             # Raman
             # self.ttl14.pulse(self.raman_time)
@@ -171,13 +172,12 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
 
             #detection, sigma 2
             t12 = now_mu()
-            gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
-
-            # at_mu(t12 - 1100)
-            at_mu(t12 - 450)
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
             self.DDS__493__Bob__sigma_2.sw.off()
+
+            at_mu(t12 + 450)
+            gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
 
         return gate_end_mu_12
 
@@ -211,6 +211,8 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
             self.point_num = 0
             # Preparation for experiment
 
+            self.kernel_prep_run()
+
             for point in msm:
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
@@ -230,7 +232,8 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
                             channel_name = name.rstrip('__amplitude')
                             channel = getattr(self, channel_name)
                             #self.set_DDS_amp(channel, getattr(self, name))
-                kernel_run_start_time = time.time()
+
+                # kernel_run_start_time = time.time()
                 self.kernel_run()
 
                 ratio11 = self.sum11 / (self.sum11 + self.sum12)
@@ -250,6 +253,10 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
+        # These are necessary to restore the system to the state before the experiment.
+        self.load_globals_from_dataset()  # This loads global settings from datasets
+        self.setup()  # This sends settings out to the ARTIQ hardware
+
     @kernel
     def kernel_prep_run(self):
         # Preparation for experiment
@@ -258,8 +265,6 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
         self.core.break_realtime()
         self.core_dma.playback_handle(pulses_handle)
         self.core.break_realtime()
-        #gate_end_mu_11, gate_end_mu_12 = self.record_init()
-        #return gate_end_mu_11, gate_end_mu_12
 
     @kernel
     def kernel_run(self):
@@ -269,24 +274,23 @@ class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
         sum11 = 1
         sum12 = 1
 
-          # update DDS frequency and amplitude at each step
-        delay(600*us)
-        self.DDS__493__Bob__sigma_1.set_frequency(self.DDS__493__Bob__sigma_1__frequency)
-        self.core.break_realtime()
-        # print(self.DDS__493__Bob__sigma_1__frequency)
-        self.core.break_realtime()
-        delay(600*us)
-        self.DDS__493__Bob__sigma_2.set_frequency(self.DDS__493__Bob__sigma_2__frequency)
-        self.core.break_realtime()
-        delay(600 * us)
-        # self.urukul2_ch2.set(self.DDS__532__tone_1__frequency, phase=0.0)
-        self.core.break_realtime()
-        delay(600*us)
-        # self.urukul2_ch3.set(self.DDS__532__tone_2__frequency, phase=0.1)
-        self.core.break_realtime()
-        delay(600 * us)
-        self.core.reset()
-
+        #   # update DDS frequency and amplitude at each step
+        # delay(600*us)
+        # self.DDS__493__Bob__sigma_1.set_frequency(self.DDS__493__Bob__sigma_1__frequency)
+        # self.core.break_realtime()
+        # # print(self.DDS__493__Bob__sigma_1__frequency)
+        # self.core.break_realtime()
+        # delay(600*us)
+        # self.DDS__493__Bob__sigma_2.set_frequency(self.DDS__493__Bob__sigma_2__frequency)
+        # self.core.break_realtime()
+        # delay(600 * us)
+        # # self.urukul2_ch2.set(self.DDS__532__tone_1__frequency, phase=0.0)
+        # self.core.break_realtime()
+        # delay(600*us)
+        # # self.urukul2_ch3.set(self.DDS__532__tone_2__frequency, phase=0.1)
+        # self.core.break_realtime()
+        # delay(600 * us)
+        # self.core.reset()
 
         gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
         pulses_handle = self.core_dma.get_handle("pulses")
