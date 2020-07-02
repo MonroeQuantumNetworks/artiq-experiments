@@ -1,15 +1,17 @@
 """ Legacy script
-Alice Barium Raman frequency+time scan script using DMA
+Bob Barium Raman frequency+time scan script using DMA
 
-    Simple script to do a Raman time and frequency scan on Alice
+    Simple script to do a Raman time and frequency scan on Bob
 
     Does Cool/Pump1/Detect1&2 - No Pump2
     Hardcoded urukul channels, but names are listed in this script
     Does not have functions experiment_specific_run(self) and experiment_specific_preamble(self)
 
-    Line 188: Dataset Ba_detection_names seemingly unused. For applet labels?
+Update:
+George started using this to test Raman and DMA detection.
+DMA detection works in this script, port over to other scripts?
 
-George Toh 2020-04-20
+George Toh 2020-07-01
 """
 
 import time
@@ -23,26 +25,26 @@ import numpy as np
 import base_experiment
 
 
-class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
-    kernel_invariants = {"raman_time", "DDS__493__Alice__sigma_1__frequency", "DDS__493__Alice__sigma_2__frequency", "DDS__532__tone_1__frequency", "DDS__532__tone_2__frequency"}
+class Ba_Raman_Bob_DMA(base_experiment.base_experiment):
+    kernel_invariants = {"raman_time", "DDS__493__Bob__sigma_1__frequency", "DDS__493__Bob__sigma_2__frequency", "DDS__532__tone_1__frequency", "DDS__532__tone_2__frequency"}
 
     def build(self):
         super().build()
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
 
         self.setattr_device("core_dma")
-        self.detector = self.Alice_camera_side_APD
+        self.detector = self.Bob_camera_side_APD
 
-        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'raman_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
+        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'raman_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
         self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(1, 10000, 10000)], global_min=0, global_step=1, ndecimals=0))
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0*us, 3*self.globals__timing__raman_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('DDS__493__Alice__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Alice__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__493__Alice__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
         # self.setattr_argument('DDS__532__tone_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_1__frequency), CenterScan(self.globals__DDS__532__tone_1__frequency/MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         # self.setattr_argument('DDS__532__tone_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_2__frequency), CenterScan(self.globals__DDS__532__tone_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
 
@@ -67,12 +69,12 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
     def prep_record(self):
 
         with self.core_dma.record("pulses"):
-            self.urukul0_ch0.sw.off() # Alice 493 sigma 1
-            self.urukul3_ch0.sw.off() # Alice 493 sigma 2
-            self.urukul1_ch2.sw.on() # Alice 650 pi
+            self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
+            self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
+            self.urukul1_ch2.sw.on() # Bob 650 pi
             self.urukul1_ch0.sw.on() # 650 sigma 1
             self.urukul1_ch1.sw.on() # 650 sigma 2
-            self.urukul2_ch1.sw.off() # Alice 493 cooling
+            self.urukul2_ch1.sw.off() # Bob 493 cooling
             delay(8*ns)
             self.urukul2_ch2.sw.on()
             self.urukul2_ch3.sw.on()
@@ -92,40 +94,40 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
                 self.ttl14.off()
             delay(8*ns)
             with parallel:
-                self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
-                self.urukul3_ch0.sw.on()  # Alice 493 sigma 2
+                self.DDS__493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
+                self.DDS__493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
 
             delay(self.cooling_time)
 
             with parallel:
-                self.urukul0_ch0.sw.off()
-                self.urukul3_ch0.sw.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
 
             delay(1000*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch0.sw.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
             delay(self.pumping_time)
-            self.urukul0_ch0.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
 
-            delay(1000*ns)
-
+            delay(200*ns)
             # Raman
-            self.ttl14.pulse(self.raman_time)
+            # self.ttl14.pulse(self.raman_time)
             # with parallel:
             #     self.urukul2_ch2.sw.pulse(self.raman_time)
             #     self.urukul2_ch3.sw.pulse(self.raman_time)
             # #self.urukul2_ch3.sw.pulse(self.raman_time)
-
-            delay(1000*ns)
+            # delay(1000*ns)
+            
             # detection, sigma 1
             t11 = now_mu()
             gate_end_mu_11 = self.detector.gate_rising(self.detection_time)
-            at_mu(t11-1100)
-
-            self.urukul0_ch0.sw.on()
+            
+            # at_mu(t11-1100)
+            at_mu(t11 - 450)
+            self.DDS__493__Bob__sigma_1.sw.on()
             delay(self.detection_time)
-            self.urukul0_ch0.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
 
             delay(50*ns)
         return gate_end_mu_11
@@ -140,42 +142,42 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
                 self.ttl14.off()
             delay(8*ns)
             with parallel:
-                self.urukul0_ch0.sw.on()
-                self.urukul3_ch0.sw.on()
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
 
             delay(self.cooling_time)
 
             with parallel:
-                self.urukul0_ch0.sw.off()
-                self.urukul3_ch0.sw.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
 
             delay(1000*ns)
 
             # pumping, sigma 1
-            self.urukul0_ch0.sw.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
             delay(self.pumping_time)
-            self.urukul0_ch0.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
 
-            delay(1000*ns)
+            delay(200*ns)
 
             # Raman
-            self.ttl14.pulse(self.raman_time)
+            # self.ttl14.pulse(self.raman_time)
             # with parallel:
             #     self.urukul2_ch2.sw.pulse(self.raman_time)
             #     self.urukul2_ch3.sw.pulse(self.raman_time)
 
             #self.urukul2_ch3.sw.pulse(self.raman_time)
-
-            delay(1000*ns)
+            # delay(1000*ns)
 
             #detection, sigma 2
             t12 = now_mu()
             gate_end_mu_12 = self.detector.gate_rising(self.detection_time)
-            at_mu(t12-1100)
 
-            self.urukul3_ch0.sw.on()
+            # at_mu(t12 - 1100)
+            at_mu(t12 - 450)
+            self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
-            self.urukul3_ch0.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
 
         return gate_end_mu_12
 
@@ -269,12 +271,12 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
 
           # update DDS frequency and amplitude at each step
         delay(600*us)
-        self.urukul0_ch0.set_frequency(self.DDS__493__Alice__sigma_1__frequency)
+        self.DDS__493__Bob__sigma_1.set_frequency(self.DDS__493__Bob__sigma_1__frequency)
         self.core.break_realtime()
-        print(self.DDS__493__Alice__sigma_1__frequency)
+        # print(self.DDS__493__Bob__sigma_1__frequency)
         self.core.break_realtime()
         delay(600*us)
-        self.urukul3_ch0.set_frequency(self.DDS__493__Alice__sigma_2__frequency)
+        self.DDS__493__Bob__sigma_2.set_frequency(self.DDS__493__Bob__sigma_2__frequency)
         self.core.break_realtime()
         delay(600 * us)
         # self.urukul2_ch2.set(self.DDS__532__tone_1__frequency, phase=0.0)
@@ -289,6 +291,7 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
         gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()
         pulses_handle = self.core_dma.get_handle("pulses")
         self.core.break_realtime()
+
         for i in range(self.detections_per_point):
             delay_mu(5000)
             self.core_dma.playback_handle(pulses_handle)

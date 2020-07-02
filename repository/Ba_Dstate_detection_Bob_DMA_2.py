@@ -215,7 +215,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(200)
+                    delay_mu(450)
                     gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
             delay_mu(200)
@@ -223,7 +223,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(200)
+                    delay_mu(450)
                     gate_end_mu_2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
             delay_mu(200)
@@ -231,7 +231,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(200)
+                    delay_mu(450)
                     gate_end_mu_3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
             delay_mu(200)
@@ -239,7 +239,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
                 with sequential:
-                    delay_mu(200)
+                    delay_mu(450)
                     gate_end_mu_13 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
             delay_mu(200)
@@ -247,7 +247,7 @@ class Ba_Dstate_detection_Bob_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool and pump
             with parallel:
                 with sequential:
-                    delay_mu(200)
+                    delay_mu(450)
                     gate_end_mu_23 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
             delay_mu(200)
