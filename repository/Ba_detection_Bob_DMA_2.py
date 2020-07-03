@@ -28,7 +28,7 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
         self.setattr_device("core_dma")
         # self.detector = self.Bob_camera_side_APD
 
-        self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']

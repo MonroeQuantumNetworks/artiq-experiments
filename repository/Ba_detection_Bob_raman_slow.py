@@ -20,7 +20,7 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
+class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -31,16 +31,18 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
+
+        self.setattr_argument('DDS__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__frequency), CenterScan(self.globals__DDS__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__frequency), CenterScan(self.globals__DDS__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
@@ -343,6 +345,12 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_1.sw.off()
 
+            self.DDS__532__Bob__tone_1.sw.on()
+            self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            self.DDS__532__Bob__tone_1.sw.off()
+            self.DDS__532__Bob__tone_2.sw.off()
+
     @kernel
     def record_pump_sigma2(self):
         """DMA detection loop sequence.
@@ -358,6 +366,12 @@ class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_2.sw.off()
+
+            self.DDS__532__Bob__tone_1.sw.on()
+            self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            self.DDS__532__Bob__tone_1.sw.off()
+            self.DDS__532__Bob__tone_2.sw.off()
 
     @kernel
     def record_detect1(self):
