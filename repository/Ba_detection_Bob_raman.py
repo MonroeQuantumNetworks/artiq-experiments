@@ -54,14 +54,16 @@ class Ba_detection_Bob_raman(base_experiment.base_experiment):
     def set_DDS_freq(self, channel, freq):
         self.core.reset()
         delay_mu(95000)
-        channel.set_frequency(freq)
+        # channel.set_frequency(freq)
+        channel.set(freq)
         delay_mu(6000)
 
     @kernel
     def set_DDS_amp(self, channel, amp):
         self.core.reset()
         delay_mu(95000)
-        channel.set_amplitude(amp)
+        # channel.set_amplitude(amp)
+        channel.set(amplitude=amp)
         delay_mu(6000)
 
 

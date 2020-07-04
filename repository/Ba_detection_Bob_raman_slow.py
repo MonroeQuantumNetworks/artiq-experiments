@@ -54,14 +54,16 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
     def set_DDS_freq(self, channel, freq):
         self.core.reset()
         delay_mu(95000)
-        channel.set_frequency(freq)
+        # channel.set_frequency(freq)
+        channel.set(freq)
         delay_mu(6000)
 
     @kernel
     def set_DDS_amp(self, channel, amp):
         self.core.reset()
         delay_mu(95000)
-        channel.set_amplitude(amp)
+        # channel.set_amplitude(amp)
+        channel.set(amplitude=amp)
         delay_mu(6000)
 
     def run(self):
@@ -144,6 +146,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                 for name in self.active_scan_names:
                     if name.startswith('DDS'):
                         if name.endswith('__frequency'):
+                            # print(name)
                             channel_name = name.rstrip('__frequency')
                             channel = getattr(self, channel_name)
                             self.set_DDS_freq(channel, getattr(self, name))
@@ -240,7 +243,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                     gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
-            delay_mu(5000)
+            delay_mu(2000)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
@@ -249,7 +252,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                     gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
-            delay_mu(5000)
+            delay_mu(2000)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             with parallel:
@@ -258,7 +261,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                     gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
-            delay_mu(5000)
+            delay_mu(2000)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             with parallel:
@@ -345,11 +348,15 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_1.sw.off()
 
+            self.ttl_Bob_650_pi.off()
+            self.ttl_650_fast_cw.off()
             self.DDS__532__Bob__tone_1.sw.on()
             self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
             self.DDS__532__Bob__tone_1.sw.off()
             self.DDS__532__Bob__tone_2.sw.off()
+            self.ttl_Bob_650_pi.on()
+            self.ttl_650_fast_cw.on()
 
     @kernel
     def record_pump_sigma2(self):
@@ -367,11 +374,15 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_2.sw.off()
 
+            self.ttl_Bob_650_pi.off()
+            self.ttl_650_fast_cw.off()
             self.DDS__532__Bob__tone_1.sw.on()
             self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
             self.DDS__532__Bob__tone_1.sw.off()
             self.DDS__532__Bob__tone_2.sw.off()
+            self.ttl_Bob_650_pi.on()
+            self.ttl_650_fast_cw.on()
 
     @kernel
     def record_detect1(self):
