@@ -65,7 +65,7 @@
     "globals.DDS.532.Alice.tone_2.switch": false,
     "globals.DDS.532.Bob.tone_1.amplitude": 0.5,
     "globals.DDS.532.Bob.tone_1.attenuation": 17.0,
-    "globals.DDS.532.Bob.tone_1.frequency": 75899999.99999996,
+    "globals.DDS.532.Bob.tone_1.frequency": 76000000.0,
     "globals.DDS.532.Bob.tone_1.switch": false,
     "globals.DDS.532.Bob.tone_2.amplitude": 0.5,
     "globals.DDS.532.Bob.tone_2.attenuation": 17.0,
