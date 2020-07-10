@@ -5,9 +5,11 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
 Known issues:
     non-DMA detection, slow
-    Long delay between cool and pump >250 usec
+    NoScan Frequency DOES NOTHING
+    Scanning frequency locks amp at 0.5
+    Scan amplitude probably does not work, change in Settings instead.
 
-George Toh 2020-06-15
+George Toh 2020-07-10
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
