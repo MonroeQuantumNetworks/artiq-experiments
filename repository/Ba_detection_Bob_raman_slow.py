@@ -142,6 +142,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
                 # update DDS if scanning DDS
+                    # I should re-vamp this to update the frequency and amplitude all the time.
                 for name in self.active_scan_names:
                     if name.startswith('DDS'):
                         if name.endswith('__frequency'):
@@ -149,7 +150,6 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                             channel_name = name.rstrip('__frequency')
                             channel = getattr(self, channel_name)
                             self.set_DDS_freq(channel, getattr(self, name))
-                            # self.set_DDS_amp(channel, 0.5)
                         if name.endswith('__amplitude'):
                             channel_name = name.rstrip('__amplitude')
                             channel = getattr(self, channel_name)
