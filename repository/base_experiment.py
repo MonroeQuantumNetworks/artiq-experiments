@@ -54,8 +54,8 @@ class base_experiment(EnvExperiment):
         ('532__Alice__tone_1', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
         ('532__Alice__tone_2', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
         ('urukul3_ch0', 'urukul3_ch0', 85*MHz, 1.0, 10.0, True),
-        ('Bob_trap_RF', 'urukul3_ch1', 14.0111*MHz, 0.51, 20.0, True),
-        ('532__Bob__tone_1', 'urukul3_ch2', 76 * MHz, 0.5, 17.0, False),
+        ('532__Bob__tone_1', 'urukul3_ch1', 76*MHz, 0.5, 17, True),
+        ('urukul3_ch2', 'urukul3_ch2', 76 * MHz, 0.5, 17.0, False),
         ('532__Bob__tone_2', 'urukul3_ch3', 83 * MHz, 0.5, 17.0, False)
     ]
 
