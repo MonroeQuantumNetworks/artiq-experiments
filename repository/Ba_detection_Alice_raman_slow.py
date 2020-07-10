@@ -55,7 +55,8 @@ class Ba_detection_Alice_raman_slow(base_experiment.base_experiment):
         self.core.reset()
         delay_mu(95000)
         # channel.set_frequency(freq)   # This syntax does seemingly nothing
-        channel.set(freq)
+        channel.set(freq, amplitude=0.5)    # Necessary to set the amplitude as well
+        # This is amp=0.5 is a temporary fix until I figure out a different solution
         delay_mu(6000)
 
     @kernel

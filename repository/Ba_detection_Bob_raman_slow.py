@@ -55,15 +55,17 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
         self.core.reset()
         delay_mu(95000)
         # channel.set_frequency(freq)   # This syntax does seemingly nothing
-        channel.set(freq)
+        # channel.set(freq)             # This resets the amplitude to something lower
+        channel.set(freq, amplitude=0.5)    # Necessary to set the amplitude as well
+        # This is amp=0.5 is a temporary fix until I figure out a different solution
         delay_mu(6000)
 
     @kernel
     def set_DDS_amp(self, channel, amp):
         self.core.reset()
         delay_mu(95000)
-        # channel.set_amplitude(amp)
-        channel.set(amplitude=amp)
+        channel.set_amplitude(amp)
+        # channel.set(amplitude=amp)    # Need to set amplitude too
         delay_mu(6000)
 
     def run(self):
@@ -147,6 +149,7 @@ class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
                             channel_name = name.rstrip('__frequency')
                             channel = getattr(self, channel_name)
                             self.set_DDS_freq(channel, getattr(self, name))
+                            # self.set_DDS_amp(channel, 0.5)
                         if name.endswith('__amplitude'):
                             channel_name = name.rstrip('__amplitude')
                             channel = getattr(self, channel_name)
