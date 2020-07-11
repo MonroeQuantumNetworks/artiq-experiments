@@ -1,5 +1,5 @@
 """ Legacy script
-Alice Barium Single Photon Excitation script
+Bob Barium Single Photon Excitation script
 
     Appears to be a simple script to run the single photon excitation scheme infinite times
     Writes a mega long DMA sequence (repeated 2000 times)
@@ -22,7 +22,7 @@ import os
 import time
 
 
-class Ba_Excitation_Alice(base_experiment.base_experiment):
+class Bob_Ba_Excitation(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -34,12 +34,12 @@ class Ba_Excitation_Alice(base_experiment.base_experiment):
 
     @kernel
     def prep(self):
-        self.urukul0_ch0.sw.off() # Alice 493 sigma 1
-        self.urukul3_ch0.sw.off() # Alice 493 sigma 2
-        self.urukul1_ch2.sw.off() # Alice 650 pi
+        self.urukul0_ch2.sw.off() # Bob 493 sigma 1
+        self.urukul0_ch3.sw.off() # Bob 493 sigma 2
+        self.urukul1_ch3.sw.off() # Bob 650 pi
         self.urukul1_ch0.sw.off() # 650 sigma 1
         self.urukul1_ch1.sw.off() # 650 sigma 2
-        self.urukul2_ch1.sw.off() # Alice 493 cooling
+        self.urukul2_ch1.sw.off() # Bob 493 cooling
         self.ttl11.off() # This turns on/off the CW mode of 650 sigma
         delay(10*ns)
         self.ttl8.off() # This TTL controls the pulsing of the 650 sigma
@@ -55,51 +55,69 @@ class Ba_Excitation_Alice(base_experiment.base_experiment):
                 self.ttl11.on() #650 CW switch on (no DDS to sigma AOMs yet)
                 delay(100*ns)
 
-                # 650 sigma 2 needs to be turned on 726 ns before other beams
+                # 493 sigma 2 needs to be turned on 330 ns before other beams
                 t0 = now_mu()
-                self.urukul1_ch1.sw.on() # Alice 650 sigma 2
-                at_mu(t0+726)
+                self.urukul0_ch3.sw.on()
+                at_mu(t0+260)
+                self.urukul0_ch2.sw.on()
 
                 with parallel:
-                    self.urukul1_ch2.sw.on()  # Alice 650 pi
+                    self.urukul1_ch3.sw.on()  # Bob 650 pi
                     self.urukul1_ch0.sw.on() # 650 sigma 1
-                    self.urukul3_ch0.sw.on() # Alice 493 sigma 2
+                    self.urukul1_ch1.sw.on() # 650 sigma 2
+                    self.urukul0_ch3.sw.on() # Bob 493 sigma 2
+                    #self.urukul0_ch2.sw.on()  # Bob 493 sigma 1
 
-                # 493 sigma 1 needs to be turned on 267 ns after other beams
-                at_mu(t0 + 267 + 726)
-                self.urukul0_ch0.sw.on()  # Alice 493 sigma 1
+                delay(1*us)
 
+                # t1 = now_mu()
+                # self.urukul0_ch3.sw.off()
+                # at_mu(t1+260)
+                # self.urukul0_ch2.sw.off()
+                # at_mu(t1+330)
+                #
+                # with parallel:
+                #     self.urukul1_ch3.sw.off()
+                #     self.urukul1_ch0.sw.off()
+                #     self.urukul1_ch1.sw.off()
+                #     # self.urukul0_ch3.sw.off()
+                #     self.urukul0_ch2.sw.off()
+                #
+                # delay(1*us)
+                #
+                # # Pumping--all 493 beams on, 650 sigma 2 and pi on--fast AOM should be on
+                # t2 = now_mu()
+                # self.urukul0_ch3.sw.on()
+                # at_mu(t2+260)
+                # self.urukul0_ch2.sw.on()
+                # at_mu(t2+330)
+                #
+                # with parallel:
+                #     self.urukul1_ch3.sw.on()
+                #     self.urukul1_ch1.sw.on()
+                #     self.urukul0_ch3.sw.on()
+                #     # self.urukul0_ch2.sw.on()
 
-                # Pumping--all 493 beams on, 650 sigma 2 and pi on--fast AOM should be on
                 self.urukul1_ch0.sw.off()
-                delay(3*us) # pumping time
+                delay(3*us)
 
                 # Prepare for excitation--all beams off, but sigma 2 AOM on (beam will be off because fast AOM will be off)
-                t1 = now_mu()
-                self.urukul1_ch1.sw.off()
-                at_mu(t1 + 726)
-
                 with parallel:
                     self.ttl11.off() # 650 fast AOM, CW
-                    self.urukul1_ch2.sw.off()
-                    self.urukul3_ch0.sw.on()
+                    self.urukul1_ch3.sw.off()
+                    self.urukul0_ch3.sw.off()
+                    self.urukul0_ch2.sw.off()
+                    self.urukul1_ch1.sw.off()
+                    self.urukul1_ch0.sw.on() # 650 sigma 1
 
-                at_mu(t1+726+267)
-                self.urukul0_ch0.sw.off()
-
-
-                delay(1000*ns)
-
-                self.urukul1_ch0.sw.on() # 650 sigma 1
-
-                delay(600*ns)
+                delay(1500*ns)
 
                 # Excite
                 self.ttl8.pulse(100*ns)
-
+                delay(100*ns)
                 self.urukul1_ch0.sw.off()
 
-                delay(700*ns)
+                delay(1000*ns)
 
 
     @kernel

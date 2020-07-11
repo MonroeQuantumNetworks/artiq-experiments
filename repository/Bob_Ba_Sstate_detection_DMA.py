@@ -20,7 +20,8 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Bob_DMA_2(base_experiment.base_experiment):
+
+class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     def build(self):
         super().build()

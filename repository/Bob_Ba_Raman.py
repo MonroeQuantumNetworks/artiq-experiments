@@ -22,7 +22,8 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Bob_raman_slow(base_experiment.base_experiment):
+
+class Bob_Ba_Raman(base_experiment.base_experiment):
 
     def build(self):
         super().build()

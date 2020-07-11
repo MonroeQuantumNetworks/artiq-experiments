@@ -22,7 +22,7 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Alice_raman_slow(base_experiment.base_experiment):
+class Alice_Ba_Raman(base_experiment.base_experiment):
 
     def build(self):
         super().build()

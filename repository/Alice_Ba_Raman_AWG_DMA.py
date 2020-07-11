@@ -26,7 +26,7 @@ import base_experiment
 from Lecroy1102 import Lecroy1102
 
 
-class Ba_Raman_Alice_AWG_DMA(base_experiment.base_experiment):
+class Alice_Ba_Raman_AWG_DMA(base_experiment.base_experiment):
     kernel_invariants = {"raman_time", "cooling_time", "pumping_time", "detection_time"}
 
     def build(self):

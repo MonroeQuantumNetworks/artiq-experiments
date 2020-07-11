@@ -21,7 +21,7 @@ import base_experiment
 import os
 import time
 
-class Ba_detection_Alice_DMA_2(base_experiment.base_experiment):
+class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     def build(self):
         super().build()
