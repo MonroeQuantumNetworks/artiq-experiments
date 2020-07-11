@@ -33,7 +33,7 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
         self.setattr_device("core_dma")
         self.detector = self.Alice_camera_side_APD
 
-        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'raman_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude','DDS__532__tone_1__frequency', 'DDS__532__tone_2__frequency']
+        self.scan_names = ['dummy', 'cooling_time', 'pumping_time', 'detection_time', 'raman_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
         self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(1, 10000, 10000)], global_min=0, global_step=1, ndecimals=0))
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan', Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 100) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -43,8 +43,8 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
         self.setattr_argument('DDS__493__Alice__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__frequency), CenterScan(self.globals__DDS__493__Alice__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__493__Alice__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('DDS__493__Alice__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Alice__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__tone_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_1__frequency), CenterScan(self.globals__DDS__532__tone_1__frequency/MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__tone_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_2__frequency), CenterScan(self.globals__DDS__532__tone_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__532__tone_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_1__frequency), CenterScan(self.globals__DDS__532__tone_1__frequency/MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        # self.setattr_argument('DDS__532__tone_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__532__tone_2__frequency), CenterScan(self.globals__DDS__532__tone_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
 
 
         self.sum11 = 1
@@ -277,10 +277,10 @@ class Ba_Raman_Alice_DMA(base_experiment.base_experiment):
         self.urukul3_ch0.set_frequency(self.DDS__493__Alice__sigma_2__frequency)
         self.core.break_realtime()
         delay(600 * us)
-        self.urukul2_ch2.set(self.DDS__532__tone_1__frequency, phase=0.0)
+        # self.urukul2_ch2.set(self.DDS__532__tone_1__frequency, phase=0.0)
         self.core.break_realtime()
         delay(600*us)
-        self.urukul2_ch3.set(self.DDS__532__tone_2__frequency, phase=0.1)
+        # self.urukul2_ch3.set(self.DDS__532__tone_2__frequency, phase=0.1)
         self.core.break_realtime()
         delay(600 * us)
         self.core.reset()
