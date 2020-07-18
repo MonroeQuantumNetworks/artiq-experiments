@@ -59,7 +59,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
         delay_mu(95000)
         # channel.set_frequency(freq)   # This syntax does seemingly nothing
         # channel.set(freq)             # This resets the amplitude to something lower
-        channel.set(freq, amplitude=0.5)    # Necessary to set the amplitude as well
+        channel.set(freq, amplitude=0.3)    # Necessary to set the amplitude as well
         # This is amp=0.5 is a temporary fix until I figure out a different solution
         delay_mu(6000)
 
@@ -189,7 +189,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
             print('Terminated gracefully')
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
-
+        # print(RID)
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
         self.setup()        # This sends settings out to the ARTIQ hardware
@@ -372,76 +372,3 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
 
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
-            self.DDS__493__Bob__sigma_2.sw.off()
-
-    # @kernel
-    # def run_detection21(self):
-    #     """Non-DMA detection loop sequence.
-    #     This generates the pulse sequence needed for detection with 493 sigma 1
-    #     """
-    #     self.core.break_realtime()
-    #     delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-    #
-    #     self.DDS__493__Bob__sigma_2.sw.on()
-    #     delay(self.pumping_time)
-    #     self.DDS__493__Bob__sigma_2.sw.off()
-    #
-    #     t1 = now_mu()
-    #     with parallel:
-    #         # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-    #         gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-    #
-    #     at_mu(t1)
-    #     with parallel:
-    #         # self.ttl_Bob_650_pi.pulse(self.detection_time)
-    #         self.ttl_650_fast_cw.pulse(self.detection_time)
-    #         self.ttl_650_sigma_1.pulse(self.detection_time)
-    #         self.ttl_650_sigma_2.pulse(self.detection_time)
-    #         # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-    #         self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
-    #
-    #     Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
-    #
-    #     return Bob_counts
-    #
-    # @kernel
-    # def run_detection22(self):
-    #     """Non-DMA detection loop sequence.
-    #     This generates the pulse sequence needed for detection with 493 sigma 2
-    #     """
-    #     self.core.break_realtime()
-    #     delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-    #
-    #     self.DDS__493__Bob__sigma_2.sw.on()
-    #     delay(self.pumping_time)
-    #     self.DDS__493__Bob__sigma_2.sw.off()
-    #
-    #     t1 = now_mu()
-    #     with parallel:
-    #         # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-    #         gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-    #
-    #     at_mu(t1)
-    #     with parallel:
-    #         # self.ttl_Bob_650_pi.pulse(self.detection_time)
-    #         self.ttl_650_fast_cw.pulse(self.detection_time)
-    #         self.ttl_650_sigma_1.pulse(self.detection_time)
-    #         self.ttl_650_sigma_2.pulse(self.detection_time)
-    #         # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-    #         self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
-    #
-    #     Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B2)
-    #
-    #     return Bob_counts
-
-    # @kernel
-    # def record_cool(self):
-    #     """DMA detection loop sequence.
-    #     This generates the pulse sequence needed for pumping with 493 sigma 1
-    #     """
-    #     with self.core_dma.record("pulses_cool"):
-    #         self.DDS__493__Bob__sigma_1.sw.on()
-    #         self.DDS__493__Bob__sigma_2.sw.on()
-    #         delay(self.cooling_time)
-    #         self.DDS__493__Bob__sigma_1.sw.off()
-    #         self.DDS__493__Bob__sigma_2.sw.off()

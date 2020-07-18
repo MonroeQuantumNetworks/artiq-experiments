@@ -299,15 +299,18 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_fast_cw.on()
             delay_mu(1000)
             self.DDS__493__Alice__sigma_1.sw.on()
-            # delay_mu(1000)
+            delay_mu(1000)
             self.DDS__493__Alice__sigma_2.sw.on()
-            delay_mu(2000)
+            delay_mu(1000)
             self.ttl_Alice_650_pi.on()
             delay_mu(1000)
-
             self.ttl_650_sigma_1.on()
             delay_mu(1000)
             self.ttl_650_sigma_2.on()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.off()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.on()
 
             # delay(self.delay_one)       # In case some additional delay is needed
             #
@@ -318,7 +321,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             #
             # delay(self.delay_three)
 
-            delay_mu(2000)
+            delay_mu(10000)
 
             with parallel:
                 self.ttl_Alice_650_pi.off()
@@ -399,14 +402,14 @@ class Alice_Timing_Test(base_experiment.base_experiment):
 
              # Turn on the slow AOM first, no 650 light because 650 fast is off
             if self.pump_650sigma_1or2 == 1:
-                self.ttl_650_sigma_2.on()
+               self.ttl_650_sigma_2.on()
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay_mu(100)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay_mu(200)       # Wait 100 ns so that the slow AOMs are fully turned on
 
-            # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+            self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            #self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
             delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced

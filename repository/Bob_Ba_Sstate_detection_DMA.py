@@ -20,7 +20,6 @@ import base_experiment
 import os
 import time
 
-
 class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     def build(self):

@@ -22,13 +22,12 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Raman(base_experiment.base_experiment):
+class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
     def build(self):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        self.setattr_device("scheduler")
         # self.detector = self.Alice_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
@@ -74,9 +73,6 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
-        self.set_dataset('runid', [], broadcast=True, archive=False)
-
-        self.append_to_dataset('runid', self.scheduler.rid)
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -84,13 +80,12 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
         applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
         self.ccb.issue(
             "create_applet",
-            name="Detection_Counts",
+            name="Raman_Ratios_Fit",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "sum11 sum12 sum21 sum22"
-            # + " --x-fit " + "xfitdataset"
-            # + " --y-fits " + "yfitdataset"
-            + " --rid " + "runid"
+            + " --y-names " + "ratio11 ratio12"
+            + " --x-fit " + "xfitdataset"
+            + " --y-fits " + "yfitdataset11 yfitdataset12"
             + " --y-label "
             + "'"
             + ylabel
@@ -124,7 +119,7 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
             # This silly three lines counts the number of points we need to scan
             point_num = 0
             for point in msm: point_num += 1
-            print(point_num, self.scheduler.rid)
+            print(point_num)
 
             # assume a 1D scan for plotting
             self.set_dataset('scan_x', [], broadcast=True, archive=True)
@@ -132,6 +127,14 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
             self.set_dataset('sum12', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
+
+            self.set_dataset('ratio11', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('ratio12', np.zeros(point_num), broadcast=True, archive=True)
+
+            self.fit_num = 50
+            self.set_dataset('xfitdataset', np.zeros(self.fit_num), broadcast=True, archive=True)
+            self.set_dataset('yfitdataset11', np.zeros(self.fit_num), broadcast=True, archive=True)
+            self.set_dataset('yfitdataset12', np.zeros(self.fit_num), broadcast=True, archive=True)
 
             t_now = time.time()  # Save the current time
 
@@ -170,6 +173,8 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
                 self.mutate_dataset('sum11', point_num, self.sum11)
                 self.mutate_dataset('sum12', point_num, self.sum12)
+                self.mutate_dataset('ratio11', point_num, ratio11)
+                self.mutate_dataset('ratio12', point_num, ratio12)
 
                 # # For pumping with sigma2
                 ratio21 = self.sum21 / (self.sum21 + self.sum22)
@@ -189,6 +194,9 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
         except TerminationRequested:
             print('Terminated gracefully')
+
+        # Do curve fitting in this function
+        self.fit_data()
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
@@ -375,3 +383,13 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.detection_time)
             self.DDS__493__Alice__sigma_2.sw.off()
+
+    def fit_data(self):
+        """ Do curve fitting of data and display on graph here"""
+
+        # Number of points to plot
+
+        for i in range(0, self.fit_num):
+            self.mutate_dataset('xfitdataset', i, i)
+            self.mutate_dataset('yfitdataset11', i, np.sin(i/4))
+            self.mutate_dataset('yfitdataset12', i, np.cos(i / 4))
