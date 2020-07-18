@@ -74,6 +74,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
+        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
         xlabel = "Scanned variable"
@@ -86,6 +89,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             + " --y-names " + "ratio11 ratio12"
             + " --x-fit " + "xfitdataset"
             + " --y-fits " + "yfitdataset11 yfitdataset12"
+            + " --rid " + "runid"            
             + " --y-label "
             + "'"
             + ylabel
@@ -96,7 +100,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             + "'"
         )
 
-        # Also, turn on Ba_ratios and Ba_ratios_2 to plot the figures
+        # Also, turn on Ba_ratios 
 
         try:
 
