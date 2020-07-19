@@ -51,8 +51,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['D_{-3/2}', 'D_{-1/2}', 'D_{1/2}', 'D_{3/2}']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
-        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
-        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
         
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -406,6 +405,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
                 self.ttl_650_sigma_2.on()
 
             delay(self.detection_time)
+            
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_2.off()

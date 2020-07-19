@@ -64,15 +64,10 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     def run(self):
 
-        # self.set_dataset('ratio_list11', [], broadcast=True, archive=True)
-        # self.set_dataset('ratio_list12', [], broadcast=True, archive=True)
-
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
-        # self.set_dataset('Ba_detection_names2', [bytes(i, 'utf-8') for i in ['detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
-        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
-        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)         # This is for display of RUNID on the figure
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -189,10 +184,6 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     @kernel
     def kernel_run(self):
-        counts11 = 0
-        counts12 = 0
-        counts21 = 0
-        counts22 = 0
 
         sum11 = 0
         sum12 = 0
@@ -206,9 +197,8 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         self.record_pump_sigma2()
         self.record_detect1()
         self.record_detect2()
-        # self.record_cool()
+
         prep_handle = self.core_dma.get_handle("pulses_prep")
-        # cool_handle = self.core_dma.get_handle("pulses_cool")
         pulses_handle10 = self.core_dma.get_handle("pulses10")
         pulses_handle01 = self.core_dma.get_handle("pulses01")
         pulses_handle20 = self.core_dma.get_handle("pulses20")
@@ -216,52 +206,41 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         self.core.break_realtime()
         self.core_dma.playback_handle(prep_handle) # Turn on the 650 lasers
 
-        # Pump sigma 1, detect sigma 1
-        # gate_end_mu_11 = self.record_pump_sigma1_detect_sigma1()    # This pre-records the DMA sequence
-        # for i in range(self.detections_per_point):
-        #     pulses_handle = self.core_dma.get_handle("pulses")      # I'm not sure this needs to be in the loop
-        #     self.core.break_realtime()                              # Generate sufficient slack (125 us might be too much)
-        #     self.core_dma.playback_handle(pulses_handle)            # Playback the cool/pump/detect sequence
-        #     counts11 = self.detector.count(gate_end_mu_11)
-        #     sum11 += counts11
-        # self.sum11 = sum11
-
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1            # For detect sigma2
+        delay2 = delay1                 # For detect sigma2
 
         for i in range(self.detections_per_point):
 
-            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
+            self.core.break_realtime()  # This makes underflow errors less likely
+            delay_mu(200000)        # Each pulse sequence needs about 70 us of slack to run
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
                     gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
-            delay_mu(5000)
-
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
                     gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
-            delay_mu(5000)
-
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
-            delay_mu(5000)
-
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -274,40 +253,9 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             sum22 += self.Bob_camera_side_APD.count(gate_end_mu_B4)
 
         self.sum11 = sum11
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle02)
-        #     sum12 += self.Bob_camera_side_APD.count(gate_end_mu_B2)
-
         self.sum12 = sum12
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle01)
-        #     sum21 += self.Bob_camera_side_APD.count(gate_end_mu_B3)
-
         self.sum21 = sum21
-
-        # for i in range(self.detections_per_point):
-        #
-        #     delay(85000*ns)
-        #     self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-        #     with parallel:
-        #         gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-        #         self.core_dma.playback_handle(pulses_handle02)
-        #     sum22 += self.Bob_camera_side_APD.count(gate_end_mu_B4)
-
         self.sum22 = sum22
-
 
     # ARTIQ example
     # Using gateware counters, only a single input event each is
@@ -339,10 +287,10 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Bob__sigma_1.sw.on()
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.cooling_time)
-            self.DDS__493__Bob__sigma_1.sw.off()
+            # self.DDS__493__Bob__sigma_1.sw.off()
             self.DDS__493__Bob__sigma_2.sw.off()
 
-            self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_1.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_1.sw.off()
 
@@ -356,9 +304,9 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.cooling_time)
             self.DDS__493__Bob__sigma_1.sw.off()
-            self.DDS__493__Bob__sigma_2.sw.off()
+            # self.DDS__493__Bob__sigma_2.sw.off()
 
-            self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Bob__sigma_2.sw.off()
 
@@ -384,74 +332,3 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             delay(self.detection_time)
             self.DDS__493__Bob__sigma_2.sw.off()
 
-    # @kernel
-    # def run_detection21(self):
-    #     """Non-DMA detection loop sequence.
-    #     This generates the pulse sequence needed for detection with 493 sigma 1
-    #     """
-    #     self.core.break_realtime()
-    #     delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-    #
-    #     self.DDS__493__Bob__sigma_2.sw.on()
-    #     delay(self.pumping_time)
-    #     self.DDS__493__Bob__sigma_2.sw.off()
-    #
-    #     t1 = now_mu()
-    #     with parallel:
-    #         # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-    #         gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-    #
-    #     at_mu(t1)
-    #     with parallel:
-    #         # self.ttl_Bob_650_pi.pulse(self.detection_time)
-    #         self.ttl_650_fast_cw.pulse(self.detection_time)
-    #         self.ttl_650_sigma_1.pulse(self.detection_time)
-    #         self.ttl_650_sigma_2.pulse(self.detection_time)
-    #         # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-    #         self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
-    #
-    #     Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
-    #
-    #     return Bob_counts
-    #
-    # @kernel
-    # def run_detection22(self):
-    #     """Non-DMA detection loop sequence.
-    #     This generates the pulse sequence needed for detection with 493 sigma 2
-    #     """
-    #     self.core.break_realtime()
-    #     delay(250000 * ns)          # This extremely long delay is needed for rtio overflow
-    #
-    #     self.DDS__493__Bob__sigma_2.sw.on()
-    #     delay(self.pumping_time)
-    #     self.DDS__493__Bob__sigma_2.sw.off()
-    #
-    #     t1 = now_mu()
-    #     with parallel:
-    #         # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-    #         gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-    #
-    #     at_mu(t1)
-    #     with parallel:
-    #         # self.ttl_Bob_650_pi.pulse(self.detection_time)
-    #         self.ttl_650_fast_cw.pulse(self.detection_time)
-    #         self.ttl_650_sigma_1.pulse(self.detection_time)
-    #         self.ttl_650_sigma_2.pulse(self.detection_time)
-    #         # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-    #         self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
-    #
-    #     Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B2)
-    #
-    #     return Bob_counts
-
-    # @kernel
-    # def record_cool(self):
-    #     """DMA detection loop sequence.
-    #     This generates the pulse sequence needed for pumping with 493 sigma 1
-    #     """
-    #     with self.core_dma.record("pulses_cool"):
-    #         self.DDS__493__Bob__sigma_1.sw.on()
-    #         self.DDS__493__Bob__sigma_2.sw.on()
-    #         delay(self.cooling_time)
-    #         self.DDS__493__Bob__sigma_1.sw.off()
-    #         self.DDS__493__Bob__sigma_2.sw.off()

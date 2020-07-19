@@ -41,10 +41,10 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), CenterScan(self.globals__DDS__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), CenterScan(self.globals__DDS__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7, 76.9, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9, 83.1 , 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
@@ -74,8 +74,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
-        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
-        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -111,7 +110,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             for name, scan in self.scans:
                 if isinstance(scan, NoScan):
                     # just set the single value
-                    setattr(self, name, scan.value)
+                    setattr(self, name, scan.value)     # Does this set 532-amplitude and 532 frequency too?
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)

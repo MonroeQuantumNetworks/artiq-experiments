@@ -76,7 +76,7 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
-        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+        # self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"

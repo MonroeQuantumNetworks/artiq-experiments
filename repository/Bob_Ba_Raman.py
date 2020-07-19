@@ -76,8 +76,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
-        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)
-        self.append_to_dataset('runid', self.scheduler.rid)     # This is for display of RUNID on the figure
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -376,3 +375,4 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
 
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
+            self.DDS__493__Bob__sigma_2.sw.off()

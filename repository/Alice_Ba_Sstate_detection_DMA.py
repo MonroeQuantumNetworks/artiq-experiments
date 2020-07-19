@@ -65,15 +65,10 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     def run(self):
 
-        # self.set_dataset('ratio_list11', [], broadcast=True, archive=True)
-        # self.set_dataset('ratio_list12', [], broadcast=True, archive=True)
-
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
-        # self.set_dataset('Ba_detection_names2', [bytes(i, 'utf-8') for i in ['detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
-        # self.set_dataset('ratio_list2', [], broadcast=True, archive=True)
-        # self.set_dataset('sum21', [], broadcast=True, archive=True)
-        # self.set_dataset('sum22', [], broadcast=True, archive=True)
+
+        self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
@@ -97,7 +92,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             + "'"
         )
 
-        # Also, turn on Ba_ratios and Ba_ratios_2 to plot the figures
+        # Also, turn on Ba_ratios to plot the figures
 
         try:
 
@@ -204,9 +199,8 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         self.record_pump_sigma2()
         self.record_detect1()
         self.record_detect2()
-        # self.record_cool()
+
         prep_handle = self.core_dma.get_handle("pulses_prep")
-        # cool_handle = self.core_dma.get_handle("pulses_cool")
         pulses_handle10 = self.core_dma.get_handle("pulses10")
         pulses_handle01 = self.core_dma.get_handle("pulses01")
         pulses_handle20 = self.core_dma.get_handle("pulses20")
@@ -281,7 +275,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_prep"):
             self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
-            # self.ttl_Alice_650_pi.on() # Bob 650 pi
+            self.ttl_Alice_650_pi.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
             self.ttl_650_sigma_1.on() # 650 sigma 1
             self.ttl_650_sigma_2.on() # 650 sigma 2
@@ -295,10 +289,10 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
-            self.DDS__493__Alice__sigma_1.sw.off()
+            # self.DDS__493__Alice__sigma_1.sw.off()
             self.DDS__493__Alice__sigma_2.sw.off()
 
-            self.DDS__493__Alice__sigma_1.sw.on()
+            # self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_1.sw.off()
 
@@ -312,9 +306,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
             self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
+            # self.DDS__493__Alice__sigma_2.sw.off()
 
-            self.DDS__493__Alice__sigma_2.sw.on()
+            # self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_2.sw.off()
 
@@ -339,15 +333,3 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.detection_time)
             self.DDS__493__Alice__sigma_2.sw.off()
-
-    # @kernel
-    # def record_cool(self):
-    #     """DMA detection loop sequence.
-    #     This generates the pulse sequence needed for pumping with 493 sigma 1
-    #     """
-    #     with self.core_dma.record("pulses_cool"):
-    #         self.DDS__493__Alice__sigma_1.sw.on()
-    #         self.DDS__493__Alice__sigma_2.sw.on()
-    #         delay(self.cooling_time)
-    #         self.DDS__493__Alice__sigma_1.sw.off()
-    #         self.DDS__493__Alice__sigma_2.sw.off()
