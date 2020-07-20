@@ -87,7 +87,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "ratio11 ratio12"
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset11 yfitdataset12"
+            + " --y-fits " + "yfitdataset21 yfitdataset22"
             + " --rid " + "runid"            
             + " --y-label "
             + "'"
@@ -390,9 +390,56 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
     def fit_data(self):
         """ Do curve fitting of data and display on graph here"""
 
+        import matplotlib.pyplot as plt
+        import h5py
+        import numpy as np
+        from scipy import optimize
+        import lmfit.models as fit
+        from lmfit import Model
+
         # Number of points to plot
 
-        for i in range(0, self.fit_num):
-            self.mutate_dataset('xfitdataset', i, i)
-            self.mutate_dataset('yfitdataset11', i, np.sin(i/4))
-            self.mutate_dataset('yfitdataset12', i, np.cos(i / 4))
+        # for i in range(0, self.fit_num):
+            # self.mutate_dataset('xfitdataset', i, i)
+            # self.mutate_dataset('yfitdataset11', i, np.sin(i/4))
+            # self.mutate_dataset('yfitdataset12', i, np.cos(i / 4))
+                
+        def cos_func(x, amp, phase, pitime):
+            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
+
+        def cos_decay(x, amp, phase, pitime, decayt):
+            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
+
+        ratios = self.get_dataset('ratio_list')
+
+        detect11 = ratios[:,0]
+        detect12 = ratios[:,1]
+        detect21 = ratios[:,2]
+        detect22 = ratios[:,3]
+
+        # Change this to the dataset you want to fit
+        datatofit = detect21
+
+        initialparams = [1,0,4]
+        fitbounds = ([0.5,-6.3,0],[1,6.3,4.5])
+
+        results1, covariances = optimize.curve_fit(cos_func, scanx[1:30], datatofit[1:30], p0=initialparams,maxfev=100000, bounds = fitbounds)
+        print('Fit results: ', results1)
+
+        fitbounds = ([0.5,-6.3,0,0],[1,100,4.5,10000])
+
+        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,300],maxfev=100000, bounds = fitbounds)
+        print('Fit results: ', results2)
+
+        fittedx = np.arange(0,100,0.2)
+        # fitresult1 = cos_func(scanx, *results1)
+        fitresult2 = cos_decay(fittedx, *results2)
+
+        self.set_dataset('xfitdataset', fittedx)
+        self.set_dataset('yfitdataset21', fitresult2)
+        self.set_dataset('yfitdataset22', np.zeros(100))
+
+        print("Amplitude: {:0.2f}".format(results2[0]), " ")
+        print("Phase: {:0.2f}".format(results2[1]), " ")
+        print("Pi Time: {:0.2f}".format(results2[2]), " us")
+        print("Lifetime: {:0.0f}".format(results2[3]), " us")
