@@ -57,7 +57,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.core.reset()
         delay_mu(95000)
         # channel.set_frequency(freq)   # This syntax does seemingly nothing
-        channel.set(freq, amplitude=0.5)    # Necessary to set the amplitude as well
+        channel.set(freq, amplitude=0.45)    # Necessary to set the amplitude as well
         # This is amp=0.5 is a temporary fix until I figure out a different solution
         delay_mu(6000)
 
@@ -85,9 +85,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             name="Raman_Ratios_Fit",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "ratio11 ratio12"
+            + " --y-names " + "ratio21"
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset21 yfitdataset22"
+            + " --y-fits " + "yfitdataset21"
             + " --rid " + "runid"            
             + " --y-label "
             + "'"
@@ -131,13 +131,12 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
 
-            self.set_dataset('ratio11', np.zeros(point_num), broadcast=True, archive=True)
-            self.set_dataset('ratio12', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('ratio21', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('ratio22', np.zeros(point_num), broadcast=True, archive=True)
 
-            self.fit_num = 50
-            self.set_dataset('xfitdataset', np.zeros(self.fit_num), broadcast=True, archive=True)
-            self.set_dataset('yfitdataset11', np.zeros(self.fit_num), broadcast=True, archive=True)
-            self.set_dataset('yfitdataset12', np.zeros(self.fit_num), broadcast=True, archive=True)
+            self.set_dataset('xfitdataset', [], broadcast=True)
+            self.set_dataset('yfitdataset21', [], broadcast=True)
+            self.set_dataset('yfitdataset22', [], broadcast=True)
 
             t_now = time.time()  # Save the current time
 
@@ -176,8 +175,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
                 self.mutate_dataset('sum11', point_num, self.sum11)
                 self.mutate_dataset('sum12', point_num, self.sum12)
-                self.mutate_dataset('ratio11', point_num, ratio11)
-                self.mutate_dataset('ratio12', point_num, ratio12)
+                # self.mutate_dataset('ratio11', point_num, ratio11)
+                # self.mutate_dataset('ratio12', point_num, ratio12)
 
                 # # For pumping with sigma2
                 ratio21 = self.sum21 / (self.sum21 + self.sum22)
@@ -186,6 +185,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
                 self.mutate_dataset('sum21', point_num, self.sum21)
                 self.mutate_dataset('sum22', point_num, self.sum22)
+                self.mutate_dataset('ratio21', point_num, ratio21)
+                self.mutate_dataset('ratio22', point_num, ratio22)
                 self.append_to_dataset('ratio_list', ratios)
 
 
@@ -390,19 +391,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
     def fit_data(self):
         """ Do curve fitting of data and display on graph here"""
 
-        import matplotlib.pyplot as plt
-        import h5py
         import numpy as np
         from scipy import optimize
-        import lmfit.models as fit
-        from lmfit import Model
-
-        # Number of points to plot
-
-        # for i in range(0, self.fit_num):
-            # self.mutate_dataset('xfitdataset', i, i)
-            # self.mutate_dataset('yfitdataset11', i, np.sin(i/4))
-            # self.mutate_dataset('yfitdataset12', i, np.cos(i / 4))
                 
         def cos_func(x, amp, phase, pitime):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
@@ -410,36 +400,41 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         def cos_decay(x, amp, phase, pitime, decayt):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
 
-        ratios = self.get_dataset('ratio_list')
-
-        detect11 = ratios[:,0]
-        detect12 = ratios[:,1]
-        detect21 = ratios[:,2]
-        detect22 = ratios[:,3]
+        detect21 = self.get_dataset('ratio21')
+        detect22 = self.get_dataset('ratio22')
+        scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
         datatofit = detect21
+        # print(datatofit)
+        # print(scanx)
 
-        initialparams = [1,0,4]
-        fitbounds = ([0.5,-6.3,0],[1,6.3,4.5])
+        initialparams = [1,0,5e-6]      # amp, phase, pitime
+        fitbounds = ([0.2,-6.3,0],[1,6.3,20e-6])
 
-        results1, covariances = optimize.curve_fit(cos_func, scanx[1:30], datatofit[1:30], p0=initialparams,maxfev=100000, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams,maxfev=100000, bounds = fitbounds)
         print('Fit results: ', results1)
 
-        fitbounds = ([0.5,-6.3,0,0],[1,100,4.5,10000])
+        fitbounds = ([0.2,-6.3,0,0],[1,100,20e-6,0.001])        # amp, phase, pitime, decayt
 
-        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,300],maxfev=100000, bounds = fitbounds)
+        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,0.0003],maxfev=100000, bounds = fitbounds)
         print('Fit results: ', results2)
 
-        fittedx = np.arange(0,100,0.2)
-        # fitresult1 = cos_func(scanx, *results1)
+        fittedx = np.linspace(0,max(scanx),self.detection_points)
+        # fitresult1 = cos_func(fittedx, *results2)
         fitresult2 = cos_decay(fittedx, *results2)
 
-        self.set_dataset('xfitdataset', fittedx)
-        self.set_dataset('yfitdataset21', fitresult2)
-        self.set_dataset('yfitdataset22', np.zeros(100))
+        # print(fittedx)
+        # print(fitresult2)
+
+        self.set_dataset('xfitdataset', fittedx, broadcast=True)
+        self.set_dataset('yfitdataset21', fitresult2, broadcast=True)
+
+        # self.set_dataset('xfitdataset', [1,2,3,4,5,6,7,8,9,10], broadcast=True)
+        # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
+        # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
 
         print("Amplitude: {:0.2f}".format(results2[0]), " ")
         print("Phase: {:0.2f}".format(results2[1]), " ")
-        print("Pi Time: {:0.2f}".format(results2[2]), " us")
-        print("Lifetime: {:0.0f}".format(results2[3]), " us")
+        print("Pi Time: {:0.2f}".format(results2[2]*1e6), " us")
+        print("Lifetime: {:0.0f}".format(results2[3]*1e6), " us")

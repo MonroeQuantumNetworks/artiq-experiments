@@ -82,6 +82,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             + " --y-names " + "sum11 sum12 sum21 sum22"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
+            + " --rid " + "runid"
             + " --y-label "
             + "'"
             + ylabel
