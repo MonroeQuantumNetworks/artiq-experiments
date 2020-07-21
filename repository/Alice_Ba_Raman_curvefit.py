@@ -28,10 +28,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        # self.detector = self.Alice_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detection_points', NumberValue(100, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
@@ -41,8 +40,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7, 76.9, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9, 83.1 , 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
@@ -53,21 +52,18 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.sum22 = 0
 
     @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
+    def set_DDS(self, channel, freq, amp):
+        # self.core.reset()
         delay_mu(95000)
-        # channel.set_frequency(freq)   # This syntax does seemingly nothing
-        channel.set(freq, amplitude=0.45)    # Necessary to set the amplitude as well
-        # This is amp=0.5 is a temporary fix until I figure out a different solution
+        channel.set(freq, amplitude=amp)    # Necessary to set the amplitude when using set
         delay_mu(6000)
 
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        # channel.set_amplitude(amp)
-        channel.set(amplitude=amp)
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS_amp(self, channel, amp):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set_amplitude(amp)        # This statement does nothing
+    #     delay_mu(6000)
 
     def run(self):
 
@@ -110,7 +106,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             for name, scan in self.scans:
                 if isinstance(scan, NoScan):
                     # just set the single value
-                    setattr(self, name, scan.value)     # Does this set 532-amplitude and 532 frequency too?
+                    setattr(self, name, scan.value)     # This sets 532-amplitude and 532 frequency too
+                    print(name, scan.value)             # e.g. DDS__532__Alice__tone_1__amplitude 0.35
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
@@ -152,18 +149,19 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
-                # update DDS if scanning DDS
-                for name in self.active_scan_names:
-                    if name.startswith('DDS'):
-                        if name.endswith('__frequency'):
-                            # print(name)
-                            channel_name = name.rstrip('__frequency')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_freq(channel, getattr(self, name))
-                        if name.endswith('__amplitude'):
-                            channel_name = name.rstrip('__amplitude')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_amp(channel, getattr(self, name))
+                # George hardcoded this in kernel_run to ensure all AOMs are updated
+                # # update DDS if scanning DDS
+                # for name in self.active_scan_names:
+                #     if name.startswith('DDS'):
+                #         if name.endswith('__frequency'):
+                #             # print(name)
+                #             channel_name = name.rstrip('__frequency')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS(channel, getattr(self, name), getattr(self, channel_name+'__amplitude'))
+                #         if name.endswith('__amplitude'):
+                #             channel_name = name.rstrip('__amplitude')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS(channel, getattr(self, channel_name+'__frequency'), getattr(self, name))
 
                 # Run the main portion of code here
                 self.kernel_run()
@@ -171,7 +169,6 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
                 # For pumping with sigma1
                 ratio11 = self.sum11 / (self.sum11 + self.sum12)
                 ratio12 = self.sum12 / (self.sum11 + self.sum12)
-                # ratios = np.array([ratio11, ratio12])
 
                 self.mutate_dataset('sum11', point_num, self.sum11)
                 self.mutate_dataset('sum12', point_num, self.sum12)
@@ -210,16 +207,19 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
     @kernel
     def kernel_run(self):
-        counts11 = 0
-        counts12 = 0
-        counts21 = 0
-        counts22 = 0
+
+        self.core.reset()
+        self.core.break_realtime()
+        # Hard-coded to set the AOM frequency and amplitude
+        delay_mu(95000)
+        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        delay_mu(95000)
+        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
 
         sum11 = 0
         sum12 = 0
         sum21 = 0
         sum22 = 0
-        self.core.reset()
 
         # Preparation for experiment
         self.prep_record()
@@ -412,12 +412,12 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         initialparams = [1,0,5e-6]      # amp, phase, pitime
         fitbounds = ([0.2,-6.3,0],[1,6.3,20e-6])
 
-        results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams,maxfev=100000, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
         fitbounds = ([0.2,-6.3,0,0],[1,100,20e-6,0.001])        # amp, phase, pitime, decayt
 
-        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,0.0003],maxfev=100000, bounds = fitbounds)
+        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,0.0003], bounds = fitbounds)
         print('Fit results: ', results2)
 
         fittedx = np.linspace(0,max(scanx),self.detection_points)
