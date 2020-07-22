@@ -2,14 +2,12 @@
 Alice Barium detection, with scannable variables, partial DMA
 Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
+Fixed AOM amplitude scanning and update
 
 Known issues:
     non-DMA detection, slow
-    NoScan Frequency DOES NOTHING
-    Scanning frequency locks amp at 0.5
-    Scan amplitude probably does not work, change in Settings instead.
 
-George Toh 2020-07-10
+George Toh 2020-07-21
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -53,22 +51,22 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
         self.sum21 = 0
         self.sum22 = 0
 
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        # channel.set_frequency(freq)   # This syntax does seemingly nothing
-        channel.set(freq, amplitude=0.3)    # Necessary to set the amplitude as well
-        # This is amp=0.5 is a temporary fix until I figure out a different solution
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS_freq(self, channel, freq):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     # channel.set_frequency(freq)   # This syntax does seemingly nothing
+    #     channel.set(freq, amplitude=0.3)    # Necessary to set the amplitude as well
+    #     # This is amp=0.5 is a temporary fix until I figure out a different solution
+    #     delay_mu(6000)
 
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        # channel.set_amplitude(amp)
-        channel.set(amplitude=amp)
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS_amp(self, channel, amp):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     # channel.set_amplitude(amp)
+    #     channel.set(amplitude=amp)
+    #     delay_mu(6000)
 
     def run(self):
 
@@ -147,18 +145,19 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
-                # update DDS if scanning DDS
-                for name in self.active_scan_names:
-                    if name.startswith('DDS'):
-                        if name.endswith('__frequency'):
-                            # print(name)
-                            channel_name = name.rstrip('__frequency')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_freq(channel, getattr(self, name))
-                        if name.endswith('__amplitude'):
-                            channel_name = name.rstrip('__amplitude')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_amp(channel, getattr(self, name))
+                # George hardcoded this in kernel_run to ensure all AOMs are updated
+                # # update DDS if scanning DDS
+                # for name in self.active_scan_names:
+                #     if name.startswith('DDS'):
+                #         if name.endswith('__frequency'):
+                #             # print(name)
+                #             channel_name = name.rstrip('__frequency')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS_freq(channel, getattr(self, name))
+                #         if name.endswith('__amplitude'):
+                #             channel_name = name.rstrip('__amplitude')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS_amp(channel, getattr(self, name))
 
                 # Run the main portion of code here
                 self.kernel_run()
@@ -166,7 +165,6 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
                 # For pumping with sigma1
                 ratio11 = self.sum11 / (self.sum11 + self.sum12)
                 ratio12 = self.sum12 / (self.sum11 + self.sum12)
-                # ratios = np.array([ratio11, ratio12])
 
                 self.mutate_dataset('sum11', point_num, self.sum11)
                 self.mutate_dataset('sum12', point_num, self.sum12)
@@ -198,10 +196,15 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
     @kernel
     def kernel_run(self):
-        counts11 = 0
-        counts12 = 0
-        counts21 = 0
-        counts22 = 0
+
+        self.core.reset()
+        self.core.break_realtime()
+        
+        # Hard-coded to set the AOM frequency and amplitude
+        delay_mu(95000)
+        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        delay_mu(95000)
+        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
 
         sum11 = 0
         sum12 = 0

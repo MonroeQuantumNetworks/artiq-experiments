@@ -2,14 +2,13 @@
 Alice Barium detection, with scannable variables, partial DMA
 Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
+Fixed AOM amplitude scanning and update
 
 Known issues:
     non-DMA detection, slow
-    NoScan Frequency DOES NOTHING
-    Scanning frequency locks amp at 0.5
-    Scan amplitude probably does not work, change in Settings instead.
+    AOM names are hard-coded
 
-George Toh 2020-07-10
+George Toh 2020-07-21
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -30,10 +29,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.setattr_device("core_dma")
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(100, ndecimals=0, min=1, step=1))
+        self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
@@ -51,12 +49,12 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.sum21 = 0
         self.sum22 = 0
 
-    @kernel
-    def set_DDS(self, channel, freq, amp):
-        # self.core.reset()
-        delay_mu(95000)
-        channel.set(freq, amplitude=amp)    # Necessary to set the amplitude when using set
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS(self, channel, freq, amp):
+    #     # self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set(freq, amplitude=amp)    # Necessary to set the amplitude when using set
+    #     delay_mu(6000)
 
     # @kernel
     # def set_DDS_amp(self, channel, amp):
@@ -210,6 +208,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
         self.core.reset()
         self.core.break_realtime()
+
         # Hard-coded to set the AOM frequency and amplitude
         delay_mu(95000)
         self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
@@ -420,7 +419,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,0.0003], bounds = fitbounds)
         print('Fit results: ', results2)
 
-        fittedx = np.linspace(0,max(scanx),self.detection_points)
+        fittedx = np.linspace(0,max(scanx),self.fit_points)
         # fitresult1 = cos_func(fittedx, *results2)
         fitresult2 = cos_decay(fittedx, *results2)
 

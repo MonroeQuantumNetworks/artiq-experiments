@@ -5,9 +5,9 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
 Known issues:
     non-DMA detection, slow
-    Long delay between cool and pump >250 usec
+    100ns between pump and cool for 493 AOM timings
 
-George Toh 2020-06-15
+George Toh 2020-07-21
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -29,38 +29,20 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
 
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_1__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__frequency__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__frequency), CenterScan(self.globals__DDS__493__Bob__sigma_2__frequency/MHz, 1, 0.1) ], unit='MHz', ndecimals=9))
-        # self.setattr_argument('DDS__493__Bob__sigma_1__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_1__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-        # self.setattr_argument('DDS__493__Bob__sigma_2__amplitude__scan', Scannable( default=[NoScan(self.globals__DDS__493__Bob__sigma_2__amplitude), RangeScan(0, 1, 100) ], global_min=0, global_step=0.1, ndecimals=3))
-
+        
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
         self.sum12 = 0
         self.sum21 = 0
         self.sum22 = 0
 
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_frequency(freq)
-        delay_mu(6000)
-
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_amplitude(amp)
-        delay_mu(6000)
 
     def run(self):
 
@@ -136,17 +118,17 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
-                # update DDS if scanning DDS
-                for name in self.active_scan_names:
-                    if name.startswith('DDS'):
-                        if name.endswith('__frequency'):
-                            channel_name = name.rstrip('__frequency')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_freq(channel, getattr(self, name))
-                        if name.endswith('__amplitude'):
-                            channel_name = name.rstrip('__amplitude')
-                            channel = getattr(self, channel_name)
-                            self.set_DDS_amp(channel, getattr(self, name))
+                # # update DDS if scanning DDS
+                # for name in self.active_scan_names:
+                #     if name.startswith('DDS'):
+                #         if name.endswith('__frequency'):
+                #             channel_name = name.rstrip('__frequency')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS_freq(channel, getattr(self, name))
+                #         if name.endswith('__amplitude'):
+                #             channel_name = name.rstrip('__amplitude')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS_amp(channel, getattr(self, name))
 
                 # Run the main portion of code here
                 self.kernel_run()
