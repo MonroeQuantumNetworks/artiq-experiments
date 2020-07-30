@@ -131,7 +131,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
-                update DDS if scanning DDS
+                # # update DDS if scanning DDS
                 # for name in self.active_scan_names:
                 #     if name.startswith('DDS'):
                 #         if name.endswith('__frequency'):
