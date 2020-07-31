@@ -330,7 +330,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
     @kernel
     def record_pump_sigma2(self):
         """DMA detection loop sequence.
-        This generates the pulse sequence needed for pumping with 493 sigma 1
+        This generates the pulse sequence needed for pumping with 493 sigma 2
         """
         with self.core_dma.record("pulses20"):
             self.DDS__493__Bob__sigma_1.sw.on()
@@ -371,7 +371,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
     @kernel
     def record_detect2(self):
         """DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 493 sigma 1
+        This generates the pulse sequence needed for detection with 493 sigma 2
         """
         with self.core_dma.record("pulses02"):
 

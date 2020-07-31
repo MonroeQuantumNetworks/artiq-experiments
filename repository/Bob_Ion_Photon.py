@@ -85,41 +85,18 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
     def run(self):
 
         # self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
-        self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
+        # self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
 
         # Print estimated run-time
         if self.calculate_runtime:
             self.runtime_calculation()
 
-        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
+        self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
-        # This creates a applet shortcut in the Artiq applet list
-        ylabel = "Counts"
-        xlabel = "Scanned variable"
-        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
-        self.ccb.issue(
-            "create_applet",
-            name="Detection_Counts",
-            command=applet_stream_cmd
-            + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "sum11 sum12 sum21 sum22"
-            # + " --x-fit " + "xfitdataset"
-            # + " --y-fits " + "yfitdataset"
-            + " --rid " + "runid"
-            + " --y-label "
-            + "'"
-            + ylabel
-            + "'"
-            + " --x-label "
-            + "'"
-            + xlabel
-            + "'"
-        )
-
-        # Also, turn on Ba_ratios
+        # For graphs, turn on Ba_ratios
 
         try:
 
@@ -146,10 +123,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
             # assume a 1D scan for plotting
             self.set_dataset('scan_x', [], broadcast=True, archive=True)
-            self.set_dataset('sum11', np.zeros(point_num), broadcast=True, archive=True)
-            self.set_dataset('sum12', np.zeros(point_num), broadcast=True, archive=True)
-            self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
-            self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
 
             t_now = time.time()  # Save the current time
 
@@ -180,35 +153,16 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 #             self.set_DDS_amp(channel, getattr(self, name))
 
                 # Run the main portion of code here
-                # self.kernel_run()
                 detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
-                # ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
-                # ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
-                # ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
-                # ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
-                ratios = [ratio_p1, ratio_p1, ratio_p1, ratio_p1]
+                ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
+                ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
+                ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
+                ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
 
                 for i in range(len(ratios)):
-                    self.append_to_dataset('data_list_ratios', ratios[i])
-
-                # For pumping with sigma1
-                ratio11 = self.sum11 / (self.sum11 + self.sum12)
-                ratio12 = self.sum12 / (self.sum11 + self.sum12)
-
-                self.mutate_dataset('sum11', point_num, self.sum11)
-                self.mutate_dataset('sum12', point_num, self.sum12)
-
-                # # For pumping with sigma2
-                ratio21 = self.sum21 / (self.sum21 + self.sum22)
-                ratio22 = self.sum22 / (self.sum21 + self.sum22)
-                ratios = np.array([ratio11, ratio12, ratio21, ratio22])
-
-                self.mutate_dataset('sum21', point_num, self.sum21)
-                self.mutate_dataset('sum22', point_num, self.sum22)
-                self.append_to_dataset('ratio_list', ratios)
-
+                    self.append_to_dataset('ratio_list', ratios[i])
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -221,8 +175,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
-        # print("Entangler sequence is done", sum_p1_B1, sum_p1_B2, ratio_p1, "Test mode:", self.test_mode)
-        print("Code is done running {:.0f} {:.0f} {:.0f} {:.2f}, Test mode: ".format(detect_p1, sum_p1_B1, sum_p1_B2, ratio_p1), self.test_mode)
+        print("DEBUG MESSAGES:")
+        print("Code is done running {:.0f} {:.2f} {:.2f} {:.2f} {:.2f}".format(detect_p1, ratio_p1, ratio_p2, ratio_p3, ratio_p4)
+        print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2)
+        print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2)
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
@@ -290,11 +246,20 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         # Pre-load all the pulse sequences using DMA
         self.prerecord_cooling_loop()
+        self.record_detect1()
+        self.record_detect2()
 
         delay_mu(100000)
 
         # Assign handles to the pre-recorded sequences
         fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
+        pulses_handle01 = self.core_dma.get_handle("pulses01")
+        pulses_handle02 = self.core_dma.get_handle("pulses02")
+
+
+        # Adding these delays to sync up gate rising with when the laser beams actually turn on
+        delay1 = int(self.delay_time)   # For detect sigma1
+        delay2 = delay1            # For detect sigma2
 
         for loop in range(self.loops_to_run):
 
@@ -304,7 +269,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # Cooling loop sequence using pre-recorded dma sequence
-                # self.core_dma.playback_handle(fast_loop_cooling_handle)
+                self.core_dma.playback_handle(fast_loop_cooling_handle)
                 delay(self.cooling_time)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
@@ -317,7 +282,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     out_stop2=1600,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM
                     out_stop3=1360,  # Done generating
-                    in_start=700,  # Look for photons on APD0
+                    in_start=700,  # Look for photons on APD0, this needs to be earlier than start3 due to AOM delays
                     in_stop=800,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
@@ -335,19 +300,21 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     # self.run_rotation() # Rotate to match the other state
                     break
                 else:   # Failed to entangle
-                    # delay_mu(100)
-                    if self.test_mode:  # Generate some counts for test-mode
-                        pattern = 1
-                    else:
-                        pattern = 0
+                    pattern = 0
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
+
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-                Bob_counts_detect1 = self.run_detection1()  # Run detection with 493 sigma-1
-                sumB1 = Bob_counts_detect1
-                sumB2 = 0
-                detect_flag = 2
+                with parallel:
+                    with sequential:
+                        delay_mu(delay1)   # For turn off/on time of the lasers
+                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle01)
+                
+                sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
+                # sumB2 = 0
+                detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
                 if pattern == 1:
                     detect_p1 += 1
                     sum_p1_B1 += sumB1
@@ -360,10 +327,16 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 elif pattern == 8:
                     # detect_p4 += 1
                     sum_p4_B1 += sumB1
+
             elif detect_flag == 2:
-                Bob_counts_detect2 = self.run_detection2()  # Run detection with 493 sigma-2
-                sumB2 = Bob_counts_detect2
-                sumB1 = 0
+                with parallel:
+                    with sequential:
+                        delay_mu(delay2)   # For turn off time of the lasers
+                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle02)
+
+                sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B2)
+                # sumB1 = 0
                 detect_flag = 1
                 if pattern == 1:
                     detect_p1 += 1
@@ -378,29 +351,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     # detect_p4 += 1
                     sum_p4_B2 += sumB2
 
-                # if pattern == 0:
-                #     delay_mu(100)
-                # elif pattern == 1:
-                #     # detect_p1 += 1
-                #     sum_p1_B1 += sumB1
-                #     sum_p1_B2 += sumB2
-                # elif pattern == 2:
-                #     # detect_p2 += 1
-                #     sum_p2_B1 += sumB1
-                #     sum_p2_B2 += sumB2
-                # elif pattern == 4:
-                #     # detect_p3 += 1
-                #     sum_p3_B1 += sumB1
-                #     sum_p3_B2 += sumB2
-                # elif pattern == 8:
-                #     # detect_p4 += 1
-                #     sum_p4_B1 += sumB1
-                #     sum_p4_B2 += sumB2
-
-                # ratio1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)        # This doesn't take too long
-                # self.append_to_dataset('core_pattern1', ratio1)     # This doesn't take too long
-
-        # print("Entangler sequence is done", sum_p1_B1, sumB2, ratio1, "Test mode:", self.test_mode)
 
         # It costs 600 ms to return 1 to the host device
         return detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
@@ -525,9 +475,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
     @kernel
     def prerecord_cooling_loop(self):
-        """Pre-record the cooling loop sequence.
-
-        This is faster than non pre-recorded
+        """Pre-record the cooling loop sequence. This is played in the slow loops, once every n number of fast loops
         """
 
         with self.core_dma.record("cooling_loop_pulses"):
@@ -551,68 +499,48 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 # self.ttl_test.off()
 
     @kernel
-    def run_detection1(self):
-        """Non-DMA detection loop sequence. With test pulses
-
+    def record_detect1(self):
+        """DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 1
-        It currently generates a test pulse sequence on the 650_pi output for loopback testing
         """
-        delay(100 * us)     # This is needed to buffer for pulse train generation
-        t1 = now_mu()
-        with parallel:
-            # gate_end_mu_A1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-            gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+        with self.core_dma.record("pulses01"):
+            with parallel:
+                self.ttl_Bob_650_pi.on() # Bob 650 pi
+                self.ttl_650_fast_cw.on() # 650 fast AOM
+                self.ttl_650_sigma_1.on() # 650 sigma 1
+                self.ttl_650_sigma_2.on() # 650 sigma 2
+                self.DDS__493__Bob__sigma_1.sw.on()
 
-        at_mu(t1)
-        with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
-            self.ttl_650_fast_cw.pulse(self.detection_time)
-            self.ttl_650_sigma_1.pulse(self.detection_time)
-            self.ttl_650_sigma_2.pulse(self.detection_time)
-            # self.DDS__493__Alice__sigma_1.sw.pulse(self.detection_time)
-            # self.DDS__493__Bob__sigma_1.sw.pulse(self.detection_time)
-            with sequential:    # Generate fake pulse sequence for triggering the counter
-                for i in range(31):
-                    self.ttl_650_pi.pulse(1 * us)
-                    delay(1 * us)
-            with sequential:     # This would have to run on SED channel 9 which does not exist
-                for i in range(31):
-                    self.ttl_test.pulse(1 * us)
-                    delay(1 * us)
+            delay(self.detection_time)
 
-        Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B1)
-
-        return Bob_counts
+            with parallel:
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.ttl_Bob_650_pi.off() # Bob 650 pi
+                self.ttl_650_fast_cw.off() # 650 fast AOM
+                self.ttl_650_sigma_1.off() # 650 sigma 1
+                self.ttl_650_sigma_2.off() # 650 sigma 2
 
     @kernel
-    def run_detection2(self):
-        """Non-DMA detection loop sequence. With test pulses
-
+    def record_detect2(self):
+        """DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 2
-        It currently generates a test pulse sequence on the 650_pi output for loopback testing
         """
-        delay(100 * us)     # This is needed to buffer for pulse train generation
-        t1 = now_mu()
-        with parallel:
-            # gate_end_mu_A2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-            gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+        with self.core_dma.record("pulses02"):
+            with parallel:
+                self.ttl_Bob_650_pi.on() # Bob 650 pi
+                self.ttl_650_fast_cw.on() # 650 fast AOM
+                self.ttl_650_sigma_1.on() # 650 sigma 1
+                self.ttl_650_sigma_2.on() # 650 sigma 2
+                self.DDS__493__Bob__sigma_2.sw.on()
 
-        at_mu(t1)
-        with parallel:
-            # self.ttl_650_pi.pulse(self.detection_time)
-            self.ttl_650_fast_cw.pulse(self.detection_time)
-            self.ttl_650_sigma_1.pulse(self.detection_time)
-            self.ttl_650_sigma_2.pulse(self.detection_time)
-            # self.DDS__493__Alice__sigma_2.sw.pulse(self.detection_time)
-            # self.DDS__493__Bob__sigma_2.sw.pulse(self.detection_time)
-            with sequential:    # Generate fake pulse sequence for triggering the counter
-                for i in range(13):
-                    self.ttl_650_pi.pulse(1 * us)
-                    delay(1 * us)
+            delay(self.detection_time)
 
-        Bob_counts = self.Bob_camera_side_APD.count(gate_end_mu_B2)
-
-        return Bob_counts
+            with parallel:
+                self.DDS__493__Bob__sigma_2.sw.off()
+                self.ttl_Bob_650_pi.off() # Bob 650 pi
+                self.ttl_650_fast_cw.off() # 650 fast AOM
+                self.ttl_650_sigma_1.off() # 650 sigma 1
+                self.ttl_650_sigma_2.off() # 650 sigma 2
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take
