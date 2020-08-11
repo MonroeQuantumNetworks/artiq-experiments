@@ -404,10 +404,10 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay(200*ns)       # Wait 200 ns so that the slow AOMs are fully turned on
+            delay_mu(200)       # Wait 200 ns so that the slow AOMs are fully turned on
 
-            self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            # self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+            # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
             delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced

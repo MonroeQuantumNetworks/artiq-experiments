@@ -30,12 +30,11 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
 class Bob_Ion_Photon(base_experiment.base_experiment):
-    """Experiment for Ion-Photon Entanglement generation - Bob.
-    """
 
     def build(self):
         """Add the Entangler driver."""
         self.setattr_device("core")
+        self.setattr_device("ccb")
         self.setattr_device("entangler")
         self.out0_0 = self.get_device("ttl0")
 
@@ -93,8 +92,39 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
+
+        # This creates a applet shortcut in the Artiq applet list
+        ylabel = "Counts"
+        xlabel = "Scanned variable"
+        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        self.ccb.issue(
+            "create_applet",
+            name="Detected_Counts",
+            command=applet_stream_cmd
+            + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
+            + " --y-names " + "sum_p1_1 sum_p1_2"
+            # + " --x-fit " + "xfitdataset"
+            # + " --y-fits " + "yfitdataset"
+            + " --rid " + "runid"
+            + " --y-label "
+            + "'"
+            + ylabel
+            + "'"
+            + " --x-label "
+            + "'"
+            + xlabel
+            + "'"
+        )
 
         # For graphs, turn on Ba_ratios
 
@@ -161,8 +191,15 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
                 ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
 
-                for i in range(len(ratios)):
-                    self.append_to_dataset('ratio_list', ratios[i])
+                self.append_to_dataset('ratio_list', ratios)
+                self.append_to_dataset('sum_p1_1', sum_p1_B1)
+                self.append_to_dataset('sum_p1_2', sum_p1_B2)
+                self.append_to_dataset('sum_p2_1', sum_p2_B1)
+                self.append_to_dataset('sum_p2_2', sum_p2_B2)
+                self.append_to_dataset('sum_p3_1', sum_p3_B1)
+                self.append_to_dataset('sum_p3_2', sum_p3_B2)
+                self.append_to_dataset('sum_p4_1', sum_p4_B1)
+                self.append_to_dataset('sum_p4_2', sum_p4_B2)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -176,12 +213,12 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
         print("DEBUG MESSAGES:")
-        print("Code is done running {:.0f} {:.2f} {:.2f} {:.2f} {:.2f}".format(detect_p1, ratio_p1, ratio_p2, ratio_p3, ratio_p4)
-        print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2)
-        print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2)
+        print("Code is done running {:.0f} {:.2f} {:.2f} {:.2f} {:.2f}".format(detect_p1, ratio_p1, ratio_p2, ratio_p3, ratio_p4))
+        print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2))
+        print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2))
 
         # These are necessary to restore the system to the state before the experiment.
-        self.load_globals_from_dataset()    # This loads global settings from datasets
+        self.load_globals_from_dataset()       # This loads global settings from datasets
         self.setup()        # This sends settings out to the ARTIQ hardware
 
     @kernel
@@ -200,9 +237,9 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         # Hard-coded to set the AOM frequency and amplitude
         delay_mu(95000)
-        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
         delay_mu(95000)
-        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
+        self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
 
         self.init()
 
@@ -213,7 +250,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
-        self.ttl_650_pi.off()
+        self.ttl_Bob_650_pi.off()
         delay_mu(100000)
         # They get restored to the initial values later
 
@@ -235,9 +272,9 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         ratio1 = float(0)
 
-        Alice_counts_detect1 = 0
         Bob_counts_detect1 = 0
-        Alice_counts_detect2 = 0
+        Bob_counts_detect1 = 0
+        Bob_counts_detect2 = 0
         Bob_counts_detect2 = 0
         detect_flag = 1
         pattern = 0
@@ -268,9 +305,11 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             
             for channel in range(self.entangle_cycles_per_loop):
 
+                self.core.break_realtime()
+
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
-                delay(self.cooling_time)
+                # delay(self.cooling_time)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970,
@@ -390,7 +429,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         #
         # TTL_output_list = [
         #     ('ttl0', 'ttl0', False),
-        #     ('ttl_650_pi', 'ttl1', False),
+        #     ('ttl_Bob_650_pi', 'ttl1', False),
         #     ('ttl_493_all', 'ttl2', False),
         #     ('ttl_650_fast_cw', 'ttl3', False),
         #     ('ttl_650_sigma_1', 'ttl4', False),
@@ -481,7 +520,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         with self.core_dma.record("cooling_loop_pulses"):
             # Cool
             with parallel:
-                self.ttl_650_pi.on()
+                self.ttl_Bob_650_pi.on()
                 self.ttl_493_all.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
@@ -491,7 +530,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 delay(self.cooling_time)
 
             with parallel:
-                self.ttl_650_pi.off()
+                self.ttl_Bob_650_pi.off()
                 self.ttl_493_all.off()
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
