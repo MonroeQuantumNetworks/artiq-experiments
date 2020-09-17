@@ -27,7 +27,7 @@ import time
 import sys
 from socket import socket, AF_INET, SOCK_DGRAM
 
-class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
+class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -166,8 +166,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
                 # Syntax 1: wave, channel=1-4, amplitude(mV), freq1(Hz), freq2(Hz), duration1(ns), duration2(ns), delay(ns)
                 # Syntax 2: sine, channel=1-4, amplitude(mV), freq(Hz)
-                message1 = "wave-1-100-"+self.DDS__532__Alice__tone_1__frequency+"-"+self.DDS__532__Alice__tone_2__frequency+"-"+self.raman_time+"-0-0"
-                message2 = "sine-1-100-"+self.DDS__532__Alice__tone_1__frequency
+                message1 = "wave-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))+"-"+str(int(self.DDS__532__Alice__tone_2__frequency))+"-"+str(int(self.raman_time/ns))+"-100-500"
+                message2 = "sine-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))
+                messageq = "quit"
                 mySocket.sendto(message1.encode('utf-8'),(SERVER_IP,PORT_NUMBER))
 
                 # TODO May need to insert a delay here
