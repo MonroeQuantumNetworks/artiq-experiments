@@ -24,8 +24,10 @@ import numpy as np
 import base_experiment
 import os
 import time
-import sys
-from socket import socket, AF_INET, SOCK_DGRAM
+
+import AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+# import sys
+# from socket import socket, AF_INET, SOCK_DGRAM
 
 class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
@@ -72,10 +74,10 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
     def run(self):
 
         # This is for communicating with Jarvis
-        SERVER_IP   = '192.168.1.101'
-        PORT_NUMBER = 10050
-        SIZE = 1024
-        mySocket = socket( AF_INET, SOCK_DGRAM )
+        # SERVER_IP   = '192.168.1.101'
+        # PORT_NUMBER = 10050
+        # SIZE = 1024
+        # mySocket = socket( AF_INET, SOCK_DGRAM )
 
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
@@ -166,10 +168,39 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
                 # Syntax 1: wave, channel=1-4, amplitude(mV), freq1(Hz), freq2(Hz), duration1(ns), duration2(ns), delay(ns)
                 # Syntax 2: sine, channel=1-4, amplitude(mV), freq(Hz)
-                message1 = "wave-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))+"-"+str(int(self.DDS__532__Alice__tone_2__frequency))+"-"+str(int(self.raman_time/ns))+"-100-500"
-                message2 = "sine-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))
-                messageq = "quit"
-                mySocket.sendto(message1.encode('utf-8'),(SERVER_IP,PORT_NUMBER))
+                # message1 = "wave-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))+"-"+str(int(self.DDS__532__Alice__tone_2__frequency))+"-"+str(int(self.raman_time/ns))+"-100-500"
+                # message2 = "sine-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))
+                # messageq = "quit"
+
+                sendmessage(
+                    type = "sine",
+                    channel = 1, 
+                    amplitude1 = 0.1, 
+                    frequency1 = self.DDS__532__Alice__tone_1__frequency, # Hz
+                    pause = 0)
+
+                # sendmessage(
+                #     type = "sin2",
+                #     channel = 1, 
+                #     amplitude1 = 0.1, 
+                #     amplitude2 = 0.1, 
+                #     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
+                #     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                #     duration1 = self.raman_time/ns,                         # ns
+                #     duration2 = 0,                                          # ns
+                #     pause = 0)
+
+                # sendmessage(
+                #     type = "wave",
+                #     channel = 1, 
+                #     amplitude1 = 0.1, 
+                #     amplitude2 = 0.1, 
+                #     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
+                #     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                #     phase = 0                                               # radians
+                #     duration1 = self.raman_time/ns,                         # ns
+                #     duration2 = 0,                                          # ns
+                #     pause = 0)
 
                 # TODO May need to insert a delay here
 
@@ -209,7 +240,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
             
 
         # Do curve fitting in this function
-        self.fit_data()
+        # self.fit_data()           #TODO: Temporarily commented out
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 

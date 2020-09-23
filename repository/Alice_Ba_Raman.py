@@ -230,7 +230,7 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1            # For detect sigma2
+        delay2 = delay1 - 65           # For detect sigma2
 
         for i in range(self.detections_per_point):
 
