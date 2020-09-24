@@ -5,7 +5,7 @@ This contains the function to send a message to Jarvis to run the AWG.
 
 """
 
-def sendmessage(self, type = "sine", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase=0, duration1 = 2000, duration2 = 0, pause = 0):   
+def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase=0, duration1 = 2000, duration2 = 0, pause = 0):
 
     import sys
     from socket import socket, AF_INET, SOCK_DGRAM
@@ -31,22 +31,22 @@ def sendmessage(self, type = "sine", channel = 1, amplitude1 = 0.1, amplitude2 =
     messageq = "quit"
 
     if type == "sine":          # Continuous sine output with 1 frequency
-        message = ("sine-" + channel 
-        + "-" + str(int(amplitude1*100))
+        message = ("sine-" + str(channel)
+        + "-" + str(int(amplitude1*1000))
         + "-" + str(int(frequency1))
         )
     elif type == "sin2":        # Continuous sine output with 2 frequencies
-        message = ("sin2-" + channel 
-        + "-" + str(int(amplitude1*100))
-        + "-" + str(int(amplitude2*100))
+        message = ("sin2-" + str(channel)
+        + "-" + str(int(amplitude1*1000))
+        + "-" + str(int(amplitude2*1000))
         + "-" + str(int(frequency1))
         + "-" + str(int(frequency2))
         + "-" + str(int(phase))
         )
     elif type == "wave":        # Pulsed sine output with 2 frequencies, can have a second pulse after pause
-        message = ("wave-" + channel 
-        + "-" + str(int(amplitude1*100))
-        + "-" + str(int(amplitude2*100))
+        message = ("wave-" + str(channel)
+        + "-" + str(int(amplitude1*1000))
+        + "-" + str(int(amplitude2*1000))
         + "-" + str(int(frequency1))
         + "-" + str(int(frequency2))
         + "-" + str(int(phase*100000))
@@ -54,13 +54,12 @@ def sendmessage(self, type = "sine", channel = 1, amplitude1 = 0.1, amplitude2 =
         + "-" + str(int(duration2))
         + "-" + str(int(pause))
         )
+    elif type == "quit":
+        message = "quit"
 
     i = 0
     while i < 1:
         mySocket.sendto(message.encode('utf-8'),(SERVER_IP,PORT_NUMBER))
         i = i + 1
 
-    # Send message to shutdown server
-    # mySocket.sendto(Messageq.encode('utf-8'),(SERVER_IP,PORT_NUMBER))     # Un-comment this to tell the server to quit
-
-    sys.exit()
+    # sys.exit()

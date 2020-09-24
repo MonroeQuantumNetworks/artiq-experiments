@@ -25,7 +25,7 @@ import base_experiment
 import os
 import time
 
-import AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 # import sys
 # from socket import socket, AF_INET, SOCK_DGRAM
 
