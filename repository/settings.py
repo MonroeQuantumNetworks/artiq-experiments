@@ -29,5 +29,5 @@ class settings(base_experiment.base_experiment):
 
     def run(self):
         # Here we override run(), not run_worker() as usual, to avoid calling write_globals_to_datasets() twice.
-        self.setup()            
+        self.setup()
         self.write_globals_to_datasets(archive=True)

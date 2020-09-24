@@ -19,12 +19,19 @@ class AWG_test(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
+        self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
         self.setattr_argument('AWG_quit', BooleanValue(False))
+        self.setattr_argument('Wave', BooleanValue(False))
         self.setattr_argument('Two_tones', BooleanValue(False))
         self.setattr_argument('amplitude1', NumberValue(0.1, ndecimals=2, min=0, step=0.1))
         self.setattr_argument('amplitude2', NumberValue(0.1, ndecimals=2, min=0, step=0.1))
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('DDS__532__Alice__tone_1__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1000000))
+        self.setattr_argument('DDS__532__Alice__tone_2__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1000000))
+        self.setattr_argument('duration1', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('pause', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('duration2', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('phase', NumberValue(0, ndecimals=5, min=0, max = 300000))
+        self.setattr_argument('phase_diff', NumberValue(0, ndecimals=5, min=0, max=300000))
 
     def run(self):
 
@@ -44,34 +51,38 @@ class AWG_test(base_experiment.base_experiment):
 
             if self.AWG_quit == True:
                 sendmessage(self)   # Writing nothing sends a quit
+            elif self.Wave == True:
+                sendmessage(self,
+                            type = "wave",
+                            channel = self.channel,
+                            amplitude1 = self.amplitude1,
+                            amplitude2 = self.amplitude2,
+                            frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
+                            frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                            phase1 = self.phase,                                     # radians
+                            phase2 = self.phase_diff,  # radians
+                            duration1 = self.duration1,                             # ns
+                            duration2 = self.duration2,                             # ns
+                            pause = self.pause
+                            )
             elif self.Two_tones == False:
                 sendmessage(self,
                             type = "sine",
-                            channel = 1,
-                            amplitude1 = 0.1,
+                            channel = self.channel,
+                            amplitude1 = self.amplitude1,
                             frequency1 = self.DDS__532__Alice__tone_1__frequency
                             )
             else:
                 sendmessage(self,
-                    type = "sin2",
-                    channel = 1,
-                    amplitude1 = 0.1,
-                    amplitude2 = 0.1,
-                    frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-                    frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-                    )
+                            type = "sin2",
+                            channel = self.channel,
+                            amplitude1 = self.amplitude1,
+                            amplitude2 = self.amplitude2,
+                            frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
+                            frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                            )
 
-            # sendmessage(
-            #     type = "wave",
-            #     channel = 1,
-            #     amplitude1 = 0.1,
-            #     amplitude2 = 0.1,
-            #     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-            #     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-            #     phase = 0                                               # radians
-            #     duration1 = self.raman_time/ns,                         # ns
-            #     duration2 = 0,                                          # ns
-            #     pause = 0)
+
 
             # TODO May need to insert a delay here
 

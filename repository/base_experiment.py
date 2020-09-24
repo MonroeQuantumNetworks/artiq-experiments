@@ -443,16 +443,15 @@ class base_experiment(EnvExperiment):
             self.DDS_setup(i)
 
         # TTL outputs #
-
         for i in range(self.globals__TTL_output__num_channels):
             channel = self.TTL_output_channels[i]
             if self.TTL_output_sw_list[i]:
                 channel.on()
             else:
                 channel.off()
+            delay_mu(3000)      # This fixes "RTIO sequence error involving channel 7"
 
         # DAC #
-
         self.core.break_realtime()
         delay_mu(1000000)
         self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)

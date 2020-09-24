@@ -5,7 +5,7 @@ This contains the function to send a message to Jarvis to run the AWG.
 
 """
 
-def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase=0, duration1 = 2000, duration2 = 0, pause = 0):
+def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause = 0):
 
     import sys
     from socket import socket, AF_INET, SOCK_DGRAM
@@ -15,7 +15,7 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
     SERVER_IP   = '192.168.1.101'
     PORT_NUMBER = 10050
     SIZE = 1024
-    print ("Test client sending packets to IP {0}, via port {1}\n".format(SERVER_IP, PORT_NUMBER))
+    print ("Test client sending packets to IP {0}, via port {1}".format(SERVER_IP, PORT_NUMBER))
 
     mySocket = socket( AF_INET, SOCK_DGRAM )
 
@@ -41,7 +41,7 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         + "-" + str(int(amplitude2*1000))
         + "-" + str(int(frequency1))
         + "-" + str(int(frequency2))
-        + "-" + str(int(phase))
+        + "-" + str(int(phase1))
         )
     elif type == "wave":        # Pulsed sine output with 2 frequencies, can have a second pulse after pause
         message = ("wave-" + str(channel)
@@ -49,7 +49,8 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         + "-" + str(int(amplitude2*1000))
         + "-" + str(int(frequency1))
         + "-" + str(int(frequency2))
-        + "-" + str(int(phase*100000))
+        + "-" + str(int(phase1*100000))
+        + "-" + str(int(phase2 * 100000))
         + "-" + str(int(duration1))
         + "-" + str(int(duration2))
         + "-" + str(int(pause))
@@ -57,6 +58,7 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
     elif type == "quit":
         message = "quit"
 
+    print('Sending', message)
     i = 0
     while i < 1:
         mySocket.sendto(message.encode('utf-8'),(SERVER_IP,PORT_NUMBER))
