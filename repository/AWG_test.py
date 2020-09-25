@@ -1,5 +1,5 @@
 """ 
-Test code for running the AWG
+Test code for running the AWG through the Artiq interface
 
 George Toh 2020-09-23
 """

@@ -1,19 +1,14 @@
-""" 
+""" Modified to do Raman using the Keysight AWG
 Alice Barium detection, with scannable variables, partial DMA
-Communicates with Jarvis for running the Keysight AWG
-
-Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Fixed AOM amplitude scanning and update
+Also does curve fitting at the very end (Fit to Raman time scan)
 
 Known issues:
-    AWG communication not yet tested
-    TODO: AWG output has shared amplitude for two tones, currently hardcoded
-    TODO: May need to typecast frequencies into int type before sending
+    non-DMA detection, slow
 
-George Toh 2020-09-16
+George Toh 2020-09-25
 """
-
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
 #from artiq.language.units import s, ms, us, ns, MHz
@@ -26,8 +21,6 @@ import os
 import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
-# import sys
-# from socket import socket, AF_INET, SOCK_DGRAM
 
 class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
@@ -38,6 +31,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
+        self.setattr_argument('do_curvefit', BooleanValue(False))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -57,28 +51,8 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.sum21 = 0
         self.sum22 = 0
 
-    # @kernel
-    # def set_DDS(self, channel, freq, amp):
-    #     # self.core.reset()
-    #     delay_mu(95000)
-    #     channel.set(freq, amplitude=amp)    # Necessary to set the amplitude when using set
-    #     delay_mu(6000)
-
-    # @kernel
-    # def set_DDS_amp(self, channel, amp):
-    #     self.core.reset()
-    #     delay_mu(95000)
-    #     channel.set_amplitude(amp)        # This statement does nothing
-    #     delay_mu(6000)
 
     def run(self):
-
-        # This is for communicating with Jarvis
-        # SERVER_IP   = '192.168.1.101'
-        # PORT_NUMBER = 10050
-        # SIZE = 1024
-        # mySocket = socket( AF_INET, SOCK_DGRAM )
-
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['detect11', 'detect12', 'detect21', 'detect22']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
@@ -162,47 +136,35 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
-                # Update the AWG with tone 1 and tone 2
-                # self.DDS__532__Alice__tone_1__frequency     self.DDS__532__Alice__tone_1__amplitude
-                # self.DDS__532__Alice__tone_2__frequency     self.DDS__532__Alice__tone_2__amplitude
+                # George hardcoded this in kernel_run to ensure all AOMs are updated
+                # # update DDS if scanning DDS
+                # for name in self.active_scan_names:
+                #     if name.startswith('DDS'):
+                #         if name.endswith('__frequency'):
+                #             # print(name)
+                #             channel_name = name.rstrip('__frequency')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS(channel, getattr(self, name), getattr(self, channel_name+'__amplitude'))
+                #         if name.endswith('__amplitude'):
+                #             channel_name = name.rstrip('__amplitude')
+                #             channel = getattr(self, channel_name)
+                #             self.set_DDS(channel, getattr(self, channel_name+'__frequency'), getattr(self, name))
 
-                # Syntax 1: wave, channel=1-4, amplitude(mV), freq1(Hz), freq2(Hz), duration1(ns), duration2(ns), delay(ns)
-                # Syntax 2: sine, channel=1-4, amplitude(mV), freq(Hz)
-                # message1 = "wave-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))+"-"+str(int(self.DDS__532__Alice__tone_2__frequency))+"-"+str(int(self.raman_time/ns))+"-100-500"
-                # message2 = "sine-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))
-                # messageq = "quit"
+                # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
+                sendmessage(self,
+                    type = "wave",
+                    channel = self.channel,
+                    amplitude1 = self.DDS__532__Alice__tone_1__amplitude,
+                    amplitude2 = self.DDS__532__Alice__tone_2__amplitude,
+                    frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
+                    frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                    # phase1 = self.phase,                                    # radians
+                    # phase2 = self.phase_diff,                               # radians
+                    duration1 = self.raman_time*1000,                         # Convert us to ns
+                    # duration2 = self.duration2,                             # ns
+                    # pause = self.pause
+                    )
 
-                sendmessage(
-                    type = "sine",
-                    channel = 1, 
-                    amplitude1 = 0.1, 
-                    frequency1 = self.DDS__532__Alice__tone_1__frequency, # Hz
-                    pause = 0)
-
-                # sendmessage(
-                #     type = "sin2",
-                #     channel = 1, 
-                #     amplitude1 = 0.1, 
-                #     amplitude2 = 0.1, 
-                #     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-                #     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-                #     duration1 = self.raman_time/ns,                         # ns
-                #     duration2 = 0,                                          # ns
-                #     pause = 0)
-
-                # sendmessage(
-                #     type = "wave",
-                #     channel = 1, 
-                #     amplitude1 = 0.1, 
-                #     amplitude2 = 0.1, 
-                #     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-                #     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-                #     phase = 0                                               # radians
-                #     duration1 = self.raman_time/ns,                         # ns
-                #     duration2 = 0,                                          # ns
-                #     pause = 0)
-
-                # TODO May need to insert a delay here
 
                 # Run the main portion of code here
                 self.kernel_run()
@@ -235,16 +197,13 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 point_num += 1
 
         except TerminationRequested:
-            sys.exit()
             print('Terminated gracefully')
-            
 
         # Do curve fitting in this function
-        # self.fit_data()           #TODO: Temporarily commented out
+        if self.do_curvefit == True:
+            self.fit_data()
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
-
-        sys.exit()
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
@@ -256,8 +215,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.core.reset()
         self.core.break_realtime()
 
-        # Hard-coded to set the AOM frequency and amplitude
-        # Sept 2020 - Replaced with AWG in run
+        # # Hard-coded to set the AOM frequency and amplitude
         # delay_mu(95000)
         # self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
         # delay_mu(95000)
@@ -286,7 +244,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1            # For detect sigma2
+        delay2 = delay1 - 65           # For detect sigma2
 
         for i in range(self.detections_per_point):
 
@@ -371,13 +329,18 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
             delay(500*ns)
 
+            # with parallel:
+            #     self.DDS__532__Alice__tone_1.sw.on()
+            #     self.DDS__532__Alice__tone_2.sw.on()
+            # delay(self.raman_time)
+            # with parallel:
+            #     self.DDS__532__Alice__tone_1.sw.off()
+            #     self.DDS__532__Alice__tone_2.sw.off()
+    
+        # Use the Keysight AWG to drive Raman rotations
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
-            delay(self.raman_time)
-            with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.ttl_AWG_trigger.pulse(100)    
+                delay(self.raman_time)
 
             with parallel:
                 self.ttl_Alice_650_pi.on()
@@ -401,13 +364,19 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
+
+            # with parallel:
+            #     self.DDS__532__Alice__tone_1.sw.on()
+            #     self.DDS__532__Alice__tone_2.sw.on()
+            # delay(self.raman_time)
+            # with parallel:
+            #     self.DDS__532__Alice__tone_1.sw.off()
+            #     self.DDS__532__Alice__tone_2.sw.off()
+    
+        # Use the Keysight AWG to drive Raman rotations
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
-            delay(self.raman_time)
-            with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.ttl_AWG_trigger.pulse(100)    
+                delay(self.raman_time)
 
             with parallel:
                 self.ttl_Alice_650_pi.on()

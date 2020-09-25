@@ -72,7 +72,7 @@ class base_experiment(EnvExperiment):
 
     # George modified these names
     TTL_output_list = [
-        ('ttl0', 'ttl0', False),
+        ('ttl_AWG_trigger', 'ttl0', False),
         ('ttl_Bob_650_pi', 'ttl1', False),
         ('ttl_493_all', 'ttl2', False),
         ('ttl_650_fast_cw', 'ttl3', False),
