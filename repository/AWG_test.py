@@ -21,6 +21,7 @@ class AWG_test(base_experiment.base_experiment):
 
         self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
         self.setattr_argument('AWG_quit', BooleanValue(False))
+        self.setattr_argument('Flush_awg', BooleanValue(False))
         self.setattr_argument('Wave', BooleanValue(False))
         self.setattr_argument('Two_tones', BooleanValue(False))
         self.setattr_argument('amplitude1', NumberValue(0.1, ndecimals=2, min=0, step=0.1))
@@ -49,6 +50,9 @@ class AWG_test(base_experiment.base_experiment):
             # message2 = "sine-1-100-"+str(int(self.DDS__532__Alice__tone_1__frequency))
             # messageq = "quit"
 
+            if self.flush_awg == True:
+                sendmessage(self, type="flush")
+
             if self.AWG_quit == True:
                 sendmessage(self)   # Writing nothing sends a quit
             elif self.Wave == True:
@@ -59,7 +63,7 @@ class AWG_test(base_experiment.base_experiment):
                             amplitude2 = self.amplitude2,
                             frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
                             frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-                            phase1 = self.phase,                                     # radians
+                            phase1 = self.phase,                                    # radians
                             phase2 = self.phase_diff,  # radians
                             duration1 = self.duration1,                             # ns
                             duration2 = self.duration2,                             # ns

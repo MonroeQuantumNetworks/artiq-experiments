@@ -58,6 +58,9 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         )
     elif type == "quit":
         message = "quit"
+        
+    elif type == "flush":
+        message = "flush"
 
     print('Sending', message)
     i = 0
