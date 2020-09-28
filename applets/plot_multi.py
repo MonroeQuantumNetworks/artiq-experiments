@@ -316,7 +316,7 @@ class MultiYPlot(plot.XYPlot):
 
         for i, y_data in enumerate(ys):
             y_name = "channel {}".format(i)
-            _LOGGER.debug("Plotting %s: %i points", y_name, len(y_data))
+            # _LOGGER.debug("Plotting %s: %i points", y_name, len(y_data))
             # _LOGGER.debug("%s data: %s", y_name, y_data)
             self.curves[i].setData(x=x, y=y_data)
             if self.fit:

@@ -449,7 +449,7 @@ class base_experiment(EnvExperiment):
                 channel.on()
             else:
                 channel.off()
-            delay_mu(3000)      # This fixes "RTIO sequence error involving channel 7"
+            delay_mu(10000)      # This fixes "RTIO sequence error involving channel 7"
 
         # DAC #
         self.core.break_realtime()
