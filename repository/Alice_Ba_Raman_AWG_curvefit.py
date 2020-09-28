@@ -152,6 +152,9 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 #             channel = getattr(self, channel_name)
                 #             self.set_DDS(channel, getattr(self, channel_name+'__frequency'), getattr(self, name))
 
+                # Flush all other waveforms from the AWG
+                sendmessage(self, type="flush")
+                
                 # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
                 sendmessage(self,
                     type = "wave",
