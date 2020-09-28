@@ -26,10 +26,10 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         # frequency = int(data2[3])   # (Hz)
 
     # Example messages
-    message-sine = "sine-1-100-20000000"
-    message-sin2 = "sin2-1-100-100-20000000-20000000-3.14"
-    message-wave = "wave-1-100-100-8e6-77e5-0-0-1000-0-0"
-    message-quit = "quit"
+    # message-sine = "sine-1-100-20000000"
+    # message-sin2 = "sin2-1-100-100-20000000-20000000-3.14"
+    # message-wave = "wave-1-100-100-8e6-77e5-0-0-1000-0-0"
+    # message-quit = "quit"
 
     if type == "sine":          # Continuous sine output with 1 frequency
         message = ("sine-" + str(channel)

@@ -42,8 +42,10 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
         self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
+
+        self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
@@ -159,8 +161,8 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                     frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
                     frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
-                    # phase2 = self.phase_diff,                               # radians
-                    duration1 = self.raman_time*1000,                         # Convert us to ns
+                    phase2 = 3.14,                               # radians
+                    duration1 = self.raman_time/ns,                         # Convert sec to ns
                     # duration2 = self.duration2,                             # ns
                     # pause = self.pause
                     )
@@ -248,7 +250,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
+            delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to load and execute
 
             self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
@@ -339,7 +341,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
     
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
-                self.ttl_AWG_trigger.pulse(100)    
+                self.ttl_AWG_trigger.pulse(100*ns)
                 delay(self.raman_time)
 
             with parallel:
@@ -375,7 +377,7 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
     
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
-                self.ttl_AWG_trigger.pulse(100)    
+                self.ttl_AWG_trigger.pulse(100*ns)
                 delay(self.raman_time)
 
             with parallel:
