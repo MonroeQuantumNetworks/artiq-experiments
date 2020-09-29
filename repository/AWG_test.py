@@ -170,6 +170,7 @@ class AWG_test(base_experiment.base_experiment):
 
     # Do remote entanglement
     # Depending on what we get from the HOM APDs:
+        # TTL 16 drives the rf switches that each of the AWG outputs go through
         # if 0101, 1010: set ttl16 off
         # if 0011, 1100: set ttl16 on
     # Trigger the AWG to run all 4 outputs

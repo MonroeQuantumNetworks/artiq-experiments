@@ -64,7 +64,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
         self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
 
-        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
@@ -340,6 +340,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     break
                 else:   # Failed to entangle
                     pattern = 0
+                    # Add a counter here to sum the number of failed attempts
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -435,7 +436,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         #     ('ttl_650_sigma_1', 'ttl4', False),
         #     ('ttl_650_sigma_2', 'ttl5', False),
         #     ('ttl_650_fast_pulse', 'ttl6', False),
-        #     ('ttl_test', 'ttl7', False)
+        #     ('ttl_Alice_650_pi', 'ttl7', False)
         # ]
         self.entangler.init()
 
