@@ -119,6 +119,8 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
 
+            t_now = time.time()  # Save the current time
+
             point_num = 0
             for point in msm:
 
@@ -173,6 +175,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
+        print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
