@@ -1,7 +1,7 @@
 """
 2020-09-25
 @author: George
-This contains the function to send a message to Jarvis to run the AWG.
+This contains the function to send a message to Glados to run the AWG.
 
 Import this script to other Artiq scripts with "from AWGmessenger import sendmessage"
 Call by writing "sendmessage(self, ....)

@@ -170,6 +170,8 @@ class Alice_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                     # pause = self.pause
                     )
 
+                delay_mu(1000)  # May need a longer delay here for generating and loading the waveform
+                                # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
 
                 # Run the main portion of code here
                 self.kernel_run()
