@@ -22,17 +22,18 @@ class AWG_test(base_experiment.base_experiment):
         self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
         self.setattr_argument('AWG_quit', BooleanValue(False))
         self.setattr_argument('flush_awg', BooleanValue(False))
-        self.setattr_argument('Wave', BooleanValue(False))
-        self.setattr_argument('Two_tones', BooleanValue(False))
+        self.setattr_argument('one_tone', BooleanValue(False))
+        self.setattr_argument('two_tones', BooleanValue(False))
+        self.setattr_argument('wave', BooleanValue(False))
         self.setattr_argument('amplitude1', NumberValue(0.1, ndecimals=3, min=0, step=0.1))
         self.setattr_argument('amplitude2', NumberValue(0.1, ndecimals=3, min=0, step=0.1))
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1000000))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency', NumberValue(20000000, ndecimals=0, min=1, step=1000000))
+        self.setattr_argument('tone_1__frequency', NumberValue(77000000, ndecimals=0, min=1, step=1000000))
+        self.setattr_argument('tone_2__frequency', NumberValue(83000000, ndecimals=0, min=1, step=1000000))
         self.setattr_argument('duration1', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('pause', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('duration2', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('phase', NumberValue(0, ndecimals=5, min=0, max = 300000))
-        self.setattr_argument('phase_diff', NumberValue(0, ndecimals=5, min=0, max=300000))
+        self.setattr_argument('phase_diff', NumberValue(3.14, ndecimals=5, min=0, max=300000))
 
     def run(self):
 
@@ -52,43 +53,47 @@ class AWG_test(base_experiment.base_experiment):
 
             if self.flush_awg == True:
                 sendmessage(self, type="flush")
+                time.sleep(0.8)     # Need at least 0.7s of delay here for wave-trigger to work correctly
 
             if self.AWG_quit == True:
                 sendmessage(self)   # Writing nothing sends a quit
-            elif self.Wave == True:
+
+            elif self.one_tone == True:
+                sendmessage(self,
+                            type = "sine",
+                            channel = self.channel,
+                            amplitude1 = self.amplitude1,
+                            frequency1 = self.tone_1__frequency
+                            )
+            elif self.two_tones == True:
+                sendmessage(self,
+                            type = "sin2",
+                            channel = self.channel,
+                            amplitude1 = self.amplitude1,
+                            amplitude2 = self.amplitude2,
+                            frequency1 = self.tone_1__frequency,   # Hz
+                            frequency2 = self.tone_2__frequency,   # Hz
+                            )
+            elif self.wave == True:
                 sendmessage(self,
                             type = "wave",
                             channel = self.channel,
                             amplitude1 = self.amplitude1,
                             amplitude2 = self.amplitude2,
-                            frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-                            frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+                            frequency1 = self.tone_1__frequency,   # Hz
+                            frequency2 = self.tone_2__frequency,   # Hz
                             phase1 = self.phase,                                    # radians
                             phase2 = self.phase_diff,  # radians
                             duration1 = self.duration1,                             # ns
                             duration2 = self.duration2,                             # ns
                             pause = self.pause
                             )
-            elif self.Two_tones == False:
-                sendmessage(self,
-                            type = "sine",
-                            channel = self.channel,
-                            amplitude1 = self.amplitude1,
-                            frequency1 = self.DDS__532__Alice__tone_1__frequency
-                            )
+                # time.sleep(0.5)
+                self.kernel_run()
+
             else:
-                sendmessage(self,
-                            type = "sin2",
-                            channel = self.channel,
-                            amplitude1 = self.amplitude1,
-                            amplitude2 = self.amplitude2,
-                            frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-                            frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
-                            )
+                print("No output selected")
 
-
-
-            # TODO May need to insert a delay here
 
             # allow other experiments to preempt
             self.core.comm.close()
@@ -104,7 +109,11 @@ class AWG_test(base_experiment.base_experiment):
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
         # sys.exit()
-
+    @kernel
+    def kernel_run(self):
+        self.core.reset()
+        self.core.break_realtime()
+        self.ttl0.pulse(100*ns)
 
 ''' Draft code for remote entanglement experiment
 

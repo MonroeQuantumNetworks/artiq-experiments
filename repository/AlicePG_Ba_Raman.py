@@ -243,7 +243,7 @@ class AlicePG_Ba_Raman(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
-                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             delay_mu(2500)
@@ -252,7 +252,7 @@ class AlicePG_Ba_Raman(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             delay_mu(2500)
@@ -261,7 +261,7 @@ class AlicePG_Ba_Raman(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             delay_mu(2500)
@@ -270,13 +270,13 @@ class AlicePG_Ba_Raman(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
-            sum11 += self.Bob_camera_side_APD.count(gate_end_mu_B1)
-            sum12 += self.Bob_camera_side_APD.count(gate_end_mu_B2)
-            sum21 += self.Bob_camera_side_APD.count(gate_end_mu_B3)
-            sum22 += self.Bob_camera_side_APD.count(gate_end_mu_B4)
+            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
+            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
+            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
+            sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
 
         self.sum11 = sum11
         self.sum12 = sum12
