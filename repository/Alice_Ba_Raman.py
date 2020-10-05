@@ -6,6 +6,7 @@ Fixed AOM amplitude scanning and update
 
 Known issues:
     non-DMA detection, slow
+    65 ns delay between detect1 and detect2
 
 George Toh 2020-07-21
 """
