@@ -1,9 +1,7 @@
-// Include this file as:
-//     include!(concat!(env!("BUILDINC_DIRECTORY"), "/generated/mem.rs"));
 #[allow(dead_code)]
 pub mod mem {
   pub const SRAM_BASE: usize = 0x10000000;
-  pub const SRAM_SIZE: usize = 0x00001000;
+  pub const SRAM_SIZE: usize = 0x00002000;
 
   pub const CSR_BASE: usize = 0x60000000;
   pub const CSR_SIZE: usize = 0x00010000;

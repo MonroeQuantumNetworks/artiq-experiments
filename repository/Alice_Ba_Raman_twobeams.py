@@ -225,6 +225,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
+            delay_mu(1000)      # This extra long delay is needed because of the slow 532 AOM turn on time
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -234,6 +235,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -243,6 +245,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -252,6 +255,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -298,14 +302,16 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
                 self.ttl_Alice_650_pi.off()
                 self.ttl_650_fast_cw.off()
 
-            delay(500*ns)
+            delay(200*ns)
 
-            with parallel:
+            with sequential:
                 self.DDS__532__Alice__tone_1.sw.on()
+                delay_mu(70)        # This delay is needed because the non-PG side turns on slower than the PG side
                 self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
-            with parallel:
+            with sequential:
                 self.DDS__532__Alice__tone_1.sw.off()
+                delay_mu(70)
                 self.DDS__532__Bob__tone_2.sw.off()
 
             with parallel:
@@ -329,13 +335,16 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
                 self.ttl_Alice_650_pi.off()
                 self.ttl_650_fast_cw.off()
 
-            delay(500*ns)
-            with parallel:
+            delay(200*ns)
+
+            with sequential:
                 self.DDS__532__Alice__tone_1.sw.on()
+                delay_mu(70)
                 self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
-            with parallel:
+            with sequential:
                 self.DDS__532__Alice__tone_1.sw.off()
+                delay_mu(70)
                 self.DDS__532__Bob__tone_2.sw.off()
 
             with parallel:

@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Fri Aug 16 06:30:23 2019
-| Host         : Batcomputer running 64-bit unknown
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed Oct  7 22:35:55 2020
+| Host         : artiqdev running 64-bit unknown
 | Command      : report_timing_summary -file top_timing_synth.rpt
 | Design       : top
 | Device       : 7a100t-fgg484
@@ -25,6 +25,7 @@ Timing Summary Report
   Ignore I/O Paths                           :  No
   Timing Early Launch at Borrowing Latches   :  No
   Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
 
   Corner  Analyze    Analyze    
   Name    Max Paths  Min Paths  
@@ -75,14 +76,14 @@ Table of Contents
 
 5. checking no_input_delay
 --------------------------
- There are 39 input ports with no input delay specified. (HIGH)
+ There are 41 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 117 ports with no output delay specified. (HIGH)
+ There are 119 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -127,7 +128,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      0.842        0.000                      0                44673       -0.286      -12.725                     59                44666        0.264        0.000                       0                 19975  
+      0.771        0.000                      0                51761       -0.286      -12.359                     57                51754        0.264        0.000                       0                 19708  
 
 
 Timing constraints are not met.
@@ -180,17 +181,17 @@ clk125_gtp_p                                                                    
     main_genericstandalone_genericstandalone_pll_fb                                                                                                                                                           14.751        0.000                       0                     2  
 main_genericstandalone_rxoutclk                                                                                                                                                                                5.000        0.000                       0                     3  
   main_genericstandalone_clk_rx_half_unbuf                                                                                                                                                                     7.500        0.000                       0                     5  
-  main_genericstandalone_clk_rx_unbuf                              3.772        0.000                      0                  606        0.037        0.000                      0                  606        2.870        0.000                       0                   220  
+  main_genericstandalone_clk_rx_unbuf                              3.880        0.000                      0                  600        0.037        0.000                      0                  600        2.870        0.000                       0                   220  
   main_genericstandalone_rx_mmcm_fb                                                                                                                                                                           14.751        0.000                       0                     2  
 main_genericstandalone_txoutclk                                                                                                                                                                                5.000        0.000                       0                     3  
   main_genericstandalone_clk_tx_half_unbuf                        14.158        0.000                      0                   20        0.269        0.000                      0                   20        7.500        0.000                       0                    24  
-  main_genericstandalone_clk_tx_unbuf                              1.181        0.000                      0                  441        0.037        0.000                      0                  441        3.500        0.000                       0                   208  
+  main_genericstandalone_clk_tx_unbuf                              1.159        0.000                      0                  441        0.037        0.000                      0                  441        3.500        0.000                       0                   208  
   main_genericstandalone_tx_mmcm_fb                                                                                                                                                                           14.751        0.000                       0                     2  
 si5324_clkout_fabric_p                                                                                                                                                                                         2.000        0.000                       0                     1  
   main_rtio_crg_fb_clk                                                                                                                                                                                         6.751        0.000                       0                     2  
-  main_rtio_crg_rtio_clk                                           1.696        0.000                      0                13787       -0.183       -6.952                     38                13787        2.870        0.000                       0                  7854  
-  main_rtio_crg_rtiox4_clk                                                                                                                                                                                     0.408        0.000                       0                    56  
-sys_clk                                                            0.842        0.000                      0                29778        0.035        0.000                      0                29778        3.114        0.000                       0                 11494  
+  main_rtio_crg_rtio_clk                                           1.594        0.000                      0                12875       -0.183       -6.586                     36                12875        2.870        0.000                       0                  7727  
+  main_rtio_crg_rtiox4_clk                                                                                                                                                                                     0.408        0.000                       0                    62  
+sys_clk                                                            0.771        0.000                      0                37784        0.035        0.000                      0                37784        3.114        0.000                       0                 11348  
 
 
 ------------------------------------------------------------------------------------------------
@@ -609,7 +610,7 @@ High Pulse Width  Slow    FDRE/C                  n/a            0.500         8
 From Clock:  main_genericstandalone_clk_rx_unbuf
   To Clock:  main_genericstandalone_clk_rx_unbuf
 
-Setup :            0  Failing Endpoints,  Worst Slack        3.772ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        3.880ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        2.870ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -617,16 +618,16 @@ PW    :            0  Failing Endpoints,  Worst Slack        2.870ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             3.772ns  (required time - arrival time)
-  Source:                 main_genericstandalone_pcs_source_payload_data_reg[3]/C
+Slack (MET) :             3.880ns  (required time - arrival time)
+  Source:                 builder_xilinxmultiregimpl12_regs1_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
-  Destination:            main_genericstandalone_ps_crc_error_toggle_i_reg/D
-                            (rising edge-triggered cell FDRE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            main_genericstandalone_crc32_checker_crc_reg_reg[0]/CE
+                            (rising edge-triggered cell FDSE clocked by main_genericstandalone_clk_rx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             main_genericstandalone_clk_rx_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (main_genericstandalone_clk_rx_unbuf rise@8.000ns - main_genericstandalone_clk_rx_unbuf rise@0.000ns)
-  Data Path Delay:        4.073ns  (logic 1.069ns (26.246%)  route 3.004ns (73.754%))
-  Logic Levels:           5  (LUT5=2 LUT6=3)
+  Data Path Delay:        3.757ns  (logic 1.049ns (27.921%)  route 2.708ns (72.079%))
+  Logic Levels:           5  (LUT3=2 LUT4=1 LUT6=2)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    2.335ns = ( 10.335 - 8.000 ) 
     Source Clock Delay      (SCD):    2.702ns
@@ -649,21 +650,21 @@ Slack (MET) :             3.772ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.647     2.037    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.081     2.118 r  BUFG_7/O
                          net (fo=218, unplaced)       0.584     2.702    eth_rx_clk
-                         FDRE                                         r  main_genericstandalone_pcs_source_payload_data_reg[3]/C
+                         FDRE                                         r  builder_xilinxmultiregimpl12_regs1_reg[3]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.099 r  main_genericstandalone_pcs_source_payload_data_reg[3]/Q
-                         net (fo=14, unplaced)        0.676     3.775    main_genericstandalone_pcs_source_payload_data_reg_n_0_[3]
-                         LUT5 (Prop_lut5_I2_O)        0.252     4.027 f  main_genericstandalone_crc32_checker_crc_reg[30]_i_1/O
-                         net (fo=2, unplaced)         0.593     4.620    main_genericstandalone_crc32_checker_crc_next[30]
-                         LUT6 (Prop_lut6_I0_O)        0.105     4.725 r  main_genericstandalone_rx_converter_converter_source_payload_data[39]_i_11/O
-                         net (fo=1, unplaced)         0.582     5.307    main_genericstandalone_rx_converter_converter_source_payload_data[39]_i_11_n_0
-                         LUT6 (Prop_lut6_I0_O)        0.105     5.412 r  main_genericstandalone_rx_converter_converter_source_payload_data[39]_i_7/O
-                         net (fo=1, unplaced)         0.778     6.190    main_genericstandalone_rx_converter_converter_source_payload_data[39]_i_7_n_0
-                         LUT6 (Prop_lut6_I4_O)        0.105     6.295 r  main_genericstandalone_rx_converter_converter_source_payload_data[39]_i_2/O
-                         net (fo=5, unplaced)         0.375     6.670    main_genericstandalone_rx_converter_converter_sink_payload_data[9]
-                         LUT5 (Prop_lut5_I1_O)        0.105     6.775 r  main_genericstandalone_ps_crc_error_toggle_i_i_1/O
-                         net (fo=1, unplaced)         0.000     6.775    main_genericstandalone_ps_crc_error_toggle_i_i_1_n_0
-                         FDRE                                         r  main_genericstandalone_ps_crc_error_toggle_i_reg/D
+                         FDRE (Prop_fdre_C_Q)         0.397     3.099 r  builder_xilinxmultiregimpl12_regs1_reg[3]/Q
+                         net (fo=1, unplaced)         0.779     3.878    builder_xilinxmultiregimpl12_regs1[3]
+                         LUT6 (Prop_lut6_I0_O)        0.232     4.110 r  storage_4_reg_i_9/O
+                         net (fo=1, unplaced)         0.347     4.457    storage_4_reg_i_9_n_0
+                         LUT4 (Prop_lut4_I1_O)        0.105     4.562 r  storage_4_reg_i_1/O
+                         net (fo=10, unplaced)        0.390     4.952    main_genericstandalone_rx_cdc_asyncfifo_writable
+                         LUT3 (Prop_lut3_I2_O)        0.105     5.057 r  main_genericstandalone_rx_converter_converter_demux[1]_i_2/O
+                         net (fo=10, unplaced)        0.390     5.447    p_2032_in
+                         LUT6 (Prop_lut6_I0_O)        0.105     5.552 r  FSM_onehot_builder_liteethmaccrc32checker_state[2]_i_2/O
+                         net (fo=3, unplaced)         0.365     5.917    main_genericstandalone_crc32_checker_crc_ce0
+                         LUT3 (Prop_lut3_I0_O)        0.105     6.022 r  main_genericstandalone_crc32_checker_crc_reg[31]_i_1/O
+                         net (fo=32, unplaced)        0.437     6.459    main_genericstandalone_crc32_checker_crc_ce
+                         FDSE                                         r  main_genericstandalone_crc32_checker_crc_reg_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock main_genericstandalone_clk_rx_unbuf rise edge)
@@ -677,15 +678,15 @@ Slack (MET) :             3.772ns  (required time - arrival time)
                          net (fo=1, unplaced)         0.615     9.819    main_genericstandalone_clk_rx_unbuf
                          BUFG (Prop_bufg_I_O)         0.077     9.896 r  BUFG_7/O
                          net (fo=218, unplaced)       0.439    10.335    eth_rx_clk
-                         FDRE                                         r  main_genericstandalone_ps_crc_error_toggle_i_reg/C
+                         FDSE                                         r  main_genericstandalone_crc32_checker_crc_reg_reg[0]/C
                          clock pessimism              0.222    10.557    
                          clock uncertainty           -0.053    10.504    
-                         FDRE (Setup_fdre_C_D)        0.043    10.547    main_genericstandalone_ps_crc_error_toggle_i_reg
+                         FDSE (Setup_fdse_C_CE)      -0.165    10.339    main_genericstandalone_crc32_checker_crc_reg_reg[0]
   -------------------------------------------------------------------
-                         required time                         10.547    
-                         arrival time                          -6.775    
+                         required time                         10.339    
+                         arrival time                          -6.459    
   -------------------------------------------------------------------
-                         slack                                  3.772    
+                         slack                                  3.880    
 
 
 
@@ -973,7 +974,7 @@ High Pulse Width  Slow    FDRE/C                  n/a            0.500         8
 From Clock:  main_genericstandalone_clk_tx_unbuf
   To Clock:  main_genericstandalone_clk_tx_unbuf
 
-Setup :            0  Failing Endpoints,  Worst Slack        1.181ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        1.159ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        3.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -981,7 +982,7 @@ PW    :            0  Failing Endpoints,  Worst Slack        3.500ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             1.181ns  (required time - arrival time)
+Slack (MET) :             1.159ns  (required time - arrival time)
   Source:                 storage_3_reg/CLKARDCLK
                             (rising edge-triggered cell RAMB36E1 clocked by main_genericstandalone_clk_tx_unbuf  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            main_genericstandalone_pcs_transmitpath_code6b_reg[0]/R
@@ -989,8 +990,8 @@ Slack (MET) :             1.181ns  (required time - arrival time)
   Path Group:             main_genericstandalone_clk_tx_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (main_genericstandalone_clk_tx_unbuf rise@8.000ns - main_genericstandalone_clk_tx_unbuf rise@0.000ns)
-  Data Path Delay:        6.169ns  (logic 2.755ns (44.656%)  route 3.414ns (55.344%))
-  Logic Levels:           6  (LUT2=1 LUT3=1 LUT5=1 LUT6=3)
+  Data Path Delay:        6.191ns  (logic 2.775ns (44.820%)  route 3.416ns (55.180%))
+  Logic Levels:           6  (LUT2=2 LUT5=1 LUT6=3)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    1.967ns = ( 9.967 - 8.000 ) 
     Source Clock Delay      (SCD):    2.625ns
@@ -1015,21 +1016,21 @@ Slack (MET) :             1.181ns  (required time - arrival time)
                          net (fo=206, unplaced)       0.584     2.625    eth_tx_clk
                          RAMB36E1                                     r  storage_3_reg/CLKARDCLK
   -------------------------------------------------------------------    -------------------
-                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[8])
-                                                      2.125     4.750 f  storage_3_reg/DOADO[8]
-                         net (fo=1, unplaced)         0.647     5.397    storage_3_reg_n_27
-                         LUT6 (Prop_lut6_I5_O)        0.105     5.502 f  main_genericstandalone_crc32_inserter_reg[30]_i_2/O
-                         net (fo=6, unplaced)         0.379     5.881    main_genericstandalone_crc32_inserter_reg[30]_i_2_n_0
-                         LUT3 (Prop_lut3_I2_O)        0.105     5.986 f  g0_b0__0_i_17/O
-                         net (fo=1, unplaced)         0.347     6.333    g0_b0__0_i_17_n_0
-                         LUT5 (Prop_lut5_I0_O)        0.105     6.438 f  g0_b0__0_i_8/O
-                         net (fo=1, unplaced)         0.582     7.020    g0_b0__0_i_8_n_0
-                         LUT6 (Prop_lut6_I2_O)        0.105     7.125 f  g0_b0__0_i_1/O
-                         net (fo=11, unplaced)        0.574     7.699    main_genericstandalone_pcs_transmitpath_d0[0]
-                         LUT6 (Prop_lut6_I2_O)        0.105     7.804 r  g0_b0__1_i_1/O
-                         net (fo=5, unplaced)         0.375     8.179    main_genericstandalone_pcs_transmitpath_code6b1
-                         LUT2 (Prop_lut2_I1_O)        0.105     8.284 r  main_genericstandalone_pcs_transmitpath_code6b[3]_i_1/O
-                         net (fo=4, unplaced)         0.510     8.794    main_genericstandalone_pcs_transmitpath_code6b[3]_i_1_n_0
+                         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[27])
+                                                      2.125     4.750 r  storage_3_reg/DOADO[27]
+                         net (fo=1, unplaced)         0.647     5.397    storage_3_reg_n_8
+                         LUT6 (Prop_lut6_I5_O)        0.105     5.502 f  main_genericstandalone_crc32_inserter_reg[30]_i_4/O
+                         net (fo=1, unplaced)         0.347     5.849    main_genericstandalone_crc32_inserter_reg[30]_i_4_n_0
+                         LUT2 (Prop_lut2_I1_O)        0.105     5.954 r  main_genericstandalone_crc32_inserter_reg[30]_i_2/O
+                         net (fo=8, unplaced)         0.385     6.339    main_genericstandalone_padding_inserter_source_payload_data[3]
+                         LUT6 (Prop_lut6_I1_O)        0.105     6.444 r  g0_b0__1_i_14/O
+                         net (fo=1, unplaced)         0.328     6.772    g0_b0__1_i_14_n_0
+                         LUT5 (Prop_lut5_I4_O)        0.125     6.897 r  g0_b0__1_i_4/O
+                         net (fo=11, unplaced)        0.824     7.721    main_genericstandalone_pcs_transmitpath_d0[3]
+                         LUT6 (Prop_lut6_I1_O)        0.105     7.826 r  g0_b0__0_i_1/O
+                         net (fo=5, unplaced)         0.375     8.201    main_genericstandalone_pcs_transmitpath_code6b1
+                         LUT2 (Prop_lut2_I1_O)        0.105     8.306 r  main_genericstandalone_pcs_transmitpath_code6b[3]_i_1/O
+                         net (fo=4, unplaced)         0.510     8.816    main_genericstandalone_pcs_transmitpath_code6b[3]_i_1_n_0
                          FDRE                                         r  main_genericstandalone_pcs_transmitpath_code6b_reg[0]/R
   -------------------------------------------------------------------    -------------------
 
@@ -1050,9 +1051,9 @@ Slack (MET) :             1.181ns  (required time - arrival time)
                          FDRE (Setup_fdre_C_R)       -0.452     9.975    main_genericstandalone_pcs_transmitpath_code6b_reg[0]
   -------------------------------------------------------------------
                          required time                          9.975    
-                         arrival time                          -8.794    
+                         arrival time                          -8.816    
   -------------------------------------------------------------------
-                         slack                                  1.181    
+                         slack                                  1.159    
 
 
 
@@ -1209,24 +1210,24 @@ Max Period  n/a     PLLE2_ADV/CLKFBIN   n/a            52.633        8.000      
 From Clock:  main_rtio_crg_rtio_clk
   To Clock:  main_rtio_crg_rtio_clk
 
-Setup :            0  Failing Endpoints,  Worst Slack        1.696ns,  Total Violation        0.000ns
-Hold  :           38  Failing Endpoints,  Worst Slack       -0.183ns,  Total Violation       -6.952ns
+Setup :            0  Failing Endpoints,  Worst Slack        1.594ns,  Total Violation        0.000ns
+Hold  :           36  Failing Endpoints,  Worst Slack       -0.183ns,  Total Violation       -6.586ns
 PW    :            0  Failing Endpoints,  Worst Slack        2.870ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             1.696ns  (required time - arrival time)
-  Source:                 main_spimaster2_spimachine2_cnt_reg[0]/C
+Slack (MET) :             1.594ns  (required time - arrival time)
+  Source:                 main_spimaster1_spimachine1_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Destination:            main_rtio_core_outputs_busy_channel_reg[0]/R
                             (rising edge-triggered cell FDRE clocked by main_rtio_crg_rtio_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
   Path Group:             main_rtio_crg_rtio_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.000ns  (main_rtio_crg_rtio_clk rise@8.000ns - main_rtio_crg_rtio_clk rise@0.000ns)
-  Data Path Delay:        5.649ns  (logic 1.364ns (24.146%)  route 4.285ns (75.854%))
-  Logic Levels:           8  (LUT2=1 LUT3=1 LUT4=2 LUT5=2 LUT6=2)
+  Data Path Delay:        5.751ns  (logic 1.489ns (25.891%)  route 4.262ns (74.109%))
+  Logic Levels:           9  (LUT2=1 LUT3=1 LUT4=2 LUT5=2 LUT6=3)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    2.613ns = ( 10.613 - 8.000 ) 
     Source Clock Delay      (SCD):    2.984ns
@@ -1248,27 +1249,29 @@ Slack (MET) :             1.696ns  (required time - arrival time)
                                                       0.078     1.608 r  PLLE2_ADV/CLKOUT1
                          net (fo=1, unplaced)         0.647     2.255    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.081     2.336 r  BUFG_8/O
-                         net (fo=7852, unplaced)      0.647     2.984    rtio_clk
-                         FDRE                                         r  main_spimaster2_spimachine2_cnt_reg[0]/C
+                         net (fo=7725, unplaced)      0.647     2.984    rtio_clk
+                         FDRE                                         r  main_spimaster1_spimachine1_cnt_reg[3]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.381 f  main_spimaster2_spimachine2_cnt_reg[0]/Q
-                         net (fo=5, unplaced)         0.653     4.034    main_spimaster2_spimachine2_cnt_reg[0]
-                         LUT4 (Prop_lut4_I1_O)        0.232     4.266 f  main_spimaster2_spimachine2_cnt[6]_i_5/O
-                         net (fo=4, unplaced)         0.371     4.637    main_spimaster2_spimachine2_cnt[6]_i_5_n_0
-                         LUT4 (Prop_lut4_I0_O)        0.105     4.742 f  main_spimaster2_spimachine2_cnt[6]_i_4/O
-                         net (fo=6, unplaced)         0.379     5.121    main_spimaster2_spimachine2_cnt[6]_i_4_n_0
-                         LUT2 (Prop_lut2_I1_O)        0.105     5.226 f  main_spimaster2_interface_clk_i_4/O
-                         net (fo=10, unplaced)        0.390     5.616    main_spimaster2_interface_clk_i_4_n_0
-                         LUT6 (Prop_lut6_I1_O)        0.105     5.721 f  main_spimaster2_config_lsb_first_i_2/O
-                         net (fo=10, unplaced)        0.390     6.111    main_spimaster2_ointerface2_busy
-                         LUT5 (Prop_lut5_I3_O)        0.105     6.216 r  main_rtio_core_outputs_busy_i_22/O
-                         net (fo=1, unplaced)         0.582     6.798    main_rtio_core_outputs_busy_i_22_n_0
-                         LUT6 (Prop_lut6_I2_O)        0.105     6.903 f  main_rtio_core_outputs_busy_i_16/O
-                         net (fo=7, unplaced)         0.617     7.520    main_rtio_core_outputs_busy1872_out
-                         LUT3 (Prop_lut3_I0_O)        0.105     7.625 f  main_rtio_core_outputs_busy_i_5/O
-                         net (fo=8, unplaced)         0.385     8.010    main_rtio_core_outputs_busy_i_5_n_0
-                         LUT5 (Prop_lut5_I4_O)        0.105     8.115 r  main_rtio_core_outputs_busy_channel[5]_i_1/O
-                         net (fo=6, unplaced)         0.518     8.633    main_rtio_core_outputs_busy_channel
+                         FDRE (Prop_fdre_C_Q)         0.397     3.381 f  main_spimaster1_spimachine1_cnt_reg[3]/Q
+                         net (fo=4, unplaced)         0.803     4.184    main_spimaster1_spimachine1_cnt_reg[3]
+                         LUT6 (Prop_lut6_I0_O)        0.232     4.416 r  main_spimaster1_spimachine1_cnt[6]_i_5/O
+                         net (fo=2, unplaced)         0.358     4.774    main_spimaster1_spimachine1_cnt[6]_i_5_n_0
+                         LUT2 (Prop_lut2_I0_O)        0.105     4.879 r  main_spimaster1_spimachine1_cnt[6]_i_3/O
+                         net (fo=12, unplaced)        0.395     5.274    main_spimaster1_spimachine1_cnt_done
+                         LUT4 (Prop_lut4_I1_O)        0.105     5.379 r  main_spimaster1_config_cs[2]_i_3/O
+                         net (fo=1, unplaced)         0.347     5.726    main_spimaster1_config_cs[2]_i_3_n_0
+                         LUT6 (Prop_lut6_I4_O)        0.105     5.831 r  main_spimaster1_config_cs[2]_i_2/O
+                         net (fo=13, unplaced)        0.397     6.228    main_spimaster1_spimachine1_writable
+                         LUT5 (Prop_lut5_I1_O)        0.105     6.333 f  main_rtio_core_outputs_busy_i_40/O
+                         net (fo=1, unplaced)         0.347     6.680    main_rtio_core_outputs_busy_i_40_n_0
+                         LUT4 (Prop_lut4_I0_O)        0.105     6.785 f  main_rtio_core_outputs_busy_i_30/O
+                         net (fo=1, unplaced)         0.347     7.132    main_rtio_core_outputs_busy_i_30_n_0
+                         LUT6 (Prop_lut6_I5_O)        0.105     7.237 r  main_rtio_core_outputs_busy_i_18/O
+                         net (fo=10, unplaced)        0.371     7.608    main_rtio_core_outputs_busy_i_18_n_0
+                         LUT3 (Prop_lut3_I0_O)        0.125     7.733 f  main_rtio_core_outputs_busy_i_6/O
+                         net (fo=6, unplaced)         0.379     8.112    main_rtio_core_outputs_busy_i_6_n_0
+                         LUT5 (Prop_lut5_I4_O)        0.105     8.217 r  main_rtio_core_outputs_busy_channel[5]_i_1/O
+                         net (fo=6, unplaced)         0.518     8.735    main_rtio_core_outputs_busy_channel
                          FDRE                                         r  main_rtio_core_outputs_busy_channel_reg[0]/R
   -------------------------------------------------------------------    -------------------
 
@@ -1282,16 +1285,16 @@ Slack (MET) :             1.696ns  (required time - arrival time)
                                                       0.074     9.418 r  PLLE2_ADV/CLKOUT1
                          net (fo=1, unplaced)         0.615    10.034    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.077    10.111 r  BUFG_8/O
-                         net (fo=7852, unplaced)      0.502    10.613    rtio_clk
+                         net (fo=7725, unplaced)      0.502    10.613    rtio_clk
                          FDRE                                         r  main_rtio_core_outputs_busy_channel_reg[0]/C
                          clock pessimism              0.226    10.839    
                          clock uncertainty           -0.058    10.781    
                          FDRE (Setup_fdre_C_R)       -0.452    10.329    main_rtio_core_outputs_busy_channel_reg[0]
   -------------------------------------------------------------------
                          required time                         10.329    
-                         arrival time                          -8.633    
+                         arrival time                          -8.735    
   -------------------------------------------------------------------
-                         slack                                  1.696    
+                         slack                                  1.594    
 
 
 
@@ -1326,12 +1329,12 @@ Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
                                                       0.051     0.606 r  PLLE2_ADV/CLKOUT1
                          net (fo=1, unplaced)         0.321     0.927    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.026     0.953 r  BUFG_8/O
-                         net (fo=7852, unplaced)      0.193     1.146    rtio_clk
+                         net (fo=7725, unplaced)      0.193     1.146    rtio_clk
                          FDPE                                         r  FDPE_13/C
   -------------------------------------------------------------------    -------------------
                          FDPE (Prop_fdpe_C_Q)         0.147     1.293 r  FDPE_13/Q
-                         net (fo=1644, unplaced)      0.321     1.614    rio_phy_rst
-    OLOGIC_X1Y74         OSERDESE2                                    r  OSERDESE2_45/RST
+                         net (fo=591, unplaced)       0.321     1.614    rio_phy_rst
+    OLOGIC_X1Y56         OSERDESE2                                    r  OSERDESE2_45/RST
   -------------------------------------------------------------------    -------------------
 
                          (clock main_rtio_crg_rtio_clk rise edge)
@@ -1344,10 +1347,10 @@ Slack (VIOLATED) :        -0.183ns  (arrival time - required time)
                                                       0.054     0.790 r  PLLE2_ADV/CLKOUT1
                          net (fo=1, unplaced)         0.338     1.128    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.029     1.157 r  BUFG_8/O
-                         net (fo=7852, unplaced)      0.338     1.495    rtio_clk
-    OLOGIC_X1Y74         OSERDESE2                                    r  OSERDESE2_45/CLKDIV
+                         net (fo=7725, unplaced)      0.338     1.495    rtio_clk
+    OLOGIC_X1Y56         OSERDESE2                                    r  OSERDESE2_45/CLKDIV
                          clock pessimism             -0.203     1.291    
-    OLOGIC_X1Y74         OSERDESE2 (Hold_oserdese2_CLKDIV_RST)
+    OLOGIC_X1Y56         OSERDESE2 (Hold_oserdese2_CLKDIV_RST)
                                                       0.506     1.797    OSERDESE2_45
   -------------------------------------------------------------------
                          required time                         -1.797    
@@ -1369,8 +1372,8 @@ Sources:            { PLLE2_ADV/CLKOUT1 }
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
 Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.170         8.000       5.830                storage_14_reg_0/CLKARDCLK
 Max Period        n/a     PLLE2_ADV/CLKOUT1   n/a            160.000       8.000       152.000              PLLE2_ADV/CLKOUT1
-Low Pulse Width   Slow    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_23_reg_0_3_0_5/RAMA/CLK
-High Pulse Width  Fast    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_23_reg_0_3_0_5/RAMA/CLK
+Low Pulse Width   Slow    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_24_reg_0_3_0_5/RAMA/CLK
+High Pulse Width  Fast    RAMD32/CLK          n/a            1.130         4.000       2.870                storage_24_reg_0_3_0_5/RAMA/CLK
 
 
 
@@ -1401,7 +1404,7 @@ Max Period  n/a     PLLE2_ADV/CLKOUT0  n/a            160.000       2.000       
 From Clock:  sys_clk
   To Clock:  sys_clk
 
-Setup :            0  Failing Endpoints,  Worst Slack        0.842ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        0.771ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.035ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        3.114ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -1409,16 +1412,16 @@ PW    :            0  Failing Endpoints,  Worst Slack        3.114ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.842ns  (required time - arrival time)
-  Source:                 mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[17]/C
+Slack (MET) :             0.771ns  (required time - arrival time)
+  Source:                 mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[7]/C
                             (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@4.414ns period=8.828ns})
-  Destination:            mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/D
+  Destination:            mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/D
                             (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@4.414ns period=8.828ns})
   Path Group:             sys_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            8.828ns  (sys_clk rise@8.828ns - sys_clk rise@0.000ns)
-  Data Path Delay:        7.828ns  (logic 2.925ns (37.366%)  route 4.903ns (62.634%))
-  Logic Levels:           14  (CARRY4=3 LUT2=2 LUT4=1 LUT5=1 LUT6=7)
+  Data Path Delay:        7.899ns  (logic 3.097ns (39.207%)  route 4.802ns (60.793%))
+  Logic Levels:           15  (CARRY4=4 LUT2=1 LUT4=1 LUT5=1 LUT6=8)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.502ns = ( 9.330 - 8.828 ) 
     Source Clock Delay      (SCD):    0.647ns
@@ -1432,57 +1435,60 @@ Slack (MET) :             0.842ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
                          (clock sys_clk rise edge)    0.000     0.000 r  
                          BUFG                         0.000     0.000 r  BUFG/O
-                         net (fo=11496, unplaced)     0.647     0.647    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/sys_clk
-                         FDRE                                         r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[17]/C
+                         net (fo=11350, unplaced)     0.647     0.647    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/sys_clk
+                         FDRE                                         r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[7]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     1.044 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[17]/Q
-                         net (fo=3, unplaced)         0.380     1.424    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[31]_0[17]
-                         LUT2 (Prop_lut2_I0_O)        0.232     1.656 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/mem_reg_1_i_2__0/O
-                         net (fo=6, unplaced)         0.614     2.270    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/din[52]
-                         LUT6 (Prop_lut6_I0_O)        0.105     2.375 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/check_way_match[0]_carry_i_3__2/O
-                         net (fo=1, unplaced)         0.000     2.375    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/check_way_match[0]_carry__0_0[1]
+                         FDRE (Prop_fdre_C_Q)         0.397     1.044 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[7]/Q
+                         net (fo=7, unplaced)         0.397     1.441    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_lsu_adr_o_reg[31]_0[7]
+                         LUT2 (Prop_lut2_I0_O)        0.232     1.673 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/mem_reg_1_i_14/O
+                         net (fo=5, unplaced)         0.610     2.283    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/din[73]
+                         LUT6 (Prop_lut6_I0_O)        0.105     2.388 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/i__carry_i_3/O
+                         net (fo=1, unplaced)         0.000     2.388    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry__0_0[1]
                          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.444     2.819 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/check_way_match[0]_carry/CO[3]
-                         net (fo=1, unplaced)         0.000     2.819    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/check_way_match[0]_carry_n_0
-                         CARRY4 (Prop_carry4_CI_CO[2])
-                                                      0.211     3.030 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/check_way_match[0]_carry__0/CO[2]
-                         net (fo=4, unplaced)         0.373     3.403    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/CO[0]
-                         LUT2 (Prop_lut2_I1_O)        0.252     3.655 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/execute_opc_alu_o[3]_i_13__0/O
-                         net (fo=1, unplaced)         0.347     4.002    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/execute_opc_alu_o[3]_i_13__0_n_0
-                         LUT6 (Prop_lut6_I4_O)        0.105     4.107 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/execute_opc_alu_o[3]_i_10__0/O
-                         net (fo=1, unplaced)         0.347     4.454    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/execute_opc_alu_o[3]_i_10__0_n_0
-                         LUT4 (Prop_lut4_I2_O)        0.105     4.559 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/execute_opc_alu_o[3]_i_9__0/O
-                         net (fo=4, unplaced)         0.371     4.930    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/dbus_ack_reg
-                         LUT6 (Prop_lut6_I1_O)        0.105     5.035 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_4__0/O
-                         net (fo=5, unplaced)         0.375     5.410    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/lsu_valid_o
-                         LUT6 (Prop_lut6_I2_O)        0.105     5.515 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_rfd_adr_o[4]_i_4__0/O
-                         net (fo=6, unplaced)         0.360     5.875    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/execute_valid_o
-                         LUT6 (Prop_lut6_I4_O)        0.105     5.980 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/ctrl_rfd_adr_o[4]_i_1__0/O
-                         net (fo=109, unplaced)       0.449     6.429    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_decode_execute_cappuccino/padv_execute_o
-                         LUT5 (Prop_lut5_I1_O)        0.105     6.534 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_decode_execute_cappuccino/mem_reg_0_63_0_2_i_8__0/O
-                         net (fo=82, unplaced)        0.677     7.211    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/ADDRBWRADDR[4]
-                         LUT6 (Prop_lut6_I1_O)        0.105     7.316 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_i_3__0/O
-                         net (fo=1, unplaced)         0.000     7.316    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_i_3__0_n_0
+                                                      0.444     2.832 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry/CO[3]
+                         net (fo=1, unplaced)         0.000     2.832    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry_n_0
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     2.932 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry__0/CO[3]
+                         net (fo=1, unplaced)         0.000     2.932    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry__0_n_0
+                         CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.238     3.170 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/refill_hit2_inferred__0/i__carry__1/CO[0]
+                         net (fo=2, unplaced)         0.251     3.421    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_6_1[0]
+                         LUT6 (Prop_lut6_I3_O)        0.297     3.718 f  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_12/O
+                         net (fo=1, unplaced)         0.347     4.065    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_12_n_0
+                         LUT6 (Prop_lut6_I4_O)        0.105     4.170 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_6/O
+                         net (fo=1, unplaced)         0.347     4.517    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_6_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.105     4.622 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/tag_ram/atomic_gen.atomic_flag_set_i_4/O
+                         net (fo=5, unplaced)         0.375     4.997    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/lsu_valid_o
+                         LUT6 (Prop_lut6_I2_O)        0.105     5.102 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/execute_opc_alu_o[3]_i_3/O
+                         net (fo=7, unplaced)         0.382     5.484    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/execute_valid_o
+                         LUT6 (Prop_lut6_I2_O)        0.105     5.589 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/ctrl_rfd_adr_o[4]_i_2/O
+                         net (fo=2, unplaced)         0.358     5.947    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/pic.mor1kx_pic/padv_execute_o3__0
+                         LUT4 (Prop_lut4_I2_O)        0.105     6.052 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_ctrl_cappuccino/pic.mor1kx_pic/ctrl_rfd_adr_o[4]_i_1/O
+                         net (fo=106, unplaced)       0.448     6.500    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_decode_execute_cappuccino/padv_execute_o
+                         LUT5 (Prop_lut5_I1_O)        0.105     6.605 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_decode_execute_cappuccino/mem_reg_0_63_0_2_i_8/O
+                         net (fo=82, unplaced)        0.677     7.282    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/ADDRBWRADDR[4]
+                         LUT6 (Prop_lut6_I1_O)        0.105     7.387 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_i_3/O
+                         net (fo=1, unplaced)         0.000     7.387    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_i_3_n_0
                          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.444     7.760 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry/CO[3]
-                         net (fo=1, unplaced)         0.610     8.370    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_n_0
-                         LUT6 (Prop_lut6_I0_O)        0.105     8.475 r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_i_1__1/O
-                         net (fo=1, unplaced)         0.000     8.475    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_i_1__1_n_0
-                         FDRE                                         r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/D
+                                                      0.444     7.831 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry/CO[3]
+                         net (fo=1, unplaced)         0.610     8.441    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass2_carry_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.105     8.546 r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_i_1/O
+                         net (fo=1, unplaced)         0.000     8.546    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_i_1_n_0
+                         FDRE                                         r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk rise edge)    8.828     8.828 r  
                          BUFG                         0.000     8.828 r  BUFG/O
-                         net (fo=11496, unplaced)     0.502     9.330    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/sys_clk
-                         FDRE                                         r  mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/C
+                         net (fo=11350, unplaced)     0.502     9.330    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/sys_clk
+                         FDRE                                         r  mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg/C
                          clock pessimism              0.000     9.330    
                          clock uncertainty           -0.056     9.274    
-                         FDRE (Setup_fdre_C_D)        0.043     9.317    mor1kx_1/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg
+                         FDRE (Setup_fdre_C_D)        0.043     9.317    mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_lsu_cappuccino/dcache_gen.mor1kx_dcache/way_memories[0].way_data_ram/bypass_gen.bypass_reg
   -------------------------------------------------------------------
                          required time                          9.317    
-                         arrival time                          -8.475    
+                         arrival time                          -8.546    
   -------------------------------------------------------------------
-                         slack                                  0.842    
+                         slack                                  0.771    
 
 
 
@@ -1509,7 +1515,7 @@ Slack (MET) :             0.035ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
                          (clock sys_clk rise edge)    0.000     0.000 r  
                          BUFG                         0.000     0.000 r  BUFG/O
-                         net (fo=11496, unplaced)     0.193     0.193    sys_clk
+                         net (fo=11350, unplaced)     0.193     0.193    sys_clk
                          FDRE                                         r  main_genericstandalone_genericstandalone_genericstandalone_uart_phy_source_payload_data_reg[0]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.147     0.340 r  main_genericstandalone_genericstandalone_genericstandalone_uart_phy_source_payload_data_reg[0]/Q
@@ -1519,7 +1525,7 @@ Slack (MET) :             0.035ns  (arrival time - required time)
 
                          (clock sys_clk rise edge)    0.000     0.000 r  
                          BUFG                         0.000     0.000 r  BUFG/O
-                         net (fo=11496, unplaced)     0.338     0.338    storage_1_reg_0_15_0_5/WCLK
+                         net (fo=11350, unplaced)     0.338     0.338    storage_1_reg_0_15_0_5/WCLK
                          RAMD32                                       r  storage_1_reg_0_15_0_5/RAMA/CLK
                          clock pessimism              0.000     0.338    
                          RAMD32 (Hold_ramd32_CLK_I)
@@ -1543,8 +1549,8 @@ Sources:            { BUFG/O }
 
 Check Type        Corner  Lib Pin               Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location            Pin
 Min Period        n/a     GTPE2_CHANNEL/DRPCLK  n/a            5.714         8.828       3.114      GTPE2_CHANNEL_X0Y4  GTPE2_CHANNEL/DRPCLK
-Low Pulse Width   Slow    RAMD32/CLK            n/a            1.130         4.414       3.284                          storage_reg_0_15_0_5/RAMA/CLK
-High Pulse Width  Slow    RAMD32/CLK            n/a            1.130         4.414       3.284                          storage_reg_0_15_0_5/RAMA/CLK
+Low Pulse Width   Slow    RAMD32/CLK            n/a            1.130         4.414       3.284                          storage_5_reg_0_3_0_5/RAMA/CLK
+High Pulse Width  Slow    RAMD32/CLK            n/a            1.130         4.414       3.284                          storage_5_reg_0_3_0_5/RAMA/CLK
 
 
 
@@ -2212,7 +2218,7 @@ Slack (MET) :             2.884ns  (required time - arrival time)
                                                       0.051     2.606 r  PLLE2_ADV/CLKOUT1
                          net (fo=1, unplaced)         0.321     2.927    main_rtio_crg_rtio_clk
                          BUFG (Prop_bufg_I_O)         0.026     2.953 r  BUFG_8/O
-                         net (fo=7852, unplaced)      0.193     3.146    rtio_clk
+                         net (fo=7725, unplaced)      0.193     3.146    rtio_clk
                          FDPE                                         r  FDPE_11/C
                          clock pessimism              0.000     3.146    
                          clock uncertainty           -0.126     3.020    
@@ -2267,7 +2273,7 @@ Slack (MET) :             1.928ns  (required time - arrival time)
 
                          max delay                    2.000     2.000    
                          BUFG                         0.000     2.000 r  BUFG/O
-                         net (fo=11496, unplaced)     0.193     2.193    sys_clk
+                         net (fo=11350, unplaced)     0.193     2.193    sys_clk
                          FDPE                                         r  FDPE_1/C
                          clock pessimism              0.000     2.193    
                          clock uncertainty           -0.128     2.065    

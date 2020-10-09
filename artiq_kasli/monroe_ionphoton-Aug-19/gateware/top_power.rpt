@@ -1,0 +1,256 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date             : Fri Aug 16 06:33:14 2019
+| Host             : Batcomputer running 64-bit unknown
+| Command          : report_power -file top_power.rpt
+| Design           : top
+| Device           : xc7a100tfgg484-2
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+----------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+--------------+
+| Total On-Chip Power (W)  | 2.739        |
+| Design Power Budget (W)  | Unspecified* |
+| Power Budget Margin (W)  | NA           |
+| Dynamic (W)              | 2.624        |
+| Device Static (W)        | 0.115        |
+| Effective TJA (C/W)      | 2.7          |
+| Max Ambient (C)          | 77.7         |
+| Junction Temperature (C) | 32.3         |
+| Confidence Level         | Low          |
+| Setting File             | ---          |
+| Simulation Activity File | ---          |
+| Design Nets Matched      | NA           |
++--------------------------+--------------+
+* Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
+
+
+1.1 On-Chip Components
+----------------------
+
++--------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
++--------------------------+-----------+----------+-----------+-----------------+
+| Clocks                   |     0.122 |       23 |       --- |             --- |
+| Slice Logic              |     0.067 |    46568 |       --- |             --- |
+|   LUT as Logic           |     0.061 |    21977 |     63400 |           34.66 |
+|   Register               |     0.002 |    18863 |    126800 |           14.88 |
+|   LUT as Distributed RAM |     0.002 |      404 |     19000 |            2.13 |
+|   CARRY4                 |     0.002 |      583 |     15850 |            3.68 |
+|   F7/F8 Muxes            |    <0.001 |      279 |     63400 |            0.44 |
+|   LUT as Shift Register  |    <0.001 |       54 |     19000 |            0.28 |
+|   BUFG                   |     0.000 |        1 |        32 |            3.13 |
+|   Others                 |     0.000 |       83 |       --- |             --- |
+| Signals                  |     0.114 |    40215 |       --- |             --- |
+| Block RAM                |     0.183 |       87 |       135 |           64.44 |
+| MMCM                     |     0.224 |        3 |         6 |           50.00 |
+| PLL                      |     0.161 |        2 |         6 |           33.33 |
+| DSPs                     |     0.006 |        6 |       240 |            2.50 |
+| I/O                      |     1.638 |      208 |       285 |           72.98 |
+| GTP                      |     0.107 |        1 |       --- |             --- |
+| Static Power             |     0.115 |          |           |                 |
+| Total                    |     2.739 |          |           |                 |
++--------------------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.556 |       0.534 |      0.022 |
+| Vccaux    |       1.800 |     0.294 |       0.275 |      0.019 |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25    |       2.500 |     0.554 |       0.550 |      0.004 |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco15    |       1.500 |     0.075 |       0.071 |      0.004 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.015 |       0.012 |      0.003 |
+| MGTAVcc   |       1.000 |     0.052 |       0.050 |      0.002 |
+| MGTAVtt   |       1.200 |     0.045 |       0.042 |      0.003 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                     |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks                 |                                                                                                            |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view   |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                           |                                                                                                            |
+|                             |            |                                                        |                                                                                                            |
+| Overall confidence level    | Low        |                                                        |                                                                                                            |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 2.7                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 4.6                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
+| Clock                                                   | Domain                                                  | Constraint (ns) |
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
+| clk125_gtp_p                                            | clk125_gtp_p                                            |             8.0 |
+| main_genericstandalone_clk_rx_half_unbuf                | main_genericstandalone_clk_rx_half_unbuf                |            16.0 |
+| main_genericstandalone_clk_rx_unbuf                     | main_genericstandalone_clk_rx_unbuf                     |             8.0 |
+| main_genericstandalone_clk_tx_half_unbuf                | main_genericstandalone_clk_tx_half_unbuf                |            16.0 |
+| main_genericstandalone_clk_tx_unbuf                     | main_genericstandalone_clk_tx_unbuf                     |             8.0 |
+| main_genericstandalone_genericstandalone_clk125_div2    | main_genericstandalone_genericstandalone_clk125_div2    |            16.0 |
+| main_genericstandalone_genericstandalone_mmcm_fb        | main_genericstandalone_genericstandalone_mmcm_fb        |            16.0 |
+| main_genericstandalone_genericstandalone_mmcm_sys       | main_genericstandalone_genericstandalone_mmcm_sys       |             8.8 |
+| main_genericstandalone_genericstandalone_mmcm_sys4x     | main_genericstandalone_genericstandalone_mmcm_sys4x     |             2.2 |
+| main_genericstandalone_genericstandalone_mmcm_sys4x_dqs | main_genericstandalone_genericstandalone_mmcm_sys4x_dqs |             2.2 |
+| main_genericstandalone_genericstandalone_pll_clk200     | main_genericstandalone_genericstandalone_pll_clk200     |             5.0 |
+| main_genericstandalone_genericstandalone_pll_fb         | main_genericstandalone_genericstandalone_pll_fb         |            16.0 |
+| main_genericstandalone_rx_mmcm_fb                       | main_genericstandalone_rx_mmcm_fb                       |            16.0 |
+| main_genericstandalone_rxoutclk                         | main_genericstandalone_rxoutclk                         |            16.0 |
+| main_genericstandalone_tx_mmcm_fb                       | main_genericstandalone_tx_mmcm_fb                       |            16.0 |
+| main_genericstandalone_txoutclk                         | main_genericstandalone_txoutclk                         |            16.0 |
+| main_rtio_crg_fb_clk                                    | main_rtio_crg_fb_clk                                    |             8.0 |
+| main_rtio_crg_rtio_clk                                  | main_rtio_crg_rtio_clk                                  |             8.0 |
+| main_rtio_crg_rtiox4_clk                                | main_rtio_crg_rtiox4_clk                                |             2.0 |
+| si5324_clkout_fabric_p                                  | si5324_clkout_fabric_p                                  |             8.0 |
+| sys_clk                                                 | sys_clk                                                 |             8.8 |
++---------------------------------------------------------+---------------------------------------------------------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++-----------------------------+-----------+
+| Name                        | Power (W) |
++-----------------------------+-----------+
+| top                         |     2.624 |
+|   IOBUF                     |     0.006 |
+|   IOBUFDS                   |     0.002 |
+|   IOBUFDS_1                 |     0.002 |
+|   IOBUFDS_2                 |     0.003 |
+|   IOBUFDS_3                 |     0.003 |
+|   IOBUFDS_4                 |     0.003 |
+|   IOBUFDS_5                 |     0.002 |
+|   IOBUFDS_6                 |     0.003 |
+|   IOBUFDS_7                 |     0.002 |
+|   IOBUFDS_8                 |     0.003 |
+|   IOBUFDS_9                 |     0.003 |
+|   IOBUFDS_INTERMDISABLE     |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_1   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_10  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_11  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_12  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_13  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_14  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_15  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_16  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_17  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_18  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_19  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_2   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_20  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_21  |     0.036 |
+|   IOBUFDS_INTERMDISABLE_22  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_23  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_24  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_25  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_26  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_27  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_28  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_29  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_3   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_30  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_31  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_32  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_33  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_34  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_35  |     0.035 |
+|   IOBUFDS_INTERMDISABLE_36  |     0.036 |
+|   IOBUFDS_INTERMDISABLE_37  |     0.036 |
+|   IOBUFDS_INTERMDISABLE_4   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_5   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_6   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_7   |     0.022 |
+|     IBUFDS                  |     0.004 |
+|   IOBUFDS_INTERMDISABLE_8   |     0.035 |
+|   IOBUFDS_INTERMDISABLE_9   |     0.035 |
+|   IOBUF_1                   |     0.006 |
+|   IOBUF_10                  |     0.006 |
+|   IOBUF_11                  |     0.006 |
+|   IOBUF_12                  |     0.006 |
+|   IOBUF_13                  |     0.006 |
+|   IOBUF_14                  |     0.006 |
+|   IOBUF_15                  |     0.006 |
+|   IOBUF_2                   |     0.006 |
+|   IOBUF_3                   |     0.006 |
+|   IOBUF_4                   |     0.006 |
+|   IOBUF_5                   |     0.006 |
+|   IOBUF_6                   |     0.006 |
+|   IOBUF_7                   |     0.006 |
+|   IOBUF_8                   |     0.006 |
+|   IOBUF_9                   |     0.006 |
+|   OBUFDS                    |     0.002 |
+|   OBUFTDS                   |     0.002 |
+|   OBUFTDS_1                 |     0.002 |
+|   mor1kx                    |     0.052 |
+|     mor1kx_cpu              |     0.052 |
+|       cappuccino.mor1kx_cpu |     0.052 |
+|   mor1kx_1                  |     0.058 |
+|     mor1kx_cpu              |     0.058 |
+|       cappuccino.mor1kx_cpu |     0.058 |
++-----------------------------+-----------+
+
+

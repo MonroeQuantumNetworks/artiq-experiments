@@ -1,0 +1,9 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|   main_rtio_crg_rtio_clk |   main_rtio_crg_rtio_clk |                                                                             main_interface_mosi_reg_reg/D|
+|                  sys_clk |                  sys_clk |        mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_alu_result_o_reg[15]/D|
+|   main_rtio_crg_rtio_clk |   main_rtio_crg_rtio_clk |                                                                  main_spimaster1_interface_mosi_reg_reg/D|
+|                  sys_clk |                  sys_clk |        mor1kx/mor1kx_cpu/cappuccino.mor1kx_cpu/mor1kx_execute_ctrl_cappuccino/ctrl_alu_result_o_reg[24]/D|
+|   main_rtio_crg_rtio_clk |   main_rtio_crg_rtio_clk |                                                                  main_spimaster2_interface_mosi_reg_reg/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

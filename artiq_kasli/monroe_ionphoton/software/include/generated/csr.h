@@ -176,504 +176,504 @@ static inline void cri_con_selected_write(unsigned int value) {
 }
 
 /* ddrphy */
-#define CSR_DDRPHY_BASE 0xe0003800
-#define CSR_DDRPHY_DLY_SEL_ADDR 0xe0003800
+#define CSR_DDRPHY_BASE 0xe0003000
+#define CSR_DDRPHY_DLY_SEL_ADDR 0xe0003000
 #define CSR_DDRPHY_DLY_SEL_SIZE 1
 static inline unsigned char ddrphy_dly_sel_read(void) {
-	unsigned char r = MMPTR(0xe0003800);
+	unsigned char r = MMPTR(0xe0003000);
 	return r;
 }
 static inline void ddrphy_dly_sel_write(unsigned char value) {
-	MMPTR(0xe0003800) = value;
+	MMPTR(0xe0003000) = value;
 }
-#define CSR_DDRPHY_RDLY_DQ_RST_ADDR 0xe0003804
+#define CSR_DDRPHY_RDLY_DQ_RST_ADDR 0xe0003004
 #define CSR_DDRPHY_RDLY_DQ_RST_SIZE 1
 static inline unsigned char ddrphy_rdly_dq_rst_read(void) {
-	unsigned char r = MMPTR(0xe0003804);
+	unsigned char r = MMPTR(0xe0003004);
 	return r;
 }
 static inline void ddrphy_rdly_dq_rst_write(unsigned char value) {
-	MMPTR(0xe0003804) = value;
+	MMPTR(0xe0003004) = value;
 }
-#define CSR_DDRPHY_RDLY_DQ_INC_ADDR 0xe0003808
+#define CSR_DDRPHY_RDLY_DQ_INC_ADDR 0xe0003008
 #define CSR_DDRPHY_RDLY_DQ_INC_SIZE 1
 static inline unsigned char ddrphy_rdly_dq_inc_read(void) {
-	unsigned char r = MMPTR(0xe0003808);
+	unsigned char r = MMPTR(0xe0003008);
 	return r;
 }
 static inline void ddrphy_rdly_dq_inc_write(unsigned char value) {
-	MMPTR(0xe0003808) = value;
+	MMPTR(0xe0003008) = value;
 }
-#define CSR_DDRPHY_RDLY_DQ_BITSLIP_ADDR 0xe000380c
+#define CSR_DDRPHY_RDLY_DQ_BITSLIP_ADDR 0xe000300c
 #define CSR_DDRPHY_RDLY_DQ_BITSLIP_SIZE 1
 static inline unsigned char ddrphy_rdly_dq_bitslip_read(void) {
-	unsigned char r = MMPTR(0xe000380c);
+	unsigned char r = MMPTR(0xe000300c);
 	return r;
 }
 static inline void ddrphy_rdly_dq_bitslip_write(unsigned char value) {
-	MMPTR(0xe000380c) = value;
+	MMPTR(0xe000300c) = value;
 }
 
 /* dfii */
-#define CSR_DFII_BASE 0xe0002800
-#define CSR_DFII_CONTROL_ADDR 0xe0002800
+#define CSR_DFII_BASE 0xe0002000
+#define CSR_DFII_CONTROL_ADDR 0xe0002000
 #define CSR_DFII_CONTROL_SIZE 1
 static inline unsigned char dfii_control_read(void) {
-	unsigned char r = MMPTR(0xe0002800);
+	unsigned char r = MMPTR(0xe0002000);
 	return r;
 }
 static inline void dfii_control_write(unsigned char value) {
-	MMPTR(0xe0002800) = value;
+	MMPTR(0xe0002000) = value;
 }
-#define CSR_DFII_PI0_COMMAND_ADDR 0xe0002804
+#define CSR_DFII_PI0_COMMAND_ADDR 0xe0002004
 #define CSR_DFII_PI0_COMMAND_SIZE 1
 static inline unsigned char dfii_pi0_command_read(void) {
-	unsigned char r = MMPTR(0xe0002804);
+	unsigned char r = MMPTR(0xe0002004);
 	return r;
 }
 static inline void dfii_pi0_command_write(unsigned char value) {
-	MMPTR(0xe0002804) = value;
+	MMPTR(0xe0002004) = value;
 }
-#define CSR_DFII_PI0_COMMAND_ISSUE_ADDR 0xe0002808
+#define CSR_DFII_PI0_COMMAND_ISSUE_ADDR 0xe0002008
 #define CSR_DFII_PI0_COMMAND_ISSUE_SIZE 1
 static inline unsigned char dfii_pi0_command_issue_read(void) {
-	unsigned char r = MMPTR(0xe0002808);
+	unsigned char r = MMPTR(0xe0002008);
 	return r;
 }
 static inline void dfii_pi0_command_issue_write(unsigned char value) {
-	MMPTR(0xe0002808) = value;
+	MMPTR(0xe0002008) = value;
 }
-#define CSR_DFII_PI0_ADDRESS_ADDR 0xe000280c
+#define CSR_DFII_PI0_ADDRESS_ADDR 0xe000200c
 #define CSR_DFII_PI0_ADDRESS_SIZE 2
 static inline unsigned short int dfii_pi0_address_read(void) {
-	unsigned short int r = MMPTR(0xe000280c);
+	unsigned short int r = MMPTR(0xe000200c);
 	r <<= 8;
-	r |= MMPTR(0xe0002810);
+	r |= MMPTR(0xe0002010);
 	return r;
 }
 static inline void dfii_pi0_address_write(unsigned short int value) {
-	MMPTR(0xe000280c) = value >> 8;
-	MMPTR(0xe0002810) = value;
+	MMPTR(0xe000200c) = value >> 8;
+	MMPTR(0xe0002010) = value;
 }
-#define CSR_DFII_PI0_BADDRESS_ADDR 0xe0002814
+#define CSR_DFII_PI0_BADDRESS_ADDR 0xe0002014
 #define CSR_DFII_PI0_BADDRESS_SIZE 1
 static inline unsigned char dfii_pi0_baddress_read(void) {
-	unsigned char r = MMPTR(0xe0002814);
+	unsigned char r = MMPTR(0xe0002014);
 	return r;
 }
 static inline void dfii_pi0_baddress_write(unsigned char value) {
-	MMPTR(0xe0002814) = value;
+	MMPTR(0xe0002014) = value;
 }
-#define CSR_DFII_PI0_WRDATA_ADDR 0xe0002818
+#define CSR_DFII_PI0_WRDATA_ADDR 0xe0002018
 #define CSR_DFII_PI0_WRDATA_SIZE 4
 static inline unsigned int dfii_pi0_wrdata_read(void) {
-	unsigned int r = MMPTR(0xe0002818);
+	unsigned int r = MMPTR(0xe0002018);
 	r <<= 8;
-	r |= MMPTR(0xe000281c);
+	r |= MMPTR(0xe000201c);
 	r <<= 8;
-	r |= MMPTR(0xe0002820);
+	r |= MMPTR(0xe0002020);
 	r <<= 8;
-	r |= MMPTR(0xe0002824);
+	r |= MMPTR(0xe0002024);
 	return r;
 }
 static inline void dfii_pi0_wrdata_write(unsigned int value) {
-	MMPTR(0xe0002818) = value >> 24;
-	MMPTR(0xe000281c) = value >> 16;
-	MMPTR(0xe0002820) = value >> 8;
-	MMPTR(0xe0002824) = value;
+	MMPTR(0xe0002018) = value >> 24;
+	MMPTR(0xe000201c) = value >> 16;
+	MMPTR(0xe0002020) = value >> 8;
+	MMPTR(0xe0002024) = value;
 }
-#define CSR_DFII_PI0_RDDATA_ADDR 0xe0002828
+#define CSR_DFII_PI0_RDDATA_ADDR 0xe0002028
 #define CSR_DFII_PI0_RDDATA_SIZE 4
 static inline unsigned int dfii_pi0_rddata_read(void) {
-	unsigned int r = MMPTR(0xe0002828);
+	unsigned int r = MMPTR(0xe0002028);
 	r <<= 8;
-	r |= MMPTR(0xe000282c);
+	r |= MMPTR(0xe000202c);
 	r <<= 8;
-	r |= MMPTR(0xe0002830);
+	r |= MMPTR(0xe0002030);
 	r <<= 8;
-	r |= MMPTR(0xe0002834);
+	r |= MMPTR(0xe0002034);
 	return r;
 }
-#define CSR_DFII_PI1_COMMAND_ADDR 0xe0002838
+#define CSR_DFII_PI1_COMMAND_ADDR 0xe0002038
 #define CSR_DFII_PI1_COMMAND_SIZE 1
 static inline unsigned char dfii_pi1_command_read(void) {
-	unsigned char r = MMPTR(0xe0002838);
+	unsigned char r = MMPTR(0xe0002038);
 	return r;
 }
 static inline void dfii_pi1_command_write(unsigned char value) {
-	MMPTR(0xe0002838) = value;
+	MMPTR(0xe0002038) = value;
 }
-#define CSR_DFII_PI1_COMMAND_ISSUE_ADDR 0xe000283c
+#define CSR_DFII_PI1_COMMAND_ISSUE_ADDR 0xe000203c
 #define CSR_DFII_PI1_COMMAND_ISSUE_SIZE 1
 static inline unsigned char dfii_pi1_command_issue_read(void) {
-	unsigned char r = MMPTR(0xe000283c);
+	unsigned char r = MMPTR(0xe000203c);
 	return r;
 }
 static inline void dfii_pi1_command_issue_write(unsigned char value) {
-	MMPTR(0xe000283c) = value;
+	MMPTR(0xe000203c) = value;
 }
-#define CSR_DFII_PI1_ADDRESS_ADDR 0xe0002840
+#define CSR_DFII_PI1_ADDRESS_ADDR 0xe0002040
 #define CSR_DFII_PI1_ADDRESS_SIZE 2
 static inline unsigned short int dfii_pi1_address_read(void) {
-	unsigned short int r = MMPTR(0xe0002840);
+	unsigned short int r = MMPTR(0xe0002040);
 	r <<= 8;
-	r |= MMPTR(0xe0002844);
+	r |= MMPTR(0xe0002044);
 	return r;
 }
 static inline void dfii_pi1_address_write(unsigned short int value) {
-	MMPTR(0xe0002840) = value >> 8;
-	MMPTR(0xe0002844) = value;
+	MMPTR(0xe0002040) = value >> 8;
+	MMPTR(0xe0002044) = value;
 }
-#define CSR_DFII_PI1_BADDRESS_ADDR 0xe0002848
+#define CSR_DFII_PI1_BADDRESS_ADDR 0xe0002048
 #define CSR_DFII_PI1_BADDRESS_SIZE 1
 static inline unsigned char dfii_pi1_baddress_read(void) {
-	unsigned char r = MMPTR(0xe0002848);
+	unsigned char r = MMPTR(0xe0002048);
 	return r;
 }
 static inline void dfii_pi1_baddress_write(unsigned char value) {
-	MMPTR(0xe0002848) = value;
+	MMPTR(0xe0002048) = value;
 }
-#define CSR_DFII_PI1_WRDATA_ADDR 0xe000284c
+#define CSR_DFII_PI1_WRDATA_ADDR 0xe000204c
 #define CSR_DFII_PI1_WRDATA_SIZE 4
 static inline unsigned int dfii_pi1_wrdata_read(void) {
-	unsigned int r = MMPTR(0xe000284c);
+	unsigned int r = MMPTR(0xe000204c);
 	r <<= 8;
-	r |= MMPTR(0xe0002850);
+	r |= MMPTR(0xe0002050);
 	r <<= 8;
-	r |= MMPTR(0xe0002854);
+	r |= MMPTR(0xe0002054);
 	r <<= 8;
-	r |= MMPTR(0xe0002858);
+	r |= MMPTR(0xe0002058);
 	return r;
 }
 static inline void dfii_pi1_wrdata_write(unsigned int value) {
-	MMPTR(0xe000284c) = value >> 24;
-	MMPTR(0xe0002850) = value >> 16;
-	MMPTR(0xe0002854) = value >> 8;
-	MMPTR(0xe0002858) = value;
+	MMPTR(0xe000204c) = value >> 24;
+	MMPTR(0xe0002050) = value >> 16;
+	MMPTR(0xe0002054) = value >> 8;
+	MMPTR(0xe0002058) = value;
 }
-#define CSR_DFII_PI1_RDDATA_ADDR 0xe000285c
+#define CSR_DFII_PI1_RDDATA_ADDR 0xe000205c
 #define CSR_DFII_PI1_RDDATA_SIZE 4
 static inline unsigned int dfii_pi1_rddata_read(void) {
-	unsigned int r = MMPTR(0xe000285c);
+	unsigned int r = MMPTR(0xe000205c);
 	r <<= 8;
-	r |= MMPTR(0xe0002860);
+	r |= MMPTR(0xe0002060);
 	r <<= 8;
-	r |= MMPTR(0xe0002864);
+	r |= MMPTR(0xe0002064);
 	r <<= 8;
-	r |= MMPTR(0xe0002868);
+	r |= MMPTR(0xe0002068);
 	return r;
 }
-#define CSR_DFII_PI2_COMMAND_ADDR 0xe000286c
+#define CSR_DFII_PI2_COMMAND_ADDR 0xe000206c
 #define CSR_DFII_PI2_COMMAND_SIZE 1
 static inline unsigned char dfii_pi2_command_read(void) {
-	unsigned char r = MMPTR(0xe000286c);
+	unsigned char r = MMPTR(0xe000206c);
 	return r;
 }
 static inline void dfii_pi2_command_write(unsigned char value) {
-	MMPTR(0xe000286c) = value;
+	MMPTR(0xe000206c) = value;
 }
-#define CSR_DFII_PI2_COMMAND_ISSUE_ADDR 0xe0002870
+#define CSR_DFII_PI2_COMMAND_ISSUE_ADDR 0xe0002070
 #define CSR_DFII_PI2_COMMAND_ISSUE_SIZE 1
 static inline unsigned char dfii_pi2_command_issue_read(void) {
-	unsigned char r = MMPTR(0xe0002870);
+	unsigned char r = MMPTR(0xe0002070);
 	return r;
 }
 static inline void dfii_pi2_command_issue_write(unsigned char value) {
-	MMPTR(0xe0002870) = value;
+	MMPTR(0xe0002070) = value;
 }
-#define CSR_DFII_PI2_ADDRESS_ADDR 0xe0002874
+#define CSR_DFII_PI2_ADDRESS_ADDR 0xe0002074
 #define CSR_DFII_PI2_ADDRESS_SIZE 2
 static inline unsigned short int dfii_pi2_address_read(void) {
-	unsigned short int r = MMPTR(0xe0002874);
+	unsigned short int r = MMPTR(0xe0002074);
 	r <<= 8;
-	r |= MMPTR(0xe0002878);
+	r |= MMPTR(0xe0002078);
 	return r;
 }
 static inline void dfii_pi2_address_write(unsigned short int value) {
-	MMPTR(0xe0002874) = value >> 8;
-	MMPTR(0xe0002878) = value;
+	MMPTR(0xe0002074) = value >> 8;
+	MMPTR(0xe0002078) = value;
 }
-#define CSR_DFII_PI2_BADDRESS_ADDR 0xe000287c
+#define CSR_DFII_PI2_BADDRESS_ADDR 0xe000207c
 #define CSR_DFII_PI2_BADDRESS_SIZE 1
 static inline unsigned char dfii_pi2_baddress_read(void) {
-	unsigned char r = MMPTR(0xe000287c);
+	unsigned char r = MMPTR(0xe000207c);
 	return r;
 }
 static inline void dfii_pi2_baddress_write(unsigned char value) {
-	MMPTR(0xe000287c) = value;
+	MMPTR(0xe000207c) = value;
 }
-#define CSR_DFII_PI2_WRDATA_ADDR 0xe0002880
+#define CSR_DFII_PI2_WRDATA_ADDR 0xe0002080
 #define CSR_DFII_PI2_WRDATA_SIZE 4
 static inline unsigned int dfii_pi2_wrdata_read(void) {
-	unsigned int r = MMPTR(0xe0002880);
+	unsigned int r = MMPTR(0xe0002080);
 	r <<= 8;
-	r |= MMPTR(0xe0002884);
+	r |= MMPTR(0xe0002084);
 	r <<= 8;
-	r |= MMPTR(0xe0002888);
+	r |= MMPTR(0xe0002088);
 	r <<= 8;
-	r |= MMPTR(0xe000288c);
+	r |= MMPTR(0xe000208c);
 	return r;
 }
 static inline void dfii_pi2_wrdata_write(unsigned int value) {
-	MMPTR(0xe0002880) = value >> 24;
-	MMPTR(0xe0002884) = value >> 16;
-	MMPTR(0xe0002888) = value >> 8;
-	MMPTR(0xe000288c) = value;
+	MMPTR(0xe0002080) = value >> 24;
+	MMPTR(0xe0002084) = value >> 16;
+	MMPTR(0xe0002088) = value >> 8;
+	MMPTR(0xe000208c) = value;
 }
-#define CSR_DFII_PI2_RDDATA_ADDR 0xe0002890
+#define CSR_DFII_PI2_RDDATA_ADDR 0xe0002090
 #define CSR_DFII_PI2_RDDATA_SIZE 4
 static inline unsigned int dfii_pi2_rddata_read(void) {
-	unsigned int r = MMPTR(0xe0002890);
+	unsigned int r = MMPTR(0xe0002090);
 	r <<= 8;
-	r |= MMPTR(0xe0002894);
+	r |= MMPTR(0xe0002094);
 	r <<= 8;
-	r |= MMPTR(0xe0002898);
+	r |= MMPTR(0xe0002098);
 	r <<= 8;
-	r |= MMPTR(0xe000289c);
+	r |= MMPTR(0xe000209c);
 	return r;
 }
-#define CSR_DFII_PI3_COMMAND_ADDR 0xe00028a0
+#define CSR_DFII_PI3_COMMAND_ADDR 0xe00020a0
 #define CSR_DFII_PI3_COMMAND_SIZE 1
 static inline unsigned char dfii_pi3_command_read(void) {
-	unsigned char r = MMPTR(0xe00028a0);
+	unsigned char r = MMPTR(0xe00020a0);
 	return r;
 }
 static inline void dfii_pi3_command_write(unsigned char value) {
-	MMPTR(0xe00028a0) = value;
+	MMPTR(0xe00020a0) = value;
 }
-#define CSR_DFII_PI3_COMMAND_ISSUE_ADDR 0xe00028a4
+#define CSR_DFII_PI3_COMMAND_ISSUE_ADDR 0xe00020a4
 #define CSR_DFII_PI3_COMMAND_ISSUE_SIZE 1
 static inline unsigned char dfii_pi3_command_issue_read(void) {
-	unsigned char r = MMPTR(0xe00028a4);
+	unsigned char r = MMPTR(0xe00020a4);
 	return r;
 }
 static inline void dfii_pi3_command_issue_write(unsigned char value) {
-	MMPTR(0xe00028a4) = value;
+	MMPTR(0xe00020a4) = value;
 }
-#define CSR_DFII_PI3_ADDRESS_ADDR 0xe00028a8
+#define CSR_DFII_PI3_ADDRESS_ADDR 0xe00020a8
 #define CSR_DFII_PI3_ADDRESS_SIZE 2
 static inline unsigned short int dfii_pi3_address_read(void) {
-	unsigned short int r = MMPTR(0xe00028a8);
+	unsigned short int r = MMPTR(0xe00020a8);
 	r <<= 8;
-	r |= MMPTR(0xe00028ac);
+	r |= MMPTR(0xe00020ac);
 	return r;
 }
 static inline void dfii_pi3_address_write(unsigned short int value) {
-	MMPTR(0xe00028a8) = value >> 8;
-	MMPTR(0xe00028ac) = value;
+	MMPTR(0xe00020a8) = value >> 8;
+	MMPTR(0xe00020ac) = value;
 }
-#define CSR_DFII_PI3_BADDRESS_ADDR 0xe00028b0
+#define CSR_DFII_PI3_BADDRESS_ADDR 0xe00020b0
 #define CSR_DFII_PI3_BADDRESS_SIZE 1
 static inline unsigned char dfii_pi3_baddress_read(void) {
-	unsigned char r = MMPTR(0xe00028b0);
+	unsigned char r = MMPTR(0xe00020b0);
 	return r;
 }
 static inline void dfii_pi3_baddress_write(unsigned char value) {
-	MMPTR(0xe00028b0) = value;
+	MMPTR(0xe00020b0) = value;
 }
-#define CSR_DFII_PI3_WRDATA_ADDR 0xe00028b4
+#define CSR_DFII_PI3_WRDATA_ADDR 0xe00020b4
 #define CSR_DFII_PI3_WRDATA_SIZE 4
 static inline unsigned int dfii_pi3_wrdata_read(void) {
-	unsigned int r = MMPTR(0xe00028b4);
+	unsigned int r = MMPTR(0xe00020b4);
 	r <<= 8;
-	r |= MMPTR(0xe00028b8);
+	r |= MMPTR(0xe00020b8);
 	r <<= 8;
-	r |= MMPTR(0xe00028bc);
+	r |= MMPTR(0xe00020bc);
 	r <<= 8;
-	r |= MMPTR(0xe00028c0);
+	r |= MMPTR(0xe00020c0);
 	return r;
 }
 static inline void dfii_pi3_wrdata_write(unsigned int value) {
-	MMPTR(0xe00028b4) = value >> 24;
-	MMPTR(0xe00028b8) = value >> 16;
-	MMPTR(0xe00028bc) = value >> 8;
-	MMPTR(0xe00028c0) = value;
+	MMPTR(0xe00020b4) = value >> 24;
+	MMPTR(0xe00020b8) = value >> 16;
+	MMPTR(0xe00020bc) = value >> 8;
+	MMPTR(0xe00020c0) = value;
 }
-#define CSR_DFII_PI3_RDDATA_ADDR 0xe00028c4
+#define CSR_DFII_PI3_RDDATA_ADDR 0xe00020c4
 #define CSR_DFII_PI3_RDDATA_SIZE 4
 static inline unsigned int dfii_pi3_rddata_read(void) {
-	unsigned int r = MMPTR(0xe00028c4);
+	unsigned int r = MMPTR(0xe00020c4);
 	r <<= 8;
-	r |= MMPTR(0xe00028c8);
+	r |= MMPTR(0xe00020c8);
 	r <<= 8;
-	r |= MMPTR(0xe00028cc);
+	r |= MMPTR(0xe00020cc);
 	r <<= 8;
-	r |= MMPTR(0xe00028d0);
+	r |= MMPTR(0xe00020d0);
 	return r;
 }
 
 /* ethmac */
-#define CSR_ETHMAC_BASE 0xe0005000
-#define CSR_ETHMAC_SRAM_WRITER_SLOT_ADDR 0xe0005000
+#define CSR_ETHMAC_BASE 0xe0004800
+#define CSR_ETHMAC_SRAM_WRITER_SLOT_ADDR 0xe0004800
 #define CSR_ETHMAC_SRAM_WRITER_SLOT_SIZE 1
 static inline unsigned char ethmac_sram_writer_slot_read(void) {
-	unsigned char r = MMPTR(0xe0005000);
+	unsigned char r = MMPTR(0xe0004800);
 	return r;
 }
-#define CSR_ETHMAC_SRAM_WRITER_LENGTH_ADDR 0xe0005004
+#define CSR_ETHMAC_SRAM_WRITER_LENGTH_ADDR 0xe0004804
 #define CSR_ETHMAC_SRAM_WRITER_LENGTH_SIZE 4
 static inline unsigned int ethmac_sram_writer_length_read(void) {
-	unsigned int r = MMPTR(0xe0005004);
+	unsigned int r = MMPTR(0xe0004804);
 	r <<= 8;
-	r |= MMPTR(0xe0005008);
+	r |= MMPTR(0xe0004808);
 	r <<= 8;
-	r |= MMPTR(0xe000500c);
+	r |= MMPTR(0xe000480c);
 	r <<= 8;
-	r |= MMPTR(0xe0005010);
+	r |= MMPTR(0xe0004810);
 	return r;
 }
-#define CSR_ETHMAC_SRAM_WRITER_ERRORS_ADDR 0xe0005014
+#define CSR_ETHMAC_SRAM_WRITER_ERRORS_ADDR 0xe0004814
 #define CSR_ETHMAC_SRAM_WRITER_ERRORS_SIZE 4
 static inline unsigned int ethmac_sram_writer_errors_read(void) {
-	unsigned int r = MMPTR(0xe0005014);
+	unsigned int r = MMPTR(0xe0004814);
 	r <<= 8;
-	r |= MMPTR(0xe0005018);
+	r |= MMPTR(0xe0004818);
 	r <<= 8;
-	r |= MMPTR(0xe000501c);
+	r |= MMPTR(0xe000481c);
 	r <<= 8;
-	r |= MMPTR(0xe0005020);
+	r |= MMPTR(0xe0004820);
 	return r;
 }
-#define CSR_ETHMAC_SRAM_WRITER_EV_STATUS_ADDR 0xe0005024
+#define CSR_ETHMAC_SRAM_WRITER_EV_STATUS_ADDR 0xe0004824
 #define CSR_ETHMAC_SRAM_WRITER_EV_STATUS_SIZE 1
 static inline unsigned char ethmac_sram_writer_ev_status_read(void) {
-	unsigned char r = MMPTR(0xe0005024);
+	unsigned char r = MMPTR(0xe0004824);
 	return r;
 }
 static inline void ethmac_sram_writer_ev_status_write(unsigned char value) {
-	MMPTR(0xe0005024) = value;
+	MMPTR(0xe0004824) = value;
 }
-#define CSR_ETHMAC_SRAM_WRITER_EV_PENDING_ADDR 0xe0005028
+#define CSR_ETHMAC_SRAM_WRITER_EV_PENDING_ADDR 0xe0004828
 #define CSR_ETHMAC_SRAM_WRITER_EV_PENDING_SIZE 1
 static inline unsigned char ethmac_sram_writer_ev_pending_read(void) {
-	unsigned char r = MMPTR(0xe0005028);
+	unsigned char r = MMPTR(0xe0004828);
 	return r;
 }
 static inline void ethmac_sram_writer_ev_pending_write(unsigned char value) {
-	MMPTR(0xe0005028) = value;
+	MMPTR(0xe0004828) = value;
 }
-#define CSR_ETHMAC_SRAM_WRITER_EV_ENABLE_ADDR 0xe000502c
+#define CSR_ETHMAC_SRAM_WRITER_EV_ENABLE_ADDR 0xe000482c
 #define CSR_ETHMAC_SRAM_WRITER_EV_ENABLE_SIZE 1
 static inline unsigned char ethmac_sram_writer_ev_enable_read(void) {
-	unsigned char r = MMPTR(0xe000502c);
+	unsigned char r = MMPTR(0xe000482c);
 	return r;
 }
 static inline void ethmac_sram_writer_ev_enable_write(unsigned char value) {
-	MMPTR(0xe000502c) = value;
+	MMPTR(0xe000482c) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_START_ADDR 0xe0005030
+#define CSR_ETHMAC_SRAM_READER_START_ADDR 0xe0004830
 #define CSR_ETHMAC_SRAM_READER_START_SIZE 1
 static inline unsigned char ethmac_sram_reader_start_read(void) {
-	unsigned char r = MMPTR(0xe0005030);
+	unsigned char r = MMPTR(0xe0004830);
 	return r;
 }
 static inline void ethmac_sram_reader_start_write(unsigned char value) {
-	MMPTR(0xe0005030) = value;
+	MMPTR(0xe0004830) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_READY_ADDR 0xe0005034
+#define CSR_ETHMAC_SRAM_READER_READY_ADDR 0xe0004834
 #define CSR_ETHMAC_SRAM_READER_READY_SIZE 1
 static inline unsigned char ethmac_sram_reader_ready_read(void) {
-	unsigned char r = MMPTR(0xe0005034);
+	unsigned char r = MMPTR(0xe0004834);
 	return r;
 }
-#define CSR_ETHMAC_SRAM_READER_SLOT_ADDR 0xe0005038
+#define CSR_ETHMAC_SRAM_READER_SLOT_ADDR 0xe0004838
 #define CSR_ETHMAC_SRAM_READER_SLOT_SIZE 1
 static inline unsigned char ethmac_sram_reader_slot_read(void) {
-	unsigned char r = MMPTR(0xe0005038);
+	unsigned char r = MMPTR(0xe0004838);
 	return r;
 }
 static inline void ethmac_sram_reader_slot_write(unsigned char value) {
-	MMPTR(0xe0005038) = value;
+	MMPTR(0xe0004838) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_LENGTH_ADDR 0xe000503c
+#define CSR_ETHMAC_SRAM_READER_LENGTH_ADDR 0xe000483c
 #define CSR_ETHMAC_SRAM_READER_LENGTH_SIZE 2
 static inline unsigned short int ethmac_sram_reader_length_read(void) {
-	unsigned short int r = MMPTR(0xe000503c);
+	unsigned short int r = MMPTR(0xe000483c);
 	r <<= 8;
-	r |= MMPTR(0xe0005040);
+	r |= MMPTR(0xe0004840);
 	return r;
 }
 static inline void ethmac_sram_reader_length_write(unsigned short int value) {
-	MMPTR(0xe000503c) = value >> 8;
-	MMPTR(0xe0005040) = value;
+	MMPTR(0xe000483c) = value >> 8;
+	MMPTR(0xe0004840) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_EV_STATUS_ADDR 0xe0005044
+#define CSR_ETHMAC_SRAM_READER_EV_STATUS_ADDR 0xe0004844
 #define CSR_ETHMAC_SRAM_READER_EV_STATUS_SIZE 1
 static inline unsigned char ethmac_sram_reader_ev_status_read(void) {
-	unsigned char r = MMPTR(0xe0005044);
+	unsigned char r = MMPTR(0xe0004844);
 	return r;
 }
 static inline void ethmac_sram_reader_ev_status_write(unsigned char value) {
-	MMPTR(0xe0005044) = value;
+	MMPTR(0xe0004844) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_EV_PENDING_ADDR 0xe0005048
+#define CSR_ETHMAC_SRAM_READER_EV_PENDING_ADDR 0xe0004848
 #define CSR_ETHMAC_SRAM_READER_EV_PENDING_SIZE 1
 static inline unsigned char ethmac_sram_reader_ev_pending_read(void) {
-	unsigned char r = MMPTR(0xe0005048);
+	unsigned char r = MMPTR(0xe0004848);
 	return r;
 }
 static inline void ethmac_sram_reader_ev_pending_write(unsigned char value) {
-	MMPTR(0xe0005048) = value;
+	MMPTR(0xe0004848) = value;
 }
-#define CSR_ETHMAC_SRAM_READER_EV_ENABLE_ADDR 0xe000504c
+#define CSR_ETHMAC_SRAM_READER_EV_ENABLE_ADDR 0xe000484c
 #define CSR_ETHMAC_SRAM_READER_EV_ENABLE_SIZE 1
 static inline unsigned char ethmac_sram_reader_ev_enable_read(void) {
-	unsigned char r = MMPTR(0xe000504c);
+	unsigned char r = MMPTR(0xe000484c);
 	return r;
 }
 static inline void ethmac_sram_reader_ev_enable_write(unsigned char value) {
-	MMPTR(0xe000504c) = value;
+	MMPTR(0xe000484c) = value;
 }
-#define CSR_ETHMAC_PREAMBLE_ERRORS_ADDR 0xe0005050
+#define CSR_ETHMAC_PREAMBLE_ERRORS_ADDR 0xe0004850
 #define CSR_ETHMAC_PREAMBLE_ERRORS_SIZE 4
 static inline unsigned int ethmac_preamble_errors_read(void) {
-	unsigned int r = MMPTR(0xe0005050);
+	unsigned int r = MMPTR(0xe0004850);
 	r <<= 8;
-	r |= MMPTR(0xe0005054);
+	r |= MMPTR(0xe0004854);
 	r <<= 8;
-	r |= MMPTR(0xe0005058);
+	r |= MMPTR(0xe0004858);
 	r <<= 8;
-	r |= MMPTR(0xe000505c);
+	r |= MMPTR(0xe000485c);
 	return r;
 }
-#define CSR_ETHMAC_CRC_ERRORS_ADDR 0xe0005060
+#define CSR_ETHMAC_CRC_ERRORS_ADDR 0xe0004860
 #define CSR_ETHMAC_CRC_ERRORS_SIZE 4
 static inline unsigned int ethmac_crc_errors_read(void) {
-	unsigned int r = MMPTR(0xe0005060);
+	unsigned int r = MMPTR(0xe0004860);
 	r <<= 8;
-	r |= MMPTR(0xe0005064);
+	r |= MMPTR(0xe0004864);
 	r <<= 8;
-	r |= MMPTR(0xe0005068);
+	r |= MMPTR(0xe0004868);
 	r <<= 8;
-	r |= MMPTR(0xe000506c);
+	r |= MMPTR(0xe000486c);
 	return r;
 }
 
 /* i2c */
-#define CSR_I2C_BASE 0xe0006800
-#define CSR_I2C_IN_ADDR 0xe0006800
+#define CSR_I2C_BASE 0xe0006000
+#define CSR_I2C_IN_ADDR 0xe0006000
 #define CSR_I2C_IN_SIZE 1
 static inline unsigned char i2c_in_read(void) {
-	unsigned char r = MMPTR(0xe0006800);
+	unsigned char r = MMPTR(0xe0006000);
 	return r;
 }
-#define CSR_I2C_OUT_ADDR 0xe0006804
+#define CSR_I2C_OUT_ADDR 0xe0006004
 #define CSR_I2C_OUT_SIZE 1
 static inline unsigned char i2c_out_read(void) {
-	unsigned char r = MMPTR(0xe0006804);
+	unsigned char r = MMPTR(0xe0006004);
 	return r;
 }
 static inline void i2c_out_write(unsigned char value) {
-	MMPTR(0xe0006804) = value;
+	MMPTR(0xe0006004) = value;
 }
-#define CSR_I2C_OE_ADDR 0xe0006808
+#define CSR_I2C_OE_ADDR 0xe0006008
 #define CSR_I2C_OE_SIZE 1
 static inline unsigned char i2c_oe_read(void) {
-	unsigned char r = MMPTR(0xe0006808);
+	unsigned char r = MMPTR(0xe0006008);
 	return r;
 }
 static inline void i2c_oe_write(unsigned char value) {
-	MMPTR(0xe0006808) = value;
+	MMPTR(0xe0006008) = value;
 }
 
 /* identifier */
@@ -695,295 +695,293 @@ static inline unsigned char identifier_data_read(void) {
 }
 
 /* kernel_cpu */
-#define CSR_KERNEL_CPU_BASE 0xe0005800
-#define CSR_KERNEL_CPU_RESET_ADDR 0xe0005800
+#define CSR_KERNEL_CPU_BASE 0xe0005000
+#define CSR_KERNEL_CPU_RESET_ADDR 0xe0005000
 #define CSR_KERNEL_CPU_RESET_SIZE 1
 static inline unsigned char kernel_cpu_reset_read(void) {
-	unsigned char r = MMPTR(0xe0005800);
+	unsigned char r = MMPTR(0xe0005000);
 	return r;
 }
 static inline void kernel_cpu_reset_write(unsigned char value) {
-	MMPTR(0xe0005800) = value;
+	MMPTR(0xe0005000) = value;
 }
 
 /* leds */
-#define CSR_LEDS_BASE 0xe0006000
-#define CSR_LEDS_OUT_ADDR 0xe0006000
+#define CSR_LEDS_BASE 0xe0005800
+#define CSR_LEDS_OUT_ADDR 0xe0005800
 #define CSR_LEDS_OUT_SIZE 1
 static inline unsigned char leds_out_read(void) {
-	unsigned char r = MMPTR(0xe0006000);
+	unsigned char r = MMPTR(0xe0005800);
 	return r;
 }
 static inline void leds_out_write(unsigned char value) {
-	MMPTR(0xe0006000) = value;
+	MMPTR(0xe0005800) = value;
 }
 
 /* rtio_analyzer */
-#define CSR_RTIO_ANALYZER_BASE 0xe0008800
-#define CSR_RTIO_ANALYZER_ENABLE_ADDR 0xe0008800
+#define CSR_RTIO_ANALYZER_BASE 0xe0008000
+#define CSR_RTIO_ANALYZER_ENABLE_ADDR 0xe0008000
 #define CSR_RTIO_ANALYZER_ENABLE_SIZE 1
 static inline unsigned char rtio_analyzer_enable_read(void) {
-	unsigned char r = MMPTR(0xe0008800);
+	unsigned char r = MMPTR(0xe0008000);
 	return r;
 }
 static inline void rtio_analyzer_enable_write(unsigned char value) {
-	MMPTR(0xe0008800) = value;
+	MMPTR(0xe0008000) = value;
 }
-#define CSR_RTIO_ANALYZER_BUSY_ADDR 0xe0008804
+#define CSR_RTIO_ANALYZER_BUSY_ADDR 0xe0008004
 #define CSR_RTIO_ANALYZER_BUSY_SIZE 1
 static inline unsigned char rtio_analyzer_busy_read(void) {
-	unsigned char r = MMPTR(0xe0008804);
+	unsigned char r = MMPTR(0xe0008004);
 	return r;
 }
-#define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_ADDR 0xe0008808
+#define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_ADDR 0xe0008008
 #define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_SIZE 1
 static inline unsigned char rtio_analyzer_message_encoder_overflow_read(void) {
-	unsigned char r = MMPTR(0xe0008808);
+	unsigned char r = MMPTR(0xe0008008);
 	return r;
 }
-#define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_RESET_ADDR 0xe000880c
+#define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_RESET_ADDR 0xe000800c
 #define CSR_RTIO_ANALYZER_MESSAGE_ENCODER_OVERFLOW_RESET_SIZE 1
 static inline unsigned char rtio_analyzer_message_encoder_overflow_reset_read(void) {
-	unsigned char r = MMPTR(0xe000880c);
+	unsigned char r = MMPTR(0xe000800c);
 	return r;
 }
 static inline void rtio_analyzer_message_encoder_overflow_reset_write(unsigned char value) {
-	MMPTR(0xe000880c) = value;
+	MMPTR(0xe000800c) = value;
 }
-#define CSR_RTIO_ANALYZER_DMA_RESET_ADDR 0xe0008810
+#define CSR_RTIO_ANALYZER_DMA_RESET_ADDR 0xe0008010
 #define CSR_RTIO_ANALYZER_DMA_RESET_SIZE 1
 static inline unsigned char rtio_analyzer_dma_reset_read(void) {
-	unsigned char r = MMPTR(0xe0008810);
+	unsigned char r = MMPTR(0xe0008010);
 	return r;
 }
 static inline void rtio_analyzer_dma_reset_write(unsigned char value) {
-	MMPTR(0xe0008810) = value;
+	MMPTR(0xe0008010) = value;
 }
-#define CSR_RTIO_ANALYZER_DMA_BASE_ADDRESS_ADDR 0xe0008814
+#define CSR_RTIO_ANALYZER_DMA_BASE_ADDRESS_ADDR 0xe0008014
 #define CSR_RTIO_ANALYZER_DMA_BASE_ADDRESS_SIZE 5
 static inline unsigned long long int rtio_analyzer_dma_base_address_read(void) {
-	unsigned long long int r = MMPTR(0xe0008814);
+	unsigned long long int r = MMPTR(0xe0008014);
 	r <<= 8;
-	r |= MMPTR(0xe0008818);
+	r |= MMPTR(0xe0008018);
 	r <<= 8;
-	r |= MMPTR(0xe000881c);
+	r |= MMPTR(0xe000801c);
 	r <<= 8;
-	r |= MMPTR(0xe0008820);
+	r |= MMPTR(0xe0008020);
 	r <<= 8;
-	r |= MMPTR(0xe0008824);
+	r |= MMPTR(0xe0008024);
 	return r;
 }
 static inline void rtio_analyzer_dma_base_address_write(unsigned long long int value) {
-	MMPTR(0xe0008814) = value >> 32;
-	MMPTR(0xe0008818) = value >> 24;
-	MMPTR(0xe000881c) = value >> 16;
-	MMPTR(0xe0008820) = value >> 8;
-	MMPTR(0xe0008824) = value;
+	MMPTR(0xe0008014) = value >> 32;
+	MMPTR(0xe0008018) = value >> 24;
+	MMPTR(0xe000801c) = value >> 16;
+	MMPTR(0xe0008020) = value >> 8;
+	MMPTR(0xe0008024) = value;
 }
-#define CSR_RTIO_ANALYZER_DMA_LAST_ADDRESS_ADDR 0xe0008828
+#define CSR_RTIO_ANALYZER_DMA_LAST_ADDRESS_ADDR 0xe0008028
 #define CSR_RTIO_ANALYZER_DMA_LAST_ADDRESS_SIZE 5
 static inline unsigned long long int rtio_analyzer_dma_last_address_read(void) {
-	unsigned long long int r = MMPTR(0xe0008828);
+	unsigned long long int r = MMPTR(0xe0008028);
 	r <<= 8;
-	r |= MMPTR(0xe000882c);
+	r |= MMPTR(0xe000802c);
 	r <<= 8;
-	r |= MMPTR(0xe0008830);
+	r |= MMPTR(0xe0008030);
 	r <<= 8;
-	r |= MMPTR(0xe0008834);
+	r |= MMPTR(0xe0008034);
 	r <<= 8;
-	r |= MMPTR(0xe0008838);
+	r |= MMPTR(0xe0008038);
 	return r;
 }
 static inline void rtio_analyzer_dma_last_address_write(unsigned long long int value) {
-	MMPTR(0xe0008828) = value >> 32;
-	MMPTR(0xe000882c) = value >> 24;
-	MMPTR(0xe0008830) = value >> 16;
-	MMPTR(0xe0008834) = value >> 8;
-	MMPTR(0xe0008838) = value;
+	MMPTR(0xe0008028) = value >> 32;
+	MMPTR(0xe000802c) = value >> 24;
+	MMPTR(0xe0008030) = value >> 16;
+	MMPTR(0xe0008034) = value >> 8;
+	MMPTR(0xe0008038) = value;
 }
-#define CSR_RTIO_ANALYZER_DMA_BYTE_COUNT_ADDR 0xe000883c
+#define CSR_RTIO_ANALYZER_DMA_BYTE_COUNT_ADDR 0xe000803c
 #define CSR_RTIO_ANALYZER_DMA_BYTE_COUNT_SIZE 8
 static inline unsigned long long int rtio_analyzer_dma_byte_count_read(void) {
-	unsigned long long int r = MMPTR(0xe000883c);
+	unsigned long long int r = MMPTR(0xe000803c);
 	r <<= 8;
-	r |= MMPTR(0xe0008840);
+	r |= MMPTR(0xe0008040);
 	r <<= 8;
-	r |= MMPTR(0xe0008844);
+	r |= MMPTR(0xe0008044);
 	r <<= 8;
-	r |= MMPTR(0xe0008848);
+	r |= MMPTR(0xe0008048);
 	r <<= 8;
-	r |= MMPTR(0xe000884c);
+	r |= MMPTR(0xe000804c);
 	r <<= 8;
-	r |= MMPTR(0xe0008850);
+	r |= MMPTR(0xe0008050);
 	r <<= 8;
-	r |= MMPTR(0xe0008854);
+	r |= MMPTR(0xe0008054);
 	r <<= 8;
-	r |= MMPTR(0xe0008858);
+	r |= MMPTR(0xe0008058);
 	return r;
 }
 
 /* rtio_core */
-#define CSR_RTIO_CORE_BASE 0xe0007800
-#define CSR_RTIO_CORE_RESET_ADDR 0xe0007800
+#define CSR_RTIO_CORE_BASE 0xe0007000
+#define CSR_RTIO_CORE_RESET_ADDR 0xe0007000
 #define CSR_RTIO_CORE_RESET_SIZE 1
 static inline unsigned char rtio_core_reset_read(void) {
-	unsigned char r = MMPTR(0xe0007800);
+	unsigned char r = MMPTR(0xe0007000);
 	return r;
 }
 static inline void rtio_core_reset_write(unsigned char value) {
-	MMPTR(0xe0007800) = value;
+	MMPTR(0xe0007000) = value;
 }
-#define CSR_RTIO_CORE_RESET_PHY_ADDR 0xe0007804
+#define CSR_RTIO_CORE_RESET_PHY_ADDR 0xe0007004
 #define CSR_RTIO_CORE_RESET_PHY_SIZE 1
 static inline unsigned char rtio_core_reset_phy_read(void) {
-	unsigned char r = MMPTR(0xe0007804);
+	unsigned char r = MMPTR(0xe0007004);
 	return r;
 }
 static inline void rtio_core_reset_phy_write(unsigned char value) {
-	MMPTR(0xe0007804) = value;
+	MMPTR(0xe0007004) = value;
 }
-#define CSR_RTIO_CORE_ASYNC_ERROR_ADDR 0xe0007808
+#define CSR_RTIO_CORE_ASYNC_ERROR_ADDR 0xe0007008
 #define CSR_RTIO_CORE_ASYNC_ERROR_SIZE 1
 static inline unsigned char rtio_core_async_error_read(void) {
-	unsigned char r = MMPTR(0xe0007808);
+	unsigned char r = MMPTR(0xe0007008);
 	return r;
 }
 static inline void rtio_core_async_error_write(unsigned char value) {
-	MMPTR(0xe0007808) = value;
+	MMPTR(0xe0007008) = value;
 }
-#define CSR_RTIO_CORE_COLLISION_CHANNEL_ADDR 0xe000780c
+#define CSR_RTIO_CORE_COLLISION_CHANNEL_ADDR 0xe000700c
 #define CSR_RTIO_CORE_COLLISION_CHANNEL_SIZE 2
 static inline unsigned short int rtio_core_collision_channel_read(void) {
-	unsigned short int r = MMPTR(0xe000780c);
+	unsigned short int r = MMPTR(0xe000700c);
 	r <<= 8;
-	r |= MMPTR(0xe0007810);
+	r |= MMPTR(0xe0007010);
 	return r;
 }
-#define CSR_RTIO_CORE_BUSY_CHANNEL_ADDR 0xe0007814
+#define CSR_RTIO_CORE_BUSY_CHANNEL_ADDR 0xe0007014
 #define CSR_RTIO_CORE_BUSY_CHANNEL_SIZE 2
 static inline unsigned short int rtio_core_busy_channel_read(void) {
-	unsigned short int r = MMPTR(0xe0007814);
+	unsigned short int r = MMPTR(0xe0007014);
 	r <<= 8;
-	r |= MMPTR(0xe0007818);
+	r |= MMPTR(0xe0007018);
 	return r;
 }
-#define CSR_RTIO_CORE_SEQUENCE_ERROR_CHANNEL_ADDR 0xe000781c
+#define CSR_RTIO_CORE_SEQUENCE_ERROR_CHANNEL_ADDR 0xe000701c
 #define CSR_RTIO_CORE_SEQUENCE_ERROR_CHANNEL_SIZE 2
 static inline unsigned short int rtio_core_sequence_error_channel_read(void) {
-	unsigned short int r = MMPTR(0xe000781c);
+	unsigned short int r = MMPTR(0xe000701c);
 	r <<= 8;
-	r |= MMPTR(0xe0007820);
+	r |= MMPTR(0xe0007020);
 	return r;
 }
 
 /* rtio_crg */
-#define CSR_RTIO_CRG_BASE 0xe0007000
-#define CSR_RTIO_CRG_PLL_RESET_ADDR 0xe0007000
+#define CSR_RTIO_CRG_BASE 0xe0006800
+#define CSR_RTIO_CRG_PLL_RESET_ADDR 0xe0006800
 #define CSR_RTIO_CRG_PLL_RESET_SIZE 1
 static inline unsigned char rtio_crg_pll_reset_read(void) {
-	unsigned char r = MMPTR(0xe0007000);
+	unsigned char r = MMPTR(0xe0006800);
 	return r;
 }
 static inline void rtio_crg_pll_reset_write(unsigned char value) {
-	MMPTR(0xe0007000) = value;
+	MMPTR(0xe0006800) = value;
 }
-#define CSR_RTIO_CRG_PLL_LOCKED_ADDR 0xe0007004
+#define CSR_RTIO_CRG_PLL_LOCKED_ADDR 0xe0006804
 #define CSR_RTIO_CRG_PLL_LOCKED_SIZE 1
 static inline unsigned char rtio_crg_pll_locked_read(void) {
-	unsigned char r = MMPTR(0xe0007004);
+	unsigned char r = MMPTR(0xe0006804);
 	return r;
 }
 
 /* rtio_moninj */
-#define CSR_RTIO_MONINJ_BASE 0xe0008000
-#define CSR_RTIO_MONINJ_MON_CHAN_SEL_ADDR 0xe0008000
+#define CSR_RTIO_MONINJ_BASE 0xe0007800
+#define CSR_RTIO_MONINJ_MON_CHAN_SEL_ADDR 0xe0007800
 #define CSR_RTIO_MONINJ_MON_CHAN_SEL_SIZE 1
 static inline unsigned char rtio_moninj_mon_chan_sel_read(void) {
-	unsigned char r = MMPTR(0xe0008000);
+	unsigned char r = MMPTR(0xe0007800);
 	return r;
 }
 static inline void rtio_moninj_mon_chan_sel_write(unsigned char value) {
-	MMPTR(0xe0008000) = value;
+	MMPTR(0xe0007800) = value;
 }
-#define CSR_RTIO_MONINJ_MON_PROBE_SEL_ADDR 0xe0008004
+#define CSR_RTIO_MONINJ_MON_PROBE_SEL_ADDR 0xe0007804
 #define CSR_RTIO_MONINJ_MON_PROBE_SEL_SIZE 1
 static inline unsigned char rtio_moninj_mon_probe_sel_read(void) {
-	unsigned char r = MMPTR(0xe0008004);
+	unsigned char r = MMPTR(0xe0007804);
 	return r;
 }
 static inline void rtio_moninj_mon_probe_sel_write(unsigned char value) {
-	MMPTR(0xe0008004) = value;
+	MMPTR(0xe0007804) = value;
 }
-#define CSR_RTIO_MONINJ_MON_VALUE_UPDATE_ADDR 0xe0008008
+#define CSR_RTIO_MONINJ_MON_VALUE_UPDATE_ADDR 0xe0007808
 #define CSR_RTIO_MONINJ_MON_VALUE_UPDATE_SIZE 1
 static inline unsigned char rtio_moninj_mon_value_update_read(void) {
-	unsigned char r = MMPTR(0xe0008008);
+	unsigned char r = MMPTR(0xe0007808);
 	return r;
 }
 static inline void rtio_moninj_mon_value_update_write(unsigned char value) {
-	MMPTR(0xe0008008) = value;
+	MMPTR(0xe0007808) = value;
 }
-#define CSR_RTIO_MONINJ_MON_VALUE_ADDR 0xe000800c
-#define CSR_RTIO_MONINJ_MON_VALUE_SIZE 2
-static inline unsigned short int rtio_moninj_mon_value_read(void) {
-	unsigned short int r = MMPTR(0xe000800c);
-	r <<= 8;
-	r |= MMPTR(0xe0008010);
+#define CSR_RTIO_MONINJ_MON_VALUE_ADDR 0xe000780c
+#define CSR_RTIO_MONINJ_MON_VALUE_SIZE 1
+static inline unsigned char rtio_moninj_mon_value_read(void) {
+	unsigned char r = MMPTR(0xe000780c);
 	return r;
 }
-#define CSR_RTIO_MONINJ_INJ_CHAN_SEL_ADDR 0xe0008014
+#define CSR_RTIO_MONINJ_INJ_CHAN_SEL_ADDR 0xe0007810
 #define CSR_RTIO_MONINJ_INJ_CHAN_SEL_SIZE 1
 static inline unsigned char rtio_moninj_inj_chan_sel_read(void) {
-	unsigned char r = MMPTR(0xe0008014);
+	unsigned char r = MMPTR(0xe0007810);
 	return r;
 }
 static inline void rtio_moninj_inj_chan_sel_write(unsigned char value) {
-	MMPTR(0xe0008014) = value;
+	MMPTR(0xe0007810) = value;
 }
-#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_ADDR 0xe0008018
+#define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_ADDR 0xe0007814
 #define CSR_RTIO_MONINJ_INJ_OVERRIDE_SEL_SIZE 1
 static inline unsigned char rtio_moninj_inj_override_sel_read(void) {
-	unsigned char r = MMPTR(0xe0008018);
+	unsigned char r = MMPTR(0xe0007814);
 	return r;
 }
 static inline void rtio_moninj_inj_override_sel_write(unsigned char value) {
-	MMPTR(0xe0008018) = value;
+	MMPTR(0xe0007814) = value;
 }
-#define CSR_RTIO_MONINJ_INJ_VALUE_ADDR 0xe000801c
+#define CSR_RTIO_MONINJ_INJ_VALUE_ADDR 0xe0007818
 #define CSR_RTIO_MONINJ_INJ_VALUE_SIZE 1
 static inline unsigned char rtio_moninj_inj_value_read(void) {
-	unsigned char r = MMPTR(0xe000801c);
+	unsigned char r = MMPTR(0xe0007818);
 	return r;
 }
 static inline void rtio_moninj_inj_value_write(unsigned char value) {
-	MMPTR(0xe000801c) = value;
+	MMPTR(0xe0007818) = value;
 }
 
 /* spiflash */
-#define CSR_SPIFLASH_BASE 0xe0004000
-#define CSR_SPIFLASH_BITBANG_ADDR 0xe0004000
+#define CSR_SPIFLASH_BASE 0xe0003800
+#define CSR_SPIFLASH_BITBANG_ADDR 0xe0003800
 #define CSR_SPIFLASH_BITBANG_SIZE 1
 static inline unsigned char spiflash_bitbang_read(void) {
-	unsigned char r = MMPTR(0xe0004000);
+	unsigned char r = MMPTR(0xe0003800);
 	return r;
 }
 static inline void spiflash_bitbang_write(unsigned char value) {
-	MMPTR(0xe0004000) = value;
+	MMPTR(0xe0003800) = value;
 }
-#define CSR_SPIFLASH_MISO_ADDR 0xe0004004
+#define CSR_SPIFLASH_MISO_ADDR 0xe0003804
 #define CSR_SPIFLASH_MISO_SIZE 1
 static inline unsigned char spiflash_miso_read(void) {
-	unsigned char r = MMPTR(0xe0004004);
+	unsigned char r = MMPTR(0xe0003804);
 	return r;
 }
-#define CSR_SPIFLASH_BITBANG_EN_ADDR 0xe0004008
+#define CSR_SPIFLASH_BITBANG_EN_ADDR 0xe0003808
 #define CSR_SPIFLASH_BITBANG_EN_SIZE 1
 static inline unsigned char spiflash_bitbang_en_read(void) {
-	unsigned char r = MMPTR(0xe0004008);
+	unsigned char r = MMPTR(0xe0003808);
 	return r;
 }
 static inline void spiflash_bitbang_en_write(unsigned char value) {
-	MMPTR(0xe0004008) = value;
+	MMPTR(0xe0003808) = value;
 }
 
 /* timer0 */
@@ -1114,45 +1112,6 @@ static inline void timer0_ev_enable_write(unsigned char value) {
 	MMPTR(0xe0001870) = value;
 }
 
-/* tmpu */
-#define CSR_TMPU_BASE 0xe0002000
-#define CSR_TMPU_ENABLE_NULL_ADDR 0xe0002000
-#define CSR_TMPU_ENABLE_NULL_SIZE 1
-static inline unsigned char tmpu_enable_null_read(void) {
-	unsigned char r = MMPTR(0xe0002000);
-	return r;
-}
-static inline void tmpu_enable_null_write(unsigned char value) {
-	MMPTR(0xe0002000) = value;
-}
-#define CSR_TMPU_ENABLE_PROG_ADDR 0xe0002004
-#define CSR_TMPU_ENABLE_PROG_SIZE 1
-static inline unsigned char tmpu_enable_prog_read(void) {
-	unsigned char r = MMPTR(0xe0002004);
-	return r;
-}
-static inline void tmpu_enable_prog_write(unsigned char value) {
-	MMPTR(0xe0002004) = value;
-}
-#define CSR_TMPU_PROG_ADDRESS_ADDR 0xe0002008
-#define CSR_TMPU_PROG_ADDRESS_SIZE 4
-static inline unsigned int tmpu_prog_address_read(void) {
-	unsigned int r = MMPTR(0xe0002008);
-	r <<= 8;
-	r |= MMPTR(0xe000200c);
-	r <<= 8;
-	r |= MMPTR(0xe0002010);
-	r <<= 8;
-	r |= MMPTR(0xe0002014);
-	return r;
-}
-static inline void tmpu_prog_address_write(unsigned int value) {
-	MMPTR(0xe0002008) = value >> 24;
-	MMPTR(0xe000200c) = value >> 16;
-	MMPTR(0xe0002010) = value >> 8;
-	MMPTR(0xe0002014) = value;
-}
-
 /* uart */
 #define CSR_UART_BASE 0xe0000800
 #define CSR_UART_RXTX_ADDR 0xe0000800
@@ -1254,10 +1213,6 @@ static inline int ethmac_tx_slots_read(void) {
 static inline int ethmac_slot_size_read(void) {
 	return 2048;
 }
-#define TMPU_PAGE_SIZE 4096
-static inline int tmpu_page_size_read(void) {
-	return 4096;
-}
 #define CONFIG_CLOCK_FREQUENCY 113281250
 static inline int config_clock_frequency_read(void) {
 	return 113281250;
@@ -1268,13 +1223,17 @@ static inline const char * config_ext_ref_frequency_read(void) {
 }
 #define CONFIG_HAS_RTIO_LOG
 #define CONFIG_HAS_SI5324
+#define CONFIG_HW_REV "v1.1"
+static inline const char * config_hw_rev_read(void) {
+	return "v1.1";
+}
 #define CONFIG_I2C_BUS_COUNT 1
 static inline int config_i2c_bus_count_read(void) {
 	return 1;
 }
-#define CONFIG_IDENTIFIER_STR "5.6915.c9356aba.beta;monroe_ionphoton"
+#define CONFIG_IDENTIFIER_STR "5.7122.929b04da;monroe_ionphoton"
 static inline const char * config_identifier_str_read(void) {
-	return "5.6915.c9356aba.beta;monroe_ionphoton";
+	return "5.7122.929b04da;monroe_ionphoton";
 }
 #define CONFIG_L2_SIZE 131072
 static inline int config_l2_size_read(void) {
@@ -1284,9 +1243,9 @@ static inline int config_l2_size_read(void) {
 static inline const char * config_rtio_frequency_read(void) {
 	return "125.0";
 }
-#define CONFIG_RTIO_LOG_CHANNEL 45
+#define CONFIG_RTIO_LOG_CHANNEL 63
 static inline int config_rtio_log_channel_read(void) {
-	return 45;
+	return 63;
 }
 #define CONFIG_SI5324_AS_SYNTHESIZER
 #define CONFIG_SI5324_EXT_REF

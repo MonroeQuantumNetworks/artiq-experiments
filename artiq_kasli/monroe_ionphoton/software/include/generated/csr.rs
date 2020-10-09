@@ -1,5 +1,3 @@
-// Include this file as:
-//     include!(concat!(env!("BUILDINC_DIRECTORY"), "/generated/csr.rs"));
 #[allow(dead_code)]
 pub mod csr {
   pub const RTIO_BASE: *mut u32 = 0xa0000000 as *mut u32;
@@ -251,13 +249,13 @@ pub mod csr {
 
   }
 
-  pub const DDRPHY_BASE: *mut u32 = 0xe0003800 as *mut u32;
+  pub const DDRPHY_BASE: *mut u32 = 0xe0003000 as *mut u32;
 
   pub mod ddrphy {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const DLY_SEL_ADDR: *mut u32 = 0xe0003800 as *mut u32;
+    pub const DLY_SEL_ADDR: *mut u32 = 0xe0003000 as *mut u32;
     pub const DLY_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -270,7 +268,7 @@ pub mod csr {
       write_volatile(DLY_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const RDLY_DQ_RST_ADDR: *mut u32 = 0xe0003804 as *mut u32;
+    pub const RDLY_DQ_RST_ADDR: *mut u32 = 0xe0003004 as *mut u32;
     pub const RDLY_DQ_RST_SIZE: usize = 1;
 
     #[inline(always)]
@@ -283,7 +281,7 @@ pub mod csr {
       write_volatile(RDLY_DQ_RST_ADDR.offset(0), (w) as u32);
     }
 
-    pub const RDLY_DQ_INC_ADDR: *mut u32 = 0xe0003808 as *mut u32;
+    pub const RDLY_DQ_INC_ADDR: *mut u32 = 0xe0003008 as *mut u32;
     pub const RDLY_DQ_INC_SIZE: usize = 1;
 
     #[inline(always)]
@@ -296,7 +294,7 @@ pub mod csr {
       write_volatile(RDLY_DQ_INC_ADDR.offset(0), (w) as u32);
     }
 
-    pub const RDLY_DQ_BITSLIP_ADDR: *mut u32 = 0xe000380c as *mut u32;
+    pub const RDLY_DQ_BITSLIP_ADDR: *mut u32 = 0xe000300c as *mut u32;
     pub const RDLY_DQ_BITSLIP_SIZE: usize = 1;
 
     #[inline(always)]
@@ -311,13 +309,13 @@ pub mod csr {
 
   }
 
-  pub const DFII_BASE: *mut u32 = 0xe0002800 as *mut u32;
+  pub const DFII_BASE: *mut u32 = 0xe0002000 as *mut u32;
 
   pub mod dfii {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const CONTROL_ADDR: *mut u32 = 0xe0002800 as *mut u32;
+    pub const CONTROL_ADDR: *mut u32 = 0xe0002000 as *mut u32;
     pub const CONTROL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -330,7 +328,7 @@ pub mod csr {
       write_volatile(CONTROL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI0_COMMAND_ADDR: *mut u32 = 0xe0002804 as *mut u32;
+    pub const PI0_COMMAND_ADDR: *mut u32 = 0xe0002004 as *mut u32;
     pub const PI0_COMMAND_SIZE: usize = 1;
 
     #[inline(always)]
@@ -343,7 +341,7 @@ pub mod csr {
       write_volatile(PI0_COMMAND_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI0_COMMAND_ISSUE_ADDR: *mut u32 = 0xe0002808 as *mut u32;
+    pub const PI0_COMMAND_ISSUE_ADDR: *mut u32 = 0xe0002008 as *mut u32;
     pub const PI0_COMMAND_ISSUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -356,7 +354,7 @@ pub mod csr {
       write_volatile(PI0_COMMAND_ISSUE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI0_ADDRESS_ADDR: *mut u32 = 0xe000280c as *mut u32;
+    pub const PI0_ADDRESS_ADDR: *mut u32 = 0xe000200c as *mut u32;
     pub const PI0_ADDRESS_SIZE: usize = 2;
 
     #[inline(always)]
@@ -372,7 +370,7 @@ pub mod csr {
       write_volatile(PI0_ADDRESS_ADDR.offset(1), (w) as u32);
     }
 
-    pub const PI0_BADDRESS_ADDR: *mut u32 = 0xe0002814 as *mut u32;
+    pub const PI0_BADDRESS_ADDR: *mut u32 = 0xe0002014 as *mut u32;
     pub const PI0_BADDRESS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -385,7 +383,7 @@ pub mod csr {
       write_volatile(PI0_BADDRESS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI0_WRDATA_ADDR: *mut u32 = 0xe0002818 as *mut u32;
+    pub const PI0_WRDATA_ADDR: *mut u32 = 0xe0002018 as *mut u32;
     pub const PI0_WRDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -405,7 +403,7 @@ pub mod csr {
       write_volatile(PI0_WRDATA_ADDR.offset(3), (w) as u32);
     }
 
-    pub const PI0_RDDATA_ADDR: *mut u32 = 0xe0002828 as *mut u32;
+    pub const PI0_RDDATA_ADDR: *mut u32 = 0xe0002028 as *mut u32;
     pub const PI0_RDDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -417,7 +415,7 @@ pub mod csr {
       r
     }
 
-    pub const PI1_COMMAND_ADDR: *mut u32 = 0xe0002838 as *mut u32;
+    pub const PI1_COMMAND_ADDR: *mut u32 = 0xe0002038 as *mut u32;
     pub const PI1_COMMAND_SIZE: usize = 1;
 
     #[inline(always)]
@@ -430,7 +428,7 @@ pub mod csr {
       write_volatile(PI1_COMMAND_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI1_COMMAND_ISSUE_ADDR: *mut u32 = 0xe000283c as *mut u32;
+    pub const PI1_COMMAND_ISSUE_ADDR: *mut u32 = 0xe000203c as *mut u32;
     pub const PI1_COMMAND_ISSUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -443,7 +441,7 @@ pub mod csr {
       write_volatile(PI1_COMMAND_ISSUE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI1_ADDRESS_ADDR: *mut u32 = 0xe0002840 as *mut u32;
+    pub const PI1_ADDRESS_ADDR: *mut u32 = 0xe0002040 as *mut u32;
     pub const PI1_ADDRESS_SIZE: usize = 2;
 
     #[inline(always)]
@@ -459,7 +457,7 @@ pub mod csr {
       write_volatile(PI1_ADDRESS_ADDR.offset(1), (w) as u32);
     }
 
-    pub const PI1_BADDRESS_ADDR: *mut u32 = 0xe0002848 as *mut u32;
+    pub const PI1_BADDRESS_ADDR: *mut u32 = 0xe0002048 as *mut u32;
     pub const PI1_BADDRESS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -472,7 +470,7 @@ pub mod csr {
       write_volatile(PI1_BADDRESS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI1_WRDATA_ADDR: *mut u32 = 0xe000284c as *mut u32;
+    pub const PI1_WRDATA_ADDR: *mut u32 = 0xe000204c as *mut u32;
     pub const PI1_WRDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -492,7 +490,7 @@ pub mod csr {
       write_volatile(PI1_WRDATA_ADDR.offset(3), (w) as u32);
     }
 
-    pub const PI1_RDDATA_ADDR: *mut u32 = 0xe000285c as *mut u32;
+    pub const PI1_RDDATA_ADDR: *mut u32 = 0xe000205c as *mut u32;
     pub const PI1_RDDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -504,7 +502,7 @@ pub mod csr {
       r
     }
 
-    pub const PI2_COMMAND_ADDR: *mut u32 = 0xe000286c as *mut u32;
+    pub const PI2_COMMAND_ADDR: *mut u32 = 0xe000206c as *mut u32;
     pub const PI2_COMMAND_SIZE: usize = 1;
 
     #[inline(always)]
@@ -517,7 +515,7 @@ pub mod csr {
       write_volatile(PI2_COMMAND_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI2_COMMAND_ISSUE_ADDR: *mut u32 = 0xe0002870 as *mut u32;
+    pub const PI2_COMMAND_ISSUE_ADDR: *mut u32 = 0xe0002070 as *mut u32;
     pub const PI2_COMMAND_ISSUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -530,7 +528,7 @@ pub mod csr {
       write_volatile(PI2_COMMAND_ISSUE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI2_ADDRESS_ADDR: *mut u32 = 0xe0002874 as *mut u32;
+    pub const PI2_ADDRESS_ADDR: *mut u32 = 0xe0002074 as *mut u32;
     pub const PI2_ADDRESS_SIZE: usize = 2;
 
     #[inline(always)]
@@ -546,7 +544,7 @@ pub mod csr {
       write_volatile(PI2_ADDRESS_ADDR.offset(1), (w) as u32);
     }
 
-    pub const PI2_BADDRESS_ADDR: *mut u32 = 0xe000287c as *mut u32;
+    pub const PI2_BADDRESS_ADDR: *mut u32 = 0xe000207c as *mut u32;
     pub const PI2_BADDRESS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -559,7 +557,7 @@ pub mod csr {
       write_volatile(PI2_BADDRESS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI2_WRDATA_ADDR: *mut u32 = 0xe0002880 as *mut u32;
+    pub const PI2_WRDATA_ADDR: *mut u32 = 0xe0002080 as *mut u32;
     pub const PI2_WRDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -579,7 +577,7 @@ pub mod csr {
       write_volatile(PI2_WRDATA_ADDR.offset(3), (w) as u32);
     }
 
-    pub const PI2_RDDATA_ADDR: *mut u32 = 0xe0002890 as *mut u32;
+    pub const PI2_RDDATA_ADDR: *mut u32 = 0xe0002090 as *mut u32;
     pub const PI2_RDDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -591,7 +589,7 @@ pub mod csr {
       r
     }
 
-    pub const PI3_COMMAND_ADDR: *mut u32 = 0xe00028a0 as *mut u32;
+    pub const PI3_COMMAND_ADDR: *mut u32 = 0xe00020a0 as *mut u32;
     pub const PI3_COMMAND_SIZE: usize = 1;
 
     #[inline(always)]
@@ -604,7 +602,7 @@ pub mod csr {
       write_volatile(PI3_COMMAND_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI3_COMMAND_ISSUE_ADDR: *mut u32 = 0xe00028a4 as *mut u32;
+    pub const PI3_COMMAND_ISSUE_ADDR: *mut u32 = 0xe00020a4 as *mut u32;
     pub const PI3_COMMAND_ISSUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -617,7 +615,7 @@ pub mod csr {
       write_volatile(PI3_COMMAND_ISSUE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI3_ADDRESS_ADDR: *mut u32 = 0xe00028a8 as *mut u32;
+    pub const PI3_ADDRESS_ADDR: *mut u32 = 0xe00020a8 as *mut u32;
     pub const PI3_ADDRESS_SIZE: usize = 2;
 
     #[inline(always)]
@@ -633,7 +631,7 @@ pub mod csr {
       write_volatile(PI3_ADDRESS_ADDR.offset(1), (w) as u32);
     }
 
-    pub const PI3_BADDRESS_ADDR: *mut u32 = 0xe00028b0 as *mut u32;
+    pub const PI3_BADDRESS_ADDR: *mut u32 = 0xe00020b0 as *mut u32;
     pub const PI3_BADDRESS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -646,7 +644,7 @@ pub mod csr {
       write_volatile(PI3_BADDRESS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PI3_WRDATA_ADDR: *mut u32 = 0xe00028b4 as *mut u32;
+    pub const PI3_WRDATA_ADDR: *mut u32 = 0xe00020b4 as *mut u32;
     pub const PI3_WRDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -666,7 +664,7 @@ pub mod csr {
       write_volatile(PI3_WRDATA_ADDR.offset(3), (w) as u32);
     }
 
-    pub const PI3_RDDATA_ADDR: *mut u32 = 0xe00028c4 as *mut u32;
+    pub const PI3_RDDATA_ADDR: *mut u32 = 0xe00020c4 as *mut u32;
     pub const PI3_RDDATA_SIZE: usize = 4;
 
     #[inline(always)]
@@ -680,13 +678,13 @@ pub mod csr {
 
   }
 
-  pub const ETHMAC_BASE: *mut u32 = 0xe0005000 as *mut u32;
+  pub const ETHMAC_BASE: *mut u32 = 0xe0004800 as *mut u32;
 
   pub mod ethmac {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const SRAM_WRITER_SLOT_ADDR: *mut u32 = 0xe0005000 as *mut u32;
+    pub const SRAM_WRITER_SLOT_ADDR: *mut u32 = 0xe0004800 as *mut u32;
     pub const SRAM_WRITER_SLOT_SIZE: usize = 1;
 
     #[inline(always)]
@@ -694,7 +692,7 @@ pub mod csr {
       read_volatile(SRAM_WRITER_SLOT_ADDR) as u8
     }
 
-    pub const SRAM_WRITER_LENGTH_ADDR: *mut u32 = 0xe0005004 as *mut u32;
+    pub const SRAM_WRITER_LENGTH_ADDR: *mut u32 = 0xe0004804 as *mut u32;
     pub const SRAM_WRITER_LENGTH_SIZE: usize = 4;
 
     #[inline(always)]
@@ -706,7 +704,7 @@ pub mod csr {
       r
     }
 
-    pub const SRAM_WRITER_ERRORS_ADDR: *mut u32 = 0xe0005014 as *mut u32;
+    pub const SRAM_WRITER_ERRORS_ADDR: *mut u32 = 0xe0004814 as *mut u32;
     pub const SRAM_WRITER_ERRORS_SIZE: usize = 4;
 
     #[inline(always)]
@@ -718,7 +716,7 @@ pub mod csr {
       r
     }
 
-    pub const SRAM_WRITER_EV_STATUS_ADDR: *mut u32 = 0xe0005024 as *mut u32;
+    pub const SRAM_WRITER_EV_STATUS_ADDR: *mut u32 = 0xe0004824 as *mut u32;
     pub const SRAM_WRITER_EV_STATUS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -731,7 +729,7 @@ pub mod csr {
       write_volatile(SRAM_WRITER_EV_STATUS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_WRITER_EV_PENDING_ADDR: *mut u32 = 0xe0005028 as *mut u32;
+    pub const SRAM_WRITER_EV_PENDING_ADDR: *mut u32 = 0xe0004828 as *mut u32;
     pub const SRAM_WRITER_EV_PENDING_SIZE: usize = 1;
 
     #[inline(always)]
@@ -744,7 +742,7 @@ pub mod csr {
       write_volatile(SRAM_WRITER_EV_PENDING_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_WRITER_EV_ENABLE_ADDR: *mut u32 = 0xe000502c as *mut u32;
+    pub const SRAM_WRITER_EV_ENABLE_ADDR: *mut u32 = 0xe000482c as *mut u32;
     pub const SRAM_WRITER_EV_ENABLE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -757,7 +755,7 @@ pub mod csr {
       write_volatile(SRAM_WRITER_EV_ENABLE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_READER_START_ADDR: *mut u32 = 0xe0005030 as *mut u32;
+    pub const SRAM_READER_START_ADDR: *mut u32 = 0xe0004830 as *mut u32;
     pub const SRAM_READER_START_SIZE: usize = 1;
 
     #[inline(always)]
@@ -770,7 +768,7 @@ pub mod csr {
       write_volatile(SRAM_READER_START_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_READER_READY_ADDR: *mut u32 = 0xe0005034 as *mut u32;
+    pub const SRAM_READER_READY_ADDR: *mut u32 = 0xe0004834 as *mut u32;
     pub const SRAM_READER_READY_SIZE: usize = 1;
 
     #[inline(always)]
@@ -778,7 +776,7 @@ pub mod csr {
       read_volatile(SRAM_READER_READY_ADDR) as u8
     }
 
-    pub const SRAM_READER_SLOT_ADDR: *mut u32 = 0xe0005038 as *mut u32;
+    pub const SRAM_READER_SLOT_ADDR: *mut u32 = 0xe0004838 as *mut u32;
     pub const SRAM_READER_SLOT_SIZE: usize = 1;
 
     #[inline(always)]
@@ -791,7 +789,7 @@ pub mod csr {
       write_volatile(SRAM_READER_SLOT_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_READER_LENGTH_ADDR: *mut u32 = 0xe000503c as *mut u32;
+    pub const SRAM_READER_LENGTH_ADDR: *mut u32 = 0xe000483c as *mut u32;
     pub const SRAM_READER_LENGTH_SIZE: usize = 2;
 
     #[inline(always)]
@@ -807,7 +805,7 @@ pub mod csr {
       write_volatile(SRAM_READER_LENGTH_ADDR.offset(1), (w) as u32);
     }
 
-    pub const SRAM_READER_EV_STATUS_ADDR: *mut u32 = 0xe0005044 as *mut u32;
+    pub const SRAM_READER_EV_STATUS_ADDR: *mut u32 = 0xe0004844 as *mut u32;
     pub const SRAM_READER_EV_STATUS_SIZE: usize = 1;
 
     #[inline(always)]
@@ -820,7 +818,7 @@ pub mod csr {
       write_volatile(SRAM_READER_EV_STATUS_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_READER_EV_PENDING_ADDR: *mut u32 = 0xe0005048 as *mut u32;
+    pub const SRAM_READER_EV_PENDING_ADDR: *mut u32 = 0xe0004848 as *mut u32;
     pub const SRAM_READER_EV_PENDING_SIZE: usize = 1;
 
     #[inline(always)]
@@ -833,7 +831,7 @@ pub mod csr {
       write_volatile(SRAM_READER_EV_PENDING_ADDR.offset(0), (w) as u32);
     }
 
-    pub const SRAM_READER_EV_ENABLE_ADDR: *mut u32 = 0xe000504c as *mut u32;
+    pub const SRAM_READER_EV_ENABLE_ADDR: *mut u32 = 0xe000484c as *mut u32;
     pub const SRAM_READER_EV_ENABLE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -846,7 +844,7 @@ pub mod csr {
       write_volatile(SRAM_READER_EV_ENABLE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PREAMBLE_ERRORS_ADDR: *mut u32 = 0xe0005050 as *mut u32;
+    pub const PREAMBLE_ERRORS_ADDR: *mut u32 = 0xe0004850 as *mut u32;
     pub const PREAMBLE_ERRORS_SIZE: usize = 4;
 
     #[inline(always)]
@@ -858,7 +856,7 @@ pub mod csr {
       r
     }
 
-    pub const CRC_ERRORS_ADDR: *mut u32 = 0xe0005060 as *mut u32;
+    pub const CRC_ERRORS_ADDR: *mut u32 = 0xe0004860 as *mut u32;
     pub const CRC_ERRORS_SIZE: usize = 4;
 
     #[inline(always)]
@@ -872,13 +870,13 @@ pub mod csr {
 
   }
 
-  pub const I2C_BASE: *mut u32 = 0xe0006800 as *mut u32;
+  pub const I2C_BASE: *mut u32 = 0xe0006000 as *mut u32;
 
   pub mod i2c {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const IN_ADDR: *mut u32 = 0xe0006800 as *mut u32;
+    pub const IN_ADDR: *mut u32 = 0xe0006000 as *mut u32;
     pub const IN_SIZE: usize = 1;
 
     #[inline(always)]
@@ -886,7 +884,7 @@ pub mod csr {
       read_volatile(IN_ADDR) as u8
     }
 
-    pub const OUT_ADDR: *mut u32 = 0xe0006804 as *mut u32;
+    pub const OUT_ADDR: *mut u32 = 0xe0006004 as *mut u32;
     pub const OUT_SIZE: usize = 1;
 
     #[inline(always)]
@@ -899,7 +897,7 @@ pub mod csr {
       write_volatile(OUT_ADDR.offset(0), (w) as u32);
     }
 
-    pub const OE_ADDR: *mut u32 = 0xe0006808 as *mut u32;
+    pub const OE_ADDR: *mut u32 = 0xe0006008 as *mut u32;
     pub const OE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -943,13 +941,13 @@ pub mod csr {
 
   }
 
-  pub const KERNEL_CPU_BASE: *mut u32 = 0xe0005800 as *mut u32;
+  pub const KERNEL_CPU_BASE: *mut u32 = 0xe0005000 as *mut u32;
 
   pub mod kernel_cpu {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const RESET_ADDR: *mut u32 = 0xe0005800 as *mut u32;
+    pub const RESET_ADDR: *mut u32 = 0xe0005000 as *mut u32;
     pub const RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -964,13 +962,13 @@ pub mod csr {
 
   }
 
-  pub const LEDS_BASE: *mut u32 = 0xe0006000 as *mut u32;
+  pub const LEDS_BASE: *mut u32 = 0xe0005800 as *mut u32;
 
   pub mod leds {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const OUT_ADDR: *mut u32 = 0xe0006000 as *mut u32;
+    pub const OUT_ADDR: *mut u32 = 0xe0005800 as *mut u32;
     pub const OUT_SIZE: usize = 1;
 
     #[inline(always)]
@@ -985,13 +983,13 @@ pub mod csr {
 
   }
 
-  pub const RTIO_ANALYZER_BASE: *mut u32 = 0xe0008800 as *mut u32;
+  pub const RTIO_ANALYZER_BASE: *mut u32 = 0xe0008000 as *mut u32;
 
   pub mod rtio_analyzer {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const ENABLE_ADDR: *mut u32 = 0xe0008800 as *mut u32;
+    pub const ENABLE_ADDR: *mut u32 = 0xe0008000 as *mut u32;
     pub const ENABLE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1004,7 +1002,7 @@ pub mod csr {
       write_volatile(ENABLE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const BUSY_ADDR: *mut u32 = 0xe0008804 as *mut u32;
+    pub const BUSY_ADDR: *mut u32 = 0xe0008004 as *mut u32;
     pub const BUSY_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1012,7 +1010,7 @@ pub mod csr {
       read_volatile(BUSY_ADDR) as u8
     }
 
-    pub const MESSAGE_ENCODER_OVERFLOW_ADDR: *mut u32 = 0xe0008808 as *mut u32;
+    pub const MESSAGE_ENCODER_OVERFLOW_ADDR: *mut u32 = 0xe0008008 as *mut u32;
     pub const MESSAGE_ENCODER_OVERFLOW_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1020,7 +1018,7 @@ pub mod csr {
       read_volatile(MESSAGE_ENCODER_OVERFLOW_ADDR) as u8
     }
 
-    pub const MESSAGE_ENCODER_OVERFLOW_RESET_ADDR: *mut u32 = 0xe000880c as *mut u32;
+    pub const MESSAGE_ENCODER_OVERFLOW_RESET_ADDR: *mut u32 = 0xe000800c as *mut u32;
     pub const MESSAGE_ENCODER_OVERFLOW_RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1033,7 +1031,7 @@ pub mod csr {
       write_volatile(MESSAGE_ENCODER_OVERFLOW_RESET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const DMA_RESET_ADDR: *mut u32 = 0xe0008810 as *mut u32;
+    pub const DMA_RESET_ADDR: *mut u32 = 0xe0008010 as *mut u32;
     pub const DMA_RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1046,7 +1044,7 @@ pub mod csr {
       write_volatile(DMA_RESET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const DMA_BASE_ADDRESS_ADDR: *mut u32 = 0xe0008814 as *mut u32;
+    pub const DMA_BASE_ADDRESS_ADDR: *mut u32 = 0xe0008014 as *mut u32;
     pub const DMA_BASE_ADDRESS_SIZE: usize = 5;
 
     #[inline(always)]
@@ -1068,7 +1066,7 @@ pub mod csr {
       write_volatile(DMA_BASE_ADDRESS_ADDR.offset(4), (w) as u32);
     }
 
-    pub const DMA_LAST_ADDRESS_ADDR: *mut u32 = 0xe0008828 as *mut u32;
+    pub const DMA_LAST_ADDRESS_ADDR: *mut u32 = 0xe0008028 as *mut u32;
     pub const DMA_LAST_ADDRESS_SIZE: usize = 5;
 
     #[inline(always)]
@@ -1090,7 +1088,7 @@ pub mod csr {
       write_volatile(DMA_LAST_ADDRESS_ADDR.offset(4), (w) as u32);
     }
 
-    pub const DMA_BYTE_COUNT_ADDR: *mut u32 = 0xe000883c as *mut u32;
+    pub const DMA_BYTE_COUNT_ADDR: *mut u32 = 0xe000803c as *mut u32;
     pub const DMA_BYTE_COUNT_SIZE: usize = 8;
 
     #[inline(always)]
@@ -1108,13 +1106,13 @@ pub mod csr {
 
   }
 
-  pub const RTIO_CORE_BASE: *mut u32 = 0xe0007800 as *mut u32;
+  pub const RTIO_CORE_BASE: *mut u32 = 0xe0007000 as *mut u32;
 
   pub mod rtio_core {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const RESET_ADDR: *mut u32 = 0xe0007800 as *mut u32;
+    pub const RESET_ADDR: *mut u32 = 0xe0007000 as *mut u32;
     pub const RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1127,7 +1125,7 @@ pub mod csr {
       write_volatile(RESET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const RESET_PHY_ADDR: *mut u32 = 0xe0007804 as *mut u32;
+    pub const RESET_PHY_ADDR: *mut u32 = 0xe0007004 as *mut u32;
     pub const RESET_PHY_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1140,7 +1138,7 @@ pub mod csr {
       write_volatile(RESET_PHY_ADDR.offset(0), (w) as u32);
     }
 
-    pub const ASYNC_ERROR_ADDR: *mut u32 = 0xe0007808 as *mut u32;
+    pub const ASYNC_ERROR_ADDR: *mut u32 = 0xe0007008 as *mut u32;
     pub const ASYNC_ERROR_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1153,7 +1151,7 @@ pub mod csr {
       write_volatile(ASYNC_ERROR_ADDR.offset(0), (w) as u32);
     }
 
-    pub const COLLISION_CHANNEL_ADDR: *mut u32 = 0xe000780c as *mut u32;
+    pub const COLLISION_CHANNEL_ADDR: *mut u32 = 0xe000700c as *mut u32;
     pub const COLLISION_CHANNEL_SIZE: usize = 2;
 
     #[inline(always)]
@@ -1163,7 +1161,7 @@ pub mod csr {
       r
     }
 
-    pub const BUSY_CHANNEL_ADDR: *mut u32 = 0xe0007814 as *mut u32;
+    pub const BUSY_CHANNEL_ADDR: *mut u32 = 0xe0007014 as *mut u32;
     pub const BUSY_CHANNEL_SIZE: usize = 2;
 
     #[inline(always)]
@@ -1173,7 +1171,7 @@ pub mod csr {
       r
     }
 
-    pub const SEQUENCE_ERROR_CHANNEL_ADDR: *mut u32 = 0xe000781c as *mut u32;
+    pub const SEQUENCE_ERROR_CHANNEL_ADDR: *mut u32 = 0xe000701c as *mut u32;
     pub const SEQUENCE_ERROR_CHANNEL_SIZE: usize = 2;
 
     #[inline(always)]
@@ -1185,13 +1183,13 @@ pub mod csr {
 
   }
 
-  pub const RTIO_CRG_BASE: *mut u32 = 0xe0007000 as *mut u32;
+  pub const RTIO_CRG_BASE: *mut u32 = 0xe0006800 as *mut u32;
 
   pub mod rtio_crg {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const PLL_RESET_ADDR: *mut u32 = 0xe0007000 as *mut u32;
+    pub const PLL_RESET_ADDR: *mut u32 = 0xe0006800 as *mut u32;
     pub const PLL_RESET_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1204,7 +1202,7 @@ pub mod csr {
       write_volatile(PLL_RESET_ADDR.offset(0), (w) as u32);
     }
 
-    pub const PLL_LOCKED_ADDR: *mut u32 = 0xe0007004 as *mut u32;
+    pub const PLL_LOCKED_ADDR: *mut u32 = 0xe0006804 as *mut u32;
     pub const PLL_LOCKED_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1214,13 +1212,13 @@ pub mod csr {
 
   }
 
-  pub const RTIO_MONINJ_BASE: *mut u32 = 0xe0008000 as *mut u32;
+  pub const RTIO_MONINJ_BASE: *mut u32 = 0xe0007800 as *mut u32;
 
   pub mod rtio_moninj {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const MON_CHAN_SEL_ADDR: *mut u32 = 0xe0008000 as *mut u32;
+    pub const MON_CHAN_SEL_ADDR: *mut u32 = 0xe0007800 as *mut u32;
     pub const MON_CHAN_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1233,7 +1231,7 @@ pub mod csr {
       write_volatile(MON_CHAN_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const MON_PROBE_SEL_ADDR: *mut u32 = 0xe0008004 as *mut u32;
+    pub const MON_PROBE_SEL_ADDR: *mut u32 = 0xe0007804 as *mut u32;
     pub const MON_PROBE_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1246,7 +1244,7 @@ pub mod csr {
       write_volatile(MON_PROBE_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const MON_VALUE_UPDATE_ADDR: *mut u32 = 0xe0008008 as *mut u32;
+    pub const MON_VALUE_UPDATE_ADDR: *mut u32 = 0xe0007808 as *mut u32;
     pub const MON_VALUE_UPDATE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1259,17 +1257,15 @@ pub mod csr {
       write_volatile(MON_VALUE_UPDATE_ADDR.offset(0), (w) as u32);
     }
 
-    pub const MON_VALUE_ADDR: *mut u32 = 0xe000800c as *mut u32;
-    pub const MON_VALUE_SIZE: usize = 2;
+    pub const MON_VALUE_ADDR: *mut u32 = 0xe000780c as *mut u32;
+    pub const MON_VALUE_SIZE: usize = 1;
 
     #[inline(always)]
-    pub unsafe fn mon_value_read() -> u16 {
-      let r = read_volatile(MON_VALUE_ADDR) as u16;
-      let r = r << 8 | read_volatile(MON_VALUE_ADDR.offset(1)) as u16;
-      r
+    pub unsafe fn mon_value_read() -> u8 {
+      read_volatile(MON_VALUE_ADDR) as u8
     }
 
-    pub const INJ_CHAN_SEL_ADDR: *mut u32 = 0xe0008014 as *mut u32;
+    pub const INJ_CHAN_SEL_ADDR: *mut u32 = 0xe0007810 as *mut u32;
     pub const INJ_CHAN_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1282,7 +1278,7 @@ pub mod csr {
       write_volatile(INJ_CHAN_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const INJ_OVERRIDE_SEL_ADDR: *mut u32 = 0xe0008018 as *mut u32;
+    pub const INJ_OVERRIDE_SEL_ADDR: *mut u32 = 0xe0007814 as *mut u32;
     pub const INJ_OVERRIDE_SEL_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1295,7 +1291,7 @@ pub mod csr {
       write_volatile(INJ_OVERRIDE_SEL_ADDR.offset(0), (w) as u32);
     }
 
-    pub const INJ_VALUE_ADDR: *mut u32 = 0xe000801c as *mut u32;
+    pub const INJ_VALUE_ADDR: *mut u32 = 0xe0007818 as *mut u32;
     pub const INJ_VALUE_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1310,13 +1306,13 @@ pub mod csr {
 
   }
 
-  pub const SPIFLASH_BASE: *mut u32 = 0xe0004000 as *mut u32;
+  pub const SPIFLASH_BASE: *mut u32 = 0xe0003800 as *mut u32;
 
   pub mod spiflash {
     #[allow(unused_imports)]
     use core::ptr::{read_volatile, write_volatile};
 
-    pub const BITBANG_ADDR: *mut u32 = 0xe0004000 as *mut u32;
+    pub const BITBANG_ADDR: *mut u32 = 0xe0003800 as *mut u32;
     pub const BITBANG_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1329,7 +1325,7 @@ pub mod csr {
       write_volatile(BITBANG_ADDR.offset(0), (w) as u32);
     }
 
-    pub const MISO_ADDR: *mut u32 = 0xe0004004 as *mut u32;
+    pub const MISO_ADDR: *mut u32 = 0xe0003804 as *mut u32;
     pub const MISO_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1337,7 +1333,7 @@ pub mod csr {
       read_volatile(MISO_ADDR) as u8
     }
 
-    pub const BITBANG_EN_ADDR: *mut u32 = 0xe0004008 as *mut u32;
+    pub const BITBANG_EN_ADDR: *mut u32 = 0xe0003808 as *mut u32;
     pub const BITBANG_EN_SIZE: usize = 1;
 
     #[inline(always)]
@@ -1497,60 +1493,6 @@ pub mod csr {
 
   }
 
-  pub const TMPU_BASE: *mut u32 = 0xe0002000 as *mut u32;
-
-  pub mod tmpu {
-    #[allow(unused_imports)]
-    use core::ptr::{read_volatile, write_volatile};
-
-    pub const ENABLE_NULL_ADDR: *mut u32 = 0xe0002000 as *mut u32;
-    pub const ENABLE_NULL_SIZE: usize = 1;
-
-    #[inline(always)]
-    pub unsafe fn enable_null_read() -> u8 {
-      read_volatile(ENABLE_NULL_ADDR) as u8
-    }
-
-    #[inline(always)]
-    pub unsafe fn enable_null_write(w: u8) {
-      write_volatile(ENABLE_NULL_ADDR.offset(0), (w) as u32);
-    }
-
-    pub const ENABLE_PROG_ADDR: *mut u32 = 0xe0002004 as *mut u32;
-    pub const ENABLE_PROG_SIZE: usize = 1;
-
-    #[inline(always)]
-    pub unsafe fn enable_prog_read() -> u8 {
-      read_volatile(ENABLE_PROG_ADDR) as u8
-    }
-
-    #[inline(always)]
-    pub unsafe fn enable_prog_write(w: u8) {
-      write_volatile(ENABLE_PROG_ADDR.offset(0), (w) as u32);
-    }
-
-    pub const PROG_ADDRESS_ADDR: *mut u32 = 0xe0002008 as *mut u32;
-    pub const PROG_ADDRESS_SIZE: usize = 4;
-
-    #[inline(always)]
-    pub unsafe fn prog_address_read() -> u32 {
-      let r = read_volatile(PROG_ADDRESS_ADDR) as u32;
-      let r = r << 8 | read_volatile(PROG_ADDRESS_ADDR.offset(1)) as u32;
-      let r = r << 8 | read_volatile(PROG_ADDRESS_ADDR.offset(2)) as u32;
-      let r = r << 8 | read_volatile(PROG_ADDRESS_ADDR.offset(3)) as u32;
-      r
-    }
-
-    #[inline(always)]
-    pub unsafe fn prog_address_write(w: u32) {
-      write_volatile(PROG_ADDRESS_ADDR.offset(0), (w >> 24) as u32);
-      write_volatile(PROG_ADDRESS_ADDR.offset(1), (w >> 16) as u32);
-      write_volatile(PROG_ADDRESS_ADDR.offset(2), (w >> 8) as u32);
-      write_volatile(PROG_ADDRESS_ADDR.offset(3), (w) as u32);
-    }
-
-  }
-
   pub const UART_BASE: *mut u32 = 0xe0000800 as *mut u32;
 
   pub mod uart {
@@ -1662,16 +1604,16 @@ pub mod csr {
   pub const ETHMAC_RX_SLOTS: u32 = 4;
   pub const ETHMAC_TX_SLOTS: u32 = 4;
   pub const ETHMAC_SLOT_SIZE: u32 = 2048;
-  pub const TMPU_PAGE_SIZE: u32 = 4096;
   pub const CONFIG_CLOCK_FREQUENCY: u32 = 113281250;
   pub const CONFIG_EXT_REF_FREQUENCY: &'static str = "125.0";
   pub const CONFIG_HAS_RTIO_LOG: u32 = 1;
   pub const CONFIG_HAS_SI5324: u32 = 1;
+  pub const CONFIG_HW_REV: &'static str = "v1.1";
   pub const CONFIG_I2C_BUS_COUNT: u32 = 1;
-  pub const CONFIG_IDENTIFIER_STR: &'static str = "5.6915.c9356aba.beta;monroe_ionphoton";
+  pub const CONFIG_IDENTIFIER_STR: &'static str = "5.7122.929b04da;monroe_ionphoton";
   pub const CONFIG_L2_SIZE: u32 = 131072;
   pub const CONFIG_RTIO_FREQUENCY: &'static str = "125.0";
-  pub const CONFIG_RTIO_LOG_CHANNEL: u32 = 45;
+  pub const CONFIG_RTIO_LOG_CHANNEL: u32 = 63;
   pub const CONFIG_SI5324_AS_SYNTHESIZER: u32 = 1;
   pub const CONFIG_SI5324_EXT_REF: u32 = 1;
   pub const CONFIG_SI5324_SOFT_RESET: u32 = 1;
