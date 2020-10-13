@@ -67,7 +67,11 @@ class base_experiment(EnvExperiment):
         ('Alice_camera_side_APD', 'ttl12'),
         ('Bob_camera_side_APD', 'ttl13'),
         ('Alice_PMT', 'ttl14'),
-        ('Bob_PMT', 'ttl15')
+        ('Bob_PMT', 'ttl15'),
+        ('Edge_counter1', 'ttl28'),
+        ('Edge_counter2', 'ttl29'),
+        ('Edge_counter3', 'ttl30'),
+        ('Edge_counter4', 'ttl31')
         ]
 
     # George modified these names
@@ -79,27 +83,40 @@ class base_experiment(EnvExperiment):
         ('ttl_650_sigma_1', 'ttl4', False),
         ('ttl_650_sigma_2', 'ttl5', False),
         ('ttl_650_fast_pulse', 'ttl6', False),
-        ('ttl_Alice_650_pi', 'ttl7', False)
+        ('ttl_Alice_650_pi', 'ttl7', False),
+        ('ttl_16', 'ttl16', False),
+        ('ttl_17', 'ttl17', False),
+        ('ttl_18', 'ttl18', False),
+        ('ttl_19', 'ttl19', False),
+        ('ttl_20', 'ttl20', False),
+        ('ttl_21', 'ttl21', False),
+        ('ttl_22', 'ttl22', False),
+        ('ttl_23', 'ttl23', False),
+        ('ttl_24', 'ttl24', False),
+        ('ttl_25', 'ttl25', False),
+        ('ttl_26', 'ttl26', False),
+        ('ttl_27', 'ttl27', False)
+
     ]
 
-    DAC_list = [
-        ('Alice_camera_DC_bias', 0, -0.15),
-        ('Alice_camera_RF_bias', 1, 0.18),
-        ('Alice_big_lens_RF_bias', 2, -0.03),
-        ('Alice_big_lens_DC_bias', 3, 0.12),
-        ('Bob_RF_bias_0', 4, 0.27),
-        ('Bob_RF_bias_1', 5, 0.169),
-        ('Bob_Dsub_side_ground_bias', 6, 0.083),
-        ('Bob_resonator_side_ground_bias', 7, 0.165),
-        ('DAC8', 8, 0.0),
-        ('DAC9', 9, 0.0),
-        ('DAC10', 10, 0.0),
-        ('DAC11', 11, 0.0),
-        ('DAC12', 12, 0.0),
-        ('DAC13', 13, 0.0),
-        ('DAC14', 14, 0.0),
-        ('DAC15', 15, 0.0)
-    ]
+    # DAC_list = [
+    #     ('Alice_camera_DC_bias', 0, -0.15),
+    #     ('Alice_camera_RF_bias', 1, 0.18),
+    #     ('Alice_big_lens_RF_bias', 2, -0.03),
+    #     ('Alice_big_lens_DC_bias', 3, 0.12),
+    #     ('Bob_RF_bias_0', 4, 0.27),
+    #     ('Bob_RF_bias_1', 5, 0.169),
+    #     ('Bob_Dsub_side_ground_bias', 6, 0.083),
+    #     ('Bob_resonator_side_ground_bias', 7, 0.165),
+    #     ('DAC8', 8, 0.0),
+    #     ('DAC9', 9, 0.0),
+    #     ('DAC10', 10, 0.0),
+    #     ('DAC11', 11, 0.0),
+    #     ('DAC12', 12, 0.0),
+    #     ('DAC13', 13, 0.0),
+    #     ('DAC14', 14, 0.0),
+    #     ('DAC15', 15, 0.0)
+    # ]
 
     # George added this list. These are hardcoded in lines 255+, need to improve how this is handled
     timing_list = [
@@ -110,7 +127,7 @@ class base_experiment(EnvExperiment):
         ('raman_time'),
     ]
 
-    num_DAC_channels = 16
+    # num_DAC_channels = 16
 
     def build(self):
 
@@ -164,12 +181,12 @@ class base_experiment(EnvExperiment):
                 setattr(self, key2, self.get_dataset(key, archive=False))
 
             # Read in the datasets for all the DAC outputs
-            for key, hardware, default in self.DAC_list:
-                key ='globals.DAC.' + key
-
-                # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
-                key2 = '__'.join(key.split('.'))
-                setattr(self, key2, self.get_dataset(key, archive=False))
+            # for key, hardware, default in self.DAC_list:
+            #     key ='globals.DAC.' + key
+            #
+            #     # The datasets use '.' as the group delimiter, but for the namespace we replace this with '__' to make access easier
+            #     key2 = '__'.join(key.split('.'))
+            #     setattr(self, key2, self.get_dataset(key, archive=False))
 
             # Read in the datasets for all the DDS settings
             for key, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
@@ -274,8 +291,8 @@ class base_experiment(EnvExperiment):
 
         # DAC #
 
-        for name, channel, voltage_default in self.DAC_list:
-            self.number_argument('globals__DAC__'+name, voltage_default, tooltip='zotino0_ch'+str(channel), unit='V', ndecimals=9, min=-10*V, max=9.999*V, step=1*V)
+        # for name, channel, voltage_default in self.DAC_list:
+        #     self.number_argument('globals__DAC__'+name, voltage_default, tooltip='zotino0_ch'+str(channel), unit='V', ndecimals=9, min=-10*V, max=9.999*V, step=1*V)
 
 
     def build_common(self):
@@ -289,8 +306,8 @@ class base_experiment(EnvExperiment):
 
         self.setattr_device('core')
         self.setattr_device('scheduler')
-        self.setattr_device('led0')
-        self.setattr_device('led1')
+        # self.setattr_device('led0')   # Removed the Zotino
+        # self.setattr_device('led1')
 
         # TTL inputs #
 
@@ -344,7 +361,7 @@ class base_experiment(EnvExperiment):
 
         # DAC #
 
-        self.setattr_device('zotino0')
+        # self.setattr_device('zotino0')
 
     def write_globals_to_datasets(self, archive=False):
         # Write globals to datasets.  This will take care of things added both programatically and through arguments.
@@ -426,8 +443,8 @@ class base_experiment(EnvExperiment):
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
 
         # DAC #
-        self.DAC_voltage_list = [getattr(self, 'globals__DAC__'+name) for name, channel, voltage_default in self.DAC_list]
-        self.DAC_channel_list = [channel for name, channel, voltage_default in self.DAC_list]
+        # self.DAC_voltage_list = [getattr(self, 'globals__DAC__'+name) for name, channel, voltage_default in self.DAC_list]
+        # self.DAC_channel_list = [channel for name, channel, voltage_default in self.DAC_list]
 
         self.kernel_setup()
 
@@ -451,10 +468,10 @@ class base_experiment(EnvExperiment):
                 channel.off()
             delay_mu(10000)      # This fixes "RTIO sequence error involving channel 7"
 
-        # DAC #
-        self.core.break_realtime()
-        delay_mu(1000000)
-        self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)
+        # # DAC #
+        # self.core.break_realtime()
+        # delay_mu(1000000)
+        # self.zotino0.set_dac(self.DAC_voltage_list, self.DAC_channel_list)
 
     def run(self):
         # subclasses should override run_worker(), not run()

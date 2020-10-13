@@ -61,10 +61,17 @@
             "pll_n": 32
         },
         {
-            "type": "zotino",
-            "ports": [
-                10
-            ]
+            "type": "dio",
+            "ports": [10],
+            "bank_direction_low": "output",
+            "bank_direction_high": "output"
+        },
+        {
+            "type": "dio",
+            "ports": [11],
+            "bank_direction_low": "output",
+            "bank_direction_high": "input",
+            "edge_counter": true
         }
     ]
 }

@@ -53,4 +53,4 @@ class startup(settings.settings):
 
         # DAC #
 
-        self.zotino0.init()
+        # self.zotino0.init()
