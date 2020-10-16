@@ -1,8 +1,6 @@
 """ Tested modified Legacy script, WORKING
-Alice Barium detection, with scannable variables, partial DMA
-Automatically does both pump12 and detect12
+Bob Barium ramsey experiment
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
-Fixed AOM amplitude scanning and update
 
 Known issues:
     non-DMA detection, slow
@@ -21,7 +19,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
+class AlicePG_Ba_Raman_ramsey(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -31,37 +29,24 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'ramsey_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
+        self.setattr_argument('ramsey_time__scan', Scannable(default=[NoScan(0*us), RangeScan(0 * us, 100*us, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
         self.sum12 = 0
         self.sum21 = 0
         self.sum22 = 0
-
-    # @kernel
-    # def set_DDS(self, channel, freq, amp):
-    #     # self.core.reset()
-    #     delay_mu(95000)
-    #     channel.set(freq, amplitude=amp)    # Necessary to set the amplitude when using set
-    #     delay_mu(6000)
-
-    # @kernel
-    # def set_DDS_amp(self, channel, amp):
-    #     self.core.reset()
-    #     delay_mu(95000)
-    #     channel.set_amplitude(amp)        # This statement does nothing
-    #     delay_mu(6000)
 
     def run(self):
 
@@ -79,9 +64,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             name="Raman_Ratios_Fit",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "ratio11"
+            + " --y-names " + "ratio21"
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset11"
+            + " --y-fits " + "yfitdataset21"
             + " --rid " + "runid"            
             + " --y-label "
             + "'"
@@ -105,7 +90,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
                 if isinstance(scan, NoScan):
                     # just set the single value
                     setattr(self, name, scan.value)     # This sets 532-amplitude and 532 frequency too
-                    print(name, scan.value)             # e.g. DDS__532__Alice__tone_1__amplitude 0.35
+                    print(name, scan.value)             # e.g. DDS__532__Bob__tone_1__amplitude 0.35
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
@@ -170,8 +155,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
                 self.mutate_dataset('sum11', point_num, self.sum11)
                 self.mutate_dataset('sum12', point_num, self.sum12)
-                self.mutate_dataset('ratio11', point_num, ratio11)
-                self.mutate_dataset('ratio12', point_num, ratio12)
+                # self.mutate_dataset('ratio11', point_num, ratio11)
+                # self.mutate_dataset('ratio12', point_num, ratio12)
 
                 # # For pumping with sigma2
                 ratio21 = self.sum21 / (self.sum21 + self.sum22)
@@ -211,9 +196,9 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
         # Hard-coded to set the AOM frequency and amplitude
         delay_mu(95000)
-        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
         delay_mu(95000)
-        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
+        self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
 
         sum11 = 0
         sum12 = 0
@@ -226,9 +211,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         self.record_pump_sigma2()
         self.record_detect1()
         self.record_detect2()
-        # self.record_cool()
+
         prep_handle = self.core_dma.get_handle("pulses_prep")
-        # cool_handle = self.core_dma.get_handle("pulses_cool")
         pulses_handle10 = self.core_dma.get_handle("pulses10")
         pulses_handle01 = self.core_dma.get_handle("pulses01")
         pulses_handle20 = self.core_dma.get_handle("pulses20")
@@ -238,7 +222,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1 - 65           # For detect sigma2
+        delay2 = delay1            # For detect sigma2
 
         for i in range(self.detections_per_point):
 
@@ -247,7 +231,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
+            # self.DDS__urukul3_ch2.set(self.DDS__532__Bob__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -306,6 +290,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
     def record_pump_sigma1(self):
         """DMA detection loop sequence.
         This generates the pulse sequence needed for pumping with 493 sigma 1
+        cool - pump - raman pulse - ramsey delay - raman pulse
         """
         with self.core_dma.record("pulses10"):
             with parallel:
@@ -324,12 +309,22 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             delay(500*ns)
 
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.DDS__532__Bob__tone_1.sw.on()
+                self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.DDS__532__Bob__tone_1.sw.off()
+                self.DDS__532__Bob__tone_2.sw.off()
+
+            delay(self.ramsey_time)
+
+            with parallel:
+                self.DDS__532__Bob__tone_1.sw.on()
+                self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            with parallel:
+                self.DDS__532__Bob__tone_1.sw.off()
+                self.DDS__532__Bob__tone_2.sw.off()
 
             with parallel:
                 self.ttl_Alice_650_pi.on()
@@ -339,6 +334,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
     def record_pump_sigma2(self):
         """DMA detection loop sequence.
         This generates the pulse sequence needed for pumping with 493 sigma 1
+        cool - pump - raman pulse - ramsey delay - raman pulse
         """
         with self.core_dma.record("pulses20"):
             self.DDS__493__Alice__sigma_1.sw.on()
@@ -354,12 +350,22 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
 
             delay(500*ns)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.DDS__532__Bob__tone_1.sw.on()
+                self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.DDS__532__Bob__tone_1.sw.off()
+                self.DDS__532__Bob__tone_2.sw.off()
+
+            delay(self.ramsey_time)
+
+            with parallel:
+                self.DDS__532__Bob__tone_1.sw.on()
+                self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            with parallel:
+                self.DDS__532__Bob__tone_1.sw.off()
+                self.DDS__532__Bob__tone_2.sw.off()
 
             with parallel:
                 self.ttl_Alice_650_pi.on()
@@ -399,12 +405,12 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         def cos_decay(x, amp, phase, pitime, decayt):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
 
-        detect11 = self.get_dataset('ratio11')
-        detect12 = self.get_dataset('ratio12')
+        detect21 = self.get_dataset('ratio21')
+        detect22 = self.get_dataset('ratio22')
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
-        datatofit = detect11
+        datatofit = detect21
         # print(datatofit)
         # print(scanx)
 
@@ -427,11 +433,7 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
         # print(fitresult2)
 
         self.set_dataset('xfitdataset', fittedx, broadcast=True)
-        self.set_dataset('yfitdataset11', fitresult2, broadcast=True)
-
-        # self.set_dataset('xfitdataset', [1,2,3,4,5,6,7,8,9,10], broadcast=True)
-        # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
-        # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
+        self.set_dataset('yfitdataset21', fitresult2, broadcast=True)
 
         print("Amplitude: {:0.2f}".format(results2[0]), " ")
         print("Phase: {:0.2f}".format(results2[1]), " ")

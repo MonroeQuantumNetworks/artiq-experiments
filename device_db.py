@@ -607,6 +607,9 @@ device_db = {
         "class": "EdgeCounter",
         "arguments": {"channel": 56},
     },
-    # "HOM0":"ttl31"
+    # "COUNTER1":"ttl28"
+    # "COUNTER2":"ttl29"
+    # "COUNTER3":"ttl30"
+    # "COUNTER4":"ttl31"
     
 }

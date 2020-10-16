@@ -16,7 +16,7 @@ from dynaconf import LazySettings
 # George added these:
 import base_experiment
 from artiq.experiment import *
-from Lecroy1102 import Lecroy1102
+
 import time
 
 
