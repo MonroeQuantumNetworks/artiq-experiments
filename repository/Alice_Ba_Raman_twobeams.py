@@ -197,6 +197,8 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
         # Set frequencies using the frequency delta
         delay_mu(130000)
         self.DDS__532__Alice__tone_1.set(80e6-self.frequency_delta/2, amplitude=self.DDS__532__Alice__tone_1__amplitude, phase=0.0)
+
+        self.core.break_realtime()      # Hopefully this prevents random rtio errors on setting Bob
         delay_mu(130000)
         self.DDS__532__Bob__tone_2.set(80e6+self.frequency_delta/2, amplitude=self.DDS__532__Bob__tone_2__amplitude, phase=0.0)
         delay_mu(10000)
