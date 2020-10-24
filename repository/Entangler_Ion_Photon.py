@@ -15,7 +15,6 @@ from dynaconf import LazySettings
 # George added these:
 import base_experiment
 from artiq.experiment import *
-from Lecroy1102 import Lecroy1102
 import time
 
 # Get the number of inputs & outputs from the settings file.
@@ -68,7 +67,7 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('test_mode', BooleanValue(True))
         self.setattr_argument('calculate_runtime', BooleanValue(True))
-        self.setattr_argument('prepare_awg_bool', BooleanValue(False))
+        # self.setattr_argument('prepare_awg_bool', BooleanValue(False))
 
         self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
                                                               global_step=1 * us, unit='us', ndecimals=3))
@@ -88,8 +87,8 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
             self.runtime_calculation()
 
         # Program the AWG in a non-kernel section of the code
-        if self.prepare_awg_bool:
-            self.prepare_awg()
+        # if self.prepare_awg_bool:
+        #     self.prepare_awg()
 
         t_now = time.time()     # Save the current time
 
@@ -515,42 +514,42 @@ class Entangler_Ion_Photon(base_experiment.base_experiment):
 
         return Bob_counts
 
-    def prepare_awg(self):
-        """ Non-kernel code section for preparing the Lecroy 1102 AWG
-
-        This does not work on the kernel (executed on the core device / FPGA)
-        """
-        IP_address = '192.168.1.100'  # server is running on JARVIS
-        port = 11000
-        sample_rate = 250 * MHz
-        ext_clock_frequency = 10 * MHz
-
-        try:
-            awg = Lecroy1102(IP_address, port, sample_rate, ext_clock_frequency)
-            awg.open()
-            if not awg.enabled:
-                return
-            print('awg.sample_length', awg.sample_length)
-            t = np.arange(0, 5 * us, awg.sample_length)
-            print('length t:', len(t))
-            waveform1 = np.sin(2 * np.pi * 106.9 * MHz * t) + np.sin(2 * np.pi * 113.3 * MHz * t)
-            waveform2 = np.sin(2 * np.pi * 85 * MHz * t)
-            awg.program(waveform1, waveform2)
-            self.set_dataset('waveforms', np.array([q for q in zip(waveform1, waveform2)]), broadcast=True,
-                             persist=True, archive=True)
-            self.set_dataset('waveform1', waveform1, broadcast=True, persist=True, archive=True)
-            self.set_dataset('waveform2', waveform2, broadcast=True, persist=True, archive=True)
-            self.set_dataset('waveform_names', [bytes(i, 'utf-8') for i in ['channel 1', 'channel 2']], broadcast=True,
-                             persist=True, archive=True)
-            self.set_dataset('waveform_t', t, broadcast=True, persist=True, archive=True)
-            self.set_dataset('waveform_x_names', [bytes(i, 'utf-8') for i in ['time']], broadcast=True, persist=True,
-                             archive=True)
-        finally:
-            awg.close()
-
-        self.kernel_run()
-
-        print('end')
+    # def prepare_awg(self):
+    #     """ Non-kernel code section for preparing the Lecroy 1102 AWG
+    #
+    #     This does not work on the kernel (executed on the core device / FPGA)
+    #     """
+    #     IP_address = '192.168.1.100'  # server is running on JARVIS
+    #     port = 11000
+    #     sample_rate = 250 * MHz
+    #     ext_clock_frequency = 10 * MHz
+    #
+    #     try:
+    #         awg = Lecroy1102(IP_address, port, sample_rate, ext_clock_frequency)
+    #         awg.open()
+    #         if not awg.enabled:
+    #             return
+    #         print('awg.sample_length', awg.sample_length)
+    #         t = np.arange(0, 5 * us, awg.sample_length)
+    #         print('length t:', len(t))
+    #         waveform1 = np.sin(2 * np.pi * 106.9 * MHz * t) + np.sin(2 * np.pi * 113.3 * MHz * t)
+    #         waveform2 = np.sin(2 * np.pi * 85 * MHz * t)
+    #         awg.program(waveform1, waveform2)
+    #         self.set_dataset('waveforms', np.array([q for q in zip(waveform1, waveform2)]), broadcast=True,
+    #                          persist=True, archive=True)
+    #         self.set_dataset('waveform1', waveform1, broadcast=True, persist=True, archive=True)
+    #         self.set_dataset('waveform2', waveform2, broadcast=True, persist=True, archive=True)
+    #         self.set_dataset('waveform_names', [bytes(i, 'utf-8') for i in ['channel 1', 'channel 2']], broadcast=True,
+    #                          persist=True, archive=True)
+    #         self.set_dataset('waveform_t', t, broadcast=True, persist=True, archive=True)
+    #         self.set_dataset('waveform_x_names', [bytes(i, 'utf-8') for i in ['time']], broadcast=True, persist=True,
+    #                          archive=True)
+    #     finally:
+    #         awg.close()
+    #
+    #     self.kernel_run()
+    #
+    #     print('end')
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

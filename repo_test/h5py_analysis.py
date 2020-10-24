@@ -10,13 +10,16 @@ from IPython import get_ipython
 import matplotlib.pyplot as plt
 import h5py
 import numpy as np
+import easygui
 from scipy import optimize
 # import lmfit.models as fit
 # from lmfit import Model
 
-# file = h5py.File('../results/2020-10-19/12/000015757-Alice_Ba_Raman_twobeams.h5', 'r')      # 2-6 MHz
+filename = easygui.fileopenbox
+
+file = h5py.File('../results/2020-10-19/12/000015757-Alice_Ba_Raman_twobeams.h5', 'r')      # 2-6 MHz
 # file = h5py.File('../results/2020-10-19/13/000015758-Alice_Ba_Raman_twobeams.h5', 'r')      # 6-10 MHz
-file = h5py.File('../results/2020-10-19/14/000015759-Alice_Ba_Raman_twobeams.h5', 'r')      # 10-14 MHz
+# file = h5py.File('../results/2020-10-19/14/000015759-Alice_Ba_Raman_twobeams.h5', 'r')      # 10-14 MHz
 # file = h5py.File('../results/2020-10-19/15/000015760-Alice_Ba_Raman_twobeams.h5', 'r')      # 14-16 MHz
 # file = h5py.File('../results/2020-10-19/15/000015761-Alice_Ba_Raman_twobeams.h5', 'r')      # 3-7 MHz
 # file = h5py.File('../results/2020-10-19/16/000015762-Alice_Ba_Raman_twobeams.h5', 'r')      # 10.5-14 MHz
@@ -36,8 +39,8 @@ scannames = file['datasets/active_scan_names']
 # print(scannames)
 # print(scannames[...])
 
-xdata = file['datasets/scan_x']  # This gets the dataset
-ydata = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+xdata1 = file['datasets/scan_x'][...]  # This gets the dataset
+ydata1 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
 
 sum11 = file['datasets/sum11'][...]
 sum12 = file['datasets/sum12'][...]
@@ -48,25 +51,98 @@ sum22 = file['datasets/sum22'][...]
 # print(xdata[...])
 # print(ydata)
 
+file = h5py.File('../results/2020-10-19/13/000015758-Alice_Ba_Raman_twobeams.h5', 'r')      # 6-10 MHz
+xdata2 = file['datasets/scan_x'][...]
+ydata2 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+file = h5py.File('../results/2020-10-19/14/000015759-Alice_Ba_Raman_twobeams.h5', 'r')      # 6-10 MHz
+xdata3 = file['datasets/scan_x'][...]
+ydata3 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+file = h5py.File('../results/2020-10-19/15/000015760-Alice_Ba_Raman_twobeams.h5', 'r')      # 6-10 MHz
+xdata4 = file['datasets/scan_x'][...]
+ydata4 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+file = h5py.File('../results/2020-10-19/15/000015761-Alice_Ba_Raman_twobeams.h5', 'r')      # 3-7 MHz
+xdata5 = file['datasets/scan_x'][...]
+ydata5 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+file = h5py.File('../results/2020-10-19/16/000015762-Alice_Ba_Raman_twobeams.h5', 'r')      # 10.5-14 MHz
+xdata6 = file['datasets/scan_x'][...]
+ydata6 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+file = h5py.File('../results/2020-10-19/17/000015763-Alice_Ba_Raman_twobeams.h5', 'r')      # 14-16 MHz
+xdata7 = file['datasets/scan_x'][...]
+ydata7 = file['datasets/ratio_list'][...]  # Adding the ellipsis makes an array of the values
+
+# Concatenate all the arrays
+
+print(type(xdata1))
+print(type(xdata2))
+
+xdata = np.concatenate([xdata1, xdata2, xdata3, xdata4])
+ydata12 = np.concatenate([ydata1[:,1], ydata2[:,1], ydata3[:,1], ydata4[:,1]])
+ydata21 = np.concatenate([ydata1[:,2], ydata2[:,2], ydata3[:,2], ydata4[:,2]])
+
+
+# print(xdata[0:4])
+# print(ydata[0:4])
+# print(len(xdata))
+# print(len(ydata))
 
 # =============================================================================
 # Plot the data
 # =============================================================================
 
 
-plt.figure(0, figsize=(30,8))
-plt.plot(xdata, ydata[:,1], 'r-o', label='detect12')
-plt.plot(xdata, ydata[:,2], 'b-o', label='detect21')
+plt.figure(0, figsize=(30,12))
+
+plt.plot(xdata, ydata21, 'b-o', label='First scan 21')
+# plt.plot(xdata, ydata12, 'r-o', label='detect12')
+plt.plot(xdata5, ydata5[:,0], 'g-o', label='Second scan 11')
+plt.plot(xdata6, ydata6[:,0], 'g-o') #, label='detect11')
+plt.plot(xdata7, ydata7[:,0], 'g-o') #, label='detect11')
 
 plt.legend(loc='best')
+x1,x2,y1,y2 = plt.axis()
+# plt.axis((3e6,75e5, y1, y2))
+# plt.axis((105e5,160e5, y1, y2))
 # plt.show()
 
-plt.figure(1, figsize=(30,8))
-plt.plot(xdata, sum11, 'r-o', label='sum11')
-plt.plot(xdata, sum22, 'b-o', label='sum22')
+plt.figure(1, figsize=(30,12))
+
+plt.plot(xdata, ydata21, 'b-o', label='First scan 21')
+# plt.plot(xdata, ydata12, 'r-o', label='detect12')
+plt.plot(xdata5, ydata5[:,0], 'g-o', label='Second scan 11')
+# plt.plot(xdata6, ydata6[:,0], 'g-o', label='detect11')
+# plt.plot(xdata7, ydata7[:,0], 'g-o', label='detect11')
 
 plt.legend(loc='best')
+x1,x2,y1,y2 = plt.axis()
+plt.axis((3e6,75e5, y1, y2))
+
+
+plt.figure(2, figsize=(30,12))
+
+plt.plot(xdata, ydata21, 'b-o', label='First scan 21')
+# plt.plot(xdata, ydata12, 'r-o', label='detect12')
+# plt.plot(xdata5, ydata5[:,0], 'g-o', label='detect11')
+plt.plot(xdata6, ydata6[:,0], 'g-o', label='Second scan 11')
+plt.plot(xdata7, ydata7[:,0], 'g-o') #, label='detect11')
+
+plt.legend(loc='best')
+x1,x2,y1,y2 = plt.axis()
+
+plt.axis((105e5,160e5, y1, y2))
 plt.show()
+
+
+# plt.figure(1, figsize=(30,8))
+# plt.plot(xdata, sum11, 'r-o', label='sum11')
+# plt.plot(xdata, sum22, 'b-o', label='sum22')
+#
+# plt.legend(loc='best')
+# plt.show()
 
 
 # --------------------- Curve fitting -------------------------

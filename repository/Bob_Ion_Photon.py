@@ -17,7 +17,6 @@ from dynaconf import LazySettings
 # George added these:
 import base_experiment
 from artiq.experiment import *
-from Lecroy1102 import Lecroy1102
 import time
 
 # Get the number of inputs & outputs from the settings file.

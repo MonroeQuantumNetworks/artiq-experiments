@@ -55,7 +55,7 @@
     "globals.DDS.493.Bob.sigma_2.attenuation": 12.0,
     "globals.DDS.493.Bob.sigma_2.frequency": 81000000.0,
     "globals.DDS.493.Bob.sigma_2.switch": true,
-    "globals.DDS.532.Alice.tone_1.amplitude": 0.3,
+    "globals.DDS.532.Alice.tone_1.amplitude": 0.45,
     "globals.DDS.532.Alice.tone_1.attenuation": 17.0,
     "globals.DDS.532.Alice.tone_1.frequency": 77000000.0,
     "globals.DDS.532.Alice.tone_1.switch": false,
