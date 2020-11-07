@@ -1,5 +1,5 @@
 """ WORKING
-Alice Barium Raman with non-copropagating beams
+Alice Barium Raman with non-copropagating beams, modified for measuring heating rates
 Beam 1 is named Alice__tone_1
 Beam 2 through PhotonGear is Bob__tone_2
 
@@ -23,7 +23,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
+class Alice_Ba_twobeams_heating(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -32,10 +32,13 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
         self.setattr_device("scheduler")
         # self.detector = self.Bob_camera_side_APD
 
-        self.setattr_argument('detections_per_point', NumberValue(5000, ndecimals=0, min=1, step=1))
-        # self.setattr_argument('detection_points', NumberValue(1000, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('detection_points', NumberValue(100, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('detection_points__scan', Scannable(default=[NoScan(100), RangeScan(1, 100, 100) ], global_min=1, global_step=1, ndecimals=0))
+        self.setattr_argument('detections_per_cool__scan', Scannable(default=[NoScan(10000), RangeScan(5000, 10000, 10)], global_min=1, global_step=100, ndecimals=0))
+        # self.setattr_argument('detections_per_cool', NumberValue(5000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+
+        self.scan_names = ['detections_per_cool', 'cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -215,9 +218,9 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
         self.record_pump_sigma2()
         self.record_detect1()
         self.record_detect2()
-        # self.record_cool()
+        self.record_cool()
         prep_handle = self.core_dma.get_handle("pulses_prep")
-        # cool_handle = self.core_dma.get_handle("pulses_cool")
+        cool_handle = self.core_dma.get_handle("cool")
         pulses_handle10 = self.core_dma.get_handle("pulses10")
         pulses_handle01 = self.core_dma.get_handle("pulses01")
         pulses_handle20 = self.core_dma.get_handle("pulses20")
@@ -229,13 +232,16 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
         delay1 = int(self.delay_time)   # For detect sigma1
         delay2 = delay1 - 65           # For detect sigma2
 
-        for i in range(self.detections_per_point):
 
-            delay_mu(200000)        # Each pulse sequence needs about 70 us of slack to run
+        self.core_dma.playback_handle(cool_handle)  # Run Cooling only once
+
+        for i in range(int(self.detections_per_cool)):
+
+            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
             # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
-            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            self.core_dma.playback_handle(pulses_handle10)  # Pump
             # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
             delay_mu(2000)      # This extra long delay is needed because of the slow 532 AOM turn on time
             with parallel:
@@ -246,7 +252,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            self.core_dma.playback_handle(pulses_handle10)  # Pump
             delay_mu(2000)
             with parallel:
                 with sequential:
@@ -256,7 +262,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            self.core_dma.playback_handle(pulses_handle20)  # Pump
             delay_mu(1000)
             with parallel:
                 with sequential:
@@ -266,7 +272,7 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            self.core_dma.playback_handle(pulses_handle20)  # Pump
             delay_mu(1000)
             with parallel:
                 with sequential:
@@ -298,17 +304,35 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
             self.ttl_650_sigma_2.on() # 650 sigma 2
 
     @kernel
-    def record_pump_sigma1(self):
+    def record_cool(self):
         """DMA detection loop sequence.
         This generates the pulse sequence needed for pumping with 493 sigma 1
         """
-        with self.core_dma.record("pulses10"):
+        with self.core_dma.record("cool"):
             with parallel:
                 self.DDS__493__Alice__sigma_1.sw.on()
                 self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
 
-            self.DDS__493__Alice__sigma_2.sw.off()
+            with parallel:
+                self.DDS__493__Alice__sigma_1.sw.off()
+                self.DDS__493__Alice__sigma_2.sw.off()
+
+
+    @kernel
+    def record_pump_sigma1(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for pumping with 493 sigma 1
+        """
+        with self.core_dma.record("pulses10"):
+            # with parallel:
+            #     self.DDS__493__Alice__sigma_1.sw.on()
+            #     self.DDS__493__Alice__sigma_2.sw.on()
+            # delay(self.cooling_time)
+            #
+            # self.DDS__493__Alice__sigma_2.sw.off()
+
+            self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.pumping_time)
 
             with parallel:
@@ -338,12 +362,16 @@ class Alice_Ba_Raman_twobeams(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 2
         """
         with self.core_dma.record("pulses20"):
-            self.DDS__493__Alice__sigma_1.sw.on()
-            self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.cooling_time)
 
-            self.DDS__493__Alice__sigma_1.sw.off()
+        #     self.DDS__493__Alice__sigma_1.sw.on()
+        #     self.DDS__493__Alice__sigma_2.sw.on()
+        #     delay(self.cooling_time)
+        #
+        #     self.DDS__493__Alice__sigma_1.sw.off()
+
+            self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.pumping_time)
+
             with parallel:
                 self.DDS__493__Alice__sigma_2.sw.off()
                 self.ttl_Alice_650_pi.off()

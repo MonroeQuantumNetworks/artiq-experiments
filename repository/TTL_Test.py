@@ -53,6 +53,7 @@ class TTL_Test(base_experiment.base_experiment):
             t_now = time.time()     # Save the current time
 
             for i in range(self.loops_to_run):
+                print("test")
                 self.kernel_run()     # Run the rest of the program on the core device
 
             print("Actual time taken = {:.2f} seconds" .format(time.time() - t_now))        # Calculate how long the experiment took
@@ -76,9 +77,24 @@ class TTL_Test(base_experiment.base_experiment):
 
         self.core.reset()
         self.core.break_realtime()
+        print("test1")
+
+        # Using gateware counters, only a single input event each is
+        # generated, greatly reducing the load on the input FIFOs:
+
+        self.core.break_realtime()
+        self.Edge_counter1.gate_rising(10 * ms)
+            # self.Edge_counter2.gate_rising(10 * ms)
+            # delay_mu(10000)
+            # self.Edge_counter3.gate_rising(10 * ms)
+            # delay_mu(10000)
+            # self.Edge_counter4.gate_rising(10 * ms)
+
+        print("test2")
 
         for i in range(self.loops_to_run):
 
+            self.core.break_realtime()
             self.ttl_16.on()
             self.ttl_17.on()
             self.ttl_18.on()
@@ -110,11 +126,20 @@ class TTL_Test(base_experiment.base_experiment):
             self.ttl_27.off()
 
             delay_mu(100000)
+            print("test3")
 
+        print("test4")
+        counts_1 = self.Edge_counter1.fetch_count()
+        # counts_2 = self.Edge_counter2.fetch_count()
+        # counts_3 = self.Edge_counter3.fetch_count()
+        # counts_4 = self.Edge_counter4.fetch_count()
+        print("test5")
+        print(counts_1)# , counts_2)   #, counts_3, counts_4)
 
             # Test Edge counter?
 
         # print("Kernel done")
+
 
 
 

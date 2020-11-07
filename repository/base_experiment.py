@@ -51,12 +51,12 @@ class base_experiment(EnvExperiment):
         ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
         ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
         ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
-        ('532__Alice__tone_1', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
-        ('532__Alice__tone_2', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
-        ('urukul3_ch0', 'urukul3_ch0', 85*MHz, 1.0, 10.0, True),
-        ('532__Bob__tone_1', 'urukul3_ch1', 76*MHz, 0.5, 17, True),
-        ('urukul3_ch2', 'urukul3_ch2', 76 * MHz, 0.5, 17.0, False),
-        ('532__Bob__tone_2', 'urukul3_ch3', 83 * MHz, 0.5, 17.0, False)
+        ('urukul2_ch2', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
+        ('urukul2_ch3', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
+        ('532__Alice__tone_1', 'urukul3_ch0', 80*MHz, 0.4, 17.0, False),
+        ('532__Alice__tone_2', 'urukul3_ch1', 75*MHz, 0.4, 17.0, False),
+        ('532__Bob__tone_1', 'urukul3_ch2', 80*MHz, 0.3, 17.0, False),
+        ('532__Bob__tone_2', 'urukul3_ch3', 85*MHz, 0.3, 17.0, False)
     ]
 
     TTL_input_list = [

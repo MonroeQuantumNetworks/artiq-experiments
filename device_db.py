@@ -559,7 +559,7 @@ device_db = {
         "class": "TTLOut",
         "arguments": {"channel": 48},
     },
-    "ttl24": {TTL_output_list
+    "ttl24": {
         "type": "local",
         "module": "artiq.coredevice.ttl",
         "class": "TTLOut",
