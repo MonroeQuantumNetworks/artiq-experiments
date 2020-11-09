@@ -77,67 +77,66 @@ class TTL_Test(base_experiment.base_experiment):
 
         self.core.reset()
         self.core.break_realtime()
-        print("test1")
+
+        self.record_cool()
+
+        cool_handle = self.core_dma.get_handle("cool")
 
         # Using gateware counters, only a single input event each is
         # generated, greatly reducing the load on the input FIFOs:
 
         self.core.break_realtime()
-        self.Counter1.gate_rising(10 * ms)
-            # self.Counter2.gate_rising(10 * ms)
-            # self.Counter3.gate_rising(10 * ms)
-            # self.Counter4.gate_rising(10 * ms)
 
-        print("test2")
+        # self.ttl28.gate_rising(10 * us)
+        # self.Counter1.gate_rising(10 * us)
+        # self.Counter2.gate_rising(10 * ms)
+        # self.Counter3.gate_rising(10 * ms)
+        # self.Counter4.gate_rising(10 * ms)
+
+        counts_1 = 0
 
         for i in range(self.loops_to_run):
 
-            self.core.break_realtime()
-            self.ttl_16.on()
-            self.ttl_17.on()
-            self.ttl_18.on()
-            self.ttl_19.on()
-            self.ttl_20.on()
-            self.ttl_21.on()
-            delay_mu(100000)
-            self.ttl_16.off()
-            self.ttl_17.off()
-            self.ttl_18.off()
-            self.ttl_19.off()
-            self.ttl_20.off()
-            self.ttl_21.off()
+            gate_end = self.Alice_camera_side_APD.gate_rising(10*us)
 
-            delay_mu(100000)
+            self.core_dma.playback_handle(cool_handle)  # Run Cooling
 
-            self.ttl_22.on()
-            self.ttl_23.on()
-            self.ttl_24.on()
-            self.ttl_25.on()
-            self.ttl_26.on()
-            self.ttl_27.on()
-            delay_mu(100000)
-            self.ttl_22.off()
-            self.ttl_23.off()
-            self.ttl_24.off()
-            self.ttl_25.off()
-            self.ttl_26.off()
-            self.ttl_27.off()
+            # self.ttl_20.on()
+            # delay(1 * us)
+            # self.ttl_20.off()
 
-            delay_mu(100000)
-            print("test3")
+            # self.core.break_realtime()
 
-        print("test4")
-        counts_1 = self.Counter1.fetch_count()
+            delay_mu(10000)
+
+            counts_1 += self.Alice_camera_side_APD.count(gate_end)
+
+
+        # counts_1 = self.ttl28.fetch_count()
+        # counts_1 = self.Counter1.fetch_count()
         # counts_2 = self.Counter2.fetch_count()
         # counts_3 = self.Counter3.fetch_count()
         # counts_4 = self.Counter4.fetch_count()
-        print("test5")
+
         print(counts_1)# , counts_2)   #, counts_3, counts_4)
 
             # Test Edge counter?
 
         # print("Kernel done")
 
+    @kernel
+    def record_cool(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for pumping with 493 sigma 1
+        """
+        with self.core_dma.record("cool"):
+            # with parallel:
 
+            self.ttl_20.on()
 
+            delay(1 * us)
+
+            self.ttl_20.off()
+
+            # with parallel:
 

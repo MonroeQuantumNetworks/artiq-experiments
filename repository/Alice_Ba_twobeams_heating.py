@@ -234,10 +234,9 @@ class Alice_Ba_twobeams_heating(base_experiment.base_experiment):
 
 
         self.core_dma.playback_handle(cool_handle)  # Run Cooling only once
+        delay_mu(1000)        # Here is where delay after cooling would go
 
         for i in range(int(self.detections_per_cool)):
-
-            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
             # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
@@ -284,8 +283,9 @@ class Alice_Ba_twobeams_heating(base_experiment.base_experiment):
             sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
             sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
-            # sum21 += 1
-            # sum22 += 1
+
+            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
+
 
         self.sum11 = sum11
         self.sum12 = sum12

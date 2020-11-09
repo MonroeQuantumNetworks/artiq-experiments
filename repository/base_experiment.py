@@ -68,10 +68,10 @@ class base_experiment(EnvExperiment):
         ('Bob_camera_side_APD', 'ttl13'),
         ('Alice_PMT', 'ttl14'),
         ('Bob_PMT', 'ttl15'),
-        ('Edge_counter1', 'ttl28'),
-        ('Edge_counter2', 'ttl29'),
-        ('Edge_counter3', 'ttl30'),
-        ('Edge_counter4', 'ttl31')
+        # ('Counter1', 'ttl28'),        # These edge_counters are not TTLs
+        # ('Counter2', 'ttl29'),        # Re-labeled in device_db.py
+        # ('Counter3', 'ttl30'),
+        # ('Counter4', 'ttl31')
         ]
 
     # George modified these names

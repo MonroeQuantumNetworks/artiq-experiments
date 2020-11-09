@@ -239,8 +239,6 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
 
         for i in range(int(self.detections_per_cool)):
 
-            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
-
             # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
             self.core_dma.playback_handle(cool_handle)  # Run Cooling
@@ -298,6 +296,8 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
             # sum22 += self.Edge_counter1.fetch_count()
             # sum21 += 1
             # sum22 += 1
+
+            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
         self.sum11 = sum11
         self.sum12 = sum12
