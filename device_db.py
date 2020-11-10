@@ -607,8 +607,8 @@ device_db = {
         "class": "EdgeCounter",
         "arguments": {"channel": 56},
     },
-    "Counter1":"ttl28"
-    "Counter2":"ttl29"
-    "Counter3":"ttl30"
+    "Counter1":"ttl28",
+    "Counter2":"ttl29",
+    "Counter3":"ttl30",
     "Counter4":"ttl31"
 }

@@ -51,8 +51,8 @@ class TTL_Test(base_experiment.base_experiment):
         """
         try:
             t_now = time.time()     # Save the current time
-
-            for i in range(self.loops_to_run):
+            print("Why does this run 10 times")
+            for i in range(1):
                 print("test")
                 self.kernel_run()     # Run the rest of the program on the core device
 
@@ -83,51 +83,52 @@ class TTL_Test(base_experiment.base_experiment):
         # generated, greatly reducing the load on the input FIFOs:
 
         self.core.break_realtime()
-        self.Counter1.gate_rising(10 * ms)
-            # self.Counter2.gate_rising(10 * ms)
-            # self.Counter3.gate_rising(10 * ms)
-            # self.Counter4.gate_rising(10 * ms)
+        with parallel:
+            self.ttl28.gate_rising(1 * ms)
+                # self.Counter2.gate_rising(10 * ms)
+                # self.Counter3.gate_rising(10 * ms)
+                # self.Counter4.gate_rising(10 * ms)
 
-        print("test2")
+            # print("test2")
 
-        for i in range(self.loops_to_run):
+            for i in range(self.loops_to_run):
 
-            self.core.break_realtime()
-            self.ttl_16.on()
-            self.ttl_17.on()
-            self.ttl_18.on()
-            self.ttl_19.on()
-            self.ttl_20.on()
-            self.ttl_21.on()
-            delay_mu(100000)
-            self.ttl_16.off()
-            self.ttl_17.off()
-            self.ttl_18.off()
-            self.ttl_19.off()
-            self.ttl_20.off()
-            self.ttl_21.off()
+                self.core.break_realtime()
+                self.ttl_16.on()
+                self.ttl_17.on()
+                self.ttl_18.on()
+                self.ttl_19.on()
+                self.ttl_20.on()
+                self.ttl_21.on()
+                delay_mu(100000)
+                self.ttl_16.off()
+                self.ttl_17.off()
+                self.ttl_18.off()
+                self.ttl_19.off()
+                self.ttl_20.off()
+                self.ttl_21.off()
 
-            delay_mu(100000)
+                delay_mu(100000)
 
-            self.ttl_22.on()
-            self.ttl_23.on()
-            self.ttl_24.on()
-            self.ttl_25.on()
-            self.ttl_26.on()
-            self.ttl_27.on()
-            delay_mu(100000)
-            self.ttl_22.off()
-            self.ttl_23.off()
-            self.ttl_24.off()
-            self.ttl_25.off()
-            self.ttl_26.off()
-            self.ttl_27.off()
+                self.ttl_22.on()
+                self.ttl_23.on()
+                self.ttl_24.on()
+                self.ttl_25.on()
+                self.ttl_26.on()
+                self.ttl_27.on()
+                delay_mu(100000)
+                self.ttl_22.off()
+                self.ttl_23.off()
+                self.ttl_24.off()
+                self.ttl_25.off()
+                self.ttl_26.off()
+                self.ttl_27.off()
 
-            delay_mu(100000)
-            print("test3")
+                delay_mu(100000)
+                # print("test3")
 
         print("test4")
-        counts_1 = self.Counter1.fetch_count()
+        counts_1 = self.ttl28.fetch_count()
         # counts_2 = self.Counter2.fetch_count()
         # counts_3 = self.Counter3.fetch_count()
         # counts_4 = self.Counter4.fetch_count()

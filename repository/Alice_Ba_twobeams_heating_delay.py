@@ -38,11 +38,11 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_cool', NumberValue(5000, ndecimals=0, min=1, step=1))
 
 
-        self.scan_names = ['detections_per_cool', 'cooling_time', 'pumping_time', 'time_delay', 'raman_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['detections_per_cool', 'cooling_time', 'pumping_time', 'wait_delay', 'raman_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('time_delay__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
+        self.setattr_argument('wait_delay__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -235,39 +235,44 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
 
 
         # self.core_dma.playback_handle(cool_handle)  # Run Cooling
-        # delay(self.time_delay)
+        # delay(self.wait_delay)
+
+        self.core.break_realtime()
 
         for i in range(int(self.detections_per_cool)):
 
+            delay_mu(350000)        # Each pulse sequence needs about 70 us of slack to run
             # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
-            self.core_dma.playback_handle(cool_handle)  # Run Cooling
-            delay(self.time_delay)
+            # self.core_dma.playback_handle(cool_handle)  # Run Cooling
+            # delay(self.wait_delay)
             self.core_dma.playback_handle(pulses_handle10)  # Pump
             # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
             delay_mu(2000)      # This extra long delay is needed because of the slow 532 AOM turn on time
             with parallel:
                 with sequential:
+                    # t_now = now_mu()
                     delay_mu(delay1)   # For turn off/on time of the lasers
                     gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             delay_mu(1000)
 
-            self.core_dma.playback_handle(cool_handle)  # Run Cooling
-            delay(self.time_delay)
+            # self.core_dma.playback_handle(cool_handle)  # Run Cooling
+            # delay(self.wait_delay)
             self.core_dma.playback_handle(pulses_handle10)  # Pump
             delay_mu(2000)
             with parallel:
                 with sequential:
+                    # t_now2 = now_mu()
                     delay_mu(delay2)   # For turn off time of the lasers
                     gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             delay_mu(1000)
 
-            self.core_dma.playback_handle(cool_handle)  # Run Cooling
-            delay(self.time_delay)
+            # self.core_dma.playback_handle(cool_handle)  # Run Cooling
+            # delay(self.wait_delay)
             self.core_dma.playback_handle(pulses_handle20)  # Pump
             delay_mu(1000)
             with parallel:
@@ -278,8 +283,8 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
 
             delay_mu(1000)
 
-            self.core_dma.playback_handle(cool_handle)  # Run Cooling
-            delay(self.time_delay)
+            # self.core_dma.playback_handle(cool_handle)  # Run Cooling
+            # delay(self.wait_delay)
             self.core_dma.playback_handle(pulses_handle20)  # Pump
             delay_mu(1000)
             with parallel:
@@ -289,15 +294,15 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
                     # self.Edge_counter1.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
+            # self.core.wait_until_mu(t_now)
             sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
+            # self.core.wait_until_mu(t_now2)
             sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
             sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
             # sum22 += self.Edge_counter1.fetch_count()
             # sum21 += 1
             # sum22 += 1
-
-            delay_mu(300000)        # Each pulse sequence needs about 70 us of slack to run
 
         self.sum11 = sum11
         self.sum12 = sum12
@@ -337,12 +342,16 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 1
         """
         with self.core_dma.record("pulses10"):
-            # with parallel:
-            #     self.DDS__493__Alice__sigma_1.sw.on()
-            #     self.DDS__493__Alice__sigma_2.sw.on()
-            # delay(self.cooling_time)
-            #
-            # self.DDS__493__Alice__sigma_2.sw.off()
+            with parallel:
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
+
+            delay(self.cooling_time)
+            with parallel:
+                self.DDS__493__Alice__sigma_1.sw.off()
+                self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay(self.wait_delay)      # For heating rate measurement
 
             self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.pumping_time)
@@ -376,11 +385,14 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses20"):
 
-        #     self.DDS__493__Alice__sigma_1.sw.on()
-        #     self.DDS__493__Alice__sigma_2.sw.on()
-        #     delay(self.cooling_time)
-        #
-        #     self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Alice__sigma_2.sw.on()
+            delay(self.cooling_time)
+
+            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay(self.wait_delay)      # For heating rate measurement
 
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.pumping_time)

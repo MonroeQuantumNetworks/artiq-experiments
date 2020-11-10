@@ -74,6 +74,13 @@ class base_experiment(EnvExperiment):
         # ('Counter4', 'ttl31')
         ]
 
+    counter_input_list = [
+        ('Counter1', 'ttl28'),
+        ('Counter2', 'ttl29'),
+        ('Counter3', 'ttl30'),
+        ('Counter4', 'ttl31')
+    ]
+
     # George modified these names
     TTL_output_list = [
         ('ttl_AWG_trigger', 'ttl0', False),
@@ -322,6 +329,21 @@ class base_experiment(EnvExperiment):
             # create list in hardware order
             self.globals__TTL_input__channel_names.append(name)
             self.TTL_input_channels.append(getattr(self, hardware))
+
+        # George added this for Edge counters
+        # Edge_counter inputs #
+
+        self.globals__counter_input__num_channels = len(self.counter_input_list)
+        self.globals__counter_input__channel_names = []
+        self.counter_input_channels = []
+        for name, hardware in self.counter_input_list:
+            # register hardware name
+            self.setattr_device(hardware)
+            # setup alias
+            setattr(self, name, getattr(self, hardware))
+            # create list in hardware order
+            self.globals__counter_input__channel_names.append(name)
+            self.counter_input_channels.append(getattr(self, hardware))
 
         # TTL outputs #
 

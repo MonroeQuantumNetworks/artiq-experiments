@@ -24,7 +24,7 @@ import time
 # Get the number of inputs & outputs from the settings file.
 
 
-class TTL_Test(base_experiment.base_experiment):
+class TTL_Test_2(base_experiment.base_experiment):
 
     def build(self):
 
@@ -52,7 +52,7 @@ class TTL_Test(base_experiment.base_experiment):
         try:
             t_now = time.time()     # Save the current time
 
-            for i in range(self.loops_to_run):
+            for i in range(1):
                 print("test")
                 self.kernel_run()     # Run the rest of the program on the core device
 
@@ -94,23 +94,22 @@ class TTL_Test(base_experiment.base_experiment):
         # self.Counter4.gate_rising(10 * ms)
 
         counts_1 = 0
+        with parallel:
+            gate_end = self.Alice_PMT.gate_rising(100 * us)
+            for i in range(self.loops_to_run):
 
-        for i in range(self.loops_to_run):
+                # self.core_dma.playback_handle(cool_handle)  # Run Cooling
+                #
+                self.ttl_21.on()
+                delay(1 * us)
+                self.ttl_21.off()
 
-            gate_end = self.Alice_camera_side_APD.gate_rising(10*us)
+                # self.core.break_realtime()
 
-            self.core_dma.playback_handle(cool_handle)  # Run Cooling
+                delay_mu(10000)
 
-            # self.ttl_20.on()
-            # delay(1 * us)
-            # self.ttl_20.off()
-
-            # self.core.break_realtime()
-
-            delay_mu(10000)
-
-            counts_1 += self.Alice_camera_side_APD.count(gate_end)
-
+                # counts_1 += self.Alice_PMT.count(gate_end)
+        counts_1 += self.Alice_PMT.count(gate_end)
 
         # counts_1 = self.ttl28.fetch_count()
         # counts_1 = self.Counter1.fetch_count()
@@ -132,11 +131,24 @@ class TTL_Test(base_experiment.base_experiment):
         with self.core_dma.record("cool"):
             # with parallel:
 
-            self.ttl_20.on()
+            self.ttl_21.on()
 
             delay(1 * us)
 
-            self.ttl_20.off()
+            self.ttl_21.off()
+            delay(1 * us)
+            self.ttl_21.on()
+
+            delay(1 * us)
+
+            self.ttl_21.off()
+            delay(1 * us)
+            self.ttl_21.on()
+
+            delay(1 * us)
+
+            self.ttl_21.off()
+            delay(1 * us)
 
             # with parallel:
 
