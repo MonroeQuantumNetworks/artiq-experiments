@@ -236,10 +236,11 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
 
             delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
 
-            self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
+            # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             # self.DDS__urukul3_ch2.set(self.DDS__532__Bob__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -249,6 +250,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -258,6 +260,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -267,6 +270,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -345,6 +349,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
+
             with parallel:
                 self.DDS__532__Bob__tone_1.sw.on()
                 self.DDS__532__Bob__tone_2.sw.on()

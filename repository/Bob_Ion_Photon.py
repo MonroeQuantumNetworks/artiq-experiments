@@ -59,8 +59,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('calculate_runtime', BooleanValue(True))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
-        self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))
-        self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
+        self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
+        self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused

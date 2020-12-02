@@ -30,8 +30,8 @@ class TTL_Test_2(base_experiment.base_experiment):
 
         super().build()
 
-        """Add the Entangler driver."""
         self.setattr_device("core")
+
 
         # Add other inputs
         self.setattr_device("core_dma")
@@ -52,9 +52,9 @@ class TTL_Test_2(base_experiment.base_experiment):
         try:
             t_now = time.time()     # Save the current time
 
-            for i in range(1):
-                print("test")
-                self.kernel_run()     # Run the rest of the program on the core device
+            # for i in range(1):
+            print("Before Kernel_run")
+            self.kernel_run()     # Run the rest of the program on the core device
 
             print("Actual time taken = {:.2f} seconds" .format(time.time() - t_now))        # Calculate how long the experiment took
 
@@ -94,30 +94,62 @@ class TTL_Test_2(base_experiment.base_experiment):
         # self.Counter4.gate_rising(10 * ms)
 
         counts_1 = 0
+
+        at_mu(self.core.get_rtio_counter_mu())
+
+        rtio_log("beforedelay", 0)
+
+        delay_mu(200000)
+
+        rtio_log("after100000delay", 0)
+
+        t_start = now_mu()
+        # self.ttl28.set_config(count_rising=True, count_falling= False,
+        #            send_count_event = False, reset_to_zero= True)
+
         with parallel:
             gate_end = self.Alice_PMT.gate_rising(100 * us)
+            gate2_end = self.Counter_2.gate_rising(100 * us)
             for i in range(self.loops_to_run):
 
-                # self.core_dma.playback_handle(cool_handle)  # Run Cooling
-                #
-                self.ttl_21.on()
-                delay(1 * us)
-                self.ttl_21.off()
+                with sequential:
 
-                # self.core.break_realtime()
+                    self.ttl_20.on()    # 20 goes to Edgecounter1
+                    delay(1*ns)
+                    self.ttl_21.on()    # 21 goes to Alice_PMT
+                    delay(1 * us)
 
-                delay_mu(10000)
+                    self.ttl_20.off()
+                    delay(1 * ns)
+                    self.ttl_21.off()
+                    delay(1 * us)
 
-                # counts_1 += self.Alice_PMT.count(gate_end)
-        counts_1 += self.Alice_PMT.count(gate_end)
+        # self.ttl29.gate_rising(100 * us)
+        # delay_mu(1000000)
 
-        # counts_1 = self.ttl28.fetch_count()
-        # counts_1 = self.Counter1.fetch_count()
+        # counts_1 = 13
+        counts_1 = self.Alice_PMT.count(gate_end)
+
+        # counts_2 = self.ttl29.fetch_count()
+        # delay_mu(1000000000)
+        at_mu(t_start+100000)
+
+        with sequential:
+            timeout, counts_2 = self.Counter_2.fetch_timestamped_count(timeout_mu=t_start + 1000)
+            # counts_2 = self.Counter_2.fetch_count()
+            print(t_start, now_mu() - t_start, gate2_end - t_start)
+        # counts_2 = self.Counter1.fetch_count()
         # counts_2 = self.Counter2.fetch_count()
         # counts_3 = self.Counter3.fetch_count()
         # counts_4 = self.Counter4.fetch_count()
 
-        print(counts_1)# , counts_2)   #, counts_3, counts_4)
+        print(counts_1, counts_2, timeout)   #, counts_3, counts_4)
+
+        # rtio_log("slack", now_mu()-self.core.get_rtio_counter_mu())
+        for i in range(100):
+            rtio_log("slack", "george")
+            delay_mu(100)
+        print(self.core.mu_to_seconds(now_mu()-self.core.get_rtio_counter_mu()))  # Display Slack remaining
 
             # Test Edge counter?
 

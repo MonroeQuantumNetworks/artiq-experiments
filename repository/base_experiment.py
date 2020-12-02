@@ -75,10 +75,10 @@ class base_experiment(EnvExperiment):
         ]
 
     counter_input_list = [
-        ('Counter1', 'ttl28'),
-        ('Counter2', 'ttl29'),
-        ('Counter3', 'ttl30'),
-        ('Counter4', 'ttl31')
+        ('Counter_1', 'ttl28'),
+        ('Counter_2', 'ttl29'),
+        ('Counter_3', 'ttl30'),
+        ('Counter_4', 'ttl31')
     ]
 
     # George modified these names

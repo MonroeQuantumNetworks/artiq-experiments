@@ -23,7 +23,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
+class Alice_Ba_twobeams_ramsey(base_experiment.base_experiment):
 
     def build(self):
         super().build()
@@ -38,13 +38,14 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_cool', NumberValue(5000, ndecimals=0, min=1, step=1))
 
 
-        self.scan_names = ['detections_per_cool', 'cooling_time', 'pumping_time', 'wait_delay', 'raman_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['detections_per_cool', 'cooling_time', 'pumping_time', 'wait_delay', 'raman_time', 'ramsey_time', 'detection_time', 'delay_time', 'frequency_delta', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('wait_delay__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
+        self.setattr_argument('ramsey_time__scan', Scannable(default=[NoScan(0 * us), RangeScan(0 * us, 100 * us, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(460), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
@@ -377,6 +378,18 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
                 delay_mu(70)
                 self.DDS__532__Bob__tone_2.sw.off()
 
+            delay(self.ramsey_time)
+
+            with sequential:
+                self.DDS__532__Alice__tone_1.sw.on()
+                delay_mu(70)        # This delay is needed because the non-PG side turns on slower than the PG side
+                self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            with sequential:
+                self.DDS__532__Alice__tone_1.sw.off()
+                delay_mu(70)
+                self.DDS__532__Bob__tone_2.sw.off()
+
             with parallel:
                 self.ttl_Alice_650_pi.on()
                 self.ttl_650_fast_cw.on()
@@ -411,6 +424,18 @@ class Alice_Ba_twobeams_heating_delay(base_experiment.base_experiment):
             with sequential:
                 self.DDS__532__Alice__tone_1.sw.on()
                 delay_mu(70)
+                self.DDS__532__Bob__tone_2.sw.on()
+            delay(self.raman_time)
+            with sequential:
+                self.DDS__532__Alice__tone_1.sw.off()
+                delay_mu(70)
+                self.DDS__532__Bob__tone_2.sw.off()
+
+            delay(self.ramsey_time)
+
+            with sequential:
+                self.DDS__532__Alice__tone_1.sw.on()
+                delay_mu(70)  # This delay is needed because the non-PG side turns on slower than the PG side
                 self.DDS__532__Bob__tone_2.sw.on()
             delay(self.raman_time)
             with sequential:
