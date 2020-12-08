@@ -1,13 +1,15 @@
-""" Ion-Photon Entanglement with 4-APD HOM measurement
-Alice Barium detection, with scannable variables, partial DMA
+""" Remote Entanglement with 4-APD HOM measurement
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
-Run Ion-Photon entanglement on Alice only, using all 4 APDs
+Run Remote entanglement on Alice and Bob only, using all 4 APDs
 
-Code looks ready to go to run Ion Photon on Alice.
 Collates the counts detected with sigma-1/2 for each pattern
 
-George Toh 2020-07-30
-updated 2020-12-03
+Problems:
+    Does not have Bob Raman
+    Does not do Bob detection
+
+George Toh 2020-12-07
+
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -32,7 +34,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon(base_experiment.base_experiment):
+class Remote_Entanglement_Test(base_experiment.base_experiment):
 
     def build(self):
         """Add the Entangler driver."""
@@ -312,11 +314,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
             # Repeat running the entangler cycles_to_run times
             self.core.break_realtime()      # This appears to be necessary when running the dma
-            end_timestamp = now_mu()
-
+            
             for channel in range(self.entangle_cycles_per_loop):
-
-
 
                 self.core.break_realtime()
 
@@ -336,13 +335,17 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     out_stop3=1360,  # Done generating
                     in_start=1900,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950,
-                    pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
+                    pattern_list=[0b0011, 0b0101, 0b1010, 0b1100],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
                 end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
 
                 # self.check_entangler_status() # Do we need this?
+
+                # # This causes the program to infinite loop on later loops
+                # at_mu(end_timestamp)
+                # delay_mu(100000)
 
                 if pattern == 1 or pattern == 2:
                     # print("Entangler success", pattern)
@@ -355,10 +358,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
-
-            # This causes the program to infinite loop on later loops
-            at_mu(end_timestamp)
-            delay_mu(100000)
 
             self.ttl26.pulse(100 * ns)
 
@@ -392,9 +391,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     # detect_p4 += 1
                     sum_p4_B1 += sumB1
 
-                print("pattern detected", pattern)
-                self.core.break_realtime()
-
             elif detect_flag == 2:
                 delay_mu(100000)
                 # self.core.break_realtime()
@@ -419,17 +415,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 elif pattern == 8:
                     # detect_p4 += 1
                     sum_p4_B2 += sumB2
-
-                print("pattern detected", pattern)
-                self.core.break_realtime()
-
             else:
                 fail += 1
 
             loop += 1
-
-            print("pattern detected", pattern)
-            self.core.break_realtime()
             # delay_mu(50000)
 
         print(loop, fail)
@@ -496,8 +485,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         else:
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-
-        self.entangler.set_timing_mu(1, 2000, 2000)  # Do nothing to Bob 650-pi
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
@@ -566,6 +553,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             # Cool
             with parallel:
                 self.ttl_Alice_650_pi.on()
+                self.ttl_Bob_650_pi.on()
                 self.ttl_493_all.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
@@ -576,6 +564,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
             with parallel:
                 self.ttl_Alice_650_pi.off()
+                self.ttl_Bob_650_pi.off()
                 self.ttl_493_all.off()
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
@@ -594,6 +583,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.on() # 650 sigma 1
                 self.ttl_650_sigma_2.on() # 650 sigma 2
                 self.DDS__493__Alice__sigma_1.sw.on()
+                self.ttl_Bob_650_pi.on()
 
             delay(self.detection_time)
 
@@ -603,6 +593,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off() # 650 fast AOM
                 self.ttl_650_sigma_1.off() # 650 sigma 1
                 self.ttl_650_sigma_2.off() # 650 sigma 2
+                self.ttl_Bob_650_pi.off()
 
     @kernel
     def record_detect2(self):
@@ -616,6 +607,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_sigma_1.on() # 650 sigma 1
                 self.ttl_650_sigma_2.on() # 650 sigma 2
                 self.DDS__493__Alice__sigma_2.sw.on()
+                self.ttl_Bob_650_pi.on()
 
             delay(self.detection_time)
 
@@ -625,6 +617,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off() # 650 fast AOM
                 self.ttl_650_sigma_1.off() # 650 sigma 1
                 self.ttl_650_sigma_2.off() # 650 sigma 2
+                self.ttl_Bob_650_pi.off()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take
