@@ -126,6 +126,8 @@ class Alice_Ba_Raman_curvefit(base_experiment.base_experiment):
             self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
 
+            self.set_dataset('ratio11', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('ratio12', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('ratio21', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('ratio22', np.zeros(point_num), broadcast=True, archive=True)
 
