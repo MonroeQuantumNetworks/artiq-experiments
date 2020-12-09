@@ -22,6 +22,14 @@ import time
 
 class Bob_Ba_Raman(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "detection_time",
+        "cooling_time",
+        "pumping_time",
+        "delay_time",
+        "raman_time",
+    }
+
     def build(self):
         super().build()
         self.setattr_device("ccb")
@@ -234,7 +242,7 @@ class Bob_Ba_Raman(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
+            delay_mu(20000)
 
             # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 

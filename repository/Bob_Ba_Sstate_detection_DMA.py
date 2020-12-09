@@ -22,6 +22,15 @@ import time
 
 class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "detection_time",
+        # "cooling_time",
+        # "pumping_time",
+        # "delay_time",
+        # "raman_time",
+        # "fastloop_run_ns",
+    }
+
     def build(self):
         super().build()
         self.setattr_device("ccb")
@@ -159,6 +168,9 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
         except TerminationRequested:
             print('Terminated gracefully')
+            # These are necessary to restore the system to the state before the experiment.
+            self.load_globals_from_dataset()  # This loads global settings from datasets
+            self.setup()  # This sends settings out to the ARTIQ hardware
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
@@ -172,6 +184,9 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         sum21 = 0
         sum22 = 0
         self.core.reset()
+
+        # Copy host variables to FPGA
+        local_detection_time = self.detection_time
 
         # Preparation for experiment
         self.prep_record()
@@ -194,15 +209,15 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            self.core.break_realtime()  # This makes underflow errors less likely
-            delay_mu(200000)        # Each pulse sequence needs about 70 us of slack to run
+            # self.core.break_realtime()  # This makes underflow errors less likely
+            delay_mu(20000)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
-                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
@@ -210,7 +225,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
@@ -218,7 +233,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
@@ -226,7 +241,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             sum11 += self.Bob_camera_side_APD.count(gate_end_mu_B1)

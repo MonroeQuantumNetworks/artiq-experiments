@@ -34,6 +34,15 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class EntanglerDemo(artiq_env.EnvExperiment):
 class Bob_Ion_Photon(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "detection_time",
+        "cooling_time",
+        "pumping_time",
+        "delay_time",
+        "raman_time",
+        "fastloop_run_ns",
+    }
+
     def build(self):
         """Add the Entangler driver."""
         self.setattr_device("core")
@@ -64,10 +73,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('calculate_runtime', BooleanValue(True))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
-        self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
-        self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=1000, ndecimals=0))
+        self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=10000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
+        self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=10000, ndecimals=0))
 
-        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
+        # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
@@ -89,9 +98,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         # self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
         # self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
 
-        # # Print estimated run-time
-        # if self.calculate_runtime:
-        #     self.runtime_calculation()
+
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
@@ -152,7 +159,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             # This silly three lines counts the number of points we need to scan
             point_num = 0
             for point in msm: point_num += 1
-            print(point_num)
+            print("Number of points: ", point_num)
 
             # assume a 1D scan for plotting
             self.set_dataset('scan_x', [], broadcast=True, archive=True)
@@ -190,7 +197,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 #             self.set_DDS_amp(channel, getattr(self, name))
 
                 # Run the main portion of code here
-                detect_p1, detect_p2, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
+                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
@@ -225,8 +232,9 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
-        print("DEBUG MESSAGES:")
-        print("Code is done running {:.0f} {:.0f} {:.2f} {:.2f} {:.2f} {:.2f}".format(detect_p1, detect_p2, ratio_p1, ratio_p2, ratio_p3, ratio_p4))
+        print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
+        print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
+        print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
         print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2))
         print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2))
 
@@ -308,12 +316,17 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         delay1 = int(self.delay_time)   # For detect sigma1
         delay2 = delay1            # For detect sigma2
 
+        loop = 0
+        fail = 0
         for loop in range(self.loops_to_run):
 
             # Repeat running the entangler cycles_to_run times
             self.core.break_realtime()      # This appears to be necessary when running the dma
-            
+            end_timestamp = now_mu()
+
             for channel in range(self.entangle_cycles_per_loop):
+
+
 
                 self.core.break_realtime()
 
@@ -322,21 +335,22 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 # delay(self.cooling_time)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970,
+                    cycle_len=1970,     # Current value 1970
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
                     out_start2=1300,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
-                    out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM
+                    out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
-                    in_start=1900,  # Look for photons on APD0, this needs to be later than start3 due to AOM delays
+                    in_start=1900,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
+                # Record timestamp here
                 end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
 
                 # self.check_entangler_status() # Do we need this?
@@ -345,23 +359,27 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     # print("Entangler success", pattern)
                     break
                 elif pattern == 4 or pattern == 8:
-                    print("Entangler success", pattern)
-                    self.core.break_realtime()
                     # self.run_rotation() # Rotate to match the other state
                     break
                 else:   # Failed to entangle
                     pattern = 0
-                    # Add a counter here to sum the number of failed attempts
+                    # Add a counter here to sum the number of failed attempts?
+
+            # This causes the program to infinite loop on later loops
+            at_mu(end_timestamp)
+
+            delay_mu(100000)
+            self.ttl26.pulse(100 * ns)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-                delay_mu(100000)
                 with parallel:
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
-                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
                     self.core_dma.playback_handle(pulses_handle01)
                 
                 sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
@@ -374,18 +392,21 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     detect_p2 += 1
                     sum_p2_B1 += sumB1
                 elif pattern == 4:
-                    # detect_p3 += 1
+                    detect_p3 += 1
                     sum_p3_B1 += sumB1
                 elif pattern == 8:
-                    # detect_p4 += 1
+                    detect_p4 += 1
                     sum_p4_B1 += sumB1
 
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
+
             elif detect_flag == 2:
-                delay_mu(100000)
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
-                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(300)
                     self.core_dma.playback_handle(pulses_handle02)
 
                 sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B2)
@@ -398,15 +419,25 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     detect_p2 += 1
                     sum_p2_B2 += sumB2
                 elif pattern == 4:
-                    # detect_p3 += 1
+                    detect_p3 += 1
                     sum_p3_B2 += sumB2
                 elif pattern == 8:
-                    # detect_p4 += 1
+                    detect_p4 += 1
                     sum_p4_B2 += sumB2
 
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns * ns)    # This long delay is needed to make sure the code doesn't freeze
 
+            else:
+                fail += 1
+
+            loop += 1
+
+
+        print("loops, fails", loop, fail)
         # It costs 600 ms to return 1 to the host device
-        return detect_p1, detect_p2, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
+        # return detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
 
 
     @kernel
@@ -443,13 +474,13 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         #
         # TTL_output_list = [
         #     ('ttl0', 'ttl0', False),     Later this will be used for AWG 1/2 selection
-        #     ('ttl_Bob_650_pi', 'ttl1', False),
+        #     ('ttl_BoB_650_pi', 'ttl1', False),
         #     ('ttl_493_all', 'ttl2', False),
         #     ('ttl_650_fast_cw', 'ttl3', False),           This skips the pulse generator
         #     ('ttl_650_sigma_1', 'ttl4', False),
         #     ('ttl_650_sigma_2', 'ttl5', False),
         #     ('ttl_650_fast_pulse', 'ttl6', False),        This goes to pulse generator
-        #     ('ttl_Alice_650_pi', 'ttl7', False)
+        #     ('ttl_AlicE_650_pi', 'ttl7', False)
         # ]
         self.entangler.init()
 
@@ -468,7 +499,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
 
-        self.entangler.set_timing_mu(7, 2000, 2000)  # Do nothing to Alice 650-pi
+        self.entangler.set_timing_mu(1, 2000, 2000)  # Do nothing to Bob 650-pi
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
@@ -606,4 +637,4 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         loop_time = (entangler_time + 40000) * self.entangle_cycles_per_loop
         print("Loop time", "{:.2f}".format(loop_time * ns), "seconds")
         total_time = (loop_time + 200000 + self.detection_time) * self.loops_to_run
-        print("Estimated runtime", "{:.2f}".format(total_time * ns, 2), "seconds")
+        print("Maximum runtime", "{:.2f}".format(total_time * ns, 2), "seconds")

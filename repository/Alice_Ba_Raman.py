@@ -5,7 +5,6 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Fixed AOM amplitude scanning and update
 
 Known issues:
-    non-DMA detection, slow
     65 ns delay between detect1 and detect2
 
 George Toh 2020-07-21
@@ -22,6 +21,14 @@ import os
 import time
 
 class Alice_Ba_Raman(base_experiment.base_experiment):
+
+    kernel_invariants = {
+        "detection_time",
+        "cooling_time",
+        "pumping_time",
+        "delay_time",
+        "raman_time",
+    }
 
     def build(self):
         super().build()
@@ -235,9 +242,9 @@ class Alice_Ba_Raman(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            delay_mu(500000)        # Each pulse sequence needs about 70 us of slack to run
+            delay_mu(20000)
 
-            self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
+            # self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)

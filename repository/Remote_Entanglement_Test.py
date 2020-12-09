@@ -36,6 +36,15 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class EntanglerDemo(artiq_env.EnvExperiment):
 class Remote_Entanglement_Test(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "detection_time",
+        "cooling_time",
+        "pumping_time",
+        "delay_time",
+        "raman_time",
+        "fastloop_run_ns",
+    }
+
     def build(self):
         """Add the Entangler driver."""
         self.setattr_device("core")
@@ -190,7 +199,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 #             self.set_DDS_amp(channel, getattr(self, name))
 
                 # Run the main portion of code here
-                detect_p1, detect_p2, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
+                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
@@ -226,7 +235,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
         print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
-        print("Code done running {:.0f} {:.0f} {:.2f} {:.2f} {:.2f} {:.2f}".format(detect_p1, detect_p2, ratio_p1, ratio_p2, ratio_p3, ratio_p4))
+        print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
+        print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
         print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2))
         print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2))
 
@@ -351,24 +361,20 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     # print("Entangler success", pattern)
                     break
                 elif pattern == 4 or pattern == 8:
-                    print("Entangler failure 48", pattern)
-                    self.core.break_realtime()
                     # self.run_rotation() # Rotate to match the other state
                     break
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
+            delay_mu(20000)
             self.ttl26.pulse(100 * ns)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
-                # print("Entangler failure 0", pattern)
-                # self.core.break_realtime()
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-                delay_mu(100000)
-                # self.core.break_realtime()
+                delay_mu(100)
                 with parallel:
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
@@ -385,15 +391,17 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p2 += 1
                     sum_p2_B1 += sumB1
                 elif pattern == 4:
-                    # detect_p3 += 1
+                    detect_p3 += 1
                     sum_p3_B1 += sumB1
                 elif pattern == 8:
-                    # detect_p4 += 1
+                    detect_p4 += 1
                     sum_p4_B1 += sumB1
 
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
+
             elif detect_flag == 2:
-                delay_mu(100000)
-                # self.core.break_realtime()
+                delay_mu(100)
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
@@ -410,21 +418,25 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p2 += 1
                     sum_p2_B2 += sumB2
                 elif pattern == 4:
-                    # detect_p3 += 1
+                    detect_p3 += 1
                     sum_p3_B2 += sumB2
                 elif pattern == 8:
-                    # detect_p4 += 1
+                    detect_p4 += 1
                     sum_p4_B2 += sumB2
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns * ns)  # This long delay is needed to make sure the code doesn't freeze
+
             else:
                 fail += 1
 
             loop += 1
-            # delay_mu(50000)
+
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
         # return detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
-        return detect_p1, detect_p2, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, 1, 1, 1, 1
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
 
 
     @kernel
