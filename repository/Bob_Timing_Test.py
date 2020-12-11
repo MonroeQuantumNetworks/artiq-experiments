@@ -34,6 +34,14 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 class Bob_Timing_Test(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "cool_time",
+        "delay_one",
+        "delay_two",
+        "delay_three",
+        "loops_to_run",
+    }
+
     def build(self):
 
         super().build()
@@ -410,7 +418,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
-            delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+            delay_mu(100)        # This is needed if using the pulse generator due to the ~100ns delay introduced
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()

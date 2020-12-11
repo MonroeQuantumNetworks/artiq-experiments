@@ -185,8 +185,6 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         sum22 = 0
         self.core.reset()
 
-        # Copy host variables to FPGA
-        local_detection_time = self.detection_time
 
         # Preparation for experiment
         self.prep_record()
@@ -215,17 +213,18 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
+                self.core_dma.playback_handle(pulses_handle01)
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
-                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
-                self.core_dma.playback_handle(pulses_handle01)
+                    gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(100)   # To compensate for the differences in turn off time
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
+                    gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
@@ -233,7 +232,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
+                    gate_end_mu_B3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
@@ -241,7 +240,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(local_detection_time)
+                    gate_end_mu_B4 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
             sum11 += self.Bob_camera_side_APD.count(gate_end_mu_B1)

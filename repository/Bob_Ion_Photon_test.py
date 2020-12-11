@@ -32,7 +32,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Bob_Ion_Photon(base_experiment.base_experiment):
+class Bob_Ion_Photon_Test(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -341,7 +341,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1300,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1100,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
@@ -367,20 +367,22 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     # Add a counter here to sum the number of failed attempts?
 
             # This causes the program to infinite loop on later loops
-            at_mu(end_timestamp)
-
-            delay_mu(100000)
+            # at_mu(end_timestamp)
+            # delay_mu(50000)
             # self.ttl26.pulse(100 * ns)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
+                at_mu(end_timestamp)
+                delay_mu(25000)
+
                 with parallel:
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
-                        # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
                     self.core_dma.playback_handle(pulses_handle01)
                 
                 sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
@@ -403,11 +405,14 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
             elif detect_flag == 2:
+                at_mu(end_timestamp)
+                delay_mu(25000)
+
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
-                        # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(300)
                     self.core_dma.playback_handle(pulses_handle02)
 
                 sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B2)

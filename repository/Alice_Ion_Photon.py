@@ -215,6 +215,12 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.append_to_dataset('sum_p4_1', sum_p4_B1)
                 self.append_to_dataset('sum_p4_2', sum_p4_B2)
 
+                # These ratios are for waveplate alignment
+                ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
+                ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
+                ratio_sigma1_2 = sum_p3_B1 / (sum_p3_B1 + sum_p4_B1)
+                ratio_sigma2_2 = sum_p3_B2 / (sum_p3_B2 + sum_p4_B2)
+
                 # allow other experiments to preempt
                 self.core.comm.close()
                 self.scheduler.pause()
@@ -235,8 +241,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
         print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
         print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
-        print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2))
-        print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2))
+        print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
+        print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
+        print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
+        print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -340,7 +348,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1300,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1100,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
@@ -367,8 +375,9 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             # This causes the program to infinite loop on later loops
             at_mu(end_timestamp)
 
-            delay_mu(20000)
-            self.ttl26.pulse(100 * ns)
+            self.core.break_realtime()
+            delay_mu(150000)
+            # self.ttl26.pulse(100 * ns)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -536,23 +545,34 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         Not required in normal usage, recognized pattern is returned by run_entangler().
         """
+        self.core.break_realtime()
+
         delay(100 * aq_units.us)
         status = self.entangler.get_status()
         if status & 0b010:
-            rtio_log("entangler", "succeeded")
+            # rtio_log("entangler", "succeeded")
+            print("entangler", "succeeded")
         else:
-            rtio_log("entangler", "End status:", status)
+            # rtio_log("entangler", "End status:", status)
+            print("entangler", "End status:", status)
 
+        delay_mu(10000000)
         delay(100 * aq_units.us)
         num_cycles = self.entangler.get_ncycles()
-        rtio_log("entangler", "#cycles:", num_cycles)
-        delay(100 * aq_units.us)
+        # rtio_log("entangler", "#cycles:", num_cycles)
+        print("entangler", "#cycles:", num_cycles)
+        delay(10000 * aq_units.us)
         ntriggers = self.entangler.get_ntriggers()
-        rtio_log("entangler", "#triggers (0 if no ref)", ntriggers)
+        # rtio_log("entangler", "#triggers (0 if no ref)", ntriggers)
+        delay_mu(10000000)
+        print("entangler", "#triggers (0 if no ref)", ntriggers)
+        delay_mu(10000000)
         for channel in range(num_inputs):
             delay(150 * aq_units.us)
             channel_timestamp = self.entangler.get_timestamp_mu(channel)
-            rtio_log("entangler", "Ch", channel, ": ts=", channel_timestamp)
+            # rtio_log("entangler", "Ch", channel, ": ts=", channel_timestamp)
+            print("entangler", "Ch", channel, ": ts=", channel_timestamp)
+            delay_mu(10000000)
         delay(150 * aq_units.us)
 
     @kernel

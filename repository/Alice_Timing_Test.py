@@ -35,6 +35,14 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 class Alice_Timing_Test(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "cool_time",
+        "delay_one",
+        "delay_two",
+        "delay_three",
+        "loops_to_run",
+    }
+
     def build(self):
 
         super().build()

@@ -128,6 +128,7 @@ class TTL_Test(base_experiment.base_experiment):
                 # print("test3")
 
         print("test4")
+        delay_mu(1000000000)
         counts_1 = self.ttl28.fetch_count()
         # counts_2 = self.Counter2.fetch_count()
         # counts_3 = self.Counter3.fetch_count()

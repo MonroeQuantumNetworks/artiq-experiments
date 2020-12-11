@@ -237,8 +237,9 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
         print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
         print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
-        print("sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2))
-        print("sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2))
+        print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
+        print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
+        print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -339,13 +340,13 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1300,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1100,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
                     in_start=1900,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950,
-                    pattern_list=[0b0011, 0b0101, 0b1010, 0b1100],
+                    pattern_list=[0b0011, 0b1001, 0b0110, 0b1100],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
@@ -367,8 +368,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
-            delay_mu(20000)
-            self.ttl26.pulse(100 * ns)
+            delay_mu(50000)
+            # self.ttl26.pulse(100 * ns)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing

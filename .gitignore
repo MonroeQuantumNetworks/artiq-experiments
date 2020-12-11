@@ -2,3 +2,9 @@
 \.idea/
 
 results/
+
+last_rid.pyon
+
+**/__pycache__/
+
+*.pyc
