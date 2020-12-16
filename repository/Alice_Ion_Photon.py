@@ -1,5 +1,5 @@
 """ Ion-Photon Entanglement with 4-APD HOM measurement
-Alice Barium detection, with scannable variables, partial DMA
+Alice Barium detection, with scannable variables, detection with DMA
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
 
@@ -7,7 +7,7 @@ Code looks ready to go to run Ion Photon on Alice.
 Collates the counts detected with sigma-1/2 for each pattern
 
 George Toh 2020-07-30
-updated 2020-12-03
+updated 2020-12-15
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -265,10 +265,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.core.break_realtime()
 
         # Hard-coded to set the AOM frequency and amplitude
-        delay_mu(95000)
-        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
-        delay_mu(95000)
-        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
 
         self.init()
 
@@ -298,10 +298,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         detect_p3 = 0
         detect_p4 = 0
 
-        Alice_counts_detect1 = 0
-        Alice_counts_detect1 = 0
-        Alice_counts_detect2 = 0
-        Alice_counts_detect2 = 0
         detect_flag = 1
         pattern = 0
 
@@ -334,9 +330,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
             for channel in range(self.entangle_cycles_per_loop):
 
-
-
-                self.core.break_realtime()
+                self.core.break_realtime()  # For stability during testing
+                delay_mu(30000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
@@ -348,7 +343,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1100,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1200,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
@@ -359,6 +354,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
                 end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
+                # num_cycles = self.entangler.get_ncycles()     # Use this later if we need to count the number of cycles
 
                 # self.check_entangler_status() # Do we need this?
 
@@ -372,12 +368,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
-            # This causes the program to infinite loop on later loops
             at_mu(end_timestamp)
-
-            self.core.break_realtime()
-            delay_mu(150000)
-            # self.ttl26.pulse(100 * ns)
+            delay_mu(30000)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -388,7 +380,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                         delay_mu(delay1)   # For turn off/on time of the lasers
                         gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle01)
-                
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
+
                 sumB1 = self.Alice_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
                 # sumB2 = 0
                 detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
@@ -405,15 +400,15 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     detect_p4 += 1
                     sum_p4_B1 += sumB1
 
-                self.core.break_realtime()
-                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
-
             elif detect_flag == 2:
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
                         gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle02)
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
                 sumB2 = self.Alice_camera_side_APD.count(gate_end_mu_B2)
                 # sumB1 = 0
@@ -431,9 +426,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     detect_p4 += 1
                     sum_p4_B2 += sumB2
 
-                self.core.break_realtime()
-                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
-
             else:
                 fail += 1
 
@@ -441,7 +433,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
-        # return detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
         return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
 
 
@@ -479,13 +470,13 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         #
         # TTL_output_list = [
         #     ('ttl0', 'ttl0', False),     Later this will be used for AWG 1/2 selection
-        #     ('ttl_Bob_650_pi', 'ttl1', False),
+        #     ('ttl_BoB_650_pi', 'ttl1', False),
         #     ('ttl_493_all', 'ttl2', False),
         #     ('ttl_650_fast_cw', 'ttl3', False),           This skips the pulse generator
         #     ('ttl_650_sigma_1', 'ttl4', False),
         #     ('ttl_650_sigma_2', 'ttl5', False),
         #     ('ttl_650_fast_pulse', 'ttl6', False),        This goes to pulse generator
-        #     ('ttl_Alice_650_pi', 'ttl7', False)
+        #     ('ttl_AlicE_650_pi', 'ttl7', False)
         # ]
         self.entangler.init()
 
@@ -530,9 +521,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         # Doesn't strictly NEED to break_realtime, but it's safe.
         # self.core.break_realtime()
-        delay_mu(40000)     # George found the minimum of 15 us delay here. Increase if necessary
 
-        # Disable entangler control of outputs
+        # Disable entangler control of outputs as soon as a pattern is detected
+        at_mu(end_timestamp)
+        delay_mu(15000)     # George found the minimum of 15 us delay here. Increase if necessary
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope
@@ -545,34 +537,23 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         Not required in normal usage, recognized pattern is returned by run_entangler().
         """
-        self.core.break_realtime()
-
         delay(100 * aq_units.us)
         status = self.entangler.get_status()
         if status & 0b010:
-            # rtio_log("entangler", "succeeded")
-            print("entangler", "succeeded")
+            rtio_log("entangler", "succeeded")
         else:
-            # rtio_log("entangler", "End status:", status)
-            print("entangler", "End status:", status)
+            rtio_log("entangler", "End status:", status)
 
-        delay_mu(10000000)
         delay(100 * aq_units.us)
         num_cycles = self.entangler.get_ncycles()
-        # rtio_log("entangler", "#cycles:", num_cycles)
-        print("entangler", "#cycles:", num_cycles)
-        delay(10000 * aq_units.us)
+        rtio_log("entangler", "#cycles:", num_cycles)
+        delay(100 * aq_units.us)
         ntriggers = self.entangler.get_ntriggers()
-        # rtio_log("entangler", "#triggers (0 if no ref)", ntriggers)
-        delay_mu(10000000)
-        print("entangler", "#triggers (0 if no ref)", ntriggers)
-        delay_mu(10000000)
+        rtio_log("entangler", "#triggers (0 if no ref)", ntriggers)
         for channel in range(num_inputs):
             delay(150 * aq_units.us)
             channel_timestamp = self.entangler.get_timestamp_mu(channel)
-            # rtio_log("entangler", "Ch", channel, ": ts=", channel_timestamp)
-            print("entangler", "Ch", channel, ": ts=", channel_timestamp)
-            delay_mu(10000000)
+            rtio_log("entangler", "Ch", channel, ": ts=", channel_timestamp)
         delay(150 * aq_units.us)
 
     @kernel
@@ -606,21 +587,29 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 1
         """
         with self.core_dma.record("pulses01"):
-            with parallel:
-                self.ttl_Alice_650_pi.on() # Alice 650 pi
-                self.ttl_650_fast_cw.on() # 650 fast AOM
-                self.ttl_650_sigma_1.on() # 650 sigma 1
-                self.ttl_650_sigma_2.on() # 650 sigma 2
-                self.DDS__493__Alice__sigma_1.sw.on()
+            # with parallel:
+            self.ttl_Alice_650_pi.on() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.on() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.on() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.on() # 650 sigma 2
+            delay_mu(8)
+            self.DDS__493__Alice__sigma_1.sw.on()
 
             delay(self.detection_time)
 
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.off()
-                self.ttl_Alice_650_pi.off() # Alice 650 pi
-                self.ttl_650_fast_cw.off() # 650 fast AOM
-                self.ttl_650_sigma_1.off() # 650 sigma 1
-                self.ttl_650_sigma_2.off() # 650 sigma 2
+            # with parallel:
+            self.DDS__493__Alice__sigma_1.sw.off()
+            delay_mu(8)
+            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.off() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.off() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.off() # 650 sigma 2
 
     @kernel
     def record_detect2(self):
@@ -628,21 +617,29 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
         with self.core_dma.record("pulses02"):
-            with parallel:
-                self.ttl_Alice_650_pi.on() # Alice 650 pi
-                self.ttl_650_fast_cw.on() # 650 fast AOM
-                self.ttl_650_sigma_1.on() # 650 sigma 1
-                self.ttl_650_sigma_2.on() # 650 sigma 2
-                self.DDS__493__Alice__sigma_2.sw.on()
+            # with parallel:
+            self.ttl_Alice_650_pi.on() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.on() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.on() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.on() # 650 sigma 2
+            delay_mu(8)
+            self.DDS__493__Alice__sigma_2.sw.on()
 
             delay(self.detection_time)
 
-            with parallel:
-                self.DDS__493__Alice__sigma_2.sw.off()
-                self.ttl_Alice_650_pi.off() # Alice 650 pi
-                self.ttl_650_fast_cw.off() # 650 fast AOM
-                self.ttl_650_sigma_1.off() # 650 sigma 1
-                self.ttl_650_sigma_2.off() # 650 sigma 2
+            # with parallel:
+            self.DDS__493__Alice__sigma_2.sw.off()
+            delay_mu(8)
+            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.off() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.off() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.off() # 650 sigma 2
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

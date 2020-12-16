@@ -6,8 +6,11 @@ Run Ion-Photon entanglement on Bob only, using all 4 APDs
 Code looks ready to go to run Ion Photon on Bob.
 Collates the counts detected with sigma-1/2 for each pattern
 
+This script was used to test the delay time between the fast loop and the slow loop
+The issue was an SED lane limitation (only 8) where gate_rising sequences were tying up the lanes
+
 George Toh 2020-07-30
-updated 2020-12-03
+updated 2020-12-15
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -258,21 +261,24 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
         self.core.break_realtime()
 
         # Hard-coded to set the AOM frequency and amplitude
-        delay_mu(95000)
-        self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
-        delay_mu(95000)
-        self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
 
         self.init()
 
         # Turn off everything initially
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
-        self.ttl_493_all.off()
-        self.ttl_650_fast_cw.off()
-        self.ttl_650_sigma_1.off()
-        self.ttl_650_sigma_2.off()
-        self.ttl_Bob_650_pi.off()
+        # self.DDS__493__Bob__sigma_1.sw.on()
+        # self.DDS__493__Bob__sigma_2.sw.on()
+        # self.ttl26.on()
+        # self.ttl27.on()
+        #
+        # self.ttl_493_all.off()
+        # self.ttl_650_fast_cw.off()
+        # self.ttl_650_sigma_1.off()
+        # self.ttl_650_sigma_2.off()
+        # self.ttl_Bob_650_pi.off()
         delay_mu(100000)
 
         # Initialize counters to zero
@@ -327,13 +333,11 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
 
             for channel in range(self.entangle_cycles_per_loop):
 
-
-
-                self.core.break_realtime()
+                self.core.break_realtime()      # This needs to be reduced to speed up everything
+                delay_mu(50000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
-                self.core_dma.playback_handle(fast_loop_cooling_handle)
-                # delay(self.cooling_time)
+                # self.core_dma.playback_handle(fast_loop_cooling_handle)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970,     # Current value 1970
@@ -345,7 +349,7 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
-                    in_start=1900,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_start=190,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
@@ -366,27 +370,100 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
-            # This causes the program to infinite loop on later loops
-            # at_mu(end_timestamp)
-            # delay_mu(50000)
-            # self.ttl26.pulse(100 * ns)
+            at_mu(end_timestamp)
+
+            delay_mu(30000)     # Increase from 15us later if needed
+
+            # self.DDS__650__fast_AOM.sw.on()
+            # delay(1000 * ns)
+            # self.DDS__650__fast_AOM.sw.off()
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-                at_mu(end_timestamp)
-                delay_mu(25000)
+                # at_mu(end_timestamp)
+                # delay_mu(50000)
 
-                with parallel:
-                    with sequential:
-                        delay_mu(delay1)   # For turn off/on time of the lasers
-                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                        # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
-                    self.core_dma.playback_handle(pulses_handle01)
-                
+                # with parallel:
+                #     with sequential:
+                #         delay_mu(delay1)   # For turn off/on time of the lasers
+                #         gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                #         # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                #     # self.core_dma.playback_handle(pulses_handle01)
+                #     with sequential:
+                #         with parallel:
+                #             self.ttl0.on()
+                #             # self.ttl_Bob_650_pi.on()  # Bob 650 pi
+                #             # self.ttl_650_fast_cw.on()  # 650 fast AOM
+                #             # self.ttl_650_sigma_1.on()  # 650 sigma 1
+                #             # self.ttl_650_sigma_2.on()  # 650 sigma 2
+                #             self.DDS__493__Bob__sigma_1.sw.on()
+                #             self.DDS__493__Bob__sigma_2.sw.on()
+                #             # self.ttl26.off()
+                #
+                #         # delay(self.detection_time)
+                #         delay_mu(10000)
+                #
+                #         with parallel:
+                #             self.ttl0.off()
+                #             # self.ttl26.on()
+                #             self.DDS__493__Bob__sigma_1.sw.off()
+                #             self.DDS__493__Bob__sigma_2.sw.off()
+                #             # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+                #             # self.ttl_650_fast_cw.off()  # 650 fast AOM
+                #             # self.ttl_650_sigma_1.off()  # 650 sigma 1
+                #             # self.ttl_650_sigma_2.off()  # 650 sigma 2
+
+                timenow = now_mu()
+
+                at_mu(timenow+delay1)
+                # delay_mu(delay1)   # For turn off/on time of the lasers
+                gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                # self.core_dma.playback_handle(pulses_handle01)
+                delay_mu(1000)
+
+                at_mu(timenow)
+                # with parallel:
+                self.ttl0.on()
+                # self.ttl_Bob_650_pi.on()  # Bob 650 pi
+                # self.ttl_650_fast_cw.on()  # 650 fast AOM
+                # self.ttl_650_sigma_1.on()  # 650 sigma 1
+                # self.ttl_650_sigma_2.on()  # 650 sigma 2
+                delay_mu(4)
+                self.DDS__493__Bob__sigma_1.sw.on()
+                delay_mu(4)
+                self.DDS__493__Bob__sigma_2.sw.on()
+                # self.ttl26.off()
+                delay_mu(1000)
+
+                at_mu(timenow+10000)
+                # with parallel:
+                self.ttl0.off()
+                # self.ttl26.on()
+                delay_mu(4)
+                self.DDS__493__Bob__sigma_1.sw.off()
+                delay_mu(4)
+                self.DDS__493__Bob__sigma_2.sw.off()
+                # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+                # self.ttl_650_fast_cw.off()  # 650 fast AOM
+                # self.ttl_650_sigma_1.off()  # 650 sigma 1
+                # self.ttl_650_sigma_2.off()  # 650 sigma 2
+                delay_mu(1000)
+
+                # at_mu(timenow+delay1)
+                # # delay_mu(delay1)   # For turn off/on time of the lasers
+                # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                #     # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                # # self.core_dma.playback_handle(pulses_handle01)
+                # delay_mu(1000)
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
+
                 sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
-                # sumB2 = 0
+                # # sumB2 = 0
                 detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
                 if pattern == 1:
                     detect_p1 += 1
@@ -401,19 +478,73 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
                     detect_p4 += 1
                     sum_p4_B1 += sumB1
 
-                self.core.break_realtime()
-                delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
+
 
             elif detect_flag == 2:
-                at_mu(end_timestamp)
-                delay_mu(25000)
+                # at_mu(end_timestamp)
+                # delay_mu(50000)
+                # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(1000)
+                # with parallel:
+                #     with sequential:
+                #         delay_mu(delay2)   # For turn off time of the lasers
+                #         # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                #         gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(1000)
+                #
+                #         # self.core_dma.playback_handle(pulses_handle02)
+                #     with sequential:
+                #         with parallel:
+                #             self.ttl0.on()
+                #             # self.ttl_Bob_650_pi.on()  # Bob 650 pi
+                #             # self.ttl_650_fast_cw.on()  # 650 fast AOM
+                #             # self.ttl_650_sigma_1.on()  # 650 sigma 1
+                #             # self.ttl_650_sigma_2.on()  # 650 sigma 2
+                #             self.DDS__493__Bob__sigma_1.sw.off()
+                #             self.DDS__493__Bob__sigma_2.sw.off()
+                #
+                #         delay(self.detection_time)
+                #         # delay_mu(1000)
+                #
+                #         with parallel:
+                #             self.ttl0.off()
+                #             pass
+                #             # self.DDS__493__Bob__sigma_1.sw.off()
+                #             # self.DDS__493__Bob__sigma_2.sw.off()
+                #             # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+                #             # self.ttl_650_fast_cw.off()  # 650 fast AOM
+                #             # self.ttl_650_sigma_1.off()  # 650 sigma 1
+                #             # self.ttl_650_sigma_2.on()  # 650 sigma 2
 
+                timenow = now_mu()
+                at_mu(timenow+delay1)
+                # delay_mu(delay1)   # For turn off/on time of the lasers
+                gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    # gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising_mu(300)
+                # self.core_dma.playback_handle(pulses_handle01)
+
+                at_mu(timenow)
                 with parallel:
-                    with sequential:
-                        delay_mu(delay2)   # For turn off time of the lasers
-                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                        # gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising_mu(300)
-                    self.core_dma.playback_handle(pulses_handle02)
+                    self.ttl0.on()
+                    # self.ttl_Bob_650_pi.on()  # Bob 650 pi
+                    # self.ttl_650_fast_cw.on()  # 650 fast AOM
+                    # self.ttl_650_sigma_1.on()  # 650 sigma 1
+                    # self.ttl_650_sigma_2.on()  # 650 sigma 2
+                    self.DDS__493__Bob__sigma_1.sw.off()
+                    self.DDS__493__Bob__sigma_2.sw.off()
+                    # self.ttl26.off()
+
+                at_mu(timenow+10000)
+                with parallel:
+                    self.ttl0.off()
+                    # self.ttl26.on()
+                    # self.DDS__493__Bob__sigma_1.sw.off()
+                    # self.DDS__493__Bob__sigma_2.sw.off()
+                    # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+                    # self.ttl_650_fast_cw.off()  # 650 fast AOM
+                    # self.ttl_650_sigma_1.off()  # 650 sigma 1
+                    # self.ttl_650_sigma_2.off()  # 650 sigma 2
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns * ns)    # This long delay is needed to make sure the code doesn't freeze
 
                 sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B2)
                 # sumB1 = 0
@@ -431,14 +562,14 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
                     detect_p4 += 1
                     sum_p4_B2 += sumB2
 
-                self.core.break_realtime()
-                delay(self.fastloop_run_ns * ns)    # This long delay is needed to make sure the code doesn't freeze
+                # self.core.break_realtime()
+                # delay(self.fastloop_run_ns * ns)    # This long delay is needed to make sure the code doesn't freeze
 
             else:
                 fail += 1
+                delay_mu(1000)      # Do nothing
 
             loop += 1
-
 
         print("loops, fails", loop, fail)
         # It costs 600 ms to return 1 to the host device
@@ -482,30 +613,32 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
         #     ('ttl0', 'ttl0', False),     Later this will be used for AWG 1/2 selection
         #     ('ttl_BoB_650_pi', 'ttl1', False),
         #     ('ttl_493_all', 'ttl2', False),
-        #     ('ttl_650_fast_cw', 'ttl3', False),           This skips the pulse generator
+        #     ('ttl_650_fast_cw', 'ttl3', False),
         #     ('ttl_650_sigma_1', 'ttl4', False),
         #     ('ttl_650_sigma_2', 'ttl5', False),
-        #     ('ttl_650_fast_pulse', 'ttl6', False),        This goes to pulse generator
+        #     ('ttl_650_fast_pulse', 'ttl6', False),
         #     ('ttl_AlicE_650_pi', 'ttl7', False)
         # ]
         self.entangler.init()
 
         # This writes an output-high time to all the channels
-        for channel in range(num_outputs):
-            self.entangler.set_timing_mu(channel, out_start, out_stop)
+        # for channel in range(num_outputs):
+            # self.entangler.set_timing_mu(channel, out_start, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
+            # self.entangler.set_timing_mu(channel, 2000, 2000)
 
         self.entangler.set_timing_mu(0, 10, 20)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
-        if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
-            self.entangler.set_timing_mu(5, out_start2, out_stop2)   # Turn on 650sigma2 slow-aom
-            self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-        else:
-            self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
-            self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-
-        self.entangler.set_timing_mu(1, 2000, 2000)  # Do nothing to Bob 650-pi
+        # if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
+        #     self.entangler.set_timing_mu(5, out_start2, out_stop2)   # Turn on 650sigma2 slow-aom
+        #     self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
+        # else:
+        #     self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
+        #     self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
+        #
+        # self.entangler.set_timing_mu(1, 2000, 2000)  # Do nothing to Bob 650-pi
+        self.entangler.set_timing_mu(3, 2000, 2000)  # Do nothing to Bob fast-pulse
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
@@ -531,9 +664,10 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
 
         # Doesn't strictly NEED to break_realtime, but it's safe.
         # self.core.break_realtime()
-        delay_mu(40000)     # George found the minimum of 15 us delay here. Increase if necessary
+        at_mu(end_timestamp)
+        delay_mu(10000)     # George found the minimum of 25 us delay here. Increase if necessary
 
-        # Disable entangler control of outputs
+        # Disable entangler control of outputs (turn it off when done)
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope
@@ -639,8 +773,8 @@ class Bob_Ion_Photon_Test(base_experiment.base_experiment):
         This function calculates the expected runtime with the given inputs
         """
         entangler_time = (self.cooling_time / ns + self.fastloop_run_ns)
-        print("Entangler time", "{:.2f}".format(entangler_time * ns), "seconds")
+        print("Entangler time", "{:.0f}".format(entangler_time * ms), "ms")
         loop_time = (entangler_time + 40000) * self.entangle_cycles_per_loop
-        print("Loop time", "{:.2f}".format(loop_time * ns), "seconds")
+        print("Loop time", "{:.0f}".format(loop_time * 1000 * ns), "ms")
         total_time = (loop_time + 200000 + self.detection_time) * self.loops_to_run
-        print("Maximum runtime", "{:.2f}".format(total_time * ns, 2), "seconds")
+        print("Maximum runtime", "{:.2f}".format(total_time * ns, 2), "secs")

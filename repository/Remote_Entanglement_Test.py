@@ -368,8 +368,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
-            delay_mu(50000)
-            # self.ttl26.pulse(100 * ns)
+            delay_mu(30000)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -436,7 +435,6 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
-        # return detect_p1, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
         return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
 
 
@@ -523,9 +521,10 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
         # Doesn't strictly NEED to break_realtime, but it's safe.
         # self.core.break_realtime()
-        delay_mu(40000)     # George found the minimum of 15 us delay here. Increase if necessary
 
-        # Disable entangler control of outputs
+        # Disable entangler control of outputs as soon as a pattern is detected
+        at_mu(end_timestamp)
+        delay_mu(15000)     # George found the minimum of 15 us delay here. Increase if necessary
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope
@@ -590,23 +589,29 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 1
         """
         with self.core_dma.record("pulses01"):
-            with parallel:
-                self.ttl_Alice_650_pi.on() # Alice 650 pi
-                self.ttl_650_fast_cw.on() # 650 fast AOM
-                self.ttl_650_sigma_1.on() # 650 sigma 1
-                self.ttl_650_sigma_2.on() # 650 sigma 2
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.ttl_Bob_650_pi.on()
+            # with parallel:
+            self.ttl_Alice_650_pi.on() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.on() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.on() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.on() # 650 sigma 2
+            delay_mu(8)
+            self.DDS__493__Alice__sigma_1.sw.on()
 
             delay(self.detection_time)
 
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.off()
-                self.ttl_Alice_650_pi.off() # Alice 650 pi
-                self.ttl_650_fast_cw.off() # 650 fast AOM
-                self.ttl_650_sigma_1.off() # 650 sigma 1
-                self.ttl_650_sigma_2.off() # 650 sigma 2
-                self.ttl_Bob_650_pi.off()
+            # with parallel:
+            self.DDS__493__Alice__sigma_1.sw.off()
+            delay_mu(8)
+            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.off() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.off() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.off() # 650 sigma 2
 
     @kernel
     def record_detect2(self):
@@ -614,23 +619,29 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
         with self.core_dma.record("pulses02"):
-            with parallel:
-                self.ttl_Alice_650_pi.on() # Alice 650 pi
-                self.ttl_650_fast_cw.on() # 650 fast AOM
-                self.ttl_650_sigma_1.on() # 650 sigma 1
-                self.ttl_650_sigma_2.on() # 650 sigma 2
-                self.DDS__493__Alice__sigma_2.sw.on()
-                self.ttl_Bob_650_pi.on()
+            # with parallel:
+            self.ttl_Alice_650_pi.on() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.on() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.on() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.on() # 650 sigma 2
+            delay_mu(8)
+            self.DDS__493__Alice__sigma_2.sw.on()
 
             delay(self.detection_time)
 
-            with parallel:
-                self.DDS__493__Alice__sigma_2.sw.off()
-                self.ttl_Alice_650_pi.off() # Alice 650 pi
-                self.ttl_650_fast_cw.off() # 650 fast AOM
-                self.ttl_650_sigma_1.off() # 650 sigma 1
-                self.ttl_650_sigma_2.off() # 650 sigma 2
-                self.ttl_Bob_650_pi.off()
+            # with parallel:
+            self.DDS__493__Alice__sigma_2.sw.off()
+            delay_mu(8)
+            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            delay_mu(8)
+            self.ttl_650_fast_cw.off() # 650 fast AOM
+            delay_mu(8)
+            self.ttl_650_sigma_1.off() # 650 sigma 1
+            delay_mu(8)
+            self.ttl_650_sigma_2.off() # 650 sigma 2
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

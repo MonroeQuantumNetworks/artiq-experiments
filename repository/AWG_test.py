@@ -138,10 +138,10 @@ class AWG_test(base_experiment.base_experiment):
     sendmessage(self,
         type = "wave",
         channel = 2,
-        amplitude1 = self.DDS__532__Alice__tone_1__amplitude,
-        amplitude2 = self.DDS__532__Alice__tone_2__amplitude,
-        frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-        frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+        amplitude1 = self.DDS__532__Bob__tone_1__amplitude,
+        amplitude2 = self.DDS__532__Bob__tone_2__amplitude,
+        frequency1 = self.DDS__532__Bob__tone_1__frequency,   # Hz
+        frequency2 = self.DDS__532__Bob__tone_2__frequency,   # Hz
         # phase1 = self.phase,                                    # radians
         phase2 = 3.14,                               # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
@@ -166,10 +166,10 @@ class AWG_test(base_experiment.base_experiment):
     sendmessage(self,
         type = "wave",
         channel = 4,
-        amplitude1 = self.DDS__532__Alice__tone_1__amplitude,
-        amplitude2 = self.DDS__532__Alice__tone_2__amplitude,
-        frequency1 = self.DDS__532__Alice__tone_1__frequency,   # Hz
-        frequency2 = self.DDS__532__Alice__tone_2__frequency,   # Hz
+        amplitude1 = self.DDS__532__Bob__tone_1__amplitude,
+        amplitude2 = self.DDS__532__Bob__tone_2__amplitude,
+        frequency1 = self.DDS__532__Bob__tone_1__frequency,   # Hz
+        frequency2 = self.DDS__532__Bob__tone_2__frequency,   # Hz
         # phase1 = self.phase,                                  # radians
         phase2 = 3.14,                                          # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
@@ -179,7 +179,7 @@ class AWG_test(base_experiment.base_experiment):
 
     # Do remote entanglement
     # Depending on what we get from the HOM APDs:
-        # TTL 16 drives the rf switches that each of the AWG outputs go through
+        # TTL 16 drives the rf switches that each of the AWG outputs go through (in the slow loop)
         # if 0101, 1010: set ttl16 off
         # if 0011, 1100: set ttl16 on
     # Trigger the AWG to run all 4 outputs

@@ -15,11 +15,12 @@ from artiq.language.core import kernel, delay, delay_mu, parallel
 from artiq.language.types import TInt32
 from artiq.coredevice.rtio import rtio_output
 from dynaconf import LazySettings
+
 # George added these:
 import base_experiment
 from artiq.experiment import *
 import time
-
+from artiq.coredevice.edge_counter import *
 
 # Get the number of inputs & outputs from the settings file.
 
@@ -129,6 +130,7 @@ class TTL_Test(base_experiment.base_experiment):
 
         print("test4")
         delay_mu(1000000000)
+        # counts_1 = self.ttl28.count()
         counts_1 = self.ttl28.fetch_count()
         # counts_2 = self.Counter2.fetch_count()
         # counts_3 = self.Counter3.fetch_count()
