@@ -7,7 +7,7 @@ Import this script to other Artiq scripts with "from AWGmessenger import sendmes
 Call by writing "sendmessage(self, ....)
 """
 
-def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause = 0):
+def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause1 =0, pause2 = 0):
 
     import sys
     from socket import socket, AF_INET, SOCK_DGRAM
@@ -54,7 +54,8 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         + "-" + str(int(phase2*100000))
         + "-" + str(int(duration1))
         + "-" + str(int(duration2))
-        + "-" + str(int(pause))
+        + "-" + str(int(pause1))
+        + "-" + str(int(pause2))
         )
     elif type == "quit":
         message = "quit"
@@ -85,7 +86,8 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
     #             phase2 = self.phase_diff,  # radians
     #             duration1 = self.duration1,                             # ns
     #             duration2 = self.duration2,                             # ns
-    #             pause = self.pause
+    #             pause1 = self.pause_before
+    #             pause2 = self.pause_after
     #             )
 
     # sendmessage(self,

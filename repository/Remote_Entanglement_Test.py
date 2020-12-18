@@ -325,7 +325,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             # Repeat running the entangler cycles_to_run times
             self.core.break_realtime()      # This appears to be necessary when running the dma
-            
+            end_timestamp = now_mu()
+
             for channel in range(self.entangle_cycles_per_loop):
 
                 self.core.break_realtime()
@@ -340,7 +341,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1100,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1200,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
@@ -368,6 +369,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
+            at_mu(end_timestamp)
             delay_mu(30000)
 
             if pattern == 0:

@@ -524,7 +524,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)
-        delay_mu(10000)     # George found the minimum of 15 us delay here. Increase if necessary
+        delay_mu(15000)     # George found the minimum of 15 us delay here. Increase if necessary
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope

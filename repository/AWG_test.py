@@ -14,14 +14,27 @@ from AWGmessenger import sendmessage   # Other file in the repo, contains code f
 
 class AWG_test(base_experiment.base_experiment):
 
+    kernel_invariants = {
+        "amplitude1",
+        "amplitude2",
+        "tone_1__frequency",
+        "tone_2__frequency",
+        "duration1",
+        "pause_before",
+        "pause_between",
+        "duration2",
+        "phase",
+        "phase_diff",
+    }
+
     def build(self):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
         self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
-        self.setattr_argument('AWG_quit', BooleanValue(False))
         self.setattr_argument('flush_awg', BooleanValue(False))
+        self.setattr_argument('AWG_quit', BooleanValue(False))
         self.setattr_argument('one_tone', BooleanValue(False))
         self.setattr_argument('two_tones', BooleanValue(False))
         self.setattr_argument('wave', BooleanValue(False))
@@ -30,7 +43,8 @@ class AWG_test(base_experiment.base_experiment):
         self.setattr_argument('tone_1__frequency', NumberValue(77000000, ndecimals=0, min=1, step=1000000))
         self.setattr_argument('tone_2__frequency', NumberValue(83000000, ndecimals=0, min=1, step=1000000))
         self.setattr_argument('duration1', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
-        self.setattr_argument('pause', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('pause_before', NumberValue(0, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('pause_between', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('duration2', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('phase', NumberValue(0, ndecimals=5, min=0, max = 300000))
         self.setattr_argument('phase_diff', NumberValue(3.14, ndecimals=5, min=0, max=300000))
@@ -86,7 +100,8 @@ class AWG_test(base_experiment.base_experiment):
                             phase2 = self.phase_diff,  # radians
                             duration1 = self.duration1,                             # ns
                             duration2 = self.duration2,                             # ns
-                            pause = self.pause
+                            pause1 = self.pause_before,
+                            pause2 = self.pause_between
                             )
                 # time.sleep(0.5)
                 self.kernel_run()
@@ -132,6 +147,7 @@ class AWG_test(base_experiment.base_experiment):
         phase2 = 3.14,                               # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
         # duration2 = self.duration2,                             # ns
+        # pause = self.pause,
         # pause = self.pause
         )
 
@@ -146,6 +162,7 @@ class AWG_test(base_experiment.base_experiment):
         phase2 = 3.14,                               # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
         # duration2 = self.duration2,                             # ns
+        # pause = self.pause,
         # pause = self.pause
         )
 
@@ -160,6 +177,7 @@ class AWG_test(base_experiment.base_experiment):
         phase2 = 3.14,                               # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
         # duration2 = self.duration2,                             # ns
+        # pause = self.pause,
         # pause = self.pause
         )
 
@@ -174,6 +192,7 @@ class AWG_test(base_experiment.base_experiment):
         phase2 = 3.14,                                          # radians
         duration1 = self.raman_time/ns,                         # Convert sec to ns
         # duration2 = self.duration2,                           # ns
+        # pause = self.pause,
         # pause = self.pause
         )
 
