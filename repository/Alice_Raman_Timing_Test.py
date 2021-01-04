@@ -43,16 +43,6 @@ class Alice_Raman_Timing_Test(base_experiment.base_experiment):
         self.setattr_device("entangler")
         self.out0_0 = self.get_device("ttl0")
 
-        # Pumping
-        # Alice_650pi = ttl7,
-        # 493all = ttl2
-        # 650fast-cw = ttl3
-        # 650sigma1 = ttl4
-        #
-        # Single photon generation:
-        # 650sigma2 = ttl5
-        # 650fast-pulse = ttl6
-
         # This hardcoding is necessary for writing to the gateware for the fast loop.
         self.entangle_inputs = [
             self.get_device("ttl{}".format(i)) for i in range(8, 12)

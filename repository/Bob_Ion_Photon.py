@@ -50,16 +50,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_device("entangler")
         self.out0_0 = self.get_device("ttl0")
 
-        # Pumping
-        # 650pi = ttl1,
-        # 493all = ttl2
-        # 650fast-cw = ttl3
-        # 650sigma1 = ttl4
-        #
-        # Single photon generation:
-        # 650sigma2 = ttl5
-        # 650fast-pulse = ttl6
-
         # This hardcoding is necessary for writing to the gateware for the fast loop.
         self.entangle_inputs = [
             self.get_device("ttl{}".format(i)) for i in range(8, 12)
@@ -73,17 +63,17 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('calculate_runtime', BooleanValue(True))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
-        self.setattr_argument('entangle_cycles_per_loop', NumberValue(3, step=1, min=1, max=10000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
-        self.setattr_argument('loops_to_run', NumberValue(3, step=1, min=1, max=10000, ndecimals=0))
+        self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
+        self.setattr_argument('loops_to_run', NumberValue(1000, step=1000, min=1, max=50000, ndecimals=0))
 
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
+        # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
@@ -97,8 +87,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         # self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
         # self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
-
-
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
@@ -273,8 +261,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.init()
 
         # Turn off everything initially
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
+        # self.DDS__493__Bob__sigma_1.sw.off()
+        # self.DDS__493__Bob__sigma_2.sw.off()
         self.ttl_493_all.off()
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
@@ -331,7 +319,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
-                delay_mu(100000)
+                delay_mu(30000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
@@ -347,8 +335,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     out_stop2=1500,
                     out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360,  # Done generating
-                    in_start=1900,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_stop=1950,
+                    in_start=1910,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_stop=1960,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
@@ -495,7 +483,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
 
-        self.entangler.set_timing_mu(1, 2000, 2000)  # Do nothing to Bob 650-pi
+        self.entangler.set_timing_mu(7, 5000, 5000)  # Do nothing to AlicE 650-pi
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
@@ -590,6 +578,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             # with parallel:
             # self.ttl0.on()
             # delay_mu(8)
+            self.DDS__493__Bob__sigma_2.sw.off()
+            delay_mu(8)
             self.ttl_Bob_650_pi.on() # Bob 650 pi
             delay_mu(8)
             self.ttl_650_fast_cw.on() # 650 fast AOM
@@ -598,14 +588,16 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             delay_mu(8)
             self.ttl_650_sigma_2.on() # 650 sigma 2
             delay_mu(8)
-            self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            self.ttl_493_all.on()
 
             delay(self.detection_time)
 
             # with parallel:
             # self.ttl0.on()
             # delay_mu(8)
-            self.DDS__493__Bob__sigma_1.sw.off()
+            self.ttl_493_all.off()
+            # self.DDS__493__Bob__sigma_1.sw.off()
             delay_mu(8)
             self.ttl_Bob_650_pi.off() # Bob 650 pi
             delay_mu(8)
@@ -614,6 +606,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off() # 650 sigma 1
             delay_mu(8)
             self.ttl_650_sigma_2.off() # 650 sigma 2
+            delay_mu(8)
+            self.DDS__493__Bob__sigma_2.sw.on()
+            # delay_mu(8)
+            # self.DDS__493__Bob__sigma_1.sw.on()
 
     @kernel
     def record_detect2(self):
@@ -624,6 +620,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             # with parallel:
             # self.ttl0.on()
             # delay_mu(8)
+            self.DDS__493__Bob__sigma_1.sw.off()
+            delay_mu(8)
             self.ttl_Bob_650_pi.on()  # Bob 650 pi
             delay_mu(8)
             self.ttl_650_fast_cw.on()  # 650 fast AOM
@@ -632,14 +630,15 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             delay_mu(8)
             self.ttl_650_sigma_2.on()  # 650 sigma 2
             delay_mu(8)
-            self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            self.ttl_493_all.on()
 
             delay(self.detection_time)
 
             # with parallel:
             # self.ttl0.on()
             # delay_mu(8)
-            self.DDS__493__Bob__sigma_2.sw.off()
+            self.ttl_493_all.off()
             delay_mu(8)
             self.ttl_Bob_650_pi.off()  # Bob 650 pi
             delay_mu(8)
@@ -648,6 +647,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off()  # 650 sigma 1
             delay_mu(8)
             self.ttl_650_sigma_2.off()  # 650 sigma 2
+            # delay_mu(8)
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            delay_mu(8)
+            self.DDS__493__Bob__sigma_1.sw.on()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

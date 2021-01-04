@@ -274,7 +274,7 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         for i in range(self.detections_per_point):
 
             self.core.break_realtime()  # This is necessary to create slack
-            delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to run
+            delay_mu(50000)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             with parallel:
