@@ -500,8 +500,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        # self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(0, 5000, 5000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        # self.entangler.set_timing_mu(0, 5000, 5000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2

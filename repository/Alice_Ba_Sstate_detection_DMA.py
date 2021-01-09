@@ -4,7 +4,6 @@ Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
 Known issues:
-    non-DMA detection, slow
     100ns between pump and cool for 493 AOM timings
 
 George Toh 2020-07-21
@@ -24,9 +23,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
-        # "cooling_time",
-        # "pumping_time",
-        # "delay_time",
+        "cooling_time",
+        "pumping_time",
+        "delay_time",
         # "raman_time",
         # "fastloop_run_ns",
     }
@@ -223,7 +222,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1 - 65            # For detect sigma2
+        delay2 = delay1                 # For detect sigma2
 
         for i in range(self.detections_per_point):
 

@@ -39,7 +39,7 @@ class Curvefit_Tool(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-
+        self.setattr_argument('Instructions', EnumerationValue(["Choose which data set to fit to and set the fit parameters", "after fit is done, open applet Fit_results"]))
         self.setattr_argument('do_curvefit', BooleanValue(True))
         self.setattr_argument('Data_to_fit', EnumerationValue(["detect11", "detect12", "detect21", "detect22"], default="detect12"))
 

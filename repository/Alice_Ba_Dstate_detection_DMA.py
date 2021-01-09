@@ -173,14 +173,13 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
                 # The derivation of these expressions is in Ksenia's thesis, and the results are in Allison's
                 # OneNote notebook section.
 
-                mean1 = self.sum1#/self.detections_per_point
-                mean2 = self.sum2#/self.detections_per_point
-                mean3 = self.sum3#/self.detections_per_point
-                mean13 = self.sum13#/self.detections_per_point
-                mean23 = self.sum13#/self.detections_per_point
 
-                # George tried editing the signs on these to match page 114-115 of Clay Crocker thesis
-                # Results still don't make sense
+                mean1 = self.sum1     #/self.detections_per_point
+                mean2 = self.sum2     #/self.detections_per_point
+                mean3 = self.sum3     #/self.detections_per_point
+                mean13 = self.sum13   #/self.detections_per_point
+                mean23 = self.sum13   #/self.detections_per_point
+
                 # Population of D_{-3/2} state
 
                 d1 = (0.780311 + ((0.589575*mean23 - 0.00440285*mean13 - 0.361042*mean2 -
@@ -197,6 +196,7 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
                 # Population of D_{3/2} state
                 d4 = (0.780311 - ((0.00440285*mean23 - 0.589575*mean13 + 0.22413*mean2 +
                                    0.361042*mean1)/(-0.551725*(mean13 + mean23) + 0.051725*(mean1 + mean2) + mean3)))
+
 
                 ratios = np.array([d1, d2, d3, d4])
                 self.mutate_dataset('sum1', point_num, self.sum1)
@@ -274,37 +274,50 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         for i in range(self.detections_per_point):
 
             self.core.break_realtime()  # This is necessary to create slack
-            delay_mu(50000)
+            delay_mu(20000)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     gate_end_mu_1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
 
+            delay_mu(200)
+
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     gate_end_mu_2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
 
+            delay_mu(200)
+
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     gate_end_mu_3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
 
+            delay_mu(200)
+
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     gate_end_mu_13 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
 
+            delay_mu(200)
+
             self.core_dma.playback_handle(pulses_handle_pump) # Cool and pump
+            delay_mu(1000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -330,6 +343,7 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
             self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
             self.ttl_Alice_650_pi.off()  # Alice 650 pi
+            delay_mu(10)
             self.ttl_650_fast_cw.off()  # 650 fast AOM
             self.ttl_650_sigma_1.off()  # 650 sigma 1
             self.ttl_650_sigma_2.off()  # 650 sigma 2
@@ -426,9 +440,10 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 sigma 1 and pi.
         """
         with self.core_dma.record("pulses_detect13"):
-            self.ttl_650_fast_cw.on()
-            self.ttl_650_sigma_1.on()
-            self.ttl_Alice_650_pi.on()
+            with parallel:
+                self.ttl_650_fast_cw.on()
+                self.ttl_650_sigma_1.on()
+                self.ttl_Alice_650_pi.on()
 
             delay(self.detection_time)
             with parallel:
@@ -442,9 +457,10 @@ class Alice_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 sigma 2 and pi.
         """
         with self.core_dma.record("pulses_detect23"):
-            self.ttl_650_fast_cw.on()
-            self.ttl_650_sigma_2.on()
-            self.ttl_Alice_650_pi.on()
+            with parallel:
+                self.ttl_650_fast_cw.on()
+                self.ttl_650_sigma_2.on()
+                self.ttl_Alice_650_pi.on()
 
             delay(self.detection_time)
             with parallel:

@@ -242,10 +242,10 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.core.break_realtime()
 
         # Hard-coded to set the AOM frequency and amplitude
-        delay_mu(95000)
-        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
-        delay_mu(95000)
-        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        # delay_mu(95000)
+        # self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
 
         self.init()
 
@@ -317,7 +317,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay(self.cooling_time)
 
-                extra_pump = 3000
+                extra_pump = 1000
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970

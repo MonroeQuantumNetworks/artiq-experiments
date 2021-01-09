@@ -306,9 +306,14 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             delay_mu(1000)
             self.ttl_650_sigma_2.on()
             delay_mu(1000)
+            self.ttl_Alice_650_pi.off()
+            delay_mu(1000)
+            self.ttl_Alice_650_pi.on()
+            delay_mu(1000)
             self.ttl_650_fast_cw.off()
             delay_mu(1000)
             self.ttl_650_fast_cw.on()
+
 
             # delay(self.delay_one)       # In case some additional delay is needed
             #

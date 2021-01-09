@@ -311,9 +311,9 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             delay_mu(1000)
             self.ttl_Bob_650_pi.on()
             delay_mu(1000)
-            self.ttl_650_sigma_1.on()
-            delay_mu(1000)
             self.ttl_650_sigma_2.on()
+            delay_mu(1000)
+            self.ttl_650_sigma_1.on()
             delay_mu(1000)
             self.ttl_650_fast_cw.off()
             delay_mu(1000)
@@ -375,12 +375,8 @@ class Bob_Timing_Test(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.on()
                 self.ttl_Bob_650_pi.on()
 
-                # This if statement generates error firmware.runtime.rtio_mgt:RTIO sequence error involving channel 22
-                if self.Bob493_TTL_vs_DDS:
-                    self.ttl_493_all.on()
-                else:
-                    self.DDS__493__Bob__sigma_1.sw.on()
-                    self.DDS__493__Bob__sigma_2.sw.on()
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
 
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.on()
@@ -390,19 +386,19 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
             # Now turn off all the beams
-            with parallel:
-                self.ttl_650_fast_cw.off()
-                self.ttl_Bob_650_pi.off()
-                if self.pump_650sigma_1or2 == 1:
-                    self.ttl_650_sigma_1.off()
-                else:
-                    self.ttl_650_sigma_2.off()
+            # with parallel:
+            self.ttl_650_fast_cw.off()
+            self.ttl_Bob_650_pi.off()
+            delay_mu(200)
+            if self.pump_650sigma_1or2 == 1:
+                self.ttl_650_sigma_1.off()
+            else:
+                self.ttl_650_sigma_2.off()
+            delay_mu(200)
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
 
-                if self.Bob493_TTL_vs_DDS:
-                    self.ttl_493_all.off()
-                else:
-                    self.DDS__493__Bob__sigma_1.sw.off()
-                    self.DDS__493__Bob__sigma_2.sw.off()
+            # delay_mu(500)
 
             delay(self.delay_three)
 
@@ -418,7 +414,7 @@ class Bob_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
-            delay_mu(100)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+            delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()

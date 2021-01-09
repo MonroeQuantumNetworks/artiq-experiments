@@ -325,18 +325,20 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay(self.cooling_time)
 
+                extra_pump = 3000
+
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970,     # Current value 1970
+                    cycle_len=1970+extra_pump,     # Current value 1970
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
-                    out_stop=900,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1200,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=1500,
-                    out_start3=1350,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
-                    out_stop3=1360,  # Done generating
-                    in_start=1910,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_stop=1960,
+                    out_stop=900+extra_pump,  # Done cooling and pumping, turn off all lasers
+                    out_start2=1200+extra_pump,  # Turn on the opposite 650 sigma slow-AOM
+                    out_stop2=1500+extra_pump,
+                    out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
+                    out_stop3=1360+extra_pump,  # Done generating
+                    in_start=1910+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_stop=1960+extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns

@@ -29,7 +29,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         "detection_time",
         "cooling_time",
         "pumping_time",
-        # "delay_time",
+        "delay_time",
         # "raman_time",
         # "fastloop_run_ns",
     }
@@ -42,10 +42,11 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'dummy']
+        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'dummy']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(500), RangeScan(0, 1000, 10)], global_min=0, global_step=10, ndecimals=0))
         self.setattr_argument('dummy__scan', Scannable(default=[NoScan(0), RangeScan(0, 10, 10)], global_min=0, global_step=0.1, ndecimals=1))
 
         # 1 <--> sigma_1, 2 <--> sigma_2, 3 <--> pi
@@ -218,49 +219,56 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         pulses_handle_detect13 = self.core_dma.get_handle("pulses_detect13")
         pulses_handle_detect23 = self.core_dma.get_handle("pulses_detect23")
 
+        delay1 = int(self.delay_time)   # For turn-on time of the laser
+
         for i in range(self.detections_per_point):
 
             self.core.break_realtime()  # This is needed to create positive slack
-            delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to run
+            delay_mu(20000)        # Each pulse sequence needs about 70 us of slack to run
 
             # self.core_dma.playback_handle(pulses_handle_ttl)    # Trigger the Picoharp
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(200)
             with parallel:
                 with sequential:
-                    delay_mu(450)
+                    delay_mu(delay1)
                     gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
             delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(200)
             with parallel:
                 with sequential:
-                    delay_mu(450)
+                    delay_mu(delay1)
                     gate_end_mu_2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
             delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(200)
             with parallel:
                 with sequential:
-                    delay_mu(450)
+                    delay_mu(delay1)
                     gate_end_mu_3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
             delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
+            delay_mu(200)
             with parallel:
                 with sequential:
-                    delay_mu(450)
+                    delay_mu(delay1)
                     gate_end_mu_13 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
             delay_mu(200)
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool and pump
+            delay_mu(200)
             with parallel:
                 with sequential:
-                    delay_mu(450)
+                    delay_mu(delay1)
                     gate_end_mu_23 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
             delay_mu(200)
@@ -388,9 +396,9 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 sigma 1 and pi.
         """
         with self.core_dma.record("pulses_detect13"):
-            self.ttl_Bob_650_pi.on()
-            delay_mu(100)
+
             with parallel:
+                self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
 
@@ -407,9 +415,9 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 sigma 2 and pi.
         """
         with self.core_dma.record("pulses_detect23"):
-            self.ttl_Bob_650_pi.on()
-            delay_mu(100)
+
             with parallel:
+                self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_2.on()
 
