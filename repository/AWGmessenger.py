@@ -12,6 +12,8 @@ type        [quit], sine, sin2, wave, flush
             quit makes serverside program exit
             sine puts out a single frequency continuous output
             sin2 puts out a two frequency continuous output
+            flush wipes the AWG of all previously loaded sequences
+            wave is the custom two-pulse sequence, each made of two tones and uses all inputs below
 
 channel     [1],2,3,4
 amplitude1  [0.1], 0-1, in Volts, 3 decimals max
@@ -25,6 +27,7 @@ duration2   [0] Duration of the second output pulse (only type:wave) in ns
 pause1      [0] Wait time before first output pulse in ns
 pause2      [0] Wait time between first and second output pulse in ns
 
+See examples below for details about which inputs are used for each type.
 """
 
 def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause1 =0, pause2 = 0):
