@@ -5,8 +5,8 @@ Run Remote entanglement on Alice and Bob only, using all 4 APDs
 Collates the counts detected with sigma-1/2 for each pattern
 
 Problems:
-    Does not have Bob Raman
-    Does not do Bob detection
+    Alice and Bob always detect using the same 493 sigma
+    No detection for (A-1, B-2) or (A-2, B-1)
 
 George Toh 2020-12-07
 
@@ -69,6 +69,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(100, step=1, min=1, max=10000, ndecimals=0))
+        self.setattr_argument('extra_pump', NumberValue(1000, step=100, min=-900, max=10000, ndecimals=0))
 
         self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
@@ -94,14 +95,24 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
+
+        self.set_dataset('sum_p1_A1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p1_A2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_A1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_A2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_A1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_A2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_A1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_A2', [], broadcast=True, archive=True)
+
+        self.set_dataset('sum_p1_B1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p1_B2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_B1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p2_B2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_B1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p3_B2', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_B1', [], broadcast=True, archive=True)
+        self.set_dataset('sum_p4_B2', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -230,30 +241,39 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_A1, sum_p1_A2, sum_p2_A1, sum_p2_A2, sum_p3_A1, sum_p3_A2, sum_p4_A1, sum_p4_A2, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
 
-                ratio_p1 = sum_p1_A1 / (sum_p1_A1 + sum_p1_A2)
-                ratio_p2 = sum_p2_A1 / (sum_p2_A1 + sum_p2_A2)
-                ratio_p3 = sum_p3_A1 / (sum_p3_A1 + sum_p3_A2)
-                ratio_p4 = sum_p4_A1 / (sum_p4_A1 + sum_p4_A2)
-                ratiosA = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
+                ratioA_p1 = sum_p1_A1 / (sum_p1_A1 + sum_p1_A2)
+                ratioA_p2 = sum_p2_A1 / (sum_p2_A1 + sum_p2_A2)
+                ratioA_p3 = sum_p3_A1 / (sum_p3_A1 + sum_p3_A2)
+                ratioA_p4 = sum_p4_A1 / (sum_p4_A1 + sum_p4_A2)
+                ratiosA = [ratioA_p1, ratioA_p2, ratioA_p3, ratioA_p4]
 
                 ratioB_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratioB_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
                 ratioB_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
                 ratioB_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
-                ratiosB = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
+                ratiosB = [ratioB_p1, ratioB_p2, ratioB_p3, ratioB_p4]
 
-                ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4, ratioB_p1, ratioB_p2, ratioB_p3, ratioB_p4]
-
+                ratios = [ratioA_p1, ratioA_p2, ratioA_p3, ratioA_p4, ratioB_p1, ratioB_p2, ratioB_p3, ratioB_p4]
 
                 self.append_to_dataset('ratio_list', ratios)
-                self.append_to_dataset('sum_p1_1', sum_p1_B1)
-                self.append_to_dataset('sum_p1_2', sum_p1_B2)
-                self.append_to_dataset('sum_p2_1', sum_p2_B1)
-                self.append_to_dataset('sum_p2_2', sum_p2_B2)
-                self.append_to_dataset('sum_p3_1', sum_p3_B1)
-                self.append_to_dataset('sum_p3_2', sum_p3_B2)
-                self.append_to_dataset('sum_p4_1', sum_p4_B1)
-                self.append_to_dataset('sum_p4_2', sum_p4_B2)
+
+                self.append_to_dataset('sum_p1_A1', sum_p1_A1)
+                self.append_to_dataset('sum_p1_A2', sum_p1_A2)
+                self.append_to_dataset('sum_p2_A1', sum_p2_A1)
+                self.append_to_dataset('sum_p2_A2', sum_p2_A2)
+                self.append_to_dataset('sum_p3_A1', sum_p3_A1)
+                self.append_to_dataset('sum_p3_A2', sum_p3_A2)
+                self.append_to_dataset('sum_p4_A1', sum_p4_A1)
+                self.append_to_dataset('sum_p4_A2', sum_p4_A2)
+
+                self.append_to_dataset('sum_p1_B1', sum_p1_B1)
+                self.append_to_dataset('sum_p1_B2', sum_p1_B2)
+                self.append_to_dataset('sum_p2_B1', sum_p2_B1)
+                self.append_to_dataset('sum_p2_B2', sum_p2_B2)
+                self.append_to_dataset('sum_p3_B1', sum_p3_B1)
+                self.append_to_dataset('sum_p3_B2', sum_p3_B2)
+                self.append_to_dataset('sum_p4_B1', sum_p4_B1)
+                self.append_to_dataset('sum_p4_B2', sum_p4_B2)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -301,9 +321,12 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.init()
 
         # Turn off everything initially
-        # self.DDS__493__Alice__sigma_1.sw.off()
-        # self.DDS__493__Alice__sigma_2.sw.off()
         self.ttl_493_all.off()
+        self.DDS__493__Alice__sigma_1.sw.on()
+        self.DDS__493__Alice__sigma_2.sw.on()
+        self.DDS__493__Bob__sigma_1.sw.on()
+        self.DDS__493__Bob__sigma_2.sw.on()
+
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
@@ -311,6 +334,14 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         delay_mu(100000)
 
         # Initialize counters to zero
+        sum_p1_A1 = 0
+        sum_p1_A2 = 0
+        sum_p2_A1 = 0
+        sum_p2_A2 = 0
+        sum_p3_A1 = 0
+        sum_p3_A2 = 0
+        sum_p4_A1 = 0
+        sum_p4_A2 = 0
 
         sum_p1_B1 = 0
         sum_p1_B2 = 0
@@ -371,7 +402,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay(self.cooling_time)
 
-                extra_pump = 1000
+                extra_pump = self.extra_pump
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
@@ -625,10 +656,10 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 self.ttl_Alice_650_pi.on()
                 self.ttl_Bob_650_pi.on()
                 self.ttl_493_all.on()
+                delay_mu(8)
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
-                # self.ttl_test.on()  # This channel for diagnostics
 
                 delay(self.cooling_time)
 
@@ -636,10 +667,10 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 self.ttl_Alice_650_pi.off()
                 self.ttl_Bob_650_pi.off()
                 self.ttl_493_all.off()
+                delay_mu(8)
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
-                # self.ttl_test.off()
 
     @kernel
     def record_detect1(self):
