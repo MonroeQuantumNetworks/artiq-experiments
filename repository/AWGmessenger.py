@@ -5,6 +5,26 @@ This contains the function to send a message to Glados to run the AWG.
 
 Import this script to other Artiq scripts with "from AWGmessenger import sendmessage"
 Call by writing "sendmessage(self, ....)
+
+Updated 2021-01-11
+The inputs are [default]:
+type        [quit], sine, sin2, wave, flush
+            quit makes serverside program exit
+            sine puts out a single frequency continuous output
+            sin2 puts out a two frequency continuous output
+
+channel     [1],2,3,4
+amplitude1  [0.1], 0-1, in Volts, 3 decimals max
+amplitude2
+frequency1  [83e6] Frequency of the first (or only) tone
+frequency2  [77e6]
+phase1      [0] Phase of the first tone
+phase2      [0] 
+duration1   [2000] Duration of the first (or only) output pulse in ns
+duration2   [0] Duration of the second output pulse (only type:wave) in ns
+pause1      [0] Wait time before first output pulse in ns
+pause2      [0] Wait time between first and second output pulse in ns
+
 """
 
 def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause1 =0, pause2 = 0):
