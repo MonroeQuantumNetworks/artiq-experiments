@@ -22,6 +22,8 @@ from dynaconf import LazySettings
 import base_experiment
 from artiq.experiment import *
 import time
+from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+
 
 # Get the number of inputs & outputs from the settings file.
 settings = LazySettings(
@@ -61,6 +63,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_device("core_dma")
 
         self.setattr_argument('calculate_runtime', BooleanValue(True))
+        self.setattr_argument('do_Raman_AWG', BooleanValue(True))
+
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
@@ -183,6 +187,29 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 #             channel_name = name.rstrip('__amplitude')
                 #             channel = getattr(self, channel_name)
                 #             self.set_DDS_amp(channel, getattr(self, name))
+
+                if self.do_Raman_AWG:
+                    #  Program the Keysight AWG
+
+                    # if self.flush_awg == True:
+                    sendmessage(self, type="flush")
+                    time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
+
+                    sendmessage(self,
+                                type="wave",
+                                channel=1,
+                                amplitude1=self.DDS__532__Bob__tone_1__amplitude,
+                                amplitude2=self.DDS__532__Bob__tone_1__amplitude,
+                                frequency1=self.DDS__532__Bob__tone_1__frequency,  # Hz
+                                frequency2=self.DDS__532__Bob__tone_2__frequency,  # Hz
+                                phase1=0,  # radians
+                                phase2=0,  # radians
+                                duration1=self.raman_time/ns,  # ns
+                                duration2=0,  # ns
+                                # pause1=self.pause_before,
+                                # pause2=self.pause_between
+                                )
+                    time.sleep(0.1)
 
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
@@ -352,7 +379,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     # print("Entangler success", pattern)
                     break
                 elif pattern == 4 or pattern == 8:
-                    # self.run_rotation() # Rotate to match the other state
+                    # self.run_rotation()   # Rotate to match the other state
+                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 else:   # Failed to entangle
                     pattern = 0

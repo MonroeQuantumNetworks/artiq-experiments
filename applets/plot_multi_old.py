@@ -4,11 +4,9 @@ George took this applet from Euriqa.
 It should plot data live as it updates as a line
     then fit the data and plot fit (line) and data (dots)
 
-TODO:
-Previously Modified this applet to handle one y dataset only instead of needing multiple y datasets.
+Modified this applet to handle one y dataset only instead of needing multiple y datasets.
 
-Updated from Euriqa Jan 2021
-George Toh 2021-01-11
+George Toh 2020-05-19
 """
 
 # Here are two examples from Euriqa awg_XX_gates:
@@ -55,11 +53,6 @@ George Toh 2021-01-11
 #     group=self.applet_group,
 # )
 
-#!/usr/bin/env python3
-"""Plot multiple inputs on the same plot.
-
-Optionally either plot multiple datasets or multiple points from the same dataset.
-"""
 import argparse
 import logging
 import os
@@ -124,6 +117,7 @@ class MultiYPlot(plot.XYPlot):
                 else:
                     self.init_legend(pmts=data[self.args.active_pmts], labels=None)
 
+
         if self.args.rid is not None:
             rid_string = "RID: {}".format(data[self.args.rid][1])
             if title is not None:
@@ -170,8 +164,8 @@ class MultiYPlot(plot.XYPlot):
                 self.legend_labels.append("pmt {0}".format(n))
         else:
             for str in labels:
-                if "." in str:
-                    self.legend_labels.append(str[str.rfind(".") + 1 :])
+                if '.' in str:
+                    self.legend_labels.append(str[str.rfind('.') + 1:])
                 else:
                     self.legend_labels.append(str)
 
@@ -283,18 +277,6 @@ class MultiYPlot(plot.XYPlot):
 
     def plot_error_bars(self, x, ys, bars_top, bars_bottom):
         """Show error bars on the plot."""
-        # Validate error bar items
-        if bars_bottom.shape != bars_top.shape or (bars_top.shape[-1] != len(x)):
-            message = (
-                "Invalid error bar data array shapes.\n"
-                "Bars should have same shape, and length = # x points.\n"
-                "Top shape: {}, bottom shape: {}, X shape: {}".format(
-                    bars_top.shape, bars_bottom.shape, x.shape
-                )
-            )
-            _LOGGER.error(message)
-            raise ValueError(message)
-
         num_curves = len(ys)
         width = 0.05 * (
             (x[len(x) - 1] - x[0]) / len(x)
@@ -330,15 +312,19 @@ class MultiYPlot(plot.XYPlot):
             self._plot_fits(len(ys), title)
 
         if self.fit and x_fit is None:
-            x_fit = np.linspace(x[0], x[-1], y_fits.shape[1])
+            x_fit = np.linspace(x[0], x[-1], max(y_fits.shape))
 
         for i, y_data in enumerate(ys):
             y_name = "channel {}".format(i)
-            _LOGGER.debug("Plotting %s: %i points", y_name, len(y_data))
+            # _LOGGER.debug("Plotting %s: %i points", y_name, len(y_data))
             # _LOGGER.debug("%s data: %s", y_name, y_data)
             self.curves[i].setData(x=x, y=y_data)
             if self.fit:
-                self.fits[i].setData(x=x_fit, y=y_fits[i])
+                # self.fits[i].setData(x=x_fit, y=y_fits[i])  # ERROR print:Exception: Plot data must be 1D ndarray.
+                if y_fits.ndim < 2:
+                    self.fits[i].setData(x=x_fit, y=y_fits)
+                else:
+                    self.fits[i].setData(x=x_fit, y=y_fits[i])
 
         # TODO: Plot Error Bars
 
@@ -364,12 +350,12 @@ class MultiYPlot(plot.XYPlot):
         # If x exists, this return the data, other it returns the tuple (False, None)
         x = np.array(data.get(self.args.x, (False, None))[1])
         if x is None:  # If x doesnt exist
-            x = np.linspace(0, y.shape[1] - 1, y.shape[1])
+            x = np.linspace(0, max(y.shape) - 1, max(y.shape))
         elif x is not None:
             if x.size > 1 and np.array_equal(
                 x, [x[0]] * x.size
             ):  # check to see if step in place scan
-                x = np.linspace(0, y.shape[1] - 1, y.shape[1])
+                x = np.linspace(0, max(y.shape) - 1, max(y.shape))
             else:
                 try:
                     sort = np.argsort(x)
@@ -382,9 +368,9 @@ class MultiYPlot(plot.XYPlot):
             x = x / float(self.args.units)
 
         # Validate
-        if y.shape[1] != len(x):
+        if max(y.shape) != len(x):
             _LOGGER.debug("Array sizes do not match")
-            _LOGGER.debug("Y size: %s. X size: %s", y.shape, len(x))
+            _LOGGER.debug("Y size: %s. X size: %s", max(y.shape), len(x))
 
         if np.all(np.isnan(y)):
             _LOGGER.debug("Datasets are just NaN")
@@ -442,9 +428,9 @@ class MultiYPlot(plot.XYPlot):
             self.fit = False
 
         # Validate
-        if x_fit is not None and self.fit and (y_fits.shape[1] != len(x_fit)):
+        if x_fit is not None and self.fit and (max(y_fits.shape) != len(x_fit)):      # This line used to throw up an error, Tuple index out of range
             _LOGGER.error("Fit array sizes do not match")
-            _LOGGER.error("Y size: %s. X size: %s", y_fits.shape, len(x_fit))
+            _LOGGER.error("Y size: %s. X size: %s", max(y_fits.shape), len(x_fit))
             raise RuntimeError("Dataset array sizes do not match")
 
         return x_fit, y_fits
@@ -479,34 +465,26 @@ class MultiDataApplet(applets.simple.TitleApplet):
         self.add_dataset_arg(
             "x-fit",
             required=False,
-            help="Name of the X axis for the fits (ONE, optional). "
-            "Expects data as 1-D numpy array, shape: (num_points,)",
+            help="Name of the X axis for the fits (ONE, optional)",
         )
         self.add_dataset_arg(
             "y-fits",
-            help="Dataset name(s) for y-fits (same number of curves as y-names). "
-            "Expects data as numpy array, shape: (num_curves, num_points). "
-            "NOTE: num_points is same as in --x-fits",
-            nargs="+",  # require at least one fit
+            help="Dataset name for y-fits (same number of curves as y-names) ",
+            nargs="*",
             type=str,
             required=False,
         )
         self.add_dataset_arg(
             "error-bars-top",
-            help="Array with the lengths of the top of each point's error bar. "
-            "Expected numpy array shape: (num_y_curves, num_x_points)",
+            help="Array with the lengths of the top of each point's error bar",
             required=False,
         )
         self.add_dataset_arg(
             "error-bars-bottom",
-            help="Array with the lengths of the bottom of each point's error bar. "
-            "Values should be positive. "
-            "Expected numpy array shape: (num_y_curves, num_x_points).",
+            help="Array with the lengths of the bottom of each point's error bar",
             required=False,
         )
-        self.add_dataset_arg(
-            "rid", help="Dataset holding RID for plot title", type=str, required=False
-        )
+        self.add_dataset_arg("rid", help="Rid number for plot title", required=False)
         self.multi_plot_args.add_argument(
             "--transpose",
             "-t",
