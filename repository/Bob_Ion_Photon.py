@@ -293,6 +293,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.ttl_493_all.off()
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
+        delay_mu(10)
         self.ttl_650_sigma_2.off()
         self.ttl_Bob_650_pi.off()
         delay_mu(100000)
@@ -503,7 +504,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        self.entangler.set_timing_mu(0, 10, 20)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10,50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(5, out_start + 1000, out_stop)
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2

@@ -1,13 +1,10 @@
 """ Ion-Photon Entanglement with 4-APD HOM measurement
-Alice Barium detection, with scannable variables, detection with DMA
+Alice Barium detection, with scannable variables, detection with 4 HOM APDs
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
 
-Code looks ready to go to run Ion Photon on Alice.
-Collates the counts detected with sigma-1/2 for each pattern
 
-George Toh 2020-07-30
-updated 2020-12-15
+George Toh 2021-01-19
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -33,7 +30,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon(base_experiment.base_experiment):
+class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -394,17 +391,29 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
+                # with parallel:
+                #     with sequential:
+                #         delay_mu(delay1)   # For turn off/on time of the lasers
+                #         gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                #     self.core_dma.playback_handle(pulses_handle01)
+
                 with parallel:
                     with sequential:
-                        delay_mu(delay1)   # For turn off/on time of the lasers
-                        gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(delay1)
+                        with parallel:
+                            gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
+                            gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
+                            gate_end_mu_B1 = self.HOM2.gate_rising(self.detection_time)
+                            gate_end_mu_B1 = self.HOM3.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle01)
+
 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
-                sumB1 = self.Alice_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
-                # sumB2 = 0
+                # sumB1 = self.Alice_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
+                sumB1 = self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+
                 detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
                 if pattern == 1:
                     detect_p1 += 1
@@ -420,17 +429,29 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     sum_p4_B1 += sumB1
 
             elif detect_flag == 2:
+                # with parallel:
+                #     with sequential:
+                #         delay_mu(delay2)   # For turn off time of the lasers
+                #         gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                #     self.core_dma.playback_handle(pulses_handle02)
+
                 with parallel:
                     with sequential:
-                        delay_mu(delay2)   # For turn off time of the lasers
-                        gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(delay2)
+                        # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
+                        with parallel:
+                            gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
+                            gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
+                            gate_end_mu_B2 = self.HOM2.gate_rising(self.detection_time)
+                            gate_end_mu_B2 = self.HOM3.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle02)
 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
-                sumB2 = self.Alice_camera_side_APD.count(gate_end_mu_B2)
-                # sumB1 = 0
+                # sumB2 = self.Alice_camera_side_APD.count(gate_end_mu_B2)
+                sumB2 = self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+
                 detect_flag = 1
                 if pattern == 1:
                     detect_p1 += 1
@@ -500,17 +521,17 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.entangler.init()
 
         # This writes an output-high time to all the channels
-        # for channel in range(num_outputs):
-        #     self.entangler.set_timing_mu(channel, out_start+channel*200, out_stop)
+        for channel in range(num_outputs):
+            self.entangler.set_timing_mu(channel, out_start+channel*200, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        # self.entangler.set_timing_mu(1, out_start, out_stop)
-        self.entangler.set_timing_mu(2, out_start, out_stop)
-        self.entangler.set_timing_mu(3, out_start, out_stop)
-        # self.entangler.set_timing_mu(4, out_start, out_stop)
-        self.entangler.set_timing_mu(5, out_start+1000, out_stop)
-        # self.entangler.set_timing_mu(6, out_start, out_stop)
-        self.entangler.set_timing_mu(7, out_start, out_stop)
+        # # self.entangler.set_timing_mu(1, out_start, out_stop)
+        # self.entangler.set_timing_mu(2, out_start, out_stop)
+        # self.entangler.set_timing_mu(3, out_start, out_stop)
+        # # self.entangler.set_timing_mu(4, out_start, out_stop)
+        # self.entangler.set_timing_mu(5, out_start+1000, out_stop)
+        # # self.entangler.set_timing_mu(6, out_start, out_stop)
+        # self.entangler.set_timing_mu(7, out_start, out_stop)
 
         self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
