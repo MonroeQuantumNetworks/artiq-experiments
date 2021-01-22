@@ -151,12 +151,6 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             delay_mu(1000000)
 
             for i in range(self.loops_to_run):
-                # self.ttl0.pulse(20 * ns)
-                # delay_mu(100)
-
-                # if self.run_cooling_sequence:
-                #     self.run_cooling_loop()
-                delay_mu(2000)
                 self.core_dma.playback_handle(fast_loop_handle)     # Run custom sequence, modify below
                 delay_mu(6000)
 
@@ -341,7 +335,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         """
         with self.core_dma.record("singlephoton_loop_pulses"):
             self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
-
+            delay_mu(50)
             if self.run_cooling_sequence:
                 # Turn on cooling lasers
                 self.ttl_650_sigma_1.on()
@@ -387,19 +381,17 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
             # Now turn off all the beams
-            with parallel:
-                self.ttl_650_fast_cw.off()
-                self.ttl_Alice_650_pi.off()
-                if self.pump_650sigma_1or2 == 1:
-                    self.ttl_650_sigma_1.off()
-                else:
-                    self.ttl_650_sigma_2.off()
 
-                if self.Alice493_TTL_vs_DDS:
-                    self.ttl_493_all.off()
-                else:
-                    self.DDS__493__Alice__sigma_1.sw.off()
-                    self.DDS__493__Alice__sigma_2.sw.off()
+            self.ttl_650_fast_cw.off()
+            self.ttl_Alice_650_pi.off()
+            delay_mu(200)
+            if self.pump_650sigma_1or2 == 1:
+                self.ttl_650_sigma_1.off()
+            else:
+                self.ttl_650_sigma_2.off()
+            delay_mu(200)
+            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.off()
 
             delay(self.delay_three)
 
@@ -415,7 +407,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
-            delay_mu(200)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+            delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced
 
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
