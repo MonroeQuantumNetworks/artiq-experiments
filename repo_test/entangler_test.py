@@ -222,7 +222,7 @@ class EntanglerDemo(base_experiment.base_experiment):
     @kernel
     def init(self):
         """One-time setup on device != entangler."""
-        self.out0_0.pulse(1.5 * aq_units.us)  # marker signal for observing timing
+        # self.out0_0.pulse(1.5 * aq_units.us)  # marker signal for observing timing
         for ttl_input in self.entangle_inputs:
             ttl_input.input()
 
