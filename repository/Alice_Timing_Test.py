@@ -3,9 +3,10 @@
 This generates pulsed pumping and single photon generation sequences in Alice for test purposes
 It does not use the FPGA/entangler to run any of the beams
 
-650 issue fixed.
+
 
 George 2020-06-17
+updated 2020-01-22
 """
 
 import artiq.language.environment as artiq_env
@@ -157,106 +158,6 @@ class Alice_Timing_Test(base_experiment.base_experiment):
         print("Kernel done")
 
     @kernel
-    def init(self):
-        self.out0_0.pulse(1.5 * aq_units.us)  # marker signal for observing timing
-        for ttl_input in self.entangle_inputs:
-            ttl_input.input()
-
-    @kernel
-    def setup_entangler(
-        self, cycle_len, pump_650_sigma, out_start, out_stop, out_start2, out_stop2, out_start3, out_stop3, in_start, in_stop, pattern_list
-    ):
-        """Configure the entangler. Generating photons with 650sigma2
-
-        These mostly shouldn't need to be changed between entangler runs, though
-        you can with most of the set commands.
-
-        Args:
-            cycle_len (int): Length of each entanglement cycle.
-            out_start (int): Time in cycle when all pumping outputs should turn on.
-            out_stop (int): Time in cycle when all pumping outputs should turn off.
-            out_start2 (int): Time when opposite 650 sigma slow AOM should turn on
-            out_stop2 (int): Time in cycle when opposite 650 sigma slow AOM should turn off (de-assert)
-            out_start3 (int): Time in cycle when 650 sigma fast should turn on for single photon generation
-            out_stop3 (int): End single photon generation
-            in_start (int): Time in cycle when all inputs should start looking for input signals
-            in_stop (int): Time in cycle when all inputs should STOP looking for input signals.
-            pattern_list (list(int)): List of patterns that inputs are matched
-                against. Matching ANY will stop the entangler.
-        """
-        self.entangler.init()
-        # This writes an output-high time to all the channels
-        for channel in range(num_outputs):
-            self.entangler.set_timing_mu(channel, out_start, out_stop)
-
-        # Then we overwrite the channels where we have different timings
-        if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
-            self.entangler.set_timing_mu(5, out_start2, out_stop2)   # Turn on 650sigma2 slow-aom
-            self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-        else:
-            self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
-            self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
-        # self.entangler.set_timing_mu(7, 10000, 10000)   # ttl7 unused, disable output
-
-        for channel in range(num_inputs):
-            self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
-
-        # NOTE: must set enable, defaults to disabled. If not standalone, tries to sync
-        # w/ slave (which isn't there) & doesn't start
-        self.entangler.set_config(enable=True, standalone=True)
-        self.entangler.set_cycle_length_mu(cycle_len)
-        self.entangler.set_patterns(pattern_list)
-
-    @kernel
-    def run_entangler(self, timeout_length: TInt32):
-        """Run the entangler for a max time and wait for it to succeed/timeout."""
-        with parallel:
-            # This generates output events on the bus -> entangler
-            # when rising edges are detected
-            self.entangle_inputs[0].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[1].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[2].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[3].gate_rising_mu(np.int64(timeout_length))
-            end_timestamp, reason = self.entangler.run_mu(timeout_length)
-        # must wait after entangler ends to schedule new events.
-
-        # Doesn't strictly NEED to break_realtime, but it's safe.
-        # self.core.break_realtime()
-        delay_mu(40000)     # George found the minimum of 15 us delay here. Increase if necessary
-
-        # Disable entangler control of outputs
-        self.entangler.set_config(enable=False)
-
-        # You might also want to disable gating for inputs, but out-of-scope
-
-        return end_timestamp, reason
-
-    @kernel
-    def check_entangler_status(self):
-        """Get Entangler end status and log to coreanalyzer.
-
-        Not required in normal usage, recognized pattern is returned by run_entangler().
-        """
-        delay(100 * aq_units.us)
-        status = self.entangler.get_status()
-        if status & 0b010:
-            rtio_log("entangler", "succeeded")
-        else:
-            rtio_log("entangler", "End status:", status)
-
-        delay(100 * aq_units.us)
-        num_cycles = self.entangler.get_ncycles()
-        rtio_log("entangler", "#cycles:", num_cycles)
-        delay(100 * aq_units.us)
-        ntriggers = self.entangler.get_ntriggers()
-        rtio_log("entangler", "#triggers (0 if no ref)", ntriggers)
-        for channel in range(num_inputs):
-            delay(150 * aq_units.us)
-            channel_timestamp = self.entangler.get_timestamp_mu(channel)
-            rtio_log("entangler", "Ch", channel, ": ts=", channel_timestamp)
-        delay(150 * aq_units.us)
-
-    @kernel
     def run_cooling_loop(self):
 
         # Turn on cooling lasers
@@ -362,21 +263,18 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             # Pump sequence:
             with parallel:
                 self.ttl_650_fast_cw.on()
-                self.ttl_Alice_650_pi.on()
 
-                # This if statement generates error firmware.runtime.rtio_mgt:RTIO sequence error involving channel 22
-                if self.Alice493_TTL_vs_DDS:
-                    self.ttl_493_all.on()
-                else:
-                    # delay_mu(200)
-                    self.DDS__493__Alice__sigma_1.sw.on()
-                    # delay_mu(200)
-                    self.DDS__493__Alice__sigma_2.sw.on()
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
 
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.on()
                 else:
                     self.ttl_650_sigma_2.on()
+
+            # delay_mu(1500)
+
+            self.ttl_Alice_650_pi.on()
 
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 

@@ -59,7 +59,7 @@ class Curvefit_Tool(base_experiment.base_experiment):
         # This creates a applet shortcut in the Artiq applet list
         ylabel = "Counts"
         xlabel = "Scanned variable"
-        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        applet_stream_cmd = "$python -m applets.plot_multi_old" + " "   # White space is required
         self.ccb.issue(
             "create_applet",
             name="Fit_results",

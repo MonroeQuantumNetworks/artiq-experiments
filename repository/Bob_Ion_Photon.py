@@ -73,7 +73,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -81,10 +81,12 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+
         self.setattr_argument('DDS__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__frequency), CenterScan(self.globals__DDS__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__frequency), CenterScan(self.globals__DDS__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
 
     def run(self):
@@ -197,13 +199,13 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
                     sendmessage(self,
                                 type="wave",
-                                channel=1,
+                                channel=3,
                                 amplitude1=self.DDS__532__Bob__tone_1__amplitude,
                                 amplitude2=self.DDS__532__Bob__tone_1__amplitude,
                                 frequency1=self.DDS__532__Bob__tone_1__frequency,  # Hz
                                 frequency2=self.DDS__532__Bob__tone_2__frequency,  # Hz
-                                phase1=0,  # radians
-                                phase2=0,  # radians
+                                phase1 = 0,  # radians
+                                phase2 = self.raman_phase,  # radians
                                 duration1=self.raman_time/ns,  # ns
                                 duration2=0,  # ns
                                 # pause1=self.pause_before,
@@ -243,7 +245,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 point_num += 1
 
                 # TODO Remove this later if you want to do scans
-                break
+                # break
 
         except TerminationRequested:
             # These are necessary to restore the system to the state before the experiment.
@@ -347,13 +349,13 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
-                delay_mu(30000)
+                delay_mu(40000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay(self.cooling_time)
 
-                extra_pump = 3000
+                extra_pump = 1000
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
@@ -378,17 +380,23 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 2:
                     # print("Entangler success", pattern)
+                    # if self.do_Raman_AWG:
+                    #     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 4 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
-                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    at_mu(end_timestamp)
+                    delay_mu(20000)
+                    if self.do_Raman_AWG:
+                        self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
             at_mu(end_timestamp)
-            delay_mu(30000)
+            delay_mu(25000)
+            delay(self.raman_time)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -504,8 +512,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        self.entangler.set_timing_mu(0, 10,50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(5, out_start + 1000, out_stop)
+        self.entangler.set_timing_mu(0, 10000,50000)  # Hard coded this trigger pulse for testing. ttl0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -513,6 +520,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
         else:
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
+            self.entangler.set_timing_mu(5, out_start, out_stop - 200)  # Turn off the 650-sigma2 before 650-pi
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
 
         self.entangler.set_timing_mu(7, 5000, 5000)  # Do nothing to AlicE 650-pi
@@ -544,7 +552,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)
-        delay_mu(15000)     # George found the minimum of 15 us delay here. Increase if necessary
+        delay_mu(20000)     # George found the minimum of 15 us delay here. Increase if necessary
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope

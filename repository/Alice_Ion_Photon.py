@@ -2,12 +2,13 @@
 Alice Barium detection, with scannable variables, detection with DMA
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
+Does Raman on Alice using the Keysight AWG, through the server on Glados.
 
 Code looks ready to go to run Ion Photon on Alice.
 Collates the counts detected with sigma-1/2 for each pattern
 
 George Toh 2020-07-30
-updated 2020-12-15
+updated 2021-01-22
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -72,7 +73,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -80,10 +81,12 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+
         self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), CenterScan(self.globals__DDS__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), CenterScan(self.globals__DDS__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
 
     def run(self):
@@ -197,13 +200,13 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     sendmessage(self,
                                 type="wave",
                                 channel=1,
-                                amplitude1=self.DDS__532__Alice__tone_1__amplitude,
-                                amplitude2=self.DDS__532__Alice__tone_1__amplitude,
-                                frequency1=self.DDS__532__Alice__tone_1__frequency,  # Hz
-                                frequency2=self.DDS__532__Alice__tone_2__frequency,  # Hz
-                                phase1=0,  # radians
-                                phase2=0,  # radians
-                                duration1=self.raman_time/ns,  # ns
+                                amplitude1 = self.DDS__532__Alice__tone_1__amplitude,
+                                amplitude2 = self.DDS__532__Alice__tone_1__amplitude,
+                                frequency1 = self.DDS__532__Alice__tone_1__frequency,  # Hz
+                                frequency2 = self.DDS__532__Alice__tone_2__frequency,  # Hz
+                                phase1 = self.raman_phase,  # radians
+                                phase2 = 0,  # radians
+                                duration1 = self.raman_time/ns,  # ns
                                 duration2=0,  # ns
                                 # pause1=self.pause_before,
                                 # pause2=self.pause_between

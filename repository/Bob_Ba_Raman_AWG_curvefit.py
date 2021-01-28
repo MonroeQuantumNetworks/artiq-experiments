@@ -55,7 +55,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
-        self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
+        self.setattr_argument('channel', NumberValue(3, ndecimals=0, min=1, step=1, max=4))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
