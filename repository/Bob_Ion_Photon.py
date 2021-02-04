@@ -96,6 +96,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('pattern_counts', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
@@ -165,6 +166,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 self.runtime_calculation()
 
             point_num = 0
+            total_attempts = 0
             for point in msm:
 
                 print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
@@ -214,7 +216,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     time.sleep(0.1)
 
                 # Run the main portion of code here
-                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
+                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
@@ -222,6 +224,9 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
                 ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
 
+                pcounts = [detect_p1, detect_p2, detect_p3, detect_p4]
+
+                self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
                 self.append_to_dataset('sum_p1_1', sum_p1_B1)
                 self.append_to_dataset('sum_p1_2', sum_p1_B2)
@@ -231,6 +236,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 self.append_to_dataset('sum_p3_2', sum_p3_B2)
                 self.append_to_dataset('sum_p4_1', sum_p4_B1)
                 self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
                 ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
@@ -245,7 +251,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 point_num += 1
 
                 # TODO Remove this later if you want to do scans
-                # break
+                break
 
         except TerminationRequested:
             # These are necessary to restore the system to the state before the experiment.
@@ -262,6 +268,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
         print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
         print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
+        print("Attempt%, Total_attempts: {:.2f} {:.0f}".format( 100*(detect_p1+detect_p2+detect_p3+detect_p4)/attempts, attempts))
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -340,6 +347,8 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         loop = 0
         fail = 0
+        total_cycles = 0
+
         for loop in range(self.loops_to_run):
 
             # Repeat running the entangler cycles_to_run times
@@ -349,6 +358,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
+                total_cycles += self.entangler.get_ncycles()    # Add up the number of entangler attempts
                 delay_mu(40000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
@@ -456,11 +466,12 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             else:
                 fail += 1
 
+
             loop += 1
 
         print("loops, fails", loop, fail)
         # It costs 600 ms to return 1 to the host device
-        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, total_cycles
 
 
     @kernel
@@ -512,7 +523,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(channel, out_start, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        self.entangler.set_timing_mu(0, 10000,50000)  # Hard coded this trigger pulse for testing. ttl0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. ttl0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2

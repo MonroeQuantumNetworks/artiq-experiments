@@ -96,6 +96,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('pattern_counts', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
@@ -104,6 +105,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
+        self.set_dataset('num_attempts', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -215,7 +217,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
 
                 # Run the main portion of code here
-                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
+                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
@@ -223,6 +225,9 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
                 ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
 
+                pcounts = [detect_p1, detect_p2, detect_p3, detect_p4]
+
+                self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
                 self.append_to_dataset('sum_p1_1', sum_p1_B1)
                 self.append_to_dataset('sum_p1_2', sum_p1_B2)
@@ -232,6 +237,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.append_to_dataset('sum_p3_2', sum_p3_B2)
                 self.append_to_dataset('sum_p4_1', sum_p4_B1)
                 self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
                 ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
@@ -263,6 +269,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
         print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
         print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
+        print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -341,6 +348,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         loop = 0
         fail = 0
+        total_cycles = 0
+
         for loop in range(self.loops_to_run):
 
             # Repeat running the entangler cycles_to_run times
@@ -350,7 +359,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
-                delay_mu(30000)
+                total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
+                delay_mu(40000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
@@ -455,7 +465,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
-        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, total_cycles
 
 
     @kernel
