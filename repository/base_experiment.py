@@ -36,8 +36,8 @@ class base_experiment(EnvExperiment):
     urukul_cpld_list = [
         'urukul0_cpld',
         'urukul1_cpld',
-        'urukul2_cpld',
-        'urukul3_cpld'
+        # 'urukul2_cpld',
+        # 'urukul3_cpld'
     ]
 
     DDS_list = [
@@ -49,14 +49,14 @@ class base_experiment(EnvExperiment):
         ('650__sigma_2', 'urukul1_ch1', 78.5*MHz, 1.0, 10.0, True),
         ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
         ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
-        ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
-        ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
-        ('urukul2_ch2', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
-        ('urukul2_ch3', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
-        ('532__Alice__tone_1', 'urukul3_ch0', 80*MHz, 0.4, 17.0, False),
-        ('532__Alice__tone_2', 'urukul3_ch1', 75*MHz, 0.4, 17.0, False),
-        ('532__Bob__tone_1', 'urukul3_ch2', 80*MHz, 0.3, 17.0, False),
-        ('532__Bob__tone_2', 'urukul3_ch3', 85*MHz, 0.3, 17.0, False)
+        # ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
+        # ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
+        # ('urukul2_ch2', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
+        # ('urukul2_ch3', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
+        # ('532__Alice__tone_1', 'urukul3_ch0', 80*MHz, 0.4, 17.0, False),
+        # ('532__Alice__tone_2', 'urukul3_ch1', 75*MHz, 0.4, 17.0, False),
+        # ('532__Bob__tone_1', 'urukul3_ch2', 80*MHz, 0.3, 17.0, False),
+        # ('532__Bob__tone_2', 'urukul3_ch3', 85*MHz, 0.3, 17.0, False)
     ]
 
     TTL_input_list = [
@@ -91,18 +91,18 @@ class base_experiment(EnvExperiment):
         ('ttl_650_sigma_2', 'ttl5', False),
         ('ttl_650_fast_pulse', 'ttl6', False),
         ('ttl_Alice_650_pi', 'ttl7', False),
-        ('ttl_16', 'ttl16', False),
-        ('ttl_17', 'ttl17', False),
-        ('ttl_18', 'ttl18', False),
-        ('ttl_19', 'ttl19', False),
-        ('ttl_20', 'ttl20', False),
-        ('ttl_21', 'ttl21', False),
-        ('ttl_22', 'ttl22', False),
-        ('ttl_23', 'ttl23', False),
-        ('ttl_24', 'ttl24', False),
-        ('ttl_25', 'ttl25', False),
-        ('ttl_26', 'ttl26', False),
-        ('ttl_27', 'ttl27', False)
+        # ('ttl_16', 'ttl16', False),
+        # ('ttl_17', 'ttl17', False),
+        # ('ttl_18', 'ttl18', False),
+        # ('ttl_19', 'ttl19', False),
+        # ('ttl_20', 'ttl20', False),
+        # ('ttl_21', 'ttl21', False),
+        # ('ttl_22', 'ttl22', False),
+        # ('ttl_23', 'ttl23', False),
+        # ('ttl_24', 'ttl24', False),
+        # ('ttl_25', 'ttl25', False),
+        # ('ttl_26', 'ttl26', False),
+        # ('ttl_27', 'ttl27', False)
 
     ]
 

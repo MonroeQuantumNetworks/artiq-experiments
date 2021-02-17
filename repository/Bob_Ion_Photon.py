@@ -105,6 +105,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
+        self.set_dataset('num_attempts', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -365,7 +366,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay(self.cooling_time)
 
-                extra_pump = 1000
+                extra_pump = 3000
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
