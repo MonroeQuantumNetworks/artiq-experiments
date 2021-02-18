@@ -364,7 +364,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
-                # delay(self.cooling_time)
 
                 extra_pump = 3000
 
@@ -378,7 +377,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    in_start=1910+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_start=1910+extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1960+extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11

@@ -325,7 +325,6 @@ class Remote_Entanglement_Test2(base_experiment.base_experiment):
         self.core.reset()
         self.core.break_realtime()
 
-
         self.init()
 
         # Turn off everything initially
@@ -369,8 +368,8 @@ class Remote_Entanglement_Test2(base_experiment.base_experiment):
         Alice_counts_detect1 = 0
         Alice_counts_detect2 = 0
         Alice_counts_detect2 = 0
+        
         detect_flag = 1
-
         pattern = 0
 
         self.set_dataset('core_pattern1', [0], broadcast=True, archive=True)

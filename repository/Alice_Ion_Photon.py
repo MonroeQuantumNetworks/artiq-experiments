@@ -215,7 +215,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                                 )
                     time.sleep(0.1)
 
-
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
 
@@ -364,7 +363,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
-                # delay(self.cooling_time)
 
                 extra_pump = 3000
 
@@ -378,7 +376,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    in_start=1900+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_start=1900+extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950+extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
@@ -391,17 +389,23 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     # print("Entangler success", pattern)
+                    # if self.do_Raman_AWG:
+                    #     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
-                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    at_mu(end_timestamp)
+                    delay_mu(20000)
+                    if self.do_Raman_AWG:
+                        self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
             at_mu(end_timestamp)
-            delay_mu(30000)
+            delay_mu(25000)
+            delay(self.raman_time)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
