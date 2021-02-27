@@ -43,6 +43,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         "delay_time",
         "raman_time",
         "fastloop_run_ns",
+        "extra_pump_time",
+        "raman_phase",
     }
 
     def build(self):
@@ -66,6 +68,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('do_Raman_AWG', BooleanValue(True))
 
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
+        self.setattr_argument('extra_pump_time', NumberValue(2000, step=100, min=0, max=5000, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(250000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(1000, step=1000, min=1, max=50000, ndecimals=0))
@@ -192,12 +195,12 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 #             channel = getattr(self, channel_name)
                 #             self.set_DDS_amp(channel, getattr(self, name))
 
+
+                sendmessage(self, type="flush")
+                time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
+
                 if self.do_Raman_AWG:
                     #  Program the Keysight AWG
-
-                    # if self.flush_awg == True:
-                    sendmessage(self, type="flush")
-                    time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
 
                     sendmessage(self,
                                 type="wave",
@@ -206,8 +209,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                                 amplitude2 = self.DDS__532__Alice__tone_1__amplitude,
                                 frequency1 = self.DDS__532__Alice__tone_1__frequency,  # Hz
                                 frequency2 = self.DDS__532__Alice__tone_2__frequency,  # Hz
-                                phase1 = self.raman_phase,  # radians
-                                phase2 = 0,  # radians
+                                phase1 = 0,  # radians
+                                phase2 = self.raman_phase,  # radians
                                 duration1 = self.raman_time/ns,  # ns
                                 duration2=0,  # ns
                                 # pause1=self.pause_before,
@@ -239,10 +242,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
-                ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
-                ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
-                ratio_sigma1_2 = sum_p3_B1 / (sum_p3_B1 + sum_p4_B1)
-                ratio_sigma2_2 = sum_p3_B2 / (sum_p3_B2 + sum_p4_B2)
+                # ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
+                # ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
+                # ratio_sigma1_2 = sum_p3_B1 / (sum_p3_B1 + sum_p4_B1)
+                # ratio_sigma2_2 = sum_p3_B2 / (sum_p3_B2 + sum_p4_B2)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -250,8 +253,17 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 point_num += 1
 
+                print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
+                print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
+                print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
+                print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
+                print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
+                print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
+                # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
+                print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
+
                 # TODO Remove this later if you want to do scans
-                break
+                # break
 
         except TerminationRequested:
             # These are necessary to restore the system to the state before the experiment.
@@ -261,14 +273,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
-        print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
-        print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
-        print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
-        print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
-        print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
-        print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
-        print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
-        print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
+
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -358,13 +363,14 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
+                delay_mu(20000)
                 total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
-                delay_mu(40000)
+                delay_mu(20000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
 
-                extra_pump = 3000
+                extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
@@ -388,9 +394,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 # self.check_entangler_status() # Do we need this?
 
                 if pattern == 1 or pattern == 4:
-                    # print("Entangler success", pattern)
-                    # if self.do_Raman_AWG:
-                    #     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    at_mu(end_timestamp)
+                    delay_mu(20000)
+                    if self.do_Raman_AWG:
+                        self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
@@ -404,7 +411,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     # Add a counter here to sum the number of failed attempts?
 
             at_mu(end_timestamp)
-            delay_mu(25000)
+            delay_mu(30000)
             delay(self.raman_time)
 
             if pattern == 0:
@@ -529,7 +536,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # self.entangler.set_timing_mu(6, out_start, out_stop)
         self.entangler.set_timing_mu(7, out_start, out_stop)
 
-        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2

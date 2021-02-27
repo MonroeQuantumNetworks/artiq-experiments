@@ -277,8 +277,8 @@ class Alice_Ba_Dstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     with parallel:
-                        gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B1 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B1 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
@@ -291,8 +291,8 @@ class Alice_Ba_Dstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     with parallel:
-                        gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B2 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B2 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
@@ -305,8 +305,8 @@ class Alice_Ba_Dstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     with parallel:
-                        gate_end_mu_B3 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B3 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B3 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B3 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B3 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B3 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
@@ -319,8 +319,8 @@ class Alice_Ba_Dstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     with parallel:
-                        gate_end_mu_B13 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B13 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B13 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B13 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B13 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B13 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
@@ -333,17 +333,23 @@ class Alice_Ba_Dstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
                     with parallel:
-                        gate_end_mu_B23 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B23 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B23 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B23 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B23 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B23 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
 
-            sum1 += self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
-            sum2 += self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
-            sum3 += self.HOM0.count(gate_end_mu_B3) + self.HOM1.count(gate_end_mu_B3) + self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
-            sum13 += self.HOM0.count(gate_end_mu_B13) + self.HOM1.count(gate_end_mu_B13) + self.HOM2.count(gate_end_mu_B13) + self.HOM3.count(gate_end_mu_B13)
-            sum23 += self.HOM0.count(gate_end_mu_B23) + self.HOM1.count(gate_end_mu_B23) + self.HOM2.count(gate_end_mu_B23) + self.HOM3.count(gate_end_mu_B23)
+            # sum1 += self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+            # sum2 += self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+            # sum3 += self.HOM0.count(gate_end_mu_B3) + self.HOM1.count(gate_end_mu_B3) + self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
+            # sum13 += self.HOM0.count(gate_end_mu_B13) + self.HOM1.count(gate_end_mu_B13) + self.HOM2.count(gate_end_mu_B13) + self.HOM3.count(gate_end_mu_B13)
+            # sum23 += self.HOM0.count(gate_end_mu_B23) + self.HOM1.count(gate_end_mu_B23) + self.HOM2.count(gate_end_mu_B23) + self.HOM3.count(gate_end_mu_B23)
+
+            sum1 += self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+            sum2 += self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+            sum3 += self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
+            sum13 += self.HOM2.count(gate_end_mu_B13) + self.HOM3.count(gate_end_mu_B13)
+            sum23 += self.HOM2.count(gate_end_mu_B23) + self.HOM3.count(gate_end_mu_B23)
 
         self.sum1 = sum1
         self.sum2 = sum2

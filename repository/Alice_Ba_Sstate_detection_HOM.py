@@ -235,8 +235,8 @@ class Alice_Ba_Sstate_detection_HOM(base_experiment.base_experiment):
                 with sequential:
                     delay_mu(delay1)
                     with parallel:
-                        gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B1 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B1 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
@@ -251,8 +251,8 @@ class Alice_Ba_Sstate_detection_HOM(base_experiment.base_experiment):
                     delay_mu(delay2)
                     # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     with parallel:
-                        gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B2 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B2 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
@@ -265,8 +265,8 @@ class Alice_Ba_Sstate_detection_HOM(base_experiment.base_experiment):
                     delay_mu(delay1)
                     # gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     with parallel:
-                        gate_end_mu_B3 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B3 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B3 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B3 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B3 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B3 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
@@ -278,16 +278,21 @@ class Alice_Ba_Sstate_detection_HOM(base_experiment.base_experiment):
                     delay_mu(delay2)
                     # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     with parallel:
-                        gate_end_mu_B4 = self.HOM0.gate_rising(self.detection_time)
-                        gate_end_mu_B4 = self.HOM1.gate_rising(self.detection_time)
+                        # gate_end_mu_B4 = self.HOM0.gate_rising(self.detection_time)
+                        # gate_end_mu_B4 = self.HOM1.gate_rising(self.detection_time)
                         gate_end_mu_B4 = self.HOM2.gate_rising(self.detection_time)
                         gate_end_mu_B4 = self.HOM3.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
 
-            sum11 += self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
-            sum12 += self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
-            sum21 += self.HOM0.count(gate_end_mu_B3) + self.HOM1.count(gate_end_mu_B3) + self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
-            sum22 += self.HOM0.count(gate_end_mu_B4) + self.HOM1.count(gate_end_mu_B4) + self.HOM2.count(gate_end_mu_B4) + self.HOM3.count(gate_end_mu_B4)
+            # sum11 += self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+            # sum12 += self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+            # sum21 += self.HOM0.count(gate_end_mu_B3) + self.HOM1.count(gate_end_mu_B3) + self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
+            # sum22 += self.HOM0.count(gate_end_mu_B4) + self.HOM1.count(gate_end_mu_B4) + self.HOM2.count(gate_end_mu_B4) + self.HOM3.count(gate_end_mu_B4)
+
+            sum11 += self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+            sum12 += self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+            sum21 += self.HOM2.count(gate_end_mu_B3) + self.HOM3.count(gate_end_mu_B3)
+            sum22 += self.HOM2.count(gate_end_mu_B4) + self.HOM3.count(gate_end_mu_B4)
 
         self.sum11 = sum11
         self.sum12 = sum12

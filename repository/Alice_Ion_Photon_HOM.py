@@ -1,10 +1,14 @@
 """ Ion-Photon Entanglement with 4-APD HOM measurement
-Alice Barium detection, with scannable variables, detection with 4 HOM APDs
+Alice Barium detection, with scannable variables, detection with DMA
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
+Does Raman on Alice using the Keysight AWG, through the server on Glados.
 
+Code looks ready to go to run Ion Photon on Alice.
+Collates the counts detected with sigma-1/2 for each pattern
 
-George Toh 2021-01-19
+George Toh 2020-07-30
+updated 2021-01-22
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -39,6 +43,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         "delay_time",
         "raman_time",
         "fastloop_run_ns",
+        "extra_pump_time",
     }
 
     def build(self):
@@ -62,6 +67,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         self.setattr_argument('do_Raman_AWG', BooleanValue(True))
 
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
+        self.setattr_argument('extra_pump_time', NumberValue(2000, step=100, min=0, max=5000, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(250000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(1000, step=1000, min=1, max=50000, ndecimals=0))
@@ -69,7 +75,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -77,10 +83,12 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+
         self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), CenterScan(self.globals__DDS__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), CenterScan(self.globals__DDS__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 1, 100)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
+        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
 
     def run(self):
@@ -90,6 +98,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
 
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
+        self.set_dataset('pattern_counts', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
@@ -98,6 +107,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
         self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
+        self.set_dataset('num_attempts', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -194,22 +204,21 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
                     sendmessage(self,
                                 type="wave",
                                 channel=1,
-                                amplitude1=self.DDS__532__Alice__tone_1__amplitude,
-                                amplitude2=self.DDS__532__Alice__tone_1__amplitude,
-                                frequency1=self.DDS__532__Alice__tone_1__frequency,  # Hz
-                                frequency2=self.DDS__532__Alice__tone_2__frequency,  # Hz
-                                phase1=0,  # radians
-                                phase2=0,  # radians
-                                duration1=self.raman_time/ns,  # ns
+                                amplitude1 = self.DDS__532__Alice__tone_1__amplitude,
+                                amplitude2 = self.DDS__532__Alice__tone_1__amplitude,
+                                frequency1 = self.DDS__532__Alice__tone_1__frequency,  # Hz
+                                frequency2 = self.DDS__532__Alice__tone_2__frequency,  # Hz
+                                phase1 = self.raman_phase,  # radians
+                                phase2 = 0,  # radians
+                                duration1 = self.raman_time/ns,  # ns
                                 duration2=0,  # ns
                                 # pause1=self.pause_before,
                                 # pause2=self.pause_between
                                 )
                     time.sleep(0.1)
 
-
                 # Run the main portion of code here
-                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2 = self.kernel_run()
+                detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
 
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
@@ -217,6 +226,9 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
                 ratio_p4 = sum_p4_B1 / (sum_p4_B1 + sum_p4_B2)
                 ratios = [ratio_p1, ratio_p2, ratio_p3, ratio_p4]
 
+                pcounts = [detect_p1, detect_p2, detect_p3, detect_p4]
+
+                self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
                 self.append_to_dataset('sum_p1_1', sum_p1_B1)
                 self.append_to_dataset('sum_p1_2', sum_p1_B2)
@@ -226,6 +238,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
                 self.append_to_dataset('sum_p3_2', sum_p3_B2)
                 self.append_to_dataset('sum_p4_1', sum_p4_B1)
                 self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
                 ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
@@ -257,6 +270,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
         print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
         print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
+        print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
 
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()       # This loads global settings from datasets
@@ -335,6 +349,8 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
 
         loop = 0
         fail = 0
+        total_cycles = 0
+
         for loop in range(self.loops_to_run):
 
             # Repeat running the entangler cycles_to_run times
@@ -344,13 +360,13 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
-                delay_mu(30000)
+                total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
+                delay_mu(40000)
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
-                # delay(self.cooling_time)
 
-                extra_pump = 3000
+                extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
@@ -362,7 +378,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    in_start=1900+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_start=1900+extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1950+extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
@@ -375,45 +391,42 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     # print("Entangler success", pattern)
+                    # if self.do_Raman_AWG:
+                    #     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
-                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    at_mu(end_timestamp)
+                    delay_mu(20000)
+                    if self.do_Raman_AWG:
+                        self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
 
             at_mu(end_timestamp)
-            delay_mu(30000)
+            delay_mu(25000)
+            delay(self.raman_time)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-                # with parallel:
-                #     with sequential:
-                #         delay_mu(delay1)   # For turn off/on time of the lasers
-                #         gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                #     self.core_dma.playback_handle(pulses_handle01)
-
                 with parallel:
                     with sequential:
-                        delay_mu(delay1)
+                        delay_mu(delay1)   # For turn off/on time of the lasers
                         with parallel:
-                            gate_end_mu_B1 = self.HOM0.gate_rising(self.detection_time)
-                            gate_end_mu_B1 = self.HOM1.gate_rising(self.detection_time)
                             gate_end_mu_B1 = self.HOM2.gate_rising(self.detection_time)
                             gate_end_mu_B1 = self.HOM3.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle01)
 
-
-                self.core.break_realtime()
+                # self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
-                # sumB1 = self.Alice_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
-                sumB1 = self.HOM0.count(gate_end_mu_B1) + self.HOM1.count(gate_end_mu_B1) + self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)
+                sumB1 = self.HOM2.count(gate_end_mu_B1) + self.HOM3.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
 
+                # sumB2 = 0
                 detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
                 if pattern == 1:
                     detect_p1 += 1
@@ -429,29 +442,20 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
                     sum_p4_B1 += sumB1
 
             elif detect_flag == 2:
-                # with parallel:
-                #     with sequential:
-                #         delay_mu(delay2)   # For turn off time of the lasers
-                #         gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                #     self.core_dma.playback_handle(pulses_handle02)
-
                 with parallel:
                     with sequential:
-                        delay_mu(delay2)
-                        # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
+                        delay_mu(delay2)   # For turn off time of the lasers
                         with parallel:
-                            gate_end_mu_B2 = self.HOM0.gate_rising(self.detection_time)
-                            gate_end_mu_B2 = self.HOM1.gate_rising(self.detection_time)
                             gate_end_mu_B2 = self.HOM2.gate_rising(self.detection_time)
                             gate_end_mu_B2 = self.HOM3.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle02)
 
-                self.core.break_realtime()
+                # self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
-                # sumB2 = self.Alice_camera_side_APD.count(gate_end_mu_B2)
-                sumB2 = self.HOM0.count(gate_end_mu_B2) + self.HOM1.count(gate_end_mu_B2) + self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
+                sumB2 = self.HOM2.count(gate_end_mu_B2) + self.HOM3.count(gate_end_mu_B2)
 
+                # sumB1 = 0
                 detect_flag = 1
                 if pattern == 1:
                     detect_p1 += 1
@@ -473,7 +477,7 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
-        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, total_cycles
 
 
     @kernel
@@ -521,17 +525,17 @@ class Alice_Ion_Photon_HOM(base_experiment.base_experiment):
         self.entangler.init()
 
         # This writes an output-high time to all the channels
-        for channel in range(num_outputs):
-            self.entangler.set_timing_mu(channel, out_start+channel*200, out_stop)
+        # for channel in range(num_outputs):
+        #     self.entangler.set_timing_mu(channel, out_start+channel*200, out_stop)
             # This deals with 650-slow, 493-all, 650-pi
 
-        # # self.entangler.set_timing_mu(1, out_start, out_stop)
-        # self.entangler.set_timing_mu(2, out_start, out_stop)
-        # self.entangler.set_timing_mu(3, out_start, out_stop)
-        # # self.entangler.set_timing_mu(4, out_start, out_stop)
-        # self.entangler.set_timing_mu(5, out_start+1000, out_stop)
-        # # self.entangler.set_timing_mu(6, out_start, out_stop)
-        # self.entangler.set_timing_mu(7, out_start, out_stop)
+        # self.entangler.set_timing_mu(1, out_start, out_stop)
+        self.entangler.set_timing_mu(2, out_start, out_stop)
+        self.entangler.set_timing_mu(3, out_start, out_stop)
+        # self.entangler.set_timing_mu(4, out_start, out_stop)
+        self.entangler.set_timing_mu(5, out_start+1000, out_stop)
+        # self.entangler.set_timing_mu(6, out_start, out_stop)
+        self.entangler.set_timing_mu(7, out_start, out_stop)
 
         self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 

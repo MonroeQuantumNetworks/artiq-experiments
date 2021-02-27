@@ -1,12 +1,5 @@
-""" Modified to do Raman using the Keysight AWG
-Bob Barium detection, with scannable variables, DMA detection
-Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
-Fixed AOM amplitude scanning and update
-Also does curve fitting at the very end (Fit to Raman time scan)
-
-Uses Keysight AWG to drive Raman lasers
-
-Known issues:
+"""
+Curve fitting tool for IonPhoton Data
 
 
 George Toh 2020-12-18
@@ -24,7 +17,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Curvefit_Tool(base_experiment.base_experiment):
+class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -41,7 +34,7 @@ class Curvefit_Tool(base_experiment.base_experiment):
 
         self.setattr_argument('Instructions', EnumerationValue(["Choose which data set to fit to and set the fit parameters", "after fit is done, open applet Fit_results"]))
         self.setattr_argument('do_curvefit', BooleanValue(True))
-        self.setattr_argument('Data_to_fit', EnumerationValue(["detect11", "detect12", "detect21", "detect22"], default="detect12"))
+        self.setattr_argument('Data_to_fit', EnumerationValue(["sump1", "sump2", "sump3", "sump4"], default="sump1"))
 
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
         self.setattr_argument('fitparam_amp', NumberValue(1, ndecimals=0, min=1, step=0.1, max=4))
@@ -129,31 +122,49 @@ class Curvefit_Tool(base_experiment.base_experiment):
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
-        if self.Data_to_fit == "detect11":
-            datatofit = self.get_dataset('ratio11')
-        elif self.Data_to_fit == "detect12":
-            datatofit = self.get_dataset('ratio12')
-        elif self.Data_to_fit == "detect22":
-            datatofit = self.get_dataset('ratio22')
-        else:  # Data_to_fit == "detect21"
-            datatofit = self.get_dataset('ratio21')
+        if self.Data_to_fit == "sump1":
+            data1 = self.get_dataset('sum_p1_1')
+            data2 = self.get_dataset('sum_p1_2')
+            datatofit1 = np.asarray('sum_p1_1')
+            datatofit2 = np.asarray('sum_p1_2')
+            print(datatofit1)
+        elif self.Data_to_fit == "sump2":
+            datatofit = self.get_dataset('sum_p2_1')
+        elif self.Data_to_fit == "sump3":
+            datatofit = self.get_dataset('sum_p3_1')
+        else:  # Data_to_fit == "sump4"
+            datatofit = self.get_dataset('sum_p4_1')
 
+
+        # i=0
+        # datatofit1 = np.zeros(len(data1))
+        # for j in data1:
+        #     datatofit1[i] = j
+        #     i=i+1
+        # i=0
+        # datatofit2 = np.zeros(len(data2))
+        # for j in data2:
+        #     datatofit2[i] = j
+        #
+        #     i = i + 1
+
+        # datatofit1 = datatofit1  / (datatofit1+datatofit2)
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
         initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime]
-        fitbounds = ([0.2,-6.3,0],[1,6.3,20e-6])
+        fitbounds = ([0.2,-6.3,0],[1,6.3,120e-6])
 
         results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
-        fitbounds = ([0.2,-6.3,0,0],[1,100,20e-6,0.001])        # amp, phase, pitime, decayt
+        # fitbounds = ([0.2,-6.3,0,0],[1,100,120e-6,0.001])        # amp, phase, pitime, decayt
 
-        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:100], datatofit[1:100], p0=[*results1, self.fitparam_decayt], bounds = fitbounds)
-        print('Fit results: ', results2)
+        # results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit1[1:70], p0=[*results1, self.fitparam_decayt], bounds = fitbounds)
+        # print('Fit results: ', results2)
 
         fittedx = np.linspace(0,max(scanx),self.fit_points)
         # fitresult1 = cos_func(fittedx, *results2)
-        fitresult2 = cos_decay(fittedx, *results2)
+        fitresult2 = cos_decay(fittedx, *results1)
 
         # print(fittedx)
         # print(fitresult2)

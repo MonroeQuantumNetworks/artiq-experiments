@@ -45,18 +45,18 @@ class base_experiment(EnvExperiment):
         ('493__Alice__sigma_2', 'urukul0_ch1', 85*MHz, 0.6, 10.0, True),
         ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 0.495, 12.5, True),
         ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 0.545, 12.0, True),
-        ('650__sigma_1', 'urukul1_ch0', 81.5*MHz, 1.0, 10.0, True),
-        ('650__sigma_2', 'urukul1_ch1', 78.5*MHz, 1.0, 10.0, True),
-        ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
-        ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
+        # ('650__sigma_1', 'urukul1_ch0', 81.5*MHz, 1.0, 10.0, True),
+        # ('650__sigma_2', 'urukul1_ch1', 78.5*MHz, 1.0, 10.0, True),
+        # ('650__Alice__pi', 'urukul1_ch2', 80*MHz, 1.0, 10.0, True),
+        # ('650__Bob__pi', 'urukul1_ch3', 82*MHz, 1.0, 10.0, True),
         # ('650__fast_AOM', 'urukul2_ch0', 400*MHz, 1.0, 10.0, True),
         # ('493__Alice__cooling', 'urukul2_ch1', 80*MHz, 1.0, 10.0, True),
         # ('urukul2_ch2', 'urukul2_ch2', 76.1*MHz, 0.5, 17, False),
         # ('urukul2_ch3', 'urukul2_ch3', 83.1*MHz, 0.5, 17.5, False),
-        # ('532__Alice__tone_1', 'urukul3_ch0', 80*MHz, 0.4, 17.0, False),
-        # ('532__Alice__tone_2', 'urukul3_ch1', 75*MHz, 0.4, 17.0, False),
-        # ('532__Bob__tone_1', 'urukul3_ch2', 80*MHz, 0.3, 17.0, False),
-        # ('532__Bob__tone_2', 'urukul3_ch3', 85*MHz, 0.3, 17.0, False)
+        ('532__Alice__tone_1', 'urukul1_ch0', 80*MHz, 0.4, 10.0, False),
+        ('532__Alice__tone_2', 'urukul1_ch1', 75*MHz, 0.4, 10.0, False),
+        ('532__Bob__tone_1', 'urukul1_ch2', 80*MHz, 0.3, 10.0, False),
+        ('532__Bob__tone_2', 'urukul1_ch3', 85*MHz, 0.3, 10.0, False)
     ]
 
     TTL_input_list = [

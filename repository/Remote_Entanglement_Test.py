@@ -1,14 +1,13 @@
 """ Remote Entanglement with 4-APD HOM measurement
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
-Run Remote entanglement on Alice and Bob only, using all 4 APDs
+Run Remote entanglement on Alice and Bob, using all 4 APDs
 
 Collates the counts detected with sigma-1/2 for each pattern
 
 Problems:
     Does not have Bob Raman
-    Does not do Bob detection
 
-George Toh 2020-12-07
+George Toh 2021-02-19
 
 """
 import artiq.language.environment as artiq_env
@@ -76,10 +75,10 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         
-        self.setattr_argument('Alice_raman_time', NumberValue(10, step=1, min=0.1, max=1000, unit='ns', ndecimals=3))
-        self.setattr_argument('Bob_raman_pi_time', NumberValue(10, step=1, min=0.1, max=1000, unit='ns', ndecimals=3))
-        self.setattr_argument('Bob_pause_between', NumberValue(10, step=1, min=0.1, max=1000, unit='ns', ndecimals=3))
-        self.setattr_argument('Bob_raman_time', NumberValue(10, step=1, min=0.1, max=1000, unit='ns', ndecimals=3))
+        self.setattr_argument('Alice_raman_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
+        self.setattr_argument('Bob_raman_pi_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
+        self.setattr_argument('Bob_pause_between', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
+        self.setattr_argument('Bob_raman_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
         
         # self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -208,6 +207,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     # if self.flush_awg == True:
                     sendmessage(self, type="flush")
                     time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
+
+                    # Here, we rotate Bob to match Alice. They start at the same time, so Alice needs to wait
 
                     sendmessage(self,
                                 type="wave",
