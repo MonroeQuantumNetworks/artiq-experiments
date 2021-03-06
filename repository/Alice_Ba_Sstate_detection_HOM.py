@@ -199,8 +199,7 @@ class Alice_Ba_Sstate_detection_HOM(base_experiment.base_experiment):
         sum12 = 0
         sum21 = 0
         sum22 = 0
-        self.core.reset()             # Program is slow with this line un-commented, 10x slower when commented out
-        # self.core.break_realtime()    # This is extremely slow, at least 10x slower than core.reset
+        self.core.reset()
 
         # Copy host variables to FPGA
         # local_detection_time = self.detection_time

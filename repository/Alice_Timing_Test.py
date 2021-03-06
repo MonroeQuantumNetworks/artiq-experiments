@@ -191,15 +191,32 @@ class Alice_Timing_Test(base_experiment.base_experiment):
 
             self.ttl_650_fast_cw.on()
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_1.sw.on()
-            delay_mu(1000)
-            self.DDS__493__Alice__sigma_2.sw.on()
-            delay_mu(1000)
-            self.ttl_Alice_650_pi.on()
-            delay_mu(1000)
             self.ttl_650_sigma_1.on()
             delay_mu(1000)
             self.ttl_650_sigma_2.on()
+            delay_mu(1000)
+            self.ttl_Alice_650_pi.on()
+            delay_mu(1000)
+
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.off()
+
             delay_mu(1000)
             self.ttl_Alice_650_pi.off()
             delay_mu(1000)
@@ -299,7 +316,7 @@ class Alice_Timing_Test(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_1.on()
 
-            delay_mu(200)       # Wait 100 ns so that the slow AOMs are fully turned on
+            delay_mu(200)       # Wait 200 ns so that the slow AOMs are fully turned on
 
             # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
             self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator

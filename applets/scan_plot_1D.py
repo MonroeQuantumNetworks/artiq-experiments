@@ -49,7 +49,7 @@ class scan_plot_1D(pyqtgraph.GraphicsLayoutWidget):
             for i in range(self.num_channels):
                 self.plots += [self.addPlot(rowspan=3)]  #, axisItems={'bottom': dateaxisitem.DateAxisItem(orientation='bottom')})]
                 # create the elements of each plot widget
-                self.lines += [self.plots[i].plot(pen='w', symbol=None, symbolPen=('w'))]
+                self.lines += [self.plots[i].plot(pen='w', symbol='o', symbolPen=('w'))]
                 # add text readout
                 self.name_labels += [self.addLabel(self.channel_names[i], color='w', size='20pt')]
                 self.nextRow()

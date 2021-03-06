@@ -40,7 +40,7 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         self.setattr_argument('fitparam_amp', NumberValue(1, ndecimals=0, min=1, step=0.1, max=4))
         self.setattr_argument('fitparam_phase', NumberValue(0, ndecimals=0, min=-4, step=0.2, max=4))
         self.setattr_argument('fitparam_pitime', NumberValue(5*us, ndecimals=0, min=1*us, step=5*us, max=1000*us, unit='us'))
-        self.setattr_argument('fitparam_decayt', NumberValue(100*us, ndecimals=0, min=1*us, step=10*us, max=1000*us, unit='us'))
+        # self.setattr_argument('fitparam_decayt', NumberValue(100*us, ndecimals=0, min=1*us, step=10*us, max=1000*us, unit='us'))
 
     def run(self):
 
@@ -60,7 +60,7 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "data"
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset21"
+            + " --y-fits " + "yfitdataset"
             + " --rid " + "runid"            
             + " --y-label "
             + "'"
@@ -122,6 +122,8 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
+        data = self.get_dataset('ratio_list')
+        data = np.array(data)
         if self.Data_to_fit == "sump1":
             data1 = self.get_dataset('sum_p1_1')
             data2 = self.get_dataset('sum_p1_2')
@@ -129,26 +131,15 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
             datatofit2 = np.asarray('sum_p1_2')
             print(datatofit1)
         elif self.Data_to_fit == "sump2":
-            datatofit = self.get_dataset('sum_p2_1')
+            datatofit = data[:,1]
         elif self.Data_to_fit == "sump3":
-            datatofit = self.get_dataset('sum_p3_1')
-        else:  # Data_to_fit == "sump4"
-            datatofit = self.get_dataset('sum_p4_1')
+            datatofit = data[:,2]
+        else:  # self.Data_to_fit == "sump4"
+            # datatofit = np.array(data)
+            datatofit = data[:,3]
 
-
-        # i=0
-        # datatofit1 = np.zeros(len(data1))
-        # for j in data1:
-        #     datatofit1[i] = j
-        #     i=i+1
-        # i=0
-        # datatofit2 = np.zeros(len(data2))
-        # for j in data2:
-        #     datatofit2[i] = j
-        #
-        #     i = i + 1
-
-        # datatofit1 = datatofit1  / (datatofit1+datatofit2)
+        # print(datatofit)
+        datatofit = np.ascontiguousarray(datatofit)
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
         initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime]
@@ -157,20 +148,11 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
-        # fitbounds = ([0.2,-6.3,0,0],[1,100,120e-6,0.001])        # amp, phase, pitime, decayt
-
-        # results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit1[1:70], p0=[*results1, self.fitparam_decayt], bounds = fitbounds)
-        # print('Fit results: ', results2)
-
         fittedx = np.linspace(0,max(scanx),self.fit_points)
-        # fitresult1 = cos_func(fittedx, *results2)
-        fitresult2 = cos_decay(fittedx, *results1)
-
-        # print(fittedx)
-        # print(fitresult2)
+        fitresult1 = cos_func(fittedx, *results1)
 
         self.set_dataset('xfitdataset', fittedx, broadcast=True)
-        self.set_dataset('yfitdataset21', fitresult2, broadcast=True)
+        self.set_dataset('yfitdataset', fitresult1, broadcast=True)
 
         self.set_dataset('data', datatofit, broadcast=True)
 
@@ -178,7 +160,6 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
         # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
 
-        print("Amplitude: {:0.2f}".format(results2[0]), " ")
-        print("Phase: {:0.2f}".format(results2[1]), " ")
-        print("Pi Time: {:0.2f}".format(results2[2]*1e6), " us")
-        print("Lifetime: {:0.0f}".format(results2[3]*1e6), " us")
+        print("Amplitude: {:0.2f}".format(results1[0]), " ")
+        print("Phase: {:0.2f}".format(results1[1]), " ")
+        print("Pi angle: {:0.2f}".format(results1[2]*1e6), " degs")

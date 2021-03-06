@@ -4,11 +4,11 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
 Does Raman on Alice using the Keysight AWG, through the server on Glados.
 
-Code looks ready to go to run Ion Photon on Alice.
 Collates the counts detected with sigma-1/2 for each pattern
+For state detection, we attenuate the 493 laser power
 
 George Toh 2020-07-30
-updated 2021-01-22
+updated 2021-03-03
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -66,6 +66,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('calculate_runtime', BooleanValue(True))
         self.setattr_argument('do_Raman_AWG', BooleanValue(True))
+        self.setattr_argument('no_loop', BooleanValue(True))
+
 
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('extra_pump_time', NumberValue(2000, step=100, min=0, max=5000, ndecimals=0))
@@ -84,7 +86,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
         self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), CenterScan(self.globals__DDS__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), CenterScan(self.globals__DDS__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
@@ -100,15 +102,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
         self.set_dataset('pattern_counts', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
         self.set_dataset('num_attempts', [], broadcast=True, archive=True)
+        self.set_dataset('scan_x', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -120,8 +115,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             "create_applet",
             name="IonPhoton_Counts",
             command=applet_stream_cmd
-            + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "sum_p1_1 sum_p1_2"
+            + " --x " + "scanx"        # Defined below in the msm handling, assumes 1-D scan
+            + " --y-names " + "sum_p3_1 sum_p3_2"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --rid " + "runid"
@@ -160,8 +155,18 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             for point in msm: point_num += 1
             print("Number of points: ", point_num)
 
+            self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
+
             # assume a 1D scan for plotting
-            self.set_dataset('scan_x', [], broadcast=True, archive=True)
+            self.set_dataset('scanx', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p1_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p1_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p2_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p2_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p3_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p3_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
 
             t_now = time.time()  # Save the current time
 
@@ -180,6 +185,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 # update the plot x-axis ticks
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
+                self.mutate_dataset('scanx', point_num, getattr(point, self.active_scan_names[0]))
 
                 # George hardcoded this in kernel_run to ensure all AOMs are updated
                 # # update DDS if scanning DDS
@@ -231,14 +237,22 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
-                self.append_to_dataset('sum_p1_1', sum_p1_B1)
-                self.append_to_dataset('sum_p1_2', sum_p1_B2)
-                self.append_to_dataset('sum_p2_1', sum_p2_B1)
-                self.append_to_dataset('sum_p2_2', sum_p2_B2)
-                self.append_to_dataset('sum_p3_1', sum_p3_B1)
-                self.append_to_dataset('sum_p3_2', sum_p3_B2)
-                self.append_to_dataset('sum_p4_1', sum_p4_B1)
-                self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                # self.append_to_dataset('sum_p1_1', sum_p1_B1)
+                # self.append_to_dataset('sum_p1_2', sum_p1_B2)
+                # self.append_to_dataset('sum_p2_1', sum_p2_B1)
+                # self.append_to_dataset('sum_p2_2', sum_p2_B2)
+                # self.append_to_dataset('sum_p3_1', sum_p3_B1)
+                # self.append_to_dataset('sum_p3_2', sum_p3_B2)
+                # self.append_to_dataset('sum_p4_1', sum_p4_B1)
+                # self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                self.mutate_dataset('sum_p1_1', point_num, sum_p1_B1)
+                self.mutate_dataset('sum_p1_2', point_num, sum_p1_B2)
+                self.mutate_dataset('sum_p2_1', point_num, sum_p2_B1)
+                self.mutate_dataset('sum_p2_2', point_num, sum_p2_B2)
+                self.mutate_dataset('sum_p3_1', point_num, sum_p3_B1)
+                self.mutate_dataset('sum_p3_2', point_num, sum_p3_B2)
+                self.mutate_dataset('sum_p4_1', point_num, sum_p4_B1)
+                self.mutate_dataset('sum_p4_2', point_num, sum_p4_B2)
                 self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
@@ -253,17 +267,22 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 point_num += 1
 
+                print("Time elapsed = {:.2f} seconds".format(time.time() - t_now))
                 print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
                 print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
                 print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
-                print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
-                print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
+                print("sum_p1_1, sum_p2_1, sum_p3_1, sum_p4_1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
+                print("sum_p1_2, sum_p2_2, sum_p3_2, sum_p4_2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
                 print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
                 # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
                 print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
 
+
+                time.sleep(2)
+
                 # TODO Remove this later if you want to do scans
-                # break
+                if self.no_loop:
+                    break
 
         except TerminationRequested:
             # These are necessary to restore the system to the state before the experiment.
@@ -369,6 +388,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 self.core_dma.playback_handle(fast_loop_cooling_handle)
+                delay_mu(500)
 
                 extra_pump = self.extra_pump_time
 
@@ -411,18 +431,34 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     # Add a counter here to sum the number of failed attempts?
 
             at_mu(end_timestamp)
-            delay_mu(30000)
+            delay_mu(90000)
             delay(self.raman_time)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
+
+                # TODO
+                # Set 493 AOM power lower for detection
+                # self.core.break_realtime()
+                # self.DDS__493__Alice__sigma_1.init()
+                # self.DDS__493__Alice__sigma_1.set(70 * MHz)  # set freq in MHz
+                # # self.DDS__493__Alice__sigma_1.sw.on()
+                # # self.DDS__493__Alice__sigma_1.set_att(attenuation)  # set attenuation in dB 0 to 31.5, base level is +10 dBm.
+                # self.DDS__493__Alice__sigma_1.set_att(30.0)
+                # delay_mu(2000)
+
                 with parallel:
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
                         gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle01)
+
+                # Set 493 AOM power higher after detection
+                # self.core.break_realtime()
+                # self.DDS__493__Alice__sigma_1.set_att(10.0)
+                # delay_mu(2000)
 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
@@ -444,11 +480,20 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     sum_p4_B1 += sumB1
 
             elif detect_flag == 2:
+
+                # Set 493 AOM power lower for detection
+                # self.DDS__493__Alice__sigma_2.set_att(30.0)
+                # delay_mu(2000)
+
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
                         gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle02)
+
+                # Set 493 AOM power higher after detection
+                # self.DDS__493__Alice__sigma_2.set_att(10.0)
+                # delay_mu(2000)
 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
@@ -536,7 +581,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # self.entangler.set_timing_mu(6, out_start, out_stop)
         self.entangler.set_timing_mu(7, out_start, out_stop)
 
-        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -654,7 +699,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             delay(self.detection_time)
 
             # with parallel:
-            self.ttl_493_all.on()
+            self.ttl_493_all.off()
             delay_mu(8)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
             delay_mu(8)
@@ -688,7 +733,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             delay(self.detection_time)
 
             # with parallel:
-            self.ttl_493_all.on()
+            self.ttl_493_all.off()
             delay_mu(8)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
             delay_mu(8)
