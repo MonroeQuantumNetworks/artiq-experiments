@@ -34,7 +34,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon(base_experiment.base_experiment):
+class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -669,8 +669,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses01"):
             # with parallel:
-            self.DDS__493__Alice__sigma_2.sw.off()
-            delay_mu(8)
+            # self.DDS__493__Alice__sigma_2.sw.off()
+            # delay_mu(8)
             self.ttl_Alice_650_pi.on() # Alice 650 pi
             delay_mu(8)
             self.ttl_650_fast_cw.on() # 650 fast AOM
@@ -679,12 +679,14 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             delay_mu(8)
             self.ttl_650_sigma_2.on() # 650 sigma 2
             delay_mu(8)
-            self.ttl_493_all.on()
+            # self.ttl_493_all.on()
+            self.DDS__532__Alice__tone_1.sw.on()
 
             delay(self.detection_time)
 
             # with parallel:
-            self.ttl_493_all.off()
+            self.DDS__532__Alice__tone_1.sw.off()
+            # self.ttl_493_all.off()
             delay_mu(8)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
             delay_mu(8)
@@ -693,8 +695,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off() # 650 sigma 1
             delay_mu(8)
             self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
-            self.DDS__493__Alice__sigma_2.sw.on()
+            # delay_mu(8)
+            # self.DDS__493__Alice__sigma_2.sw.on()
 
     @kernel
     def record_detect2(self):
@@ -703,8 +705,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses02"):
             # with parallel:
-            self.DDS__493__Alice__sigma_1.sw.off()
-            delay_mu(8)
+            # self.DDS__493__Alice__sigma_1.sw.off()
+            # delay_mu(8)
             self.ttl_Alice_650_pi.on() # Alice 650 pi
             delay_mu(8)
             self.ttl_650_fast_cw.on() # 650 fast AOM
@@ -713,12 +715,15 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             delay_mu(8)
             self.ttl_650_sigma_2.on() # 650 sigma 2
             delay_mu(8)
-            self.ttl_493_all.on()
+            # self.ttl_493_all.on()
+            self.DDS__532__Alice__tone_2.sw.on()
+
 
             delay(self.detection_time)
 
             # with parallel:
-            self.ttl_493_all.off()
+            self.DDS__532__Alice__tone_2.sw.off()
+            # self.ttl_493_all.off()
             delay_mu(8)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
             delay_mu(8)
@@ -727,8 +732,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off() # 650 sigma 1
             delay_mu(8)
             self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
-            self.DDS__493__Alice__sigma_1.sw.on()
+            # delay_mu(8)
+            # self.DDS__493__Alice__sigma_1.sw.on()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

@@ -112,6 +112,9 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         def cos_func(x, amp, phase, pitime):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
 
+        def cos_func2(x, amp, phase, pitime, offset):
+            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + offset
+
         def cos_decay(x, amp, phase, pitime, decayt):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
 
@@ -125,11 +128,7 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         data = self.get_dataset('ratio_list')
         data = np.array(data)
         if self.Data_to_fit == "sump1":
-            data1 = self.get_dataset('sum_p1_1')
-            data2 = self.get_dataset('sum_p1_2')
-            datatofit1 = np.asarray('sum_p1_1')
-            datatofit2 = np.asarray('sum_p1_2')
-            print(datatofit1)
+            datatofit = data[:,0]
         elif self.Data_to_fit == "sump2":
             datatofit = data[:,1]
         elif self.Data_to_fit == "sump3":
@@ -142,14 +141,14 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         datatofit = np.ascontiguousarray(datatofit)
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
-        initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime]
-        fitbounds = ([0.2,-6.3,0],[1,6.3,120e-6])
+        initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime, 0.5]
+        fitbounds = ([0.2,-6.3,0,0],[1,6.3,120e-6,1])
 
-        results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
         fittedx = np.linspace(0,max(scanx),self.fit_points)
-        fitresult1 = cos_func(fittedx, *results1)
+        fitresult1 = cos_func2(fittedx, *results1)
 
         self.set_dataset('xfitdataset', fittedx, broadcast=True)
         self.set_dataset('yfitdataset', fitresult1, broadcast=True)
@@ -163,3 +162,4 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         print("Amplitude: {:0.2f}".format(results1[0]), " ")
         print("Phase: {:0.2f}".format(results1[1]), " ")
         print("Pi angle: {:0.2f}".format(results1[2]*1e6), " degs")
+        print("Offset: {:0.2f}".format(results1[3]))

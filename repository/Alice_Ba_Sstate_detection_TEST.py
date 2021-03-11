@@ -19,7 +19,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
+class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -239,6 +239,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
 
+            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
+            delay_mu(10000)
+
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(500)
             with parallel:
@@ -248,6 +251,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                     gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
+
+            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
+            delay_mu(10000)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
@@ -259,6 +265,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
 
+            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
+            delay_mu(10000)
+
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
             with parallel:
@@ -269,10 +278,8 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
 
-            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
-            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
-            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
+            delay_mu(10000)
 
         self.sum11 = sum11
         self.sum12 = sum12
@@ -297,8 +304,11 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
             self.ttl_Alice_650_pi.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
+            delay_mu(10)
             self.ttl_650_sigma_1.on() # 650 sigma 1
             self.ttl_650_sigma_2.on() # 650 sigma 2
+            self.DDS__532__Alice__tone_1.sw.off()
+            self.DDS__532__Alice__tone_2.sw.off()
 
     @kernel
     def record_pump_sigma1(self):
@@ -309,10 +319,8 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
-            # self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
 
-            # self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Alice__sigma_2.sw.off()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_1.sw.off()
 
@@ -325,10 +333,8 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
-            self.DDS__493__Alice__sigma_1.sw.off()
-            # self.DDS__493__Alice__sigma_2.sw.off()
 
-            # self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__493__Alice__sigma_1.sw.off()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_2.sw.off()
 
@@ -339,9 +345,9 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses01"):
 
-            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__532__Alice__tone_1.sw.on()
             delay(self.detection_time)
-            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__532__Alice__tone_1.sw.off()
 
     @kernel
     def record_detect2(self):
@@ -350,6 +356,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses02"):
 
-            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__532__Alice__tone_2.sw.on()
             delay(self.detection_time)
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__532__Alice__tone_2.sw.off()
