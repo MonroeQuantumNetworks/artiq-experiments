@@ -668,32 +668,39 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 1
         """
         with self.core_dma.record("pulses01"):
-            # with parallel:
+
             self.DDS__493__Alice__sigma_2.sw.off()
-            delay_mu(8)
+            delay_mu(10)
+            self.DDS__493__Alice__sigma_1.sw.off()
+            delay_mu(10)
             self.ttl_Alice_650_pi.on() # Alice 650 pi
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_1.on() # 650 sigma 1
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_2.on() # 650 sigma 2
-            delay_mu(8)
+            delay_mu(50)
             self.ttl_493_all.on()
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_1.sw.on()
 
             delay(self.detection_time)
 
-            # with parallel:
+            self.DDS__493__Alice__sigma_1.sw.off()
+            delay_mu(500)
             self.ttl_493_all.off()
-            delay_mu(8)
+            delay_mu(50)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_fast_cw.off() # 650 fast AOM
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_1.off() # 650 sigma 1
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
+            delay_mu(10)
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(10)
             self.DDS__493__Alice__sigma_2.sw.on()
 
     @kernel
@@ -702,33 +709,40 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
         with self.core_dma.record("pulses02"):
-            # with parallel:
+
+            self.DDS__493__Alice__sigma_2.sw.off()
+            delay_mu(10)
             self.DDS__493__Alice__sigma_1.sw.off()
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_Alice_650_pi.on() # Alice 650 pi
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_1.on() # 650 sigma 1
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_2.on() # 650 sigma 2
-            delay_mu(8)
+            delay_mu(50)
             self.ttl_493_all.on()
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_2.sw.on()
 
             delay(self.detection_time)
 
-            # with parallel:
+            self.DDS__493__Alice__sigma_2.sw.off()
+            delay_mu(500)
             self.ttl_493_all.off()
-            delay_mu(8)
+            delay_mu(50)
             self.ttl_Alice_650_pi.off() # Alice 650 pi
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_fast_cw.off() # 650 fast AOM
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_1.off() # 650 sigma 1
-            delay_mu(8)
+            delay_mu(10)
             self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
+            delay_mu(10)
             self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(10)
+            self.DDS__493__Alice__sigma_2.sw.on()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take
