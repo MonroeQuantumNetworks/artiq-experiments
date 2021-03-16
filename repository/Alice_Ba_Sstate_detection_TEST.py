@@ -3,10 +3,9 @@ Alice Barium detection, with scannable variables, partial DMA
 Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
-Known issues:
-    100ns between pump and cool for 493 AOM timings
 
 George Toh 2020-07-21
+Updated 2021-03-12
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -19,7 +18,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
+class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -51,19 +50,19 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
         self.sum21 = 0
         self.sum22 = 0
 
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_frequency(freq)
-        delay_mu(6000)
-
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_amplitude(amp)
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS_freq(self, channel, freq):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set_frequency(freq)
+    #     delay_mu(6000)
+    #
+    # @kernel
+    # def set_DDS_amp(self, channel, amp):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set_amplitude(amp)
+    #     delay_mu(6000)
 
     def run(self):
 
@@ -199,11 +198,7 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
         sum12 = 0
         sum21 = 0
         sum22 = 0
-        self.core.reset()             # Program is slow with this line un-commented, 10x slower when commented out
-        # self.core.break_realtime()    # This is extremely slow, at least 10x slower than core.reset
-
-        # Copy host variables to FPGA
-        # local_detection_time = self.detection_time
+        self.core.reset()
 
         # Preparation for experiment
         self.prep_record()
@@ -234,67 +229,46 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    # gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
-
-            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
-            delay_mu(10000)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)
-                    # gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
-
-            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
-            delay_mu(10000)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)
-                    # gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
-
-            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
-            delay_mu(10000)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)
-                    # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
 
+            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
+            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
+            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
             sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
-            delay_mu(10000)
 
         self.sum11 = sum11
         self.sum12 = sum12
         self.sum21 = sum21
         self.sum22 = sum22
-
-    # ARTIQ example
-    # Using gateware counters, only a single input event each is
-    # generated, greatly reducing the load on the input FIFOs:
-    # with parallel:
-    #     self.pmt_0_counter.gate_rising(10 * ms)
-    #     self.pmt_1_counter.gate_rising(10 * ms)
-    #
-    # counts_0 = self.pmt_0_counter.fetch_count() # blocks
-    # counts_1 = self.pmt_1_counter.fetch_count()
 
     @kernel
     def prep_record(self):
@@ -304,11 +278,8 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
             self.ttl_Alice_650_pi.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            delay_mu(10)
             self.ttl_650_sigma_1.on() # 650 sigma 1
             self.ttl_650_sigma_2.on() # 650 sigma 2
-            self.DDS__532__Alice__tone_1.sw.off()
-            self.DDS__532__Alice__tone_2.sw.off()
 
     @kernel
     def record_pump_sigma1(self):
@@ -319,8 +290,10 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
-
+            # self.DDS__493__Alice__sigma_1.sw.off()
             self.DDS__493__Alice__sigma_2.sw.off()
+
+            # self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_1.sw.off()
 
@@ -333,8 +306,10 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.cooling_time)
-
             self.DDS__493__Alice__sigma_1.sw.off()
+            # self.DDS__493__Alice__sigma_2.sw.off()
+
+            # self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.pumping_time)
             self.DDS__493__Alice__sigma_2.sw.off()
 
@@ -345,9 +320,9 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses01"):
 
-            self.DDS__532__Alice__tone_1.sw.on()
+            self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.detection_time)
-            self.DDS__532__Alice__tone_1.sw.off()
+            self.DDS__493__Alice__sigma_1.sw.off()
 
     @kernel
     def record_detect2(self):
@@ -356,6 +331,6 @@ class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses02"):
 
-            self.DDS__532__Alice__tone_2.sw.on()
+            self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.detection_time)
-            self.DDS__532__Alice__tone_2.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.off()

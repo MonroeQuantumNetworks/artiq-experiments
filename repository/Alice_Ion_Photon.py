@@ -5,10 +5,9 @@ Run Ion-Photon entanglement on Alice only, using all 4 APDs
 Does Raman on Alice using the Keysight AWG, through the server on Glados.
 
 Collates the counts detected with sigma-1/2 for each pattern
-For state detection, we attenuate the 493 laser power
 
 George Toh 2020-07-30
-updated 2021-03-03
+updated 2021-03-12
 """
 import artiq.language.environment as artiq_env
 import artiq.language.units as aq_units
@@ -79,7 +78,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
@@ -237,14 +235,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
-                # self.append_to_dataset('sum_p1_1', sum_p1_B1)
-                # self.append_to_dataset('sum_p1_2', sum_p1_B2)
-                # self.append_to_dataset('sum_p2_1', sum_p2_B1)
-                # self.append_to_dataset('sum_p2_2', sum_p2_B2)
-                # self.append_to_dataset('sum_p3_1', sum_p3_B1)
-                # self.append_to_dataset('sum_p3_2', sum_p3_B2)
-                # self.append_to_dataset('sum_p4_1', sum_p4_B1)
-                # self.append_to_dataset('sum_p4_2', sum_p4_B2)
                 self.mutate_dataset('sum_p1_1', point_num, sum_p1_B1)
                 self.mutate_dataset('sum_p1_2', point_num, sum_p1_B2)
                 self.mutate_dataset('sum_p2_1', point_num, sum_p2_B1)
@@ -371,7 +361,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1 - 65           # For detect sigma2
+        delay2 = delay1                 # For detect sigma2
 
         loop = 0
         fail = 0
@@ -390,8 +380,17 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
                 delay_mu(20000)
 
+                # Turn off cooling beams
+                delay(self.cooling_time)        # Minimum cool time
+                with parallel:
+                    self.ttl_Alice_650_pi.off()
+                    self.ttl_493_all.off()
+                    self.ttl_650_fast_cw.off()
+                    self.ttl_650_sigma_1.off()
+                    self.ttl_650_sigma_2.off()
+
                 # Cooling loop sequence using pre-recorded dma sequence
-                self.core_dma.playback_handle(fast_loop_cooling_handle)
+                # self.core_dma.playback_handle(fast_loop_cooling_handle)
                 delay_mu(500)
 
                 extra_pump = self.extra_pump_time
@@ -413,9 +412,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
                 end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
-                # num_cycles = self.entangler.get_ncycles()     # Use this later if we need to count the number of cycles
 
-                # self.check_entangler_status() # Do we need this?
+                # self.check_entangler_status() # Dont need this
 
                 if pattern == 1 or pattern == 4:
                     at_mu(end_timestamp)
@@ -432,7 +430,16 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                     break
                 else:   # Failed to entangle
                     pattern = 0
-                    # Add a counter here to sum the number of failed attempts?
+                    # Turn on cooling beams
+                    with sequential:
+                        delay_mu(15000)
+                        self.ttl_Alice_650_pi.on()
+                        self.ttl_493_all.on()
+                        delay_mu(10)
+                        self.ttl_650_fast_cw.on()
+                        self.ttl_650_sigma_1.on()
+                        delay_mu(10)
+                        self.ttl_650_sigma_2.on()
 
             at_mu(end_timestamp)
             delay_mu(35000)
@@ -443,7 +450,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
-
 
                 with parallel:
                     with sequential:
@@ -473,7 +479,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
             elif detect_flag == 2:
 
-
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
@@ -501,6 +506,16 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
             else:
                 fail += 1
+
+            # Turn on cooling beams for now
+            with parallel:
+                self.ttl_Alice_650_pi.on()
+                self.ttl_493_all.on()
+                delay_mu(10)
+                self.ttl_650_fast_cw.on()
+                self.ttl_650_sigma_1.on()
+                delay_mu(10)
+                self.ttl_650_sigma_2.on()
 
             loop += 1
 
@@ -553,20 +568,15 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # ]
         self.entangler.init()
 
-        # This writes an output-high time to all the channels
-        # for channel in range(num_outputs):
-        #     self.entangler.set_timing_mu(channel, out_start+channel*200, out_stop)
-            # This deals with 650-slow, 493-all, 650-pi
-
-        # self.entangler.set_timing_mu(1, out_start, out_stop)
+        self.entangler.set_timing_mu(1, 20000, 20000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
-        self.entangler.set_timing_mu(3, out_start, out_stop)
+        self.entangler.set_timing_mu(3, out_start, out_stop-100)    # Turn off 650 sigma before 650 pi
         # self.entangler.set_timing_mu(4, out_start, out_stop)
         self.entangler.set_timing_mu(5, out_start, out_stop)
         # self.entangler.set_timing_mu(6, out_start, out_stop)
         self.entangler.set_timing_mu(7, out_start, out_stop)
 
-        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -576,7 +586,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             self.entangler.set_timing_mu(4, out_start2, out_stop2)   # Turn on 650sigma1 slow-aom
             self.entangler.set_timing_mu(6, out_start3, out_stop3)   # Turn on 650fast-pulse
 
-        self.entangler.set_timing_mu(1, 20000, 20000)  # Do nothing to BoB 650-pi
 
         for channel in range(num_inputs):
             self.entangler.set_timing_mu(channel + num_outputs, in_start, in_stop)
@@ -590,6 +599,18 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
     @kernel
     def run_entangler(self, timeout_length: TInt32):
         """Run the entangler for a max time and wait for it to succeed/timeout."""
+
+        # for i in range(4):
+        #     self.entangle_inputs[i].set_sensitivity(1)
+        #     delay_mu(10)
+        #
+        # end_timestamp, reason = self.entangler.run_mu(timeout_length)
+        #
+        # at_mu(end_timestamp)
+        # for i in range(4):
+        #     self.entangle_inputs[i].set_sensitivity(0)
+        #     delay_mu(10)
+
         with parallel:
             # This generates output events on the bus -> entangler
             # when rising edges are detected
@@ -599,9 +620,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
             self.entangle_inputs[3].gate_rising_mu(np.int64(timeout_length))
             end_timestamp, reason = self.entangler.run_mu(timeout_length)
         # must wait after entangler ends to schedule new events.
-
-        # Doesn't strictly NEED to break_realtime, but it's safe.
-        # self.core.break_realtime()
 
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)
@@ -650,7 +668,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.on()
                 self.ttl_650_sigma_1.on()
                 self.ttl_650_sigma_2.on()
-                # self.ttl_test.on()  # This channel for diagnostics
 
                 delay(self.cooling_time)
 
@@ -660,7 +677,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
-                # self.ttl_test.off()
 
     @kernel
     def record_detect1(self):

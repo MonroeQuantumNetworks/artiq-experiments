@@ -3,10 +3,9 @@ Alice Barium detection, with scannable variables, partial DMA
 Automatically does both pump12 and detect12
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
-Known issues:
-    100ns between pump and cool for 493 AOM timings
 
 George Toh 2020-07-21
+Updated 2021-03-12
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -51,19 +50,19 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         self.sum21 = 0
         self.sum22 = 0
 
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_frequency(freq)
-        delay_mu(6000)
-
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_amplitude(amp)
-        delay_mu(6000)
+    # @kernel
+    # def set_DDS_freq(self, channel, freq):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set_frequency(freq)
+    #     delay_mu(6000)
+    #
+    # @kernel
+    # def set_DDS_amp(self, channel, amp):
+    #     self.core.reset()
+    #     delay_mu(95000)
+    #     channel.set_amplitude(amp)
+    #     delay_mu(6000)
 
     def run(self):
 
@@ -199,11 +198,7 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         sum12 = 0
         sum21 = 0
         sum22 = 0
-        self.core.reset()             # Program is slow with this line un-commented, 10x slower when commented out
-        # self.core.break_realtime()    # This is extremely slow, at least 10x slower than core.reset
-
-        # Copy host variables to FPGA
-        # local_detection_time = self.detection_time
+        self.core.reset()
 
         # Preparation for experiment
         self.prep_record()
@@ -234,7 +229,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    # gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
@@ -244,7 +238,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)
-                    # gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
@@ -254,7 +247,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)
-                    # gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle01)
             delay_mu(500)
@@ -264,7 +256,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay2)
-                    # gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(local_detection_time)
                     gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle02)
             delay_mu(500)
@@ -278,16 +269,6 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         self.sum12 = sum12
         self.sum21 = sum21
         self.sum22 = sum22
-
-    # ARTIQ example
-    # Using gateware counters, only a single input event each is
-    # generated, greatly reducing the load on the input FIFOs:
-    # with parallel:
-    #     self.pmt_0_counter.gate_rising(10 * ms)
-    #     self.pmt_1_counter.gate_rising(10 * ms)
-    #
-    # counts_0 = self.pmt_0_counter.fetch_count() # blocks
-    # counts_1 = self.pmt_1_counter.fetch_count()
 
     @kernel
     def prep_record(self):

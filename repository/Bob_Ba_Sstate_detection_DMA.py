@@ -181,7 +181,8 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         sum11 = 0
         sum12 = 0
         sum21 = 0
-        sum22 = 0set_att(31.5)
+        sum22 = 0
+
         self.core.reset()
 
 
