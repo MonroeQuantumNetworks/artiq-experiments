@@ -108,7 +108,7 @@
     "globals.DDS.650.Alice.pi.frequency": 80000000.0,
     "globals.DDS.650.Alice.pi.switch": false,
     "globals.DDS.650.Alice.weak_pi.amplitude": 0.5,
-    "globals.DDS.650.Alice.weak_pi.attenuation": 9.0,
+    "globals.DDS.650.Alice.weak_pi.attenuation": 13.0,
     "globals.DDS.650.Alice.weak_pi.frequency": 80000000.0,
     "globals.DDS.650.Alice.weak_pi.switch": true,
     "globals.DDS.650.Bob.pi.amplitude": 0.0,

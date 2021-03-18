@@ -2,10 +2,9 @@ from artiq.experiment import *
 from artiq.coredevice.exceptions import RTIOOverflow
 
 import numpy as np
-import time
 
 # for motors
-import CONEX_TRB
+from repo_test import CONEX_TRB
 
 # for optimizer
 import optimizer

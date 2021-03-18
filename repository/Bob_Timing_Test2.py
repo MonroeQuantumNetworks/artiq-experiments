@@ -34,7 +34,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
 
-class Bob_Timing_Test(base_experiment.base_experiment):
+class Bob_Timing_Test2(base_experiment.base_experiment):
 
     kernel_invariants = {
         "cool_time",

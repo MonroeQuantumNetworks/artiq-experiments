@@ -73,7 +73,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'AWG__532__Bob__tone_1__frequency', 'AWG__532__Bob__tone_2__frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -83,10 +83,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__frequency), CenterScan(self.globals__DDS__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__frequency), CenterScan(self.globals__DDS__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), CenterScan(self.globals__AWG__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), CenterScan(self.globals__AWG__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
 
     def run(self):
@@ -203,10 +203,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                     sendmessage(self,
                                 type="wave",
                                 channel=3,
-                                amplitude1=self.DDS__532__Bob__tone_1__amplitude,
-                                amplitude2=self.DDS__532__Bob__tone_1__amplitude,
-                                frequency1=self.DDS__532__Bob__tone_1__frequency,  # Hz
-                                frequency2=self.DDS__532__Bob__tone_2__frequency,  # Hz
+                                amplitude1=self.AWG__532__Bob__tone_1__amplitude,
+                                amplitude2=self.AWG__532__Bob__tone_1__amplitude,
+                                frequency1=self.AWG__532__Bob__tone_1__frequency,  # Hz
+                                frequency2=self.AWG__532__Bob__tone_2__frequency,  # Hz
                                 phase1 = 0,  # radians
                                 phase2 = self.raman_phase,  # radians
                                 duration1=self.raman_time/ns,  # ns
@@ -288,12 +288,6 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.core.reset()
         self.core.break_realtime()
-
-        # Hard-coded to set the AOM frequency and amplitude
-        # delay_mu(95000)
-        # self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
-        # delay_mu(95000)
-        # self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
 
         self.init()
 

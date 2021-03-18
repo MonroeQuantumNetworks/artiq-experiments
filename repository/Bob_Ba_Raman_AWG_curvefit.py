@@ -43,17 +43,17 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
         self.setattr_argument('do_curvefit', BooleanValue(False))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'DDS__532__Bob__tone_1__frequency', 'DDS__532__Bob__tone_2__frequency', 'DDS__532__Bob__tone_1__amplitude', 'DDS__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Bob__tone_1__frequency', 'AWG__532__Bob__tone_2__frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Bob__tone_2__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
         self.setattr_argument('channel', NumberValue(3, ndecimals=0, min=1, step=1, max=4))
 
@@ -106,7 +106,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 if isinstance(scan, NoScan):
                     # just set the single value
                     setattr(self, name, scan.value)     # This sets 532-amplitude and 532 frequency too
-                    print(name, scan.value)             # e.g. DDS__532__Bob__tone_1__amplitude 0.35
+                    print(name, scan.value)             # e.g. AWG__532__Bob__tone_1__amplitude 0.35
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
@@ -176,10 +176,10 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 sendmessage(self,
                     type = "wave",
                     channel = self.channel,
-                    amplitude1 = self.DDS__532__Bob__tone_1__amplitude,
-                    amplitude2 = self.DDS__532__Bob__tone_2__amplitude,
-                    frequency1 = self.DDS__532__Bob__tone_1__frequency,   # Hz
-                    frequency2 = self.DDS__532__Bob__tone_2__frequency,   # Hz
+                    amplitude1 = self.AWG__532__Bob__tone_1__amplitude,
+                    amplitude2 = self.AWG__532__Bob__tone_2__amplitude,
+                    frequency1 = self.AWG__532__Bob__tone_1__frequency,   # Hz
+                    frequency2 = self.AWG__532__Bob__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
                     phase2 = 3.14,                               # radians
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
@@ -240,11 +240,6 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.core.reset()
         self.core.break_realtime()
 
-        # # Hard-coded to set the AOM frequency and amplitude
-        # delay_mu(95000)
-        # self.DDS__532__Bob__tone_1.set(self.DDS__532__Bob__tone_1__frequency, amplitude=self.DDS__532__Bob__tone_1__amplitude)
-        # delay_mu(95000)
-        # self.DDS__532__Bob__tone_2.set(self.DDS__532__Bob__tone_2__frequency, amplitude=self.DDS__532__Bob__tone_2__amplitude)
 
         sum11 = 0
         sum12 = 0
@@ -350,14 +345,6 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
-
-            # with parallel:
-            #     self.DDS__532__Bob__tone_1.sw.on()
-            #     self.DDS__532__Bob__tone_2.sw.on()
-            # delay(self.raman_time)
-            # with parallel:
-            #     self.DDS__532__Bob__tone_1.sw.off()
-            #     self.DDS__532__Bob__tone_2.sw.off()
     
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
@@ -387,14 +374,6 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
             delay(500*ns)
 
-            # with parallel:
-            #     self.DDS__532__Bob__tone_1.sw.on()
-            #     self.DDS__532__Bob__tone_2.sw.on()
-            # delay(self.raman_time)
-            # with parallel:
-            #     self.DDS__532__Bob__tone_1.sw.off()
-            #     self.DDS__532__Bob__tone_2.sw.off()
-    
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)

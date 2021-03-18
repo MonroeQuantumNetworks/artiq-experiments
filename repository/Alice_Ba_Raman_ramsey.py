@@ -29,7 +29,7 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'ramsey_time', 'detection_time', 'delay_time', 'DDS__532__Alice__tone_1__frequency', 'DDS__532__Alice__tone_2__frequency', 'DDS__532__Alice__tone_1__amplitude', 'DDS__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'ramsey_time', 'detection_time', 'delay_time', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
@@ -37,10 +37,10 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('DDS__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('DDS__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
-        self.setattr_argument('DDS__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__DDS__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('AWG__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
+        self.setattr_argument('AWG__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__amplitude), RangeScan(0, 0.5, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
         # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
@@ -90,7 +90,7 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
                 if isinstance(scan, NoScan):
                     # just set the single value
                     setattr(self, name, scan.value)     # This sets 532-amplitude and 532 frequency too
-                    print(name, scan.value)             # e.g. DDS__532__Alice__tone_1__amplitude 0.35
+                    print(name, scan.value)             # e.g. AWG__532__Alice__tone_1__amplitude 0.35
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
@@ -196,9 +196,9 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
 
         # Hard-coded to set the AOM frequency and amplitude
         delay_mu(95000)
-        self.DDS__532__Alice__tone_1.set(self.DDS__532__Alice__tone_1__frequency, amplitude=self.DDS__532__Alice__tone_1__amplitude)
+        self.AWG__532__Alice__tone_1.set(self.AWG__532__Alice__tone_1__frequency, amplitude=self.AWG__532__Alice__tone_1__amplitude)
         delay_mu(95000)
-        self.DDS__532__Alice__tone_2.set(self.DDS__532__Alice__tone_2__frequency, amplitude=self.DDS__532__Alice__tone_2__amplitude)
+        self.AWG__532__Alice__tone_2.set(self.AWG__532__Alice__tone_2__frequency, amplitude=self.AWG__532__Alice__tone_2__amplitude)
 
         sum11 = 0
         sum12 = 0
@@ -231,7 +231,7 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
             self.ttl0.pulse(20 * ns)         # Trigger the PicoHarp
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            # self.DDS__urukul3_ch2.set(self.DDS__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
+            # self.DDS__urukul3_ch2.set(self.AWG__532__Alice__tone_1__frequency)     # Having this line in here seems to be just fine (1.2 us)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -309,22 +309,22 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
             delay(500*ns)
 
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.AWG__532__Alice__tone_1.sw.on()
+                self.AWG__532__Alice__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.AWG__532__Alice__tone_1.sw.off()
+                self.AWG__532__Alice__tone_2.sw.off()
 
             delay(self.ramsey_time)
 
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.AWG__532__Alice__tone_1.sw.on()
+                self.AWG__532__Alice__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.AWG__532__Alice__tone_1.sw.off()
+                self.AWG__532__Alice__tone_2.sw.off()
 
             with parallel:
                 self.ttl_Alice_650_pi.on()
@@ -350,22 +350,22 @@ class Alice_Ba_Raman_ramsey(base_experiment.base_experiment):
 
             delay(500*ns)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.AWG__532__Alice__tone_1.sw.on()
+                self.AWG__532__Alice__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.AWG__532__Alice__tone_1.sw.off()
+                self.AWG__532__Alice__tone_2.sw.off()
 
             delay(self.ramsey_time)
 
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.on()
-                self.DDS__532__Alice__tone_2.sw.on()
+                self.AWG__532__Alice__tone_1.sw.on()
+                self.AWG__532__Alice__tone_2.sw.on()
             delay(self.raman_time)
             with parallel:
-                self.DDS__532__Alice__tone_1.sw.off()
-                self.DDS__532__Alice__tone_2.sw.off()
+                self.AWG__532__Alice__tone_1.sw.off()
+                self.AWG__532__Alice__tone_2.sw.off()
 
             with parallel:
                 self.ttl_Alice_650_pi.on()

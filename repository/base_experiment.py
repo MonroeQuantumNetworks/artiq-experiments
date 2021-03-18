@@ -222,6 +222,16 @@ class base_experiment(EnvExperiment):
                 setattr(self, key_freq, self.get_dataset(key_freq2, archive=False))
                 setattr(self, key_sw, self.get_dataset(key_sw2, archive=False))
 
+            # Read in the datasets for all the DDS settings
+            for key, hardware, freq_default, amp_default, att_default, sw_default in self.AWG_list:
+                key_amp = 'globals__AWG__' + key + '__amplitude'
+                key_freq = 'globals__AWG__' + key + '__frequency'
+                key_amp2 = '.'.join(key_amp.split('__'))
+                key_freq2 = '.'.join(key_freq.split('__'))
+
+                setattr(self, key_amp, self.get_dataset(key_amp2, archive=False))
+                setattr(self, key_freq, self.get_dataset(key_freq2, archive=False))
+
             # Read in the datasets for the global timings
             for key in self.timing_list:
                 key ='globals.timing.' + key
@@ -490,8 +500,8 @@ class base_experiment(EnvExperiment):
         self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]
 
         # Do the same for AWG frequencies
-        # self.AWG_freq_list = [getattr(self, 'globals__AWG__' + name + '__frequency') for name in self.AWG_name_list]
-        # self.AWG_amp_list = [getattr(self, 'globals__AWG__' + name + '__amplitude') for name in self.AWG_name_list]
+        self.AWG_freq_list = [getattr(self, 'globals__AWG__' + name + '__frequency') for name in self.AWG_name_list]
+        self.AWG_amp_list = [getattr(self, 'globals__AWG__' + name + '__amplitude') for name in self.AWG_name_list]
 
         # Store a list of TTL values, which are harder to access on the kernel.
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]
