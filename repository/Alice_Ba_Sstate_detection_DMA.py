@@ -276,10 +276,13 @@ class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_prep"):
             self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
-            self.ttl_Alice_650_pi.on() # Alice 650 pi
+            # self.ttl_Alice_650_pi.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            self.ttl_650_sigma_1.on() # 650 sigma 1
-            self.ttl_650_sigma_2.on() # 650 sigma 2
+            # self.ttl_650_sigma_1.on() # 650 sigma 1
+            # self.ttl_650_sigma_2.on() # 650 sigma 2
+            self.DDS__650__sigma_weak_1.sw.on()
+            self.DDS__650__sigma_weak_2.sw.on()
+            self.DDS__650__Alice__weak_pi.sw.on()
 
     @kernel
     def record_pump_sigma1(self):

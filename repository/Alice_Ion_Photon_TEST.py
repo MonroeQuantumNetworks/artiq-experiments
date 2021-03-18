@@ -33,7 +33,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon(base_experiment.base_experiment):
+class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -313,16 +313,16 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # Turn off everything initially
         self.ttl_493_all.off()
         self.ttl_650_fast_cw.off()
+        delay_mu(100)
         self.DDS__650__sigma_weak_1.sw.off()
-        delay_mu(10)
         self.DDS__650__sigma_weak_2.sw.off()
         self.DDS__650__Alice__weak_pi.sw.off()
         delay_mu(100)
-        self.DDS__532__Alice__tone_1.sw.off()
-        self.DDS__532__Alice__tone_2.sw.off()
+        self.DDS__493__Alice__sigma_1.sw.off()
+        self.DDS__493__Alice__sigma_2.sw.off()
         delay_mu(10000)
-        self.DDS__493__Alice__sigma_1.sw.on()
-        self.DDS__493__Alice__sigma_2.sw.on()
+        self.DDS__493__Alice__strong_sigma_1.sw.on()
+        self.DDS__493__Alice__strong_sigma_2.sw.on()
         delay_mu(100000)
 
         # Initialize counters to zero
@@ -674,21 +674,6 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         with self.core_dma.record("cooling_loop_pulses"):
             # Cool
-            # with parallel:
-            #     self.ttl_Alice_650_pi.on()
-            #     self.ttl_493_all.on()
-            #     self.ttl_650_fast_cw.on()
-            #     self.ttl_650_sigma_1.on()
-            #     self.ttl_650_sigma_2.on()
-            #
-            #     delay(self.cooling_time)
-            #
-            # with parallel:
-            #     self.ttl_Alice_650_pi.off()
-            #     self.ttl_493_all.off()
-            #     self.ttl_650_fast_cw.off()
-            #     self.ttl_650_sigma_1.off()
-            #     self.ttl_650_sigma_2.off()
 
             with parallel:
                 self.ttl_650_fast_cw.on()

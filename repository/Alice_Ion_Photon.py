@@ -600,26 +600,27 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
     def run_entangler(self, timeout_length: TInt32):
         """Run the entangler for a max time and wait for it to succeed/timeout."""
 
-        # for i in range(4):
-        #     self.entangle_inputs[i].set_sensitivity(1)
-        #     delay_mu(10)
-        #
-        # end_timestamp, reason = self.entangler.run_mu(timeout_length)
-        #
-        # at_mu(end_timestamp)
-        # for i in range(4):
-        #     self.entangle_inputs[i].set_sensitivity(0)
-        #     delay_mu(10)
+        for i in range(4):
+            self.entangle_inputs[i]._set_sensitivity(1)
+            delay_mu(10)
 
-        with parallel:
-            # This generates output events on the bus -> entangler
-            # when rising edges are detected
-            self.entangle_inputs[0].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[1].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[2].gate_rising_mu(np.int64(timeout_length))
-            self.entangle_inputs[3].gate_rising_mu(np.int64(timeout_length))
-            end_timestamp, reason = self.entangler.run_mu(timeout_length)
-        # must wait after entangler ends to schedule new events.
+        end_timestamp, reason = self.entangler.run_mu(timeout_length)
+
+        at_mu(end_timestamp)
+        delay_mu(12000)
+        for i in range(4):
+            self.entangle_inputs[i]._set_sensitivity(0)
+            delay_mu(10)
+
+        # with parallel:
+        #     # This generates output events on the bus -> entangler
+        #     # when rising edges are detected
+        #     self.entangle_inputs[0].gate_rising_mu(np.int64(timeout_length))
+        #     self.entangle_inputs[1].gate_rising_mu(np.int64(timeout_length))
+        #     self.entangle_inputs[2].gate_rising_mu(np.int64(timeout_length))
+        #     self.entangle_inputs[3].gate_rising_mu(np.int64(timeout_length))
+        #     end_timestamp, reason = self.entangler.run_mu(timeout_length)
+        # # must wait after entangler ends to schedule new events.
 
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)

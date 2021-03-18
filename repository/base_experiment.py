@@ -45,22 +45,29 @@ class base_experiment(EnvExperiment):
         ('493__Alice__sigma_2', 'urukul0_ch1', 76*MHz, 0.5, 15.0, True),
         ('493__Bob__sigma_1', 'urukul0_ch2', 79*MHz, 0.6, 11.0, True),
         ('493__Bob__sigma_2', 'urukul0_ch3', 81*MHz, 0.6, 11.0, True),
-        # ('493__Alice__strong_sigma_1', 'urukul1_ch0', 84 * MHz, 0.5, 15.0, False),
-        # ('493__Alice__strong_sigma_2', 'urukul1_ch1', 76 * MHz, 0.5, 15.0, False),
-        # ('493__Bob__strong_sigma_1', 'urukul1_ch2', 79 * MHz, 0.6, 11.0, False),
-        # ('493__Bob__strong_sigma_2', 'urukul1_ch3', 81 * MHz, 0.6, 11.0, False),
-        # ('650__sigma_weak_1', 'urukul2_ch0', 81.5*MHz, 1.0, 10.0, False),
-        # ('650__sigma_weak_2', 'urukul2_ch1', 78.5*MHz, 1.0, 10.0, False),
-        # ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 1.0, 10.0, False),
-        # ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 1.0, 10.0, False),
-        # ('urukul3_ch0', 'urukul3_ch0', 800*MHz, 1.0, 10.0, False),
-        # ('urukul3_ch1', 'urukul3_ch1', 80*MHz, 1.0, 10.0, False),
-        # ('urukul2_ch2', 'urukul3_ch2', 76.1*MHz, 0.5, 17, False),
-        # ('urukul2_ch3', 'urukul3_ch3', 83.1*MHz, 0.5, 17.5, False),
-        ('532__Alice__tone_1', 'urukul1_ch0', 80*MHz, 0.4, 10.0, False),
-        ('532__Alice__tone_2', 'urukul1_ch1', 75*MHz, 0.4, 10.0, False),
-        ('532__Bob__tone_1', 'urukul1_ch2', 80*MHz, 0.3, 10.0, False),
-        ('532__Bob__tone_2', 'urukul1_ch3', 85*MHz, 0.3, 10.0, False)
+        ('493__Alice__strong_sigma_1', 'urukul1_ch0', 84 * MHz, 0.5, 15.0, False),
+        ('493__Alice__strong_sigma_2', 'urukul1_ch1', 76 * MHz, 0.5, 15.0, False),
+        ('493__Bob__strong_sigma_1', 'urukul1_ch2', 79 * MHz, 0.6, 11.0, False),
+        ('493__Bob__strong_sigma_2', 'urukul1_ch3', 81 * MHz, 0.6, 11.0, False),
+        ('650__sigma_weak_1', 'urukul2_ch0', 81.5*MHz, 1.0, 10.0, False),
+        ('650__sigma_weak_2', 'urukul2_ch1', 78.5*MHz, 1.0, 10.0, False),
+        ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 1.0, 10.0, False),
+        ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 1.0, 10.0, False),
+        ('urukul3_ch0', 'urukul3_ch0', 800*MHz, 1.0, 10.0, False),
+        ('urukul3_ch1', 'urukul3_ch1', 80*MHz, 1.0, 10.0, False),
+        ('urukul2_ch2', 'urukul3_ch2', 76.1*MHz, 0.5, 17, False),
+        ('urukul2_ch3', 'urukul3_ch3', 83.1*MHz, 0.5, 17.5, False)
+        # ('532__Alice__tone_1', 'urukul1_ch0', 80*MHz, 0.4, 10.0, False),
+        # ('532__Alice__tone_2', 'urukul1_ch1', 75*MHz, 0.4, 10.0, False),
+        # ('532__Bob__tone_1', 'urukul1_ch2', 80*MHz, 0.3, 10.0, False),
+        # ('532__Bob__tone_2', 'urukul1_ch3', 85*MHz, 0.3, 10.0, False)
+    ]
+
+    AWG_list = [
+        ('532__Alice__tone_1', 'none', 84*MHz, 0.075, 10.0, False),
+        ('532__Alice__tone_2', 'none', 77*MHz, 0.075, 10.0, False),
+        ('532__Bob__tone_1', 'none', 84*MHz, 0.05, 10.0, False),
+        ('532__Bob__tone_2', 'none', 77*MHz, 0.05, 10.0, False)
     ]
 
     TTL_input_list = [
@@ -72,10 +79,10 @@ class base_experiment(EnvExperiment):
         ('Bob_camera_side_APD', 'ttl13'),
         ('Alice_PMT', 'ttl14'),
         ('Bob_PMT', 'ttl15'),
-        # ('Counter1', 'ttl28'),        # These edge_counters are not TTLs
-        # ('Counter2', 'ttl29'),        # Re-labeled in device_db.py
-        # ('Counter3', 'ttl30'),
-        # ('Counter4', 'ttl31')
+        ('Counter1', 'ttl28'),        # These edge_counters are not TTLs
+        ('Counter2', 'ttl29'),        # Re-labeled in device_db.py
+        ('Counter3', 'ttl30'),
+        ('Counter4', 'ttl31')
         ]
 
     counter_input_list = [
@@ -95,18 +102,18 @@ class base_experiment(EnvExperiment):
         ('ttl_650_sigma_2', 'ttl5', False),
         ('ttl_650_fast_pulse', 'ttl6', False),
         ('ttl_Alice_650_pi', 'ttl7', False),
-        # ('ttl_16', 'ttl16', False),
-        # ('ttl_17', 'ttl17', False),
-        # ('ttl_18', 'ttl18', False),
-        # ('ttl_19', 'ttl19', False),
-        # ('ttl_20', 'ttl20', False),
-        # ('ttl_21', 'ttl21', False),
-        # ('ttl_22', 'ttl22', False),
-        # ('ttl_23', 'ttl23', False),
-        # ('ttl_24', 'ttl24', False),
-        # ('ttl_25', 'ttl25', False),
-        # ('ttl_26', 'ttl26', False),
-        # ('ttl_27', 'ttl27', False)
+        ('ttl_16', 'ttl16', False),
+        ('ttl_17', 'ttl17', False),
+        ('ttl_18', 'ttl18', False),
+        ('ttl_19', 'ttl19', False),
+        ('ttl_20', 'ttl20', False),
+        ('ttl_21', 'ttl21', False),
+        ('ttl_22', 'ttl22', False),
+        ('ttl_23', 'ttl23', False),
+        ('ttl_24', 'ttl24', False),
+        ('ttl_25', 'ttl25', False),
+        ('ttl_26', 'ttl26', False),
+        ('ttl_27', 'ttl27', False)
 
     ]
 
@@ -300,6 +307,11 @@ class base_experiment(EnvExperiment):
             self.number_argument('globals__DDS__' + name + '__attenuation', att_default, tooltip=hardware, unit='dB', scale=1.0, ndecimals=9, min=0.0, max=31.5, step=0.5)
             self.boolean_argument('globals__DDS__' + name + '__switch', sw_default, tooltip=hardware)
 
+        for name, hardware, freq_default, amp_default, att_default, sw_default in self.AWG_list:
+            self.number_argument('globals__AWG__' + name + '__frequency', freq_default, tooltip=hardware, unit='MHz', ndecimals=9, min=0.0*MHz, max=500.0*MHz, step=0.01*MHz)
+            self.number_argument('globals__AWG__' + name + '__amplitude', amp_default, tooltip=hardware, scale=1.0, ndecimals=9, min=0.0, max=1.0, step=0.1)
+
+
         # DAC #
 
         # for name, channel, voltage_default in self.DAC_list:
@@ -372,6 +384,7 @@ class base_experiment(EnvExperiment):
 
         self.DDS_device_list = []
         self.DDS_name_list = []
+        self.AWG_name_list = []
 
         for name, hardware, freq_default, amp_default, att_default, sw_default in self.DDS_list:
             # setup device with real hardware name
@@ -384,6 +397,17 @@ class base_experiment(EnvExperiment):
             # add device to lists
             self.DDS_name_list.append(name)
             self.DDS_device_list.append(getattr(self, hardware))
+
+        for name, hardware, freq_default, amp_default, att_default, sw_default in self.AWG_list:
+            # setup device with real hardware name
+            # setup alias
+            # alias_name = "AWG__" + name
+            # setattr(self, alias_name, getattr(self, hardware))
+            #kernel_invariants = getattr(self, "kernel_invariants", set())
+            #self.kernel_invariants = kernel_invariants | {alias_name}
+            # add device to lists
+            self.AWG_name_list.append(name)
+            # self.DDS_device_list.append(getattr(self, hardware))
 
         # DAC #
 
@@ -464,6 +488,10 @@ class base_experiment(EnvExperiment):
         self.DDS_amp_list = [getattr(self, 'globals__DDS__' + name + '__amplitude') for name in self.DDS_name_list]
         self.DDS_att_list = [getattr(self, 'globals__DDS__' + name + '__attenuation') for name in self.DDS_name_list]
         self.DDS_sw_list = [getattr(self, 'globals__DDS__' + name + '__switch') for name in self.DDS_name_list]
+
+        # Do the same for AWG frequencies
+        # self.AWG_freq_list = [getattr(self, 'globals__AWG__' + name + '__frequency') for name in self.AWG_name_list]
+        # self.AWG_amp_list = [getattr(self, 'globals__AWG__' + name + '__amplitude') for name in self.AWG_name_list]
 
         # Store a list of TTL values, which are harder to access on the kernel.
         self.TTL_output_sw_list = [getattr(self, 'globals__TTL_output__' + str(name, 'utf-8')) for name in self.globals__TTL_output__channel_names]

@@ -18,7 +18,7 @@ import base_experiment
 import os
 import time
 
-class Alice_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
+class Alice_Ba_Sstate_detection_TEST(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
