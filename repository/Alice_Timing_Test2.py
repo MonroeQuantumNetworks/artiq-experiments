@@ -59,10 +59,10 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
 
         # Add other inputs
         self.setattr_device("core_dma")
-        self.setattr_argument('cool_time', NumberValue(500e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('cool_time', NumberValue(10000e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('run_cooling_sequence', BooleanValue(True))
         self.setattr_argument('delay_one', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
-        self.setattr_argument('delay_two', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('delay_two', NumberValue(10000e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('delay_three', NumberValue(1000e-9, unit='ns', min=0 * ns, ndecimals=0))
         self.setattr_argument('loops_to_run', NumberValue(1000000, step=1, min=1, max=10000000, ndecimals=0))
 
@@ -75,8 +75,8 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
         self.setattr_argument('Alice493_TTL_vs_DDS', BooleanValue(False))
         self.setattr_argument('run_singlephoton_loop', BooleanValue(True))
         self.setattr_argument('use_weak_beams', BooleanValue(True))
-        self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
-        self.setattr_argument('pulse650_duration', NumberValue(10e-9, step=5e-10, unit='ns', min=0 * ns, ndecimals=0))
+        self.setattr_argument('pump_650sigma_1or2', NumberValue(2, step=1, min=1, max=2, ndecimals=0))
+        # self.setattr_argument('pulse650_duration', NumberValue(10e-9, step=5e-10, unit='ns', min=0 * ns, ndecimals=0))
 
         # self.setattr_argument('cooling_time__scan', Scannable(default=[NoScan(100), RangeScan(0 * us, 300, 100)], global_min=0 * us,
         #                                                       global_step=1 * us, unit='us', ndecimals=3))
@@ -119,27 +119,46 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
         delay_mu(1000000)
 
         # Initial setup of the beams needed
-        if self.Alice493_TTL_vs_DDS:      # Are we toggling the 493 TTLs or 493 DDS?
-            self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
+        # if self.Alice493_TTL_vs_DDS:      # Are we toggling the 493 TTLs or 493 DDS?
+        self.DDS__493__Alice__sigma_1.sw.off()
+        self.DDS__493__Alice__sigma_2.sw.off()
+        self.DDS__493__Alice__strong_sigma_1.sw.off()
+        self.DDS__493__Alice__strong_sigma_2.sw.off()
+
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
-        self.ttl_650_sigma_2.off()
+        self.ttl_650_sigma_1.off()
+        self.DDS__650__weak_sigma_2.sw.off()
+        self.DDS__650__weak_sigma_2.sw.off()
         self.ttl_Alice_650_pi.off()
+        self.DDS__650__Alice__weak_pi.sw.off()
 
         # This checks if we run the single photon loop or the manually customized loop
         if self.run_singlephoton_loop:
-            # Pre-load all the pulse sequences using DMA
-            self.prerecord_singlephoton_loop()
-            delay_mu(100000)
-            self.core.break_realtime()
-            single_photon_handle = self.core_dma.get_handle("singlephoton_loop_pulses")
-            self.core.break_realtime()
-            delay_mu(1000000)
+            if self.use_weak_beams:
+                # Pre-load all the pulse sequences using DMA
+                self.prerecord_singlephoton_loop_weak()
+                delay_mu(100000)
+                self.core.break_realtime()
+                single_photon_handle = self.core_dma.get_handle("singlephoton_weak_pulses")
+                self.core.break_realtime()
+                delay_mu(1000000)
 
-            for i in range(self.loops_to_run):
-                self.core_dma.playback_handle(single_photon_handle)  # Run full sequence for single photon generation
-                delay_mu(6000)
+                for i in range(self.loops_to_run):
+                    self.core_dma.playback_handle(single_photon_handle)  # Run full sequence for single photon generation
+                    delay_mu(6000)
+            else:
+                # Pre-load all the pulse sequences using DMA
+                self.prerecord_singlephoton_loop()
+                delay_mu(100000)
+                self.core.break_realtime()
+                single_photon_handle = self.core_dma.get_handle("singlephoton_loop_pulses")
+                self.core.break_realtime()
+                delay_mu(1000000)
+
+                for i in range(self.loops_to_run):
+                    self.core_dma.playback_handle(single_photon_handle)  # Run full sequence for single photon generation
+                    delay_mu(6000)
 
         else:
             # Pre-load all the pulse sequences using DMA
@@ -157,28 +176,6 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
         print("Kernel done")
 
     @kernel
-    def run_cooling_loop(self):
-
-        # Turn on cooling lasers
-        self.ttl_650_sigma_1.on()
-        self.ttl_650_sigma_2.on()
-        self.ttl_650_fast_cw.on()
-        self.ttl_Alice_650_pi.on()
-        self.DDS__493__Alice__sigma_1.sw.on()
-        self.DDS__493__Alice__sigma_2.sw.on()
-
-        # Wait while lasers cool
-        delay(self.cool_time)
-
-        # Turn off cooling lasers
-        self.ttl_650_sigma_1.off()
-        self.ttl_650_sigma_2.off()
-        self.ttl_650_fast_cw.off()
-        self.ttl_Alice_650_pi.off()
-        self.DDS__493__Alice__sigma_1.sw.off()
-        self.DDS__493__Alice__sigma_2.sw.off()
-
-    @kernel
     def prerecord_main_loop(self):
         """Pre-record the main loop sequence.
         This is a spare loop sequence you can switch to by unchecking "run_singlephoton_loop"
@@ -186,8 +183,9 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
         """
         with self.core_dma.record("main_loop_pulses"):
 
-            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+            self.ttl0.pulse(40 * ns)  # This is the trigger pulse for the PicoHarp
 
+            # Test the strong beams first
             self.ttl_650_fast_cw.on()
             delay_mu(1000)
             self.ttl_650_sigma_1.on()
@@ -197,24 +195,24 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             self.ttl_Alice_650_pi.on()
             delay_mu(1000)
 
-            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Alice__strong_sigma_1.sw.on()
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__strong_sigma_1.sw.off()
 
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__493__Alice__strong_sigma_2.sw.on()
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Alice__strong_sigma_2.sw.off()
 
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Alice__strong_sigma_1.sw.on()
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__strong_sigma_1.sw.off()
 
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__493__Alice__strong_sigma_2.sw.on()
             delay_mu(1000)
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Alice__strong_sigma_2.sw.off()
 
             delay_mu(1000)
             self.ttl_Alice_650_pi.off()
@@ -225,29 +223,72 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             delay_mu(1000)
             self.ttl_650_fast_cw.on()
 
-
-            # delay(self.delay_one)       # In case some additional delay is needed
-            #
-            # delay(self.delay_two)
-            # with parallel:
-            #     self.ttl_650_sigma_1.on()
-            #     self.ttl_650_sigma_2.on()
-            #
-            # delay(self.delay_three)
-
-            delay_mu(10000)
-
+            delay_mu(1000)
             with parallel:
                 self.ttl_Alice_650_pi.off()
                 self.ttl_650_sigma_1.off()
                 self.ttl_650_sigma_2.off()
+                self.ttl_650_fast_cw.off()
+                self.DDS__493__Alice__strong_sigma_1.sw.off()
+                self.DDS__493__Alice__strong_sigma_2.sw.off()
+
+            # Now test the weak beams
+
+            delay_mu(1000)
+            self.ttl_650_fast_cw.on()
+            delay_mu(1000)
+            self.DDS__650__weak_sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__650__weak_sigma_2.sw.on()
+            delay_mu(1000)
+            self.DDS__650__Alice__weak_pi.sw.on()
+            delay_mu(1000)
+
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_1.sw.on()
+            delay_mu(1000)
+            self.DDS__493__Alice__sigma_2.sw.on()
+
+            delay_mu(1000)
+            self.DDS__650__Alice__weak_pi.sw.off()
+            delay_mu(1000)
+            self.DDS__650__Alice__weak_pi.sw.on()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.off()
+            delay_mu(1000)
+            self.ttl_650_fast_cw.on()
+
+            delay_mu(1000)
+            with parallel:
+                self.DDS__650__Alice__weak_pi.sw.off()
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_650_fast_cw.off()
                 self.DDS__493__Alice__sigma_1.sw.off()
                 self.DDS__493__Alice__sigma_2.sw.off()
 
     @kernel
     def prerecord_singlephoton_loop(self):
-        """Pre-record the single photon generation loop sequence.
+        """Pre-record the single photon generation loop sequence. USING STRONG PULSES
         This is faster than non pre-recorded
         """
         with self.core_dma.record("singlephoton_loop_pulses"):
@@ -259,8 +300,8 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
                 self.ttl_650_sigma_2.on()
                 self.ttl_650_fast_cw.on()
                 self.ttl_Alice_650_pi.on()
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
+                self.DDS__493__Alice__strong_sigma_1.sw.on()
+                self.DDS__493__Alice__strong_sigma_2.sw.on()
 
                 # Wait while lasers cool
                 delay(self.cool_time)
@@ -270,8 +311,8 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
                 self.ttl_650_sigma_2.off()
                 self.ttl_650_fast_cw.off()
                 self.ttl_Alice_650_pi.off()
-                self.DDS__493__Alice__sigma_1.sw.off()
-                self.DDS__493__Alice__sigma_2.sw.off()
+                self.DDS__493__Alice__strong_sigma_1.sw.off()
+                self.DDS__493__Alice__strong_sigma_2.sw.off()
 
                 # delay(300*ns)
                 delay(self.delay_one)
@@ -279,18 +320,16 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             # Pump sequence:
             with parallel:
                 self.ttl_650_fast_cw.on()
+                # self.ttl_Alice_650_pi.on()
+                self.DDS__493__Alice__strong_sigma_1.sw.on()
+                self.DDS__493__Alice__strong_sigma_2.sw.on()
 
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
+                # if self.pump_650sigma_1or2 == 1:
+                #     self.ttl_650_sigma_1.on()
+                # else:
+                #     self.ttl_650_sigma_2.on()
 
-                if self.pump_650sigma_1or2 == 1:
-                    self.ttl_650_sigma_1.on()
-                else:
-                    self.ttl_650_sigma_2.on()
-
-            # delay_mu(1500)
-
-            self.ttl_Alice_650_pi.on()
+                self.DDS__650__weak_sigma_2.sw.on()
 
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
@@ -299,13 +338,16 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             self.ttl_650_fast_cw.off()
             self.ttl_Alice_650_pi.off()
             delay_mu(200)
-            if self.pump_650sigma_1or2 == 1:
-                self.ttl_650_sigma_1.off()
-            else:
-                self.ttl_650_sigma_2.off()
+            # if self.pump_650sigma_1or2 == 1:
+            #     self.ttl_650_sigma_1.off()
+            # else:
+            #     self.ttl_650_sigma_2.off()
+
+            self.DDS__650__weak_sigma_2.sw.off()
+
             delay_mu(200)
-            self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Alice__strong_sigma_1.sw.off()
+            self.DDS__493__Alice__strong_sigma_2.sw.off()
 
             delay(self.delay_three)
 
@@ -326,4 +368,83 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
 
+    @kernel
+    def prerecord_singlephoton_loop_weak(self):
+        """Pre-record the single photon generation loop sequence. USING WEAK PULSES
+        This is faster than non pre-recorded
+        """
+        with self.core_dma.record("singlephoton_weak_pulses"):
+            self.ttl0.pulse(20 * ns)  # This is the trigger pulse for the PicoHarp
+            delay_mu(50)
+            if self.run_cooling_sequence:
+                # Turn on cooling lasers
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
+                self.ttl_650_fast_cw.on()
+                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
 
+                # Wait while lasers cool
+                delay(self.cool_time)
+
+                # Turn off cooling lasers
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.DDS__650__weak_sigma_2.sw.off()
+                self.ttl_650_fast_cw.off()
+                self.DDS__650__Alice__weak_pi.sw.off()
+                self.DDS__493__Alice__sigma_1.sw.off()
+                self.DDS__493__Alice__sigma_2.sw.off()
+
+                # delay(300*ns)
+                delay(self.delay_one)
+
+            # Pump sequence:
+            with parallel:
+                self.ttl_650_fast_cw.on()
+
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
+
+                if self.pump_650sigma_1or2 == 1:
+                    self.DDS__650__weak_sigma_1.sw.on()
+                else:
+                    self.DDS__650__weak_sigma_2.sw.on()
+
+            # delay_mu(1500)
+
+            self.DDS__650__Alice__weak_pi.sw.on()
+
+            delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
+
+            # Now turn off all the beams
+
+            self.ttl_650_fast_cw.off()
+            self.DDS__650__Alice__weak_pi.sw.off()
+            delay_mu(200)
+            if self.pump_650sigma_1or2 == 1:
+                self.DDS__650__weak_sigma_1.sw.off()
+            else:
+                self.DDS__650__weak_sigma_2.sw.off()
+            delay_mu(200)
+            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay(self.delay_three)
+
+             # Turn on the slow AOM first, no 650 light because 650 fast is off
+            if self.pump_650sigma_1or2 == 1:
+               self.DDS__650__weak_sigma_2.sw.on()
+            else:
+                self.DDS__650__weak_sigma_1.sw.on()
+
+            delay_mu(200)       # Wait 200 ns so that the slow AOMs are fully turned on
+
+            # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+
+            # Wait a little while before turning off the slow AOMS to maximize signal
+            delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+
+            self.DDS__650__weak_sigma_1.sw.off()
+            self.DDS__650__weak_sigma_2.sw.off()

@@ -78,6 +78,8 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
+
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
@@ -86,8 +88,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
-        self.setattr_argument('AWG__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__frequency), CenterScan(self.globals__AWG__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('AWG__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__frequency), CenterScan(self.globals__AWG__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
+
+        # self.setattr_argument('AWG__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__frequency), CenterScan(self.globals__AWG__532__Alice__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        # self.setattr_argument('AWG__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__frequency), CenterScan(self.globals__AWG__532__Alice__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('AWG__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
         self.setattr_argument('AWG__532__Alice__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
@@ -205,6 +209,10 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
 
                 if self.do_Raman_AWG:
                     #  Program the Keysight AWG
+
+                    # Calculate the two frequencies
+                    self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2
+                    self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2
 
                     sendmessage(self,
                                 type="wave",
@@ -599,7 +607,7 @@ class Alice_Ion_Photon(base_experiment.base_experiment):
         end_timestamp, reason = self.entangler.run_mu(timeout_length)
 
         at_mu(end_timestamp)
-        delay_mu(12000)
+        delay_mu(20000)
         for i in range(4):
             self.entangle_inputs[i]._set_sensitivity(0)
             delay_mu(10)

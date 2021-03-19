@@ -197,7 +197,6 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         self.core.reset()
 
         # Preparation for experiment
-        self.record_ttl_pulse()
         if self.pump_sigma_1_or_2 == 1:
             self.record_pump_sigma1()
         else:
@@ -208,7 +207,6 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         self.record_detect13()
         self.record_detect23()
 
-        pulses_handle_ttl = self.core_dma.get_handle("ttl_pulse")
         if self.pump_sigma_1_or_2 == 1:
             pulses_handle_pump = self.core_dma.get_handle("pulses_pump_1")
         else:
@@ -296,10 +294,14 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off()  # 650 sigma 1
             self.ttl_650_sigma_2.off()  # 650 sigma 2
 
-    @kernel
-    def record_ttl_pulse(self):
-        with self.core_dma.record("ttl_pulse"):
-            self.ttl0.pulse(20*ns)
+            self.DDS__650__weak_sigma_1.sw.off()
+            self.DDS__650__weak_sigma_2.sw.off()
+
+            # Not implemented yet
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()  # Alice 493 sigma 1
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()  # Alice 493 sigma 2
+            # self.DDS__650__Bob__weak_pi.sw.off()
+
 
     @kernel
     def record_pump_sigma1(self):
@@ -311,18 +313,18 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_sigma_1.on()
-                self.ttl_650_sigma_2.on()
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
 
             delay(self.cooling_time)
 
-            self.ttl_650_sigma_2.off()
+            self.DDS__650__weak_sigma_2.sw.off()
 
             delay(self.pumping_time)
 
             with parallel:
                 self.ttl_Bob_650_pi.off()
-                self.ttl_650_sigma_1.off()
+                self.DDS__650__weak_sigma_1.sw.off()
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
@@ -337,21 +339,22 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_sigma_1.on()
-                self.ttl_650_sigma_2.on()
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
 
             delay(self.cooling_time)
 
-            self.ttl_650_sigma_1.off()
+            self.DDS__650__weak_sigma_1.sw.off()
 
             delay(self.pumping_time)
 
             with parallel:
                 self.ttl_Bob_650_pi.off()
-                self.ttl_650_sigma_2.off()
+                self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
+
     @kernel
     def record_detect1(self):
         """DMA detection loop sequence.
@@ -359,11 +362,11 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_detect1"):
             with parallel:
-                self.ttl_650_sigma_1.on()
+                self.DDS__650__weak_sigma_1.sw.on()
                 self.ttl_650_fast_cw.on()
             delay(self.detection_time)
             with parallel:
-                self.ttl_650_sigma_1.off()
+                self.DDS__650__weak_sigma_1.sw.off()
                 self.ttl_650_fast_cw.off()
 
     @kernel
@@ -373,11 +376,11 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_detect2"):
             with parallel:
-                self.ttl_650_sigma_2.on()
+                self.DDS__650__weak_sigma_2.sw.on()
                 self.ttl_650_fast_cw.on()
             delay(self.detection_time)
             with parallel:
-                self.ttl_650_sigma_2.off()
+                self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_650_fast_cw.off()
 
     @kernel
@@ -400,13 +403,13 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_sigma_1.on()
+                self.DDS__650__weak_sigma_1.sw.on()
 
             delay(self.detection_time)
 
             with parallel:
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_sigma_1.off()
+                self.DDS__650__weak_sigma_1.sw.off()
                 self.ttl_Bob_650_pi.off()
 
     @kernel
@@ -419,11 +422,11 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_Bob_650_pi.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_650_sigma_2.on()
+                self.DDS__650__weak_sigma_2.sw.on()
 
             delay(self.detection_time)
             
             with parallel:
                 self.ttl_650_fast_cw.off()
-                self.ttl_650_sigma_2.off()
+                self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_Bob_650_pi.off()

@@ -73,7 +73,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         # self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))        # Unused
         # self.setattr_argument('detection_points', NumberValue(10000, ndecimals=0, min=1, step=1))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'AWG__532__Bob__tone_1__frequency', 'AWG__532__Bob__tone_2__frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'raman_phase', 'Raman_frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -83,8 +83,10 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
         self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 20)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
-        self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), CenterScan(self.globals__AWG__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
-        self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), CenterScan(self.globals__AWG__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
+
+        # self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), CenterScan(self.globals__AWG__532__Bob__tone_1__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
+        # self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), CenterScan(self.globals__AWG__532__Bob__tone_2__frequency / MHz, 1, 0.1)], unit='MHz', ndecimals=9))
         self.setattr_argument('AWG__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
         self.setattr_argument('AWG__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__amplitude), RangeScan(0, 0.1, 20)], global_min=0, global_max=0.1, global_step=0.1, ndecimals=3))
 
@@ -97,14 +99,9 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.set_dataset('Ba_detection_names', [bytes(i, 'utf-8') for i in ['ratiop1', 'ratiop2', 'ratiop3', 'ratiop4']], broadcast=True, archive=True, persist=True)
         self.set_dataset('ratio_list', [], broadcast=True, archive=True)
         self.set_dataset('pattern_counts', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p1_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p2_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p3_2', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_1', [], broadcast=True, archive=True)
-        self.set_dataset('sum_p4_2', [], broadcast=True, archive=True)
+
+
+
         self.set_dataset('num_attempts', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
@@ -159,6 +156,15 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
             # assume a 1D scan for plotting
             self.set_dataset('scan_x', [], broadcast=True, archive=True)
+            self.set_dataset('scanx', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p1_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p1_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p2_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p2_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p3_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p3_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
 
             t_now = time.time()  # Save the current time
 
@@ -193,12 +199,16 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
                 #             channel = getattr(self, channel_name)
                 #             self.set_DDS_amp(channel, getattr(self, name))
 
+                # if self.flush_awg == True:
+                sendmessage(self, type="flush")
+                time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
+
                 if self.do_Raman_AWG:
                     #  Program the Keysight AWG
 
-                    # if self.flush_awg == True:
-                    sendmessage(self, type="flush")
-                    time.sleep(0.8)  # Need at least 0.7s of delay here for wave-trigger to work correctly
+                    # Calculate the two frequencies
+                    self.AWG__532__Bob__tone_1__frequency = 80e6 + self.Raman_frequency / 2
+                    self.AWG__532__Bob__tone_2__frequency = 80e6 - self.Raman_frequency / 2
 
                     sendmessage(self,
                                 type="wave",
@@ -229,21 +239,21 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
 
                 self.append_to_dataset('pattern_counts', pcounts)
                 self.append_to_dataset('ratio_list', ratios)
-                self.append_to_dataset('sum_p1_1', sum_p1_B1)
-                self.append_to_dataset('sum_p1_2', sum_p1_B2)
-                self.append_to_dataset('sum_p2_1', sum_p2_B1)
-                self.append_to_dataset('sum_p2_2', sum_p2_B2)
-                self.append_to_dataset('sum_p3_1', sum_p3_B1)
-                self.append_to_dataset('sum_p3_2', sum_p3_B2)
-                self.append_to_dataset('sum_p4_1', sum_p4_B1)
-                self.append_to_dataset('sum_p4_2', sum_p4_B2)
+                self.mutate_dataset('sum_p1_1', point_num, sum_p1_B1)
+                self.mutate_dataset('sum_p1_2', point_num, sum_p1_B2)
+                self.mutate_dataset('sum_p2_1', point_num, sum_p2_B1)
+                self.mutate_dataset('sum_p2_2', point_num, sum_p2_B2)
+                self.mutate_dataset('sum_p3_1', point_num, sum_p3_B1)
+                self.mutate_dataset('sum_p3_2', point_num, sum_p3_B2)
+                self.mutate_dataset('sum_p4_1', point_num, sum_p4_B1)
+                self.mutate_dataset('sum_p4_2', point_num, sum_p4_B2)
                 self.append_to_dataset('num_attempts', attempts)
 
                 # These ratios are for waveplate alignment
-                ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
-                ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
-                ratio_sigma1_2 = sum_p3_B1 / (sum_p3_B1 + sum_p4_B1)
-                ratio_sigma2_2 = sum_p3_B2 / (sum_p3_B2 + sum_p4_B2)
+                # ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
+                # ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
+                # ratio_sigma1_2 = sum_p3_B1 / (sum_p3_B1 + sum_p4_B1)
+                # ratio_sigma2_2 = sum_p3_B2 / (sum_p3_B2 + sum_p4_B2)
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -268,7 +278,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
         print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
         print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
-        print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
+        # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
         print("Attempt%, Total_attempts: {:.2f} {:.0f}".format( 100*(detect_p1+detect_p2+detect_p3+detect_p4)/attempts, attempts))
 
         # These are necessary to restore the system to the state before the experiment.
@@ -292,14 +302,18 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         self.init()
 
         # Turn off everything initially
-        # self.DDS__493__Bob__sigma_1.sw.off()
-        # self.DDS__493__Bob__sigma_2.sw.off()
         self.ttl_493_all.off()
         self.ttl_650_fast_cw.off()
-        self.ttl_650_sigma_1.off()
-        delay_mu(10)
-        self.ttl_650_sigma_2.off()
-        self.ttl_Bob_650_pi.off()
+        delay_mu(100)
+        self.DDS__650__weak_sigma_1.sw.off()
+        self.DDS__650__weak_sigma_2.sw.off()
+        self.DDS__650__Alice__weak_pi.sw.off()
+        delay_mu(100)
+        self.DDS__493__Alice__sigma_1.sw.off()
+        self.DDS__493__Alice__sigma_2.sw.off()
+        delay_mu(10000)
+        self.DDS__493__Alice__strong_sigma_1.sw.on()
+        self.DDS__493__Alice__strong_sigma_2.sw.on()
         delay_mu(100000)
 
         # Initialize counters to zero
@@ -321,7 +335,7 @@ class Bob_Ion_Photon(base_experiment.base_experiment):
         detect_flag = 1
         pattern = 0
 
-        self.set_dataset('core_pattern1', [0], broadcast=True, archive=True)
+        # self.set_dataset('core_pattern1', [0], broadcast=True, archive=True)
 
         # Pre-load all the pulse sequences using DMA
         self.prerecord_cooling_loop()

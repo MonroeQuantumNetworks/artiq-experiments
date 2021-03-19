@@ -49,10 +49,10 @@ class base_experiment(EnvExperiment):
         ('493__Alice__strong_sigma_2', 'urukul1_ch1', 76 * MHz, 0.5, 15.0, False),
         ('493__Bob__strong_sigma_1', 'urukul1_ch2', 79 * MHz, 0.6, 11.0, False),
         ('493__Bob__strong_sigma_2', 'urukul1_ch3', 81 * MHz, 0.6, 11.0, False),
-        ('650__sigma_weak_1', 'urukul2_ch0', 81.5*MHz, 1.0, 10.0, False),
-        ('650__sigma_weak_2', 'urukul2_ch1', 78.5*MHz, 1.0, 10.0, False),
-        ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 1.0, 10.0, False),
-        ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 1.0, 10.0, False),
+        ('650__weak_sigma_1', 'urukul2_ch0', 81.5*MHz, 0.5, 10.0, False),
+        ('650__weak_sigma_2', 'urukul2_ch1', 78.5*MHz, 0.5, 10.0, False),
+        ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 0.5, 10.0, False),
+        ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 0.5, 10.0, False),
         ('urukul3_ch0', 'urukul3_ch0', 800*MHz, 1.0, 10.0, False),
         ('urukul3_ch1', 'urukul3_ch1', 80*MHz, 1.0, 10.0, False),
         ('urukul2_ch2', 'urukul3_ch2', 76.1*MHz, 0.5, 17, False),
@@ -64,10 +64,10 @@ class base_experiment(EnvExperiment):
     ]
 
     AWG_list = [
-        ('532__Alice__tone_1', 'none', 84*MHz, 0.075, 10.0, False),
-        ('532__Alice__tone_2', 'none', 77*MHz, 0.075, 10.0, False),
-        ('532__Bob__tone_1', 'none', 84*MHz, 0.05, 10.0, False),
-        ('532__Bob__tone_2', 'none', 77*MHz, 0.05, 10.0, False)
+        ('532__Alice__tone_1', 'none', 84*MHz, 0.075, 0.0, False),
+        ('532__Alice__tone_2', 'none', 77*MHz, 0.075, 0.0, False),
+        ('532__Bob__tone_1', 'none', 84*MHz, 0.05, 0.0, False),
+        ('532__Bob__tone_2', 'none', 77*MHz, 0.05, 0.0, False)
     ]
 
     TTL_input_list = [
