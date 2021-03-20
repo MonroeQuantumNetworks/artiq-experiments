@@ -381,9 +381,13 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 # Turn off cooling beams
                 delay(self.cooling_time)        # Minimum cool time
+                delay_mu(70000)
+
                 # with parallel:      # Turn off cooling beams
                 self.ttl_650_fast_cw.off()
-                self.ttl_Bob_650_pi.off()
+                self.ttl_Bob_650_pi.off()            # Bob 650 strong pi
+                self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 weak pi
+                delay_mu(10)
                 self.DDS__650__weak_sigma_1.sw.off()
                 self.DDS__650__weak_sigma_1.sw.off()
                 delay_mu(10)
@@ -396,7 +400,8 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 # Cooling loop sequence using pre-recorded dma sequence
                 # self.core_dma.playback_handle(fast_loop_cooling_handle)
-                delay_mu(70000)
+                # delay_mu(70000)
+                delay_mu(1000)
 
                 extra_pump = self.extra_pump_time
 
@@ -439,13 +444,16 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                     with sequential:
                         delay_mu(15000)
                         self.ttl_650_fast_cw.on()
-                        self.ttl_Bob_650_pi.on()
+                        self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
                         delay_mu(10)
                         self.DDS__650__weak_sigma_1.sw.on()
                         self.DDS__650__weak_sigma_2.sw.on()
                         delay_mu(10)
                         self.DDS__493__Bob__sigma_1.sw.on()
                         self.DDS__493__Bob__sigma_2.sw.on()
+                        delay_mu(10)
+                        self.ttl_493_all.off() 
+
 
             at_mu(end_timestamp)
             delay_mu(35000)
@@ -513,17 +521,18 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
             else:
                 fail += 1
 
-            # Turn on cooling beams for now
+            # Turn on cooling beams now
             with parallel:
                 self.ttl_650_fast_cw.on()
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
                 delay_mu(10)
                 self.DDS__650__weak_sigma_1.sw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
                 delay_mu(10)
                 self.DDS__493__Bob__sigma_1.sw.on()
                 self.DDS__493__Bob__sigma_2.sw.on()
-
+                delay_mu(10)
+                self.ttl_493_all.off()       # Turn off strong beams
             loop += 1
 
         print(loop, fail)
@@ -670,6 +679,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
     @kernel
     def prerecord_cooling_loop(self):
         """Pre-record the cooling loop sequence. This is played in the slow loops, once every n number of fast loops
+        UNUSED
         """
 
         with self.core_dma.record("cooling_loop_pulses"):
@@ -700,19 +710,17 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses01"):
 
-            self.DDS__493__Bob__sigma_2.sw.off()
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_1.sw.off()
-            delay_mu(10)
-            self.ttl_Bob_650_pi.on() # Bob 650 pi
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__sigma_2.sw.off()
+            # self.DDS__493__Bob__sigma_1.sw.off()
+
+            self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
-            delay_mu(10)
-            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2
-            delay_mu(50)
-            self.ttl_493_all.on()
+            delay_mu(80)
+            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2            
             delay_mu(500)
             self.DDS__493__Bob__sigma_1.sw.on()
 
@@ -720,19 +728,18 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
             self.DDS__493__Bob__sigma_1.sw.off()
             delay_mu(500)
-            self.ttl_493_all.off()
-            delay_mu(50)
-            self.ttl_Bob_650_pi.off() # Bob 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.off() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.off() # 650 sigma 1
             delay_mu(10)
             self.DDS__650__weak_sigma_2.sw.off() # 650 sigma 2
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_1.sw.on()
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_2.sw.on()
+            
+            # delay_mu(10)
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
 
     @kernel
     def record_detect2(self):
@@ -741,19 +748,17 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses02"):
 
-            self.DDS__493__Bob__sigma_2.sw.off()
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_1.sw.off()
-            delay_mu(10)
-            self.ttl_Bob_650_pi.on() # Bob 650 pi
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__sigma_2.sw.off()
+            # self.DDS__493__Bob__sigma_1.sw.off()
+            
+            self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
-            delay_mu(10)
-            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2
-            delay_mu(50)
-            self.ttl_493_all.on()
+            delay_mu(80)
+            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2            
             delay_mu(500)
             self.DDS__493__Bob__sigma_2.sw.on()
 
@@ -761,19 +766,18 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
             self.DDS__493__Bob__sigma_2.sw.off()
             delay_mu(500)
-            self.ttl_493_all.off()
-            delay_mu(50)
-            self.ttl_Bob_650_pi.off() # Bob 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.off() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.off() # 650 sigma 1
             delay_mu(10)
             self.DDS__650__weak_sigma_2.sw.off() # 650 sigma 2
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_1.sw.on()
-            delay_mu(10)
-            self.DDS__493__Bob__sigma_2.sw.on()
+            
+            # delay_mu(10)
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

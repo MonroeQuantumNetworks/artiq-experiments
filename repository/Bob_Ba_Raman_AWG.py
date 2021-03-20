@@ -2,14 +2,18 @@
 Bob Barium detection, with scannable variables, DMA detection
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Fixed AOM amplitude scanning and update
-Also does curve fitting at the very end (Fit to Raman time scan)
+No curve fitting at the very end (Fit to Raman time scan)
+    Use a separate program to do curve fitting
 
 Uses Keysight AWG to drive Raman lasers
+
+Updated to accept Raman frequency only
+Updated for partial weak/strong beams
 
 Known issues:
 
 
-George Toh 2020-12-18
+George Toh 2020-03-19
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -24,7 +28,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
+class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -39,19 +43,20 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
-        self.setattr_argument('do_curvefit', BooleanValue(False))
+        self.setattr_argument('detections_per_point', NumberValue(5000, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('do_curvefit', BooleanValue(False))
 
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Bob__tone_1__frequency', 'AWG__532__Bob__tone_2__frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
-        self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
+        self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
+        # self.setattr_argument('AWG__532__Bob__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
+        # self.setattr_argument('AWG__532__Bob__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
         self.setattr_argument('AWG__532__Bob__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
         self.setattr_argument('AWG__532__Bob__tone_2__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Bob__tone_2__amplitude), RangeScan(0, 0.06, 20)], global_min=0, global_step=0.1, ndecimals=3))
 
@@ -171,8 +176,14 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 # --------------------------------------------------- AWG CODE -----------------------------------------------------------------------------------------
 
 
-                # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
+                sendmessage(self, type="flush")
+                time.sleep(1)
 
+                # Calculate the two frequencies
+                self.AWG__532__Bob__tone_1__frequency = 80e6 + self.Raman_frequency / 2
+                self.AWG__532__Bob__tone_2__frequency = 80e6 - self.Raman_frequency / 2
+
+                # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
                 sendmessage(self,
                     type = "wave",
                     channel = self.channel,
@@ -224,9 +235,6 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
         except TerminationRequested:
             print('Terminated gracefully')
 
-        # Do curve fitting in this function
-        if self.do_curvefit == True:
-            self.fit_data()
 
         print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
 
@@ -264,11 +272,11 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1 - 65           # For detect sigma2
+        delay2 = delay1 #- 65           # For detect sigma2
 
         for i in range(self.detections_per_point):
 
-            delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to load and execute
+            delay_mu(30000)    
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             with parallel:
@@ -316,14 +324,22 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
     @kernel
     def prep_record(self):
-        # This is used for detection
+        # For Raman, we want the 650 beams on for pump and detect
         with self.core_dma.record("pulses_prep"):
             self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
             self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
-            self.ttl_Bob_650_pi.on() # Bob 650 pi
+            self.ttl_493_all.off()  # Turn strong beams off
+            
+            delay_mu(10)
+            self.ttl_650_sigma_1.off() # 650 strong sigma 1
+            self.ttl_650_sigma_2.off() # 650 strong sigma 2
+            self.ttl_Bob_650_pi.off() # Bob 650 strong pi
+
+            delay_mu(10)
+            self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 pi
+            self.DDS__650__weak_sigma_1.sw.on()
+            self.DDS__650__weak_sigma_2.sw.on()
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            self.ttl_650_sigma_1.on() # 650 sigma 1
-            self.ttl_650_sigma_2.on() # 650 sigma 2
 
     @kernel
     def record_pump_sigma1(self):
@@ -341,7 +357,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
 
             with parallel:
                 self.DDS__493__Bob__sigma_1.sw.off()
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
@@ -352,7 +368,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 delay(self.raman_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
 
     @kernel
@@ -369,7 +385,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
             delay(self.pumping_time)
             with parallel:
                 self.DDS__493__Bob__sigma_2.sw.off()
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
                 self.ttl_650_fast_cw.off()
 
             delay(500*ns)
@@ -380,7 +396,7 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
                 delay(self.raman_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
 
     @kernel
@@ -404,54 +420,3 @@ class Bob_Ba_Raman_AWG_curvefit(base_experiment.base_experiment):
             self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
             self.DDS__493__Bob__sigma_2.sw.off()
-
-    def fit_data(self):
-        """ Do curve fitting of data and display on graph here"""
-
-        import numpy as np
-        from scipy import optimize
-                
-        def cos_func(x, amp, phase, pitime):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
-
-        def cos_decay(x, amp, phase, pitime, decayt):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
-
-        detect21 = self.get_dataset('ratio21')
-        detect22 = self.get_dataset('ratio22')
-        scanx = self.get_dataset('scan_x')
-
-        # Change this to the dataset you want to fit
-        datatofit = detect21
-        # print(datatofit)
-        # print(scanx)
-
-        initialparams = [1,0,5e-6]      # amp, phase, pitime
-        fitbounds = ([0.2,-6.3,0],[1,6.3,20e-6])
-
-        results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
-        print('Fit results: ', results1)
-
-        fitbounds = ([0.2,-6.3,0,0],[1,100,20e-6,0.001])        # amp, phase, pitime, decayt
-
-        results2, covariances = optimize.curve_fit(cos_decay, scanx[1:70], datatofit[1:70], p0=[*results1,0.0003], bounds = fitbounds)
-        print('Fit results: ', results2)
-
-        fittedx = np.linspace(0,max(scanx),self.fit_points)
-        # fitresult1 = cos_func(fittedx, *results2)
-        fitresult2 = cos_decay(fittedx, *results2)
-
-        # print(fittedx)
-        # print(fitresult2)
-
-        self.set_dataset('xfitdataset', fittedx, broadcast=True)
-        self.set_dataset('yfitdataset21', fitresult2, broadcast=True)
-
-        # self.set_dataset('xfitdataset', [1,2,3,4,5,6,7,8,9,10], broadcast=True)
-        # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
-        # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
-
-        print("Amplitude: {:0.2f}".format(results2[0]), " ")
-        print("Phase: {:0.2f}".format(results2[1]), " ")
-        print("Pi Time: {:0.2f}".format(results2[2]*1e6), " us")
-        print("Lifetime: {:0.0f}".format(results2[3]*1e6), " us")

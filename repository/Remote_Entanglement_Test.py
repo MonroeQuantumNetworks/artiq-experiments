@@ -2,12 +2,9 @@
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Remote entanglement on Alice and Bob, using all 4 APDs
 
-Collates the counts detected with sigma-1/2 for each pattern
+Updated for weak/strong beams
 
-Problems:
-    Does not have Bob Raman
-
-George Toh 2021-02-19
+George Toh 2021-03-19
 
 """
 import artiq.language.environment as artiq_env
@@ -68,7 +65,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(100, step=1, min=1, max=10000, ndecimals=0))
-        self.setattr_argument('extra_pump', NumberValue(1000, step=100, min=-900, max=10000, ndecimals=0))
+        self.setattr_argument('extra_pump_time', NumberValue(1000, step=100, min=-900, max=10000, ndecimals=0))
 
         self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude', 'AWG__532__Bob__tone_1__amplitude__scan', 'AWG__532__Bob__tone_2__amplitude__scan']
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
@@ -216,8 +213,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     # Calculate the Raman AWG frequencies
                     self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2
                     self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2
-                    self.AWG__532__Bob__tone_1__frequency = 80e6 + self.Raman_frequency / 2
-                    self.AWG__532__Bob__tone_2__frequency = 80e6 - self.Raman_frequency / 2
+                    self.AWG__532__Bob__tone_1__frequency = self.AWG__532__Alice__tone_1__frequency
+                    self.AWG__532__Bob__tone_2__frequency = self.AWG__532__Alice__tone_2__frequency
 
                     # Here, we rotate Bob to match Alice. They start at the same time, so Alice needs to wait
                     sendmessage(self,
@@ -340,20 +337,41 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         self.init()
 
         # Turn off everything initially
-        self.ttl_493_all.off()
-        self.DDS__493__Alice__sigma_1.sw.on()
-        self.DDS__493__Alice__sigma_2.sw.on()
-        self.DDS__493__Bob__sigma_1.sw.on()
-        self.DDS__493__Bob__sigma_2.sw.on()
+        # This isn't needed if we do cooling during down time
 
+        # Share beams
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
         self.ttl_Alice_650_pi.off()
-        delay_mu(100000)
+        self.ttl_Bob_650_pi.off()        
+        delay_mu(1000)
+        self.ttl_493_all.off()
+        self.ttl_650_fast_cw.off()
+        self.DDS__650__weak_sigma_1.sw.off()
+        self.DDS__650__weak_sigma_2.sw.off()
+
+        # Alice beams
+        delay_mu(100)
+        self.DDS__650__Alice__weak_pi.sw.off()
+        self.DDS__493__Alice__sigma_1.sw.off()
+        self.DDS__493__Alice__sigma_2.sw.off()
+        delay_mu(1000)
+        self.DDS__493__Alice__strong_sigma_1.sw.on()
+        self.DDS__493__Alice__strong_sigma_2.sw.on()
+
+        # Bob beams
+        delay_mu(1000)
+        self.DDS__650__Bob__weak_pi.sw.off()
+        self.DDS__493__Bob__sigma_1.sw.off()
+        self.DDS__493__Bob__sigma_2.sw.off()
+        delay_mu(1000)
+        self.DDS__493__Bob__strong_sigma_1.sw.on()
+        self.DDS__493__Bob__strong_sigma_2.sw.on()
+        delay_mu(10000)
+
 
         # Initialize counters to zero
-
         sum_p1_A1 = 0
         sum_p1_A2 = 0
         sum_p2_A1 = 0
@@ -417,13 +435,47 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
             for channel in range(self.entangle_cycles_per_loop):
 
                 # self.core.break_realtime()  # For stability during testing
-                total_cycles += self.entangler.get_ncycles()    # Add up the number of entangler attempts
-                delay_mu(40000)
+                delay_mu(20000)
+                total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
+                delay_mu(10000)
+
+                # Turn off cooling beams
+                delay(self.cooling_time)        # Minimum cool time
+                delay_mu(70000)
+
+                # with parallel:      # Turn off cooling beams
+
+                # self.ttl_Bob_650_pi.off()
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.ttl_650_fast_cw.off()          
+                delay_mu(10)
+                self.DDS__650__Bob__weak_pi.sw.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
+                delay_mu(10)
+                self.DDS__650__Alice__weak_pi.sw.off()
+                self.DDS__493__Alice__sigma_1.sw.off()
+                self.DDS__493__Alice__sigma_2.sw.off()
+                delay_mu(10)
+
+                # Get 493 lasers ready for the entangler
+                # self.DDS__493__Bob__sigma_1.sw.on()
+                # self.DDS__493__Bob__sigma_2.sw.on()
+
+                # The strong beam ddses should already be on
+                # self.DDS__493__Bob__strong_sigma_1.sw.on()    # We toggle these on/off with ttl_493_all
+                # self.DDS__493__Bob__strong_sigma_2.sw.on()
+                # delay_mu(10)
+                # self.DDS__493__Alice__strong_sigma_1.sw.on()
+                # self.DDS__493__Alice__strong_sigma_2.sw.on()
 
                 # Cooling loop sequence using pre-recorded dma sequence
-                self.core_dma.playback_handle(fast_loop_cooling_handle)
+                # self.core_dma.playback_handle(fast_loop_cooling_handle)
+                # delay_mu(70000)
+                delay_mu(1000)
 
-                extra_pump = self.extra_pump
+                extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970+extra_pump,     # Current value 1970
@@ -464,9 +516,33 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 else:   # Failed to entangle
                     pattern = 0
                     # Add a counter here to sum the number of failed attempts?
+                    with sequential:
+                        delay_mu(15000)
+                        self.ttl_650_fast_cw.on()
+                        self.ttl_Bob_650_pi.on()
+                        delay_mu(10)
+                        self.DDS__650__weak_sigma_1.sw.on()
+                        self.DDS__650__weak_sigma_2.sw.on()
+                        delay_mu(10)
+                        self.DDS__493__Bob__sigma_1.sw.on()
+                        self.DDS__493__Bob__sigma_2.sw.on()                    
+                        delay_mu(10)
+                        self.DDS__650__Alice__weak_pi.sw.on()
+                        self.DDS__650__Bob__weak_pi.sw.on()
+                        self.ttl_493_all.off()       # Turn off all the strong beams
+                        delay_mu(10)
+                        self.DDS__493__Alice__sigma_1.sw.on()
+                        self.DDS__493__Alice__sigma_2.sw.on()
+                        
+                        # delay_mu(10)
+                        # self.DDS__493__Bob__strong_sigma_1.sw.on()
+                        # self.DDS__493__Bob__strong_sigma_2.sw.on()
+                        # delay_mu(10)
+                        # self.DDS__493__Alice__strong_sigma_1.sw.off()
+                        # self.DDS__493__Alice__strong_sigma_2.sw.off()    
 
             at_mu(end_timestamp)
-            delay_mu(25000)
+            delay_mu(35000)
             delay(self.raman_time)
 
             if pattern == 0:
@@ -541,6 +617,31 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
             else:
                 fail += 1
 
+            with parallel:
+                # Turn on the cooling beams
+                self.ttl_650_fast_cw.on()
+                self.ttl_Bob_650_pi.on()
+                delay_mu(10)
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
+                delay_mu(10)
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()                    
+                delay_mu(10)
+                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
+                self.ttl_493_all.off()  
+                delay_mu(10)
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
+                
+                # delay_mu(10)
+                # self.DDS__493__Bob__strong_sigma_1.sw.on()
+                # self.DDS__493__Bob__strong_sigma_2.sw.on()
+                # delay_mu(10)
+                # self.DDS__493__Alice__strong_sigma_1.sw.off()
+                # self.DDS__493__Alice__strong_sigma_2.sw.off()    
+                
             loop += 1
 
 
@@ -670,6 +771,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
     @kernel
     def prerecord_cooling_loop(self):
         """Pre-record the cooling loop sequence. This is played in the slow loops, once every n number of fast loops
+        NOT USED, needs to be updated
         """
 
         with self.core_dma.record("cooling_loop_pulses"):
@@ -702,75 +804,83 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 493 sigma 1
         """
         with self.core_dma.record("pulses01"):
-            # with parallel:
-            self.DDS__493__Alice__sigma_2.sw.off()
-            delay_mu(8)
-            self.DDS__493__Bob__sigma_2.sw.off()
-            delay_mu(8)
-            self.ttl_Alice_650_pi.on() # Alice 650 pi
-            delay_mu(8)
+
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off() 
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+            
+            self.DDS__650__Bob__weak_pi.sw.on() # Alice 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            delay_mu(8)
-            self.ttl_650_sigma_1.on() # 650 sigma 1
-            delay_mu(8)
-            self.ttl_650_sigma_2.on() # 650 sigma 2
-            delay_mu(8)
-            self.ttl_493_all.on()
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
 
             delay(self.detection_time)
 
-            # with parallel:
-            self.ttl_493_all.off()
-            delay_mu(8)
-            self.ttl_Alice_650_pi.off() # Alice 650 pi
-            delay_mu(8)
+            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()            
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off() # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 pi
             self.ttl_650_fast_cw.off() # 650 fast AOM
-            delay_mu(8)
-            self.ttl_650_sigma_1.off() # 650 sigma 1
-            delay_mu(8)
-            self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
-            self.DDS__493__Alice__sigma_2.sw.on()
-            delay_mu(8)
-            self.DDS__493__Bob__sigma_2.sw.on()
-            # delay_mu(8)
+            self.DDS__650__weak_sigma_1.sw.off() # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off() # 650 sigma 2
+
+            # self.ttl_493_all.off()               
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()
+
     @kernel
     def record_detect2(self):
         """DMA detection loop sequence.
         This generates the pulse sequence needed for detection with 493 sigma 2
         """
-        with self.core_dma.record("pulses02"):
-            # with parallel:
-            self.DDS__493__Alice__sigma_1.sw.off()
-            delay_mu(8)
-            self.DDS__493__Bob__sigma_1.sw.off()
-            delay_mu(8)
-            self.ttl_Alice_650_pi.on() # Alice 650 pi
-            delay_mu(8)
+        with self.core_dma.record("pulses01"):
+
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off() 
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+            
+            self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on() # Alice 650 pi
             self.ttl_650_fast_cw.on() # 650 fast AOM
-            delay_mu(8)
-            self.ttl_650_sigma_1.on() # 650 sigma 1
-            delay_mu(8)
-            self.ttl_650_sigma_2.on() # 650 sigma 2
-            delay_mu(8)
-            self.ttl_493_all.on()
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
 
             delay(self.detection_time)
 
-            # with parallel:
-            self.ttl_493_all.off()
-            delay_mu(8)
-            self.ttl_Alice_650_pi.off() # Alice 650 pi
-            delay_mu(8)
+            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()            
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off() # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 pi
             self.ttl_650_fast_cw.off() # 650 fast AOM
-            delay_mu(8)
-            self.ttl_650_sigma_1.off() # 650 sigma 1
-            delay_mu(8)
-            self.ttl_650_sigma_2.off() # 650 sigma 2
-            delay_mu(8)
-            self.DDS__493__Alice__sigma_1.sw.on()
-            delay_mu(8)
-            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__650__weak_sigma_1.sw.off() # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off() # 650 sigma 2
+            
+            # self.ttl_493_all.off()               
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()
 
     def runtime_calculation(self):
         """Non-kernel function to estimate how long the execution will take

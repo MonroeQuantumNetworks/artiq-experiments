@@ -294,13 +294,14 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off()  # 650 sigma 1
             self.ttl_650_sigma_2.off()  # 650 sigma 2
 
+            delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
 
             # Not implemented yet
-            # self.DDS__493__Bob__strong_sigma_1.sw.off()  # Alice 493 sigma 1
-            # self.DDS__493__Bob__strong_sigma_2.sw.off()  # Alice 493 sigma 2
-            # self.DDS__650__Bob__weak_pi.sw.off()
+            self.DDS__493__Bob__strong_sigma_1.sw.off()  # Alice 493 sigma 1
+            self.DDS__493__Bob__strong_sigma_2.sw.off()  # Alice 493 sigma 2
+            self.DDS__650__Bob__weak_pi.sw.off()
 
 
     @kernel
@@ -311,7 +312,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_pump_1"):
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_1.sw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
@@ -323,7 +324,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
                 self.DDS__650__weak_sigma_1.sw.off()
                 self.ttl_650_fast_cw.off()
 
@@ -337,7 +338,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_pump_2"):
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_1.sw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
@@ -349,7 +350,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             delay(self.pumping_time)
 
             with parallel:
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
                 self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_650_fast_cw.off()
 
@@ -389,9 +390,9 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 pi.
         """
         with self.core_dma.record("pulses_detect3"):
-            self.ttl_Bob_650_pi.on()
+            self.DDS__650__Bob__weak_pi.sw.on()
             delay(self.detection_time)
-            self.ttl_Bob_650_pi.on()
+            self.DDS__650__Bob__weak_pi.sw.off()
 
     @kernel
     def record_detect13(self):
@@ -401,7 +402,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect13"):
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_1.sw.on()
 
@@ -410,7 +411,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.DDS__650__weak_sigma_1.sw.off()
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
 
     @kernel
     def record_detect23(self):
@@ -420,7 +421,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect23"):
 
             with parallel:
-                self.ttl_Bob_650_pi.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
 
@@ -429,4 +430,4 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
             with parallel:
                 self.ttl_650_fast_cw.off()
                 self.DDS__650__weak_sigma_2.sw.off()
-                self.ttl_Bob_650_pi.off()
+                self.DDS__650__Bob__weak_pi.sw.off()

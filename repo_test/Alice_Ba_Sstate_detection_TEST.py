@@ -5,7 +5,7 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 
 
 George Toh 2020-07-21
-Updated 2021-03-12
+Updated 2021-03-18
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu

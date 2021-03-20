@@ -37,9 +37,8 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-        self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
-
+        self.setattr_argument('detections_per_point', NumberValue(5000, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
         # self.setattr_argument('do_curvefit', BooleanValue(False)) # We do curve fitting in a separate program now
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
@@ -270,7 +269,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
-        delay2 = delay1 - 65           # For detect sigma2
+        delay2 = delay1 #- 65           # For detect sigma2
 
         for i in range(self.detections_per_point):
 
@@ -322,14 +321,18 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
 
     @kernel
     def prep_record(self):
-        # This is used for detection
+        # Prepare the weak 650 laser beams
         with self.core_dma.record("pulses_prep"):
-            # self.ttl_Alice_650_pi.on() # Alice 650 strong pi
-            # self.ttl_650_sigma_1.on() # 650 strong sigma 1
-            # self.ttl_650_sigma_2.on() # 650 strong sigma 2
-
+            self.ttl_Alice_650_pi.off() # Alice 650 strong pi
+            self.ttl_650_sigma_1.off() # 650 strong sigma 1
+            self.ttl_650_sigma_2.off() # 650 strong sigma 2
+            delay_mu(10)
+            # self.ttl_493_all.off()   # This would affect Bob too
+            self.DDS__493__Alice__strong_sigma_1.sw.off() # Alice 493 sigma 1
+            self.DDS__493__Alice__strong_sigma_2.sw.off() # Alice 493 sigma 2
             self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
+            delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
             self.DDS__650__weak_sigma_1.sw.on()
             self.DDS__650__weak_sigma_2.sw.on()
