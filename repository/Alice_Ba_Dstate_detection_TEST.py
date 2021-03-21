@@ -272,7 +272,7 @@ class Alice_Ba_Dstate_detection_TEST(base_experiment.base_experiment):
             pulses_handle_pump = self.core_dma.get_handle("pulses_pump_1")
         else:
             pulses_handle_pump = self.core_dma.get_handle("pulses_pump_2")
-        pulses_handle_detect1 = self.core_dma.get_handle("pulses_detect1")
+        pulses_handle_detect1 = self.core_dma.get_handle("pulses_detect1")  #Move this up the stack, Have a segment to run all get_handle together??
         pulses_handle_detect2 = self.core_dma.get_handle("pulses_detect2")
         pulses_handle_detect3 = self.core_dma.get_handle("pulses_detect3")
         pulses_handle_detect13 = self.core_dma.get_handle("pulses_detect13")
@@ -283,7 +283,7 @@ class Alice_Ba_Dstate_detection_TEST(base_experiment.base_experiment):
         for i in range(self.detections_per_point):
 
             self.core.break_realtime()  # This is necessary to create slack
-            delay_mu(20000)
+            delay_mu(20000) #Is this required?
 
             self.core_dma.playback_handle(pulses_handle_pump)  # Cool then Pump
             delay_mu(1000)

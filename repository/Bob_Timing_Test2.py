@@ -325,12 +325,12 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
                 self.DDS__493__Bob__strong_sigma_1.sw.on()
                 self.DDS__493__Bob__strong_sigma_2.sw.on()
 
-                # if self.pump_650sigma_1or2 == 1:
-                #     self.ttl_650_sigma_1.on()
-                # else:
-                #     self.ttl_650_sigma_2.on()
+                if self.pump_650sigma_1or2 == 1:
+                    self.ttl_650_sigma_1.on()
+                else:
+                    self.ttl_650_sigma_2.on()
 
-                self.DDS__650__weak_sigma_2.sw.on()
+                # self.DDS__650__weak_sigma_2.sw.on()
 
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
@@ -339,12 +339,12 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
             self.ttl_650_fast_cw.off()
             self.ttl_Bob_650_pi.off()
             delay_mu(200)
-            # if self.pump_650sigma_1or2 == 1:
-            #     self.ttl_650_sigma_1.off()
-            # else:
-            #     self.ttl_650_sigma_2.off()
+            if self.pump_650sigma_1or2 == 1:
+                self.ttl_650_sigma_1.off()
+            else:
+                self.ttl_650_sigma_2.off()
 
-            self.DDS__650__weak_sigma_2.sw.off()
+            # self.DDS__650__weak_sigma_2.sw.off()
 
             delay_mu(200)
             self.DDS__493__Bob__strong_sigma_1.sw.off()

@@ -327,7 +327,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
             self.ttl_650_sigma_1.off() # 650 strong sigma 1
             self.ttl_650_sigma_2.off() # 650 strong sigma 2
             delay_mu(10)
-            # self.ttl_493_all.off()   # This would affect Bob too
+            self.ttl_493_all.off()   # This would affect Bob too
             self.DDS__493__Alice__strong_sigma_1.sw.off() # Alice 493 sigma 1
             self.DDS__493__Alice__strong_sigma_2.sw.off() # Alice 493 sigma 2
             self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1

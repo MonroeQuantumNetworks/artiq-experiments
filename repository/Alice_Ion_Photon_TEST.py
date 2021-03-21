@@ -82,7 +82,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=0.1*us, unit='us', ndecimals=3))
-        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(1100), RangeScan(900, 1300, 20)], global_min=0, global_step=10, ndecimals=0))
 
         self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
@@ -423,14 +423,14 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     at_mu(end_timestamp)
-                    delay_mu(20000)
+                    delay_mu(28000)
                     if self.do_Raman_AWG:
                         self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
                     at_mu(end_timestamp)
-                    delay_mu(20000)
+                    delay_mu(28000)
                     if self.do_Raman_AWG:
                         self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
@@ -452,7 +452,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                         self.DDS__493__Alice__strong_sigma_2.sw.off()                        
 
             at_mu(end_timestamp)
-            delay_mu(35000)
+            delay_mu(40000)
             if self.do_Raman_AWG:
                 delay(self.raman_time)
 

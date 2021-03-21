@@ -141,8 +141,11 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         datatofit = np.ascontiguousarray(datatofit)
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
-        initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime, 0.5]
-        fitbounds = ([0.2,-6.3,0,0],[1,6.3,100e-6,1])
+        if max(scanx) < 1e-3:
+            initialparams = [self.fitparam_amp, self.fitparam_phase, self.param_pitime, 0.5]
+        else:
+            initialparams = [self.fitparam_amp, self.fitparam_phase, 3, 0.5]
+        fitbounds = ([0.2,-6.3,0,0],[1,6.3,5,1])
 
         results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
@@ -161,5 +164,5 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
         print("Amplitude: {:0.2f}".format(results1[0]), " ")
         print("Phase: {:0.2f}".format(results1[1]), " ")
-        print("Pi angle: {:0.2f}".format(results1[2]*1e6), " degs")
+        print("Fitted Pi: {:0.2f}".format(results1[2]*1e6), " ")
         print("Offset: {:0.2f}".format(results1[3]))
