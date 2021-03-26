@@ -84,7 +84,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=0.1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(1100), RangeScan(900, 1300, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 120, 13)], global_min=-6.28, global_max=+200, global_step=1, ndecimals=0))
 
         self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
 
@@ -452,7 +452,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                         self.DDS__493__Alice__strong_sigma_2.sw.off()                        
 
             at_mu(end_timestamp)
-            delay_mu(40000)
+            delay_mu(45000)
             if self.do_Raman_AWG:
                 delay(self.raman_time)
 

@@ -1,8 +1,8 @@
 """
-Curve fitting tool for IonPhoton Data
+Curve fitting tool for D-state pumping data
 
 
-George Toh 2020-12-18
+George Toh 2020-3-24
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -17,7 +17,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
+class Curvefit_Tool_Dstate(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -34,12 +34,12 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
         self.setattr_argument('Instructions', EnumerationValue(["Choose which data set to fit to and set the fit parameters", "after fit is done, open applet Fit_results"]))
         self.setattr_argument('do_curvefit', BooleanValue(True))
-        self.setattr_argument('Data_to_fit', EnumerationValue(["sump1", "sump2", "sump3", "sump4"], default="sump1"))
+        self.setattr_argument('Data_to_fit', EnumerationValue(["D-32", "D+32"], default="D-32"))
 
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
         self.setattr_argument('fitparam_amp', NumberValue(1, ndecimals=0, min=1, step=0.1, max=4))
-        self.setattr_argument('fitparam_phase', NumberValue(0, ndecimals=0, min=-4, step=0.2, max=4))
-        self.setattr_argument('fitparam_pitime', NumberValue(5*us, ndecimals=0, min=1*us, step=5*us, max=1000*us, unit='us'))
+        # self.setattr_argument('fitparam_phase', NumberValue(0, ndecimals=0, min=-4, step=0.2, max=4))
+        self.setattr_argument('fitparam_decaytime', NumberValue(5*us, ndecimals=0, min=1*us, step=5*us, max=1000*us, unit='us'))
         # self.setattr_argument('fitparam_decayt', NumberValue(100*us, ndecimals=0, min=1*us, step=10*us, max=1000*us, unit='us'))
 
     def run(self):
@@ -75,32 +75,16 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         # Also, turn on Ba_ratios 
 
         try:
-
-            # self.set_dataset('scan_x', [], broadcast=True, archive=True)
-            # self.set_dataset('sum11', np.zeros(point_num), broadcast=True, archive=True)
-            # self.set_dataset('sum12', np.zeros(point_num), broadcast=True, archive=True)
-            # self.set_dataset('sum21', np.zeros(point_num), broadcast=True, archive=True)
-            # self.set_dataset('sum22', np.zeros(point_num), broadcast=True, archive=True)
-            #
-            # self.set_dataset('ratio21', np.zeros(point_num), broadcast=True, archive=True)
-            # self.set_dataset('ratio22', np.zeros(point_num), broadcast=True, archive=True)
-
-            self.set_dataset('data', [], broadcast=True, archive=True)
-            self.set_dataset('xfitdataset', [], broadcast=True, archive=True)
-            self.set_dataset('yfitdataset21', [], broadcast=True, archive=True)
-            self.set_dataset('yfitdataset22', [], broadcast=True, archive=True)
+            # Do curve fitting in this function
+            if self.do_curvefit == True:
+                self.fit_data()
 
         except TerminationRequested:
             print('Terminated gracefully')
 
-        # Do curve fitting in this function
-        if self.do_curvefit == True:
-            self.fit_data()
-
-
-
 
         # These are necessary to restore the system to the state before the experiment.
+        # Un-necessary since we do nothing in this script
         # self.load_globals_from_dataset()    # This loads global settings from datasets
         # self.setup()        # This sends settings out to the ARTIQ hardware
 
@@ -110,61 +94,37 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
         import numpy as np
         from scipy import optimize
-                
-        def cos_func(x, amp, phase, pitime):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
 
-        def cos_func2(x, amp, phase, pitime, offset):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + offset
+        def exp_decay(x, amp, decayt):
+            return amp * np.exp(-x / decayt)
 
-        def cos_decay(x, amp, phase, pitime, decayt):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
-
-        # detect21 = self.get_dataset('ratio21')
-        # detect22 = self.get_dataset('ratio22')
-        # detect11 = self.get_dataset('ratio11')
-        # detect12 = self.get_dataset('ratio12')
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
         data = self.get_dataset('ratio_list')
         data = np.array(data)
-        if self.Data_to_fit == "sump1":
-            datatofit = data[:,0]
-        elif self.Data_to_fit == "sump2":
-            datatofit = data[:,1]
-        elif self.Data_to_fit == "sump3":
-            datatofit = data[:,2]
-        else:  # self.Data_to_fit == "sump4"
-            # datatofit = np.array(data)
-            datatofit = data[:,3]
+        if self.Data_to_fit == "D-32":
+            datatofit = 1-data[:,0]
+        else:
+            datatofit = 1-data[:,3]
 
-        # print(datatofit)
+
         datatofit = np.ascontiguousarray(datatofit)
 
-        # initialparams = [1,0,5e-6]      # amp, phase, pitime
-        if max(scanx) < 1e-3:
-            initialparams = [self.fitparam_amp, self.fitparam_phase, self.param_pitime, 0.5]
-        else:
-            initialparams = [self.fitparam_amp, self.fitparam_phase, 3, 0.5]
-        fitbounds = ([0.2,-6.3,0,0],[1,6.3,5,1])
+        initialparams = [self.fitparam_amp, self.fitparam_decaytime]
+        fitbounds = ([0,0],[10, 1000e-6])
 
-        results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(exp_decay, scanx, datatofit, p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
         fittedx = np.linspace(0,max(scanx),self.fit_points)
-        fitresult1 = cos_func2(fittedx, *results1)
+        fitresult1 = exp_decay(fittedx, *results1)
 
         self.set_dataset('xfitdataset', fittedx, broadcast=True)
         self.set_dataset('yfitdataset', fitresult1, broadcast=True)
 
         self.set_dataset('data', datatofit, broadcast=True)
 
-        # self.set_dataset('xfitdataset', [1,2,3,4,5,6,7,8,9,10], broadcast=True)
-        # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
-        # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
+        # print("Amplitude: {:0.2f}".format(results1[0]), " ")
+        print("Decay time (98%): {:0.2f}".format(results1[1]*4e6), " us")
 
-        print("Amplitude: {:0.2f}".format(results1[0]), " ")
-        print("Phase: {:0.2f}".format(results1[1]), " ")
-        print("Fitted Pi: {:0.2f}".format(results1[2]*1e6), " ")
-        print("Offset: {:0.2f}".format(results1[3]))
