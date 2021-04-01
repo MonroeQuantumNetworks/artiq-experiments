@@ -418,8 +418,26 @@ class Alice_Timing_Test2(base_experiment.base_experiment):
             # Wait a little while before turning off the slow AOMS to maximize signal
             delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced
 
+            delay_mu(1000)	# Wait a little while before exciting again
+
+            #  # Turn on the slow AOM first, no 650 light because 650 fast is off
+            # if self.pump_650sigma_1or2 == 1:
+            #    self.ttl_650_sigma_2.on()
+            # else:
+            #     self.ttl_650_sigma_1.on()
+            #
+            # delay_mu(200)       # Wait 200 ns so that the slow AOMs are fully turned on
+
+            # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
+            self.ttl_650_fast_pulse.pulse(40*ns)     # Use this if using the pulse generator
+
+            # Wait a little while before turning off the slow AOMS to maximize signal
+            delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced
+
+
             self.ttl_650_sigma_1.off()
             self.ttl_650_sigma_2.off()
+
 
     @kernel
     def prerecord_singlephoton_loop_weak(self):
