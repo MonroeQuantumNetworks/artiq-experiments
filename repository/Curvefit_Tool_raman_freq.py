@@ -1,5 +1,12 @@
-"""
-Curve fitting tool for IonPhoton Data
+""" Modified to do Raman using the Keysight AWG
+Bob Barium detection, with scannable variables, DMA detection
+Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
+Fixed AOM amplitude scanning and update
+Also does curve fitting at the very end (Fit to Raman time scan)
+
+Uses Keysight AWG to drive Raman lasers
+
+Known issues:
 
 
 George Toh 2020-12-18
@@ -17,7 +24,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
+class Curvefit_Tool_raman_freq(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -34,13 +41,13 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
         self.setattr_argument('Instructions', EnumerationValue(["Choose which data set to fit to and set the fit parameters", "after fit is done, open applet Fit_results"]))
         self.setattr_argument('do_curvefit', BooleanValue(True))
-        self.setattr_argument('Data_to_fit', EnumerationValue(["sump1", "sump2", "sump3", "sump4"], default="sump1"))
+        self.setattr_argument('Data_to_fit', EnumerationValue(["detect11", "detect12", "detect21", "detect22"], default="detect11"))
 
         self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
-        self.setattr_argument('fitparam_amp', NumberValue(1, ndecimals=0, min=1, step=0.1, max=4))
-        self.setattr_argument('fitparam_phase', NumberValue(0, ndecimals=0, min=-4, step=0.2, max=4))
-        self.setattr_argument('fitparam_pitime', NumberValue(5, ndecimals=0, min=1*us, step=5, max=1000))
-        # self.setattr_argument('fitparam_decayt', NumberValue(100*us, ndecimals=0, min=1*us, step=10*us, max=1000*us, unit='us'))
+        self.setattr_argument('fitparam_center', NumberValue(1, ndecimals=3, min=1e6, step=1, max=4e7, unit='MHz'))
+        self.setattr_argument('fitparam_sigma', NumberValue(1, ndecimals=4, min=1e3, step=1, max=4e7, unit='MHz'))
+        self.setattr_argument('fitparam_amp', NumberValue(1, ndecimals=2, min=0, step=1, max=1000000))
+
 
     def run(self):
 
@@ -60,7 +67,7 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "data"
             + " --x-fit " + "xfitdataset"
-            + " --y-fits " + "yfitdataset"
+            + " --y-fits " + "yfitdataset21"
             + " --rid " + "runid"            
             + " --y-label "
             + "'"
@@ -98,8 +105,6 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
             self.fit_data()
 
 
-
-
         # These are necessary to restore the system to the state before the experiment.
         # self.load_globals_from_dataset()    # This loads global settings from datasets
         # self.setup()        # This sends settings out to the ARTIQ hardware
@@ -110,16 +115,15 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
 
         import numpy as np
         from scipy import optimize
-                
-        def cos_func(x, amp, phase, pitime):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + 0.5
+        #Introduce lorentzian for Raman frequency scan fit
+        def lorentz(x,gamma,center,amp):
+            return amp/np.pi*((gamma/2)/((x-center)**2+(gamma/2)**2))
 
-        def cos_func2(x, amp, phase, pitime, offset):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase)) + offset
-
-        def cos_decay(x, amp, phase, pitime, decayt):
-            return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
-
+        def gaussian(x,sigma,center,amp):
+            return amp*np.exp(-(x-center)**2/(2*sigma)**2)
+        #
+        # def sinc(x,freq, disp, amp):
+        #     return amp*(np.sin(2*np.pi*freq))
         # detect21 = self.get_dataset('ratio21')
         # detect22 = self.get_dataset('ratio22')
         # detect11 = self.get_dataset('ratio11')
@@ -127,37 +131,37 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
-        data = self.get_dataset('ratio_list')
-        data = np.array(data)
-        if self.Data_to_fit == "sump1":
-            datatofit = data[:,0]
-        elif self.Data_to_fit == "sump2":
-            datatofit = data[:,1]
-        elif self.Data_to_fit == "sump3":
-            datatofit = data[:,2]
-        else:  # self.Data_to_fit == "sump4"
-            # datatofit = np.array(data)
-            datatofit = data[:,3]
+        if self.Data_to_fit == "detect11":
+            datatofit = self.get_dataset('ratio11')
+        elif self.Data_to_fit == "detect12":
+            datatofit = self.get_dataset('ratio12')
+        elif self.Data_to_fit == "detect22":
+            datatofit = self.get_dataset('ratio22')
+        else:  # Data_to_fit == "detect21"
+            datatofit = self.get_dataset('ratio21')
 
-        # print(datatofit)
-        datatofit = np.ascontiguousarray(datatofit)
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
-        # if max(scanx) < 1e-3:
-        #     initialparams = [self.fitparam_amp, self.fitparam_phase, self.param_pitime, 0.5]
-        # else:
+        initialparams = [self.fitparam_sigma, self.fitparam_center,self.fitparam_amp]
+        fitbounds = ([0,0,0],[0.05*MHz,100*MHz,1])
 
-        initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime, 0.5]
-        fitbounds = ([0.2,-6.3,0,0.4],[1,6.3,100,0.6])
-
-        results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(lorentz, scanx, datatofit, p0=initialparams, bounds=fitbounds,maxfev=100000)
         print('Fit results: ', results1)
 
-        fittedx = np.linspace(0,max(scanx),self.fit_points)
-        fitresult1 = cos_func2(fittedx, *results1)
+        # fitbounds = ([0.2,-6.3,0,0],[1,100,50e-6,0.01])        # amp, phase, pitime, decayt
+
+        # results2, covariances = optimize.curve_fit(cos_decay, scanx[1:100], datatofit[1:100], p0=[*results1, self.fitparam_decayt], bounds = fitbounds)
+        # print('Fit results: ', results2)
+
+        fittedx = np.linspace(min(scanx),max(scanx),self.fit_points)
+        # fitresult1 = cos_func(fittedx, *results2)
+        fitresult2 = gaussian(fittedx, *results1)
+
+        # print(fittedx)
+        # print(fitresult2)
 
         self.set_dataset('xfitdataset', fittedx, broadcast=True)
-        self.set_dataset('yfitdataset', fitresult1, broadcast=True)
+        self.set_dataset('yfitdataset21', fitresult2, broadcast=True)
 
         self.set_dataset('data', datatofit, broadcast=True)
 
@@ -165,19 +169,6 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         # self.set_dataset('yfitdataset21', [0,1,0,1,0,1,0,1,0,1], broadcast=True)
         # self.set_dataset('yfitdataset22', np.zeros(20), broadcast=True)
 
-        print("Amplitude: {:0.2f}".format(results1[0]), " ")
-        print("Phase: {:0.2f}".format(results1[1]), " ")
-        print("Fitted Pi: {:0.2f}".format(results1[2]), " ")
-        print("Offset: {:0.2f}".format(results1[3]))
-
-        bestangle = -results1[1]/3.14 * results1[2]
-
-        if bestangle > 45:
-            bestangle = bestangle - 45
-        elif bestangle < 0:
-            bestangle = bestangle + 45
-
-        if bestangle < 0:
-            bestangle = bestangle + 45
-
-        print("Best Angle: {:0.2f}".format(bestangle))
+        print("Center: {:0.2f}".format(results1[1]/MHz), "MHz")
+        print("Sigma: {:0.2f}".format(results1[0]/MHz), "MHz")
+        print(covariances)

@@ -20,8 +20,8 @@ amplitude1  [0.1], 0-1, in Volts, 3 decimals max
 amplitude2
 frequency1  [83e6] Frequency of the first (or only) tone
 frequency2  [77e6]
-phase1      [0] Phase of the first tone
-phase2      [0] 
+phase1      [0] Phase of both tones (radians)
+phase2      [0] Phase difference of both tones (radians)
 duration1   [2000] Duration of the first (or only) output pulse in ns
 duration2   [0] Duration of the second output pulse (only type:wave) in ns
 pause1      [0] Wait time before first output pulse in ns
@@ -38,7 +38,7 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
     SERVER_IP   = '192.168.1.101'
     PORT_NUMBER = 10050
     SIZE = 1024
-    print ("Test client sending packets to IP {0}, via port {1}".format(SERVER_IP, PORT_NUMBER))
+    # print ("Test client sending packets to IP {0}, via port {1}".format(SERVER_IP, PORT_NUMBER))
 
     mySocket = socket( AF_INET, SOCK_DGRAM )
 

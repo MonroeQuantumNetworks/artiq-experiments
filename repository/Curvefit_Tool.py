@@ -122,6 +122,7 @@ class Curvefit_Tool(base_experiment.base_experiment):
         def cos_decay(x, amp, phase, pitime, decayt):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
 
+
         # detect21 = self.get_dataset('ratio21')
         # detect22 = self.get_dataset('ratio22')
         # detect11 = self.get_dataset('ratio11')
@@ -141,12 +142,12 @@ class Curvefit_Tool(base_experiment.base_experiment):
 
         # initialparams = [1,0,5e-6]      # amp, phase, pitime
         initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime]
-        fitbounds = ([0.2,-6.3,0],[1,6.3,20e-6])
+        fitbounds = ([0.2,-6.3,0],[1,6.3,50e-6])
 
         results1, covariances = optimize.curve_fit(cos_func, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
 
-        fitbounds = ([0.2,-6.3,0,0],[1,100,20e-6,0.001])        # amp, phase, pitime, decayt
+        fitbounds = ([0.2,-6.3,0,0],[1,100,50e-6,0.01])        # amp, phase, pitime, decayt
 
         results2, covariances = optimize.curve_fit(cos_decay, scanx[1:100], datatofit[1:100], p0=[*results1, self.fitparam_decayt], bounds = fitbounds)
         print('Fit results: ', results2)

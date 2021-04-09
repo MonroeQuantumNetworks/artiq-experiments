@@ -4,7 +4,7 @@ Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
 Does Raman on Alice using the Keysight AWG, through the server on Glados.
 
-TEST version uses weak DDSs for detection, and strong TTL/DDSs for pumping
+SLOW fires the Raman after every single entanglement attempt
 
 George Toh 2020-07-30
 updated 2021-03-12
@@ -33,7 +33,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
+class Alice_Ion_Photon_SLOW(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -237,9 +237,9 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                                 phase1 = 0,  # radians
                                 phase2 = self.raman_phase,  # radians
                                 duration1 = self.raman_time/ns,  # ns
-                                # duration2 = self.raman_time/ns,  # ns
+                                duration2=0,  # ns
                                 # pause1=self.pause_before,
-                                # pause2 = 25000          # in nanoseconds
+                                # pause2=self.pause_between
                                 )
                     time.sleep(0.1)
 
@@ -419,7 +419,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970+extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
+                    cycle_len=1970+extra_pump+5000,     # Current value 1970 (Max of 8192 or 2^13)
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
@@ -428,8 +428,6 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    # in_start=500,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    # in_stop=extra_pump,
                     in_start=1890 + extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
                     in_stop=1940 + extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
@@ -440,16 +438,16 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     at_mu(end_timestamp)
-                    delay_mu(25000+000)
+                    delay_mu(23000)
                     # # if self.do_Raman_AWG:
-                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    # self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
                     at_mu(end_timestamp)
-                    delay_mu(25000+000)
+                    delay_mu(23000)
                     # # if self.do_Raman_AWG:
-                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    # self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 else:   # Failed to entangle
                     pattern = 0
@@ -469,7 +467,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                         self.DDS__493__Alice__strong_sigma_2.sw.off()
 
             at_mu(end_timestamp)
-            delay_mu(45000+0000)
+            delay_mu(45000)
             if self.do_Raman_AWG:
                 delay(self.raman_time)
 
@@ -598,7 +596,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.entangler.init()
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
-        self.entangler.set_timing_mu(0, 10000, 20000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, in_start, in_stop)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
         self.entangler.set_timing_mu(1, 10000, 20000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi

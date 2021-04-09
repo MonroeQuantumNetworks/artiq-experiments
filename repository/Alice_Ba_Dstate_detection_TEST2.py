@@ -9,6 +9,7 @@ TEST 2 does pumping with the strong beams
 We modified this to use weak 650-pi for pumping
 
 Allison Carter 2020-06-21
+George 2021-03
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu

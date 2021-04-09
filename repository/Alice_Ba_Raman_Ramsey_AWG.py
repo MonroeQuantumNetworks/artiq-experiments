@@ -22,7 +22,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
+class Alice_Ba_Raman_Ramsey_AWG(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -30,6 +30,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         "pumping_time",
         "delay_time",
         "raman_time",
+        "Ramsey_delay"
     }
 
     def build(self):
@@ -42,13 +43,16 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         # self.setattr_argument('do_curvefit', BooleanValue(False)) # We do curve fitting in a separate program now
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'Ramsey_delay', 'Ramsey_phase', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(500), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('Ramsey_delay__scan', Scannable(default=[NoScan(1e-6), RangeScan(1e-6, 10e-6, 20)], unit='us', global_min=0, global_step=1000, ndecimals=0))
 
+        self.setattr_argument('Ramsey_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 120, 13)], global_min=-6.28, global_max=+200, global_step=1, ndecimals=2))
+        self.setattr_argument('Ramsey_frequency', NumberValue(1e5, ndecimals=0, step=1e4, unit='kHz'))
         self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
         # self.setattr_argument('AWG__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
         # self.setattr_argument('AWG__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
@@ -173,8 +177,8 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
                 time.sleep(1)
 
                 # Calculate the two frequencies
-                self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2
-                self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2
+                self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2 - self.Ramsey_frequency
+                self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2 # - self.Ramsey_frequency
 
                 # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
 
@@ -186,11 +190,11 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
                     frequency1 = self.AWG__532__Alice__tone_1__frequency,   # Hz
                     frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
-                    phase2 = 0,                               # radians
+                    phase2 = self.Ramsey_phase,                               # radians
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
-                    # duration2 = self.duration2,                             # ns
-                    # pause1 = self.pause1
-                    # pause2 = self.pause2
+                    duration2 = self.raman_time/ns,                         # ns
+                    pause1 = 0,
+                    pause2 = self.Ramsey_delay/ns                           # Convert sec to ns
                     )
 
                 time.sleep(0.1)  # May need a longer delay here for generating and loading the waveform
@@ -366,7 +370,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)
-                delay(self.raman_time)
+                delay(self.raman_time + self.raman_time + self.Ramsey_delay)
 
             delay_mu(1000)
 
@@ -396,7 +400,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)
-                delay(self.raman_time)
+                delay(self.raman_time + self.raman_time + self.Ramsey_delay)
 
             delay_mu(1000)
 
