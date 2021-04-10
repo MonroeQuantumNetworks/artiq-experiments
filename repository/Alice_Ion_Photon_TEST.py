@@ -234,8 +234,8 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                                 amplitude2 = self.AWG__532__Alice__tone_1__amplitude,
                                 frequency1 = self.AWG__532__Alice__tone_1__frequency,  # Hz
                                 frequency2 = self.AWG__532__Alice__tone_2__frequency,  # Hz
-                                phase1 = 0,  # radians
-                                phase2 = self.raman_phase,  # radians
+                                phase1 = self.raman_phase,  # radians
+                                phase2 = 0,  # radians
                                 duration1 = self.raman_time/ns,  # ns
                                 # duration2 = self.raman_time/ns,  # ns
                                 # pause1=self.pause_before,
@@ -440,14 +440,14 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     at_mu(end_timestamp)
-                    delay_mu(25000+000)
+                    delay_mu(25000)
                     # # if self.do_Raman_AWG:
                     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
                     at_mu(end_timestamp)
-                    delay_mu(25000+000)
+                    delay_mu(25000)
                     # # if self.do_Raman_AWG:
                     self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
@@ -469,7 +469,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                         self.DDS__493__Alice__strong_sigma_2.sw.off()
 
             at_mu(end_timestamp)
-            delay_mu(45000+0000)
+            delay_mu(45000)
             if self.do_Raman_AWG:
                 delay(self.raman_time)
 

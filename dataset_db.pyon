@@ -1,7 +1,7 @@
 {
     "Ba_detection_names": [b'detect11', b'detect12', b'detect21', b'detect22'],
     "Ba_detection_names2": [b'detect21', b'detect22'],
-    "active_scan_names": [b'Ramsey_delay'],
+    "active_scan_names": [b'raman_time'],
     "detectors": nparray((4, ), "<i8", b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='),
     "globals.AWG.532.Alice.tone_1.amplitude": 0.095,
     "globals.AWG.532.Alice.tone_1.frequency": 84000000.0,

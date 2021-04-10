@@ -46,6 +46,8 @@ class AWG_test(base_experiment.base_experiment):
         self.setattr_argument('pause_before', NumberValue(0, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('pause_between', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('duration2', NumberValue(1000, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('pause_between2', NumberValue(0, ndecimals=0, min=0, step=1, max=1000000))
+        self.setattr_argument('duration3', NumberValue(0, ndecimals=0, min=0, step=1, max=1000000))
         self.setattr_argument('phase', NumberValue(0, ndecimals=5, min=0, max = 300000))
         self.setattr_argument('phase_diff', NumberValue(3.14, ndecimals=5, min=0, max=300000))
 
@@ -100,8 +102,10 @@ class AWG_test(base_experiment.base_experiment):
                             phase2 = self.phase_diff,  # radians
                             duration1 = self.duration1,                             # ns
                             duration2 = self.duration2,                             # ns
+                            duration3 = self.duration3,  # ns
                             pause1 = self.pause_before,
-                            pause2 = self.pause_between
+                            pause2 = self.pause_between,
+                            pause3 = self.pause_between2
                             )
                 # time.sleep(0.5)
                 self.kernel_run()

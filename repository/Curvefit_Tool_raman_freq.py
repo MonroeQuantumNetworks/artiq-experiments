@@ -171,4 +171,4 @@ class Curvefit_Tool_raman_freq(base_experiment.base_experiment):
 
         print("Center: {:0.2f}".format(results1[1]/MHz), "MHz")
         print("Sigma: {:0.2f}".format(results1[0]/MHz), "MHz")
-        print(covariances)
+        # print(covariances)

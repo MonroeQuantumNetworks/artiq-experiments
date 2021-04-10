@@ -30,7 +30,7 @@ pause2      [0] Wait time between first and second output pulse in ns
 See examples below for details about which inputs are used for each type.
 """
 
-def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, duration1 = 2000, duration2 = 0, pause1 =0, pause2 = 0):
+def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 = 0.1, frequency1 = 83e6, frequency2 = 77e6, phase1=0, phase2=0, phase3=0, duration1 = 2000, duration2 = 0, duration3 = 0, pause1 =0, pause2 = 0, pause3 = 0):
 
     import sys
     from socket import socket, AF_INET, SOCK_DGRAM
@@ -75,10 +75,13 @@ def sendmessage(self, type = "quit", channel = 1, amplitude1 = 0.1, amplitude2 =
         + "-" + str(int(frequency2))
         + "-" + str(int(phase1*100000))     # We convert to int for transmission so *100000 gives 6 digits of resolution
         + "-" + str(int(phase2*100000))
+        + "-" + str(int(phase3 * 100000))
         + "-" + str(int(duration1))
         + "-" + str(int(duration2))
+        + "-" + str(int(duration3))
         + "-" + str(int(pause1))
         + "-" + str(int(pause2))
+        + "-" + str(int(pause3))
         )
     elif type == "quit":
         message = "quit"

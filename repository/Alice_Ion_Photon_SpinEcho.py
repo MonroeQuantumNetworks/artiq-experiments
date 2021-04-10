@@ -236,6 +236,7 @@ class Alice_Ion_Photon_SpinEcho(base_experiment.base_experiment):
                                 frequency2 = self.AWG__532__Alice__tone_2__frequency,  # Hz
                                 phase1 = 0,  # radians
                                 phase2 = self.raman_phase,  # radians
+                                phase3 = self.raman_phase + np.pi/2,
                                 duration1 = self.raman_time/ns,  # ns
                                 duration2 = 0.5* self.raman_time/ns,  # ns
                                 # pause1=self.pause_before,
@@ -442,7 +443,7 @@ class Alice_Ion_Photon_SpinEcho(base_experiment.base_experiment):
                     at_mu(end_timestamp)
                     delay_mu(25000)
                     # # if self.do_Raman_AWG:
-                    # self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
+                    self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
