@@ -192,7 +192,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
                     frequency1 = self.AWG__532__Bob__tone_1__frequency,   # Hz
                     frequency2 = self.AWG__532__Bob__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
-                    phase2 = 3.14,                               # radians
+                    phase2 = 0,                               # radians
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
                     # duration2 = self.duration2,                             # ns
                     # pause1 = self.pause1
@@ -279,6 +279,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(30000)    
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -288,6 +289,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -297,6 +299,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -306,6 +309,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -367,6 +371,9 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
                 self.ttl_AWG_trigger.pulse(100*ns)
                 delay(self.raman_time)
 
+            delay_mu(1000)
+
+
             with parallel:
                 self.DDS__650__Bob__weak_pi.sw.on()
                 self.ttl_650_fast_cw.on()
@@ -394,6 +401,8 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)
                 delay(self.raman_time)
+
+            delay_mu(1000)
 
             with parallel:
                 self.DDS__650__Bob__weak_pi.sw.on()

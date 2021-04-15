@@ -506,6 +506,7 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
                 self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
                 self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
                 self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
+
     @kernel
     def record_detect1(self):
         """DMA detection loop sequence.

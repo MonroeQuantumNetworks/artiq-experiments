@@ -597,7 +597,7 @@ class Alice_Ion_Photon_SLOW(base_experiment.base_experiment):
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
         self.entangler.set_timing_mu(0, in_start, in_stop)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(1, 10000, 20000)  # Do nothing to BoB 650-pi
+        self.entangler.set_timing_mu(1, 10000, 50000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi
         # self.entangler.set_timing_mu(4, out_start, out_stop)

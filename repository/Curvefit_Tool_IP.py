@@ -129,26 +129,33 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         # Change this to the dataset you want to fit
         data = self.get_dataset('ratio_list')
         data = np.array(data)
+
         if self.Data_to_fit == "sump1":
             datatofit = data[:,0]
+            counts1 = np.array(self.get_dataset('sum_p1_1'))
+            counts2 = np.array(self.get_dataset('sum_p1_2'))
         elif self.Data_to_fit == "sump2":
             datatofit = data[:,1]
+            counts1 = np.array(self.get_dataset('sum_p2_1'))
+            counts2 = np.array(self.get_dataset('sum_p2_2'))
         elif self.Data_to_fit == "sump3":
             datatofit = data[:,2]
+            counts1 = np.array(self.get_dataset('sum_p3_1'))
+            counts2 = np.array(self.get_dataset('sum_p3_2'))
         else:  # self.Data_to_fit == "sump4"
             # datatofit = np.array(data)
             datatofit = data[:,3]
+            counts1 = np.array(self.get_dataset('sum_p4_1'))
+            counts2 = np.array(self.get_dataset('sum_p4_2'))
 
-        # print(datatofit)
+
         datatofit = np.ascontiguousarray(datatofit)
 
-        # initialparams = [1,0,5e-6]      # amp, phase, pitime
-        # if max(scanx) < 1e-3:
-        #     initialparams = [self.fitparam_amp, self.fitparam_phase, self.param_pitime, 0.5]
-        # else:
+        # Calculate the uncertainties here
+        error = np.sqrt(counts1)
 
         initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime, 0.5]
-        fitbounds = ([0.2,-6.3,0,0.4],[1,6.3,100,0.6])
+        fitbounds = ([0.2,-6.3,0,0.4],[1,6.3,100,0.55])
 
         results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
         print('Fit results: ', results1)
