@@ -21,6 +21,7 @@ import numpy as np
 import base_experiment
 import os
 import time
+from scipy import optimize
 
 
 class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
@@ -69,7 +70,7 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
         self.ccb.issue(
             "create_applet",
-            name="Detection_Counts",
+            name="D-state_Counts",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "sum1 sum2 sum3 sum13 sum23"
@@ -175,6 +176,44 @@ class Bob_Ba_Dstate_detection_DMA(base_experiment.base_experiment):
         # These are necessary to restore the system to the state before the experiment.
         self.load_globals_from_dataset()    # This loads global settings from datasets
         self.setup()        # This sends settings out to the ARTIQ hardware
+
+        # # Curve fit the data here:
+
+        def exp_decay(x, amp, decayt, offset):
+            return amp * np.exp(-x / decayt) + offset
+
+        scanx = self.get_dataset('scan_x')
+
+        # Change this to the dataset you want to fit
+        data = self.get_dataset('ratio_list')
+        data = np.array(data)
+        # if self.Data_to_fit == "D-32":
+        #     datatofit = 1-data[:,0]
+        # else:
+        #     datatofit = 1-data[:,3]
+        datatofit = 1-data[:,0]
+
+        datatofit = np.ascontiguousarray(datatofit)
+
+        initialparams = [0.5, 3e-6, 0.1]
+        fitbounds = ([0,0, 0], [10, 1000e-6, 0.9])
+
+        results1, covariances = optimize.curve_fit(exp_decay, scanx, datatofit, p0=initialparams, bounds = fitbounds)
+        print('Fit results: ', results1)
+
+        fittedx = np.linspace(0,max(scanx), 100)
+        fitresult1 = exp_decay(fittedx, *results1)
+
+        self.set_dataset('xfitdataset', fittedx, broadcast=True)
+        self.set_dataset('yfitdataset', fitresult1, broadcast=True)
+
+        self.set_dataset('data', datatofit, broadcast=True)
+
+        # print("Amplitude: {:0.2f}".format(results1[0]), " ")
+        print("Decay time (98%): {:0.2f}".format(results1[1]*4e6), " us")
+        print("Offset: {:0.2f}".format(results1[2]), " ")
+
+        # --------------------------------- DONE CURVE FITTING ---------------------------------------------------
 
     @kernel
     def prep_kernel_run(self):

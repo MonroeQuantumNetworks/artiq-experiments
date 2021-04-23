@@ -50,13 +50,13 @@ class base_experiment(EnvExperiment):
         ('493__Bob__strong_sigma_1', 'urukul1_ch2', 79 * MHz, 0.6, 11.0, False),
         ('493__Bob__strong_sigma_2', 'urukul1_ch3', 81 * MHz, 0.6, 11.0, False),
         ('650__weak_sigma_1', 'urukul2_ch0', 81.5*MHz, 0.5, 10.0, False),
-        ('650__weak_sigma_2', 'urukul2_ch1', 78.5*MHz, 0.5, 10.0, False),
-        ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 0.5, 10.0, False),
-        ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 0.5, 10.0, False),
-        ('urukul3_ch0', 'urukul3_ch0', 800*MHz, 1.0, 10.0, False),
-        ('urukul3_ch1', 'urukul3_ch1', 80*MHz, 1.0, 10.0, False),
-        ('urukul3_ch2', 'urukul3_ch2', 76.1*MHz, 0.5, 17, False),
-        ('urukul3_ch3', 'urukul3_ch3', 83.1*MHz, 0.5, 17.5, False)
+        ('650__weak_sigma_2', 'urukul2_ch1', 78.5*MHz, 0.5, 17.0, False),
+        ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 0.5, 7.0, False),
+        ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 0.5, 13.0, False),
+        ('urukul3_ch0', 'urukul3_ch0', 80*MHz, 0.5, 0.0, False),        # Strong 650 pi
+        ('urukul3_ch1', 'urukul3_ch1', 82.5*MHz, 0.32, 11.0, False),    # Strong 650 sigma1
+        ('urukul3_ch2', 'urukul3_ch2', 77.5*MHz, 0.5, 20, False),       # Strong 650 sigma2
+        ('urukul3_ch3', 'urukul3_ch3', 80.0*MHz, 0.5, 30, False)
         # ('532__Alice__tone_1', 'urukul1_ch0', 80*MHz, 0.4, 10.0, False),
         # ('532__Alice__tone_2', 'urukul1_ch1', 75*MHz, 0.4, 10.0, False),
         # ('532__Bob__tone_1', 'urukul1_ch2', 80*MHz, 0.3, 10.0, False),

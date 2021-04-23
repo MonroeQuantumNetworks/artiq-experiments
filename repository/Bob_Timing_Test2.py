@@ -297,23 +297,23 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
             delay_mu(50)
             if self.run_cooling_sequence:
                 # Turn on cooling lasers
-                self.ttl_650_sigma_1.on()
-                self.ttl_650_sigma_2.on()
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
                 self.ttl_650_fast_cw.on()
-                self.ttl_Bob_650_pi.on()
-                self.DDS__493__Bob__strong_sigma_1.sw.on()
-                self.DDS__493__Bob__strong_sigma_2.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
 
                 # Wait while lasers cool
                 delay(self.cool_time)
 
                 # Turn off cooling lasers
-                self.ttl_650_sigma_1.off()
-                self.ttl_650_sigma_2.off()
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.DDS__650__weak_sigma_2.sw.off()
                 self.ttl_650_fast_cw.off()
-                self.ttl_Bob_650_pi.off()
-                self.DDS__493__Bob__strong_sigma_1.sw.off()
-                self.DDS__493__Bob__strong_sigma_2.sw.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
+                self.DDS__493__Bob__sigma_1.sw.off()
+                self.DDS__493__Bob__sigma_2.sw.off()
 
                 # delay(300*ns)
                 delay(self.delay_one)
@@ -322,16 +322,15 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
             with parallel:
                 self.ttl_650_fast_cw.on()
                 # self.ttl_Bob_650_pi.on()
-                self.DDS__493__Bob__strong_sigma_1.sw.on()
-                self.DDS__493__Bob__strong_sigma_2.sw.on()
+                self.DDS__493__Bob__sigma_1.sw.on()
+                self.DDS__493__Bob__sigma_2.sw.on()
 
                 if self.pump_650sigma_1or2 == 1:
                     self.ttl_650_sigma_1.on()
                 else:
                     self.ttl_650_sigma_2.on()
 
-                # self.DDS__650__weak_sigma_2.sw.on()
-
+            # Pumping time
             delay(self.delay_two)       # This delay cannot be zero or ARTIQ will spit out errors
 
             # Now turn off all the beams
@@ -344,11 +343,9 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
             else:
                 self.ttl_650_sigma_2.off()
 
-            # self.DDS__650__weak_sigma_2.sw.off()
-
             delay_mu(200)
-            self.DDS__493__Bob__strong_sigma_1.sw.off()
-            self.DDS__493__Bob__strong_sigma_2.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
 
             delay(self.delay_three)
 
@@ -361,7 +358,7 @@ class Bob_Timing_Test2(base_experiment.base_experiment):
             delay_mu(200)       # Wait 200 ns so that the slow AOMs are fully turned on
 
             # self.ttl_650_fast_cw.pulse(self.pulse650_duration)          # Use this if using an rf switch
-            self.ttl_650_fast_pulse.pulse(20*ns)     # Use this if using the pulse generator
+            self.ttl_650_fast_pulse.pulse(10*ns)     # Use this if using the pulse generator
 
             # Wait a little while before turning off the slow AOMS to maximize signal
             delay_mu(1000)        # This is needed if using the pulse generator due to the ~100ns delay introduced

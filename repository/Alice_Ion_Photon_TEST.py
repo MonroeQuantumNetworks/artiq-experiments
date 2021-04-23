@@ -69,7 +69,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
 
         self.setattr_argument('pump_650sigma_1or2', NumberValue(2, step=1, min=1, max=2, ndecimals=0))
-        self.setattr_argument('extra_pump_time', NumberValue(2000, step=500, min=0, max=10000, ndecimals=0))
+        self.setattr_argument('extra_pump_time', NumberValue(2000, step=500, min=-800, max=10000, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(250000, step=10000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=100, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(5000, step=5000, min=1, max=50000, ndecimals=0))
@@ -84,7 +84,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=0.1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(1100), RangeScan(900, 1300, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 120, 13)], global_min=-6.28, global_max=+200, global_step=1, ndecimals=2))
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 120, 13)], global_min=-850, global_max=+2000, global_step=1, ndecimals=2))
 
         self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
 
@@ -151,7 +151,6 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         # For graphs, turn on Ba_ratios
 
         try:
-
             # setup the scans to only scan the active variables
             self.scans = [(name, getattr(self, name + '__scan')) for name in self.scan_names]
             self.active_scans = []
@@ -160,6 +159,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 if isinstance(scan, NoScan):
                     # just set the single value
                     setattr(self, name, scan.value)
+                    self.set_dataset(name, scan.value, broadcast=False, archive=True)   # Try and store every scannable as a dataset
                 else:
                     self.active_scans.append((name, scan))
                     self.active_scan_names.append(name)
@@ -184,7 +184,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
 
-            t_now = time.time()  # Save the current time
+            t_start = time.time()  # Save the current time
 
             # Print estimated run-time
             if self.calculate_runtime:
@@ -236,18 +236,20 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                                 frequency1 = self.AWG__532__Alice__tone_1__frequency,  # Hz
                                 frequency2 = self.AWG__532__Alice__tone_2__frequency,  # Hz
                                 # phase1 = self.raman_phase,  # radians
-                                phase1 = self.raman_phase,  # radians
-                                # phase2 = 0.047,  # radians
+                                phase1 = np.pi/2,  # radians
+                                phase2 = 0,  # radians
                                 duration1 = self.raman_time/ns,  # ns
-                                # duration2 = self.raman_time/ns,  # ns
+                                duration2 = self.raman_time/ns,  # ns
                                 # pause1=self.pause_before,
                                 # pause2 = 100          # in nanoseconds
                                 )
                     time.sleep(0.1)
 
+                # self.extra_pump_time = int(self.raman_phase)
+                time1 = time.time()
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
-
+                time2 = time.time()
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
                 ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
@@ -280,9 +282,9 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 point_num += 1
 
-                self.append_to_dataset('timetaken', time.time() - t_now)
+                self.append_to_dataset('timetaken', time.time() - t_start)
 
-                print("Time elapsed = {:.2f} seconds".format(time.time() - t_now))
+                print("Time elapsed = {:.2f} seconds".format(time.time() - t_start))
                 print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
                 print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
                 print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
@@ -291,8 +293,8 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
                 # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
                 print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
-
-
+                print("Ion-photon generation rate (Detections/sec): {:.2f}".format((detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2-time1)))
+                print("Attempt rate (Attempts/sec):{:.0f}".format( attempts/(time2-time1)))
                 time.sleep(2)
 
                 # TODO Remove this later if you want to do scans
@@ -305,7 +307,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             self.setup()  # This sends settings out to the ARTIQ hardware
             print('Terminated gracefully')
 
-        print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
+        print("Time taken = {:.2f} seconds".format(time.time() - t_start))  # Calculate how long the experiment took
 
 
 
@@ -331,18 +333,32 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
         # Turn off everything initially
         self.ttl_493_all.off()
-        self.ttl_650_fast_cw.off()
-        delay_mu(100)
-        self.DDS__650__weak_sigma_1.sw.off()
-        self.DDS__650__weak_sigma_2.sw.off()
-        self.DDS__650__Alice__weak_pi.sw.off()
-        delay_mu(100)
-        self.DDS__493__Alice__sigma_1.sw.off()
-        self.DDS__493__Alice__sigma_2.sw.off()
-        delay_mu(10000)
-        self.DDS__493__Alice__strong_sigma_1.sw.on()
-        self.DDS__493__Alice__strong_sigma_2.sw.on()
-        delay_mu(100000)
+        # self.ttl_650_fast_cw.off()
+        # delay_mu(100)
+        # self.DDS__650__weak_sigma_1.sw.off()
+        # self.DDS__650__weak_sigma_2.sw.off()
+        # self.DDS__650__Alice__weak_pi.sw.off()
+        # delay_mu(100)
+        # self.DDS__493__Alice__sigma_1.sw.off()
+        # self.DDS__493__Alice__sigma_2.sw.off()
+        # delay_mu(10000)
+        # self.DDS__493__Alice__strong_sigma_1.sw.on()
+        # self.DDS__493__Alice__strong_sigma_2.sw.on()
+        # delay_mu(100000)
+
+        #Turn on cooling
+        delay_mu(15000)
+        self.ttl_650_fast_cw.on()
+        self.DDS__650__Alice__weak_pi.sw.on()
+        delay_mu(10)
+        self.DDS__650__weak_sigma_1.sw.on()
+        self.DDS__650__weak_sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__493__Alice__sigma_1.sw.on()
+        self.DDS__493__Alice__sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__493__Alice__strong_sigma_1.sw.off()
+        self.DDS__493__Alice__strong_sigma_2.sw.off()
 
         # Initialize counters to zero
 
@@ -395,14 +411,19 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
             for channel in range(self.entangle_cycles_per_loop):
 
-                # self.core.break_realtime()  # For stability during testing
-                delay_mu(20000)
-                total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
-                delay_mu(10000)
 
+
+                # delay_mu(20000)
+                total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
+                # delay_mu(10000)
+
+                self.core.break_realtime()
+                delay_mu(-20000)
+                
                 # Turn off cooling beams
                 delay(self.cooling_time)        # Minimum cool time
-                delay_mu(70000)
+
+                # delay_mu(70000)
 
                 self.ttl_650_fast_cw.off()
                 self.DDS__650__Alice__weak_pi.sw.off()
@@ -421,11 +442,14 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 # delay_mu(70000)
                 delay_mu(1000)
 
+
+                # self.extra_pump_time = int(self.raman_phase)
                 extra_pump = self.extra_pump_time
                 less_delay = 0
+                delay_mu(10000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970+extra_pump-less_delay,     # Current value 1970 (Max of 8192 or 2^13)
+                    cycle_len=1970 + 100 + extra_pump-less_delay,     # Current value 1970 (Max of 8192 or 2^13)
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
@@ -435,8 +459,8 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                     out_start3=1350+extra_pump-less_delay,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump-less_delay,  # Done generating
                     # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_start=1890 + extra_pump-less_delay,  # Look for photons on the HOM-APDs, this needs to be >470ns (measured) later than start3 due to AOM delays
-                    in_stop=1940 + extra_pump-less_delay,
+                    in_start=1940 + extra_pump-less_delay,  # Look for photons on the HOM-APDs, this needs to be >470ns (measured) later than start3 due to AOM delays
+                    in_stop=1980 + extra_pump-less_delay,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
@@ -643,7 +667,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         end_timestamp, reason = self.entangler.run_mu(timeout_length)
 
         at_mu(end_timestamp)
-        delay_mu(25000)        # Generate some slack
+        delay_mu(30000)        # Generate some slack
 
         for i in range(4):
             self.entangle_inputs[i]._set_sensitivity(0)
@@ -662,7 +686,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)
-        delay_mu(27000)     # George found the minimum of 15 us delay here. Increase if necessary
+        delay_mu(33000)     # George found the minimum of 15 us delay here. Increase if necessary
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope

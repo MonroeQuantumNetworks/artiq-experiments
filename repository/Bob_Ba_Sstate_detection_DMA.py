@@ -37,7 +37,7 @@ class Bob_Ba_Sstate_detection_DMA(base_experiment.base_experiment):
         # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(2000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
 
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))

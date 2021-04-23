@@ -83,7 +83,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=0.1*us, unit='us', ndecimals=3))
-        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(1100), RangeScan(900, 1300, 20)], global_min=0, global_step=10, ndecimals=0))
 
         self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
 
@@ -96,6 +96,14 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
 
     def run(self):
+
+        # Save experimental parameters
+        self.set_dataset('do_Raman_AWG', self.do_Raman_AWG, broadcast=False, archive=True)
+        self.set_dataset('pump_650sigma_1or2', self.pump_650sigma_1or2, broadcast=False, archive=True)
+        self.set_dataset('extra_pump_time', self.extra_pump_time, broadcast=False, archive=True)
+        self.set_dataset('fastloop_run_ns', self.fastloop_run_ns, broadcast=False, archive=True)
+        self.set_dataset('entangle_cycles_per_loop', self.entangle_cycles_per_loop, broadcast=False, archive=True)
+        self.set_dataset('loops_to_run', self.loops_to_run, broadcast=False, archive=True)
 
         # self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
         # self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
@@ -226,10 +234,10 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                                 # pause2=self.pause_between
                                 )
                     time.sleep(0.1)
-
+                time1 = time.time()
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
-
+                time2 = time.time()
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
                 ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
@@ -271,7 +279,8 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
                 # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
                 print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
-
+                print("Ion-photon generation rate (Detections/sec): {:.2f}".format((detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2-time1)))
+                print("Attempt rate (Attempts/sec):{:.0f}".format( attempts/(time2-time1)))
 
                 time.sleep(2)
 
@@ -311,18 +320,32 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
         # Turn off everything initially
         self.ttl_493_all.off()
-        self.ttl_650_fast_cw.off()
-        delay_mu(100)
-        self.DDS__650__weak_sigma_1.sw.off()
-        self.DDS__650__weak_sigma_2.sw.off()
+        # self.ttl_650_fast_cw.off()
+        # delay_mu(100)
+        # self.DDS__650__weak_sigma_1.sw.off()
+        # self.DDS__650__weak_sigma_2.sw.off()
         self.ttl_Bob_650_pi.off()
-        delay_mu(100)
-        self.DDS__493__Bob__sigma_1.sw.off()
-        self.DDS__493__Bob__sigma_2.sw.off()
-        delay_mu(10000)
-        self.DDS__493__Bob__strong_sigma_1.sw.on()
-        self.DDS__493__Bob__strong_sigma_2.sw.on()
-        delay_mu(100000)
+        # delay_mu(100)
+        # self.DDS__493__Bob__sigma_1.sw.off()
+        # self.DDS__493__Bob__sigma_2.sw.off()
+        # delay_mu(10000)
+        # self.DDS__493__Bob__strong_sigma_1.sw.on()
+        # self.DDS__493__Bob__strong_sigma_2.sw.on()
+        # delay_mu(100000)
+
+        #Turn on cooling
+        delay_mu(15000)
+        self.ttl_650_fast_cw.on()
+        self.DDS__650__Bob__weak_pi.sw.on()  # Bob 650 weak pi
+        delay_mu(10)
+        self.DDS__650__weak_sigma_1.sw.on()
+        self.DDS__650__weak_sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__493__Bob__sigma_1.sw.on()
+        self.DDS__493__Bob__sigma_2.sw.on()
+        delay_mu(10)
+        self.DDS__493__Bob__strong_sigma_1.sw.off()
+        self.DDS__493__Bob__strong_sigma_2.sw.off()
 
         # Initialize counters to zero
 
@@ -385,7 +408,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 # with parallel:      # Turn off cooling beams
                 self.ttl_650_fast_cw.off()
-                self.ttl_Bob_650_pi.off()            # Bob 650 strong pi
+                # self.ttl_Bob_650_pi.off()            # Bob 650 strong pi
                 self.DDS__650__Bob__weak_pi.sw.off() # Bob 650 weak pi
                 delay_mu(10)
                 self.DDS__650__weak_sigma_1.sw.off()
@@ -406,17 +429,17 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970+extra_pump,     # Current value 1970
+                    cycle_len=1970 + 100 + extra_pump,     # Current value 1970
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900+extra_pump,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1200+extra_pump,  # Turn on the opposite 650 sigma slow-AOM
+                    out_start2=1250+extra_pump,  # Turn on the opposite 650 sigma slow-AOM
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    in_start=1900+extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_stop=1950+extra_pump,
+                    in_start=1940+extra_pump,  # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_stop=1980+extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
@@ -427,14 +450,14 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 if pattern == 1 or pattern == 4:
                     at_mu(end_timestamp)
-                    delay_mu(20000)
+                    delay_mu(30000)
                     if self.do_Raman_AWG:
                         self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
                 elif pattern == 2 or pattern == 8:
                     # self.run_rotation()   # Rotate to match the other state
                     at_mu(end_timestamp)
-                    delay_mu(20000)
+                    delay_mu(30000)
                     if self.do_Raman_AWG:
                         self.ttl0.pulse(50*ns)  # This triggers the Keysight AWG
                     break
@@ -456,7 +479,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
 
             at_mu(end_timestamp)
-            delay_mu(35000)
+            delay_mu(50000)
             if self.do_Raman_AWG:
                 delay(self.raman_time)
 
@@ -584,15 +607,15 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         # ]
         self.entangler.init()
 
+        # Start time is a 14 bit number. If you exceed 16384, it overflows
+        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
         self.entangler.set_timing_mu(1, 20000, 20000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
-        self.entangler.set_timing_mu(3, out_start, out_stop-100)    # Turn off 650 sigma before 650 pi
+        self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi
         # self.entangler.set_timing_mu(4, out_start, out_stop)
         self.entangler.set_timing_mu(5, out_start, out_stop)
         # self.entangler.set_timing_mu(6, out_start, out_stop)
         self.entangler.set_timing_mu(7, out_start, out_stop)
-
-        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2
@@ -710,16 +733,17 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses01"):
 
-            # self.ttl_493_all.off()
             # self.DDS__493__Bob__sigma_2.sw.off()
             # self.DDS__493__Bob__sigma_1.sw.off()
 
+            self.ttl_493_all.off()  # Turn off the strong beams
+            delay_mu(10)
             self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
-            delay_mu(80)
+            delay_mu(70)
             self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2            
             delay_mu(500)
             self.DDS__493__Bob__sigma_1.sw.on()
@@ -748,16 +772,16 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses02"):
 
-            # self.ttl_493_all.off()
             # self.DDS__493__Bob__sigma_2.sw.off()
             # self.DDS__493__Bob__sigma_1.sw.off()
-            
+            self.ttl_493_all.off()  # Turn off the strong beams
+            delay_mu(10)
             self.DDS__650__Bob__weak_pi.sw.on() # Bob 650 weak pi
             delay_mu(10)
             self.ttl_650_fast_cw.on() # 650 fast AOM
             delay_mu(10)
             self.DDS__650__weak_sigma_1.sw.on() # 650 sigma 1
-            delay_mu(80)
+            delay_mu(70)
             self.DDS__650__weak_sigma_2.sw.on() # 650 sigma 2            
             delay_mu(500)
             self.DDS__493__Bob__sigma_2.sw.on()
