@@ -85,7 +85,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=0.1*us, unit='us', ndecimals=3))
         self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(1100), RangeScan(900, 1300, 20)], global_min=0, global_step=10, ndecimals=0))
 
-        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-6.28, global_max=+10, global_step=0.1, ndecimals=0))
+        self.setattr_argument('raman_phase__scan', Scannable(default=[NoScan(1.57), RangeScan(0, 3.14, 100)], global_min=-1000, global_max=1000, global_step=0.1, ndecimals=0))
 
         self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
 
@@ -104,6 +104,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         self.set_dataset('fastloop_run_ns', self.fastloop_run_ns, broadcast=False, archive=True)
         self.set_dataset('entangle_cycles_per_loop', self.entangle_cycles_per_loop, broadcast=False, archive=True)
         self.set_dataset('loops_to_run', self.loops_to_run, broadcast=False, archive=True)
+        self.set_dataset('timetaken', [], broadcast=True, archive=True)
 
         # self.set_dataset('data_list_sums', [], broadcast=True, archive=True)
         # self.set_dataset('data_list_ratios', [], broadcast=True, archive=True)
@@ -126,6 +127,29 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
             command=applet_stream_cmd
             + " --x " + "scanx"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "sum_p3_1 sum_p3_2 sum_p4_1 sum_p4_2"
+            # + " --x-fit " + "xfitdataset"
+            # + " --y-fits " + "yfitdataset"
+            + " --rid " + "runid"
+            + " --y-label "
+            + "'"
+            + ylabel
+            + "'"
+            + " --x-label "
+            + "'"
+            + xlabel
+            + "'"
+        )
+
+        # This creates a applet shortcut in the Artiq applet list
+        ylabel = "Entanglement Rate"
+        xlabel = "Scanned variable"
+        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        self.ccb.issue(
+            "create_applet",
+            name="IonPhoton_EntRate",
+            command=applet_stream_cmd
+            + " --x " + "scanx"        # Defined below in the msm handling, assumes 1-D scan
+            + " --y-names " + "entanglement_rate"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --rid " + "runid"
@@ -174,8 +198,9 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
             self.set_dataset('sum_p3_2', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('entanglement_rate', np.zeros(point_num), broadcast=True, archive=True)
 
-            t_now = time.time()  # Save the current time
+            t_start = time.time()  # Save the current time
 
             # Print estimated run-time
             if self.calculate_runtime:
@@ -234,10 +259,12 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                                 # pause2=self.pause_between
                                 )
                     time.sleep(0.1)
+
                 time1 = time.time()
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
                 time2 = time.time()
+
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
                 ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
@@ -258,6 +285,9 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 self.mutate_dataset('sum_p4_2', point_num, sum_p4_B2)
                 self.append_to_dataset('num_attempts', attempts)
 
+                ent_rate = (detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2 - time1)
+                self.mutate_dataset('entanglement_rate', point_num, ent_rate)
+
                 # These ratios are for waveplate alignment
                 # ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
                 # ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
@@ -270,7 +300,9 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 point_num += 1
 
-                print("Time elapsed = {:.2f} seconds".format(time.time() - t_now))
+                self.append_to_dataset('timetaken', time.time() - t_start)
+
+                print("Time elapsed = {:.2f} seconds".format(time.time() - t_start))
                 print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
                 print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
                 print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
@@ -279,7 +311,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
                 # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
                 print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
-                print("Ion-photon generation rate (Detections/sec): {:.2f}".format((detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2-time1)))
+                print("Ion-photon generation rate (Detections/sec): {:.2f}".format(ent_rate))
                 print("Attempt rate (Attempts/sec):{:.0f}".format( attempts/(time2-time1)))
 
                 time.sleep(2)
@@ -294,7 +326,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
             self.setup()  # This sends settings out to the ARTIQ hardware
             print('Terminated gracefully')
 
-        print("Time taken = {:.2f} seconds".format(time.time() - t_now))  # Calculate how long the experiment took
+        print("Time taken = {:.2f} seconds".format(time.time() - t_start))  # Calculate how long the experiment took
 
 
 
@@ -427,6 +459,8 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 delay_mu(1000)
 
                 extra_pump = self.extra_pump_time
+                # picoharp_delay = 300
+
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
                     cycle_len=1970 + 100 + extra_pump,     # Current value 1970
@@ -603,19 +637,19 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         #     ('ttl_650_sigma_1', 'ttl4', False),
         #     ('ttl_650_sigma_2', 'ttl5', False),
         #     ('ttl_650_fast_pulse', 'ttl6', False),        This goes to pulse generator
-        #     ('ttl_Bob_650_pi', 'ttl7', False)
+        #     ('ttl_Alic_650_pi', 'ttl7', False)
         # ]
         self.entangler.init()
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
         self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(1, 20000, 20000)  # Do nothing to BoB 650-pi
+        self.entangler.set_timing_mu(1, out_start, out_stop)
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi
-        # self.entangler.set_timing_mu(4, out_start, out_stop)
+        self.entangler.set_timing_mu(4, out_start, out_stop)
         self.entangler.set_timing_mu(5, out_start, out_stop)
         # self.entangler.set_timing_mu(6, out_start, out_stop)
-        self.entangler.set_timing_mu(7, out_start, out_stop)
+        # self.entangler.set_timing_mu(7, out_start, out_stop)      # Do nothing to Alic 650-pi
 
         # Then we overwrite the channels where we have different timings
         if pump_650_sigma == 1:                                # If we pump with sigma1, generate photons with sigma2

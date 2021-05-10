@@ -122,6 +122,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.set_dataset('num_attempts', [], broadcast=True, archive=True)
         self.set_dataset('scan_x', [], broadcast=True, archive=True)
         self.set_dataset('timetaken', [], broadcast=True, archive=True)
+        # self.set_dataset('entanglement_rate', [], broadcast=True, archive=True)
 
         self.set_dataset('runid', self.scheduler.rid, broadcast=True, archive=False)     # This is for display of RUNID on the figure
 
@@ -135,6 +136,29 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             command=applet_stream_cmd
             + " --x " + "scanx"        # Defined below in the msm handling, assumes 1-D scan
             + " --y-names " + "sum_p3_1 sum_p3_2 sum_p4_1 sum_p4_2"
+            # + " --x-fit " + "xfitdataset"
+            # + " --y-fits " + "yfitdataset"
+            + " --rid " + "runid"
+            + " --y-label "
+            + "'"
+            + ylabel
+            + "'"
+            + " --x-label "
+            + "'"
+            + xlabel
+            + "'"
+        )
+
+        # This creates a applet shortcut in the Artiq applet list
+        ylabel = "Entanglement Rate"
+        xlabel = "Scanned variable"
+        applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
+        self.ccb.issue(
+            "create_applet",
+            name="IonPhoton_EntRate",
+            command=applet_stream_cmd
+            + " --x " + "scanx"        # Defined below in the msm handling, assumes 1-D scan
+            + " --y-names " + "entanglement_rate"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --rid " + "runid"
@@ -183,6 +207,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             self.set_dataset('sum_p3_2', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('entanglement_rate', np.zeros(point_num), broadcast=True, archive=True)
 
             t_start = time.time()  # Save the current time
 
@@ -246,10 +271,12 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                     time.sleep(0.1)
 
                 # self.extra_pump_time = int(self.raman_phase)
+
                 time1 = time.time()
                 # Run the main portion of code here
                 detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, attempts = self.kernel_run()
                 time2 = time.time()
+
                 ratio_p1 = sum_p1_B1 / (sum_p1_B1 + sum_p1_B2)
                 ratio_p2 = sum_p2_B1 / (sum_p2_B1 + sum_p2_B2)
                 ratio_p3 = sum_p3_B1 / (sum_p3_B1 + sum_p3_B2)
@@ -269,6 +296,9 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 self.mutate_dataset('sum_p4_1', point_num, sum_p4_B1)
                 self.mutate_dataset('sum_p4_2', point_num, sum_p4_B2)
                 self.append_to_dataset('num_attempts', attempts)
+
+                ent_rate = (detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2 - time1)
+                self.mutate_dataset('entanglement_rate', point_num, ent_rate)
 
                 # These ratios are for waveplate alignment
                 # ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
@@ -293,7 +323,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 print("Total:  {:.0f} {:.0f}".format(detect_p1 + detect_p2 + detect_p3 + detect_p4, sum_p1_B1 + sum_p1_B2 + sum_p2_B1 + sum_p2_B2 + sum_p3_B1 + sum_p3_B2 + sum_p4_B1 + sum_p4_B2))
                 # print("For waveplate alignment: {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_sigma1, ratio_sigma2, ratio_sigma1_2, ratio_sigma2_2))
                 print("Attempt%, Total_attempts: {:.2f} {:.0f}".format(100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts, attempts))
-                print("Ion-photon generation rate (Detections/sec): {:.2f}".format((detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2-time1)))
+                print("Ion-photon generation rate (Detections/sec): {:.2f}".format(ent_rate))
                 print("Attempt rate (Attempts/sec):{:.0f}".format( attempts/(time2-time1)))
                 time.sleep(2)
 
@@ -446,6 +476,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 # self.extra_pump_time = int(self.raman_phase)
                 extra_pump = self.extra_pump_time
                 less_delay = 0
+                # picoharp_delay = 300
                 delay_mu(10000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
@@ -628,12 +659,12 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
         self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
-        self.entangler.set_timing_mu(1, 10000, 50000)  # Do nothing to BoB 650-pi
+        self.entangler.set_timing_mu(1, 10000, 10000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi
-        # self.entangler.set_timing_mu(4, out_start, out_stop)
+        # self.entangler.set_timing_mu(4, out_start-100, out_stop)
         self.entangler.set_timing_mu(5, out_start, out_stop)
-        # self.entangler.set_timing_mu(6, out_start, out_stop)
+        # self.entangler.set_timing_mu(6, out_start3, out_stop3)
         self.entangler.set_timing_mu(7, out_start, out_stop)
 
         # Then we overwrite the channels where we have different timings
