@@ -23,7 +23,7 @@ import os
 import time
 from scipy import optimize
 
-class Bob_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
+class Bob_Ba_Dstate_detection(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",

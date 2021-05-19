@@ -339,7 +339,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         # Turn off everything initially
         # This isn't needed if we do cooling during down time
 
-        # Share beams
+        # Shared beams
         self.ttl_650_fast_cw.off()
         self.ttl_650_sigma_1.off()
         self.ttl_650_sigma_2.off()
@@ -407,20 +407,25 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
         # Pre-load all the pulse sequences using DMA
         self.prerecord_cooling_loop()
-        self.record_detect1()
-        self.record_detect2()
+        self.record_detect11()
+        self.record_detect12()
+        self.record_detect21()
+        self.record_detect22()
 
         delay_mu(100000)
 
         # Assign handles to the pre-recorded sequences
         fast_loop_cooling_handle = self.core_dma.get_handle("cooling_loop_pulses")
-        pulses_handle01 = self.core_dma.get_handle("pulses01")
-        pulses_handle02 = self.core_dma.get_handle("pulses02")
+        pulses_handle11 = self.core_dma.get_handle("pulses11")
+        pulses_handle12 = self.core_dma.get_handle("pulses12")
+        pulses_handle21 = self.core_dma.get_handle("pulses21")
+        pulses_handle22 = self.core_dma.get_handle("pulses22")
 
 
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
         delay2 = delay1            # For detect sigma2
+        detect_wait_time = 500
 
         loop = 0
         fail = 0
@@ -549,19 +554,22 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 delay_mu(100)      # Do nothing
 
             elif detect_flag == 1:      # Detect flag determines which detection sequence to run
+                # detect_flag 1, sigma1 on both
                 delay_mu(100)
                 with parallel:
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
-                        gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        gate_end_mu_B1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                    self.core_dma.playback_handle(pulses_handle01)
+                        gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(detect_wait_time)
+                        delay(self.detection_time)
+                        gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle11)
                 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns*ns)      # This long delay is needed to make sure the code doesn't freeze
 
-                sumA1 = self.Alice_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
-                sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B1)  # This will usually be zero, ~0.05
+                sumA1 = self.Alice_camera_side_APD.count(gate_end_mu_A)  # This will usually be zero, ~0.05
+                sumB1 = self.Bob_camera_side_APD.count(gate_end_mu_B)  # This will usually be zero, ~0.05
 
                 detect_flag = 2     # Set flag to 2 so we detect with 493 sigma2 next
                 if pattern == 1:
@@ -582,19 +590,94 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     sum_p4_B1 += sumB1
 
             elif detect_flag == 2:
+                # detect_flag 2, sigma1 Alice, sigma2 Bob
                 delay_mu(100)
                 with parallel:
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
-                        gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        gate_end_mu_B2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
-                    self.core_dma.playback_handle(pulses_handle02)
+                        gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(detect_wait_time)
+                        delay(self.detection_time)
+                        gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle12)
 
                 self.core.break_realtime()
                 delay(self.fastloop_run_ns * ns)  # This long delay is needed to make sure the code doesn't freeze
 
-                sumA2 = self.Alice_camera_side_APD.count(gate_end_mu_B2)
-                sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B2)  # This will usually be zero, ~0.05
+                sumA2 = self.Alice_camera_side_APD.count(gate_end_mu_A)
+                sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B)  # This will usually be zero, ~0.05
+
+                detect_flag = 3
+                if pattern == 1:
+                    detect_p1 += 1
+                    sum_p1_A2 += sumA2
+                    sum_p1_B2 += sumB2
+                elif pattern == 2:
+                    detect_p2 += 1
+                    sum_p2_A2 += sumA2
+                    sum_p2_B2 += sumB2
+                elif pattern == 4:
+                    detect_p3 += 1
+                    sum_p3_A2 += sumA2
+                    sum_p3_B2 += sumB2
+                elif pattern == 8:
+                    detect_p4 += 1
+                    sum_p4_A2 += sumA2
+                    sum_p4_B2 += sumB2
+
+            elif detect_flag == 3:
+                # detect_flag 3, sigma2 Alice, sigma1 Bob
+                delay_mu(100)
+                with parallel:
+                    with sequential:
+                        delay_mu(delay2)   # For turn off time of the lasers
+                        gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(detect_wait_time)
+                        delay(self.detection_time)
+                        gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle21)
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns * ns)  # This long delay is needed to make sure the code doesn't freeze
+
+                sumA2 = self.Alice_camera_side_APD.count(gate_end_mu_A)
+                sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B)  # This will usually be zero, ~0.05
+
+                detect_flag = 4
+                if pattern == 1:
+                    detect_p1 += 1
+                    sum_p1_A2 += sumA2
+                    sum_p1_B2 += sumB2
+                elif pattern == 2:
+                    detect_p2 += 1
+                    sum_p2_A2 += sumA2
+                    sum_p2_B2 += sumB2
+                elif pattern == 4:
+                    detect_p3 += 1
+                    sum_p3_A2 += sumA2
+                    sum_p3_B2 += sumB2
+                elif pattern == 8:
+                    detect_p4 += 1
+                    sum_p4_A2 += sumA2
+                    sum_p4_B2 += sumB2
+
+            elif detect_flag == 4:
+                # detect_flag 4, sigma2 on both
+                delay_mu(100)
+                with parallel:
+                    with sequential:
+                        delay_mu(delay2)   # For turn off time of the lasers
+                        gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                        delay_mu(detect_wait_time)
+                        delay(self.detection_time)
+                        gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
+                    self.core_dma.playback_handle(pulses_handle22)
+
+                self.core.break_realtime()
+                delay(self.fastloop_run_ns * ns)  # This long delay is needed to make sure the code doesn't freeze
+
+                sumA2 = self.Alice_camera_side_APD.count(gate_end_mu_A)
+                sumB2 = self.Bob_camera_side_APD.count(gate_end_mu_B)  # This will usually be zero, ~0.05
 
                 detect_flag = 1
                 if pattern == 1:
@@ -892,3 +975,53 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         print("Loop time", "{:.2f}".format(loop_time * ns), "seconds")
         total_time = (loop_time + 200000 + self.detection_time) * self.loops_to_run
         print("Maximum runtime", "{:.2f}".format(total_time * ns, 2), "seconds")
+
+
+    @kernel
+    def record_detect11(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for detection with 493 sigma 1 on Alice and Bob
+        """
+        with self.core_dma.record("pulses11"):
+
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+
+            self.DDS__650__Bob__weak_pi.sw.on()  # Bob 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on()  # Alice 650 pi
+            self.ttl_650_fast_cw.on()  # 650 fast AOM
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on()  # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_1.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(self.detect_wait_time)
+
+            self.DDS__493__Bob__sigma_1.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Bob__sigma_1.sw.off()
+
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off()  # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off()  # Bob 650 pi
+            self.ttl_650_fast_cw.off()  # 650 fast AOM
+            self.DDS__650__weak_sigma_1.sw.off()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off()  # 650 sigma 2
+
+            # self.ttl_493_all.off()
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()

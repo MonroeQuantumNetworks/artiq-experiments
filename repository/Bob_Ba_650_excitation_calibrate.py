@@ -36,7 +36,7 @@ class Bob_Ba_650_excitation_calibrate(base_experiment.base_experiment):
         # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
-        self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
+        # self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'DDS_650exc_frequency', 'DDS_650exc_amplitude', 'DDS_650exc_attenuation']

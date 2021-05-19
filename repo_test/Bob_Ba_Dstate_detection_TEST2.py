@@ -9,7 +9,7 @@ TEST 2 does pumping with the strong beams
 This uses weak 650-pi for cooling
 
 Allison Carter 2020-06-21
-George 2021-03
+George 2021-04
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -23,7 +23,7 @@ import os
 import time
 from scipy import optimize
 
-class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
+class Bob_Ba_Dstate_detection(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -38,12 +38,12 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        # self.detector = self.Alice_camera_side_APD
+        # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
         self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
+        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -345,7 +345,7 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
 
             delay_mu(1000)
@@ -355,7 +355,7 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_2 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect2)
 
             delay_mu(1000)
@@ -365,7 +365,7 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_3 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect3)
 
             delay_mu(1000)
@@ -375,7 +375,7 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_13 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_13 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect13)
 
             delay_mu(1000)
@@ -385,14 +385,14 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_23 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_23 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
 
-            sum1 += self.Alice_camera_side_APD.count(gate_end_mu_1)
-            sum2 += self.Alice_camera_side_APD.count(gate_end_mu_2)
-            sum3 += self.Alice_camera_side_APD.count(gate_end_mu_3)
-            sum13 += self.Alice_camera_side_APD.count(gate_end_mu_13)
-            sum23 += self.Alice_camera_side_APD.count(gate_end_mu_23)
+            sum1 += self.Bob_camera_side_APD.count(gate_end_mu_1)
+            sum2 += self.Bob_camera_side_APD.count(gate_end_mu_2)
+            sum3 += self.Bob_camera_side_APD.count(gate_end_mu_3)
+            sum13 += self.Bob_camera_side_APD.count(gate_end_mu_13)
+            sum23 += self.Bob_camera_side_APD.count(gate_end_mu_23)
 
         self.sum1 = sum1
         self.sum2 = sum2
@@ -405,20 +405,20 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         # This is used for detection
         with self.core_dma.record("pulses_prep"):
 
-            self.DDS__493__Alice__sigma_1.sw.on() # Alice 493 sigma 1
-            self.DDS__493__Alice__sigma_2.sw.on() # Alice 493 sigma 2
-            self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
-            self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
+            self.DDS__493__Bob__sigma_1.sw.on() # Bob 493 sigma 1
+            self.DDS__493__Bob__sigma_2.sw.on() # Bob 493 sigma 2
+            self.DDS__493__Bob__strong_sigma_1.sw.off()  # Bob 493 sigma 1 strong
+            self.DDS__493__Bob__strong_sigma_2.sw.off()  # Bob 493 sigma 2 strong
             self.ttl_493_all.on()
             delay_mu(10)
-            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            self.ttl_Bob_650_pi.off() # Bob 650 pi
             self.ttl_650_sigma_1.off() # 650 sigma 1
             self.ttl_650_sigma_2.off() # 650 sigma 2
             delay_mu(10)
             self.ttl_650_fast_cw.on()  # 650 fast AOM
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
-            self.DDS__650__Alice__weak_pi.sw.off()
+            self.DDS__650__Bob__weak_pi.sw.off()
 
     @kernel
     def record_pump_sigma1(self):
@@ -427,51 +427,51 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_pump_1"):
             with parallel:
-                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 # # # self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_1.sw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
 
-                # self.ttl_Alice_650_pi.on()  # Alice 650 pi
+                # self.ttl_Bob_650_pi.on()  # Bob 650 pi
                 # self.ttl_650_sigma_1.on()  # 650 sigma 1
                 # self.ttl_650_sigma_2.on()  # 650 sigma 2
 
             delay(self.cooling_time)
 
-            # self.ttl_Alice_650_pi.off()  # Alice 650 pi
+            # self.ttl_Bob_650_pi.off()  # Bob 650 pi
             # self.ttl_650_sigma_1.off()  # 650 sigma 1
             # self.ttl_650_sigma_2.off()  # 650 sigma 2
 
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
-            self.DDS__650__Alice__weak_pi.sw.off()
-            # # self.ttl_Alice_650_pi.off()  # Alice 650 pi
-            self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
-            self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
+            self.DDS__650__Bob__weak_pi.sw.off()
+            # # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+            self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
+            self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
 
             delay_mu(500)
             # self.ttl_650_sigma_1.off()  # 650 sigma 1
-            self.ttl_Alice_650_pi.on()  # Alice 650 pi
+            self.ttl_Bob_650_pi.on()  # Bob 650 pi
             self.ttl_650_sigma_1.on()  # 650 sigma 2
-            # self.DDS__650__Alice__weak_pi.sw.on()
+            # self.DDS__650__Bob__weak_pi.sw.on()
 
-            self.DDS__493__Alice__strong_sigma_1.sw.on()  # Alice 493 sigma 1 strong
-            self.DDS__493__Alice__strong_sigma_2.sw.on()  # Alice 493 sigma 2 strong
+            self.DDS__493__Bob__strong_sigma_1.sw.on()  # Bob 493 sigma 1 strong
+            self.DDS__493__Bob__strong_sigma_2.sw.on()  # Bob 493 sigma 2 strong
 
             delay(self.pumping_time)
 
             with parallel:
-                # self.DDS__650__Alice__weak_pi.sw.off()
+                # self.DDS__650__Bob__weak_pi.sw.off()
                 # self.DDS__650__weak_sigma_1.sw.off()
                 # # self.ttl_650_fast_cw.off()
 
-                self.ttl_Alice_650_pi.off()  # Alice 650 pi
+                self.ttl_Bob_650_pi.off()  # Bob 650 pi
                 self.ttl_650_sigma_1.off()  # 650 sigma 1
 
-                self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
-                self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
-                self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
-                self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
+                self.DDS__493__Bob__strong_sigma_1.sw.off()  # Bob 493 sigma 1 strong
+                self.DDS__493__Bob__strong_sigma_2.sw.off()  # Bob 493 sigma 2 strong
+                self.DDS__493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
+                self.DDS__493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
 
     @kernel
     def record_pump_sigma2(self):
@@ -480,51 +480,51 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_pump_2"):
             with parallel:
-                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
                 # # # self.ttl_650_fast_cw.on()
                 self.DDS__650__weak_sigma_1.sw.on()
                 self.DDS__650__weak_sigma_2.sw.on()
 
-                # self.ttl_Alice_650_pi.on()  # Alice 650 pi
+                # self.ttl_Bob_650_pi.on()  # Bob 650 pi
                 # self.ttl_650_sigma_1.on()  # 650 sigma 1
                 # self.ttl_650_sigma_2.on()  # 650 sigma 2
 
             delay(self.cooling_time)
 
-            # self.ttl_Alice_650_pi.off()  # Alice 650 pi
+            # self.ttl_Bob_650_pi.off()  # Bob 650 pi
             # self.ttl_650_sigma_1.off()  # 650 sigma 1
             # self.ttl_650_sigma_2.off()  # 650 sigma 2
 
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
-            self.DDS__650__Alice__weak_pi.sw.off()
-            # # self.ttl_Alice_650_pi.off()  # Alice 650 pi
-            self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
-            self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
+            self.DDS__650__Bob__weak_pi.sw.off()
+            # # self.ttl_Bob_650_pi.off()  # Bob 650 pi
+            self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
+            self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
 
             delay_mu(500)
             # self.ttl_650_sigma_1.off()  # 650 sigma 1
-            self.ttl_Alice_650_pi.on()  # Alice 650 pi
+            self.ttl_Bob_650_pi.on()  # Bob 650 pi
             self.ttl_650_sigma_2.on()  # 650 sigma 2
-            # self.DDS__650__Alice__weak_pi.sw.on()
+            # self.DDS__650__Bob__weak_pi.sw.on()
 
-            self.DDS__493__Alice__strong_sigma_1.sw.on()  # Alice 493 sigma 1 strong
-            self.DDS__493__Alice__strong_sigma_2.sw.on()  # Alice 493 sigma 2 strong
+            self.DDS__493__Bob__strong_sigma_1.sw.on()  # Bob 493 sigma 1 strong
+            self.DDS__493__Bob__strong_sigma_2.sw.on()  # Bob 493 sigma 2 strong
 
             delay(self.pumping_time)
 
             with parallel:
-                # self.DDS__650__Alice__weak_pi.sw.off()
+                # self.DDS__650__Bob__weak_pi.sw.off()
                 # self.DDS__650__weak_sigma_1.sw.off()
                 # # self.ttl_650_fast_cw.off()
 
-                self.ttl_Alice_650_pi.off()  # Alice 650 pi
+                self.ttl_Bob_650_pi.off()  # Bob 650 pi
                 self.ttl_650_sigma_2.off()  # 650 sigma 1
 
-                self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
-                self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
-                self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
-                self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
+                self.DDS__493__Bob__strong_sigma_1.sw.off()  # Bob 493 sigma 1 strong
+                self.DDS__493__Bob__strong_sigma_2.sw.off()  # Bob 493 sigma 2 strong
+                self.DDS__493__Bob__sigma_1.sw.on()  # Bob 493 sigma 1
+                self.DDS__493__Bob__sigma_2.sw.on()  # Bob 493 sigma 2
 
     @kernel
     def record_detect1(self):
@@ -556,9 +556,9 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         This generates the pulse sequence needed for detection with 650 pi.
         """
         with self.core_dma.record("pulses_detect3"):
-            self.DDS__650__Alice__weak_pi.sw.on()
+            self.DDS__650__Bob__weak_pi.sw.on()
             delay(self.detection_time)
-            self.DDS__650__Alice__weak_pi.sw.off()
+            self.DDS__650__Bob__weak_pi.sw.off()
 
     @kernel
     def record_detect13(self):
@@ -568,12 +568,12 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect13"):
             with parallel:
                 self.DDS__650__weak_sigma_1.sw.on()
-                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
 
             delay(self.detection_time)
             with parallel:
                 self.DDS__650__weak_sigma_1.sw.off()
-                self.DDS__650__Alice__weak_pi.sw.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
 
     @kernel
     def record_detect23(self):
@@ -583,9 +583,9 @@ class Alice_Ba_Dstate_detection_TEST2(base_experiment.base_experiment):
         with self.core_dma.record("pulses_detect23"):
             with parallel:
                 self.DDS__650__weak_sigma_2.sw.on()
-                self.DDS__650__Alice__weak_pi.sw.on()
+                self.DDS__650__Bob__weak_pi.sw.on()
 
             delay(self.detection_time)
             with parallel:
                 self.DDS__650__weak_sigma_2.sw.off()
-                self.DDS__650__Alice__weak_pi.sw.off()
+                self.DDS__650__Bob__weak_pi.sw.off()
