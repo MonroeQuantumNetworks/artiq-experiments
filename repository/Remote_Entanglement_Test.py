@@ -1025,3 +1025,148 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
             # self.DDS__493__Bob__sigma_2.sw.on()
             # self.DDS__493__Alice__strong_sigma_2.sw.on()
             # self.DDS__493__Alice__strong_sigma_1.sw.on()
+
+    @kernel
+    def record_detect12(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for detection with 493 sigma 1 on Alice and Bob 493 sigma 2
+        """
+        with self.core_dma.record("pulses12"):
+
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+
+            self.DDS__650__Bob__weak_pi.sw.on()  # Bob 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on()  # Alice 650 pi
+            self.ttl_650_fast_cw.on()  # 650 fast AOM
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on()  # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_1.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Alice__sigma_1.sw.off()
+
+            delay_mu(self.detect_wait_time)
+
+            self.DDS__493__Bob__sigma_2.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Bob__sigma_2.sw.off()
+
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off()  # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off()  # Bob 650 pi
+            self.ttl_650_fast_cw.off()  # 650 fast AOM
+            self.DDS__650__weak_sigma_1.sw.off()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off()  # 650 sigma 2
+
+            # self.ttl_493_all.off()
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()
+
+    @kernel
+    def record_detect21(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for detection with 493 sigma 2 on Alice and Bob 493 sigma 1
+        """
+        with self.core_dma.record("pulses21"):
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+
+            self.DDS__650__Bob__weak_pi.sw.on()  # Bob 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on()  # Alice 650 pi
+            self.ttl_650_fast_cw.on()  # 650 fast AOM
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on()  # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_2.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(self.detect_wait_time)
+
+            self.DDS__493__Bob__sigma_1.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Bob__sigma_1.sw.off()
+
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off()  # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off()  # Bob 650 pi
+            self.ttl_650_fast_cw.off()  # 650 fast AOM
+            self.DDS__650__weak_sigma_1.sw.off()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off()  # 650 sigma 2
+
+            # self.ttl_493_all.off()
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()
+
+    @kernel
+    def record_detect22(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for detection with 493 sigma 2 on Alice and Bob
+        """
+        with self.core_dma.record("pulses22"):
+            # Turn the strong beams off for weak detection
+            # self.ttl_493_all.off()
+            # self.DDS__493__Bob__strong_sigma_2.sw.off()
+            # self.DDS__493__Bob__strong_sigma_1.sw.off()
+            # self.DDS__493__Alice__strong_sigma_2.sw.off()
+            # self.DDS__493__Alice__strong_sigma_1.sw.off()
+
+            self.DDS__650__Bob__weak_pi.sw.on()  # Bob 650 pi
+            self.DDS__650__Alice__weak_pi.sw.on()  # Alice 650 pi
+            self.ttl_650_fast_cw.on()  # 650 fast AOM
+            # delay_mu(100)
+            self.DDS__650__weak_sigma_1.sw.on()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.on()  # 650 sigma 2
+            delay_mu(500)
+            self.DDS__493__Alice__sigma_2.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(self.detect_wait_time)
+
+            self.DDS__493__Bob__sigma_2.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Bob__sigma_2.sw.off()
+
+            delay_mu(100)
+            self.DDS__650__Alice__weak_pi.sw.off()  # Alice 650 pi
+            self.DDS__650__Bob__weak_pi.sw.off()  # Bob 650 pi
+            self.ttl_650_fast_cw.off()  # 650 fast AOM
+            self.DDS__650__weak_sigma_1.sw.off()  # 650 sigma 1
+            self.DDS__650__weak_sigma_2.sw.off()  # 650 sigma 2
+
+            # self.ttl_493_all.off()
+            # These are not needed because cooling is next:
+            # self.DDS__493__Bob__sigma_1.sw.on()
+            # self.DDS__493__Bob__sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_2.sw.on()
+            # self.DDS__493__Alice__strong_sigma_1.sw.on()
