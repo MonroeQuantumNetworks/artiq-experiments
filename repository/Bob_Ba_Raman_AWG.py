@@ -399,7 +399,7 @@ class Bob_Ba_Raman_AWG(base_experiment.base_experiment):
 
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
-                self.ttl_AWG_trigger.pulse(100*ns)
+                self.ttl_AWG_trigger.pulse(50*ns)
                 delay(self.raman_time)
 
             delay_mu(1000)

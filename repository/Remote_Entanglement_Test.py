@@ -20,6 +20,7 @@ from dynaconf import LazySettings
 import base_experiment
 from artiq.experiment import *
 import time
+from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
 # Get the number of inputs & outputs from the settings file.
 settings = LazySettings(
@@ -40,6 +41,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         "raman_time",
         "fastloop_run_ns",
         "extra_pump",
+        "detect_wait_time"
     }
 
     def build(self):
@@ -59,23 +61,23 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         super().build()
         self.setattr_device("core_dma")
 
-        self.setattr_argument('calculate_runtime', BooleanValue(True))
+        self.setattr_argument('calculate_runtime', BooleanValue(False))
         self.setattr_argument('do_Raman_AWG', BooleanValue(True))
         self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         self.setattr_argument('fastloop_run_ns', NumberValue(500000, step=1000, min=1000, max=2e9, ndecimals=0))    # How long to run the entangler sequence for. Blocks, cannot terminate
         self.setattr_argument('entangle_cycles_per_loop', NumberValue(100, step=1, min=1, max=1000, ndecimals=0))     # How many cool+entangler cycles to run. Max 1 detection per cycle
         self.setattr_argument('loops_to_run', NumberValue(100, step=1, min=1, max=10000, ndecimals=0))
         self.setattr_argument('extra_pump_time', NumberValue(1000, step=100, min=-900, max=10000, ndecimals=0))
+        self.setattr_argument('detect_wait_time', NumberValue(500*ns, step=100*ns, min=0, max=1, ndecimals=0, unit = 'ns'))
 
-        self.scan_names = ['cooling_time', 'raman_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude', 'AWG__532__Bob__tone_1__amplitude__scan', 'AWG__532__Bob__tone_2__amplitude__scan']
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
+        self.scan_names = ['cooling_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude', 'AWG__532__Bob__tone_1__amplitude', 'AWG__532__Bob__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         # self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         
-        self.setattr_argument('Alice_raman_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
-        self.setattr_argument('Bob_raman_pi_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
-        self.setattr_argument('Bob_pause_between', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
-        self.setattr_argument('Bob_raman_time', NumberValue(10, step=1, min=0.1, max=1000, ndecimals=3))
+        self.setattr_argument('Alice_raman_time', NumberValue(5*us, step=1*us, min=0.1*us, max=100*us, ndecimals=3, unit = 'us'))
+        self.setattr_argument('Bob_raman_pi_time', NumberValue(5*us, step=1*us, min=0.1*us, max=100*us, ndecimals=3, unit = 'us'))
+        self.setattr_argument('Bob_pause_between', NumberValue(5*us, step=1*us, min=0.1*us, max=1000*us, ndecimals=3, unit = 'us'))
+        self.setattr_argument('Bob_raman_time', NumberValue(5*us, step=1*us, min=0.1*us, max=100*us, ndecimals=3, unit = 'us'))
         
         # self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(1 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -310,7 +312,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
         print("------------------------------------------------------------------DEBUG MESSAGES---------------------------------------------------------------------------")
         print("Code done running {:.0f} {:.0f} {:.0f} {:.0f}".format(detect_p1, detect_p2, detect_p3, detect_p4))
-        print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
+        # print("ratio_p1, ratio_p2, ratio_p3, ratio_p4, {:.2f} {:.2f} {:.2f} {:.2f}".format(ratio_p1, ratio_p2, ratio_p3, ratio_p4))
         print("sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B1, sum_p2_B1, sum_p3_B1, sum_p4_B1))
         print("sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2,  {:.0f} {:.0f} {:.0f} {:.0f}".format(sum_p1_B2, sum_p2_B2, sum_p3_B2, sum_p4_B2))
         print("Total:  {:.0f} {:.0f}".format(detect_p1+ detect_p2+ detect_p3+ detect_p4, sum_p1_B1+ sum_p1_B2+ sum_p2_B1+ sum_p2_B2+ sum_p3_B1+ sum_p3_B2+ sum_p4_B1+ sum_p4_B2))
@@ -395,10 +397,25 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         detect_p3 = 0
         detect_p4 = 0
 
-        Alice_counts_detect1 = 0
-        Alice_counts_detect1 = 0
-        Alice_counts_detect2 = 0
-        Alice_counts_detect2 = 0
+        coincidence_111 = 0
+        coincidence_211 = 0
+        coincidence_311 = 0
+        coincidence_411 = 0
+
+        coincidence_112 = 0
+        coincidence_212 = 0
+        coincidence_312 = 0
+        coincidence_412 = 0
+
+        coincidence_121 = 0
+        coincidence_221 = 0
+        coincidence_321 = 0
+        coincidence_421 = 0
+
+        coincidence_122 = 0
+        coincidence_222 = 0
+        coincidence_322 = 0
+        coincidence_422 = 0
 
         detect_flag = 1
         pattern = 0
@@ -425,7 +442,6 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
         # Adding these delays to sync up gate rising with when the laser beams actually turn on
         delay1 = int(self.delay_time)   # For detect sigma1
         delay2 = delay1            # For detect sigma2
-        detect_wait_time = 500
 
         loop = 0
         fail = 0
@@ -483,7 +499,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 extra_pump = self.extra_pump_time
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970+extra_pump,     # Current value 1970
+                    cycle_len=1970 + 100 + extra_pump,     # Current value 1970
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
@@ -492,19 +508,15 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     out_stop2=1500+extra_pump,
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
-                    in_start=1900+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_stop=1950+extra_pump,
-                    pattern_list=[0b0011, 0b1001, 0b0110, 0b1100],
+                    in_start=1940+extra_pump,  # Look for photons on APD0, this needs to be 470ns (measured) later than start3 due to AOM delays
+                    in_stop=1980+extra_pump,
+                    pattern_list=[0b0011, 0b1100, 0b0110, 0b1001],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
                 )
                 end_timestamp, pattern = self.run_entangler(self.fastloop_run_ns)  # This runs the entangler sequence
 
                 # self.check_entangler_status() # Do we need this?
-
-                # # This causes the program to infinite loop on later loops
-                # at_mu(end_timestamp)
-                # delay_mu(100000)
 
                 if pattern == 1 or pattern == 2:
                     # print("Entangler success", pattern)
@@ -548,7 +560,8 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             at_mu(end_timestamp)
             delay_mu(35000)
-            delay(self.raman_time)
+            delay(self.Bob_raman_pi_time)
+            delay(self.Bob_raman_time)
 
             if pattern == 0:
                 delay_mu(100)      # Do nothing
@@ -560,7 +573,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     with sequential:
                         delay_mu(delay1)   # For turn off/on time of the lasers
                         gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        delay_mu(detect_wait_time)
+                        delay(self.detect_wait_time)
                         delay(self.detection_time)
                         gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle11)
@@ -576,18 +589,26 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p1 += 1
                     sum_p1_A1 += sumA1
                     sum_p1_B1 += sumB1
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_111 += 1
                 elif pattern == 2:
                     detect_p2 += 1
                     sum_p2_A1 += sumA1
                     sum_p2_B1 += sumB1
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_211 += 1
                 elif pattern == 4:
                     detect_p3 += 1
                     sum_p3_A1 += sumA1
                     sum_p3_B1 += sumB1
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_311 += 1
                 elif pattern == 8:
                     detect_p4 += 1
                     sum_p4_A1 += sumA1
                     sum_p4_B1 += sumB1
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_411 += 1
 
             elif detect_flag == 2:
                 # detect_flag 2, sigma1 Alice, sigma2 Bob
@@ -596,7 +617,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
                         gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        delay_mu(detect_wait_time)
+                        delay(self.detect_wait_time)
                         delay(self.detection_time)
                         gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle12)
@@ -612,18 +633,26 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p1 += 1
                     sum_p1_A2 += sumA2
                     sum_p1_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_112 += 1
                 elif pattern == 2:
                     detect_p2 += 1
                     sum_p2_A2 += sumA2
                     sum_p2_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_212 += 1
                 elif pattern == 4:
                     detect_p3 += 1
                     sum_p3_A2 += sumA2
                     sum_p3_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_312 += 1
                 elif pattern == 8:
                     detect_p4 += 1
                     sum_p4_A2 += sumA2
                     sum_p4_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_412 += 1
 
             elif detect_flag == 3:
                 # detect_flag 3, sigma2 Alice, sigma1 Bob
@@ -632,7 +661,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
                         gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        delay_mu(detect_wait_time)
+                        delay(self.detect_wait_time)
                         delay(self.detection_time)
                         gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle21)
@@ -648,18 +677,26 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p1 += 1
                     sum_p1_A2 += sumA2
                     sum_p1_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_121 += 1
                 elif pattern == 2:
                     detect_p2 += 1
                     sum_p2_A2 += sumA2
                     sum_p2_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_221 += 1
                 elif pattern == 4:
                     detect_p3 += 1
                     sum_p3_A2 += sumA2
                     sum_p3_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_321 += 1
                 elif pattern == 8:
                     detect_p4 += 1
                     sum_p4_A2 += sumA2
                     sum_p4_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_421 += 1
 
             elif detect_flag == 4:
                 # detect_flag 4, sigma2 on both
@@ -668,7 +705,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     with sequential:
                         delay_mu(delay2)   # For turn off time of the lasers
                         gate_end_mu_A = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                        delay_mu(detect_wait_time)
+                        delay(self.detect_wait_time)
                         delay(self.detection_time)
                         gate_end_mu_B = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                     self.core_dma.playback_handle(pulses_handle22)
@@ -684,18 +721,26 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                     detect_p1 += 1
                     sum_p1_A2 += sumA2
                     sum_p1_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_122 += 1
                 elif pattern == 2:
                     detect_p2 += 1
                     sum_p2_A2 += sumA2
                     sum_p2_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_222 += 1
                 elif pattern == 4:
                     detect_p3 += 1
                     sum_p3_A2 += sumA2
                     sum_p3_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_322 += 1
                 elif pattern == 8:
                     detect_p4 += 1
                     sum_p4_A2 += sumA2
                     sum_p4_B2 += sumB2
+                    if (sumA1 + sumB1) == 2:
+                        coincidence_422 += 1
 
             else:
                 fail += 1
@@ -727,10 +772,28 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
                 
             loop += 1
 
+        # Save readout data into a numpy array
+        readout_coincidences = np.zeros(16)
+        readout_coincidences[0] = coincidence_111
+        readout_coincidences[1] = coincidence_211
+        readout_coincidences[2] = coincidence_311
+        readout_coincidences[3] = coincidence_411
+        readout_coincidences[4] = coincidence_112
+        readout_coincidences[5] = coincidence_212
+        readout_coincidences[6] = coincidence_312
+        readout_coincidences[7] = coincidence_412
+        readout_coincidences[8] = coincidence_121
+        readout_coincidences[9] = coincidence_221
+        readout_coincidences[10] = coincidence_321
+        readout_coincidences[11] = coincidence_421
+        readout_coincidences[12] = coincidence_122
+        readout_coincidences[13] = coincidence_222
+        readout_coincidences[14] = coincidence_322
+        readout_coincidences[15] = coincidence_422
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
-        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, sum_p1_A1, sum_p1_A2, sum_p2_A1, sum_p2_A2, sum_p3_A1, sum_p3_A2, sum_p4_A1, sum_p4_A2, total_cycles
+        return detect_p1, detect_p2, detect_p3, detect_p4, sum_p1_B1, sum_p1_B2, sum_p2_B1, sum_p2_B2, sum_p3_B1, sum_p3_B2, sum_p4_B1, sum_p4_B2, sum_p1_A1, sum_p1_A2, sum_p2_A1, sum_p2_A2, sum_p3_A1, sum_p3_A2, sum_p4_A1, sum_p4_A2, readout_coincidences, total_cycles
         
 
     @kernel
@@ -1004,7 +1067,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             self.DDS__493__Alice__sigma_1.sw.off()
 
-            delay_mu(self.detect_wait_time)
+            delay(self.detect_wait_time)
 
             self.DDS__493__Bob__sigma_1.sw.on()
 
@@ -1053,7 +1116,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             self.DDS__493__Alice__sigma_1.sw.off()
 
-            delay_mu(self.detect_wait_time)
+            delay(self.detect_wait_time)
 
             self.DDS__493__Bob__sigma_2.sw.on()
 
@@ -1101,7 +1164,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             self.DDS__493__Alice__sigma_2.sw.off()
 
-            delay_mu(self.detect_wait_time)
+            delay(self.detect_wait_time)
 
             self.DDS__493__Bob__sigma_1.sw.on()
 
@@ -1149,7 +1212,7 @@ class Remote_Entanglement_Test(base_experiment.base_experiment):
 
             self.DDS__493__Alice__sigma_2.sw.off()
 
-            delay_mu(self.detect_wait_time)
+            delay(self.detect_wait_time)
 
             self.DDS__493__Bob__sigma_2.sw.on()
 

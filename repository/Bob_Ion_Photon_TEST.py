@@ -314,7 +314,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 print("Ion-photon generation rate (Detections/sec): {:.2f}".format(ent_rate))
                 print("Attempt rate (Attempts/sec):{:.0f}".format( attempts/(time2-time1)))
 
-                time.sleep(2)
+                time.sleep(3)
 
                 # TODO Remove this later if you want to do scans
                 if self.no_loop:
@@ -436,7 +436,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 # Turn off cooling beams
                 delay(self.cooling_time)        # Minimum cool time
-                delay_mu(70000)
+                delay_mu(60000)
 
                 # with parallel:      # Turn off cooling beams
                 self.ttl_650_fast_cw.off()
@@ -591,6 +591,8 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                 delay_mu(10)
                 self.ttl_493_all.off()       # Turn off strong beams
             loop += 1
+
+
 
         print(loop, fail)
         # It costs 600 ms to return 1 to the host device
