@@ -17,7 +17,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
+class Curvefit_Tool_IP_werror(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -120,10 +120,6 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
         def cos_decay(x, amp, phase, pitime, decayt):
             return amp * 0.5 * (np.cos(x * np.pi / pitime + phase))*np.exp(-x/decayt) + 0.5
 
-        # detect21 = self.get_dataset('ratio21')
-        # detect22 = self.get_dataset('ratio22')
-        # detect11 = self.get_dataset('ratio11')
-        # detect12 = self.get_dataset('ratio12')
         scanx = self.get_dataset('scan_x')
 
         # Change this to the dataset you want to fit
@@ -134,30 +130,40 @@ class Curvefit_Tool_IonPhoton(base_experiment.base_experiment):
             datatofit = data[:,0]
             counts1 = np.array(self.get_dataset('sum_p1_1'))
             counts2 = np.array(self.get_dataset('sum_p1_2'))
+            error = np.sqrt((np.sqrt(counts1) * (counts2) + (counts1) * np.sqrt(counts2)) ** 2 / (counts1 + counts2) ** 4)
+            error[error < 0.05] = 0.05
+
         elif self.Data_to_fit == "sump2":
             datatofit = data[:,1]
             counts1 = np.array(self.get_dataset('sum_p2_1'))
             counts2 = np.array(self.get_dataset('sum_p2_2'))
+            error = np.sqrt((np.sqrt(counts1) * (counts2) + (counts1) * np.sqrt(counts2)) ** 2 / (counts1 + counts2) ** 4)
+            error[error < 0.05] = 0.05
+
         elif self.Data_to_fit == "sump3":
             datatofit = data[:,2]
             counts1 = np.array(self.get_dataset('sum_p3_1'))
             counts2 = np.array(self.get_dataset('sum_p3_2'))
+            error = np.sqrt((np.sqrt(counts1) * (counts2) + (counts1) * np.sqrt(counts2)) ** 2 / (counts1 + counts2) ** 4)
+            error[error < 0.05] = 0.05
+
         else:  # self.Data_to_fit == "sump4"
             # datatofit = np.array(data)
             datatofit = data[:,3]
             counts1 = np.array(self.get_dataset('sum_p4_1'))
             counts2 = np.array(self.get_dataset('sum_p4_2'))
+            error = np.sqrt((np.sqrt(counts1) * (counts2) + (counts1) * np.sqrt(counts2)) ** 2 / (counts1 + counts2) ** 4)
+            error[error < 0.05] = 0.05
+            print(error)
 
 
         datatofit = np.ascontiguousarray(datatofit)
 
-        # Calculate the uncertainties here
-        error = np.sqrt(counts1)
 
         initialparams = [self.fitparam_amp, self.fitparam_phase, self.fitparam_pitime, 0.5]
         fitbounds = ([0.2,-6.3,0,0],[1,6.3,100,1])
 
-        results1, covariances = optimize.curve_fit(cos_func2, scanx[1:20], datatofit[1:20], p0=initialparams, bounds = fitbounds)
+        results1, covariances = optimize.curve_fit(cos_func2, scanx, datatofit, p0=initialparams, sigma = error, bounds = fitbounds)
         print('Fit results: ', results1)
 
         fittedx = np.linspace(0,max(scanx),self.fit_points)

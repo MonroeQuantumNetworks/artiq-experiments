@@ -251,8 +251,8 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
                                 amplitude2 = self.AWG__532__Bob__tone_1__amplitude,
                                 frequency1 = self.AWG__532__Bob__tone_1__frequency,  # Hz
                                 frequency2 = self.AWG__532__Bob__tone_2__frequency,  # Hz
-                                phase1 = 0,  # radians
-                                phase2 = self.raman_phase,  # radians
+                                phase1 = self.raman_phase,  # radians
+                                phase2 = 0,  # radians
                                 duration1 = self.raman_time/ns,  # ns
                                 duration2=0,  # ns
                                 # pause1=self.pause_before,
@@ -644,7 +644,7 @@ class Bob_Ion_Photon_TEST(base_experiment.base_experiment):
         self.entangler.init()
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
-        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
         self.entangler.set_timing_mu(1, out_start, out_stop)
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi

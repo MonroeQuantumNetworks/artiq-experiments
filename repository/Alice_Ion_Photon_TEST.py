@@ -260,11 +260,11 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                                 amplitude2 = self.AWG__532__Alice__tone_1__amplitude,
                                 frequency1 = self.AWG__532__Alice__tone_1__frequency,  # Hz
                                 frequency2 = self.AWG__532__Alice__tone_2__frequency,  # Hz
-                                # phase1 = self.raman_phase,  # radians
-                                phase1 = np.pi/2,  # radians
+                                phase1 = self.raman_phase,  # radians
+                                # phase1 = np.pi/2,  # radians
                                 phase2 = 0,  # radians
                                 duration1 = self.raman_time/ns,  # ns
-                                duration2 = self.raman_time/ns,  # ns
+                                # duration2 = self.raman_time/ns,  # ns
                                 # pause1=self.pause_before,
                                 # pause2 = 100          # in nanoseconds
                                 )
@@ -472,26 +472,24 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 # delay_mu(70000)
                 delay_mu(1000)
 
-
-                # self.extra_pump_time = int(self.raman_phase)
                 extra_pump = self.extra_pump_time
-                less_delay = 0
+
                 # picoharp_delay = 300
                 delay_mu(10000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970 + 100 + extra_pump-less_delay,     # Current value 1970 (Max of 8192 or 2^13)
+                    cycle_len=1970 + 100 + extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900+extra_pump,  # Done cooling and pumping, turn off all lasers
-                    out_start2=1250+extra_pump-less_delay,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=1500+extra_pump-less_delay,
-                    out_start3=1350+extra_pump-less_delay,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
-                    out_stop3=1360+extra_pump-less_delay,  # Done generating
+                    out_start2=1250+extra_pump,  # Turn on the opposite 650 sigma slow-AOM
+                    out_stop2=1500+extra_pump,
+                    out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
+                    out_stop3=1360+extra_pump,  # Done generating
                     # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_start=1940 + extra_pump-less_delay,  # Look for photons on the HOM-APDs, this needs to be >470ns (measured) later than start3 due to AOM delays
-                    in_stop=1980 + extra_pump-less_delay,
+                    in_start=1950 + extra_pump,  # Look for photons on the HOM-APDs, this needs to be >470ns (measured) later than start3 due to AOM delays
+                    in_stop=1952 + extra_pump,
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
