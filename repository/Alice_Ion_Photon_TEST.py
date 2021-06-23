@@ -208,6 +208,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             self.set_dataset('sum_p4_1', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum_p4_2', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('entanglement_rate', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('attemptpercent', np.zeros(point_num), broadcast=True, archive=True)
 
             t_start = time.time()  # Save the current time
 
@@ -299,7 +300,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
                 ent_rate = (detect_p1 + detect_p2 + detect_p3 + detect_p4) / (time2 - time1)
                 self.mutate_dataset('entanglement_rate', point_num, ent_rate)
-
+                self.mutate_dataset('attemptpercent', point_num, 100 * (detect_p1 + detect_p2 + detect_p3 + detect_p4) / attempts)
                 # These ratios are for waveplate alignment
                 # ratio_sigma1 = sum_p1_B1 / (sum_p1_B1 + sum_p2_B1)
                 # ratio_sigma2 = sum_p1_B2 / (sum_p1_B2 + sum_p2_B2)
@@ -441,15 +442,16 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
 
             for channel in range(self.entangle_cycles_per_loop):
 
-
+                # self.core.break_realtime()
+                # delay_mu(200000)
 
                 # delay_mu(20000)
                 total_cycles += self.entangler.get_ncycles()      # Add up the number of entangler attempts
                 # delay_mu(10000)
-
+                #
                 self.core.break_realtime()
-                delay_mu(-20000)
-                
+                delay_mu(-40000)
+                #
                 # Turn off cooling beams
                 delay(self.cooling_time)        # Minimum cool time
 
@@ -472,13 +474,14 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 # delay_mu(70000)
                 delay_mu(1000)
 
-                extra_pump = self.extra_pump_time
+                extra_pump = self.extra_pump_time + int(self.raman_phase)
+
 
                 # picoharp_delay = 300
                 delay_mu(10000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970 + 100 + extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
+                    cycle_len=1970 + 500 + extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
@@ -488,8 +491,8 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                     out_start3=1350+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
                     out_stop3=1360+extra_pump,  # Done generating
                     # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_start=1950 + extra_pump,  # Look for photons on the HOM-APDs, this needs to be >470ns (measured) later than start3 due to AOM delays
-                    in_stop=1952 + extra_pump,
+                    in_start=1850 + extra_pump, #+ int(self.raman_phase),  # Look for photons on the HOM-APDs, this needs to be >590ns (measured) later than start3 due to AOM delays
+                    in_stop=1950 + extra_pump, #+ int(self.raman_phase),
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
@@ -656,7 +659,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.entangler.init()
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
-        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, 10000, 50000)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
         self.entangler.set_timing_mu(1, 10000, 10000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi

@@ -20,7 +20,6 @@ import base_experiment
 from artiq.experiment import *
 import time
 
-
 # Get the number of inputs & outputs from the settings file.
 
 
@@ -52,6 +51,7 @@ class TTL_Test_2(base_experiment.base_experiment):
         try:
             t_now = time.time()     # Save the current time
 
+
             # for i in range(1):
             print("Before Kernel_run")
             self.kernel_run()     # Run the rest of the program on the core device
@@ -78,10 +78,6 @@ class TTL_Test_2(base_experiment.base_experiment):
         self.core.reset()
         self.core.break_realtime()
 
-        self.record_cool()
-
-        cool_handle = self.core_dma.get_handle("cool")
-
         # Using gateware counters, only a single input event each is
         # generated, greatly reducing the load on the input FIFOs:
 
@@ -93,94 +89,55 @@ class TTL_Test_2(base_experiment.base_experiment):
         # self.Counter3.gate_rising(10 * ms)
         # self.Counter4.gate_rising(10 * ms)
 
-        counts_1 = 0
+        points = 100
+        counts_1 = np.full(points, 0)
 
-        at_mu(self.core.get_rtio_counter_mu())
+        for j in range(points):
 
-        rtio_log("beforedelay", 0)
+            delay_mu(200000)
 
-        delay_mu(200000)
+            # with parallel:
 
-        rtio_log("after100000delay", 0)
+            tnow = now_mu()
+            at_mu(tnow+j)
+            gate_end = self.ttl14.gate_rising(100 * ns)
 
-        t_start = now_mu()
-        # self.ttl28.set_config(count_rising=True, count_falling= False,
-        #            send_count_event = False, reset_to_zero= True)
 
-        with parallel:
-            gate_end = self.Alice_PMT.gate_rising(100 * us)
-            gate2_end = self.Counter_2.gate_rising(100 * us)
-            for i in range(self.loops_to_run):
+            at_mu(tnow)
+            # for i in range(self.loops_to_run):
 
-                with sequential:
+            self.ttl20.on()    # 20 goes to ttl14
+            delay(1000 * ns)
 
-                    self.ttl_20.on()    # 20 goes to Edgecounter1
-                    delay(1*ns)
-                    self.ttl_21.on()    # 21 goes to Alice_PMT
-                    delay(1 * us)
+            self.ttl20.off()
+            delay(1000 * ns)
 
-                    self.ttl_20.off()
-                    delay(1 * ns)
-                    self.ttl_21.off()
-                    delay(1 * us)
-
-        # self.ttl29.gate_rising(100 * us)
-        # delay_mu(1000000)
-
-        # counts_1 = 13
-        counts_1 = self.Alice_PMT.count(gate_end)
+            counts_1[j] = self.ttl14.count(gate_end)
 
         # counts_2 = self.ttl29.fetch_count()
         # delay_mu(1000000000)
-        at_mu(t_start+100000)
 
-        with sequential:
-            timeout, counts_2 = self.Counter_2.fetch_timestamped_count(timeout_mu=t_start + 1000)
-            # counts_2 = self.Counter_2.fetch_count()
-            print(t_start, now_mu() - t_start, gate2_end - t_start)
-        # counts_2 = self.Counter1.fetch_count()
-        # counts_2 = self.Counter2.fetch_count()
-        # counts_3 = self.Counter3.fetch_count()
-        # counts_4 = self.Counter4.fetch_count()
+        # with sequential:
+        #     timeout, counts_2 = self.Counter_2.fetch_timestamped_count(timeout_mu=t_start + 1000)
+        #     # counts_2 = self.Counter_2.fetch_count()
+        #     print(t_start, now_mu() - t_start, gate2_end - t_start)
+        sum = 0
+        for k in range(len(counts_1)):
+            sum = sum + counts_1[k]
 
-        print(counts_1, counts_2, timeout)   #, counts_3, counts_4)
+        print(counts_1)   #, counts_3, counts_4)
 
-        # rtio_log("slack", now_mu()-self.core.get_rtio_counter_mu())
-        for i in range(100):
-            rtio_log("slack", "george")
-            delay_mu(100)
-        print(self.core.mu_to_seconds(now_mu()-self.core.get_rtio_counter_mu()))  # Display Slack remaining
+        print(sum)
+
+        return
+
+        # # rtio_log("slack", now_mu()-self.core.get_rtio_counter_mu())
+        # for i in range(100):
+        #     rtio_log("slack", "george")
+        #     delay_mu(100)
+        # print(self.core.mu_to_seconds(now_mu()-self.core.get_rtio_counter_mu()))  # Display Slack remaining
 
             # Test Edge counter?
 
         # print("Kernel done")
-
-    @kernel
-    def record_cool(self):
-        """DMA detection loop sequence.
-        This generates the pulse sequence needed for pumping with 493 sigma 1
-        """
-        with self.core_dma.record("cool"):
-            # with parallel:
-
-            self.ttl_21.on()
-
-            delay(1 * us)
-
-            self.ttl_21.off()
-            delay(1 * us)
-            self.ttl_21.on()
-
-            delay(1 * us)
-
-            self.ttl_21.off()
-            delay(1 * us)
-            self.ttl_21.on()
-
-            delay(1 * us)
-
-            self.ttl_21.off()
-            delay(1 * us)
-
-            # with parallel:
 

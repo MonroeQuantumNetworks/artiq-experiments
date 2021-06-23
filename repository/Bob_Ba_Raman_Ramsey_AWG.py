@@ -178,7 +178,7 @@ class Bob_Ba_Raman_Ramsey_AWG(base_experiment.base_experiment):
 
                 # Calculate the two frequencies
                 self.AWG__532__Bob__tone_1__frequency = 80e6 + self.Raman_frequency / 2 - self.Ramsey_frequency
-                self.AWG__532__Bob__tone_2__frequency = 80e6 - self.Raman_frequency / 2 # - self.Ramsey_frequency
+                self.AWG__532__Bob__tone_2__frequency = 80e6 - self.Raman_frequency / 2 #
 
                 # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
 
