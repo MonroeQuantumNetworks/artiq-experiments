@@ -1,4 +1,6 @@
 """ Ion-Photon Entanglement with 4-APD HOM measurement
+TEST2 uses the default entangler_run function
+
 Alice Barium detection, with scannable variables, detection with DMA
 Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
 Run Ion-Photon entanglement on Alice only, using all 4 APDs
@@ -33,7 +35,7 @@ num_outputs = settings.NUM_OUTPUT_CHANNELS
 
 # class Remote_Entanglement_Experiment_Sample(base_experiment.base_experiment):
 # class EntanglerDemo(artiq_env.EnvExperiment):
-class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
+class Alice_Ion_Photon_TEST2(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -452,7 +454,8 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 #
                 self.core.break_realtime()
                 delay_mu(-40000)
-                #
+                extra_pump = self.extra_pump_time + int(self.raman_phase)
+
                 # Turn off cooling beams
                 delay(self.cooling_time)        # Minimum cool time
 
@@ -473,27 +476,26 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
                 # Cooling loop sequence using pre-recorded dma sequence
                 # self.core_dma.playback_handle(fast_loop_cooling_handle)
                 # delay_mu(70000)
-                delay_mu(1000)
+                # delay_mu(1000)
 
-                extra_pump = self.extra_pump_time + int(self.raman_phase)
-
+                scan_time = int(self.raman_phase)
 
                 # picoharp_delay = 300
                 delay_mu(10000)
 
                 self.setup_entangler(   # This needs to be within the loop otherwise the FPGA freezes
-                    cycle_len=1970 + 500 + extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
+                    cycle_len=1970 + 1000 + extra_pump,     # Current value 1970 (Max of 8192 or 2^13)
                     # Pump on 650 sigma 1 or 650 sigma 2, generate photons with opposite
                     pump_650_sigma=self.pump_650sigma_1or2,
                     out_start=10,  # Pumping, turn on all except 650 sigma 1 or 2
                     out_stop=900+extra_pump,  # Done cooling and pumping, turn off all lasers
                     out_start2=1250+extra_pump,  # Turn on the opposite 650 sigma slow-AOM
-                    out_stop2=1500+extra_pump,
-                    out_start3=1450+extra_pump,  # Generate single photon by turning on the fast-pulse AOM Currently 1350
-                    out_stop3= 1555 + extra_pump,  # Done generating
+                    out_stop2=1750+extra_pump, # 1250-1500
+                    out_start3=1450 + 50 + extra_pump - scan_time,  # Generate single photon by turning on the fast-pulse AOM Currently 1350/1450
+                    out_stop3= 1460 + 50 + extra_pump - scan_time,  # Done generating
                     # Look for photons on the HOM-APDs, this needs to be 470ns (measured) later than start3 due to AOM delays
-                    in_start= 1850 + extra_pump, #+ int(self.raman_phase),  # Look for photons on the HOM-APDs, this needs to be >590ns (measured) later than start3 due to AOM delays
-                    in_stop = 2050 + extra_pump, #+ int(self.raman_phase), # About 530 ns for PG-PMT
+                    in_start=1800 + extra_pump, #+ int(self.raman_phase),  # Look for photons on the HOM-APDs, this needs to be >590ns (measured) later than start3 due to AOM delays
+                    in_stop=2000 + extra_pump, #+ int(self.raman_phase),
                     pattern_list=[0b0001, 0b0010, 0b0100, 0b1000],
                     # 0001 is ttl8, 0010 is ttl9, 0100 is ttl10, 1000 is ttl11
                     # Run_entangler Returns 1/2/4/8 depending on the pattern list left-right, independent of the binary patterns
@@ -661,7 +663,7 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
         self.entangler.init()
 
         # Start time is a 14 bit number. If you exceed 16384, it overflows
-        self.entangler.set_timing_mu(0, 10, 50)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
+        self.entangler.set_timing_mu(0, out_start, out_start+500)  # Hard coded this trigger pulse for testing. 0 = Picoharp trigger
         self.entangler.set_timing_mu(1, 10000, 10000)  # Do nothing to BoB 650-pi
         self.entangler.set_timing_mu(2, out_start, out_stop)
         self.entangler.set_timing_mu(3, out_start, out_stop)    # Turn off 650 sigma before 650 pi
@@ -691,9 +693,6 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
     def run_entangler(self, timeout_length: TInt32):
         """Run the entangler for a max time and wait for it to succeed/timeout."""
 
-        # This generates output events on the bus -> entangler
-        # when rising edges are detected
-
         start_timestamp = now_mu()
         for i in range(4):
             self.entangle_inputs[i]._set_sensitivity(1)
@@ -705,27 +704,13 @@ class Alice_Ion_Photon_TEST(base_experiment.base_experiment):
             self.entangle_inputs[i]._set_sensitivity(0)
             delay_mu(10)
 
-
-        # Run entangler, it returns the end timestamp and pattern or failed detection
         at_mu(start_timestamp)
         end_timestamp, reason = self.entangler.run_mu(timeout_length)
 
-        # at_mu(end_timestamp)
-
-        # This is the old code segment that worked:
-        # with parallel:
-        #     # This generates output events on the bus -> entangler
-        #     # when rising edges are detected
-        #     self.entangle_inputs[0].gate_rising_mu(np.int64(timeout_length))
-        #     self.entangle_inputs[1].gate_rising_mu(np.int64(timeout_length))
-        #     self.entangle_inputs[2].gate_rising_mu(np.int64(timeout_length))
-        #     self.entangle_inputs[3].gate_rising_mu(np.int64(timeout_length))
-        #     end_timestamp, reason = self.entangler.run_mu(timeout_length)
-        # must wait after entangler ends to schedule new events.
-
         # Disable entangler control of outputs as soon as a pattern is detected
         at_mu(end_timestamp)
-        delay_mu(33000)  # George found the minimum of 15 us delay here. Increase if necessary
+        delay_mu(125000)     # George found the minimum of 15 us delay here. Increase if necessary
+        # self.core.break_realtime()
         self.entangler.set_config(enable=False)
 
         # You might also want to disable gating for inputs, but out-of-scope

@@ -276,7 +276,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to load and execute
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            delay_mu(500)
+            delay_mu(5000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -286,7 +286,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            delay_mu(500)
+            delay_mu(5000)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -296,7 +296,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(500)
+            delay_mu(5000)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -306,7 +306,7 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
             delay_mu(2500)
 
             self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(500)
+            delay_mu(5000)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
