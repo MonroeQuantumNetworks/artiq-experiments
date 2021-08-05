@@ -1,13 +1,7 @@
 """ Modified to do Raman using the Keysight AWG
-Alice Barium detection, with scannable variables, partial DMA
-Turn on Ba_ratios and Detection_Counts APPLETS to plot the figures
-Fixed AOM amplitude scanning and update
-No curve fitting at the very end (Fit to Raman time scan)
-    Cuve fitting done in a separate program
-Uses the Keysight AWG for driving Raman
-Calculates the two frequencies automatically given the Zeeman splitting
+Use this script for getting 532 Raman into Alice at the same time
 
-George Toh 2021-03-18
+George Toh 2021-07-26
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -22,7 +16,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
+class Alice_Ba_Raman_TimingTest(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -199,26 +193,6 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
                 # Run the main portion of code here
                 self.kernel_run()
 
-                # For pumping with sigma1
-                ratio11 = self.sum11 / (self.sum11 + self.sum12)
-                ratio12 = self.sum12 / (self.sum11 + self.sum12)
-
-                self.mutate_dataset('sum11', point_num, self.sum11)
-                self.mutate_dataset('sum12', point_num, self.sum12)
-                self.mutate_dataset('ratio11', point_num, ratio11)
-                self.mutate_dataset('ratio12', point_num, ratio12)
-
-                # # For pumping with sigma2
-                ratio21 = self.sum21 / (self.sum21 + self.sum22)
-                ratio22 = self.sum22 / (self.sum21 + self.sum22)
-                ratios = np.array([ratio11, ratio12, ratio21, ratio22])
-
-                self.mutate_dataset('sum21', point_num, self.sum21)
-                self.mutate_dataset('sum22', point_num, self.sum22)
-                self.mutate_dataset('ratio21', point_num, ratio21)
-                self.mutate_dataset('ratio22', point_num, ratio22)
-                self.append_to_dataset('ratio_list', ratios)
-
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -254,16 +228,16 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         # Preparation for experiment
         self.prep_record()
         self.record_pump_sigma1()
-        self.record_pump_sigma2()
-        self.record_detect1()
-        self.record_detect2()
+        # self.record_pump_sigma2()
+        # self.record_detect1()
+        # self.record_detect2()
         # self.record_cool()
         prep_handle = self.core_dma.get_handle("pulses_prep")
         # cool_handle = self.core_dma.get_handle("pulses_cool")
         pulses_handle10 = self.core_dma.get_handle("pulses10")
-        pulses_handle01 = self.core_dma.get_handle("pulses01")
-        pulses_handle20 = self.core_dma.get_handle("pulses20")
-        pulses_handle02 = self.core_dma.get_handle("pulses02")
+        # pulses_handle01 = self.core_dma.get_handle("pulses01")
+        # pulses_handle20 = self.core_dma.get_handle("pulses20")
+        # pulses_handle02 = self.core_dma.get_handle("pulses02")
         self.core.break_realtime()
         self.core_dma.playback_handle(prep_handle) # Turn on the 650 lasers
 
@@ -273,55 +247,16 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
 
         for i in range(self.detections_per_point):
 
-            delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to load and execute
+            delay_mu(20000)        # Each pulse sequence needs about 70 us of slack to load and execute
 
             self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(5000)
-            with parallel:
-                with sequential:
-                    delay_mu(delay1)   # For turn off/on time of the lasers
-                    gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                self.core_dma.playback_handle(pulses_handle01)
+            # with parallel:
+            #     with sequential:
+            #         delay_mu(delay1)   # For turn off/on time of the lasers
+            #         gate_end_mu_B1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+            # self.core_dma.playback_handle(pulses_handle01)
 
-            delay_mu(2500)
-
-            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            delay_mu(5000)
-            with parallel:
-                with sequential:
-                    delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B2 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                self.core_dma.playback_handle(pulses_handle02)
-
-            delay_mu(2500)
-
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(5000)
-            with parallel:
-                with sequential:
-                    delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_B3 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                self.core_dma.playback_handle(pulses_handle01)
-
-            delay_mu(2500)
-
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(5000)
-            with parallel:
-                with sequential:
-                    delay_mu(delay2)   # For turn off time of the lasers
-                    gate_end_mu_B4 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
-                self.core_dma.playback_handle(pulses_handle02)
-
-            sum11 += self.Alice_camera_side_APD.count(gate_end_mu_B1)
-            sum12 += self.Alice_camera_side_APD.count(gate_end_mu_B2)
-            sum21 += self.Alice_camera_side_APD.count(gate_end_mu_B3)
-            sum22 += self.Alice_camera_side_APD.count(gate_end_mu_B4)
-
-        self.sum11 = sum11
-        self.sum12 = sum12
-        self.sum21 = sum21
-        self.sum22 = sum22
 
     @kernel
     def prep_record(self):
@@ -348,83 +283,85 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 1
         """
         with self.core_dma.record("pulses10"):
-
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.cooling_time)
-
-            self.DDS__493__Alice__sigma_2.sw.off()
-            delay(self.pumping_time)
-
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.off()
-                self.DDS__650__Alice__weak_pi.sw.off()
-                self.ttl_650_fast_cw.off()
-
-            delay(500*ns)
+            #
+            # with parallel:
+            #     self.DDS__493__Alice__sigma_1.sw.on()
+            #     self.DDS__493__Alice__sigma_2.sw.on()
+            # delay(self.cooling_time)
+            #
+            # self.DDS__493__Alice__sigma_2.sw.off()
+            # delay(self.pumping_time)
+            #
+            # with parallel:
+            #     self.DDS__493__Alice__sigma_1.sw.off()
+            #     self.DDS__650__Alice__weak_pi.sw.off()
+            #     self.ttl_650_fast_cw.off()
+            #
+            # delay(500*ns)
 
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
+                self.ttl20.pulse(100 * ns)  # For triggering Picoharp
                 self.ttl_AWG_trigger.pulse(100*ns)
                 delay(self.raman_time)
 
-            delay_mu(1000)
+            # delay_mu(1000)
+            #
+            # with parallel:
+            #     self.DDS__650__Alice__weak_pi.sw.on()
+            #     self.ttl_650_fast_cw.on()
 
-            with parallel:
-                self.DDS__650__Alice__weak_pi.sw.on()
-                self.ttl_650_fast_cw.on()
-
-    @kernel
-    def record_pump_sigma2(self):
-        """DMA detection loop sequence.
-        This generates the pulse sequence needed for pumping with 493 sigma 2
-        """
-        with self.core_dma.record("pulses20"):
-
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.cooling_time)
-
-            self.DDS__493__Alice__sigma_1.sw.off()
-            delay(self.pumping_time)
-            with parallel:
-                self.DDS__493__Alice__sigma_2.sw.off()
-                self.DDS__650__Alice__weak_pi.sw.off()
-                self.ttl_650_fast_cw.off()
-
-            delay(500*ns)
-    
-        # Use the Keysight AWG to drive Raman rotations
-            with parallel:
-                self.ttl_AWG_trigger.pulse(100*ns)
-                delay(self.raman_time)
-
-            delay_mu(1000)
-
-            with parallel:
-                self.DDS__650__Alice__weak_pi.sw.on()
-                self.ttl_650_fast_cw.on()
-
-    @kernel
-    def record_detect1(self):
-        """DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 493 sigma 1
-        """
-        with self.core_dma.record("pulses01"):
-
-            self.DDS__493__Alice__sigma_1.sw.on()
-            delay(self.detection_time)
-            self.DDS__493__Alice__sigma_1.sw.off()
-
-    @kernel
-    def record_detect2(self):
-        """DMA detection loop sequence.
-        This generates the pulse sequence needed for detection with 493 sigma 2
-        """
-        with self.core_dma.record("pulses02"):
-
-            self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.detection_time)
-            self.DDS__493__Alice__sigma_2.sw.off()
+    # @kernel
+    # def record_pump_sigma2(self):
+    #     """DMA detection loop sequence.
+    #     This generates the pulse sequence needed for pumping with 493 sigma 2
+    #     """
+    #     with self.core_dma.record("pulses20"):
+    #         self.ttl20.pulse(100 * ns)  # For triggering Picoharp
+    #         with parallel:
+    #             self.DDS__493__Alice__sigma_1.sw.on()
+    #             self.DDS__493__Alice__sigma_2.sw.on()
+    #         delay(self.cooling_time)
+    #
+    #         self.DDS__493__Alice__sigma_1.sw.off()
+    #         delay(self.pumping_time)
+    #         with parallel:
+    #             self.DDS__493__Alice__sigma_2.sw.off()
+    #             self.DDS__650__Alice__weak_pi.sw.off()
+    #             self.ttl_650_fast_cw.off()
+    #
+    #         delay(500*ns)
+    #
+    #     # Use the Keysight AWG to drive Raman rotations
+    #         with parallel:
+    #
+    #             self.ttl_AWG_trigger.pulse(100*ns)
+    #             delay(self.raman_time)
+    #
+    #         delay_mu(1000)
+    #
+    #         with parallel:
+    #             self.DDS__650__Alice__weak_pi.sw.on()
+    #             self.ttl_650_fast_cw.on()
+    #
+    # @kernel
+    # def record_detect1(self):
+    #     """DMA detection loop sequence.
+    #     This generates the pulse sequence needed for detection with 493 sigma 1
+    #     """
+    #     with self.core_dma.record("pulses01"):
+    #
+    #         self.DDS__493__Alice__sigma_1.sw.on()
+    #         delay(self.detection_time)
+    #         self.DDS__493__Alice__sigma_1.sw.off()
+    #
+    # @kernel
+    # def record_detect2(self):
+    #     """DMA detection loop sequence.
+    #     This generates the pulse sequence needed for detection with 493 sigma 2
+    #     """
+    #     with self.core_dma.record("pulses02"):
+    #
+    #         self.DDS__493__Alice__sigma_2.sw.on()
+    #         delay(self.detection_time)
+    #         self.DDS__493__Alice__sigma_2.sw.off()

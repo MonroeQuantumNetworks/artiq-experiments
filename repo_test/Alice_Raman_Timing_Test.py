@@ -63,12 +63,30 @@ class Alice_Raman_Timing_Test(base_experiment.base_experiment):
         # self.setattr_argument('pump_650sigma_1or2', NumberValue(1, step=1, min=1, max=2, ndecimals=0))
         # self.setattr_argument('pulse650_duration', NumberValue(10e-9, step=5e-10, unit='ns', min=0 * ns, ndecimals=0))
 
+        self.setattr_argument('channel', NumberValue(1, ndecimals=0, min=1, step=1, max=4))
 
+        self.setattr_argument('AWG__532__Alice__tone_1__amplitude__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__amplitude), RangeScan(0, 0.06, 20)], global_min=0,global_step=0.1, ndecimals=3))
 
     def run(self):
         """
         Run certain functions on the computer instead of the core device.
         """
+
+        sendmessage(self,
+                    type="wave",
+                    channel=self.channel,
+                    amplitude1=self.AWG__532__Alice__tone_1__amplitude,
+                    amplitude2=0,
+                    frequency1=80000000,  # Hz
+                    frequency2=0,  # Hz
+                    # phase1 = self.phase,                                    # radians
+                    phase2=0,  # radians
+                    duration1=self.raman_time / ns,  # Convert sec to ns
+                    # duration2 = self.duration2,                             # ns
+                    # pause1 = self.pause1
+                    # pause2 = self.pause2
+                    )
+        time.sleep(0.5)
 
         t_now = time.time()     # Save the current time
 

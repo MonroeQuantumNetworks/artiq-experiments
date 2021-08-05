@@ -22,7 +22,7 @@ import time
 
 from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
+class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -180,11 +180,11 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
 
                 sendmessage(self,
                     type = "wave",
-                    channel = self.channel,
+                    channel = 1,
                     amplitude1 = self.AWG__532__Alice__tone_1__amplitude,
-                    amplitude2 = self.AWG__532__Alice__tone_2__amplitude,
+                    amplitude2 = 0,
                     frequency1 = self.AWG__532__Alice__tone_1__frequency,   # Hz
-                    frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
+                    # frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
                     phase2 = 0,                               # radians
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
@@ -193,7 +193,24 @@ class Alice_Ba_Raman_AWG(base_experiment.base_experiment):
                     # pause2 = self.pause2
                     )
 
-                time.sleep(0.1)  # May need a longer delay here for generating and loading the waveform
+                time.sleep(0.3)  # May need a longer delay here for generating and loading the waveform
+                                # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
+
+                sendmessage(self,
+                    type = "wave",
+                    channel = 3,
+                    amplitude1 = self.AWG__532__Alice__tone_2__amplitude,
+                    amplitude2 = 0,
+                    frequency1 = self.AWG__532__Alice__tone_2__frequency,   # Hz
+                    # frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
+                    # phase1 = self.phase,                                    # radians
+                    phase2 = 0,                               # radians
+                    duration1 = self.raman_time/ns,                         # Convert sec to ns
+                    # duration2 = self.duration2,                             # ns
+                    # pause1 = self.pause1
+                    # pause2 = self.pause2
+                    )
+                time.sleep(0.5)  # May need a longer delay here for generating and loading the waveform
                                 # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
 
                 # Run the main portion of code here
