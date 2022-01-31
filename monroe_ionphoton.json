@@ -3,7 +3,7 @@
     "variant": "monroe_ionphoton",
     "hw_rev": "v1.1",
     "base": "standalone",
-    "core_addr": "192.168.1.98",
+    "core_addr": "10.236.89.126",
     "rtio_frequency": 125e6,
     "ext_ref_frequency": 125e6,
     "peripherals": [

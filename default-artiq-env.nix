@@ -24,12 +24,11 @@ in
         ps.numba
         ps.bokeh
         ps.more-itertools
-	    entangler
+        entangler
       ]))
       # List desired non-Python packages here
       artiq-full.openocd  # needed for flashing boards, also provides proxy bitstreams
       pkgs.spyder
-
     ];
     # environment.sessionVariables.LD_LIBRARY_PATH = [ "/usr/local/lib/Keysight/SD1" ];
     # LD_LIBRARY_PATH="/usr/local/lib/Keysight/SD1:/nix/store/y38ip1k9n3ymi4s6niviwbyx69vxg2n1-qtbase-5.12.3/lib/:/usr/lib/x86_64-linux-gnu/:/snap/core18/1754/lib/x86_64-linux-gnu/";
