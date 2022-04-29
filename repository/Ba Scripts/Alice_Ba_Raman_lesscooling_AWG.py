@@ -7,7 +7,10 @@ No curve fitting at the very end (Fit to Raman time scan)
 Uses the Keysight AWG for driving Raman
 Calculates the two frequencies automatically given the Zeeman splitting
 
-George Toh 2021-03-18
+This script allows us to cool less frequently than every shot.
+Now we cool once every detections4_per_cool shots.
+
+George Toh 2021-04-16
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -16,13 +19,13 @@ from artiq.experiment import *
 #from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
-import base_experiment
+from repository import base_experiment
 import os
 import time
 
-from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+from repository.AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
+class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -30,6 +33,8 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
         "pumping_time",
         "delay_time",
         "raman_time",
+        "detections_per_point"
+        "detections4_per_cool"
     }
 
     def build(self):
@@ -37,8 +42,8 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-        self.setattr_argument('detections_per_point', NumberValue(5000, ndecimals=0, min=1, step=1))
-        # self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(10000, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections4_per_cool', NumberValue(25, ndecimals=0, min=1, step=1))
         # self.setattr_argument('do_curvefit', BooleanValue(False)) # We do curve fitting in a separate program now
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
@@ -180,11 +185,11 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
                 sendmessage(self,
                     type = "wave",
-                    channel = 1,
+                    channel = self.channel,
                     amplitude1 = self.AWG__532__Alice__tone_1__amplitude,
-                    amplitude2 = 0,
+                    amplitude2 = self.AWG__532__Alice__tone_2__amplitude,
                     frequency1 = self.AWG__532__Alice__tone_1__frequency,   # Hz
-                    # frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
+                    frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
                     phase2 = 0,                               # radians
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
@@ -193,24 +198,7 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
                     # pause2 = self.pause2
                     )
 
-                time.sleep(0.3)  # May need a longer delay here for generating and loading the waveform
-                                # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
-
-                sendmessage(self,
-                    type = "wave",
-                    channel = 3,
-                    amplitude1 = self.AWG__532__Alice__tone_2__amplitude,
-                    amplitude2 = 0,
-                    frequency1 = self.AWG__532__Alice__tone_2__frequency,   # Hz
-                    # frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
-                    # phase1 = self.phase,                                    # radians
-                    phase2 = 0,                               # radians
-                    duration1 = self.raman_time/ns,                         # Convert sec to ns
-                    # duration2 = self.duration2,                             # ns
-                    # pause1 = self.pause1
-                    # pause2 = self.pause2
-                    )
-                time.sleep(0.5)  # May need a longer delay here for generating and loading the waveform
+                time.sleep(0.1)  # May need a longer delay here for generating and loading the waveform
                                 # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
 
                 # Run the main portion of code here
@@ -292,8 +280,21 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
             delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to load and execute
 
-            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            delay_mu(5000)
+            if i % self.detections4_per_cool == 0:
+                # Do cooling every detections4_per_cool shots
+
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
+
+                delay(self.cooling_time)
+
+                self.DDS__493__Alice__sigma_1.sw.off()
+                self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(2000)
+
+            self.core_dma.playback_handle(pulses_handle10)  # Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off/on time of the lasers
@@ -302,8 +303,8 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
-            delay_mu(5000)
+            self.core_dma.playback_handle(pulses_handle10)  # Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -312,8 +313,8 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(5000)
+            self.core_dma.playback_handle(pulses_handle20)  # Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
@@ -322,8 +323,8 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
-            delay_mu(5000)
+            self.core_dma.playback_handle(pulses_handle20)  # Pump
+            delay_mu(500)
             with parallel:
                 with sequential:
                     delay_mu(delay2)   # For turn off time of the lasers
@@ -365,13 +366,13 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 1
         """
         with self.core_dma.record("pulses10"):
-
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.cooling_time)
-
-            self.DDS__493__Alice__sigma_2.sw.off()
+            # with parallel:
+            #     self.DDS__493__Alice__sigma_1.sw.on()
+            #     self.DDS__493__Alice__sigma_2.sw.on()
+            # delay(self.cooling_time)
+            #
+            # self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Alice__sigma_1.sw.on()
             delay(self.pumping_time)
 
             with parallel:
@@ -398,13 +399,12 @@ class Alice_Ba_Raman_AWG_twobeams(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 2
         """
         with self.core_dma.record("pulses20"):
-
-            with parallel:
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
-            delay(self.cooling_time)
-
-            self.DDS__493__Alice__sigma_1.sw.off()
+            # self.DDS__493__Alice__sigma_1.sw.on()
+            # self.DDS__493__Alice__sigma_2.sw.on()
+            # delay(self.cooling_time)
+            #
+            # self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.on()
             delay(self.pumping_time)
             with parallel:
                 self.DDS__493__Alice__sigma_2.sw.off()

@@ -7,10 +7,7 @@ No curve fitting at the very end (Fit to Raman time scan)
 Uses the Keysight AWG for driving Raman
 Calculates the two frequencies automatically given the Zeeman splitting
 
-This script allows us to cool less frequently than every shot.
-Now we cool once every detections4_per_cool shots.
-
-George Toh 2021-04-16
+George Toh 2021-03-18
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -19,13 +16,13 @@ from artiq.experiment import *
 #from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
-import base_experiment
+from repository import base_experiment
 import os
 import time
 
-from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+from repository.AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
-class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
+class Alice_Ba_Raman_spinecho_AWG(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -33,8 +30,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         "pumping_time",
         "delay_time",
         "raman_time",
-        "detections_per_point"
-        "detections4_per_cool"
+        "Ramsey_delay"
     }
 
     def build(self):
@@ -42,18 +38,22 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
 
-        self.setattr_argument('detections_per_point', NumberValue(10000, ndecimals=0, min=1, step=1))
-        self.setattr_argument('detections4_per_cool', NumberValue(25, ndecimals=0, min=1, step=1))
+        self.setattr_argument('detections_per_point', NumberValue(5000, ndecimals=0, min=1, step=1))
+        # self.setattr_argument('fit_points', NumberValue(100, ndecimals=0, min=1, step=1))
         # self.setattr_argument('do_curvefit', BooleanValue(False)) # We do curve fitting in a separate program now
 
         # self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'AWG__532__Alice__tone_1__frequency', 'AWG__532__Alice__tone_2__frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
-        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
+        self.scan_names = ['cooling_time', 'pumping_time', 'raman_time', 'detection_time', 'delay_time', 'Ramsey_delay', 'Ramsey_phase2', 'Ramsey_phase3', 'Raman_frequency', 'AWG__532__Alice__tone_1__amplitude', 'AWG__532__Alice__tone_2__amplitude']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('raman_time__scan', Scannable(default=[NoScan(self.globals__timing__raman_time), RangeScan(0 * us, 3 * self.globals__timing__raman_time, 100)], global_min=0 * us, global_step=1 * us, unit='us', ndecimals=3))
         self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 20) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(450), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(500), RangeScan(300, 600, 20)], global_min=0, global_step=10, ndecimals=0))
+        self.setattr_argument('Ramsey_delay__scan', Scannable(default=[NoScan(1e-6), RangeScan(1e-6, 10e-6, 20)], unit='us', global_min=0, global_step=1000, ndecimals=0))
 
+        self.setattr_argument('Ramsey_phase2__scan', Scannable(default=[NoScan(0), RangeScan(0, 120, 13)], global_min=-6.28, global_max=+200, global_step=1, ndecimals=2))
+        self.setattr_argument('Ramsey_phase3__scan', Scannable(default=[NoScan(1.571), RangeScan(0, 120, 13)], global_min=-6.28, global_max=+200, global_step=1, ndecimals=2))
+        self.setattr_argument('Ramsey_frequency', NumberValue(1e5, ndecimals=0, step=1e4, unit='kHz'))
         self.setattr_argument('Raman_frequency__scan', Scannable(default=[NoScan(12.8e6), RangeScan(12.5e6, 13e6, 20)], unit='MHz', ndecimals=9))
         # self.setattr_argument('AWG__532__Alice__tone_1__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_1__frequency), RangeScan(76.7e6, 76.9e6, 20)], unit='MHz', ndecimals=9))
         # self.setattr_argument('AWG__532__Alice__tone_2__frequency__scan', Scannable(default=[NoScan(self.globals__AWG__532__Alice__tone_2__frequency), RangeScan(82.9e6, 83.1e6, 20)], unit='MHz', ndecimals=9))
@@ -178,8 +178,8 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
                 time.sleep(1)
 
                 # Calculate the two frequencies
-                self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2
-                self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2
+                self.AWG__532__Alice__tone_1__frequency = 80e6 + self.Raman_frequency / 2 - self.Ramsey_frequency
+                self.AWG__532__Alice__tone_2__frequency = 80e6 - self.Raman_frequency / 2 # - self.Ramsey_frequency
 
                 # This loads the AWG with the waveform needed, trigger with ttl_AWG_trigger
 
@@ -191,14 +191,17 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
                     frequency1 = self.AWG__532__Alice__tone_1__frequency,   # Hz
                     frequency2 = self.AWG__532__Alice__tone_2__frequency,   # Hz
                     # phase1 = self.phase,                                    # radians
-                    phase2 = 0,                               # radians
+                    phase2 = self.Ramsey_phase2,                               # radians
+                    phase3 = self.Ramsey_phase2 + self.Ramsey_phase3,
                     duration1 = self.raman_time/ns,                         # Convert sec to ns
-                    # duration2 = self.duration2,                             # ns
-                    # pause1 = self.pause1
-                    # pause2 = self.pause2
+                    duration2 = 2 * self.raman_time/ns,                         # ns
+                    duration3 = self.raman_time/ns,
+                    pause1 = 0,
+                    pause2 = 0.5 * self.Ramsey_delay / ns,                        # Convert sec to ns
+                    pause3 = 0.5 * self.Ramsey_delay / ns                         # Convert sec to ns
                     )
 
-                time.sleep(0.1)  # May need a longer delay here for generating and loading the waveform
+                time.sleep(1)  # May need a longer delay here for generating and loading the waveform
                                 # We need to wait AT LEAST 1us from AWGStart before triggering the AWG
 
                 # Run the main portion of code here
@@ -280,20 +283,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
 
             delay_mu(50000)        # Each pulse sequence needs about 70 us of slack to load and execute
 
-            if i % self.detections4_per_cool == 0:
-                # Do cooling every detections4_per_cool shots
-
-                self.DDS__493__Alice__sigma_1.sw.on()
-                self.DDS__493__Alice__sigma_2.sw.on()
-
-                delay(self.cooling_time)
-
-                self.DDS__493__Alice__sigma_1.sw.off()
-                self.DDS__493__Alice__sigma_2.sw.off()
-
-            delay_mu(2000)
-
-            self.core_dma.playback_handle(pulses_handle10)  # Pump
+            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
@@ -303,7 +293,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle10)  # Pump
+            self.core_dma.playback_handle(pulses_handle10)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
@@ -313,7 +303,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Pump
+            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
@@ -323,7 +313,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
 
             delay_mu(2500)
 
-            self.core_dma.playback_handle(pulses_handle20)  # Pump
+            self.core_dma.playback_handle(pulses_handle20)  # Cool then Pump
             delay_mu(500)
             with parallel:
                 with sequential:
@@ -366,13 +356,12 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 1
         """
         with self.core_dma.record("pulses10"):
-            # with parallel:
-            #     self.DDS__493__Alice__sigma_1.sw.on()
-            #     self.DDS__493__Alice__sigma_2.sw.on()
-            # delay(self.cooling_time)
-            #
-            # self.DDS__493__Alice__sigma_2.sw.off()
-            self.DDS__493__Alice__sigma_1.sw.on()
+            with parallel:
+                self.DDS__493__Alice__sigma_1.sw.on()
+                self.DDS__493__Alice__sigma_2.sw.on()
+            delay(self.cooling_time)
+
+            self.DDS__493__Alice__sigma_2.sw.off()
             delay(self.pumping_time)
 
             with parallel:
@@ -385,7 +374,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)
-                delay(self.raman_time)
+                delay(self.raman_time *4 + 2*self.Ramsey_delay)
 
             delay_mu(1000)
 
@@ -399,12 +388,11 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         This generates the pulse sequence needed for pumping with 493 sigma 2
         """
         with self.core_dma.record("pulses20"):
-            # self.DDS__493__Alice__sigma_1.sw.on()
-            # self.DDS__493__Alice__sigma_2.sw.on()
-            # delay(self.cooling_time)
-            #
-            # self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_1.sw.on()
             self.DDS__493__Alice__sigma_2.sw.on()
+            delay(self.cooling_time)
+
+            self.DDS__493__Alice__sigma_1.sw.off()
             delay(self.pumping_time)
             with parallel:
                 self.DDS__493__Alice__sigma_2.sw.off()
@@ -416,7 +404,7 @@ class Alice_Ba_Raman_lesscooling_AWG(base_experiment.base_experiment):
         # Use the Keysight AWG to drive Raman rotations
             with parallel:
                 self.ttl_AWG_trigger.pulse(100*ns)
-                delay(self.raman_time)
+                delay(self.raman_time *4 + 2*self.Ramsey_delay)
 
             delay_mu(1000)
 

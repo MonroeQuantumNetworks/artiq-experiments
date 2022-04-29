@@ -10,11 +10,11 @@ from artiq.experiment import *
 #from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
-import base_experiment
+from repository import base_experiment
 import os
 import time
 
-from AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
+from repository.AWGmessenger import sendmessage   # Other file in the repo, contains code for messaging Jarvis
 
 class Alice_Ba_Raman_TimingTest(base_experiment.base_experiment):
 

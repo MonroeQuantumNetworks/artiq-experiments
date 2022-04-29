@@ -1,5 +1,5 @@
 """
-Alice Barium 650 excitation calibration
+Bob Barium 650 excitation calibration
 Scan 650 excitation AOM amplitude while counting the number of photons obtained
 Keep the 650 re-pump off, detect with both 493 beams
 
@@ -12,12 +12,12 @@ from artiq.experiment import *
 #from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
-import base_experiment
+from repository import base_experiment
 import os
 import time
 from scipy import optimize
 
-class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
+class Bob_Ba_650_excitation_calibrate(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -33,12 +33,12 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        # self.detector = self.Alice_camera_side_APD
+        # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
-        self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
+        # self.setattr_argument('pump_sigma_1_or_2', NumberValue(1, ndecimals=0, min=1, max=2, step=1))
 
-        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Alice__sigma_1__frequency', 'DDS__493__Alice__sigma_2__frequency', 'DDS__493__Alice__sigma_1__amplitude', 'DDS__493__Alice__sigma_2__amplitude']
+        # self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'DDS__493__Bob__sigma_1__frequency', 'DDS__493__Bob__sigma_2__frequency', 'DDS__493__Bob__sigma_1__amplitude', 'DDS__493__Bob__sigma_2__amplitude']
         self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'DDS_650exc_frequency', 'DDS_650exc_amplitude', 'DDS_650exc_attenuation']
         self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
         self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
@@ -224,12 +224,12 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn off time of the lasers
-                    gate_end_mu_1 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                    gate_end_mu_1 = self.Bob_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect1)
 
             delay_mu(1000)
 
-            sum1 += self.Alice_camera_side_APD.count(gate_end_mu_1)
+            sum1 += self.Bob_camera_side_APD.count(gate_end_mu_1)
 
         self.sum1 = sum1
 
@@ -239,20 +239,20 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
         # Turn off everything
         with self.core_dma.record("pulses_prep"):
 
-            self.DDS__493__Alice__sigma_1.sw.off() # Alice 493 sigma 1
-            self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
-            self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
-            self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
+            self.DDS__493__Bob__sigma_1.sw.off() # Bob 493 sigma 1
+            self.DDS__493__Bob__sigma_2.sw.off() # Bob 493 sigma 2
+            self.DDS__493__Bob__strong_sigma_1.sw.off()  # Bob 493 sigma 1 strong
+            self.DDS__493__Bob__strong_sigma_2.sw.off()  # Bob 493 sigma 2 strong
             self.ttl_493_all.off()
             delay_mu(10)
-            self.ttl_Alice_650_pi.off() # Alice 650 pi
+            self.ttl_Bob_650_pi.off() # Bob 650 pi
             self.ttl_650_sigma_1.off() # 650 sigma 1
             self.ttl_650_sigma_2.off() # 650 sigma 2
             delay_mu(10)
             self.ttl_650_fast_cw.on()  # 650 fast AOM
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
-            self.DDS__650__Alice__weak_pi.sw.off()
+            self.DDS__650__Bob__weak_pi.sw.off()
             delay_mu(10)
             self.DDS__urukul3_ch1.sw.on()
             self.DDS__urukul3_ch2.sw.on()
@@ -274,9 +274,9 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
             self.DDS__650__weak_sigma_1.sw.on()
             self.DDS__650__weak_sigma_2.sw.on()
             self.ttl_650_fast_cw.on()
-            self.DDS__650__Alice__weak_pi.sw.on()
-            self.DDS__493__Alice__sigma_1.sw.on()
-            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__650__Bob__weak_pi.sw.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
 
             # Wait while lasers cool
             delay(self.cooling_time)
@@ -285,30 +285,30 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
             self.DDS__650__weak_sigma_1.sw.off()
             self.DDS__650__weak_sigma_2.sw.off()
             self.ttl_650_fast_cw.off()
-            self.DDS__650__Alice__weak_pi.sw.off()
-            self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__650__Bob__weak_pi.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()
 
             delay_mu(1000)
 
             with parallel:
                 self.ttl_650_fast_cw.on()
-                self.ttl_Alice_650_pi.on()
+                self.ttl_Bob_650_pi.on()
                 self.ttl_493_all.on()
-                self.DDS__493__Alice__strong_sigma_1.sw.on()
-                self.DDS__493__Alice__strong_sigma_2.sw.on()
+                self.DDS__493__Bob__strong_sigma_1.sw.on()
+                self.DDS__493__Bob__strong_sigma_2.sw.on()
                 self.ttl_650_sigma_2.on()
 
             delay(self.pumping_time)  # This delay cannot be zero or ARTIQ will spit out errors
 
             # Now turn off all the beams
             self.ttl_650_fast_cw.off()
-            self.ttl_Alice_650_pi.off()
+            self.ttl_Bob_650_pi.off()
             self.ttl_650_sigma_2.off()
             delay_mu(200)
             self.ttl_493_all.off()
-            self.DDS__493__Alice__strong_sigma_1.sw.off()
-            self.DDS__493__Alice__strong_sigma_2.sw.off()
+            self.DDS__493__Bob__strong_sigma_1.sw.off()
+            self.DDS__493__Bob__strong_sigma_2.sw.off()
 
             delay_mu(1000)
 
@@ -330,8 +330,8 @@ class Alice_Ba_650_excitation_calibrate(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses_detect1"):
 
-            self.DDS__493__Alice__sigma_1.sw.on()
-            self.DDS__493__Alice__sigma_2.sw.on()
+            self.DDS__493__Bob__sigma_1.sw.on()
+            self.DDS__493__Bob__sigma_2.sw.on()
             delay(self.detection_time)
-            self.DDS__493__Alice__sigma_1.sw.off()
-            self.DDS__493__Alice__sigma_2.sw.off()
+            self.DDS__493__Bob__sigma_1.sw.off()
+            self.DDS__493__Bob__sigma_2.sw.off()

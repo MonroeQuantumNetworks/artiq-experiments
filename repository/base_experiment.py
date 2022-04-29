@@ -53,10 +53,10 @@ class base_experiment(EnvExperiment):
         ('650__weak_sigma_2', 'urukul2_ch1', 78.5*MHz, 0.5, 17.0, False),
         ('650__Alice__weak_pi', 'urukul2_ch2', 80*MHz, 0.5, 7.0, False),
         ('650__Bob__weak_pi', 'urukul2_ch3', 82*MHz, 0.5, 13.0, False),
-        ('urukul3_ch0', 'urukul3_ch0', 80*MHz, 0.5, 0.0, False),        # Pump 650 pi Alice
-        ('urukul3_ch1', 'urukul3_ch1', 82.5*MHz, 0.32, 11.0, False),    # Pump 650 sigma1
-        ('urukul3_ch2', 'urukul3_ch2', 77.5*MHz, 0.5, 20, False),       # Pump 650 sigma2
-        ('urukul3_ch3', 'urukul3_ch3', 80.0*MHz, 0.5, 30, False)        # Pump 650 pi Bob
+        ('AOM435', 'urukul3_ch0', 80*MHz, 0.5, 0.0, False),        # 435 AOM
+        ('urukul3_ch1', 'urukul3_ch1', 82.5*MHz, 0.32, 11.0, False),    
+        ('urukul3_ch2', 'urukul3_ch2', 77.5*MHz, 0.5, 20, False),       
+        ('urukul3_ch3', 'urukul3_ch3', 80.0*MHz, 0.5, 30, False)        
         # ('532__Alice__tone_1', 'urukul1_ch0', 80*MHz, 0.4, 10.0, False),
         # ('532__Alice__tone_2', 'urukul1_ch1', 75*MHz, 0.4, 10.0, False),
         # ('532__Bob__tone_1', 'urukul1_ch2', 80*MHz, 0.3, 10.0, False),
@@ -110,10 +110,10 @@ class base_experiment(EnvExperiment):
         ('ttl_21', 'ttl21', False),
         ('ttl_22', 'ttl22', False),
         ('ttl_23', 'ttl23', False),
-        ('ttl_24', 'ttl24', False),
-        ('ttl_25', 'ttl25', False),
-        ('ttl_26', 'ttl26', False),
-        ('ttl_27', 'ttl27', False)
+        ('ttl_370_2G_EOM', 'ttl24', False),
+        ('ttl_370_7G_EOM', 'ttl25', False),
+        ('ttl_370_AOM', 'ttl26', False),
+        ('ttl_935_EOM', 'ttl27', False)
 
     ]
 

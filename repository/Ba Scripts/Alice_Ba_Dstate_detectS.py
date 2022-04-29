@@ -1,15 +1,11 @@
 """
-Alice Barium D state pumping and detection, with scannable variables, partial DMA
-In practice, we will only do either sigma_1 and pi pumping, or sigma_2 and pi pumping, so this
-program only does one of the two to allow for easier optimization of that process
-Turn on Ba_detection and Detection_Counts applets to plot the figures
-Issues: really, really slow; weird results (might be a problem with the ion though)
+Alice Barium D state pumping , with scannable variables, partial DMA
 
-TEST 2 does pumping with the strong beams
-This uses weak 650-pi for cooling
+Here, we detect the S-state population remaining after pumping into D
+
 
 Allison Carter 2020-06-21
-George 2021-03
+George 2021-06
 """
 from artiq.experiment import *
 #from artiq.language.core import kernel, delay, delay_mu, now_mu, at_mu
@@ -18,12 +14,12 @@ from artiq.experiment import *
 #from artiq.experiment import NumberValue
 #from artiq.language.scan import Scannable
 import numpy as np
-import base_experiment
+from repository import base_experiment
 import os
 import time
 from scipy import optimize
 
-class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
+class Alice_Ba_Dstate_detectS(base_experiment.base_experiment):
 
     kernel_invariants = {
         "detection_time",
@@ -56,20 +52,8 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
         self.sum3 = 0
         self.sum13 = 0
         self.sum23 = 0
+        self.sumS = 0
 
-    @kernel
-    def set_DDS_freq(self, channel, freq):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_frequency(freq)
-        delay_mu(6000)
-
-    @kernel
-    def set_DDS_amp(self, channel, amp):
-        self.core.reset()
-        delay_mu(95000)
-        channel.set_amplitude(amp)
-        delay_mu(6000)
 
     def run(self):
 
@@ -87,10 +71,10 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
         applet_stream_cmd = "$python -m applets.plot_multi" + " "   # White space is required
         self.ccb.issue(
             "create_applet",
-            name="D-state_Counts",
+            name="S-state_Counts",
             command=applet_stream_cmd
             + " --x " + "scan_x"        # Defined below in the msm handling, assumes 1-D scan
-            + " --y-names " + "sum1 sum2 sum3 sum13 sum23"
+            + " --y-names " + "sumS"
             # + " --x-fit " + "xfitdataset"
             # + " --y-fits " + "yfitdataset"
             + " --rid " + "runid"
@@ -136,6 +120,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
             self.set_dataset('sum3', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum13', np.zeros(point_num), broadcast=True, archive=True)
             self.set_dataset('sum23', np.zeros(point_num), broadcast=True, archive=True)
+            self.set_dataset('sumS', np.zeros(point_num), broadcast=True, archive=True)
             point_num = 0
 
             self.prep_kernel_run()  # Break real time and turn on 493 lasers
@@ -220,6 +205,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
                 self.mutate_dataset('sum3', point_num, self.sum3)
                 self.mutate_dataset('sum13', point_num, self.sum13)
                 self.mutate_dataset('sum23', point_num, self.sum23)
+                self.mutate_dataset('sumS', point_num, self.sumS)
                 self.append_to_dataset('ratio_list', ratios)
 
                 # allow other experiments to preempt
@@ -300,6 +286,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
         sum3 = 0
         sum13 = 0
         sum23 = 0
+        sumS = 0
 
         self.core.reset()   # This is necessary to make it run fast
         # self.core.break_realtime()    # Extremely slow
@@ -315,6 +302,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
         self.record_detect3()
         self.record_detect13()
         self.record_detect23()
+        self.record_detectS()
 
         # Prep beams
         self.prep_record()
@@ -333,6 +321,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
         pulses_handle_detect3 = self.core_dma.get_handle("pulses_detect3")
         pulses_handle_detect13 = self.core_dma.get_handle("pulses_detect13")
         pulses_handle_detect23 = self.core_dma.get_handle("pulses_detect23")
+        pulses_handle_detectS = self.core_dma.get_handle("pulses_detectS")
 
         delay1 = int(self.delay_time)   # For turn-on time of the laser
 
@@ -389,17 +378,29 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
                     gate_end_mu_23 = self.Alice_camera_side_APD.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_handle_detect23)
 
+            delay_mu(1000)
+
+            self.core_dma.playback_handle(pulses_handle_pump) # Cool and pump
+            delay_mu(5000)
+            with parallel:
+                with sequential:
+                    delay_mu(delay1)   # For turn off time of the lasers
+                    gate_end_mu_S = self.Alice_camera_side_APD.gate_rising(self.detection_time)
+                self.core_dma.playback_handle(pulses_handle_detectS)
+
             sum1 += self.Alice_camera_side_APD.count(gate_end_mu_1)
             sum2 += self.Alice_camera_side_APD.count(gate_end_mu_2)
             sum3 += self.Alice_camera_side_APD.count(gate_end_mu_3)
             sum13 += self.Alice_camera_side_APD.count(gate_end_mu_13)
             sum23 += self.Alice_camera_side_APD.count(gate_end_mu_23)
+            sumS += self.Alice_camera_side_APD.count(gate_end_mu_S)
 
         self.sum1 = sum1
         self.sum2 = sum2
         self.sum3 = sum3
         self.sum13 = sum13
         self.sum23 = sum23
+        self.sumS = sumS
 
     @kernel
     def prep_record(self):
@@ -451,9 +452,9 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
             self.DDS__493__Alice__sigma_2.sw.off() # Alice 493 sigma 2
 
             delay_mu(500)
-            # self.ttl_650_sigma_1.off()  # 650 sigma 1
+            self.ttl_650_sigma_1.off()  # 650 sigma 1
             self.ttl_Alice_650_pi.on()  # Alice 650 pi
-            self.ttl_650_sigma_1.on()  # 650 sigma 2
+            # self.ttl_650_sigma_2.on()  # 650 sigma 2
             # self.DDS__650__Alice__weak_pi.sw.on()
 
             self.DDS__493__Alice__strong_sigma_1.sw.on()  # Alice 493 sigma 1 strong
@@ -468,6 +469,7 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
 
                 self.ttl_Alice_650_pi.off()  # Alice 650 pi
                 self.ttl_650_sigma_1.off()  # 650 sigma 1
+                # self.ttl_650_sigma_2.off()  # 650 sigma 2
 
                 self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
                 self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
@@ -514,18 +516,27 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
 
             delay(self.pumping_time)
 
+
             with parallel:
                 # self.DDS__650__Alice__weak_pi.sw.off()
                 # self.DDS__650__weak_sigma_1.sw.off()
                 # # self.ttl_650_fast_cw.off()
 
+                # self.ttl_650_sigma_1.off()  # 650 sigma 1
                 self.ttl_Alice_650_pi.off()  # Alice 650 pi
-                self.ttl_650_sigma_2.off()  # 650 sigma 1
+                self.ttl_650_sigma_2.off()  # 650 sigma 2
 
                 self.DDS__493__Alice__strong_sigma_1.sw.off()  # Alice 493 sigma 1 strong
                 self.DDS__493__Alice__strong_sigma_2.sw.off()  # Alice 493 sigma 2 strong
+
                 self.DDS__493__Alice__sigma_1.sw.on()  # Alice 493 sigma 1
                 self.DDS__493__Alice__sigma_2.sw.on()  # Alice 493 sigma 2
+
+            # # delay_mu(1000)  # Clear out the S-state
+            # delay(self.pumping_time)
+            #
+            # self.DDS__493__Alice__sigma_1.sw.off()  # Alice 493 sigma 1
+            # self.DDS__493__Alice__sigma_2.sw.off()  # Alice 493 sigma 2
 
     @kernel
     def record_detect1(self):
@@ -590,3 +601,27 @@ class Alice_Ba_Dstate_detection(base_experiment.base_experiment):
             with parallel:
                 self.DDS__650__weak_sigma_2.sw.off()
                 self.DDS__650__Alice__weak_pi.sw.off()
+
+    @kernel
+    def record_detectS(self):
+        """DMA detection loop sequence.
+        This generates the pulse sequence needed for detection of population in S-state
+        """
+        with self.core_dma.record("pulses_detectS"):
+            with parallel:
+                self.DDS__650__weak_sigma_1.sw.off()
+                self.DDS__650__weak_sigma_2.sw.off()
+            delay_mu(500)
+
+            self.DDS__493__Alice__sigma_1.sw.on()
+            self.DDS__493__Alice__sigma_2.sw.on()
+
+            delay(self.detection_time)
+
+            self.DDS__493__Alice__sigma_1.sw.off()
+            self.DDS__493__Alice__sigma_2.sw.off()
+
+            delay_mu(500)
+            with parallel:
+                self.DDS__650__weak_sigma_1.sw.on()
+                self.DDS__650__weak_sigma_2.sw.on()
