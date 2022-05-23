@@ -1,8 +1,8 @@
-""" Tested
-Alice Yb 435 scan with Sideband cooling
+""" Tested, ought to be working
+Alice Yb qubit ramsey between F=0 and F=1,mf=1
 
 
-George Toh 2022-04-28
+Sagnik Saha 2022-05-19
 """
 
 from artiq.experiment import *
@@ -16,8 +16,8 @@ from repository import base_experiment
 import os
 import time
 
-class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
-    """ Alice Yb 435 Scan SBC"""
+class Alice_Yb_ramsey(base_experiment.base_experiment):
+    """ Alice_Yb_ramsey"""
 
     kernel_invariants = {
         "detection_time",
@@ -40,7 +40,7 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         # self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
 
         # Anything with a scannable needs to be listed here
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'shelving_time', 'AOM435_frequency', 'AOM435_amplitude', 'sidebandcool_time', 'AOM435SBC_frequency']
+        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'microwave_pi_time', 'mw_freq', 'mw_amp','free_evolve_time']
 
         # Inputs for 370 laser
         self.setattr_argument('cooling_time__scan', group = '370', processor = Scannable(default=[NoScan(self.globals__timing__cooling_time), 
@@ -55,23 +55,17 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         self.setattr_argument('delay_time__scan', group = '370', processor = Scannable(default=[NoScan(500), 
                                 RangeScan(0, 1000, 10)], global_min=0, global_step=10, ndecimals=0))
 
-        # Inputs for 435 laser
-        self.setattr_argument('shelving_time__scan', group = '435', processor = Scannable(default=[NoScan(1*us), RangeScan(0, 50*us, 10)], 
+        # Inputs for microwave
+        self.setattr_argument('microwave_pi_time__scan', group = 'mw', processor = Scannable(default=[NoScan(1*us), RangeScan(0, 50*us, 10)], 
                                 global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
 
-        self.setattr_argument('AOM435_frequency__scan', group = '435', processor =  Scannable(default=[NoScan(126.16e6), RangeScan(120e6, 130e6, 10)], 
+        self.setattr_argument('mw_freq__scan', group = 'mw', processor =  Scannable(default=[NoScan(200e6), RangeScan(198e6, 202e6, 10)], 
                                 unit='MHz', ndecimals=9))
 
-        self.setattr_argument('AOM435_amplitude__scan', group = '435', processor =  Scannable(default=[NoScan(0.4), RangeScan(0.1, 0.5, 20)], 
+        self.setattr_argument('mw_amp__scan', group = 'mw', processor =  Scannable(default=[NoScan(0.5), RangeScan(0.1, 0.5, 20)], 
                                 global_min=0, global_step=0.1, ndecimals=3))
-        
-        # Inputs for Sideband Cooling SBC
-        self.setattr_argument('sidebandcool_time__scan', group = 'SBC', processor = Scannable(default=[NoScan(500*us), RangeScan(0, 500*us, 10)], 
-                                global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-
-        self.setattr_argument('AOM435SBC_frequency__scan', group = 'SBC', processor =  Scannable(default=[NoScan(125.8e6), RangeScan(120e6, 130e6, 10)], 
-                                unit='MHz', ndecimals=9))
-
+        self.setattr_argument('free_evolve_time__scan', group = 'mw', processor =  Scannable(default=[NoScan(0.5*ms), RangeScan(0*ms, 5*ms, 20)], 
+                                global_min=0, global_step=0.1*ms, unit='ms',ndecimals=3))
         self.sum11 = 0
         self.sum12 = 0
 
@@ -165,7 +159,7 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
                 ratios = np.array([ratio12, ratio11]) 
 
                 self.append_to_dataset('ratio_list', ratios)
-
+                
 
                 # allow other experiments to preempt
                 self.core.comm.close()
@@ -193,7 +187,7 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
 
         # Hard-coded to set the AOM frequency and amplitude
         delay_mu(95000)
-        self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
+        self.DDS__urukul3_ch1.set(self.mw_freq, amplitude=self.mw_amp)
         # delay_mu(95000)
         # self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
 
@@ -248,7 +242,9 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         self.ttl_370_2G_EOM.off()
         self.ttl_370_7G_EOM.on()
         self.ttl_370_AOM.on()
-        self.ttl_935_EOM.on()        
+        self.ttl_935_EOM.on()
+
+
 
     @kernel
     def prep_record(self):
@@ -262,15 +258,12 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
     @kernel
     def record_pump_0(self):
         """DMA pump and detection loop sequence.
-        This generates the pulse sequence needed for pumping to state 0
+        This generates the pulse sequence needed for pumping to state 0 and applies a microwave pulse of some duration
         """
         with self.core_dma.record("pulses0"):
             
-            delay_mu(95000)
-            self.DDS__AOM435.set(self.AOM435SBC_frequency, amplitude=self.AOM435_amplitude)
-            # delay_mu(95000)
-            # self.core.break_realtime()
 
+            #Cooling
             self.ttl_370_2G_EOM.off()
             self.ttl_370_7G_EOM.on()
             self.ttl_370_AOM.on()
@@ -278,13 +271,13 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
 
             delay(self.cooling_time)
 
+            #Pumping
             self.ttl_370_2G_EOM.on()
             self.ttl_370_7G_EOM.off()
-            # self.ttl_370_AOM.off()
-            # self.ttl_935_EOM.off()
-
+            
             delay(self.pumping_time)
-
+            
+            #Stop pumping
             self.ttl_370_2G_EOM.off()
             self.ttl_370_7G_EOM.off()
             self.ttl_370_AOM.off()
@@ -292,49 +285,19 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
 
             delay_mu(1000)
 
-            # Try sideband cooling!
-            self.ttl_370_2G_EOM.on()
-            self.ttl_370_7G_EOM.off()
-            self.ttl_370_AOM.on()
-            delay_mu(10)
-            self.ttl_935_EOM.on()
-            self.DDS__AOM435.sw.on()
+            #Pi/2 pulse
+            self.DDS__urukul3_ch1.sw.on()
+            delay((self.microwave_pi_time)/2)
+            self.DDS__urukul3_ch1.sw.off()
 
-            delay(self.sidebandcool_time)
+            #Free evolution
+            delay(self.free_evolve_time)
 
-            self.DDS__AOM435.sw.off()
+            #Pi/2 pulse
+            self.DDS__urukul3_ch1.sw.on()
+            delay((self.microwave_pi_time)/2)
+            self.DDS__urukul3_ch1.sw.off()
 
-            delay(self.pumping_time)
-
-            self.ttl_370_2G_EOM.off()
-            self.ttl_370_7G_EOM.off()
-            self.ttl_370_AOM.off()
-            self.ttl_935_EOM.off()
-                        
-            delay_mu(95000)
-            self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
-            # delay_mu(95000)
-            # self.core.break_realtime()
-
-            delay_mu(1000)
-
-            # delay_mu(20000000)
-
-            self.DDS__AOM435.sw.on()
-
-            delay(self.shelving_time)
-
-            self.DDS__AOM435.sw.off()
-
-            delay_mu(1000)  # For timing detection timing purposes
-
-            # self.ttl_370_AOM.on()
-            # delay(self.detection_time)
-            # self.ttl_370_AOM.off()
-
-            # self.ttl_935_EOM.on()
-            # delay_mu(1500000)      # Try to de-shelve the ion
-            # self.ttl_935_EOM.off() 
 
     @kernel
     def record_detect(self):
@@ -346,6 +309,7 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             self.ttl_935_EOM.on()
             # self.ttl_370_7G_EOM.on()
             # self.DDS__AOM435.sw.on()
+            # self.ttl_370_2G_EOM.on()
 
             delay(self.detection_time)
 
@@ -353,4 +317,4 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             # self.ttl_370_7G_EOM.off()  
             self.ttl_935_EOM.off()          
             self.ttl_370_AOM.off()
-
+            # self.ttl_370_2G_EOM.off()

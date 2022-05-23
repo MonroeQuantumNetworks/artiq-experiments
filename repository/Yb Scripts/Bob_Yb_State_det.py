@@ -1,8 +1,8 @@
-""" Tested
-Alice Yb 435 scan with Sideband cooling
+""" Works
+Bob Yb state detection
 
 
-George Toh 2022-04-28
+George Toh 2022-05-13
 """
 
 from artiq.experiment import *
@@ -16,8 +16,8 @@ from repository import base_experiment
 import os
 import time
 
-class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
-    """ Alice Yb 435 Scan SBC"""
+class Bob_Yb_State_det(base_experiment.base_experiment):
+    """ Bob Yb S-state detection"""
 
     kernel_invariants = {
         "detection_time",
@@ -33,47 +33,24 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         super().build()
         self.setattr_device("ccb")
         self.setattr_device("core_dma")
-        # self.detector = self.Alice_camera_side_APD
+        # self.detector = self.Bob_camera_side_APD
 
         self.setattr_argument('detections_per_point', NumberValue(200, ndecimals=0, min=1, step=1))
-        self.setattr_argument('photons_0_or_1', NumberValue(2.5, ndecimals=1, min=0.5, step=1))
+        self.setattr_argument('photons_0_or_1', NumberValue(2, ndecimals=1, min=0.5, step=1))
         # self.setattr_argument('detection_points', NumberValue(1, ndecimals=0, min=1, step=1))
 
-        # Anything with a scannable needs to be listed here
-        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time', 'shelving_time', 'AOM435_frequency', 'AOM435_amplitude', 'sidebandcool_time', 'AOM435SBC_frequency']
+        self.scan_names = ['cooling_time', 'pumping_time', 'detection_time', 'delay_time']
+        self.setattr_argument('cooling_time__scan',   Scannable(default=[NoScan(self.globals__timing__cooling_time), RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('pumping_time__scan',   Scannable(default=[NoScan(self.globals__timing__pumping_time), RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('detection_time__scan', Scannable( default=[NoScan(self.globals__timing__detection_time), RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
+        self.setattr_argument('delay_time__scan', Scannable(default=[NoScan(500), RangeScan(0, 1000, 10)], global_min=0, global_step=10, ndecimals=0))
 
-        # Inputs for 370 laser
-        self.setattr_argument('cooling_time__scan', group = '370', processor = Scannable(default=[NoScan(self.globals__timing__cooling_time), 
-                                RangeScan(0*us, 3*self.globals__timing__cooling_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        
-        self.setattr_argument('pumping_time__scan', group = '370', processor = Scannable(default=[NoScan(self.globals__timing__pumping_time), 
-                                RangeScan(0*us, 3*self.globals__timing__pumping_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        
-        self.setattr_argument('detection_time__scan', group = '370', processor = Scannable(default=[NoScan(self.globals__timing__detection_time), 
-                                RangeScan(0*us, 3*self.globals__timing__detection_time, 10) ], global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-        
-        self.setattr_argument('delay_time__scan', group = '370', processor = Scannable(default=[NoScan(500), 
-                                RangeScan(0, 1000, 10)], global_min=0, global_step=10, ndecimals=0))
-
-        # Inputs for 435 laser
-        self.setattr_argument('shelving_time__scan', group = '435', processor = Scannable(default=[NoScan(1*us), RangeScan(0, 50*us, 10)], 
-                                global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-
-        self.setattr_argument('AOM435_frequency__scan', group = '435', processor =  Scannable(default=[NoScan(126.16e6), RangeScan(120e6, 130e6, 10)], 
-                                unit='MHz', ndecimals=9))
-
-        self.setattr_argument('AOM435_amplitude__scan', group = '435', processor =  Scannable(default=[NoScan(0.4), RangeScan(0.1, 0.5, 20)], 
-                                global_min=0, global_step=0.1, ndecimals=3))
-        
-        # Inputs for Sideband Cooling SBC
-        self.setattr_argument('sidebandcool_time__scan', group = 'SBC', processor = Scannable(default=[NoScan(500*us), RangeScan(0, 500*us, 10)], 
-                                global_min=0*us, global_step=1*us, unit='us', ndecimals=3))
-
-        self.setattr_argument('AOM435SBC_frequency__scan', group = 'SBC', processor =  Scannable(default=[NoScan(125.8e6), RangeScan(120e6, 130e6, 10)], 
-                                unit='MHz', ndecimals=9))
-
+        # These are initialized as 1 to prevent divide by zero errors. Change 1 to 0 when fully working.
         self.sum11 = 0
         self.sum12 = 0
+        # self.sum21 = 0
+        # self.sum22 = 0
+
 
     def run(self):
 
@@ -104,8 +81,6 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             + xlabel
             + "'"
         )
-
-        # $python -m applets.plot_multi  --x scan_x --y-names sum11 sum12 --rid runid --y-label 'Counts' --x-label 'Scanned variable'
 
 
         # Also, turn on Ba_ratios to plot the figures
@@ -143,6 +118,10 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             point_num = 0
             for point in msm:
 
+                self.point_num1 = point_num
+                self.sum11 = 0
+                self.sum12 = 0
+
                 print(["{} {}".format(name, getattr(point, name)) for name in self.active_scan_names])
 
                 # update the instance variables (e.g. self.cooling_time=point.cooling_time)
@@ -153,9 +132,12 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
                 self.append_to_dataset('scan_x', getattr(point, self.active_scan_names[0]))
 
                 # Run the main portion of code here
-                self.kernel_run()
+                sum0, sum1 = self.kernel_run()
 
-                # For Yb, these are all that are needed:
+                self.sum11 = sum0
+                self.sum12 = sum1
+
+                # For Yb, these are all that are needed: (moved to RPC)
                 ratio11 = self.sum11 / (self.sum11 + self.sum12)
                 ratio12 = self.sum12 / (self.sum11 + self.sum12)
                 
@@ -188,14 +170,9 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
     @kernel
     def kernel_run(self):
 
-        self.core.reset()
-        self.core.break_realtime()
-
-        # Hard-coded to set the AOM frequency and amplitude
-        delay_mu(95000)
-        self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
-        # delay_mu(95000)
-        # self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
+        sum11 = 0
+        sum12 = 0
+        my_list = [0] * 50
 
         sum0 = 0
         sum1 = 0
@@ -204,9 +181,11 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         # Preparation for experiment
         self.prep_record()
         self.record_pump_0()
+        self.record_pump_1()
         self.record_detect()
 
         prep_handle = self.core_dma.get_handle("pulses_prep")
+        # pulses_handle1 = self.core_dma.get_handle("pulses1")
         pulses_handle0 = self.core_dma.get_handle("pulses0")
         pulses_detect = self.core_dma.get_handle("pulsesd")
         self.core.break_realtime()
@@ -221,34 +200,48 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             delay_mu(30000)
             # for i in range(10):
 
-            self.core_dma.playback_handle(pulses_handle0)  # Cool then Pump then apply 435
+            self.core_dma.playback_handle(pulses_handle0)  # Cool then Pump            
             # delay_mu(500)   # To compensate for AOM turn off time
 
             with parallel:
                 with sequential:
                     delay_mu(delay1)   # For turn on off time of the lasers
-                    gate_end_mu_B1 = self.Alice_PMT.gate_rising(self.detection_time)
+                    gate_end_mu_B1 = self.Bob_PMT.gate_rising(self.detection_time)
                 self.core_dma.playback_handle(pulses_detect)
             
             # for i in range(10):
             delay_mu(100000)
 
-            temp = self.Alice_PMT.count(gate_end_mu_B1)
+            temp = self.Bob_PMT.count(gate_end_mu_B1)
+            # self._send_data_to_host(temp)   # Test asynchronous RPC call to host
+        
             if temp > self.photons_0_or_1:
                 sum1 += 1
             else:
                 sum0 += 1
 
-            # sum0 = self.Alice_PMT.count(gate_end_mu_B1)
+        # self.sum11 = sum0
+        # self.sum12 = sum1
+        return sum0, sum1
 
-        self.sum11 = sum0
-        self.sum12 = sum1
+    @rpc(flags={'async'})
+    def _send_data_to_host(self, new_data):
+    # data transformation, plot data, store data
+        if new_data > self.photons_0_or_1:
+            self.sum11 += 1
+        else:
+            self.sum12 += 1
 
-        # Cool ion during return to host
-        self.ttl_370_2G_EOM.off()
-        self.ttl_370_7G_EOM.on()
-        self.ttl_370_AOM.on()
-        self.ttl_935_EOM.on()        
+        ratio11 = self.sum11 / (self.sum11 + self.sum12)
+        ratio12 = self.sum12 / (self.sum11 + self.sum12)
+        
+        self.mutate_dataset('sum11', self.point_num1, self.sum11)
+        self.mutate_dataset('sum12', self.point_num1, self.sum12)
+
+        ratios = np.array([ratio11, ratio12]) 
+
+        self.append_to_dataset('ratio_list', ratios)
+        
 
     @kernel
     def prep_record(self):
@@ -266,11 +259,6 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulses0"):
             
-            delay_mu(95000)
-            self.DDS__AOM435.set(self.AOM435SBC_frequency, amplitude=self.AOM435_amplitude)
-            # delay_mu(95000)
-            # self.core.break_realtime()
-
             self.ttl_370_2G_EOM.off()
             self.ttl_370_7G_EOM.on()
             self.ttl_370_AOM.on()
@@ -284,47 +272,12 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             # self.ttl_935_EOM.off()
 
             delay(self.pumping_time)
+            
 
             self.ttl_370_2G_EOM.off()
             self.ttl_370_7G_EOM.off()
             self.ttl_370_AOM.off()
             self.ttl_935_EOM.off()
-
-            delay_mu(1000)
-
-            # Try sideband cooling!
-            self.ttl_370_2G_EOM.on()
-            self.ttl_370_7G_EOM.off()
-            self.ttl_370_AOM.on()
-            delay_mu(10)
-            self.ttl_935_EOM.on()
-            self.DDS__AOM435.sw.on()
-
-            delay(self.sidebandcool_time)
-
-            self.DDS__AOM435.sw.off()
-
-            delay(self.pumping_time)
-
-            self.ttl_370_2G_EOM.off()
-            self.ttl_370_7G_EOM.off()
-            self.ttl_370_AOM.off()
-            self.ttl_935_EOM.off()
-                        
-            delay_mu(95000)
-            self.DDS__AOM435.set(self.AOM435_frequency, amplitude=self.AOM435_amplitude)
-            # delay_mu(95000)
-            # self.core.break_realtime()
-
-            delay_mu(1000)
-
-            # delay_mu(20000000)
-
-            self.DDS__AOM435.sw.on()
-
-            delay(self.shelving_time)
-
-            self.DDS__AOM435.sw.off()
 
             delay_mu(1000)  # For timing detection timing purposes
 
@@ -332,9 +285,40 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
             # delay(self.detection_time)
             # self.ttl_370_AOM.off()
 
-            # self.ttl_935_EOM.on()
-            # delay_mu(1500000)      # Try to de-shelve the ion
-            # self.ttl_935_EOM.off() 
+    @kernel
+    def record_pump_1(self):
+        """DMA pump and detection loop sequence.
+        This generates the pulse sequence needed for pumping to state 1
+        """
+        with self.core_dma.record("pulses1"):
+            self.ttl_370_2G_EOM.off()
+            self.ttl_370_7G_EOM.on()
+            self.ttl_370_AOM.on()
+            self.ttl_935_EOM.on()
+
+            delay(self.cooling_time)
+
+            self.ttl_370_2G_EOM.on()
+            self.ttl_370_7G_EOM.off()
+            # self.ttl_370_AOM.off()
+            # self.ttl_935_EOM.off()
+
+            delay(self.pumping_time)
+            
+            self.ttl_370_2G_EOM.off()
+            self.ttl_370_7G_EOM.off()
+            self.ttl_370_AOM.off()
+            self.ttl_935_EOM.off()
+
+            delay_mu(1000)  # For timing detection timing purposes
+
+            # Do Raman or microwave rotation to drive 0 to 1
+
+            # delay_mu(1000)
+
+            # self.ttl_370_AOM.on()
+            # delay(self.detection_time)
+            # self.ttl_370_AOM.off()
 
     @kernel
     def record_detect(self):
@@ -343,14 +327,6 @@ class Alice_Yb_435_scan_SBC(base_experiment.base_experiment):
         """
         with self.core_dma.record("pulsesd"):
             self.ttl_370_AOM.on()
-            self.ttl_935_EOM.on()
-            # self.ttl_370_7G_EOM.on()
-            # self.DDS__AOM435.sw.on()
-
             delay(self.detection_time)
-
-            # self.DDS__AOM435.sw.off()
-            # self.ttl_370_7G_EOM.off()  
-            self.ttl_935_EOM.off()          
             self.ttl_370_AOM.off()
 

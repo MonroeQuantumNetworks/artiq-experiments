@@ -77,7 +77,7 @@ class base_experiment(EnvExperiment):
         ('HOM3', 'ttl11'),
         ('Alice_camera_side_APD', 'ttl12'),
         ('Bob_camera_side_APD', 'ttl13'),
-        ('Alice_PMT', 'ttl14'),
+        ('Alice_PMT', 'ttl14'),       # Temporarily put cleo here on ttl14
         ('Bob_PMT', 'ttl15'),
         ('Counter1', 'ttl28'),        # These edge_counters are not TTLs
         ('Counter2', 'ttl29'),        # Re-labeled in device_db.py
@@ -109,12 +109,11 @@ class base_experiment(EnvExperiment):
         ('ttl_20', 'ttl20', False),
         ('ttl_21', 'ttl21', False),
         ('ttl_22', 'ttl22', False),
-        ('ttl_23', 'ttl23', False),
+        ('ttl_935_shutter', 'ttl23', False),
         ('ttl_370_2G_EOM', 'ttl24', False),
         ('ttl_370_7G_EOM', 'ttl25', False),
         ('ttl_370_AOM', 'ttl26', False),
         ('ttl_935_EOM', 'ttl27', False)
-
     ]
 
     # DAC_list = [
