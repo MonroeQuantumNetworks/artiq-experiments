@@ -76,8 +76,9 @@ class base_experiment(EnvExperiment):
         ('HOM2', 'ttl10'),
         ('HOM3', 'ttl11'),
         ('Alice_camera_side_APD', 'ttl12'),
-        ('Bob_camera_side_APD', 'ttl13'),
-        ('Alice_PMT', 'ttl14'),       # Temporarily put cleo here on ttl14
+        # ('Bob_camera_side_APD', 'ttl13'),  # Temporarily put cleo here on ttl13
+        ('Cleo_PMT', 'ttl13'),  # Temporarily put Cleo here on ttl13
+        ('Alice_PMT', 'ttl14'),       
         ('Bob_PMT', 'ttl15'),
         ('Counter1', 'ttl28'),        # These edge_counters are not TTLs
         ('Counter2', 'ttl29'),        # Re-labeled in device_db.py
@@ -150,12 +151,9 @@ class base_experiment(EnvExperiment):
 
         # self.load_globals_from_dataset()
         self.build_common()
-        # self.build_globals_arguments()  # George added this because it seems necessary. Can I do without this?
-        # I need to get rid of build globals arguments because it is generating many entries in the GUI
 
         # load_globals_from_dataset takes the global values from the dataset and put them into the local variables.
         self.load_globals_from_dataset()    # Moved this below build globals arguments
-        # self.setup()        # George added this because it seems logical?
 
         #print('base_experiment.build() done for {}'.format(self.__class__))
 
